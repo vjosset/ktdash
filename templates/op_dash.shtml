@@ -1,0 +1,146 @@
+<div class="card border-light dark shadow">
+
+	<!-- Portrait -->
+	<img ng-if="settings.dashportraits" class="card-img-top" ng-src="/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+	
+	<div class="cinzel dark center mb-0">
+		<h3 class="cinzel d-inline">{{ operative.opname }}</h3>
+		<!-- h5 class="oswald d-inline float-end text-end" ng-click="operative.hidden = true;commitTeams();"><i class="far fa-eye-slash fa-fw"></i></h5 -->
+	</div>
+	
+	<div class="cinzel dark p-1">
+		<div class="float-start small oswald d-inline">
+			{{ operative.optype }}
+		</div>
+		<div ng-if="operative.isInjured && operative.curW > 0" class="float-end small cinzel d-inline" style="color: red;">
+			Injured
+		</div>
+		<div ng-if="operative.curW == 0" class="float-end small cinzel d-inline" style="color: red;">
+			Incapacitated
+		</div>
+	</div>
+	
+	<!-- Characteristics/Stats -->
+	<center>
+		<table width="100%" class="text-center cinzel">
+			<tr class="h3 orange">
+				<td width="16%">M</td>
+				<td width="16%">APL</td>
+				<td width="16%">GA</td>
+				<td width="16%">DF</td>
+				<td width="16%">SV</td>
+				<td width="16%">W</td>
+			</tr>
+			<tr class="h3">
+				<td ng-style="{ color: operative.isInjured ? 'red' : '' }" ng-bind-html="operative.M"></td>
+				<td>{{ operative.APL }}</td>
+				<td>{{ operative.GA }}</td>
+				<td>{{ operative.DF }}</td>
+				<td>&nbsp;{{ operative.SV }}</td>
+				<td ng-style="{ color: operative.isInjured ? 'red' : '' }">
+					<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+					
+					{{ operative.curW }}
+					
+					<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+				</td>
+			</tr>
+		</table>
+	</center>
+	
+	<!-- Weapons List-->
+	<table ng-if="operative.curW > 0 && operative.weapons.length > 0" class="m-1">
+		<tr class="h6 cinzel line-top-light">
+			<td>
+				Weapons
+			</td>
+			<td class="text-center">
+				&nbsp;&nbsp;A&nbsp;&nbsp;
+			</td>
+			<td class="text-center">
+				&nbsp;&nbsp;BS&nbsp;&nbsp;
+			</td>
+			<td class="text-center">
+				&nbsp;&nbsp;D&nbsp;&nbsp;
+			</td>
+		</tr>
+		<tbody ng-repeat="weapon in operative.weapons" class="oswald">
+			<!-- Single Profile -->
+			<tr ng-if="weapon.profiles.length < 2">
+				<td>
+					{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+					<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
+				</td>
+				<td class="text-center h5">
+					&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
+				</td>
+				<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'red' : '' }">
+					&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
+				</td>
+				<td class="text-center h5">
+					&nbsp;&nbsp;{{ weapon.profiles[0].D }}&nbsp;&nbsp;
+				</td>
+			</tr>
+			
+			<!-- Multi-Profile -->
+			<tr ng-if="weapon.profiles.length > 1">
+				<td colspan="4">
+					{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+				</td>
+			</tr>
+			<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
+				<td>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					- {{ profile.name }}
+					<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
+				</td>
+				<td class="text-center h5">
+					&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
+				</td>
+				<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'red' : '' }">
+					&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
+				</td>
+				<td class="text-center h5">
+					&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- Abilities -->
+	<div class="m-1 line-top-light" ng-show="operative.curW > 0 && operative.abilities.length > 0">
+		<h6 class="cinzel">Abilities</h6>
+		<div ng-click="showpopup(ab.title, ab.description);" class="oswald" ng-repeat="ab in operative.abilities">
+			{{ ab.title }} 
+			<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+		</div>
+	</div>
+	
+	<!-- Unique Actions -->
+	<div class="m-1 line-top-light" ng-show="operative.curW > 0 && operative.uniqueactions.length > 0">
+		<h6 class="cinzel">Unique Actions</h6>
+		<div ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" class="oswald" ng-repeat="ua in operative.uniqueactions">
+			{{ ua.title }} ({{ ua.AP}} AP)
+			<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+		</div>
+	</div>
+	
+	<!-- Equipment -->
+	<div class="m-1 line-top-light"ng-show="operative.curW > 0">
+		<h6 class="cinzel" ng-click="initEditOpEq(operative);">
+			Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
+		</h6>
+		<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments">
+			{{ eq.eqname }}
+			<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+		</div>
+	</div>
+	
+	<!-- Notes -->
+	<div ng-if="operative.curW > 0" class="m-1">
+		<h6 class="cinzel line-top-light">Notes</h6>
+		<textarea style="border: 0px solid; width: 100%;" rows="1" class="oswald dark d-block" ng-model="operative.notes" ng-change="commitTeams();"></textarea>
+		<!-- div contenteditable="true" class="oswald" ng-model="operative.notes" ng-change="commitTeams();"></div -->
+	</div>
+</div>
+<br/>

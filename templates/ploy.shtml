@@ -1,0 +1,6 @@
+<div class="oswald line-top-light">
+	<h5 class="cinzel d-inline">{{ ploy.ployname }}</h5>
+	<em class="oswald">({{ ploy.ploytype == 'S' ? 'Strategic' : 'Tactical' }} Ploy)</em>
+	<h5 class="cinzel d-inline float-end text-end">{{ ploy.CP }} CP&nbsp;&nbsp;</h5>
+</div>
+<p class="oswald p-1" style="text-align: justify;" ng-bind-html="ploy.description"></p>

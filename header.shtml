@@ -1,0 +1,73 @@
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="KTDash.app - KillTeam Dashboard and Teams">
+		<meta name="author" content="">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		
+		<!-- Icons -->
+		<link rel="apple-touch-icon" sizes="192x192" href="/img/icons/icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="48x48" href="/img/icons/icon-48x48.png">
+		<link rel="icon" type="image/png" sizes="72x72" href="/img/icons/icon-72x72.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="msapplication-TileColor" content="#444">
+		<meta name="theme-color" content="#444">
+		
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+		
+		<!-- AngularJS -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.min.js"></script>
+		
+		<!-- JS Utils -->
+		<script type="text/javascript" src="/js/utils.js?sdf=asdfdf"></script>
+		
+		<!-- App/Controller -->
+		<script type="text/javascript" defer async src="js/app.js?ui=ddwe"></script>
+		
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<!-- Cinzel -->
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800&family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+		<!-- Oswald Font -->
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet"> 
+		<!-- Other Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&family=Black+Ops+One&family=Bungee&family=Jockey+One&family=Mate+SC&family=Staatliches&display=swap" rel="stylesheet"> 
+		<!-- Bespoke Styles -->
+		<link rel="stylesheet" href="css/styles.css?sdf=asdfdf" />
+		
+		<!-- PWA stuff -->
+		<script src="/sw.js"></script>
+		<script src="/sw-register.js"></script>
+		
+		<!-- Toasts -->
+		<link rel="stylesheet" href="css/toast.css?sdfg=asdfdf" />
+		<script type="text/javascript" src="js/toast.js?sdf=asddf"></script>
+		
+		<!-- Google Analytics -->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q584HL6VDV"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-Q584HL6VDV');
+		</script>
+		
+		<!-- Other/Global Meta Tags -->
+		<meta property="og:type" content="website">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="ktdash.app">

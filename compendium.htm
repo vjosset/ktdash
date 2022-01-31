@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>Compendium | KTDash.app</title>
+		<meta property="og:title"  content="Compendium | KTDash.app">
+		<meta name="twitter:title" content="Compendium | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="All factions for KillTeam 2021">
+		<meta property="og:description"  content="All factions for KillTeam 2021">
+		<meta name="twitter:description" content="All factions for KillTeam 2021">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/compendium.htm">
+		<meta property="twitter:url" content="https://ktdash.app/compendium.htm">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+		<!--#include virtual="topnav.shtml" -->
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+			
+		<script type="text/javascript">
+			trackEvent("compendium", "allfactions");
+		</script>
+		
+		<h1 class="cinzel orange">Compendium - Factions</h1>
+		
+		<div class="card-group">
+			<div ng-repeat="faction in factions" class="col-12 col-md-6 col-xl-4">
+				<div class="card border-light shadow dark">
+					<!-- Portrait -->
+					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+					
+					<a class="h1 card-title cinzel orange text-center" href="/faction.htm?fa={{ faction.factionid }}">
+						{{ faction.factionname }}
+					</a>
+					
+					<p class="card-text p-2 m-0 oswald" style="text-align:justify;" ng-bind-html="faction.description"></p>
+					
+					<!-- p class="card-text p-2 m-0 oswald">
+						<a href="faction.htm?factionid={{ faction.factionid }}" class="btn btn-primary">View KillTeams</a>
+					</p -->					
+				</div>
+				<br/>
+			</div>
+		</div>
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>

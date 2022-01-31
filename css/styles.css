@@ -1,0 +1,116 @@
+/* Rotation for TopNav icon */
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+body {
+	font-family: Arial Narrow, Roboto;
+	font-size: 1em;
+	/*background-color: #343a40;*/
+	background-color: #202020;
+	color: #eee;
+}
+
+.cinzel {
+	font-family: Anton;
+	text-transform: uppercase;
+}
+
+.oswald {
+	font-family: Oswald;
+}
+
+.dark {
+	/*background-color: #343a40;*/
+	background-color: #202020;
+	color: #EEE;
+}
+
+.bright {
+	background-color: #FFF;
+	color: #343a40;
+}
+
+.orange {
+	/*background-color: #dd7d00;*/
+	/*color: #343a40;*/
+	background-color: #c54c21;
+	color: #262a2d;
+}
+
+.orangetext {
+	color: #c54c21;
+}
+
+.eqtable {
+	border: 1px solid #888;
+}
+
+dark a, dark a:link, dark a:visited, dark a:hover, dark a:active 
+{
+	color: #EEE;
+}
+
+orange a, orange a:link, orange a:visited, orange a:hover, orange a:active 
+{
+	/*background-color: #dd7d00;*/
+	/*color: #343a40;*/
+	background-color: #c54c21;
+	color: #262a2d;
+	text-decoration: none;
+}
+
+.bold {
+	font-weight: bold;
+}
+.light {
+	font-weight: 200;
+}
+
+.center {
+	text-align: center;
+}
+
+th, td {
+	vertical-align: top;
+}
+
+.line-top
+{
+	border-top: 1px solid #000;
+}
+
+.line-top-light
+{
+	border-top: 1px solid #EEE;
+}
+
+.line-bottom
+{
+	border-bottom: 1px solid #000;
+}
+
+.line-bottom-light
+{
+	border-bottom: 1px solid #EEE;
+}
+
+.shadow
+{
+	box-shadow: 20px 20px 20px 20px #aaaaaa;
+}
+
+.pointer
+{
+	cursor: pointer;
+}
+

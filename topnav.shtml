@@ -1,0 +1,22 @@
+			<!-- Main Nav -->
+			<nav class="navbar navbar-expand-lg navbar-dark sticky-top dark">
+				<a class="navbar-brand" href="/">
+					<h1 class="cinzel d-inline">
+						<span class="fas fa-book-dead fa-fw orangetext" ng-class="{'rotate': loading}"></span>
+						KTDash
+					</h1>
+				</a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="navbar-collapse collapse" id="navbarNav" data-toggle="collapse" data-target="#navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item"><a class="oswald nav-link" href="/dashboard.htm"><span class="fas fa-border-all fa-fw"></span>&nbsp;Dashboard</a></li>
+						<li class="nav-item"><a class="oswald nav-link" href="/myteams.htm"><span class="fas fa-list fa-fw"></span>&nbsp;My Teams ({{ myteams.length }})</a></li>
+						<li class="nav-item"><a class="oswald nav-link" href="/compendium.php"><span class="fas fa-book-dead fa-fw"></span>&nbsp;Compendium</a></li>
+						<li class="nav-item"><a class="oswald nav-link" href="/settings.htm"><span class="fas fa-cog fa-fw"></span>&nbsp;Settings/Tools</a></li>
+					</ul>
+				</div>
+			</nav>

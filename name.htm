@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>Name Generator | KTDash.app</title>
+		<meta property="og:title"  content="Name Generator | KTDash.app">
+		<meta name="twitter:title" content="Name Generator | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="Operative Name Generator for KillTeam 2021">
+		<meta property="og:description"  content="Operative Name Generator for KillTeam 2021">
+		<meta name="twitter:description" content="Operative Name Generator for KillTeam 2021">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/name.htm">
+		<meta property="twitter:url" content="https://ktdash.app/name.htm">
+		<!-- Image -->
+		<meta property="og:image"  content="https://ktdash.app/img/og/generic_small.png">
+		<meta name="twitter:image" content="https://ktdash.app/img/og/generic_small.png">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+		<!--#include virtual="topnav.shtml" -->
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+		
+		<script type="text/javascript">
+			trackEvent("tools", "namegen");
+		</script>
+		
+		<h1 class="orange cinzel">Name Generator</h1>
+		
+		<div class="container">
+			<h4 class="oswald">Name Type</h4>
+			<select class="form-control oswald" ng-model="generatenametype" ng-change="generatename();">
+				<option value="ADMECH">Adeptus Mechanicus</option>
+				<option value="AELDARI-F">Aeldari - Female</option>
+				<option value="AELDARI-M">Aeldari - Male</option>
+				
+				
+				<option value="DAEMON">Chaos Daemon</option>
+				<option value="DAEMONETTE">Chaos Daemonette</option>
+				
+				<option value="CHAOSMARINES">Chaos Space Marines</option>
+				
+				<option value="DARKAELDARI-F">Dark Aeldari - Female</option>
+				<option value="DARKAELDARI-M">Dark Aeldari - Male</option>
+				
+				<option value="HUMAN-F">Human - Female</option>
+				<option value="HUMAN-M" selected>Human - Male</option>
+				
+				<option value="NECRON">Necron</option>
+				
+				<option value="ORK">Ork</option>
+				
+				<option value="SISTERSOFBATTLE">Sisters Of Battle</option>
+				<option value="SPACEMARINES">Space Marines</option>
+				
+				<option value="TAU">Tau</option>
+				
+				<option value="TYRANID">Tyranid</option>
+			</select>
+			<br/>
+			<center>
+				<button class="btn btn-primary oswald" ng-click="generatename();trackEvent('tools', 'namegen', generatenametype);">Generate Name</button>
+			</center>
+			<br/><br/>
+			<div class="cinzel h1 orange text-center">{{ generatedname }}</div>
+		</div>
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>
+
+
+	

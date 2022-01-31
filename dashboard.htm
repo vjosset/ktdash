@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>Dashboard | KTDash.app</title>
+		<meta property="og:title"  content="Dashboard | KTDash.app">
+		<meta name="twitter:title" content="Dashboard | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="Game Dashboard for KillTeam 2021">
+		<meta property="og:description"  content="Game Dashboard for KillTeam 2021">
+		<meta name="twitter:description" content="Game Dashboard for KillTeam 2021">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/dashboard.htm">
+		<meta property="twitter:url" content="https://ktdash.app/dashboard.htm">
+		<!-- Image -->
+		<meta property="og:image"  content="https://ktdash.app/img/og/Dashboard.png">
+		<meta name="twitter:image" content="https://ktdash.app/img/og/Dashboard.png">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init('DASH');">
+		<!--#include virtual="topnav.shtml" -->
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+		
+		<script type="text/javascript">
+			trackEvent("dashboard", "view");
+		</script>
+		
+		<!-- Turn/CP/VP tracker -->
+		<div class="cinzel container-fluid cinzel h2 text-center">
+			<center>
+				<div class="row orange">
+					<div class="row">
+						<div class="col-12">
+							<h1 class="float-start d-inline">
+								<!-- BootStrap Team Selector -->
+								<div class="dropdown cinzel">
+									<div ng-if="dashboard == null || dashboard.myteam == null || dashboard.myteam.teamname == ''">Select a Team</div>
+									<button class="btn dropdown-toggle orange form-control cinzel" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-target="#teamselect">
+										<span class="h3">{{ dashboard.myteam.teamname }}</span>
+									</button>
+									<div class="dropdown-menu" id="teamselect">
+										<a class="dropdown-item" type="button" ng-repeat="team in myteams" ng-click="selectDashTeam(team);trackEvent('dashboard', 'selectTeam');">
+											{{ team.teamname }}
+										</a>
+									</div>
+								</div>
+							</h1>
+							<i class="float-end fas fa-undo-alt fa-fw" ng-click="resetDash();"></i>
+						</div>
+					</div>
+				</div>
+				<div class="row orange">
+					<div class="col-4">
+						CP
+					</div>
+					<div class="col-4">
+						Turn
+					</div>
+					<div class="col-4">
+						VP
+					</div>
+				</div>
+				<div class="row dark">
+					<div class="col-4">
+						<span class="small float-start" ng-click="dashboard.CP = dashboard.CP - 1;commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+						
+						<span ng-bind="dashboard.CP"></span>
+						
+						<span class="small float-end" ng-click="dashboard.CP = dashboard.CP + 1;commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+					</div>
+					<div class="col-4">
+						<span class="small float-start" ng-click="dashboard.TP = dashboard.TP - 1;commitTeams();trackEvent('dashboard', 'turn', '-1');"><i class="far fa-minus-square fa-fw"></i></span>
+						
+						<span ng-bind="dashboard.TP"></span>
+						
+						<span class="small float-end" ng-click="dashboard.TP = dashboard.TP + 1;commitTeams();trackEvent('dashboard', 'turn', '+1');"><i class="far fa-plus-square fa-fw"></i></span>
+					</div>
+					<div class="col-4">
+						<span class="small float-start" ng-click="dashboard.VP = dashboard.VP - 1;commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+						
+						<span ng-bind="dashboard.VP"></span>
+						
+						<span class="small float-end" ng-click="dashboard.VP = dashboard.VP + 1;commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+					</div>
+				</div>
+			</center>
+		</div>
+		
+		<!--h6 class="oswald">
+			<strong>Archetype:</strong> {{ dashboard.myteam.archetype }}
+		</h6 -->
+		
+		<ul class="nav nav-tabs oswald dark" id="mytabs" role="tablist">
+			<li class="nav-item m-0 p-0" role="presentation">
+				<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#ops" type="button" role="tab" aria-controls="ops" aria-selected="true">
+					Operatives
+				</a>
+			</li>
+			<li class="nav-item m-0 p-0" role="presentation">
+				<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#ploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
+					Ploys
+				</a>
+			</li>
+			<li class="nav-item m-0 p-0" role="presentation">
+				<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#eqs" type="button" role="tab" aria-controls="eqs" aria-selected="false">
+					Equip
+				</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane show active" id="ops" role="tabpanel">
+				<!-- KillTeam Comp popup -->
+				<!-- h3 class="cinzel" ng-click="showpopup(dashboard.myteam.killteam.killteamname + ' - KillTeam Composition', dashboard.myteam.killteam.killteamcomp);" -->
+				<h3 class="cinzel" ng-click="initSelectTeamOps(dashboard.myteam);">
+					Select Operatives <sup class="small"><i class="fas fa-edit fa-fw"></i></sup>
+				</h3>
+				
+				<!-- Operatives -->
+				<div class="row p-0 m-0">
+					<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboard.myteam.operatives track by $index" ng-if="!operative.hidden">
+						<!--#include virtual="templates/op_dash.shtml" -->
+					</div>
+				</div>
+				
+				<!-- Hidden Operatives -->
+				<!-- div class="row p-0 m-0">
+					<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboard.myteam.operatives track by $index" ng-if="operative.hidden">
+						<h5 class="cinzel d-inline" ng-click="operative.hidden = false;commitTeams();">{{ operative.opname }} <i class="far fa-eye fa-fw"></i></h5>
+					</div>
+				</div -->
+			</div>
+			<div class="tab-pane" id="ploys" role="tabpanel">
+				<!-- Strategic Ploys -->
+				<div class="h3 cinzel">Strategic Ploys</div>
+				<div class="row p-0 m-0" ng-repeat="ploy in dashboard.myteam.killteam.ploys.strat">
+					<div class="col-12 col-lg-6">
+						<!--#include virtual="templates/ploy.shtml" -->
+					</div>
+				</div>
+				<div class="h3 cinzel">Tactical Ploys</div>
+				<div class="row p-0 m-0" ng-repeat="ploy in dashboard.myteam.killteam.ploys.tac">
+					<div class="col-12 col-lg-6">
+						<!--#include virtual="templates/ploy.shtml" -->
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="eqs" role="tabpanel">
+				<!-- Equipment -->
+				<div class="row p-0 m-0">
+					<div ng-repeat="eq in dashboard.myteam.killteam.equipments" class="col-12 col-lg-6 col-xl-4">
+						<!--#include virtual="templates/eq.shtml" -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>

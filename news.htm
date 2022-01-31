@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>News | KTDash.app</title>
+		<meta property="og:title"  content="News | KTDash.app">
+		<meta name="twitter:title" content="News | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<meta property="og:description"  content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<meta name="twitter:description" content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/news.htm">
+		<meta property="twitter:url" content="https://ktdash.app/news.htm">
+		<!-- Image -->
+		<meta property="og:image"  content="https://ktdash.app/img/og/News.png">
+		<meta name="twitter:image" content="https://ktdash.app/img/og/News.png">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+		<!--#include virtual="topnav.shtml" -->
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+		
+		<script type="text/javascript">
+			trackEvent("page", "news");
+		</script>
+		<h1 class="orange cinzel">News</h1>
+			
+		<div class="container">
+			<ul class="oswald">
+				<li>
+					<strong>28 Jan 2022</strong><br/>
+					<ul>
+						<li>Updated images for the <a href="/killteam.php?fa=IMP&kt=GK">Grey Knights</a></li>
+						<li>Added QR Code to the team sharing link</li>
+						<li>Printable operative cards! Use the <i class="fas fa-print fa-fw"></i> button from <a href="/myteams.htm">My Teams</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>25 Jan 2022</strong><br/>
+					<ul>
+						<li>Applied all changes from the 20 Jan 2022 <a href="https://www.warhammer-community.com/faqs/#kill-team" target="_blank">Errata</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>13 Jan 2022</strong><br/>
+					<ul>
+						<li>Better selection of operatives from your team in the Dashboard (use the "Select Operatives" link)</li>
+						<li>Updated Dashboard to hide operative equipment, abilities, and unique actions if they are Incapacitated</li>
+					</ul>
+				</li>
+				<li>
+					<strong>11 Jan 2022</strong><br/>
+					<ul>
+						<li>
+							Added support for selecting operative equipment on the <a href="/dashboard.htm">Dashboard</a>.
+						</li>
+					</ul>
+				</li>
+				<li>
+					<strong>09 Jan 2022</strong><br/>
+					<ul>
+						<li>
+							Added support for showing/hiding (<i class="far fa-eye"></i>/<i class="far fa-eye-slash"></i>) operatives on the dashboard.
+							This is useful if your team is a full roster, and you are only taking some of your operatives for your match.
+						</li>
+						<li>Made team sharing URLs much shorter</li>
+					</ul>
+				</li>
+				<li>
+					<strong>05 Jan 2022</strong><br/>
+					<ul>
+						<li>Added <a href="/settings.htm">Settings</a> to let you change how your dashboard looks. You can now show distances as their KT2021 shapes or inches, and can enable or disable operative portraits in the dashboard.</li>
+						<li>Added <a href="/sampleteams.htm">pre-built teams</a> ready to be imported.</li>
+					</ul>
+				</li>
+				<li>
+					<strong>04 Jan 2022</strong><br/>
+					<ul>
+						<li>Added missing images for <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade</a> KillTeam</li>
+						<li>Added support for re-ordering (<i class="fas fa-arrow-up fa-fw"></i> <i class="fas fa-arrow-down fa-fw"></i>) <a href="/myteams.htm">teams</a></li>
+						<li>Added support for cloning (<i class="far fa-copy fa-fw"></i>) <a href="/myteams.htm">teams</a></li>
+						<li>Added new page for generating operative names: <a href="/name.htm">Name Generator</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>03 Jan 2022</strong> - Compendium Updates<br/>
+					<ul>
+						<li>Fixed a BUNCH of typos in the compendium</li>
+						<li>Added missing Abilities and Unique Actions for <a href="/killteam.php?fa=IMP&kt=NOV">Novitiates</a> KillTeam</li>
+						<li>UI updates</li>
+						<li>Added a name generator for most operatives in the "Add Operative" dialog when editing your team</li>
+					</ul>
+				</li>
+				<li>
+					<strong>27 Dec 2021</strong> - Compendium Updates<br/>
+					<ul>
+						<li>Added <a href="/killteam.php?fa=TAU&kt=PF">Pathfinders</a> KillTeam to the Compendium</li>
+					</ul>
+				</li>
+				<li>
+					<strong>26 Dec 2021</strong> - Compendium Updates<br/>
+					<ul>
+						<li>Added <a href="/killteam.php?fa=IMP&kt=VG">Veteran Guardsmen</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/killteam.php?fa=CHAOS&kt=WC">Warp Coven</a> KillTeam to the Compendium</li>
+						<li>"Notes" on dashboard operatives are now persistent instead of being cleared when you leave the page</li>
+					</ul>
+				</li>
+				<li>
+					<strong>25 Dec 2021</strong> - Share Teams<br/>
+					<ul>
+						<li>You can now share your teams with others! Just click the <i class="fas fa-share-square fa-fw"></i> share button to get a custom URL for your team.
+					</ul>
+				</li>
+				<li>
+					<strong>24 Dec 2021</strong> - UI Updates<br/>
+					<ul>
+						<li>UI updates for "My Teams"</li>
+					</ul>
+				</li>
+				<li>
+					<strong>23 Dec 2021</strong> - Compendium Updates<br/>
+					<ul>
+						<li>Added <a href="/killteam.php?fa=IMP&kt=NOV">Novitiates</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/killteam.php?fa=ORK&kt=KOM">Kommando</a> KillTeam to the Compendium</li>
+						<li>Next up: Pathfinders, Warp Coven, and Veteran Guardsmen</li>
+					</ul>
+				</li>
+				<li>
+					<strong>22 Dec 2021</strong> - Dashboard Updates<br/>
+					<ul>
+						<li>Changed operative wound counter (plus/minus instead of checkboxes)</li>
+						<li>Injured operatives now are tagged and their M and BS/WS stats reflect their Injured status</li>
+						<li>Dashboard now persists between page loads</li>
+						<li>Added "Reset Dashboard" button to clear wounds and reset CP/VP/Turning Points counters</li>
+						<li>Added support for re-ordering operatives in your teams</li>
+						<li>Added support for editing operatives in your teams (rename, change weapon selection)</li>
+					</ul>
+				</li>
+				<li>
+					<strong>21 Dec 2021</strong> - Team Building Updates<br/>
+					<ul>
+						<li>Completely rebuilt "My Teams" and added better functionality/UI for team management</li>
+						<li>Added support for removing operatives from teams (still need to add support for editing and reordering team operatives)</li>
+					</ul>
+				</li>
+				<li>
+					<strong>20 Dec 2021</strong> - Team Building Updates<br/>
+					<ul>
+						<li>Added support for deleting and renaming teams, adding operatives to teams</li>
+						<li>Updated saved teams logic to reduce the size of browser local storage</li>
+						<li>Added operative name generation for certain killteams (Space Marines, Ecclesiarchy, Necrons, Tyranids, Chaos Marines, Thousand Sons)</li>
+						<li>
+							Updated killteam UI for easier team management:
+							<ul>
+								<li>Weapon special rules can now be clicked to get an explanation of what they mean</li>
+								<li>Operative Unique Actions and Abilities are now clickable to get their full description (to reduce operative card size)</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<strong>18 Dec 2021</strong> - Building your own team<br/>
+					After thinking about it carefully, I realized there is no need for people to register/login to create their teams.
+					Instead, I will implement brower-based local storage to manage teams.<br/>
+					Added logic to create new teams from the Killteam page; removed "Sign Up" and "Log In" links; made dashboard available to all users; no longer requires being logged in to manage teams or dashboard; added toast logic.<br/>
+					Next:
+					<ul>
+						<li>Add operatives to my team</li>
+						<li>Review killteam/fireteam UI for best usability</li>
+						<li>Rename/delete/manage my teams</il>
+						<li>Rename/delete/manage my team operatives</li>
+						<li>Share teams</li>
+					</ul>
+				</li>
+				<li>
+					<strong>17 Dec 2021</strong> - Fixed Typos, Style Updates<br/>
+					Updated styles (dark background)<br/>
+					Fixed typos for <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade</a> kill team;
+					added missing weapon (Marksman Bolt Carbine) for Space Marine <a href="/killteam.php?fa=IMP&kt=SM">Infiltrator</a> Warrior;
+					fixed formatting for <a href="/killteam.php?fa=IMP&kt=GK">Grey Knights</a>.
+				</li>
+				<li>
+					<strong>22 Nov 2021</strong> - Style Updates<br/>
+					Tweaked the display/layout/styles of the compendium to increase readability.
+				</li>
+				<li>
+					<strong>19 Nov 2021</strong> - Sign Up/Log In<br/>
+					As a first step for creating and managing your own KillTeams (to be used in the Dashboard), implemented "Sign Up" and "Log In". 
+					Stay tuned for more!
+				</li>
+				<li>
+					<strong>19 Nov 2021</strong> - New KillTeam: Hunter Clade<br/>
+					Added the Adeptus Mechanicus <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade KillTeam</a> from White Dwarf.
+				</li>
+				<li>
+					<strong>19 Nov 2021</strong> - Data Clean Up<br/>
+					Fixed a bunch of typos and renamed the KillTeams to match their designations in the compendium.
+				</li>
+				<li>
+					<strong>18 Nov 2021</strong> - GitHub DataSet<br/>
+					The full compendium JSON dataset is available in GitHub <a target="_blank" href="https://github.com/vjosset/killteamjson">here</a> and will be kept up to date moving forward.
+				</li>
+				<li>
+					<strong>17 Nov 2021</strong> - Factions<br/>
+					Updated the data set to group KillTeams under their respective factions.
+				</li>
+			</ul>
+		</div>
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>
+
+
+	

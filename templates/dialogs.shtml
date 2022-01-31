@@ -1,0 +1,484 @@
+<!-- Edit team killteam dialog -->
+<div class="modal fade oswald" id="selectteamopsmodal" tabindex="-1" role="dialog" aria-labelledby="selectteamopsmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="selectteamopsmodallabel">{{ selectteamops.team.teamname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="m-0 modal-body dark">
+				<!-- Tab Control -->
+				<ul class="m-0 nav nav-tabs oswald dark" id="selectteamopstabs" role="tablist">
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#selectteamopslist" type="button" role="tab" aria-controls="ops" aria-selected="true">
+							Operatives
+						</a>
+					</li>
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#killteamcomp" type="button" role="tab" aria-controls="ploys" aria-selected="false">
+							KillTeam Composition
+						</a>
+					</li>
+				</ul>
+				
+				<div class="m-0 tab-content">
+					<!-- Operative Selection -->
+					<div class="tab-pane show active" id="selectteamopslist" role="tabpanel">
+						<div ng-repeat="operative in selectteamops.team.operatives track by $index">
+							<div class="cinzel">
+								<input type="checkbox" ng-model="operative.hidden" ng-true-value="false" ng-false-value="true" ng-change="commitTeams();" />
+								{{ operative.opname }}
+							</div>
+							<div class="container">
+								<span class="small oswald"> ({{ operative.fireteam.fireteamname}} - {{ operative.optype }})</span>
+								<br/>
+								<span ng-repeat="weapon in operative.weapons" class="d-inline">
+									{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+									{{$last ? '' : ', '}}							
+								</span>
+							</div>
+							<br/>
+						</div>
+					</div>
+					
+					<!-- KillTeam Composition Rules -->
+					<div class="tab-pane show" id="killteamcomp" role="tabpanel">
+						<div ng-bind-html="selectteamops.team.killteam.killteamcomp"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Share team modal dialog -->
+<div class="modal fade oswald" id="shareteammodal" tabindex="-1" role="dialog" aria-labelledby="shareteammodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="shareteammodallabel">Share KillTeam</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				Team share link:<br/>
+				<a ng-href="{{ shareteam.url }}" target="_blank">{{ shareteam.teamname }}</a><br/>
+				<hr/>
+				<!-- QR Code -->
+				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https://ktdash.app{{ shareteam.url }}" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- New team modal dialog -->
+<div class="modal fade oswald" id="newteammodal" tabindex="-1" role="dialog" aria-labelledby="newteammodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="newteammodallabel">New KillTeam</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<h4 class="oswald">Team Name</h4>
+				<input type="text" id="newteamname" class="form-control oswald" ng-model="newteam.teamname" />
+				
+				<h4 class="oswald">Faction</h4>
+				<select class="form-control oswald" ng-model="newteam.faction">
+					<option ng-repeat="faction in factions" ng-value="faction">
+						{{ faction.factionname }}
+					</option>
+				</select>
+				
+				<h4 class="oswald">KillTeam</h4>
+				<select class="form-control oswald" ng-model="newteam.killteam">
+					<option ng-repeat="killteam in newteam.faction.killteams" ng-value="killteam">
+						{{ killteam.killteamname }}
+					</option>
+				</select>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="createTeam();">Create Team</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Rename team modal dialog -->
+<div class="modal fade oswald" id="renameteammodal" tabindex="-1" role="dialog" aria-labelledby="renameteammodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="renameteammodallabel">Rename Team {{ renameTeam.teamname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<h4 class="oswald">Team Name</h4>
+				<input type="text" id="newteamname" class="form-control oswald" ng-model="renameTeam.newteamname" />
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveRenameTeam()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Confirm delete team modal dialog -->
+<div class="modal fade oswald" id="deleteteammodal" tabindex="-1" role="dialog" aria-labelledby="deleteteammodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="deleteteammodallabel">Delete Team {{ deleteTeam.teamname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				Are you sure you want to delete team "{{ deleteTeam.teamname }}"?
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveDeleteTeam();">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Add operative modal dialog -->
+<div class="modal fade oswald" id="addoptoteammodal" tabindex="-1" role="dialog" aria-labelledby="addoptoteammodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="addoptoteammodallabel">Add Operative to {{ addop.team.teamname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<h4 class="oswald">FireTeam</h4>
+				<select class="form-control oswald" ng-model="addop.fireteam" ng-change="addop.operative = addop.fireteam.operatives[0]">
+					<option ng-repeat="fireteam in addop.team.killteam.fireteams" ng-value="fireteam">
+						{{ fireteam.fireteamname }}
+					</option>
+				</select>
+				
+				<h4 class="oswald">Operative</h4>
+				<select class="form-control oswald" ng-model="addop.operative">
+					<option ng-repeat="operative in addop.fireteam.operatives" ng-value="operative">
+						{{ operative.opname }}
+					</option>
+				</select>
+				
+				<span class="h4 oswald">Operative Name</span>
+				<span class="oswald float-end">
+					<a ng-click="generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');" ng-if="addop.operative != null">Generate Name</a>
+				</span><br/>
+				<input type="text" id="newopname" class="form-control oswald" ng-model="addop.opname" />
+				
+				<!-- Characteristics/Stats -->
+				<div ng-if="addop.operative != null">
+					<center>
+						<table width="100%" class="text-center cinzel">
+							<tr class="h4 orange">
+								<th width="16%">M</th>
+								<th width="16%">APL</th>
+								<th width="16%">GA</th>
+								<th width="16%">DF</th>
+								<th width="16%">SV</th>
+								<th width="16%">W</th>
+							</tr>
+							<tr class="h3">
+								<td ng-bind-html="addop.operative.M"></td>
+								<td>{{ addop.operative.APL }}</td>
+								<td>{{ addop.operative.GA }}</td>
+								<td>{{ addop.operative.DF }}</td>
+								<td>&nbsp;{{ addop.operative.SV }}</td>
+								<td>{{ addop.operative.W }}</td>
+							</tr>
+						</table>
+					</center>
+					
+					<h4 class="oswald">Select Weapons</h4>
+					
+					<!-- Weapons List-->
+					<table ng-if="addop.operative.weapons.length > 0" class="m-1" style="width: 100%">
+						<tr class="h6 cinzel line-top-light">
+							<th class="">
+								Weapons
+							</th>
+							<th class="text-center">
+								&nbsp;&nbsp;A&nbsp;&nbsp;
+							</th>
+							<th class="text-center">
+								&nbsp;&nbsp;BS&nbsp;&nbsp;
+							</th>
+							<th class="text-center">
+								&nbsp;&nbsp;D&nbsp;&nbsp;
+							</th>
+						</tr>
+						<tbody ng-repeat="weapon in addop.operative.weapons" class="oswald">
+							<!-- Single Profile -->
+							<tr ng-if="weapon.profiles.length < 2">
+								<td>
+									<input type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" /> {{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+									<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;{{ weapon.profiles[0].D }}&nbsp;&nbsp;
+								</td>
+							</tr>
+							
+							<!-- Multi-Profile -->
+							<tr ng-if="weapon.profiles.length > 1">
+								<td colspan="4">
+									<input type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" /> {{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+								</td>
+							</tr>
+							<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
+								<td>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									- {{ profile.name }}
+									<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" style="font-style:italic;"></div>
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
+								</td>
+								<td class="text-center h5">
+									&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
+								</td>
+							</tr>
+							
+							<!-- Multi-Profile -->
+							<tr class="h6 nowrap" ng-repeat="profile in weapon.profiles">
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="addOperative();">Add to Team</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Edit operative modal dialog -->
+<div class="modal fade oswald" id="editopmodal" tabindex="-1" role="dialog" aria-labelledby="editopmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="editopmodallabel">Edit {{ editop.opname }} ({{ editop.optype }})</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<h4 class="oswald">Operative Name</h4>
+				<span class="oswald float-end">
+					<a ng-click="generateOpName(editop.operative.factionid, editop.operative.killteamid, editop.operative.fireteamid, editop.operative.opid, editop, 'newopname');" ng-if="editop.operative != null">Generate Name</a>
+				</span><br/>
+				<input type="text" id="newopname" class="form-control oswald" ng-model="editop.newopname" />
+				
+				<h4 class="oswald">Select Weapons</h4>
+				
+				<!-- Weapons List-->
+				<table ng-if="editop.operative.weapons.length > 0" class="m-1" style="width: 100%">
+					<tr class="h6 cinzel line-top-light">
+						<th class="">
+							Weapon
+						</th>
+						<th class="text-center">
+							&nbsp;&nbsp;A&nbsp;&nbsp;
+						</th>
+						<th class="text-center">
+							&nbsp;&nbsp;BS&nbsp;&nbsp;
+						</th>
+						<th class="text-center">
+							&nbsp;&nbsp;D&nbsp;&nbsp;
+						</th>
+					</tr>
+					<tbody ng-repeat="weapon in editop.operative.weapons" class="oswald">
+						<!-- Single Profile -->
+						<tr ng-if="weapon.profiles.length < 2">
+							<td>
+								<input type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" /> {{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+								<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;{{ weapon.profiles[0].D }}&nbsp;&nbsp;
+							</td>
+						</tr>
+						
+						<!-- Multi-Profile -->
+						<tr ng-if="weapon.profiles.length > 1">
+							<td colspan="4">
+								<input type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" /> {{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+							</td>
+						</tr>
+						<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
+							<td>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								- {{ profile.name }}
+								<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" style="font-style:italic;"></div>
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
+							</td>
+							<td class="text-center h5">
+								&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
+							</td>
+						</tr>
+						
+						<!-- Multi-Profile -->
+						<tr class="h6 nowrap" ng-repeat="profile in weapon.profiles">
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveEditOperative();">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Edit operative equipment modal dialog -->
+<div class="modal fade oswald" id="editopeqmodal" tabindex="-1" role="dialog" aria-labelledby="editopeqmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="editopeqmodallabel">{{ opeq.operative.opname }}'s Equipment</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">				
+				<!-- Equipment List-->
+				<div ng-repeat="eq in opeq.equipments track by $index">
+					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
+					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
+				</div>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveEditOpEq();">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Confirm delete operative modal dialog -->
+<div class="modal fade oswald" id="removeopmodal" tabindex="-1" role="dialog" aria-labelledby="removeopmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="removeopmodallabel">Delete Operative {{ optoremove.operative.opname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				Are you sure you want to delete operative "{{ optoremove.operative.opname }}"?
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="removeOperative();">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Weapon Special Rules -->
+<div class="modal fade oswald" id="wepsrmodal" tabindex="-1" role="dialog" aria-labelledby="wepsrmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="wepsrmodallabel">
+				{{ wepsr.wepname }}
+				<span ng-if="wepsr.profiles.length > 1"> - {{ wepsr.profile.name }}</span>
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<div ng-repeat="rule in wepsr.rules" class="oswald" style="text-align:justify;">
+					<strong ng-bind-html="rule.rulename"></strong>: <br/>
+					<span ng-bind-html="rule.ruletext"></span>
+					<br/><br/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Dashboard Operative Equipment Popup -->
+<div class="modal fade oswald" id="opeqmopdal" tabindex="-1" role="dialog" aria-labelledby="opeqmopdallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="opeqmopdallabel">{{ opeq.op.opname }}'s Equipment</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<div ng-repeat="eq in opeq.killteam.equipments" class="oswald" style="text-align:justify;">
+					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" /> {{ eq.eqtitle }}
+				</div>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveOpEq();">Add to Team</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Info popup -->
+<div class="modal fade oswald" id="popupmodal" tabindex="-1" role="dialog" aria-labelledby="popupmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="popupmodallabel">{{ popup.title }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<p class="oswald" ng-bind-html="popup.text" style="text-align:justify;"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Install Prompt -->
+<div class="modal fade oswald" id="installmodal" tabindex="-1" role="dialog" aria-labelledby="installmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="installmodallabel">Install KTDash</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<p class="oswald" style="text-align:justify;">
+					Would you like to install KTDash as an app?
+				</p>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary prompt__close" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary prompt__install">Install</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+			
+<!-- PWA Install Prompt -->
+<script type="text/javascript" src="/js/install.js?sdf=seffdf"></script>

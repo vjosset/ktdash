@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>Home | KTDash.app</title>
+		<meta property="og:title"  content="Home | KTDash.app">
+		<meta name="twitter:title" content="Home | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<meta property="og:description"  content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<meta name="twitter:description" content="KTDash is a web-based application for running your KillTeam 2021 games.">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/">
+		<meta property="twitter:url" content="https://ktdash.app/">
+		<!-- Image -->
+		<meta property="og:image"  content="https://ktdash.app/img/og/Home.png">
+		<meta name="twitter:image" content="https://ktdash.app/img/og/Home.png">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();" class="oswald">
+		<!--#include virtual="topnav.shtml" -->	
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+		
+		<h1 class="orange cinzel">
+			KTDash - Home
+		</h1>
+			
+		<div class="container">
+			<script type="text/javascript">
+				trackEvent("page", "home");
+			</script>
+			<p>
+				KTDash is a web-based application for running your KillTeam 2021 games.
+				<ul>
+					<li>
+						Use the <a href="/dashboard.htm">Dashboard</a> to play your games and track operative wounds, Turning Points, Command Points, and Victory Points
+					</li>
+					<li>
+						<a href="/myteams.htm">Build your teams</a>
+					</li>
+					<li>
+						Import a <a href="/sampleteams.htm">pre-built team</a>
+					</li>
+					<li>
+						Generate <a href="/name.htm">names</a> for your operatives
+					</li>
+					<li>
+						Browse the <a href="/compendium.htm">Compendium</a>
+					</li>
+				</ul>
+				
+				The site is a "PWA" ("Progressive Web App"), meaning it can be installed on your mobile phone (Android or iPhone).
+				Use your browser menu's "Install" action to install it on your phone.
+				<br/><br/>
+				For developers, the Compendium is available as a JSON dataset here:
+				<a href="https://github.com/vjosset/killteamjson" target="_blank">GitHub</a>
+			</p>
+			
+			<h2 class="orange cinzel">News</h2>
+			<ul>
+				<li>
+					<strong>28 Jan 2022</strong><br/>
+					<ul>
+						<li>Updated images for the <a href="/killteam.php?fa=IMP&kt=GK">Grey Knights</a></li>
+						<li>Added QR Code to the team sharing link</li>
+						<li>Printable operative cards! Use the <i class="fas fa-print fa-fw"></i> button from <a href="/myteams.htm">My Teams</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>25 Jan 2022</strong><br/>
+					<ul>
+						<li>Applied all changes from the 20 Jan 2022 <a href="https://www.warhammer-community.com/faqs/#kill-team" target="_blank">Errata</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>13 Jan 2022</strong><br/>
+					<ul>
+						<li>Better selection of operatives from your team in the Dashboard (use the "Select Operatives" link)</li>
+						<li>Updated Dashboard to hide operative equipment, abilities, and unique actions if they are Incapacitated</li>
+					</ul>
+				</li>
+				<li>
+					<a href="news.htm">More News</a>
+				</li>
+			</ul>
+		</div>
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>
