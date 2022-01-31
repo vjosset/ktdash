@@ -13,6 +13,4 @@ function toast(msg) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-//Write the toast div in 1 second
-setTimeout(function() {$("body").append('<div id="toast"></div>');}, 1000);
 

@@ -49,3 +49,6 @@
 					</ul>
 				</div>
 			</div>
+			
+			<!-- Toast Container -->
+			<div id="toast"></div>
