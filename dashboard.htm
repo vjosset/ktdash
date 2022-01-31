@@ -66,25 +66,25 @@
 				</div>
 				<div class="row dark">
 					<div class="col-4">
-						<span class="small float-start" ng-click="dashboard.CP = dashboard.CP - 1;commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+						<span class="small float-start" ng-click="updateCP(-1);commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
 						
 						<span ng-bind="dashboard.CP"></span>
 						
-						<span class="small float-end" ng-click="dashboard.CP = dashboard.CP + 1;commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+						<span class="small float-end" ng-click="updateCP(1);commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 					<div class="col-4">
-						<span class="small float-start" ng-click="dashboard.TP = dashboard.TP - 1;commitTeams();trackEvent('dashboard', 'turn', '-1');"><i class="far fa-minus-square fa-fw"></i></span>
+						<span class="small float-start" ng-click="updateTP(-1);;commitTeams();trackEvent('dashboard', 'turn', '-1');"><i class="far fa-minus-square fa-fw"></i></span>
 						
 						<span ng-bind="dashboard.TP"></span>
 						
-						<span class="small float-end" ng-click="dashboard.TP = dashboard.TP + 1;commitTeams();trackEvent('dashboard', 'turn', '+1');"><i class="far fa-plus-square fa-fw"></i></span>
+						<span class="small float-end" ng-click="updateTP(1);commitTeams();trackEvent('dashboard', 'turn', '+1');"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 					<div class="col-4">
-						<span class="small float-start" ng-click="dashboard.VP = dashboard.VP - 1;commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+						<span class="small float-start" ng-click="updateVP(-1);commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
 						
 						<span ng-bind="dashboard.VP"></span>
 						
-						<span class="small float-end" ng-click="dashboard.VP = dashboard.VP + 1;commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+						<span class="small float-end" ng-click="updateVP(1);commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 				</div>
 			</center>

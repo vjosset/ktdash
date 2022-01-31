@@ -246,6 +246,27 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.dashboard = JSON.parse(dash);
 			}
 			
+			$scope.updateVP = function(inc)  {
+				$scope.dashboard.VP = $scope.dashboard.VP + inc;
+				if ($scope.dashboard.VP < 0) {
+					$scope.dashboard.VP = 0;
+				}
+			}
+			
+			$scope.updateCP = function(inc)  {
+				$scope.dashboard.CP = $scope.dashboard.CP + inc;
+				if ($scope.dashboard.CP < 0) {
+					$scope.dashboard.CP = 0;
+				}
+			}
+			
+			$scope.updateTP = function(inc)  {
+				$scope.dashboard.TP = $scope.dashboard.TP + inc;
+				if ($scope.dashboard.TP < 1) {
+					$scope.dashboard.TP = 1;
+				}
+			}
+			
 			$scope.selectDashTeam = function(team) {
 				$scope.dashboard.myteam = team;
 				
