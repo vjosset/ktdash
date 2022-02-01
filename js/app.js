@@ -298,7 +298,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
 					// This does NOT apply to Pathfinder Assault Grenadiers
-					if (op.killteamid != 'TAU' && op.fireteamid != 'PF' && op.opid != 'AG') {
+					if (op.factionid != 'TAU' && op.killteamid != 'PF' && op.fireteamid != 'PF' && op.opid != 'AG') {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
 							for (let j = 0; j < wep.profiles.length; j++) {
@@ -322,7 +322,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
 					// This does NOT apply to Pathfinder Assault Grenadiers
-					if (op.killteamid != 'TAU' && op.fireteamid != 'PF' && op.opid != 'AG') {
+					if (op.factionid != 'TAU' && op.killteamid != 'PF' && op.fireteamid != 'PF' && op.opid != 'AG') {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
 							for (let j = 0; j < wep.profiles.length; j++) {
