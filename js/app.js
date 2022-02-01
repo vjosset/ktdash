@@ -297,14 +297,17 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.isInjured = true;
 					
 					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
-					for (let i = 0; i < op.weapons.length; i++) {
-						let wep = op.weapons[i];
-						for (let j = 0; j < wep.profiles.length; j++) {
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+					// This does NOT apply to Pathfinder Assault Grenadiers
+					if (op.killteamid != 'TAU' && op.fireteamid != 'PF' && op.opid != 'AG') {
+						for (let i = 0; i < op.weapons.length; i++) {
+							let wep = op.weapons[i];
+							for (let j = 0; j < wep.profiles.length; j++) {
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+							}
 						}
 					}
 					
@@ -318,14 +321,17 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.isInjured = false;
 					
 					// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
-					for (let i = 0; i < op.weapons.length; i++) {
-						let wep = op.weapons[i];
-						for (let j = 0; j < wep.profiles.length; j++) {
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-							wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+					// This does NOT apply to Pathfinder Assault Grenadiers
+					if (op.killteamid != 'TAU' && op.fireteamid != 'PF' && op.opid != 'AG') {
+						for (let i = 0; i < op.weapons.length; i++) {
+							let wep = op.weapons[i];
+							for (let j = 0; j < wep.profiles.length; j++) {
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+							}
 						}
 					}
 					
