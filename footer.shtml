@@ -1,3 +1,5 @@
+
+		<div class="footer">
 			<!-- Footer -->
 			<br/>
 			<hr/>
@@ -52,3 +54,4 @@
 			
 			<!-- Toast Container -->
 			<div id="toast"></div>
+		</div>

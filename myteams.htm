@@ -58,6 +58,7 @@
 						<i class="fas fa-edit fa-fw" ng-click="initRenameTeam(team);"></i>
 						<i class="fas fa-share-square fa-fw" ng-click="trackEvent('myTeams', 'getshareurl'); showShareTeam(team);"></i>
 						<i class="far fa-copy fa-fw" ng-click="cloneTeam(team, $index);"></i>
+						<i class="fas fa-print fa-fw" ng-click="initPrintTeam(team);"></i>
 						<i class="fas fa-trash-alt fa-fw" ng-click="initDeleteTeam(team);"></i>
 					</div>
 					<div class="col-4 oswald text-end">
@@ -81,7 +82,7 @@
 								<i class="fas fa-arrow-up fa-fw" ng-click="moveOpUp(team, operative, $index);"></i>
 								<i class="fas fa-arrow-down fa-fw" ng-click="moveOpDown(team, operative, $index);"></i>
 								<i class="fas fa-edit fa-fw" ng-click="initEditOp(operative, team);"></i>
-								<a class="dark" ng-href="/operative.php?fa={{ operative.factionid }}&kt={{ operative.killteamid }}&ft={{ operative.fireteamid }}&op={{ operative.opid }}&opname={{ operative.opname }}&weps={{ operative.wepids}}" target="_blank"><i class="fas fa-print fa-fw"></i></a>
+								<a class="dark" ng-href="/operative.php?fa={{ operative.factionid }}&kt={{ operative.killteamid }}&ft={{ operative.fireteamid }}&op={{ operative.opid }}&opname={{ operative.opname }}&weps={{ operative.wepids}}" target="_blank"><i class="fas fa-id-card fa-fw"></i></a>
 								<i class="fas fa-trash-alt fa-fw" ng-click="initRemoveOperative(operative, team);"></i>
 							</div>
 						</div>

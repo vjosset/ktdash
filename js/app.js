@@ -896,6 +896,30 @@ var app = angular.module("kt", ['ngSanitize'])
 				window.localStorage.setItem("dashboard", $scope.cleanSpecialChars(JSON.stringify($scope.dashboard), true));
 			}
 		
+			$scope.getTeamFormat = function(team) {
+				let encode = "";
+				encode += team.teamname + "|";
+				encode += team.factionid + "|";
+				encode += team.killteamid;
+				
+				for (let opnum = 0; opnum < team.operatives.length; opnum++) {
+					let op = team.operatives[opnum];
+					
+					let tmpencode = "";
+					tmpencode += op.fireteamid + "/";
+					tmpencode += op.opid + "/";
+					tmpencode += op.opname + "/";
+					
+					for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
+						tmpencode += op.weapons[wepnum].wepid + ",";
+					}
+					
+					encode += "|" + tmpencode;
+				}
+				
+				return encode;
+			}
+			
 			$scope.getShareUrl = function(team) {
 				// Prepare the URL
 				let url = "/viewteam.htm?importjson=";
@@ -937,50 +961,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Prepare the URL
 				let url = "/viewteam.php?importteam=";
 				
-				let encode = "";
-				encode += team.teamname + "|";
-				encode += team.factionid + "|";
-				encode += team.killteamid;
-				
-				// Prepare the data
-				let tmp = [];
-				tmp.push(team.teamname);
-				tmp.push(team.factionid);
-				tmp.push(team.killteamid);
-				
-				let ops = [];
-				for (let opnum = 0; opnum < team.operatives.length; opnum++) {
-					let op = team.operatives[opnum];
-					
-					let tmpencode = "";
-					tmpencode += op.fireteamid + "/";
-					tmpencode += op.opid + "/";
-					tmpencode += op.opname + "/";
-					
-					let tmpop = [];
-					tmpop.push(op.fireteamid);
-					tmpop.push(op.opid);
-					tmpop.push(op.opname);
-					
-					// Prepare the operative's weapons
-					let weps = [];
-					
-					for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
-						weps.push(op.weapons[wepnum].wepid);
-						tmpencode += op.weapons[wepnum].wepid + ",";
-					}
-					
-					tmpop.push(weps);
-					
-					ops.push(tmpop);
-					
-					encode += "|" + tmpencode;
-				}
-				tmp.push(ops);
-				
 				// Done
-				//return url + JSON.stringify(tmp);
-				return url + encode;
+				return url + $scope.getTeamFormat(team);
 			}
 		
 			$scope.cloneTeam = function(team, index) {
@@ -1102,6 +1084,14 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Show the modal
 				$('#shareteammodal').modal("show");
+			}
+			
+			$scope.initPrintTeam = function(team) {
+				// Prepare the URL
+				let url = "/printteam.htm?importteam=";
+				
+				// Done
+				window.open(url + $scope.getTeamFormat(team));
 			}
 		}
 		
