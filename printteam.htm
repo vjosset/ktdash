@@ -55,11 +55,11 @@
 		<!-- Show the team to be printed -->
 		<div class="container" id="teamlist">
 			<div model="importTeam">
+				
+				<h1 class="cinzel">{{ importTeam.teamname }}</h1>
 				<a href="#" class="h4 noprint" onclick="window.print();">
 					<i class="fas fa-print fa-fw"></i> Print
 				</a>
-				
-				<h1 class="cinzel">{{ importTeam.teamname }}</h1>
 				<br/><br/>
 				<div ng-repeat="operative in importTeam.operatives" style="break-inside: avoid;break-before:auto;">
 					<div class="cinzel dark mb-0">
