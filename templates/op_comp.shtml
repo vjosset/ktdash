@@ -2,7 +2,9 @@
 <div class="card border-light shadow dark">
 	
 	<!-- Portrait -->
+	<!--
 	<img class="card-img-top" ng-src="/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+	-->
 	
 	<!-- button class="btn btn-primary oswald" style="position: absolute; top: 10px; left: 10px;" ng-click="initAddOp(operative);">Add to my team</button -->
 	
@@ -10,13 +12,47 @@
 		<p class="card-text bright" style="vertical-align: bottom;" ng-bind-html="operative.description"></p>
 	</div-->
 	<div class="card-title dark p-1">
-		<div class="text-center cinzel dark" ng-click="showpopup(operative.opname, operative.description);">
-			<span class="h4">{{ operative.opname }}</span>
+		<div class="cinzel dark" ng-click="showpopup(operative.opname, operative.description);">
+			<span class="h3">{{ operative.opname }}</span>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 		</div>
 	</div>
 	
+	<div class="row m-0 p-0">
+		<div class="col-6 m-0 p-0"
+			style=
+			"background-image: url('/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg');
+			background-size: cover;">
+			&nbsp;
+		</div>
+		<div class="col-6 m-0 p-0">
+			<table width="100%" class="text-center cinzel">
+				<tr class="h3 orange">
+					<td width="16%">M</td>
+					<td width="16%">APL</td>
+					<td width="16%">GA</td>
+				</tr>
+				<tr class="h3">
+					<td ng-bind-html="operative.M"></td>
+					<td>{{ operative.APL }}</td>
+					<td>{{ operative.GA }}</td>
+				</tr>
+				<tr class="h3 orange">
+					<td width="16%">DF</td>
+					<td width="16%">SV</td>
+					<td width="16%">W</td>
+				</tr>
+				<tr class="h3">
+					<td>{{ operative.DF }}</td>
+					<td>&nbsp;{{ operative.SV }}</td>
+					<td>{{ operative.W }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
 	<!-- Characteristics/Stats -->
+	<!--
 	<center>
 		<table width="100%" class="text-center cinzel">
 			<tr class="h3 orange">
@@ -37,6 +73,7 @@
 			</tr>
 		</table>
 	</center>
+	-->
 	
 	<!-- Weapons List-->
 	<table ng-if="operative.weapons.length > 0" class="m-1">

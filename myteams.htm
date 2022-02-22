@@ -25,6 +25,38 @@
 		<!-- Dialogs -->
 		<!--#include virtual="templates/dialogs.shtml" -->
 		
+		<!-- Help Box -->
+		<div class="modal fade oswald" id="myteamshelp" tabindex="-1" role="dialog" aria-labelledby="selectteamopsmodallabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content dark">
+					<div class="modal-header orange">
+						<h5 class="modal-title cinzel" id="selectteamopsmodallabel">My Teams - Help</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="m-0 modal-body dark">
+						Manage your KillTeams and Rosters here.
+						<br/><br/>
+						<h3>Teams</h3>
+						&nbsp;&nbsp;<i class="fas fa-arrow-up fa-fw"></i> Move Team Up</br>
+						&nbsp;&nbsp;<i class="fas fa-arrow-down fa-fw"></i> Move Team Down</br>
+						&nbsp;&nbsp;<i class="far fa-plus-square fa-fw"></i> Add Operative to Team</br>
+						&nbsp;&nbsp;<i class="fas fa-edit fa-fw"></i> Rename Team</br>
+						&nbsp;&nbsp;<i class="fas fa-share-square fa-fw"></i> Share Team/Generate Link</br>
+						&nbsp;&nbsp;<i class="far fa-copy fa-fw"></i> Copy Team</br>
+						&nbsp;&nbsp;<i class="fas fa-print fa-fw"></i> Print Team</br>
+						&nbsp;&nbsp;<i class="fas fa-trash-alt fa-fw"></i> Delete Team
+						<br/><br/>
+						<h3>Operatives</h3>
+						&nbsp;&nbsp;<i class="fas fa-arrow-up fa-fw"></i> Move Operative Up</br>
+						&nbsp;&nbsp;<i class="fas fa-arrow-down fa-fw"></i> Move Operative Down</br>
+						&nbsp;&nbsp;<i class="fas fa-edit fa-fw"></i> Edit Operative</br>
+						&nbsp;&nbsp;<i class="fas fa-print fa-fw"></i> Print Operative Card</br>
+						&nbsp;&nbsp;<i class="fas fa-trash-alt fa-fw"></i> Delete Operative
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<script type="text/javascript">
 			trackEvent("myteams", "viewmyteams");
 		</script>
@@ -37,7 +69,12 @@
 				You don't have any KillTeams yet.
 			</div>
 			<div class="oswald">
-				Import a <a href="sampleteams.htm">pre-built team</a> or build a <a href="#" ng-click="initNewTeam();">new team</a>.
+				<span class="float-start">
+					Import a <a href="sampleteams.htm">pre-built team</a> or build a <a href="#" ng-click="initNewTeam();">new team</a>.
+				</span>
+				<span class="float-end">
+					<i id="myteamshelpbutton" class="far fa-question-circle fa-fw" onclick="$('#myteamshelp').modal('show');"></i>
+				</span>
 			</div>
 			
 			<div ng-if="myteams.length > 0" ng-repeat="team in myteams track by $index">
@@ -82,7 +119,7 @@
 								<i class="fas fa-arrow-up fa-fw" ng-click="moveOpUp(team, operative, $index);"></i>
 								<i class="fas fa-arrow-down fa-fw" ng-click="moveOpDown(team, operative, $index);"></i>
 								<i class="fas fa-edit fa-fw" ng-click="initEditOp(operative, team);"></i>
-								<a class="dark" ng-href="/operative.php?fa={{ operative.factionid }}&kt={{ operative.killteamid }}&ft={{ operative.fireteamid }}&op={{ operative.opid }}&opname={{ operative.opname }}&weps={{ operative.wepids}}" target="_blank"><i class="fas fa-id-card fa-fw"></i></a>
+								<a class="dark" ng-href="/operative.php?fa={{ operative.factionid }}&kt={{ operative.killteamid }}&ft={{ operative.fireteamid }}&op={{ operative.opid }}&opname={{ operative.opname }}&weps={{ operative.wepids}}" target="_blank"><i class="fas fa-print fa-fw"></i></a>
 								<i class="fas fa-trash-alt fa-fw" ng-click="initRemoveOperative(operative, team);"></i>
 							</div>
 						</div>

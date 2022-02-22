@@ -265,6 +265,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.dashboard.TP < 1) {
 					$scope.dashboard.TP = 1;
 				}
+				
+				// Mark all operatives as not activated
+				for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
+					$scope.dashboard.myteam.operatives[i].activated = false;
+				}
 			}
 			
 			$scope.selectDashTeam = function(team) {
@@ -345,6 +350,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				trackEvent('dashboard', 'opwounds', inc);
 				
+				if (op.curW == 0) {
+					// This operative is now dead/incapacitated - Collapse its info
+					// First, find this operative
+					for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
+						if ($scope.dashboard.myteam.operatives[i] == op) {
+							// This is our operative - Hide their details
+							$("#opinfo_" + i).collapse('hide');
+						}
+					}
+				}
+				
 				$scope.commitTeams();
 			}
 			
@@ -359,6 +375,12 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Reset operatives (not injured)
 				for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
 					let op = $scope.dashboard.myteam.operatives[i];
+					
+					// Not activated
+					op.activated = false;
+					
+					// No longer wounded - Show their details
+					$("#opinfo_" + i).collapse('show');
 					
 					// Reset their Wounds
 					op.curW = parseInt(op.W);
@@ -399,6 +421,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				$scope.commitTeams();
+				toast('Dashboard Reset');
 			}
 		
 			$scope.initEditOpEq = function(operative) {

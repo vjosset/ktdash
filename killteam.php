@@ -101,12 +101,15 @@
 						<!-- Operatives -->
 						<div class="row p-0 m-0">
 							<div ng-repeat="fireteam in killteam.fireteams">
-								<div ng-show="killteam.fireteams.length > 1" class="cinzel" ng-click="showpopup('FireTeam Composition', fireteam.fireteamcomp);">
-									<span class="h3">{{ fireteam.fireteamname }}</span>
-									<sup class="small h6"><i class="far fa-question-circle fa-fw"></i></sup>
+								<div ng-show="killteam.fireteams.length > 1" class="cinzel">
+									<i class="h3 fas fa-chevron-down fa-fw" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#ft_{{ fireteam.fireteamid }}"></i>
+									<span ng-click="showpopup('FireTeam Composition', fireteam.fireteamcomp);">
+										<span class="h3">{{ fireteam.fireteamname }}</span>
+										<sup class="small h6"><i class="far fa-question-circle fa-fw"></i></sup>
+									</span>
 								</div>
 								
-								<div class="card-group">
+								<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
 									<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in fireteam.operatives">
 										<?php include "templates/op_comp.shtml" ?>
 									</div>
