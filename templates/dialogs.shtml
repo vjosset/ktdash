@@ -64,7 +64,7 @@
 				<a ng-href="{{ shareteam.url }}" target="_blank">{{ shareteam.teamname }}</a><br/>
 				<hr/>
 				<!-- QR Code -->
-				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https://ktdash.app{{ shareteam.url }}" />
+				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareteam.url }}" />
 			</div>
 		</div>
 	</div>

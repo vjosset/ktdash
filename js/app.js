@@ -1006,7 +1006,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 				
-				// Done
+				// Done - Fallback if rurl.cc POST fails
 				return url;
 			}
 		
