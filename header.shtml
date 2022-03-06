@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="/js/utils.js?sdf=asdfdf"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" defer async src="js/app.js?ui=sfse"></script>
+		<script type="text/javascript" defer async src="js/app.js?ui=ssdffse"></script>
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">

@@ -982,10 +982,32 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.getShareUrl2 = function(team) {
 				// Prepare the URL
-				let url = "/viewteam.php?importteam=";
+				let url = "https://ktdash.app/viewteam.php?importteam=";
+				
+				// Add the team's details/operatives
+				url = url + $scope.getTeamFormat(team);
+				
+				// Get shortened URL from rurl.cc
+				$.ajax({
+					type: 'POST',
+					url: "https://rurl.cc/api/rurl.php?",
+					data: { 
+						"urls": [url]
+					},
+					async: false,
+					success: function(data) {
+						// All good, send the user to the "Details" page
+						url = "https://rurl.cc/" + data.rurlid;
+						return url;
+					},
+					error: function(data, status, error) {
+						// Could not post the rurl
+						console.log("Could not get URL: " + error);
+					}
+				});
 				
 				// Done
-				return url + $scope.getTeamFormat(team);
+				return url;
 			}
 		
 			$scope.cloneTeam = function(team, index) {
