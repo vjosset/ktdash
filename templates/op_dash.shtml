@@ -6,9 +6,10 @@
 	-->
 	
 	<div class="cinzel dark m-0">
-		<h3 class="cinzel" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'dimgrey' : '' }">
+		<h3 class="cinzel" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 			<i class="fas fa-chevron-down fa-fw"></i>
 			{{ operative.opname }}
+			<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
 			<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 			<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
 		</h3>
@@ -39,7 +40,7 @@
 						<td width="16%">GA</td>
 					</tr>
 					<tr class="h3">
-						<td ng-style="{ color: operative.isInjured ? 'dimgrey' : '' }" ng-bind-html="operative.M"></td>
+						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" ng-bind-html="operative.M"></td>
 						<td>{{ operative.APL }}</td>
 						<td>{{ operative.GA }}</td>
 					</tr>
@@ -119,7 +120,7 @@
 					<td class="text-center h5">
 						&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
 					</td>
-					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'dimgrey' : '' }">
+					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 						&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
 					</td>
 					<td class="text-center h5">
@@ -142,7 +143,7 @@
 					<td class="text-center h5">
 						&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 					</td>
-					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'dimgrey' : '' }">
+					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 						&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 					</td>
 					<td class="text-center h5">
