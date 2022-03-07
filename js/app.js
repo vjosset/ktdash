@@ -261,6 +261,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.dashboard = JSON.parse(dash);
 			}
 			
+			// For users who are on an older version, set RP
+			if ($scope.dashboard.RP == null) {
+				$scope.dashboard.RP = 0;
+			}
+			
 			// Increment Victory Points
 			$scope.updateVP = function(inc)  {
 				$scope.dashboard.VP = $scope.dashboard.VP + inc;
@@ -284,8 +289,12 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.dashboard.TP = 1;
 				}
 				
-				// Increment Command Points
-				$scope.dashboard.CP += 1;
+				/*
+				if (inc > 0) {
+					// Increment Command Points
+					$scope.dashboard.CP += 1;
+				}
+				*/
 				
 				// Mark all operatives as not activated
 				for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
@@ -308,6 +317,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Change the selected team for this dashboard
 			$scope.selectDashTeam = function(team) {
 				$scope.dashboard.myteam = team;
+				$scope.dashboard.RP = 0;
 				
 				for (let i =0; i < team.operatives.length; i++) {
 					if (team.operatives[i].curW == null) {
