@@ -90,6 +90,19 @@
 			</center>
 		</div>
 		
+		<!-- Resource Point tracker -->
+		<div class="cinzel container-fluid cinzel" ng-if="dashboard.myteam.killteamid == 'NOV'">
+			<div class="h5">
+				{{ RPLabels[dashboard.myteam.factionid][dashboard.myteam.killteamid]["Label"] }}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="small" ng-click="updateRP(-1);commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+				
+				<span ng-bind="dashboard.RP"></span>
+				
+				<span class="small" ng-click="updateRP(1);commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+			</div>
+		</div>
+		
 		<!--h6 class="oswald">
 			<strong>Archetype:</strong> {{ dashboard.myteam.archetype }}
 		</h6 -->

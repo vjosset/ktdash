@@ -231,21 +231,37 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// DASHBOARD
 		{
+			// Init dashboard
 			$scope.dashboard = {
-				myteam: {},
-				playerteams: {},
-				CP: 2,
-				TP: 1,
-				VP: 2
+				myteam: {}, // Current selected player team
+				playerteams: {}, // Teams for current player
+				CP: 2, // Command Points
+				TP: 1, // Turning Point
+				VP: 2, // Victory Points
+				RP: 0 // Resource points - e.g. Faith Points for Novitiates
 			};
 			
+			// Labels for Resource Points
+			$scope.RPLabels = {
+				"IMP": {
+					"NOV": {
+						"Label": "Faith Points",
+						"Shortcut": "FP"
+					}
+				}
+			};
+			
+			// Get the dashboard from local storage
 			let dash = localStorage.getItem("dashboard");
+			
+			// If it doesn't exist, initialize it
 			if (dash != null && dash != "") {
 				// We have a dashboard
 				dash = $scope.cleanSpecialChars(dash, false);
 				$scope.dashboard = JSON.parse(dash);
 			}
 			
+			// Increment Victory Points
 			$scope.updateVP = function(inc)  {
 				$scope.dashboard.VP = $scope.dashboard.VP + inc;
 				if ($scope.dashboard.VP < 0) {
@@ -253,6 +269,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// Increment Command Points
 			$scope.updateCP = function(inc)  {
 				$scope.dashboard.CP = $scope.dashboard.CP + inc;
 				if ($scope.dashboard.CP < 0) {
@@ -260,11 +277,15 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// Increment Turning Point
 			$scope.updateTP = function(inc)  {
 				$scope.dashboard.TP = $scope.dashboard.TP + inc;
 				if ($scope.dashboard.TP < 1) {
 					$scope.dashboard.TP = 1;
 				}
+				
+				// Increment Command Points
+				$scope.dashboard.CP += 1;
 				
 				// Mark all operatives as not activated
 				for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
@@ -272,6 +293,19 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// Increment Resource Points (e.g. Faith Points for Novitiates)
+			$scope.updateRP = function(inc)  {
+				if ($scope.dashboard.RP == null) {
+					$scope.dashboard.RP = 0;
+				}
+				
+				$scope.dashboard.RP = $scope.dashboard.RP + inc;
+				if ($scope.dashboard.RP < 0) {
+					$scope.dashboard.RP = 0;
+				}
+			}
+			
+			// Change the selected team for this dashboard
 			$scope.selectDashTeam = function(team) {
 				$scope.dashboard.myteam = team;
 				
@@ -284,6 +318,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Increment operative wounds
 			$scope.updateOpW = function(op, inc) {
 				op.curW = op.curW + inc;
 				if (op.curW < 0) {
@@ -364,6 +399,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Reset dashboard
 			$scope.resetDash = function() {
 				trackEvent("dashboard", "reset", "");
 				
@@ -371,6 +407,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.dashboard.CP = 2;
 				$scope.dashboard.TP = 1;
 				$scope.dashboard.VP = 2;
+				$scope.dashboard.RP = 0;
 				
 				// Reset operatives (not injured)
 				for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
@@ -424,6 +461,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast('Dashboard Reset');
 			}
 		
+			// Pop-up the operative equipment modal
 			$scope.initEditOpEq = function(operative) {
 				$scope.opeq = {
 					"operative": operative,
@@ -451,6 +489,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editopeqmodal').modal("show");
 			}
 			
+			// Commit operative equipment selections
 			$scope.saveEditOpEq = function() {
 				// Remove the operative's previous equipment
 				$scope.opeq.operative.equipments = [];
@@ -469,6 +508,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editopeqmodal').modal("hide");
 			}
 		
+			// Pop-up the team operative selection modal
 			$scope.initSelectTeamOps = function(team) {
 				$scope.selectteamops = {
 					"team": team
@@ -500,6 +540,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				myteam - Currently-selected team from myteams
 			*/
 			
+			// Returns the list of distinct fireteam IDs for the specified team
 			$scope.getTeamType = function(team) {
 				/*
 				Loop through operatives
@@ -520,9 +561,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				return teamtype;
-				//return team.killteam.killteamname;
 			}
 			
+			// Pop-up the new team modal
 			$scope.initNewTeam = function() {
 				$scope.newteam = {
 					"factionid": "",
@@ -536,6 +577,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#newteammodal').modal("show");
 			}
 			
+			// Save a new team
 			$scope.createTeam = function() {
 				// Validate the input
 				if ($scope.newteam.killteam == null) {
@@ -572,6 +614,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Team " + $scope.newteam.teamname + " created!");
 			};
 			
+			// Pop-up the team rename modal
 			$scope.initRenameTeam = function(team) {
 				$scope.renameTeam = team;
 				$scope.renameTeam.newteamname =  team.teamname;
@@ -580,6 +623,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#renameteammodal').modal("show");
 			}
 			
+			// Save team rename
 			$scope.saveRenameTeam = function() {
 				trackEvent("myteams", "renameteam", $scope.renameTeam.factionid + "/" + $scope.renameTeam.killteamid);
 				
@@ -596,6 +640,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Team " + $scope.renameTeam.teamname + " renamed");
 			}
 			
+			// Pop-up the team deletion modal
 			$scope.initDeleteTeam = function(team) {
 				$scope.deleteTeam = team;
 				
@@ -603,6 +648,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#deleteteammodal').modal("show");
 			}
 			
+			// Commit the team deletion
 			$scope.saveDeleteTeam = function() {
 				trackEvent("myteams", "deleteteam", $scope.deleteTeam.factionid + "/" + $scope.deleteTeam.killteamid);
 				
@@ -622,6 +668,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Team " + $scope.deleteTeam.teamname + " deleted");
 			}
 			
+			// Pop-up the Add Operative modal
 			$scope.initAddOp = function(team) {
 				// Prepare the dialog to add an operative to the selected team
 				if ($scope.addop == null || $scope.team != $scope.addop.team) {
@@ -643,6 +690,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#addoptoteammodal').modal("show");
 			}
 			
+			// Add the selected operative
 			$scope.addOperative = function() {
 				trackEvent("myteams", "addop", $scope.addop.operative.factionid + "/" + $scope.addop.operative.killteamid + "/" + $scope.addop.operative.fireteamid + "/" + $scope.addop.operative.opid);
 				
@@ -695,6 +743,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Operative " + $scope.addop.opname + " added to team!");
 			}
 			
+			// Generate a name for an operative
 			$scope.getaddopname = function() {
 				trackEvent("myteams", "genopname", $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid);
 				var url = APIURL + "/name.php?factionid=" + $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid;
@@ -712,6 +761,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
+			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
 				trackEvent("myteams", "genopname", faid + "_" + ktid + "_" + ftid + "_" + opid);
 				var url = APIURL + "/name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
@@ -729,6 +779,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
+			// Pop-up the "Edit Operative" modal
 			$scope.initEditOp = function(op, team) {
 				// Prepare the dialog to edit the operative
 				$scope.editop = op;
@@ -783,6 +834,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editopmodal').modal("show");
 			}
 			
+			// Save the changes to the edited operative
 			$scope.saveEditOperative = function() {
 				trackEvent("myteams", "editop", $scope.editop.factionid + "/" + $scope.editop.killteamid + "/" + $scope.editop.fireteamid + "/" + $scope.editop.opid);
 				
@@ -810,6 +862,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Operative " + $scope.editop.opname + " saved");
 			}
 			
+			// Pop-up the "Delete Operative" modal
 			$scope.initRemoveOperative = function(op, team) {
 				
 				$scope.optoremove = {
@@ -821,6 +874,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#removeopmodal').modal("show");
 			}
 			
+			// Delete the specified operative from its team
 			$scope.removeOperative = function() {	
 				trackEvent("myteams", "deleteop", $scope.optoremove.operative.factionid + "/" + $scope.optoremove.operative.killteamid + "/" + $scope.optoremove.operative.fireteamid + "/" + $scope.optoremove.operative.opid);
 				let idx = $scope.optoremove.team.operatives.indexOf($scope.optoremove.operative);
@@ -841,6 +895,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Move the specified team up in the list
 			$scope.moveTeamUp = function(team, index) {
 				trackEvent("myTeams", "moveteam", "up");
 				
@@ -853,6 +908,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Move the specified team down in the list
 			$scope.moveTeamDown = function(team, index) {
 				trackEvent("myteams", "moveteam", "down");
 				
@@ -865,6 +921,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Move the specified operative up in its team
 			$scope.moveOpUp = function(team, op, index) {
 				trackEvent("myteams", "moveop", "up");		
 				
@@ -877,6 +934,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Move the specified operative down in its team
 			$scope.moveOpDown = function(team, op, index) {
 				trackEvent("myteams", "moveop", "down");		
 				
@@ -889,6 +947,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.commitTeams();
 			}
 			
+			// Commit all team changes to localstorage
 			$scope.commitTeams = function() {
 				// Commit the team to local storage
 				
@@ -1010,6 +1069,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				return url;
 			}
 		
+			// Create a copy of the specified team
 			$scope.cloneTeam = function(team, index) {
 				let newteam = JSON.parse(JSON.stringify(team));
 				newteam.teamname = newteam.teamname + " - Copy";
@@ -1019,6 +1079,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Copied as new team \"" + newteam.teamname + "\"");
 			}
 		
+			// Load a team to be imported
 			$scope.initImportTeam = function(importjson) {
 				// Found a team to import, parse it for display
 				let tmp = JSON.parse(importjson);
@@ -1113,6 +1174,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.importTeam = importTeam;
 			}
 		
+			// Import the team into this user's team list
 			$scope.saveImportTeam = function() {
 				trackEvent("myTeams", "importteam", $scope.importTeam.factionid + "/" + $scope.importTeam.killteamid + "_" + $scope.importTeam.teamname);
 				
@@ -1123,6 +1185,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				document.location.href = "/myteams.htm";
 			}
 		
+			// Pop-up the "Share Team" modal
 			$scope.showShareTeam = function(team) {
 				$scope.shareteam = team;
 				$scope.shareteam.url = $scope.getShareUrl2(team);
@@ -1131,6 +1194,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#shareteammodal').modal("show");
 			}
 			
+			// Initialize the team to be printed
 			$scope.initPrintTeam = function(team) {
 				// Prepare the URL
 				let url = "/printteam.htm?importteam=";
@@ -1144,7 +1208,12 @@ var app = angular.module("kt", ['ngSanitize'])
 		{
 			// Compendium data
 			$scope.factions = [];
+			
+			// Init operative name generation
+			$scope.generatenametype = "HUMAN-M";
+			$scope.generatedname = "";
 		
+			// Init operative name generation
 			$scope.init = function(mode) {
 				// Get the full compendium
 				var url = APIURL + "/faction.php";
@@ -1297,6 +1366,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 		
+			// Get the faction object for the specified factionid
 			$scope.getFaction = function(factionid) {
 				for (let i = 0; i < $scope.factions.length; i++) {
 					if ($scope.factions[i].factionid == factionid) {
@@ -1309,6 +1379,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				return null;
 			}
 			
+			// Get the kill team object for the specified killteamid
 			$scope.getKillteam = function(factionid, killteamid) {
 				let faction = $scope.getFaction(factionid);
 				
@@ -1327,6 +1398,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				return null;
 			}
 			
+			// Get the fire team object for the specified fireteamid
 			$scope.getFireteam = function(factionid, killteamid, fireteamid) {
 				let killteam = $scope.getKillteam(factionid, killteamid);
 				
@@ -1345,6 +1417,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				return null;
 			}
 			
+			// Get the operative object for the specified operativeid
 			$scope.getOperative = function(factionid, killteamid, fireteamid, opid) {
 				let fireteam = $scope.getFireteam(factionid, killteamid, fireteamid);
 				
@@ -1363,9 +1436,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				return null;
 			}
 		
-			$scope.generatenametype = "HUMAN-M";
-			$scope.generatedname = "";
-			
+			// Generate a name for the specified operative
 			$scope.generatename = function() {
 				var url = APIURL + "/name.php?nametype=" + $scope.generatenametype;
 				$.ajax({
@@ -1382,6 +1453,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
+			// Initialize the generated operative name
 			$scope.generatename();
 		}
 	})
