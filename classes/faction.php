@@ -68,7 +68,7 @@
 			$this->killteams = [];
 			
 			global $dbcon;
-			$sql = "SELECT * FROM Killteam WHERE factionid = ? ORDER BY killteamname;";
+			$sql = "SELECT * FROM Killteam WHERE factionid = ? AND killteamid NOT LIKE '%_OLD' ORDER BY killteamname;";
 			
 			
 			$cmd = $dbcon->prepare($sql);
