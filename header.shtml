@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="/js/utils.js?sdf=asdfdf"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" defer async src="js/app.js?ui=ssdffse"></script>
+		<script type="text/javascript" defer async src="js/app.js?ui=ffse"></script>
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,7 @@
 		<!-- Other Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&family=Black+Ops+One&family=Bungee&family=Jockey+One&family=Mate+SC&family=Staatliches&display=swap" rel="stylesheet"> 
 		<!-- Bespoke Styles -->
-		<link rel="stylesheet" href="css/styles.css?sdf=asdfdf" />
+		<link rel="stylesheet" href="css/styles.css?sdf=adf" />
 		
 		<!-- PWA stuff -->
 		<script src="/sw.js"></script>

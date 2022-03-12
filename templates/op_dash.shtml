@@ -1,11 +1,11 @@
-<div class="card border-light dark shadow">
+<div class="card border-light darkcard">
 
 	<!-- Portrait -->
 	<!-- 
 	<img ng-if="settings.dashportraits" class="card-img-top" ng-src="/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 	-->
 	
-	<div class="cinzel dark m-0">
+	<div class="cinzel m-0">
 		<h3 class="cinzel" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 			<i class="fas fa-chevron-down fa-fw"></i>
 			{{ operative.opname }}
@@ -16,7 +16,7 @@
 	</div>
 	
 	<div id="opinfo_{{ $index }}" class="collapse show m-1 p-0 m-0">
-		<div class="row cinzel dark small oswald m-0 p-0">
+		<div class="row cinzel small oswald m-0 p-0">
 			<div class="col-6 small">
 				{{ operative.optype }}
 			</div>
@@ -185,7 +185,7 @@
 		<!-- Notes -->
 		<div ng-if="operative.curW > 0" class="m-1">
 			<h6 class="cinzel line-top-light">Notes</h6>
-			<textarea style="border: 0px solid; width: 100%;" rows="1" class="oswald dark d-block" ng-model="operative.notes" ng-change="commitTeams();"></textarea>
+			<textarea style="border: 0px solid; width: 100%;" rows="1" class="oswald darkcard d-block" ng-model="operative.notes" ng-change="commitTeams();"></textarea>
 			<!-- div contenteditable="true" class="oswald" ng-model="operative.notes" ng-change="commitTeams();"></div -->
 		</div>
 	</div>

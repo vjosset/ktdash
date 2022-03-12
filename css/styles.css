@@ -35,6 +35,12 @@ body {
 	color: #EEE;
 }
 
+.darkcard {
+	/*background-color: #343a40;*/
+	background-color: #303030;
+	color: #EEE;
+}
+
 .bright {
 	background-color: #FFF;
 	color: #343a40;

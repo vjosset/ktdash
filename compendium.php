@@ -30,7 +30,7 @@
 		
 		<div class="card-group">
 			<div ng-repeat="faction in factions" class="col-12 col-md-6 col-xl-4">
-				<div class="card border-light shadow dark">
+				<div class="card border-light shadow darkcard">
 					<!-- Portrait -->
 					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 					

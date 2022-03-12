@@ -1,5 +1,5 @@
 <a name="{{ operative.opid }}"></a>
-<div class="card border-light shadow dark">
+<div class="card border-light shadow darkcard">
 	
 	<!-- Portrait -->
 	<!--
@@ -11,8 +11,8 @@
 	<!--div class="card-img-overlay">
 		<p class="card-text bright" style="vertical-align: bottom;" ng-bind-html="operative.description"></p>
 	</div-->
-	<div class="card-title dark p-1">
-		<div class="cinzel dark" ng-click="showpopup(operative.opname, operative.description);">
+	<div class="card-title p-1">
+		<div class="cinzel" ng-click="showpopup(operative.opname, operative.description);">
 			<span class="h3">{{ operative.opname }}</span>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 		</div>
