@@ -86,6 +86,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.rulename = "Heavy";
 							rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
 							break;
+						case "HUMBLING CRUELTY":
+							rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point";
+							break;
 						case "HOT":
 							rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
 							break;
@@ -247,6 +250,12 @@ var app = angular.module("kt", ['ngSanitize'])
 					"NOV": {
 						"Label": "Faith Points",
 						"Shortcut": "FP"
+					}
+				},
+				"AEL": {
+					"VDT": {
+						"Label": "Performance Tally",
+						"Shortcut": "PT"
 					}
 				}
 			};
@@ -764,7 +773,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					async: true,
 					dataType: 'text',
 					success: function(data) {
-						$scope.addop.opname = data;
+						$scope.addop.opname = data.replace(/[\n\r]/g, '');
 						
 						$scope.$apply();
 					}
@@ -782,7 +791,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					async: true,
 					dataType: 'text',
 					success: function(data) {
-						op[namevar] = data;
+						op[namevar] = data.replace(/[\n\r]/g, '');;
 						
 						$scope.$apply();
 					}
@@ -1003,10 +1012,17 @@ var app = angular.module("kt", ['ngSanitize'])
 					tmpencode += op.opname + "/";
 					
 					for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
-						tmpencode += op.weapons[wepnum].wepid + ",";
+						tmpencode += op.weapons[wepnum].wepid;
+						if (wepnum < op.weapons.length - 1) {
+							// Put a comma before the next weapon
+							tmpencode += ","
+						}
 					}
 					
-					encode += "|" + tmpencode;
+					if (opnum < team.operatives.length - 1) {
+						// Put a pipe before the next operative
+						encode += "|" + tmpencode;
+					}
 				}
 				
 				return encode;
@@ -1456,7 +1472,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					async: true,
 					dataType: 'text',
 					success: function(data) {
-						$scope.generatedname = data;
+						$scope.generatedname = data.replace(/[\n\r]/g, '');;
 						
 						$scope.$apply();
 					}

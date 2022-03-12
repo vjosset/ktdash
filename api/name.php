@@ -85,7 +85,11 @@
 			case "AEL|TRP|TRP|GNR": //Player Gunner
 			case "AEL|TRP|TRP|LDR": //Player Leader
 			case "AEL|TRP|TRP|WAR": //Player Warrior
-				return GetAeldariName() . " " . GetAeldariName();
+			case "AEL|VDT|VDT|LPL": //Lead Player
+			case "AEL|VDT|VDT|PLAY": //Player
+			case "AEL|VDT|VDT|DJS": //Death Jester
+			case "AEL|VDT|VDT|SDS": //Shadowseer
+				return GetAeldariName();
 			case "CHAOS|CSM|CC|CHA": //Chaos Cultist Champion
 			case "CHAOS|CSM|CC|FTR": //Chaos Cultist Fighter
 			case "CHAOS|CSM|CC|GNR": //Chaos Cultist Gunner
