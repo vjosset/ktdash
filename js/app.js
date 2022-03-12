@@ -1019,10 +1019,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					}
 					
-					if (opnum < team.operatives.length - 1) {
-						// Put a pipe before the next operative
-						encode += "|" + tmpencode;
-					}
+					encode += "|" + tmpencode;
 				}
 				
 				return encode;
