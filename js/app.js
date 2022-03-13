@@ -66,8 +66,11 @@ var app = angular.module("kt", ['ngSanitize'])
 						case "COMBI-BOLTGUN":
 							rule.ruletext = "Can be combined with a Boltgun";
 							break;
+						case "DAEMONIC ENERGIES":
+							rule.ruletext = "Each time this operative fights in combat, in the Roll Attack Dice step of that combat, each time you retain a critical hit, the target suffers 2 Mortal Wounds.";
+							break;
 						case "DETONATE":
-					rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within &#9632; of the centre of its Mine token with that weapon. When making those shooting attacks, each operative is treated as being Visible and not Obscured, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
+							rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within &#9632; of the centre of its Mine token with that weapon. When making those shooting attacks, each operative is treated as being Visible and not Obscured, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
 							break;
 						case "EXPERT RIPOSTE":
 							rule.ruletext = "Each time this operative fights in combat using its duelling blades, in the Resolve Successful Hits step of that combat, each time you parry with a critical hit, also inflict damage equal to the weapon's Critical Damage characteristic.";
@@ -103,6 +106,9 @@ var app = angular.module("kt", ['ngSanitize'])
 						case "NO COVER":
 							rule.ruletext = "Target can't retain autosuccess for cover, must roll all Defence dice";
 							break;
+						case "PARRY HOOK":
+							rule.ruletext = "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time you parry with a normal hit, you can select one of your opponent''s critical hits to be discarded instead.";
+							break;
 						case "RELENTLESS":
 							rule.ruletext = "Can re-roll any or all Attack dice";
 							break;
@@ -128,6 +134,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							break;
 						case "UNWIELDY":
 							rule.ruletext = "Shooting costs +1 AP, no Overwatch";
+							break;
+						case "VICIOUS BLOWS":
+							rule.ruletext = "Each time this operative fights in combat:<ul><li>If this operative is the Attacker, this weapon gains the Ceaseless special rule for that combat</li><li>If this operative performed a Charge action during this activation, this weapon gains the Relentless special rule for that combat</li></ul>";
 							break;
 					}
 					
