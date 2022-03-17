@@ -113,8 +113,13 @@
 			<tbody ng-repeat="weapon in operative.weapons" class="oswald">
 				<!-- Single Profile -->
 				<tr ng-if="weapon.profiles.length < 2">
-					<td>
-						{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+					<td>						
+						<ANY ng-switch="weapon.weptype" class="fas fa-fw">
+						  <ANY ng-switch-when="R">&#x2295;</ANY>
+						  <ANY ng-switch-when="M">&#x2694;</ANY>
+						  <ANY ng-switch-default>&#x26ED;</ANY>
+						</ANY>
+						{{ weapon.wepname }}
 						<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
 					</td>
 					<td class="text-center h5">
@@ -130,8 +135,13 @@
 				
 				<!-- Multi-Profile -->
 				<tr ng-if="weapon.profiles.length > 1">
-					<td colspan="4">
-						{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+					<td colspan="4">						
+						<ANY ng-switch="weapon.weptype" class="fas fa-fw">
+						  <ANY ng-switch-when="R">&#x2295;</ANY>
+						  <ANY ng-switch-when="M">&#x2694;</ANY>
+						  <ANY ng-switch-default>&#x26ED;</ANY>
+						</ANY>
+						{{ weapon.wepname }}
 					</td>
 				</tr>
 				<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
