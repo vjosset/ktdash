@@ -79,16 +79,26 @@
 			
 			<div ng-if="myteams.length > 0" ng-repeat="team in myteams track by $index">
 				<br/>
-				<div class="row cinzel orange">
-					<div class="col-12">
+				<div class="row orange">
+					<div class="cinzel col-12">
 						<h3 class="cinzel orange" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#teamops_{{$index}}">
 							<i class="fas fa-chevron-down fa-fw"></i>
 							{{ team.teamname }}
 						</h3>
 					</div>
 				</div>
+				<div class="row orange">
+					<small class="col-8 oswald" ng-bind="'Archetype: ' + getTeamArchetype(team)"></small>
+					<div class="col-4 oswald text-end">
+						<em class="oswald small">
+							<a class="orange" href="/killteam.php?fa={{ team.factionid }}&kt={{ team.killteamid }}">
+								{{ team.killteam.killteamname }}
+							</a>
+						</em>
+					</div>
+				</div>
 				<div class="row oswald orange">
-					<div class="col-8">
+					<div class="col-12">
 						<i class="fas fa-arrow-up fa-fw" ng-click="moveTeamUp(team, $index);"></i>
 						<i class="fas fa-arrow-down fa-fw" ng-click="moveTeamDown(team, $index);"></i>
 						<i class="far fa-plus-square fa-fw" ng-click="initAddOp(team);"></i>
@@ -97,13 +107,6 @@
 						<i class="far fa-copy fa-fw" ng-click="cloneTeam(team, $index);"></i>
 						<i class="fas fa-print fa-fw" ng-click="initPrintTeam(team);"></i>
 						<i class="fas fa-trash-alt fa-fw" ng-click="initDeleteTeam(team);"></i>
-					</div>
-					<div class="col-4 oswald text-end">
-						<em class="oswald small">
-							<a class="orange" href="/killteam.php?fa={{ team.factionid }}&kt={{ team.killteamid }}">
-								{{ team.killteam.killteamname }}
-							</a>
-						</em>
 					</div>
 				</div>
 				<div id="teamops_{{$index}}" ng-if="team.operatives.length == 0" class="oswald collapse show">

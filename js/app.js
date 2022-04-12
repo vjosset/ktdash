@@ -118,6 +118,8 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "If you retain any critical hits, retain 1 normal hit as a critical hit too";
 							break;
 						case "SILENT":
+						case "SIL":
+							rule.rulename = "Silent";
 							rule.ruletext = "Can Shoot this weapon while on a Conceal order";
 							break;
 						case "SMART TARGETING":
@@ -813,8 +815,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.editop = op;
 				$scope.editop.newopname = op.opname;
 				
-				// Find the operative archetype for this operative
-				//console.log("Looking for operative archetype " + op.factionid + "/" + op.killteamid + "/" + op.fireteamid + "/" + op.opid);
+				// Find the operative model for this operative
+				//console.log("Looking for operative model " + op.factionid + "/" + op.killteamid + "/" + op.fireteamid + "/" + op.opid);
 				for (let facnum = 0; facnum < $scope.factions.length; facnum++) {
 					let faction = $scope.factions[facnum];
 					if (faction.factionid == op.factionid) {
@@ -835,14 +837,14 @@ var app = angular.module("kt", ['ngSanitize'])
 										// Found the fireteam - Now look for the operative
 										for (let opnum = 0; opnum < fireteam.operatives.length; opnum++) {
 											if (fireteam.operatives[opnum].opid == op.opid) {
-												// This is our operative archetype
-												//console.log("Found operative archetype");
+												// This is our operative model
+												//console.log("Found operative model");
 												$scope.editop.operative = fireteam.operatives[opnum];
 												
 												// Now match the weapon selections
 												for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
 													let opwep = op.weapons[wepnum];
-													// Look for this weapon in the operative archetype's weapons
+													// Look for this weapon in the operative model's weapons
 													for (let i = 0; i < $scope.editop.operative.weapons.length; i++) {
 														if ($scope.editop.operative.weapons[i].wepid == opwep.wepid) {
 															$scope.editop.operative.weapons[i].isselected = true;
@@ -877,7 +879,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				}
 				
-				// Remove the archetype before saving
+				// Remove the model before saving
 				delete $scope.editop.operative;
 				
 				// Save all changes
@@ -973,6 +975,35 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				$scope.commitTeams();
+			}
+			
+			// Returns the archetype for a given team ("Security/Recon/etc")
+			$scope.getTeamArchetype = function(team) {
+				var teamArchetype = "";
+				
+				for (var opnum = 0; opnum < team.operatives.length; opnum++) {
+					var op = team.operatives[opnum];
+					var opfireteam = $scope.getFireteam(op.factionid, op.killteamid, op.fireteamid);
+					
+					var archetypes = opfireteam.archetype.split("/");
+					
+					for (var archnum = 0; archnum < archetypes.length; archnum++) {
+						var arch = archetypes[archnum];
+						
+						if (!teamArchetype.includes(arch)) {
+							// Append this team archetype to the output
+							if (teamArchetype.length > 0) {
+								// Put a slash between archetypes
+								teamArchetype += "/";
+							}
+							teamArchetype += arch;
+						}
+					}
+					
+				}
+				
+				// Done
+				return teamArchetype;
 			}
 			
 			// Commit all team changes to localstorage
@@ -1129,8 +1160,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Now find the operatives
 				for (let i = 0; i < tmp.operatives.length; i++) {
-					let oparchetype = $scope.getOperative(importTeam.factionid, importTeam.killteamid, tmp.operatives[i].fireteamid, tmp.operatives[i].opid);
-					let op = JSON.parse(JSON.stringify(oparchetype));
+					let opmodel = $scope.getOperative(importTeam.factionid, importTeam.killteamid, tmp.operatives[i].fireteamid, tmp.operatives[i].opid);
+					let op = JSON.parse(JSON.stringify(opmodel));
 					op.optype = op.opname;
 					op.opname = tmp.operatives[i].opname;
 					
@@ -1142,11 +1173,11 @@ var app = angular.module("kt", ['ngSanitize'])
 					for (let reqwepnum = 0; reqwepnum < reqwepids.length; reqwepnum++) {
 						let reqwepid = reqwepids[reqwepnum];
 						
-						// Find the weapon in the operative archetype
-						for (let wepnum = 0; wepnum < oparchetype.weapons.length; wepnum++) {
-							if (oparchetype.weapons[wepnum].wepid == reqwepid) {
+						// Find the weapon in the operative model
+						for (let wepnum = 0; wepnum < opmodel.weapons.length; wepnum++) {
+							if (opmodel.weapons[wepnum].wepid == reqwepid) {
 								// Found it!
-								op.weapons.push(oparchetype.weapons[wepnum]);
+								op.weapons.push(opmodel.weapons[wepnum]);
 							}
 						}
 					}
@@ -1175,8 +1206,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				for (let opnum = 3; opnum < data.length; opnum++) {
 					let opdata = data[opnum].split("/");
 					
-					let oparchetype = $scope.getOperative(importTeam.factionid, importTeam.killteamid, opdata[0], opdata[1]);
-					let op = JSON.parse(JSON.stringify(oparchetype));
+					let opmodel = $scope.getOperative(importTeam.factionid, importTeam.killteamid, opdata[0], opdata[1]);
+					let op = JSON.parse(JSON.stringify(opmodel));
 					op.optype = op.opname;
 					op.opname = opdata[2];
 					op.fireteam = $scope.getFireteam(op.factionid, op.killteamid, op.fireteamid);
@@ -1189,11 +1220,11 @@ var app = angular.module("kt", ['ngSanitize'])
 					for (let reqwepnum = 0; reqwepnum < reqwepids.length; reqwepnum++) {
 						let reqwepid = reqwepids[reqwepnum];
 						
-						// Find the weapon in the operative archetype
-						for (let wepnum = 0; wepnum < oparchetype.weapons.length; wepnum++) {
-							if (oparchetype.weapons[wepnum].wepid == reqwepid) {
+						// Find the weapon in the operative model
+						for (let wepnum = 0; wepnum < opmodel.weapons.length; wepnum++) {
+							if (opmodel.weapons[wepnum].wepid == reqwepid) {
 								// Found it!
-								op.weapons.push(oparchetype.weapons[wepnum]);
+								op.weapons.push(opmodel.weapons[wepnum]);
 							}
 						}
 					}
