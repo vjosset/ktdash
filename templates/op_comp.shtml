@@ -1,16 +1,5 @@
-<a name="{{ operative.opid }}"></a>
+<a name="{{operative.factionid}}.{{operative.killteamid}}.{{operative.fireteamid}}.{{ operative.opid }}"></a>
 <div class="card border-light shadow darkcard">
-	
-	<!-- Portrait -->
-	<!--
-	<img class="card-img-top" ng-src="/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
-	-->
-	
-	<!-- button class="btn btn-primary oswald" style="position: absolute; top: 10px; left: 10px;" ng-click="initAddOp(operative);">Add to my team</button -->
-	
-	<!--div class="card-img-overlay">
-		<p class="card-text bright" style="vertical-align: bottom;" ng-bind-html="operative.description"></p>
-	</div-->
 	<div class="card-title p-1">
 		<div class="cinzel" ng-click="showpopup(operative.opname, operative.description);">
 			<span class="h3">{{ operative.opname }}</span>
@@ -50,30 +39,6 @@
 			</table>
 		</div>
 	</div>
-	
-	<!-- Characteristics/Stats -->
-	<!--
-	<center>
-		<table width="100%" class="text-center cinzel">
-			<tr class="h3 orange">
-				<td width="16%">M</td>
-				<td width="16%">APL</td>
-				<td width="16%">GA</td>
-				<td width="16%">DF</td>
-				<td width="16%">SV</td>
-				<td width="16%">W</td>
-			</tr>
-			<tr class="h3">
-				<td ng-bind-html="operative.M"></td>
-				<td>{{ operative.APL }}</td>
-				<td>{{ operative.GA }}</td>
-				<td>{{ operative.DF }}</td>
-				<td>&nbsp;{{ operative.SV }}</td>
-				<td>{{ operative.W }}</td>
-			</tr>
-		</table>
-	</center>
-	-->
 	
 	<!-- Weapons List-->
 	<table ng-if="operative.weapons.length > 0" class="m-1">

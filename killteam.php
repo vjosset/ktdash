@@ -30,7 +30,7 @@
 		<?php include "header.shtml" ?>
 		
 		<?php
-		$pagetitle = $killteam->killteamname;
+		$pagetitle = $killteam->killteamname . " | " . $faction->factionname;
 		$pagedesc  = $killteam->description;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png";
 		$pageurl   = "https://ktdash.app/killteam.php?fa=" . $factionid . "&kt=" . $killteamid;
