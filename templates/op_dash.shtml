@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		
-		<div class="row m-0 p-0">
+		<div ng-if="settings.dashportraits" class="row m-0 p-0" class="m-0 p-0">
 			<div class="col-5 m-0 p-0"
 				style=
 				"background-image: url('/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg');
@@ -50,6 +50,34 @@
 						<td width="16%">W</td>
 					</tr>
 					<tr class="h3">
+						<td>{{ operative.DF }}</td>
+						<td>&nbsp;{{ operative.SV }}</td>
+						<td>
+							<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+							
+							{{ operative.curW }}
+							
+							<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div ng-if="!settings.dashportraits" class="row m-0 p-0" class="m-0 p-0">
+			<div class="m-0 p-0">
+				<table width="100%" class="text-center cinzel">
+					<tr class="h3 orange">
+						<td width="16%">M</td>
+						<td width="16%">APL</td>
+						<td width="16%">GA</td>
+						<td width="16%">DF</td>
+						<td width="16%">SV</td>
+						<td width="16%">W</td>
+					</tr>
+					<tr class="h3">
+						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" ng-bind-html="operative.M"></td>
+						<td>{{ operative.APL }}</td>
+						<td>{{ operative.GA }}</td>
 						<td>{{ operative.DF }}</td>
 						<td>&nbsp;{{ operative.SV }}</td>
 						<td>

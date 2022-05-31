@@ -276,8 +276,24 @@ var app = angular.module("kt", ['ngSanitize'])
 						"Label": "Performance Tally",
 						"Shortcut": "PT"
 					}
+				},
+				"CHAOS": {
+					"BLD": {
+						"Label": "Blooded Tokens",
+						"Shortcut": "BT"
+					}
 				}
 			};
+			
+			$scope.OpTokens = {
+				"CHAOS": {
+					"BLD": {
+						"Label": "Blooded",
+						"Shortcut": "BT",
+						"Type": "boolean"
+					}
+				}
+			}
 			
 			// Get the dashboard from local storage
 			let dash = localStorage.getItem("dashboard");
