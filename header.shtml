@@ -30,10 +30,10 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.min.js"></script>
 		
 		<!-- JS Utils -->
-		<script type="text/javascript" src="/js/utils.js?sdf=adf"></script>
+		<script type="text/javascript" src="/js/utils.js?sdf=adewrwrf"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" defer async src="js/app.js?ui=rrre"></script>
+		<script type="text/javascript" defer async src="js/app.js?ui=rrrrwre"></script>
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">

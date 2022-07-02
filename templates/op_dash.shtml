@@ -124,20 +124,24 @@
 		
 		<!-- Weapons List-->
 		<table ng-if="operative.weapons.length > 0" width="100%" class="m-1 line-top-light">
-			<tr class="h6 cinzel">
-				<td>
-					Weapons
-				</td>
-				<td class="text-center">
-					&nbsp;&nbsp;A&nbsp;&nbsp;
-				</td>
-				<td class="text-center">
-					&nbsp;&nbsp;BS&nbsp;&nbsp;
-				</td>
-				<td class="text-center">
-					&nbsp;&nbsp;D&nbsp;&nbsp;
-				</td>
-			</tr>
+			<thead>
+				<tr class="h6 cinzel">
+					<td>
+						Weapons
+					</td>
+					<td class="text-center">
+						&nbsp;&nbsp;A&nbsp;&nbsp;
+					</td>
+					<td class="text-center">
+						&nbsp;&nbsp;BS&nbsp;&nbsp;
+					</td>
+					<td class="text-center">
+						&nbsp;&nbsp;D&nbsp;&nbsp;
+					</td>
+				</tr>
+			</thead>
+			
+			<!-- Regular Weapons -->
 			<tbody ng-repeat="weapon in operative.weapons" class="oswald">
 				<!-- Single Profile -->
 				<tr ng-if="weapon.profiles.length < 2">
@@ -189,22 +193,89 @@
 					</td>
 				</tr>
 			</tbody>
+			
+			<!-- Equipment Weapons -->
+			<tbody ng-repeat="eq in operative.equipments" class="oswald">
+				Equipment Weapon: {{ eq.eqname }} ({{ eq.eqtype }})
+				
+				<!-- Single Profile -->
+				<tr ng-if="eq.weapon.profiles.length < 2">
+					<td>						
+						<ANY ng-switch="eq.weapon.weptype" class="fas fa-fw">
+						  <ANY ng-switch-when="R">&#x2295;</ANY>
+						  <ANY ng-switch-when="M">&#x2694;</ANY>
+						  <ANY ng-switch-default>&#x26ED;</ANY>
+						</ANY>
+						{{ eq.weapon.wepname }}
+						<div class="d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
+					</td>
+					<td class="text-center h5">
+						&nbsp;&nbsp;{{ eq.weapon.profiles[0].A }}&nbsp;&nbsp;
+					</td>
+					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+						&nbsp;&nbsp;&nbsp;{{ eq.weapon.profiles[0].BS }}&nbsp;&nbsp;
+					</td>
+					<td class="text-center h5">
+						&nbsp;&nbsp;{{ eq.weapon.profiles[0].D }}&nbsp;&nbsp;
+					</td>
+				</tr>
+				
+				<!-- Multi-Profile -->
+				<tr ng-if="eq.weapon.profiles.length > 1">
+					<td colspan="4">						
+						<ANY ng-switch="eq.weapon.weptype" class="fas fa-fw">
+						  <ANY ng-switch-when="R">&#x2295;</ANY>
+						  <ANY ng-switch-when="M">&#x2694;</ANY>
+						  <ANY ng-switch-default>&#x26ED;</ANY>
+						</ANY>
+						{{ eq.weapon.wepname }}
+					</td>
+				</tr>
+				<tr ng-if="eq.weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						- {{ profile.name }}
+						<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
+					</td>
+					<td class="text-center h5">
+						&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
+					</td>
+					<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+						&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
+					</td>
+					<td class="text-center h5">
+						&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
+					</td>
+				</tr>
+			</tbody>
 		</table>
 		
 		<!-- Abilities -->
-		<div class="m-1 line-top-light" ng-show="operative.abilities.length > 0">
+		<div class="m-1 line-top-light" ng-show="operative.abilities.length > 0 || operative.equipments.length > 0">
 			<h6 class="cinzel">Abilities</h6>
+			<!-- Regular Abilities -->
 			<div ng-click="showpopup(ab.title, ab.description);" class="oswald" ng-repeat="ab in operative.abilities">
 				{{ ab.title }} 
+				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+			</div>
+			<!-- Equipment Abilities -->
+			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
+				{{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
 		
 		<!-- Unique Actions -->
-		<div class="m-1 line-top-light" ng-show="operative.uniqueactions.length > 0">
+		<div class="m-1 line-top-light" ng-show="operative.uniqueactions.length > 0 || operative.equipments.length > 0">
 			<h6 class="cinzel">Unique Actions</h6>
+			<!-- Regular Unique Actions -->
 			<div ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" class="oswald" ng-repeat="ua in operative.uniqueactions">
 				{{ ua.title }} ({{ ua.AP}} AP)
+				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+			</div>
+			<!-- Equipment Unique Actions -->
+			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Action'">
+				{{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
@@ -214,8 +285,8 @@
 			<h6 class="cinzel" ng-click="initEditOpEq(operative);">
 				Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
 			</h6>
-			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments">
-				{{ eq.eqname }}
+			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == null || eq.eqtype == ''">
+				{{ eq.eqname }} ({{ eq.eqtype }})
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>

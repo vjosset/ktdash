@@ -552,6 +552,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				for (let i = 0; i < $scope.opeq.equipments.length; i++) {
 					if ($scope.opeq.equipments[i].isselected) {
 						$scope.opeq.operative.equipments.push($scope.opeq.equipments[i]);
+						console.log("Adding equipment to operative: " + JSON.stringify($scope.opeq.equipments[i]));
 					}
 				}
 				
@@ -604,7 +605,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				let teamtype = "";
 				for (let i = 0; i < team.operatives.length; i++) {
-					if (!teamtype.contains(team.operatives[i].fireteamid)) {
+					if (!teamtype.includes(team.operatives[i].fireteamid)) {
 						if (teamtype.length > 0) {
 							// Put a comma between elements
 							teamtype += ", ";
@@ -615,6 +616,27 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				return teamtype;
+			}
+			
+			// Returns the name of this team based on its fireteams and killteam
+			$scope.getTeamTypeName = function(team) {
+				/*
+				Get distinct fire team IDs in this team
+				If only one, return fire team name
+				If more than one, return kill team name
+				*/
+				
+				console.log("getTeamTypeName()");
+				let teamtypename = team.killteam.killteamname;
+				let teamftids = $scope.getTeamType(team);
+				console.log("FTIDs: " + teamftids);
+				if (!teamftids.includes(",")) {
+					// Only one fireteam in this team, use that as the name instead of killteam name
+					console.log("Getting fireteam " + team.factionid + ", " + team.killteamid + ", " + teamftids);
+					teamtypename = $scope.getFireteam(team.factionid, team.killteamid, teamftids);
+					teamtypename = teamtypename.fireteamname;
+				}
+				return teamtypename;
 			}
 			
 			// Pop-up the new team modal

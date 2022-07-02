@@ -15,11 +15,11 @@
             $this->Keys = ["killteamid", "eqid"];
         }
 		
-		public function GetEquipment($killteamid, $eqid) {
+		public function GetEquipment($factionid, $killteamid, $eqid) {
 			global $dbcon;
 			
 			//Get the requested Equipment
-			$e = Ploy::FromDB($killteamid, $eqid);
+			$e = Ploy::FromDB($factionid, $killteamid, $eqid);
 			
 			return $e;
 		}
