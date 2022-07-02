@@ -230,6 +230,18 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				return json;
 			}
+			
+			$scope.eqIsAbility = function(eq) {
+				return eq.eqtype == 'Ability';
+			}
+			
+			$scope.eqIsAction = function(eq) {
+				return eq.eqtype == 'Action';
+			}
+			
+			$scope.eqIsWeapon = function(eq) {
+				return eq.eqtype == 'Weapon';
+			}
 		}
 		
 		// SETTINGS/PREFERENCES

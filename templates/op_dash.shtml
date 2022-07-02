@@ -196,8 +196,6 @@
 			
 			<!-- Equipment Weapons -->
 			<tbody ng-repeat="eq in operative.equipments" class="oswald">
-				Equipment Weapon: {{ eq.eqname }} ({{ eq.eqtype }})
-				
 				<!-- Single Profile -->
 				<tr ng-if="eq.weapon.profiles.length < 2">
 					<td>						
@@ -251,7 +249,7 @@
 		</table>
 		
 		<!-- Abilities -->
-		<div class="m-1 line-top-light" ng-show="operative.abilities.length > 0 || operative.equipments.length > 0">
+		<div class="m-1 line-top-light" ng-show="(operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
 			<h6 class="cinzel">Abilities</h6>
 			<!-- Regular Abilities -->
 			<div ng-click="showpopup(ab.title, ab.description);" class="oswald" ng-repeat="ab in operative.abilities">
@@ -266,7 +264,7 @@
 		</div>
 		
 		<!-- Unique Actions -->
-		<div class="m-1 line-top-light" ng-show="operative.uniqueactions.length > 0 || operative.equipments.length > 0">
+		<div class="m-1 line-top-light" ng-show="(operative.uniqueactions.length + operative.equipments.filter(eqIsAction).length) > 0">
 			<h6 class="cinzel">Unique Actions</h6>
 			<!-- Regular Unique Actions -->
 			<div ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" class="oswald" ng-repeat="ua in operative.uniqueactions">
