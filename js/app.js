@@ -41,7 +41,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						"ruletext": weprules[i].trim()
 					}
 					
-					console.log("Looking at rule #" + i + "\r\n" + JSON.stringify(rule));
+					//console.log("Looking at rule #" + i + "\r\n" + JSON.stringify(rule));
 					if (rule.rulename.startsWith("*")) {
 						// One-off special weapon rules (e.g. "*Detonate" or "*Custom"); skip these in the popup.
 						// Their description should be in the operative's abilities.
@@ -564,7 +564,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				for (let i = 0; i < $scope.opeq.equipments.length; i++) {
 					if ($scope.opeq.equipments[i].isselected) {
 						$scope.opeq.operative.equipments.push($scope.opeq.equipments[i]);
-						console.log("Adding equipment to operative: " + JSON.stringify($scope.opeq.equipments[i]));
+						//console.log("Adding equipment to operative: " + JSON.stringify($scope.opeq.equipments[i]));
 					}
 				}
 				
@@ -1043,21 +1043,23 @@ var app = angular.module("kt", ['ngSanitize'])
 					var op = team.operatives[opnum];
 					var opfireteam = $scope.getFireteam(op.factionid, op.killteamid, op.fireteamid);
 					
-					var archetypes = opfireteam.archetype.split("/");
-					
-					for (var archnum = 0; archnum < archetypes.length; archnum++) {
-						var arch = archetypes[archnum];
+					if (opfireteam != null)
+					{
+						var archetypes = opfireteam.archetype.split("/");
 						
-						if (!teamArchetype.includes(arch)) {
-							// Append this team archetype to the output
-							if (teamArchetype.length > 0) {
-								// Put a slash between archetypes
-								teamArchetype += "/";
+						for (var archnum = 0; archnum < archetypes.length; archnum++) {
+							var arch = archetypes[archnum];
+							
+							if (!teamArchetype.includes(arch)) {
+								// Append this team archetype to the output
+								if (teamArchetype.length > 0) {
+									// Put a slash between archetypes
+									teamArchetype += "/";
+								}
+								teamArchetype += arch;
 							}
-							teamArchetype += arch;
 						}
 					}
-					
 				}
 				
 				// Done
