@@ -16,7 +16,7 @@
             break;
     }
 
-    function GETFaction() {
+    function GETOperative() {
 		// Get the requested filters
 		$killteamid = $_REQUEST['killteamid'];
 		$opid = $_REQUEST['opid'];

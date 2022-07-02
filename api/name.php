@@ -216,6 +216,20 @@
 			case "IMP|NOV|NOV|REL": //Novitiate Reliquarius
 			case "IMP|NOV|NOV|SUP": //Novitiate Superior
 				return GetSistersOfBattleName();
+			case "IMP|PHO|PHO|INCML":  //Phobos Strike Team Incursor Minelayer
+			case "IMP|PHO|PHO|INCMRK": //Phobos Strike Team Incursor Marksman
+			case "IMP|PHO|PHO|INCSGT": //Phobos Strike Team Incursor Sergeant
+			case "IMP|PHO|PHO|INCWAR": //Phobos Strike Team Incursor Warrior
+			case "IMP|PHO|PHO|INFCOM": //Phobos Strike Team Infiltrator Commsman
+			case "IMP|PHO|PHO|INFHEL": //Phobos Strike Team Infiltrator Helix Adept
+			case "IMP|PHO|PHO|INFSAB": //Phobos Strike Team Infiltrator Saboteur
+			case "IMP|PHO|PHO|INFSGT": //Phobos Strike Team Infiltrator Sergeant
+			case "IMP|PHO|PHO|INFVET": //Phobos Strike Team Infiltrator Veteran
+			case "IMP|PHO|PHO|INFVOX": //Phobos Strike Team Infiltrator Voxbreaker
+			case "IMP|PHO|PHO|INFWAR": //Phobos Strike Team Infiltrator Warrior
+			case "IMP|PHO|PHO|RVRSGT": //Phobos Strike Team Reiver Sergeant
+			case "IMP|PHO|PHO|RVRWAR": //Phobos Strike Team Reiver Warrior
+				return GetSpaceMarineName();
 			case "IMP|SM|AINT|SGT": //Assault Intercessor Sergeant
 			case "IMP|SM|AINT|WAR": //Assault Intercessor Warrior
 			case "IMP|SM|DW|FTR": //DeathWatch Fighter
