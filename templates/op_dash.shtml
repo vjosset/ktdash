@@ -40,9 +40,17 @@
 						<td width="16%">GA</td>
 					</tr>
 					<tr class="h3">
-						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" ng-bind-html="operative.M"></td>
-						<td>{{ operative.APL }}</td>
-						<td>{{ operative.GA }}</td>
+						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" nowrap="true">
+							<span ng-bind-html="operative.M"></span>
+							<span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})" ng-bind-html="eq.eqvar2"></span>
+							<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							<span ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'}).length < 1">{{ operative.APL }}</span><span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})">{{ eq.eqvar2 }}</span><sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							{{ operative.GA }}<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'})[0].eqdescription);">*</sup>
+						</td>
 					</tr>
 					<tr class="h3 orange">
 						<td width="16%">DF</td>
@@ -50,8 +58,12 @@
 						<td width="16%">W</td>
 					</tr>
 					<tr class="h3">
-						<td>{{ operative.DF }}</td>
-						<td>&nbsp;{{ operative.SV }}</td>
+						<td>
+							{{ operative.DF }}<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							&nbsp;<span ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'}).length < 1">{{ operative.SV }}</span><span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})">{{ eq.eqvar2 }}</span><sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})[0].eqdescription);">*</sup>
+						</td>
 						<td>
 							<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
 							
@@ -75,11 +87,24 @@
 						<td width="16%">W</td>
 					</tr>
 					<tr class="h3">
-						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" ng-bind-html="operative.M"></td>
-						<td>{{ operative.APL }}</td>
-						<td>{{ operative.GA }}</td>
-						<td>{{ operative.DF }}</td>
-						<td>&nbsp;{{ operative.SV }}</td>
+						<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" nowrap="true">
+							<span ng-bind-html="operative.M"></span>
+							<span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})" ng-bind-html="eq.eqvar2"></span>
+							<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'M'})[0].eqdescription);">*</sup>
+							
+						</td>
+						<td>
+							<span ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'}).length < 1">{{ operative.APL }}</span><span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})">{{ eq.eqvar2 }}</span><sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'APL'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							{{ operative.GA }}<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'}).length > 0" ng-click="showpopup((operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'GA'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							{{ operative.DF }}<sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'}).length > 0" ng-click="showpopup((operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'DF'})[0].eqdescription);">*</sup>
+						</td>
+						<td>
+							&nbsp;<span ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'}).length < 1">{{ operative.SV }}</span><span ng-repeat="eq in (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})">{{ eq.eqvar2 }}</span><sup class="text-tiny oswald" ng-if="(operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'}).length > 0" ng-click="showpopup('Equipment: ' + (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})[0].eqname, (operative.equipments|filter:{eqtype:'OpMod', eqvar1:'SV'})[0].eqdescription);">*</sup>
+						</td>
 						<td>
 							<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
 							
@@ -283,8 +308,8 @@
 			<h6 class="cinzel" ng-click="initEditOpEq(operative);">
 				Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
 			</h6>
-			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == null || eq.eqtype == ''">
-				{{ eq.eqname }} ({{ eq.eqtype }})
+			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == null || eq.eqtype == '' || eq.eqtype == 'OpMod' || eq.eqtype == 'WepMod'">
+				{{ eq.eqname }}
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
