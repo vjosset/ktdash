@@ -614,20 +614,24 @@ var app = angular.module("kt", ['ngSanitize'])
 					Get their fireteamid
 					If fireteamid not in list, append to list
 				*/
-				
 				let teamtype = "";
-				for (let i = 0; i < team.operatives.length; i++) {
-					if (!teamtype.includes(team.operatives[i].fireteamid)) {
-						if (teamtype.length > 0) {
-							// Put a comma between elements
-							teamtype += ", ";
+				try {
+					for (let i = 0; i < team.operatives.length; i++) {
+						if (!teamtype.includes(team.operatives[i].fireteamid)) {
+							if (teamtype.length > 0) {
+								// Put a comma between elements
+								teamtype += ", ";
+							}
+							// Append this fireteam
+							teamtype += team.operatives[i].fireteamid;
 						}
-						// Append this fireteam
-						teamtype += team.operatives[i].fireteamid;
 					}
+				} catch (error) {
+					// Something went wrong, pretend everything is OK
+					console.error(error);
+				} finally {
+					return teamtype;
 				}
-				
-				return teamtype;
 			}
 			
 			// Returns the name of this team based on its fireteams and killteam
@@ -638,17 +642,22 @@ var app = angular.module("kt", ['ngSanitize'])
 				If more than one, return kill team name
 				*/
 				
-				console.log("getTeamTypeName()");
 				let teamtypename = team.killteam.killteamname;
-				let teamftids = $scope.getTeamType(team);
-				console.log("FTIDs: " + teamftids);
-				if (!teamftids.includes(",")) {
-					// Only one fireteam in this team, use that as the name instead of killteam name
-					console.log("Getting fireteam " + team.factionid + ", " + team.killteamid + ", " + teamftids);
-					teamtypename = $scope.getFireteam(team.factionid, team.killteamid, teamftids);
-					teamtypename = teamtypename.fireteamname;
+				try {
+					let teamftids = $scope.getTeamType(team);
+					console.log("FTIDs: " + teamftids);
+					if (teamftids!= null && !teamftids.includes(",") && teamftids != "") {
+						// Only one fireteam in this team, use that as the name instead of killteam name
+						console.log("Getting fireteam " + team.factionid + ", " + team.killteamid + ", " + teamftids);
+						teamtypename = $scope.getFireteam(team.factionid, team.killteamid, teamftids);
+						teamtypename = teamtypename.fireteamname;
+					}
+				} catch (error) {
+					// Something went wrong, pretend everything is OK
+					console.error(error);
+				} finally {
+					return teamtypename;
 				}
-				return teamtypename;
 			}
 			
 			// Pop-up the new team modal
