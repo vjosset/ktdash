@@ -645,10 +645,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				let teamtypename = team.killteam.killteamname;
 				try {
 					let teamftids = $scope.getTeamType(team);
-					console.log("FTIDs: " + teamftids);
 					if (teamftids!= null && !teamftids.includes(",") && teamftids != "") {
 						// Only one fireteam in this team, use that as the name instead of killteam name
-						console.log("Getting fireteam " + team.factionid + ", " + team.killteamid + ", " + teamftids);
 						teamtypename = $scope.getFireteam(team.factionid, team.killteamid, teamftids);
 						teamtypename = teamtypename.fireteamname;
 					}
