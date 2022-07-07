@@ -242,6 +242,39 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.eqIsWeapon = function(eq) {
 				return eq.eqtype == 'Weapon';
 			}
+		
+			// Returns a boolean indicating whether the specified operative has any equipments of the specified type.
+			// If type is not specified, returns a boolean indicating whether the operative has any equipments.
+			$scope.opHasEq = function(op, eqtype, eqvar1) {
+				if (op == null) {
+					return [];
+				}
+				return $scope.getOpEq(op, eqtype, eqvar1).length > 0;
+			}
+			
+			// Returns an array of the specified operative's equipments of the specified type.
+			// If type is not specified, returns an array of the specified operative's equipments.
+			$scope.getOpEq = function(op, eqtype, eqvar1) {
+				if (op == null) {
+					return [];
+				}
+				
+				if (eqtype == null) {
+					// Look for any equipment
+					if (op.equipments != null && Array.isArray(op.equipments) && op.equipments.length > 0) {
+						return op.equipments;
+					} else {
+						return [];
+					}
+				} else {
+					// Look for equipment of the requested type
+					if (op.equipments != null && Array.isArray(op.equipments) && op.equipments.filter(eq => eq.eqtype == eqtype && eq.eqvar1 == eqvar1).length > 0) {
+						return op.equipments.filter(eq => eq.eqtype == eqtype && eq.eqvar1 == eqvar1);
+					} else {
+						return [];
+					}
+				}
+			}
 		}
 		
 		// SETTINGS/PREFERENCES
