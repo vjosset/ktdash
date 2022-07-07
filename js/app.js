@@ -423,7 +423,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
 					op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
 					
-				} else if (op.curW >=  parseInt(op.W) / 2 && wasInjured) {
+				} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
 					// Operative is no longer injured, was injured before
 					op.isInjured = false;
 					
