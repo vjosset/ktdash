@@ -398,16 +398,13 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (wasInjured == null) {
 					wasInjured = false;
 				}
-				if (op.curW < parseInt(op.W) / 2 && !wasInjured) {
-					// Operative is now injured, wasn't injured before
+				if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+					// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
 					op.isInjured = true;
 					
 					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
-					// This does NOT apply to Pathfinder Assault Grenadiers or Death Guard operatives (Disgustingly Resilient)
-					if (
-						!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG') &&
-						!(op.factionid == 'CHAOS' && op.killteamid == 'DG')
-					) {
+					// This does NOT apply to Pathfinder Assault Grenadiers
+					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
 							for (let j = 0; j < wep.profiles.length; j++) {
@@ -425,6 +422,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
 					op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
 					op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+					
 				} else if (op.curW >=  parseInt(op.W) / 2 && wasInjured) {
 					// Operative is no longer injured, was injured before
 					op.isInjured = false;
