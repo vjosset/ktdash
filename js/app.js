@@ -403,8 +403,11 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.isInjured = true;
 					
 					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
-					// This does NOT apply to Pathfinder Assault Grenadiers
-					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
+					// This does NOT apply to Pathfinder Assault Grenadiers or Death Guard operatives (Disgustingly Resilient)
+					if (
+						!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG') &&
+						!(op.factionid == 'CHAOS' && op.killteamid == 'DG')
+					) {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
 							for (let j = 0; j < wep.profiles.length; j++) {
