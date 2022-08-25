@@ -157,7 +157,7 @@
 			
 			$this->equipments = [];
 						
-			$sql = "SELECT * FROM Equipment WHERE factionid = ? AND killteamid = ?;";
+			$sql = "SELECT * FROM Equipment WHERE factionid = ? AND killteamid = ? ORDER BY eqseq, eqname;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {
@@ -182,8 +182,10 @@
 					//If this is a weapon, add the weapon as a nested object
 					if ($row->eqtype == 'Weapon') {
 						$wep = Weapon::FromDB($row->factionid, $row->killteamid, 'EQ', 'EQ', $row->eqid);
-						$wep->loadWeaponProfiles();
-						$e->weapon = $wep;
+						if ($wep != null) {
+							$wep->loadWeaponProfiles();
+							$e->weapon = $wep;
+						}
 					}
 					$this->equipments[] = $e;
 				}

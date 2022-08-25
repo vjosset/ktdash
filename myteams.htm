@@ -129,8 +129,13 @@
 						<div class="container oswald">
 							<em>{{ operative.fireteam.fireteamname }} - {{ operative.optype }}</em>
 							<br/>
-							<span ng-repeat="weapon in operative.weapons" class="d-inline">
-								{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+							<span ng-repeat="weapon in operative.weapons" class="d-inline">				
+								<ANY ng-switch="weapon.weptype" class="fas fa-fw">
+								  <ANY ng-switch-when="R">&#x2295;</ANY>
+								  <ANY ng-switch-when="M">&#x2694;</ANY>
+								  <ANY ng-switch-default>&#x26ED;</ANY>
+								</ANY>
+								{{ weapon.wepname }}
 								{{$last ? '' : ', '}}							
 							</span>
 						</div>

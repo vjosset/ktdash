@@ -224,11 +224,7 @@
 				<!-- Single Profile -->
 				<tr ng-if="eq.weapon.profiles.length < 2">
 					<td>						
-						<ANY ng-switch="eq.weapon.weptype" class="fas fa-fw">
-						  <ANY ng-switch-when="R">&#x2295;</ANY>
-						  <ANY ng-switch-when="M">&#x2694;</ANY>
-						  <ANY ng-switch-default>&#x26ED;</ANY>
-						</ANY>
+						&#x26ED;
 						{{ eq.weapon.wepname }}
 						<div class="d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
 					</td>
@@ -246,11 +242,7 @@
 				<!-- Multi-Profile -->
 				<tr ng-if="eq.weapon.profiles.length > 1">
 					<td colspan="4">						
-						<ANY ng-switch="eq.weapon.weptype" class="fas fa-fw">
-						  <ANY ng-switch-when="R">&#x2295;</ANY>
-						  <ANY ng-switch-when="M">&#x2694;</ANY>
-						  <ANY ng-switch-default>&#x26ED;</ANY>
-						</ANY>
+						&#x26ED;
 						{{ eq.weapon.wepname }}
 					</td>
 				</tr>
@@ -283,7 +275,7 @@
 			</div>
 			<!-- Equipment Abilities -->
 			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
-				{{ eq.eqname }} 
+				&#x26ED; {{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
@@ -298,7 +290,7 @@
 			</div>
 			<!-- Equipment Unique Actions -->
 			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Action'">
-				{{ eq.eqname }} 
+				&#x26ED; {{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
@@ -308,10 +300,9 @@
 			<h6 class="cinzel" ng-click="initEditOpEq(operative);">
 				Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
 			</h6>
-			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == null || eq.eqtype == '' || eq.eqtype == 'OpMod' || eq.eqtype == 'WepMod'">
-				{{ eq.eqname }}
-				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
-			</div>
+			<span ng-click="showpopup(eq.eqname, eq.eqdescription);" class="oswald" ng-repeat="eq in operative.equipments">
+				{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
+			</span>
 		</div>
 		
 		<!-- Notes -->

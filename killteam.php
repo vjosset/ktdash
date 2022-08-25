@@ -62,7 +62,7 @@
 					<div class="col-12 col-sm-5 col-lg-4"
 						style="overflow: auto; 
 						background-repeat: no-repeat; background-size: cover;
-						background-position: center;"
+						background-position: top;"
 						ng-style="{ 'background-image': 'url(/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.png)' }">
 						&nbsp;
 						<br/><br/><br/><br/>

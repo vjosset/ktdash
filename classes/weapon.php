@@ -8,6 +8,7 @@
 		public $fireteamid = "";
 		public $opid = "";
         public $wepid = "";
+		public $wepseq = 0;
         public $wepname = "";
 		public $weptype = "";
 		

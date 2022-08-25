@@ -525,9 +525,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Reset Hidden
 					op.hidden = false;
 					
-					// Reset Notes
-					op.notes = "";
-					
 					// Reset their injury debuffs
 					if (op.isInjured) {
 						// Operative is no longer injured, was injured before

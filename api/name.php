@@ -203,6 +203,13 @@
 			case "IMP|IG|TS|SGT": //Tempestor
 			case "IMP|IG|TS|TRP": //Tempestus Scion Trooper
 				break;
+			case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
+			case "IMP|INTS|INTS|ISGT": //Intercession Squad Intercessor Sergeant
+			case "IMP|INTS|INTS|AIWAR": //Intercession Squad Assault Intercessor Warrior
+			case "IMP|INTS|INTS|AIGRN": //Intercession Squad Assault Intercessor Grenadier
+			case "IMP|INTS|INTS|IWAR": //Intercession Squad Intercessor Warrior
+			case "IMP|INTS|INTS|IGNR": //Intercession Squad Intercessor Gunner
+				return GetSpaceMarineName();
 			case "IMP|NOV|NOV|CON": //Novitiate Condemnor
 			case "IMP|NOV|NOV|DIA": //Novitiate Dialogus
 			case "IMP|NOV|NOV|DUE": //Novitiate Duellist

@@ -34,7 +34,7 @@
 			
 			global $dbcon;
 			
-			$sql = "SELECT * FROM Operative WHERE factionid = ? AND killteamid = ? AND fireteamid = ? ORDER BY opname;";
+			$sql = "SELECT * FROM Operative WHERE factionid = ? AND killteamid = ? AND fireteamid = ? ORDER BY opseq, opname;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {
