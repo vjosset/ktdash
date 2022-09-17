@@ -1,9 +1,10 @@
 			<!-- Main Nav -->
 			<nav class="navbar navbar-expand-lg navbar-dark sticky-top dark">
 				<a class="navbar-brand" href="/">
-					<h1 class="cinzel d-inline">
-						<span class="fas fa-book-dead fa-fw orangetext" ng-class="{'rotate': loading}"></span>
-						KTDash
+					<h1 class="cinzel d-inline" style="color: red;">
+						<span class="fas fa-book-dead fa-fw orangetext" style="color: red;" ng-class="{'rotate': loading}"></span>
+						KTDash BETA<br/>
+						BETA BETA BETA
 					</h1>
 				</a>
 

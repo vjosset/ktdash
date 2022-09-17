@@ -409,6 +409,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.dashboard.RP = 0;
 				
 				for (let i =0; i < team.operatives.length; i++) {
+					// Mark all operatives as selected
+					team.operatives[i].hidden = false;
+					
+					// Reset wounds for all operatives
 					if (team.operatives[i].curW == null) {
 						team.operatives[i].curW = parseInt(team.operatives[i].W);
 					}
