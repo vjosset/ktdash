@@ -17,6 +17,10 @@
     require_once $root . '/classes/fireteam.php';
     require_once $root . '/classes/killteam.php';
 	require_once $root . '/classes/faction.php';
+	require_once $root . '/classes/user.php';
+	require_once $root . '/classes/session.php';
+	require_once $root . '/classes/userteam.php';
+	require_once $root . '/classes/userteamoperative.php';
 	
 	function replacedistance($input) {
 		$output = $input;
