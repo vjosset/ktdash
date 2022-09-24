@@ -77,7 +77,7 @@
 						$session->sessionid . self::CookieSeparator . $session->userid,
 						time() + (self::CookieExpiration),
 						'/',
-						'vjosset.com',
+						'ktdash.app',
 						true, // TLS-only
 						true  // http-only
 					);
@@ -114,7 +114,7 @@
 					'',
 					time() - (60 * 60),
 					'/',
-					'aggregario.us',
+					'killteam.vjosset.comkillteam.vjosset.com',
 					true, // TLS-only
 					true  // http-only
 				);
@@ -163,7 +163,7 @@
 				$session->sessionid . self::CookieSeparator . $session->userid,
 				time() + (self::CookieExpiration),
 				'/',
-				'vjosset.com',
+				'ktdash.app',
 				true, // TLS-only
 				true  // http-only
 			);

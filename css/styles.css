@@ -5,28 +5,19 @@
 
 @keyframes rotation {
   from {
-    transform: rotate(0deg);
+    transform: rotate(359deg);
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(0deg);
   }
 }
 
 body {
-	font-family: Arial Narrow, Roboto;
+	font-family: Oswald, Arial Narrow, Roboto;
 	font-size: 1em;
-	background-color: #343a40;
-	/*background-color: #505050;*/
+	/*background-color: #343a40;*/
+	background-color: #202020;
 	color: #eee;
-}
-
-.cinzel {
-	font-family: Anton;
-	text-transform: uppercase;
-}
-
-.oswald {
-	font-family: Oswald;
 }
 
 .dark {
@@ -61,18 +52,23 @@ body {
 	border: 1px solid #888;
 }
 
-dark a, dark a:link, dark a:visited, dark a:hover, dark a:active 
+/* All headings use Cinzel font */
+h1, h2, h3, h4, h5, h6 {
+	font-family: Anton;
+	text-transform: uppercase;
+	padding-left: 10px;
+}
+
+a, a:link, a:visited, a:hover, a:active 
 {
+	cursor: pointer;
 	color: #EEE;
 }
 
 orange a, orange a:link, orange a:visited, orange a:hover, orange a:active 
 {
-	/*background-color: #dd7d00;*/
-	/*color: #343a40;*/
-	background-color: #c54c21;
+	cursor: pointer;
 	color: #262a2d;
-	text-decoration: none;
 }
 
 .bold {

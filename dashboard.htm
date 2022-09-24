@@ -2,22 +2,6 @@
 <html>
 	<head>
 		<!--#include virtual="header.shtml" -->
-		
-		<!-- OpenGraph/Twitter Meta Tags -->
-		<!-- Title -->
-		<title>Dashboard | KTDash.app</title>
-		<meta property="og:title"  content="Dashboard | KTDash.app">
-		<meta name="twitter:title" content="Dashboard | KTDash.app">
-		<!-- Description -->
-		<meta name="description"         content="Game Dashboard for KillTeam 2021">
-		<meta property="og:description"  content="Game Dashboard for KillTeam 2021">
-		<meta name="twitter:description" content="Game Dashboard for KillTeam 2021">
-		<!-- URL -->
-		<meta property="og:url"      content="https://ktdash.app/dashboard.htm">
-		<meta property="twitter:url" content="https://ktdash.app/dashboard.htm">
-		<!-- Image -->
-		<meta property="og:image"  content="https://ktdash.app/img/og/Dashboard.png">
-		<meta name="twitter:image" content="https://ktdash.app/img/og/Dashboard.png">
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init('DASH');">
 		<!--#include virtual="topnav.shtml" -->
@@ -25,12 +9,8 @@
 		<!-- Dialogs -->
 		<!--#include virtual="templates/dialogs.shtml" -->
 		
-		<script type="text/javascript">
-			trackEvent("dashboard", "view");
-		</script>
-		
 		<!-- Turn/CP/VP tracker -->
-		<div class="cinzel container-fluid cinzel h2 text-center">
+		<div>
 			<center>
 				<div class="row orange">
 					<div class="row">

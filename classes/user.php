@@ -7,10 +7,12 @@
     class User extends \OFW\OFWObject {
         public $userid = "";
         public $username = "";
+		public $userteams = [];
         
         function __construct() {
             $this->TableName = "User";
             $this->Keys = ["userid"];
+			$this->skipfields = ["userteams"];
         }
         
         public function __get($field) {
@@ -65,5 +67,31 @@
             // User not found
             return null;
         }
+		
+		/* GetUserTeams()
+		** Returns an array of all the teams for the current user
+		*/
+		public function loadUserTeams() {
+			global $dbcon;
+			
+			// Get the teams for this user
+			$sql = "SELECT * FROM UserTeam WHERE userid = ? ORDER BY seq";
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "s";
+			$params = array();
+            $params[] =& $paramtypes;
+            $params[] =& $this->userid;
+
+            call_user_func_array(array($cmd, "bind_param"), $params);
+            $cmd->execute();
+
+            if ($result = $cmd->get_result()) {
+                while ($row = $result->fetch_object()) {
+					$ut = UserTeam::FromRow($row);
+					$ut->loadOperatives();
+					$this->userteams[] = $ut;
+                }
+            }
+		}
 	}
 ?>

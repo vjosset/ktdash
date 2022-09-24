@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#include virtual="/header.shtml" -->
+		<title>Log In | KTDash.app</title>
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initLogin();">
+		<!--#include virtual="/topnav.shtml" -->
+		
+		<h1 class="orange"><i class="fas fa-lock"></i>&nbsp;&nbsp;Log In</h1>
+		
+		<!-- Show the log in form -->
+		<div class="container">
+			<form class="frmlogin" ng-submit="logIn();">
+				<h5><label for="username">UserName</label></h5>
+				<input type="text" name="username" id="username" class="form-control" ng-model="loginForm.userName" placeholder="User Name" required autofocus>
+				<br/>
+				<h5><label for="password">Password</label></h5>
+				<input type="password" name="password" id="password" class="form-control" ng-model="loginForm.password" placeholder="Password" required>
+				
+				<br />
+				
+				<button class="btn btn-primary" type="submit">Log In</button>
+				
+				<br />
+				<br />
+
+				Don't have an account?
+				<a href="/signup.htm">Sign Up here!</a>
+
+				<h3 class="center" ng-show="loading">
+					<i class="fas fa-undo-alt fa-fw rotate" ></i>
+					<br />
+					Logging In...
+				</h3>
+				
+				<div class="alert alert-danger" ng-show="loginForm.error != null">
+					{{loginForm.error}}
+				</div>
+			</form>
+		
+			<!--#include virtual="/footer.shtml" -->
+		</div>
+	</body>
+</html>

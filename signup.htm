@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#include virtual="/header.shtml" -->
+		<title>Sign Up | KTDash.app</title>
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initSignUp();">
+		<!--#include virtual="/topnav.shtml" -->
+		
+		<h1 class="orange"><i class="fas fa-lock"></i>&nbsp;&nbsp;Log In</h1>
+		
+		<!-- Show the sign up form -->
+		<div class="container">
+			<form class="frmregister" ng-submit="signUp();">
+				<h5><label for="username">UserName</label></h5>
+				<input type="text" name="username" id="username" class="form-control" ng-model="signUpForm.userName" placeholder="User Name" required autofocus>
+				
+				<h5><label for="password">Password</label></h5>
+				<input type="password" name="password" id="password" class="form-control" ng-model="signUpForm.password" placeholder="Password" required>
+				
+				<h5><label for="confirmpassword">Confirm Password</label></h5>
+				<input type="password" name="confirmpassword" id="confirmpassword" class="form-control" ng-model="signUpForm.confirmPassword" placeholder="Password" required>
+				
+				<br />
+				
+				<button class="btn btn-primary" type="submit">Sign Up</button>
+				
+				<br />
+				<br />
+
+				<h3 class="center" ng-show="loading">
+					<i class="fas fa-undo-alt fa-fw rotate" ></i>
+					<br />
+					Signing Up...
+				</h3>
+
+				<div class="alert alert-danger" ng-show="signUpForm.error != null">
+					{{signUpForm.error}}
+				</div>
+			</form>
+		
+			<!--#include virtual="/footer.shtml" -->
+		</div>
+	</body>
+</html>
