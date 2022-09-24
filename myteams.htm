@@ -25,7 +25,7 @@
 			</div>
 			<div>
 				<span class="float-start">
-					Import a <a href="sampleteams.htm">pre-built team</a> or build a <a href="#" ng-click="initNewTeam();">new team</a>.
+					Build a <a href="#" ng-click="initNewTeam();">new team</a> or import a <a href="sampleteams.htm">pre-built team</a>
 				</span>
 				<span class="float-end">
 					<i id="myteamshelpbutton" class="far fa-question-circle fa-fw" onclick="$('#myteamshelp').modal('show');"></i>
@@ -35,7 +35,16 @@
 			
 			<div ng-if="myTeams.length > 0" ng-repeat="myTeam in myTeams track by $index">
 				<br/>
-				<h1 class="orange">{{ myTeam.teamName }}</h1>
+				<h1 class="orange">{{ myTeam.userteamname }}</h1>
+				
+				<div ng-repeat="myOp in myTeam.operatives track by $index">
+					<h3>{{myOp.opname}}</h3>
+					<ul>
+						<li ng-repeat="weapon in myOp.weapons track by $index">
+							{{weapon.wepname}}
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<!--#include virtual="/footer.shtml" -->

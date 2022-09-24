@@ -31,25 +31,29 @@
     function GETUserTeam() {
 		// Get the requested user team
 		$utid = $_REQUEST['utid'];
+		$uid = $_REQUEST['uid'];
 		
 		if ($utid == null || $utid == '') {
-			// No killteam id passed in, return all this user's teams (if they are logged in)
+			// No killteam id passed in, return the specified user's teams
 			
-			if (!Session::IsAuth()) {
-				// Not logged in - Return error				
-				header('HTTP/1.0 401 Unauthorized - You are not logged in"');
-				die();
-			} else {
-				// Logged in - Get this user's teams
-				$u = Session::CurrentUser();
-				$u->loadUserTeams();
-				$uts = $u->userteams;
-				echo json_encode($uts);
+			if ($uid == null || $uid == '') {
+				// Use the current user as the user whose teams to return
+				if (!Session::IsAuth()) {
+					// Not logged in - Return error				
+					header('HTTP/1.0 401 Unauthorized - You are not logged in"');
+					die();
+				} else {
+					$uid = Session::CurrentUser()->userid;
+				}
 			}
+			
+			// Get the teams for this user
+			$u = User::FromDB($uid);
+			$u->loadUserTeams();
+			echo json_encode($u->userteams);
 		} else {
 			// Return the requested user team
-			$userteam = UserTeam::GetUserTeam($utid);
-			echo json_encode($userteam);
+			echo json_encode(UserTeam::GetUserTeam($utid));
 		}
     }
 ?>

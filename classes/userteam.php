@@ -20,15 +20,25 @@
 		public function GetUserTeam($utid) {
 			global $dbcon;
 			
-			echo "UserTeam->GetUserTeam(" . $utid . ")\r\n";
-			
-			// Get the requested UserTeam
-			$ut = UserTeam::FromDB($utid);
-			
-			// Load the operatives for this UserTeam
-			$ut->loadOperatives();
-			
-			return $ut;
+			// Get the operatives for this team
+			$sql = "SELECT * FROM UserTeamView WHERE userteamid = ? ORDER BY seq";
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "s";
+			$params = array();
+            $params[] =& $paramtypes;
+            $params[] =& $utid;
+
+            call_user_func_array(array($cmd, "bind_param"), $params);
+            $cmd->execute();
+
+			$ops = [];
+            if ($result = $cmd->get_result()) {
+                if ($row = $result->fetch_object()) {
+                    $ut = UserTeam::FromRow($row);
+					$ut->loadOperatives();
+					return $ut;
+                }
+            }
 		}
 		
 		public function loadOperatives() {

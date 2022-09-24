@@ -75,7 +75,7 @@
 			global $dbcon;
 			
 			// Get the teams for this user
-			$sql = "SELECT * FROM UserTeam WHERE userid = ? ORDER BY seq";
+			$sql = "SELECT * FROM UserTeamView WHERE userid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "s";
 			$params = array();

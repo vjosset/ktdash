@@ -5,52 +5,9 @@
 			<hr/>
 			
 			<!-- For small screens -->
-			<div class="d-inline d-sm-none container-fluid oswald">
-				<h2 class="cinzel h6">Teams</h2>
-				<a href="/myteams.htm">My Teams</a> |
-				<a href="/dashboard.htm">Dashboard</a> |
-				<a href="/sampleteams.htm">Pre-Built Teams</a>
-				
-				<h2 class="cinzel h6">Links</h2>
-				<a href="/">Home</a> |
-				<a href="/news.htm">News</a> |
-				<a href="/compendium.php">Compendium</a> |
-				<a href="/name.htm">Operative Name Generator</a>
-				
-				<h2 class="cinzel h6">Contact</h2>
-				<a href="https://twitter.com/ktdashapp" target="_blank">Twitter</a> |
-				<a href="https://www.reddit.com/u/jodawznev" target="_blank">Reddit</a>
-			</div>
-			
-			<!-- For larger screens -->
-			<div class="d-none d-sm-flex container-fluid row oswald">
-				<div class="col-sm-4">
-					<h4 class="cinzel">Teams</h4>
-					<ul>
-						<li><a href="/myteams.htm">My Teams</a></li>
-						<li><a href="/dashboard.htm">Dashboard</a></li>
-						<li><a href="/sampleteams.htm">Pre-Built Teams</a></li>
-					</ul>
-				</div>
-				
-				<div class="col-sm-4">
-					<h4 class="cinzel">Links</h4>
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="/news.htm">News</a></li>
-						<li><a href="/compendium.htm">Compendium</a></li>
-						<li><a href="/name.htm">Operative Name Generator</a></li>
-					</ul>
-				</div>
-				
-				<div class="col-sm-4">
-					<h4 class="cinzel">Contact</h4>
-					<ul>
-						<li><a href="https://discord.gg/SkYR9JsX" target="_blank">Discord</a></li>
-						<li><a href="https://twitter.com/ktdashapp" target="_blank">Twitter</a></li>
-						<li><a href="https://www.reddit.com/u/jodawznev" target="_blank">Reddit</a></li>
-					</ul>
-				</div>
+			<div class="container-fluid">
+				<a href="https://discord.gg/SkYR9JsX" target="_blank">Discord</a> |
+				<a href="https://twitter.com/ktdashapp" target="_blank">Twitter</a>
 			</div>
 			
 			<!-- Toast Container -->
