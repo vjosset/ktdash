@@ -223,6 +223,39 @@ var app = angular.module("kt", ['ngSanitize'])
 					});
 				}
 			}
+			
+			// initMyTeam()
+			// Initializes the "My Team" page - Landing page for a single team
+			$scope.initMyTeam = function(utid) {
+				$scope.loading = true;
+				console.log("Getting team " + utid);
+				
+				$.ajax({
+					type: "GET",
+					url: APIURL + "userteam.php?utid=" + utid,
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					
+					// Success
+					success: function(data) { // Got the team
+						// Load the team into "myTeam"
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						$scope.myTeam = data;
+						
+						console.log("Got team: " + JSON.stringify($scope.myTeam));
+						
+						$scope.loading = false;
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to get team
+						toast("Could not get team: \r\n" + error);
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
+			}
 		}
 		
 		// COMPENDIUM
