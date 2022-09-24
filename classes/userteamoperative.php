@@ -15,13 +15,14 @@
 		public $eqids = "";
 		public $currw = 0;
 		public $notes = "";
+		public $baseoperative = null;
 		public $weapons = [];
 		public $equipments = [];
         
         function __construct() {
             $this->TableName = "UserTeamOperative";
             $this->Keys = ["userteamopid"];
-			$this->skipfields = ["weapons", "equipments"];
+			$this->skipfields = ["operative", "weapons", "equipments"];
         }
 		
 		public function GetUserTeamOperative($utoid) {
@@ -30,11 +31,19 @@
 			//Get the requested UserTeamOperative
 			$uto = UserTeamOperative::FromDB($utoid);
 			
+			// Load the base operative for this UserTeamOperative
+			$uto->loadBaseOperative();
+			
 			// Load this operative's weapons and equipments
 			$uto->loadWeapons();
 			$uto->loadEquipments();
 			
 			return $uto;
+		}
+		
+		public function loadBaseOperative() {
+			// Load this UserTeamOperative base operative
+			$this->baseoperative = Operative::GetOperative($this->factionid, $this->killteamid, $this->fireteamid, $this->opid);
 		}
 		
 		public function loadWeapons() {
@@ -66,7 +75,28 @@
 		}
 		
 		public function loadEquipments() {
-			// [TBD]
+			global $dbcon;
+			
+			// Get the equipments for this operative
+			$sql = "SELECT * FROM Equipment WHERE factionid = ? AND killteamid = ? AND CONCAT(',', ?, ',') LIKE CONCAT('%,', eqid, ',%') ORDER BY eqseq";
+			
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "sss";
+			$params = array();
+            $params[] =& $paramtypes;
+            $params[] =& $this->factionid;
+            $params[] =& $this->killteamid;
+            $params[] =& $this->eqids;
+
+            call_user_func_array(array($cmd, "bind_param"), $params);
+            $cmd->execute();
+
+            if ($result = $cmd->get_result()) {
+                while ($row = $result->fetch_object()) {
+                    $eq = Equipment::FromRow($row);
+					$this->equipments[] = $eq;
+                }
+            }
 		}
 		
 		/* COMMENTED OUT - UI SHOULD DO THIS WITH "PUTS" FOR THE USERTEAMOPERATIVES

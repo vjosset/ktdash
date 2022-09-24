@@ -17,7 +17,7 @@ body {
 	font-size: 1em;
 	/*background-color: #343a40;*/
 	background-color: #202020;
-	color: #eee;
+	color: #EEE;
 }
 
 .dark {
@@ -32,20 +32,11 @@ body {
 	color: #EEE;
 }
 
-.bright {
-	background-color: #FFF;
-	color: #343a40;
-}
-
 .orange {
 	/*background-color: #dd7d00;*/
 	/*color: #343a40;*/
 	background-color: #c54c21;
 	color: #262a2d;
-}
-
-.orangetext {
-	color: #c54c21;
 }
 
 .eqtable {
@@ -56,19 +47,21 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: Anton;
 	text-transform: uppercase;
-	padding-left: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.orange a, .orange a:link, .orange a:visited, .orange a:hover, .orange a:active 
+{
+	cursor: pointer;
+	color: #262a2d;
+	text-decoration: none;
 }
 
 a, a:link, a:visited, a:hover, a:active 
 {
 	cursor: pointer;
 	color: #EEE;
-}
-
-orange a, orange a:link, orange a:visited, orange a:hover, orange a:active 
-{
-	cursor: pointer;
-	color: #262a2d;
 }
 
 .bold {
@@ -93,7 +86,7 @@ th, td {
 
 .line-top-light
 {
-	border-top: 1px solid #EEE;
+	border-top: 1px solid #CCC;
 }
 
 .line-bottom
@@ -103,7 +96,7 @@ th, td {
 
 .line-bottom-light
 {
-	border-bottom: 1px solid #EEE;
+	border-bottom: 1px solid #CCC;
 }
 
 .shadow

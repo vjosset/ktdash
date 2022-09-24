@@ -20,6 +20,8 @@
 		// Get the requested faction id
 		$factionid = $_REQUEST['factionid'];
 		
+		sleep(1);
+		
 		if ($factionid == null || $factionid == '') {
 			// No faction id passed in, return all factions
 			$factions = Faction::GetFactions();
@@ -27,6 +29,9 @@
 		} else {
 			// Return the requested faction
 			$faction = Faction::GetFaction($factionid);
+			
+			// Load the faction's killteams
+			$faction->loadKillTeams();
 			echo json_encode($faction);
 		}
     }

@@ -18,7 +18,10 @@
 
     function GETKillteam() {
 		// Get the requested killteam id
+		$factionid = $_REQUEST['factionid'];
 		$killteamid = $_REQUEST['killteamid'];
+		
+		sleep(1);
 		
 		if ($killteamid == null || $killteamid == '') {
 			// No killteam id passed in, return all killteams
@@ -26,7 +29,7 @@
 			echo json_encode($killteams);
 		} else {
 			// Return the requested killteam
-			$killteam = Killteam::GetKillteam($killteamid);
+			$killteam = Killteam::GetKillteam($factionid, $killteamid);
 			echo json_encode($killteam);
 		}
     }

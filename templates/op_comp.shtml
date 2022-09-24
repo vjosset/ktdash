@@ -1,8 +1,8 @@
 <a name="{{operative.factionid}}.{{operative.killteamid}}.{{operative.fireteamid}}.{{ operative.opid }}"></a>
 <div class="card border-light shadow darkcard">
 	<div class="card-title p-1">
-		<div class="cinzel" ng-click="showpopup(operative.opname, operative.description);">
-			<span class="h3">{{ operative.opname }}</span>
+		<div ng-click="showpopup(operative.opname, operative.description);">
+			<h4 style="display: inline;">{{ operative.opname }}</h4>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 		</div>
 	</div>

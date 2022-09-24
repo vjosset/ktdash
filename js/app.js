@@ -49,7 +49,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Teams"
 					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/myteams.htm";
+					window.location.href = "/userteams.htm";
 				}
 				
 				$scope.loading = false;
@@ -57,7 +57,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				var ru = GetQS("ru");
 				if (ru == "" || ru == null) {
 					// No redirect URL defined, use default
-					ru = "/myteams.htm";
+					ru = "/userteams.htm";
 				}
 				console.log("Loaded login form with RU: " + ru);
 				$scope.loginForm.redirectUrl = ru;
@@ -90,7 +90,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Send the user to the redirect url
 						if ($scope.loginForm.redirectUrl == null || $scope.loginForm.redirectUrl == "") {
 							// No redirect specified - Send user to "My Teams"
-							$scope.loginForm.redirectUrl = "/myteams.htm";
+							$scope.loginForm.redirectUrl = "/userteams.htm";
 						}
 						window.location.href = $scope.loginForm.redirectUrl;
 					},
@@ -142,7 +142,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Teams"
 					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/myteams.htm";
+					window.location.href = "/userteams.htm";
 				}
 			};
 			
@@ -170,7 +170,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Set their session
 						$scope.currentuser = data;
 						// Send the user to "My Teams"
-						window.location.href = "/myteams.htm";
+						window.location.href = "/userteams.htm";
 					},
 					error: function(data, status, error) { // Error
 						$scope.currentuser = null;
@@ -208,6 +208,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Success
 						success: function(data) { // Got user's teams
 							// Load the teams into "myTeams"
+							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 							$scope.myTeams = data;
 							
 							$scope.loading = false;
@@ -224,8 +225,117 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 		}
 		
+		// COMPENDIUM
+		{
+			// initCompendium()
+			// Loads all factions
+			$scope.initCompendium = function() {
+				$scope.loading = true;
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						// Got factions
+						console.log("Got factions: " + JSON.stringify(data));
+						$scope.factions = data;
+						$scope.loading = false;
+						$scope.$apply();
+					},
+					error: function(error) {
+						// Failed to get factions
+						toast("Could not get factions: " + error);
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
+			}
+			
+			$scope.initFaction = function() {
+				$scope.loading = true;
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						// Got faction
+						$scope.faction = data;
+						$scope.loading = false;
+						$scope.$apply();
+					},
+					error: function(error) {
+						// Failed to get faction
+						toast("Could not get faction: " + error);
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
+			}
+			
+			$scope.initKillteam = function() {
+				// First get the faction
+				//	On success, we'll get the killteam
+				$scope.loading = true;
+				
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						// Got faction
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						$scope.faction = data;
+						
+						// Now get the faction
+						$.ajax({
+							type: "GET",
+							url: APIURL + "killteam.php?factionid=" + GetQS('fa') + "&killteamid=" + GetQS("kt"),
+							timeout: 5000,
+							async: true,
+							dataType: 'json',
+							success: function(data) {
+								// Got factions
+								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+								$scope.killteam = data;
+								$scope.loading = false;
+								$scope.$apply();
+							},
+							error: function(error) {
+								// Failed to get factions
+								toast("Could not get Killteam: " + error);
+								$scope.loading = false;
+								$scope.$apply();
+							}
+						});
+					},
+					error: function(error) {
+						// Failed to get faction
+						toast("Could not get faction: " + error);
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
+			}
+		}
+		
 		// HELPERS
 		{
+			$scope.replacePlaceholders = function(input) {
+				return input
+					.replace(/\[TRI\]/g, "&#x25B2;")
+					.replace(/\[CIRCLE\]/g, "&#x2B24;")
+					.replace(/\[SQUARE\]/g, "&#9632;")
+					.replace(/\[PENT\]/g, "&#x2B1F;");
+			}
+			
+			// Always initialize the session
+			$scope.initSession();
 		}
 	}
 );

@@ -58,7 +58,13 @@
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
+
                     $op = UserTeamOperative::FromRow($row);
+					
+					// Load the base operative for this UserTeamOperative
+					$op->loadBaseOperative();
+					
+					// Load the operative's weapons and equipments
 					$op->loadWeapons();
 					$op->loadEquipments();
 					$this->operatives[] = $op;

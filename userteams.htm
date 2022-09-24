@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="/header.shtml" -->
+		<title>My Teams | KTDash.app</title>
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initMyTeams();">
+		<!--#include virtual="/topnav.shtml" -->
+		
+		<h1 class="orange"><span class="fas fa-users fa-fw"></span>&nbsp;My Teams</h1>
+		
+		<!-- loadWaiter -->
+		<h3 class="center" ng-show="loading">
+			<div>
+				<i class="fas fa-undo-alt fa-fw rotate" ></i>
+				<br />
+				Loading Teams...
+			</div>
+		</h3>
+		
+		<!-- Show this player's teams -->
+		<div class="container-fluid" ng-hide="loading">
+			<div ng-if="myTeams.length < 1" >
+				You don't have any Teams yet.
+			</div>
+			<div>
+				<span class="float-start">
+					Build a <a href="#" ng-click="initNewTeam();">new team</a> or import a <a href="sampleteams.htm">pre-built team</a>
+				</span>
+				<span class="float-end">
+					<i id="myteamshelpbutton" class="far fa-question-circle fa-fw" onclick="$('#myteamshelp').modal('show');"></i>
+				</span>
+			</div>
+			<br/>
+			
+			<div ng-if="myTeams.length > 0" ng-repeat="myTeam in myTeams track by $index">
+				<br/>
+				<div class="orange">
+					<h1 style="display: inline;">{{ myTeam.userteamname }}</h1>
+					<a class="orange float-end" ng-href="/killteam.php?fa={{myTeam.factionid}}&kt={{myTeam.killteamid}}">{{myTeam.killteamname}}</a>
+				</div>
+				<div class="orange">
+					<div class="col-12">
+						<i class="fas fa-arrow-up fa-fw" ng-click="moveTeamUp(team, $index);"></i>
+						<i class="fas fa-arrow-down fa-fw" ng-click="moveTeamDown(team, $index);"></i>
+						<i class="far fa-plus-square fa-fw" ng-click="initAddOp(team);"></i>
+						<i class="fas fa-edit fa-fw" ng-click="initRenameTeam(team);"></i>
+						<i class="fas fa-share-square fa-fw" ng-click="trackEvent('myTeams', 'getshareurl'); showShareTeam(team);"></i>
+						<i class="far fa-copy fa-fw" ng-click="cloneTeam(team, $index);"></i>
+						<!-- i class="fas fa-print fa-fw" ng-click="initPrintTeam(team);"></i -->
+						<i class="fas fa-trash-alt fa-fw" ng-click="initDeleteTeam(team);"></i>
+					</div>
+				</div>
+				
+				<div class="container-fluid" ng-repeat="myOp in myTeam.operatives track by $index">
+					<h3 style="display: inline;">{{myOp.opname}}</h3>
+					<span class="float-end">{{myOp.baseoperative.opname}}</span>
+					<div>
+						<i class="fas fa-arrow-up fa-fw" ng-click="moveOpUp(team, operative, $index);"></i>
+						<i class="fas fa-arrow-down fa-fw" ng-click="moveOpDown(team, operative, $index);"></i>
+						<i class="fas fa-edit fa-fw" ng-click="initEditOp(operative, team);"></i>
+						<!-- a class="dark" ng-href="/operative.php?fa={{ operative.factionid }}&kt={{ operative.killteamid }}&ft={{ operative.fireteamid }}&op={{ operative.opid }}&opname={{ operative.opname }}&weps={{ operative.wepids}}" target="_blank"><i class="fas fa-print fa-fw"></i></a -->
+						<i class="fas fa-trash-alt fa-fw" ng-click="initRemoveOperative(operative, team);"></i>
+					</div>
+					
+					<div class="container-fluid line-bottom-light">
+						<span ng-repeat="weapon in myOp.weapons">				
+							<ANY ng-switch="weapon.weptype" class="fas fa-fw">
+							  <ANY ng-switch-when="R">&#x2295;</ANY>
+							  <ANY ng-switch-when="M">&#x2694;</ANY>
+							  <ANY ng-switch-default>&#x26ED;</ANY>
+							</ANY>
+							{{ weapon.wepname }}
+							{{$last ? '' : ', '}}							
+						</span>
+						<br/>
+						<span ng-repeat="eq in myOp.equipments" class="d-inline">				
+							{{ eq.eqname }}
+							{{$last ? '' : ', '}}							
+						</span>
+					</div>
+					
+					<br ng-if="!$last" style="margin-left: 10px; margin-right: 10px;" />
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="/footer.shtml" -->
+	</body>
+</html>

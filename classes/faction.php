@@ -21,9 +21,6 @@
 			// Get the requested Faction
 			$faction = Faction::FromDB($factionid);
 			
-			// Load its killteams
-			$faction->loadKillteams();
-			
 			return $faction;
 		}
 		
@@ -50,9 +47,6 @@
 			if ($result = $cmd->get_result()) {
 				while ($row = $result->fetch_object()) {
 					$faction = Faction::FromRow($row);
-					
-					// Load its killteams
-					$faction->loadKillteams();
 					
 					// Add this faction to the output
 					$factions[] = $faction;

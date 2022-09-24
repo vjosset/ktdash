@@ -20,23 +20,31 @@
 		include "og.php"
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initCompendium();">
 		<?php include "topnav.shtml" ?>
-		<script type="text/javascript">
-			trackEvent("compendium", "allfactions");
-		</script>
 		
 		<h1 class="cinzel orange">Compendium - Factions</h1>
 		
-		<div class="card-group">
+		<!-- loadWaiter -->
+		<h3 class="center" ng-show="loading">
+			<div>
+				<i class="fas fa-undo-alt fa-fw rotate" ></i>
+				<br />
+				Loading Factions...
+			</div>
+		</h3>
+		
+		<div class="card-group" ng-hide="loading">
 			<div ng-repeat="faction in factions" class="col-12 col-md-6 col-xl-4">
 				<div class="card border-light shadow darkcard">
 					<!-- Portrait -->
 					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 					
-					<a class="h1 card-title cinzel orange text-center" href="/faction.php?fa={{ faction.factionid }}">
-						{{ faction.factionname }}
-					</a>
+					<h1 class="card-title orange text-center">
+						<a href="/faction.php?fa={{ faction.factionid }}">
+							{{ faction.factionname }}
+						</a>
+					</h1>
 					
 					<p class="card-text p-2 m-0 oswald" style="text-align:justify;" ng-bind-html="faction.description"></p>
 					
