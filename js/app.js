@@ -6,6 +6,7 @@ var app = angular.module("kt", ['ngSanitize'])
 		// GLOBAL
 		{
 			$scope.loading = false;
+			$scope.MODE = "";
 		}
 		
 		// SESSION & LOG IN
@@ -182,25 +183,39 @@ var app = angular.module("kt", ['ngSanitize'])
 			};
 		}
 		
-		// MY TEAMS
+		// USER TEAMS
 		{
-			// initMyTeams()
+			// initUserTeams()
 			// Initializes the "My Teams" page
-			$scope.initMyTeams = function() {
+			$scope.initUserTeams = function(uid) {
 				$scope.loading = true;
+				console.log("initUserTeams(" + uid + ")");
+				
+				let isMe = uid == null || uid == "" && $scope.currentuser != null && uid == $scope.currentuser.userid;
+				
+				if (isMe) {
+					$scope.MODE = "MyTeams";
+				} else {
+					$scope.MODE = "UserTeams";
+				}
 				
 				// Check if user is already logged in
-				if ($scope.currentuser == null) {
+				if ((uid == null || uid == "") && $scope.currentuser == null) {
 					// Not logged in - Send user to "Log In"
 					$scope.loading = false;
 					toast("Not logged in!");
 					window.location.href = "/login.htm";
 				} else {
-					// User is logged in
+					// User is logged in or a specified user's teams were requested
+					if (uid == "" || uid == null) {
+						// No user id specified, use the current logged-in user
+						uid = $scope.currentuser.userid;
+					}
+					
 					// Get the user's teams
 					$.ajax({
 						type: "GET",
-						url: APIURL + "userteam.php",
+						url: APIURL + "userteam.php?uid=" + uid,
 						timeout: 5000,
 						async: true,
 						dataType: 'json',
@@ -224,11 +239,19 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
-			// initMyTeam()
+			// initUserTeam()
 			// Initializes the "My Team" page - Landing page for a single team
-			$scope.initMyTeam = function(utid) {
+			$scope.initUserTeam = function(utid) {
 				$scope.loading = true;
-				console.log("Getting team " + utid);
+				$scope.MODE = "UserTeam";
+				
+				if ($scope.currentuser != null && utid == $scope.currentuser.userid) {
+					$scope.MODE = "MyTeam";
+				} else {
+					$scope.MODE = "UserTeam";
+				}
+				
+				console.log("MODE: " + $scope.MODE);
 				
 				$.ajax({
 					type: "GET",
@@ -256,6 +279,136 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+		
+			// commitUserTeamOperative()
+			// Commits the specified operative to the DB
+			$scope.commitUserTeamOperative = function(op) {
+				// Prepare the object to PUT
+				let opdata = {
+					userid: op.userid,
+					userteamid: op.userteamid,
+					userteamopid: op.userteamopid,
+					seq: op.seq,
+					opname: op.opname,
+					
+					factionid: op.factionid,
+					killteamid: op.killteamid,
+					fireteamid: op.fireteamid,
+					opid: op.opid,
+					
+					eqids: op.eqids,
+					wepids: op.wepids,
+					
+					curW: op.curW,
+					notes: op.notes
+				};
+				
+				$.ajax({
+					type: "PUT",
+					url: APIURL + "userteamoperative.php",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					data: JSON.stringify(opdata),
+					
+					// Success
+					success: function(data) { // Saved this operative
+						// All good
+						toast("Saved");
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not save operative: \r\n" + error);
+						$scope.$apply();
+					}
+				});
+			}
+		}
+		
+		// OPERATIVES
+		{
+			// updateOpW()
+			// Increment or decrement the specified operative's wounds
+			$scope.updateOpW = function(op, inc) {
+				op.curW = op.curW + inc;
+				if (op.curW < 0) {
+					op.curW = 0;
+				}
+				if (op.curW > parseInt(op.W)) {
+					op.curW = parseInt(op.W);
+				}
+				
+				$scope.commitUserTeamOperative(op);
+				
+				let wasInjured = op.isInjured;
+				if (wasInjured == null) {
+					wasInjured = false;
+				}
+				if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+					// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
+					op.isInjured = true;
+					
+					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
+					// This does NOT apply to Pathfinder Assault Grenadiers
+					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
+						for (let i = 0; i < op.weapons.length; i++) {
+							let wep = op.weapons[i];
+							for (let j = 0; j < wep.profiles.length; j++) {
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+							}
+						}
+					}
+					
+					// Reduce the M on the operative
+					op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
+					op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
+					op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
+					op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+					
+				} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
+					// Operative is no longer injured, was injured before
+					op.isInjured = false;
+					
+					// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
+					// This does NOT apply to Pathfinder Assault Grenadiers
+					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
+						for (let i = 0; i < op.weapons.length; i++) {
+							let wep = op.weapons[i];
+							for (let j = 0; j < wep.profiles.length; j++) {
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+							}
+						}
+					}
+					
+					// Increase the M on the operative
+					op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
+					op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
+					op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
+					op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
+					op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
+				}
+				
+				trackEvent('dashboard', 'opwounds', inc);
+				
+				if (op.curW == 0) {
+					// This operative is now dead/incapacitated - Collapse its info
+					// First, find this operative
+					for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
+						if ($scope.dashboard.myteam.operatives[i] == op) {
+							// This is our operative - Hide their details
+							$("#opinfo_" + i).collapse('hide');
+						}
+					}
+				}
+			}
 		}
 		
 		// COMPENDIUM
@@ -264,6 +417,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Loads all factions
 			$scope.initCompendium = function() {
 				$scope.loading = true;
+				$scope.MODE = "Compendium";
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php",
@@ -288,6 +442,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.initFaction = function() {
 				$scope.loading = true;
+				$scope.MODE = "Compendium";
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
@@ -313,6 +468,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// First get the faction
 				//	On success, we'll get the killteam
 				$scope.loading = true;
+				$scope.MODE = "Compendium";
 				
 				$.ajax({
 					type: "GET",
@@ -367,8 +523,222 @@ var app = angular.module("kt", ['ngSanitize'])
 					.replace(/\[PENT\]/g, "&#x2B1F;");
 			}
 			
-			// Always initialize the session
-			$scope.initSession();
+			// getShortId()
+			// Returns a short ID to use in the DB
+			$scope.getShortId = function() {
+				// Get a new short ID
+				var id = "";
+				$.ajax({
+					type: "GET",
+					url: APIURL + "id.php",
+					timeout: 5000,
+					async: false,
+					dataType: 'text',
+					
+					// Success
+					success: function(data) {
+						console.log("Data: " + data);
+						id = data;
+					},
+					
+					// Failure
+					error: function(error) {
+						id = error;
+					}
+				});
+				
+				// Done
+				return id.trim();
+			}
+			
+			// showPopup()
+			// Shows a popup modal with the specified title and message
+			$scope.showpopup = function(title, message) {
+				$scope.popup = {
+					"title": title,
+					"text": message
+				}
+				
+				$("#popupmodal").modal("show");
+			}
+			
+			// toggleDisplay()
+			// Toggles the display of the element with the specified ID
+			$scope.toggleDisplay = function(eid) {
+				$(eid).toggle();
+			}
+			
+			// initwepsr()
+			// Shows a popup modal for the specified weapon and profile
+			$scope.initwepsr = function(weapon, profile) {
+				$scope.wepsr = weapon;
+				$scope.wepsr.profile = profile;
+				
+				// Now parse the weapon's special rules
+				$scope.wepsr.rules = [];
+				let weprules = profile.SR.split(",");
+				for (let i = 0; i < weprules.length; i++) {
+					let rule = {
+						"rulename": weprules[i].trim(),
+						"ruletext": weprules[i].trim()
+					}
+					
+					//console.log("Looking at rule #" + i + "\r\n" + JSON.stringify(rule));
+					if (rule.rulename.startsWith("*")) {
+						// One-off special weapon rules (e.g. "*Detonate" or "*Custom"); skip these in the popup.
+						// Their description should be in the operative's abilities.
+						rule.ruletext = "(see Abilities)";
+					}
+					else 
+					{
+						let rulename = weprules[i].trim().toUpperCase();
+						switch (rulename) {
+							case "BARRAGE":
+								rule.ruletext = "Cover is measured from above";
+								break;
+							case "BAL":
+							case "BALANCED":
+								rule.rulename = "Balanced";
+								rule.ruletext = "Can re-roll one Attack die";
+								break;
+							case "BOMB SQUIG":
+								rule.ruletext = "This operative can perform a Shoot action with this weapon if it is within Engagement Range of an enemy operative. When this operative performs a Shoot action and selects this ranged weapon, make a shooting attack against each other operative Visible to and within &#x2B24; of it (even if it has friendly operatives within its Engagement Range) with this weapon - Each of them is a valid target and cannot be in Cover. After all of those shooting attacks have been made, this operative is incapacitated and do not roll for its BOOM! ability. This operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
+								break;
+							case "BRUTAL":
+								rule.ruletext = "Opponent can only parry with critical hits";
+								break;
+							case "CEASELESS":
+								rule.ruletext = "Can re-roll any or all results of 1";
+								break;
+							case "COMBI-DWBG":
+								rule.ruletext = "Can be combined with a DeathWatch Boltgun";
+								break;
+							case "COMBI-BOLTGUN":
+								rule.ruletext = "Can be combined with a Boltgun";
+								break;
+							case "DAEMONIC ENERGIES":
+								rule.ruletext = "Each time this operative fights in combat, in the Roll Attack Dice step of that combat, each time you retain a critical hit, the target suffers 2 Mortal Wounds.";
+								break;
+							case "DETONATE":
+								rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within &#9632; of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within &#9632; is a valid target, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
+								break;
+							case "EXPERT RIPOSTE":
+								rule.ruletext = "Each time this operative fights in combat using its duelling blades, in the Resolve Successful Hits step of that combat, each time you parry with a critical hit, also inflict damage equal to the weapon's Critical Damage characteristic.";
+								break;
+							case "FUS":
+							case "FUSILLADE":
+								rule.rulename = "Fusillade";
+								rule.ruletext = "Distribute the Attack dice between valid targets within &#x2B24; of original target";
+								break;
+							case "GRAV":
+							case "GRAV*":
+								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack.";
+								break;
+							case "HEAVY":
+							case "HVY":
+								rule.rulename = "Heavy";
+								rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
+								break;
+							case "HUMBLING CRUELTY":
+								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point";
+								break;
+							case "HOT":
+								rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
+								break;
+							case "INDIRECT":
+								rule.ruletext = "Ignores cover when selecting valid targets. Must still be Visible and not Obscured.";
+								break;
+							case "LIM":
+							case "LIMITED":
+								rule.rulename = "Limited";
+								rule.ruletext = "Can only be used once per battle";
+								break;
+							case "NO COVER":
+								rule.ruletext = "Target can't retain autosuccess for cover, must roll all Defence dice";
+								break;
+							case "PARRY HOOK":
+								rule.ruletext = "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time you parry with a normal hit, you can select one of your opponent''s critical hits to be discarded instead.";
+								break;
+							case "RELENTLESS":
+								rule.ruletext = "Can re-roll any or all Attack dice";
+								break;
+							case "RENDING":
+							case "REND":
+								rule.rulename = "Rending";
+								rule.ruletext = "If you retain any critical hits, retain 1 normal hit as a critical hit too";
+								break;
+							case "SILENT":
+							case "SIL":
+								rule.rulename = "Silent";
+								rule.ruletext = "Can Shoot this weapon while on a Conceal order";
+								break;
+							case "SMART TARGETING":
+								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, you can use this special rule. If you do so, for that shooting attack:<br/><li>Enemy operatives with an Engage order that are not within Engagement Range of friendly operatives are valid targets and cannot be in Cover.</li><li>In the Roll Attack Dice step of that shooting attack, attack dice results of 6 are successful normal hits. All other attack dice results are failed hits.</li>";
+								break;
+							case "STORM SHIELD":
+								rule.ruletext = "If this operative is equipped with a storm shield:<ul><li>It has a 4+ Invulnerable Save</li><li>Each time it fights in combat, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one).</li></ul>";
+								break;
+							case "STUN":
+								rule.ruletext = "Shooting: For each critical hit, subtract 1 from APL of target (max 1 per operative)<br/>Fighting: First critical hit discard 1 normal hit of the enemy, Second critical hit subtract 1 from APL of target";
+								break;
+							case "UNLOAD SLUGS":
+								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within &#x2B1F; of it, you can re-roll any or all of your attack dice.";
+								break;
+							case "UNWIELDY":
+								rule.ruletext = "Shooting costs +1 AP, no Overwatch";
+								break;
+							case "VICIOUS BLOWS":
+								rule.ruletext = "Each time this operative fights in combat:<ul><li>If this operative is the Attacker, this weapon gains the Ceaseless special rule for that combat</li><li>If this operative performed a Charge action during this activation, this weapon gains the Relentless special rule for that combat</li></ul>";
+								break;
+						}
+						
+						// Other cases
+						if (rulename.startsWith("AP")) {
+							let num = rulename.replace("AP", "");
+							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";
+						} else if (rulename.startsWith("BLAST")) {
+							let range = rulename.replace("BLAST", "");
+							rule.ruletext = "After shooting perform shooting attacks against all operatives within " + range + ". No Overwatch.";
+						} else if (rulename.startsWith("INFERNO")) {
+							let num = rulename.replace("INFERNO", "");
+							rule.ruletext = "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, the target gains " + num + " Inferno tokens. At the end of each Turning Point, roll one D6 for each Inferno token an enemy operative has: on a 4+, that enemy operative suffers 1 mortal wound. After rolling, remove all Inferno tokens that operative has.";
+						} else if (rulename.startsWith("LETHAL")) {
+							let num = rulename.replace("LETHAL", "");
+							rule.ruletext = "Inflict critical hits on " + num + " instead of 6+";
+						} else if (rulename.startsWith("MW")) {
+							let num = rulename.replace("MW", "");
+							rule.ruletext = "For each critical hit retained, inflict " + num + " Mortal Wounds to target";
+						} else if (rulename.startsWith("P") && rulename.length == 2) {
+							let num = rulename.replace("P", "");
+							rule.ruletext = "Weapon gains AP" + num + " rule if you retain a critical hit";
+						} else if (rulename.startsWith("REAP")) {
+							let num = rulename.replace("REAP", "");
+							rule.ruletext = "For each successful critical strike, inflict MW" + num + " on each other enemy within &#x25B2; of target";
+						} else if (rulename.startsWith("RNG")) {
+							let range = rulename.replace("RNG", "");
+							rule.rulename = rule.rulename.replace("Rng", "Range");
+							rule.ruletext = "Range limit of the weapon";
+						} else if (rulename.startsWith("SPLASH")) {
+							let num = rulename.replace("SPLASH", "");
+							rule.ruletext = "For each critical hit, inflict MW" + num + " to the target and any other operative within &#x2B24; of the target";
+						} else if (rulename.startsWith("TOR")) {
+							let range = rulename.replace("TORRENT", "");
+							range = rulename.replace("TOR", "");
+							rule.rulename = "Torrent " + range;
+							rule.ruletext = "Make additional attacks against enemy operatives within " + range + " of the previous target";
+						}
+					}
+						
+					// Add this rule
+					$scope.wepsr.rules.push(rule);
+				}
+				
+				// Now show the popup
+				$("#wepsrmodal").modal("show");
+			}
 		}
+			
+		// Always initialize the session
+		$scope.initSession();
 	}
 );

@@ -6,7 +6,7 @@
 	-->
 	
 	<div class="cinzel m-0">
-		<h3 class="cinzel" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+		<h3 aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 			<i class="fas fa-chevron-down fa-fw"></i>
 			{{ operative.opname }}
 			<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
@@ -16,7 +16,7 @@
 	</div>
 	
 	<div id="opinfo_{{ $index }}" class="collapse show m-1 p-0 m-0">
-		<div class="row cinzel small oswald m-0 p-0">
+		<div class="row cinzel small m-0 p-0">
 			<div class="col-6 small">
 				{{ operative.optype }}
 			</div>

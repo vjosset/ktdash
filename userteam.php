@@ -16,7 +16,6 @@
 	$myTeam->loadOperatives();
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myTeam->userid;
-	echo "<!-- Mine: $ismine -->";
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,8 +23,11 @@
 		<?php include "header.shtml" ?>
 		<title><?php echo $myTeam->userteamname ?> | KTDash.app</title>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initMyTeam('<?php echo $myTeam->userteamid ?>');">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initUserTeam('<?php echo $myTeam->userteamid ?>');">
 		<?php include "topnav.shtml" ?>
+			
+		<!-- Dialogs -->
+		<?php include "templates/dialogs.shtml" ?>
 		
 		<div class="container">
 			<div class="orange">
@@ -44,7 +46,19 @@
 							&nbsp;&nbsp;
 						</div>
 						<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
-							<a href="" ng-click="initImportTeam(myTeam);"><i class="far fa-plus-square fa-fw"></i> Add to My Teams</a>
+							<?php
+								if ($me != null) {
+									// User is logged in
+									?>
+									<a href="" ng-click="initImportTeam(myTeam);"><i class="far fa-plus-square fa-fw"></i> Add to My Teams</a>
+									<?php
+								} else {
+									// User is not logged in
+									?>
+									<a href="/login.htm" ng-click="initImportTeam(myTeam);"><i class="fas fa-lock fa-fw"></i> Log In to Import Team</a>
+									<?php
+								}
+							?>
 							&nbsp;&nbsp;
 						</div>
 					</div>
@@ -53,16 +67,22 @@
 			
 			<!-- loadWaiter -->
 			<h3 class="center" ng-show="loading">
+				<br/>
 				<div>
 					<i class="fas fa-undo-alt fa-fw rotate" ></i>
 					<br />
 					Loading Team...
 				</div>
 			</h3>
-			
+			<br/>
 			<!-- Show this team -->
 			<div class="container-fluid" ng-hide="loading">
-				<div class="container-fluid" ng-repeat="myOp in myTeam.operatives track by $index">
+				<div class="row p-0 m-0">
+					<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in myTeam.operatives track by $index">
+						<?php include "templates/op_card.shtml" ?>
+					</div>
+				</div>
+				<div ng-repeat="myOp in myTeam.operatives track by $index" style="display: none;">
 					<div class="row">
 						<div class="col-7">
 							<h3 style="display: inline;">{{myOp.opname}}</h3>

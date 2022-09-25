@@ -62,6 +62,7 @@ a, a:link, a:visited, a:hover, a:active
 {
 	cursor: pointer;
 	color: #EEE;
+	/*text-decoration: none;*/
 }
 
 .bold {

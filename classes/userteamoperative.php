@@ -8,13 +8,18 @@
 		public $userteamopid = "";
 		public $seq = 0;
 		public $opname = "";
+		
 		public $factionid = "";
 		public $killteamid = "";
+		public $fireteamid = "";
 		public $opid = "";
+		
 		public $wepids = "";
 		public $eqids = "";
-		public $currw = 0;
+		
+		public $curW = 0;
 		public $notes = "";
+		
 		public $baseoperative = null;
 		public $weapons = [];
 		public $equipments = [];
@@ -22,7 +27,11 @@
         function __construct() {
             $this->TableName = "UserTeamOperative";
             $this->Keys = ["userteamopid"];
-			$this->skipfields = ["operative", "weapons", "equipments"];
+			$this->skipfields = [
+				"baseoperative", "weapons", "equipments",
+				"M", "APL", "GA", "DF", "SV", "W",
+				"username", "userteamname", "factionname", "killteamname", "fireteamname", "optype"
+			];
         }
 		
 		public function GetUserTeamOperative($utoid) {

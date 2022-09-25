@@ -33,8 +33,6 @@
 		$utid = $_REQUEST['utid'];
 		$uid = $_REQUEST['uid'];
 		
-		sleep(1);
-		
 		if ($utid == null || $utid == '') {
 			// No killteam id passed in, return the specified user's teams
 			

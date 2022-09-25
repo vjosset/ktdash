@@ -45,7 +45,7 @@
 			global $dbcon;
 			
 			// Get the operatives for this team
-			$sql = "SELECT * FROM UserTeamOperative WHERE userteamid = ? ORDER BY seq";
+			$sql = "SELECT * FROM UserTeamOperativeView WHERE userteamid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "s";
 			$params = array();
