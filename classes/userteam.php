@@ -9,6 +9,7 @@
 		public $userteamname = "";
 		public $factionid = "";
 		public $killteamid = "";
+		public $notes = "";
 		public $operatives = [];
         
         function __construct() {

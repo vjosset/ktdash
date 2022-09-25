@@ -50,7 +50,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Teams"
 					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/userteams.htm";
+					window.location.href = "/userteams.php";
 				}
 				
 				$scope.loading = false;
@@ -58,7 +58,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				var ru = GetQS("ru");
 				if (ru == "" || ru == null) {
 					// No redirect URL defined, use default
-					ru = "/userteams.htm";
+					ru = "/userteams.php";
 				}
 				console.log("Loaded login form with RU: " + ru);
 				$scope.loginForm.redirectUrl = ru;
@@ -91,7 +91,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Send the user to the redirect url
 						if ($scope.loginForm.redirectUrl == null || $scope.loginForm.redirectUrl == "") {
 							// No redirect specified - Send user to "My Teams"
-							$scope.loginForm.redirectUrl = "/userteams.htm";
+							$scope.loginForm.redirectUrl = "/userteams.php";
 						}
 						window.location.href = $scope.loginForm.redirectUrl;
 					},
@@ -143,7 +143,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Teams"
 					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/userteams.htm";
+					window.location.href = "/userteams.php";
 				}
 			};
 			
@@ -171,7 +171,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Set their session
 						$scope.currentuser = data;
 						// Send the user to "My Teams"
-						window.location.href = "/userteams.htm";
+						window.location.href = "/userteams.php";
 					},
 					error: function(data, status, error) { // Error
 						$scope.currentuser = null;

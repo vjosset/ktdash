@@ -71,7 +71,7 @@
 			<div>
 				<span class="float-start">
 					Build a <a href="#" ng-click="initNewTeam();">new team</a>
-					or import a <a href="sampleteams.htm">pre-built team</a>
+					or import a <a href="prebuilt.php">pre-built team</a>
 				</span>
 				<span class="float-end">
 					<i id="myteamshelpbutton" class="far fa-question-circle fa-fw" onclick="$('#myteamshelp').modal('show');"></i>
