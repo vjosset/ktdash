@@ -441,12 +441,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					dataType: 'json',
 					data: JSON.stringify(roster),
 					success: function(data) {
-						$scope.myRosters.push(data);
+						// Put this team at the top (first in the array)
+						$scope.myRosters.splice(0, 0, data);
 						$scope.$apply();
 						toast("Roster " + roster.rostername + " saved!");
-						
-						// Now send the user to their new team
-						location.hash = "#" + data.rosterid;
 					},
 					error: function(error) {
 						// Failed to save roster
@@ -459,6 +457,84 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Close the modal
 				$('#newrostermodal').modal("hide");
 			};
+		
+			// moveRosterUp()
+			// Moves the specified roster up in the list (decrease seq)
+			$scope.moveRosterUp = function(roster, index) {
+				// Decrement the index for this roster
+				console.log("moveRosterUp(" + roster.seq + "-" + roster.rostername + " up (index: " + index + ")");
+				if (index > 0) {
+					// Roster is not the first one in the list - Reduce its index
+					roster.seq = roster.seq - 1;
+					console.log("   New seq: " + roster.seq);
+					
+					// Push this update to the API
+					$scope.commitRoster(roster);
+					
+					// Now find the roster that used to be at the previous seq and increase its seq
+					let prev = $scope.myRosters[index - 1];
+					console.log("   Moving [" + (index - 1) + "] " + prev.rostername + " down");
+					$scope.myRosters[index - 1].seq = $scope.myRosters[index - 1].seq + 1;
+					
+					// Push this update to the API
+					$scope.commitRoster($scope.myRosters[index - 1]);
+					
+					// Now make sure the array indexes match the seqs
+					[$scope.myRosters[index], $scope.myRosters[index - 1]] = [$scope.myRosters[index - 1], $scope.myRosters[index]];
+				}
+			}
+			
+			// moveRosterDown()
+			// Moves the specified roster down in the list (increase seq)
+			$scope.moveRosterDown = function(roster, index) {
+				// Same as moving the next team up
+				if (index >= $scope.myRosters.length) {
+					// Already at the end - nothing to do
+				} else {
+					console.log("moveRosterDown(" + roster.seq + "-" + roster.rostername + " up (index: " + index + ")");
+					console.log("Moving [" + index + "] " + roster.rostername + " down");
+					$scope.moveRosterUp($scope.myRosters[index + 1], index + 1);
+				}
+			}
+			
+			// commitRoster()
+			// Commits the specified roster to the DB/API.
+			$scope.commitRoster = function(roster) {
+				// Prepare just the relevant data points for the roster to commit
+				let data = {
+					"userid": roster.userid,
+					"rosterid": roster.rosterid,
+					"rostername": roster.rostername,
+					"factionid": roster.factionid,
+					"killteamid": roster.killteamid,
+					"seq": roster.seq,
+					"notes": roster.notes
+				};
+				
+				// Send the update request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "roster.php",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					data: JSON.stringify(data),
+					
+					// Success
+					success: function(data) { // Saved
+						// All good
+						roster = data;
+						
+						// Done
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not save this roster: \r\n" + error);
+						console.log("Error: " + error);
+					}
+				});
+			}
 		}
 		
 		// OPERATIVES
@@ -542,6 +618,61 @@ var app = angular.module("kt", ['ngSanitize'])
 							// This is our operative - Hide their details
 							$("#opinfo_" + i).collapse('hide');
 						}
+					}
+				}
+			}
+		
+			// opHasEq()
+			// Returns a boolean indicating whether the specified operative has any equipments of the specified type.
+			// If type is not specified, returns a boolean indicating whether the operative has any equipments.
+			$scope.opHasEq = function(op, eqtype, eqvar1) {
+				console.log("opHasEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
+				if (op == null) {
+					return false;
+				}
+				return $scope.getOpEq(op, eqtype, eqvar1).length > 0;
+			}
+			
+			// eqIsAbility()
+			// Returns a boolean indicating whether the specified equipment is an Ability.
+			$scope.eqIsAbility = function(eq) {
+				return eq.eqtype == 'Ability';
+			}
+			
+			// eqIsAction()
+			// Returns a boolean indicating whether the specified equipment is a Unique Action.
+			$scope.eqIsAction = function(eq) {
+				return eq.eqtype == 'Action';
+			}
+			
+			// eqIsWeapon()
+			// Returns a boolean indicating whether the specified equipment is a Weapon.
+			$scope.eqIsWeapon = function(eq) {
+				return eq.eqtype == 'Weapon';
+			}
+			
+			// getOpEq()
+			// Returns an array of the specified operative's equipments of the specified type.
+			// If type is not specified, returns an array of the specified operative's equipments.
+			$scope.getOpEq = function(op, eqtype, eqvar1) {
+				console.log("getOpEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
+				if (op == null) {
+					return [];
+				}
+				
+				if (eqtype == null) {
+					// Look for any equipment
+					if (op.equipments != null && Array.isArray(op.equipments) && op.equipments.length > 0) {
+						return op.equipments;
+					} else {
+						return [];
+					}
+				} else {
+					// Look for equipment of the requested type
+					if (op.equipments != null && Array.isArray(op.equipments) && op.equipments.filter(eq => eq.eqtype == eqtype && eq.eqvar1 == eqvar1).length > 0) {
+						return op.equipments.filter(eq => eq.eqtype == eqtype && eq.eqvar1 == eqvar1);
+					} else {
+						return [];
 					}
 				}
 			}

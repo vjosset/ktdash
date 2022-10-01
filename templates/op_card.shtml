@@ -1,6 +1,6 @@
 <div class="card darkcard">
 	<!-- Compendium Card Title -->
-	<div ng-if="MODE == 'Compendium'" class="card-title">
+	<div ng-if="MODE == 'Compendium'" class="pointer card-title">
 		<div ng-click="showpopup(operative.opname, operative.description);">
 			<h4 style="display: inline;">{{ operative.opname }}</h4>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
@@ -20,7 +20,7 @@
 			{{ operative.opname }}
 		</h3>
 		<span class="text-tiny">
-		{{ operative.optype }}
+			{{ operative.optype }}
 		</span>
 		<i class="fas fa-trash fa-fw float-end"></i>
 		<i class="fas fa-edit fa-fw float-end"></i>
@@ -28,7 +28,7 @@
 	
 	<!-- Dashboard Card Title -->
 	<div ng-if="MODE == 'Dashboard'" class="card-title">
-		<h3 aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+		<h3 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 			<i class="fas fa-chevron-down fa-fw"></i>
 			{{ operative.opname }}
 			<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
@@ -135,7 +135,7 @@
 						  <ANY ng-switch-default>&#x26ED;</ANY>
 						</ANY>
 						{{ weapon.wepname }}
-						<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
+						<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
 					</td>
 					<td class="text-center h5">
 						&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
@@ -163,7 +163,7 @@
 					<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						- {{ profile.name }}
-						<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
+						<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 					</td>
 					<td class="text-center h5">
 						&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
@@ -227,12 +227,12 @@
 		<div class="m-1 line-top-light" ng-show="operative.abilities != null && (operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
 			<h6>Abilities</h6>
 			<!-- Regular Abilities -->
-			<div ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
+			<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
 				{{ ab.title }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 			<!-- Equipment Abilities -->
-			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
+			<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
 				&#x26ED; {{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
@@ -242,36 +242,36 @@
 		<div class="m-1 line-top-light" ng-show="operative.uniqueactions != null && (operative.uniqueactions.length + operative.equipments.filter(eqIsAction).length) > 0">
 			<h6>Unique Actions</h6>
 			<!-- Regular Unique Actions -->
-			<div ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
+			<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
 				{{ ua.title }} ({{ ua.AP}} AP)
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 			<!-- Equipment Unique Actions -->
-			<div ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Action'">
+			<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Action'">
 				&#x26ED; {{ eq.eqname }} 
 				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
 		</div>
 		
 		<!-- Equipment -->
-		<div ng-if="MODE != 'Compendium'" class="m-1 line-top-light">
-			<h6 ng-click="initEditOpEq(operative);">
+		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="m-1 line-top-light">
+			<h6 class="pointer" ng-click="initEditOpEq(operative);">
 				Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
 			</h6>
-			<span ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+			<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 				{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
 			</span>
 		</div>
 		
 		<!-- Notes -->
-		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="m-1">
+		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="m-1" class="m-1 line-top-light">
 			<h6 class="line-top-light">Notes</h6>
 			<textarea style="border: 0px solid; width: 100%;" rows="1" class="darkcard d-block" ng-model="operative.notes" ng-change="commitTeams();"></textarea>
 			<!-- div contenteditable="true" ng-model="operative.notes" ng-change="commitTeams();"></div -->
 		</div>
 	
 		<!-- Keywords -->
-		<div class="small card-footer m-1 line-top-light">
+		<div class="small m-1 line-top-light">
 			<em class="small">{{ operative.keywords }}</em>
 		</div>
 	</div>

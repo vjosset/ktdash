@@ -21,15 +21,13 @@ body {
 }
 
 .dark {
-	/*background-color: #343a40;*/
 	background-color: #202020;
 	color: #EEE;
 }
 
 .darkcard {
-	/*background-color: #343a40;*/
 	background-color: #303030;
-	color: #EEE;
+	border-color: #EEE;
 }
 
 .orange {
@@ -46,9 +44,11 @@ body {
 	color: #262a2d !important;
 }
 
+/*
 .card {
 	border-color: #c54c21 !important;
 }
+*/
 
 .eqtable {
 	border: 1px solid #888;

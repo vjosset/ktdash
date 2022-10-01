@@ -10,7 +10,7 @@
 			GETRoster();
 			break;
 		case "POST":
-			// Create a new roster/user team
+			// Create or update a roster
 			header('Content-Type: application/json');
 			POSTRoster();
 			break;
@@ -84,8 +84,36 @@
 				// No user team ID, create a new one
 				$r->rosterid = CommonUtils\shortId();
 				
+				global $dbcon;
+				
 				// Always put new rosters first, pushing all other rosters down
-				// [TBD]
+				// First, reorder the user's rosters starting at 1
+				$sql =
+					"UPDATE
+						Roster AS R
+					  JOIN
+						( SELECT rosterid, row_number() OVER (PARTITION BY userid ORDER BY seq) AS rownum
+						  FROM Roster
+						  WHERE userid = ?
+						) AS S
+					  ON  S.rosterid = R.rosterid
+					SET
+						R.seq = S.rownum
+					WHERE R.userid = ?;";
+				
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "ss";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $r->userid;
+				$params[] =& $r->userid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+				
+				// Rosters are now order by Seq, starting at 1 (not 0)
+				// Now we can insert this new team as Seq = 0
+				$r->seq = 0;
 				
 				// Now save this team to DB
 				$r->DBInsert();
@@ -107,8 +135,8 @@
 				} else {
 					// Roster exists and belongs to this user, good to update
 					//	Can't change faction or kill team on a roster - Overwrite submitted values
-					$r->factionid = $temput->factionid;
-					$r->killteamid = $temput->killteamid;
+					$r->factionid = $tempr->factionid;
+					$r->killteamid = $tempr->killteamid;
 					
 					// Commit to DB
 					$r->DBUpdate();

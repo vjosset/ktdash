@@ -86,7 +86,7 @@
 			<!-- Show this roster -->
 			<div ng-hide="loading" ng-if="myRoster.operatives.length > 0">
 				<div class="row p-0 m-0">
-					<div class="col-12 col-md-6 col-lg-4 col-xl-3 p-0 m-0" ng-repeat="operative in myRoster.operatives track by $index">
+					<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in myRoster.operatives track by $index">
 						<?php include "templates/op_card.shtml" ?>
 					</div>
 				</div>

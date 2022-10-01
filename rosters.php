@@ -77,16 +77,21 @@
 			<br/>
 			<br/>
 			
-			<div ng-repeat="myRoster in myRosters track by $index">
+			<div ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 				<div class="row">
 					<div class="col-7">
-						<h3 id="myRoster.rosterid"><a href="/roster.php?utid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a></h3>
+						<h3 id="myRoster.rosterid"><a href="/roster.php?utid={{ myRoster.rosterid }}">{{ myRoster.seq }} - {{ myRoster.rostername }}</a></h3>
+					<?php
+						if ($ismine) {
+						?>
 						<button class="btn btn-primary" ng-click="initDeploy(myRoster);">Deploy!</button>
+						<?php
+					} ?>
 					</div>
 					<div class="col-5" style="text-align: right;">
 						<a class="float-end" ng-href="/killteam.php?fa={{myRoster.factionid}}&kt={{myRoster.killteamid}}">{{myRoster.killteamname}}</a><br/>
-						<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, $index);"></i>
-						<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, $index);"></i>
+						<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);"></i>
+						<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);"></i>
 						<a href="/roster.php?utid={{ myRoster.rosterid }}"><i class="fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);"></i></a>
 						<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);"></i>
 						<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);"></i>
