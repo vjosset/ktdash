@@ -7,12 +7,12 @@
     class User extends \OFW\OFWObject {
         public $userid = "";
         public $username = "";
-		public $userteams = [];
+		public $rosters = [];
         
         function __construct() {
             $this->TableName = "User";
             $this->Keys = ["userid"];
-			$this->skipfields = ["userteams"];
+			$this->skipfields = ["rosters"];
         }
         
         public function __get($field) {
@@ -68,14 +68,14 @@
             return null;
         }
 		
-		/* GetUserTeams()
+		/* GetRosters()
 		** Returns an array of all the teams for the current user
 		*/
-		public function loadUserTeams() {
+		public function loadRosters() {
 			global $dbcon;
 			
 			// Get the teams for this user
-			$sql = "SELECT * FROM UserTeamView WHERE userid = ? ORDER BY seq";
+			$sql = "SELECT * FROM RosterView WHERE userid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "s";
 			$params = array();
@@ -87,9 +87,9 @@
 
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
-					$ut = UserTeam::FromRow($row);
+					$ut = Roster::FromRow($row);
 					$ut->loadOperatives();
-					$this->userteams[] = $ut;
+					$this->rosters[] = $ut;
                 }
             }
 		}

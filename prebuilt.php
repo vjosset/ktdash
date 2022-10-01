@@ -43,6 +43,7 @@
 						</span>
 					</div>
 				</div>
+				<p ng-model="myTeam.notes"></p>
 				<div>
 					{{ myTeam.opList }}
 				</div>

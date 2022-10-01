@@ -2,10 +2,10 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     require_once $root . '/include.php';
     
-    class UserTeamOperative extends \OFW\OFWObject {
-		public $userteamid = "";
+    class RosterOperative extends \OFW\OFWObject {
+		public $rosterid = "";
 		public $userid = "";
-		public $userteamopid = "";
+		public $rosteropid = "";
 		public $seq = 0;
 		public $opname = "";
 		
@@ -25,22 +25,22 @@
 		public $equipments = [];
         
         function __construct() {
-            $this->TableName = "UserTeamOperative";
-            $this->Keys = ["userteamopid"];
+            $this->TableName = "RosterOperative";
+            $this->Keys = ["rosteropid"];
 			$this->skipfields = [
 				"baseoperative", "weapons", "equipments",
 				"M", "APL", "GA", "DF", "SV", "W",
-				"username", "userteamname", "factionname", "killteamname", "fireteamname", "optype"
+				"username", "rostername", "factionname", "killteamname", "fireteamname", "optype"
 			];
         }
 		
-		public function GetUserTeamOperative($utoid) {
+		public function GetRosterOperative($utoid) {
 			global $dbcon;
 			
-			//Get the requested UserTeamOperative
-			$uto = UserTeamOperative::FromDB($utoid);
+			//Get the requested RosterOperative
+			$uto = RosterOperative::FromDB($utoid);
 			
-			// Load the base operative for this UserTeamOperative
+			// Load the base operative for this RosterOperative
 			$uto->loadBaseOperative();
 			
 			// Load this operative's weapons and equipments
@@ -51,8 +51,10 @@
 		}
 		
 		public function loadBaseOperative() {
-			// Load this UserTeamOperative base operative
+			// Load this RosterOperative base operative
 			$this->baseoperative = Operative::GetOperative($this->factionid, $this->killteamid, $this->fireteamid, $this->opid);
+			$this->abilities = $this->baseoperative->abilities;
+			$this->uniqueactions = $this->baseoperative->uniqueactions;
 		}
 		
 		public function loadWeapons() {
@@ -99,6 +101,8 @@
 
             call_user_func_array(array($cmd, "bind_param"), $params);
             $cmd->execute();
+			
+			$this->equipments = [];
 
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
@@ -114,13 +118,13 @@
 			
 			if ($inc == 1) {
 				// Moving down (higher seq)
-				$sql = "SELECT MAX(seq) AS maxseq FROM UserTeamOperative WHERE userteamid = ?;";
+				$sql = "SELECT MAX(seq) AS maxseq FROM RosterOperative WHERE rosterid = ?;";
 				
 				$cmd = $dbcon->prepare($sql);
 				$paramtypes = "s";
 				$params = array();
 				$params[] =& $paramtypes;
-				$params[] =& $this->userteamid;
+				$params[] =& $this->rosterid;
 
 				call_user_func_array(array($cmd, "bind_param"), $params);
 				$cmd->execute();
@@ -136,19 +140,19 @@
 					// Already last, nothing to move
 				} else {
 					// Not yet at the bottom (seq maxseq), swap seq with the following operative
-					$sql  = "UPDATE UserTeamOperative SET seq = seq + 101 WHERE userteamid = ? AND seq = ?;";
-					$sql .= "UPDATE UserTeamOperative SEQ seq = seq -   1 WHERE userteamid = ? AND Seq = ?;";
-					$sql .= "UPDATE UserTeamOperative SET seq = seq - 100 WHERE userteamid = ? AND seq = ?;";
+					$sql  = "UPDATE RosterOperative SET seq = seq + 101 WHERE rosterid = ? AND seq = ?;";
+					$sql .= "UPDATE RosterOperative SEQ seq = seq -   1 WHERE rosterid = ? AND Seq = ?;";
+					$sql .= "UPDATE RosterOperative SET seq = seq - 100 WHERE rosterid = ? AND seq = ?;";
 					
 					$cmd = $dbcon->prepare($sql);
 					$paramtypes = "sssss";
 					$params = array();
 					$params[] =& $paramtypes;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq - 1;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq + 101;
 
 					call_user_func_array(array($cmd, "bind_param"), $params);
@@ -160,19 +164,19 @@
 					// Already at the top (seq 0), nothing to do
 				} else {
 					// Not yet at the top (seq 0), swap seqs with previous operative
-					$sql  = "UPDATE UserTeamOperative SET seq = seq +  99 WHERE userteamid = ? AND seq = ?;";
-					$sql .= "UPDATE UserTeamOperative SEQ seq = seq +   1 WHERE userteamid = ? AND Seq = ?;";
-					$sql .= "UPDATE UserTeamOperative SET seq = seq - 100 WHERE userteamid = ? AND seq = ?;";
+					$sql  = "UPDATE RosterOperative SET seq = seq +  99 WHERE rosterid = ? AND seq = ?;";
+					$sql .= "UPDATE RosterOperative SEQ seq = seq +   1 WHERE rosterid = ? AND Seq = ?;";
+					$sql .= "UPDATE RosterOperative SET seq = seq - 100 WHERE rosterid = ? AND seq = ?;";
 					
 					$cmd = $dbcon->prepare($sql);
 					$paramtypes = "sssss";
 					$params = array();
 					$params[] =& $paramtypes;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq + 1;
-					$params[] =& $this->userteamid;
+					$params[] =& $this->rosterid;
 					$params[] =& $this->seq + 99;
 
 					call_user_func_array(array($cmd, "bind_param"), $params);

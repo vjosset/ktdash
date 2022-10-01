@@ -39,6 +39,17 @@ body {
 	color: #262a2d;
 }
 
+/* Buttons */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #c54c21 !important;
+	border-color: #262a2d !important;
+	color: #262a2d !important;
+}
+
+.card {
+	border-color: #c54c21 !important;
+}
+
 .eqtable {
 	border: 1px solid #888;
 }

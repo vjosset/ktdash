@@ -43,14 +43,14 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			// initLogin()
-			// Initializes the login form, redirecting the user to "My Teams" if they're already logged in.
+			// Initializes the login form, redirecting the user to "My Rosterss" if they're already logged in.
 			// Redirects the user to the page in QueryString "ru" if logged in successfully.
 			$scope.initLogin = function() {
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
-					// Already logged in - Send user to "My Teams"
-					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/userteams.php";
+					// Already logged in - Send user to "My Rosters"
+					console.log("Already logged in - Sending user to My Rosters");
+					window.location.href = "/rosters.php";
 				}
 				
 				$scope.loading = false;
@@ -58,7 +58,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				var ru = GetQS("ru");
 				if (ru == "" || ru == null) {
 					// No redirect URL defined, use default
-					ru = "/userteams.php";
+					ru = "/rosters.php";
 				}
 				console.log("Loaded login form with RU: " + ru);
 				$scope.loginForm.redirectUrl = ru;
@@ -90,8 +90,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Send the user to the redirect url
 						if ($scope.loginForm.redirectUrl == null || $scope.loginForm.redirectUrl == "") {
-							// No redirect specified - Send user to "My Teams"
-							$scope.loginForm.redirectUrl = "/userteams.php";
+							// No redirect specified - Send user to "My Rosters"
+							$scope.loginForm.redirectUrl = "/rosters.php";
 						}
 						window.location.href = $scope.loginForm.redirectUrl;
 					},
@@ -137,18 +137,18 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.signUpForm = {};
 			
 			// initSignUp()
-			// Initializes the "Sign Up" form and redirects to My Teams if user is already logged in.
+			// Initializes the "Sign Up" form and redirects to My Rosters if user is already logged in.
 			$scope.initSignUp = function() {
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
-					// Already logged in - Send user to "My Teams"
-					console.log("Already logged in - Sending user to My Teams");
-					window.location.href = "/userteams.php";
+					// Already logged in - Send user to "My Rosters"
+					console.log("Already logged in - Sending user to My Rosters");
+					window.location.href = "/rosters.php";
 				}
 			};
 			
 			// signUp()
-			// Signs the user up by creating a new user record, signing them in, and sending them to the "My Teams" page.
+			// Signs the user up by creating a new user record, signing them in, and sending them to the "My Rosters" page.
 			$scope.signUp = function() {
 				$scope.signUpForm.error = null;
 				
@@ -170,8 +170,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.loading = false;
 						// Set their session
 						$scope.currentuser = data;
-						// Send the user to "My Teams"
-						window.location.href = "/userteams.php";
+						// Send the user to "My Rosters"
+						window.location.href = "/rosters.php";
 					},
 					error: function(data, status, error) { // Error
 						$scope.currentuser = null;
@@ -183,20 +183,20 @@ var app = angular.module("kt", ['ngSanitize'])
 			};
 		}
 		
-		// USER TEAMS
+		// ROSTERS
 		{
-			// initUserTeams()
-			// Initializes the "My Teams" page
-			$scope.initUserTeams = function(uid) {
+			// initRosters()
+			// Initializes the "My Rosters" page
+			$scope.initRosters = function(uid) {
 				$scope.loading = true;
-				console.log("initUserTeams(" + uid + ")");
+				console.log("initRosters(" + uid + ")");
 				
 				let isMe = uid == null || uid == "" && $scope.currentuser != null && uid == $scope.currentuser.userid;
 				
 				if (isMe) {
-					$scope.MODE = "MyTeams";
+					$scope.MODE = "MyRosters";
 				} else {
-					$scope.MODE = "UserTeams";
+					$scope.MODE = "Rosters";
 				}
 				
 				// Check if user is already logged in
@@ -206,32 +206,32 @@ var app = angular.module("kt", ['ngSanitize'])
 					toast("Not logged in!");
 					window.location.href = "/login.htm";
 				} else {
-					// User is logged in or a specified user's teams were requested
+					// User is logged in or a specified user's rosters were requested
 					if (uid == "" || uid == null) {
 						// No user id specified, use the current logged-in user
 						uid = $scope.currentuser.userid;
 					}
 					
-					// Get the user's teams
+					// Get the user's rosters
 					$.ajax({
 						type: "GET",
-						url: APIURL + "userteam.php?uid=" + uid,
+						url: APIURL + "roster.php?uid=" + uid,
 						timeout: 5000,
 						async: true,
 						dataType: 'json',
 						
 						// Success
-						success: function(data) { // Got user's teams
-							// Load the teams into "myTeams"
+						success: function(data) { // Got user's rosters
+							// Load the rosters into "myRosters"
 							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-							$scope.myTeams = data;
+							$scope.myRosters = data;
 							
 							$scope.loading = false;
 							$scope.$apply();
 						},
 						// Failure
-						error: function(data, status, error) { // Failed to get teams
-							toast("Could not get teams: \r\n" + error);
+						error: function(data, status, error) { // Failed to get rosters
+							toast("Could not get rosters: \r\n" + error);
 							$scope.loading = false;
 							$scope.$apply();
 						}
@@ -239,55 +239,57 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
-			// initUserTeam()
-			// Initializes the "My Team" page - Landing page for a single team
-			$scope.initUserTeam = function(utid) {
+			// initRoster()
+			// Initializes the "My Roster" page - Landing page for a single roster
+			$scope.initRoster = function(rid) {
 				$scope.loading = true;
-				$scope.MODE = "UserTeam";
-				
-				if ($scope.currentuser != null && utid == $scope.currentuser.userid) {
-					$scope.MODE = "MyTeam";
-				} else {
-					$scope.MODE = "UserTeam";
-				}
+				$scope.MODE = "Roster";
 				
 				console.log("MODE: " + $scope.MODE);
 				
 				$.ajax({
 					type: "GET",
-					url: APIURL + "userteam.php?utid=" + utid,
+					url: APIURL + "roster.php?rid=" + rid,
 					timeout: 5000,
 					async: true,
 					dataType: 'json',
 					
 					// Success
-					success: function(data) { // Got the team
-						// Load the team into "myTeam"
+					success: function(data) { // Got the roster
+						// Load the roster into "myRoster"
 						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-						$scope.myTeam = data;
+						$scope.myRoster = data;
+				
+						if ($scope.currentuser != null && data.userid == $scope.currentuser.userid) {
+							// Logged-in user has the same ID as the requested roster, this is one of their rosters
+							$scope.MODE = "MyRoster";
+						} else {
+							// User is not logged in or requested roster belongs to someone else
+							$scope.MODE = "Roster";
+						}
 						
-						console.log("Got team: " + JSON.stringify($scope.myTeam));
+						console.log("Got roster: " + JSON.stringify($scope.myRoster));
 						
 						$scope.loading = false;
 						$scope.$apply();
 					},
 					// Failure
-					error: function(data, status, error) { // Failed to get team
-						toast("Could not get team: \r\n" + error);
+					error: function(data, status, error) { // Failed to get roster
+						toast("Could not get roster: \r\n" + error);
 						$scope.loading = false;
 						$scope.$apply();
 					}
 				});
 			}
 		
-			// commitUserTeamOperative()
+			// commitRosterOperative()
 			// Commits the specified operative to the DB
-			$scope.commitUserTeamOperative = function(op) {
+			$scope.commitRosterOperative = function(op) {
 				// Prepare the object to PUT
 				let opdata = {
 					userid: op.userid,
-					userteamid: op.userteamid,
-					userteamopid: op.userteamopid,
+					rosterid: op.rosterid,
+					rosteropid: op.rosteropid,
 					seq: op.seq,
 					opname: op.opname,
 					
@@ -305,7 +307,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				$.ajax({
 					type: "PUT",
-					url: APIURL + "userteamoperative.php",
+					url: APIURL + "rosteroperative.php",
 					timeout: 5000,
 					async: true,
 					dataType: 'json',
@@ -323,6 +325,140 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+			
+			// initDeleteRoster()
+			// Pops-up the roster deletion modal
+			$scope.initDeleteRoster = function(roster) {
+				$scope.deleteRoster = roster;
+				
+				// Show the modal
+				$('#deleterostermodal').modal("show");
+			}
+			
+			// saveDeleteRoster()
+			// Commits the roster deletion
+			$scope.saveDeleteRoster = function() {
+				// Send the delete request to the API
+				$.ajax({
+					type: "DELETE",
+					url: APIURL + "roster.php?utid=" + $scope.deleteRoster.rosterid,
+					timeout: 5000,
+					async: true,
+					
+					// Success
+					success: function(data) { // Saved this operative
+						// All good
+						
+						// Remove this roster from the scope									
+						let idx = $scope.myRosters.indexOf($scope.deleteRoster);
+						if (idx > -1) {
+							$scope.myRosters.splice(idx, 1);
+						}
+						
+						// Done
+						toast("Roster \"" + $scope.deleteRoster.rostername + "\" deleted");
+				
+						// Close the modal
+						$('#deleterostermodal').modal("hide");
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not delete this roster: \r\n" + error);
+						console.log("Error: " + error);
+				
+						// Close the modal
+						$('#deleterostermodal').modal("hide");
+					}
+				});
+			}
+		
+			// initNewRoster()
+			// Pops-up the new roster modal
+			$scope.initNewRoster = function() {
+				// Load the factions and killteams
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php?loadkts=1",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						// Got factions
+						$scope.factions = data;
+						$scope.$apply();
+					},
+					error: function(error) {
+						// Failed to get factions
+						toast("Could not get factions: " + error);
+						$scope.$apply();
+					}
+				});
+				
+				// Ready to initialize the new roster popup
+				$scope.newroster = {
+					"factionid": "",
+					"killteamid": "",
+					"rostername": "",
+					"faction": null,
+					"killteam": null
+				};
+				
+				// Show the modal
+				$('#newrostermodal').modal("show");
+			}
+			
+			// createRoster()
+			// Saves a new roster
+			$scope.createRoster = function() {
+				// Validate the input
+				if ($scope.newroster.killteam == null) {
+					// No killteam selected
+					toast("Please select a KillTeam");
+					return;
+				}
+				if ($scope.newroster.rostername.trim() == "") {
+					// No roster name specified
+					toast("Please enter a roster name");
+					return;
+				}
+				
+				// Create a new roster for the specified faction and killteam
+				var roster = {
+					"userid": $scope.currentuser.userid,
+					"factionid": $scope.newroster.faction.factionid,
+					"killteamid": $scope.newroster.killteam.killteamid,
+					"rostername": $scope.newroster.rostername,
+					"seq": 0 // Always put new teams first
+				};
+				
+				// Send the request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "roster.php?pushdown=1",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					data: JSON.stringify(roster),
+					success: function(data) {
+						$scope.myRosters.push(data);
+						$scope.$apply();
+						toast("Roster " + roster.rostername + " saved!");
+						
+						// Now send the user to their new team
+						location.hash = "#" + data.rosterid;
+					},
+					error: function(error) {
+						// Failed to save roster
+						console.log("Could not save roster: " + error);
+						toast("Could not save roster: \r\n" + error);
+						$scope.$apply();
+					}
+				});
+				
+				// Close the modal
+				$('#newrostermodal').modal("hide");
+			};
 		}
 		
 		// OPERATIVES
@@ -338,7 +474,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.curW = parseInt(op.W);
 				}
 				
-				$scope.commitUserTeamOperative(op);
+				$scope.commitRosterOperative(op);
 				
 				let wasInjured = op.isInjured;
 				if (wasInjured == null) {
@@ -401,8 +537,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (op.curW == 0) {
 					// This operative is now dead/incapacitated - Collapse its info
 					// First, find this operative
-					for (let i = 0; i < $scope.dashboard.myteam.operatives.length; i++) {
-						if ($scope.dashboard.myteam.operatives[i] == op) {
+					for (let i = 0; i < $scope.dashboard.myroster.operatives.length; i++) {
+						if ($scope.dashboard.myroster.operatives[i] == op) {
 							// This is our operative - Hide their details
 							$("#opinfo_" + i).collapse('hide');
 						}
@@ -489,7 +625,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							async: true,
 							dataType: 'json',
 							success: function(data) {
-								// Got factions
+								// Got faction
 								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 								$scope.killteam = data;
 								$scope.loading = false;

@@ -2,27 +2,27 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     require_once $root . '/include.php';
     
-    class UserTeam extends \OFW\OFWObject {
-		public $userteamid = "";
+    class Roster extends \OFW\OFWObject {
+		public $rosterid = "";
 		public $userid = "";
 		public $seq = 0;
-		public $userteamname = "";
+		public $rostername = "";
 		public $factionid = "";
 		public $killteamid = "";
 		public $notes = "";
 		public $operatives = [];
         
         function __construct() {
-            $this->TableName = "UserTeam";
-            $this->Keys = ["userteamid"];
+            $this->TableName = "Roster";
+            $this->Keys = ["rosterid"];
 			$this->skipfields = ["operatives"];
         }
 		
-		public function GetUserTeam($utid) {
+		public function GetRoster($utid) {
 			global $dbcon;
 			
 			// Get the operatives for this team
-			$sql = "SELECT * FROM UserTeamView WHERE userteamid = ? ORDER BY seq";
+			$sql = "SELECT * FROM RosterView WHERE rosterid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "s";
 			$params = array();
@@ -35,7 +35,7 @@
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 if ($row = $result->fetch_object()) {
-                    $ut = UserTeam::FromRow($row);
+                    $ut = Roster::FromRow($row);
 					$ut->loadOperatives();
 					return $ut;
                 }
@@ -46,12 +46,12 @@
 			global $dbcon;
 			
 			// Get the operatives for this team
-			$sql = "SELECT * FROM UserTeamOperativeView WHERE userteamid = ? ORDER BY seq";
+			$sql = "SELECT * FROM RosterOperativeView WHERE rosterid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "s";
 			$params = array();
             $params[] =& $paramtypes;
-            $params[] =& $this->userteamid;
+            $params[] =& $this->rosterid;
 
             call_user_func_array(array($cmd, "bind_param"), $params);
             $cmd->execute();
@@ -59,10 +59,9 @@
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
-
-                    $op = UserTeamOperative::FromRow($row);
+                    $op = RosterOperative::FromRow($row);
 					
-					// Load the base operative for this UserTeamOperative
+					// Load the base operative for this RosterOperative
 					$op->loadBaseOperative();
 					
 					// Load the operative's weapons and equipments

@@ -114,7 +114,7 @@
 							</div>
 							
 							<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
-								<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in fireteam.operatives">
+								<div class="col-12 col-md-6 col-xl-4 p-0 m-0 align-items-stretch" ng-repeat="operative in fireteam.operatives">
 									<?php include "templates/op_card.shtml" ?>
 								</div>
 							</div>

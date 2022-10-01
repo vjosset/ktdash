@@ -19,12 +19,24 @@
     function GETFaction() {
 		// Get the requested faction id
 		$factionid = $_REQUEST['factionid'];
-		
-		sleep(1);
+		$loadkillteams = ($_REQUEST['loadkts'] == '1');
+		$loadops = ($_REQUEST['loadops'] == '1');
 		
 		if ($factionid == null || $factionid == '') {
 			// No faction id passed in, return all factions
 			$factions = Faction::GetFactions();
+			if ($loadkillteams) {
+				foreach ($factions as $faction) {
+					$faction->loadKillTeams();
+					if ($loadops) {
+						foreach ($faction->killteams as $killteam) {
+							$killteam->loadFireteams();
+							$killteam->loadPloys();
+							$killteam->loadEquipments();
+						}
+					}
+				}
+			}
 			echo json_encode($factions);
 		} else {
 			// Return the requested faction

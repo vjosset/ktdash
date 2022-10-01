@@ -84,9 +84,6 @@
 			if ($result = $cmd->get_result()) {
 				while ($row = $result->fetch_object()) {
 					$kt = Killteam::FromRow($row);
-					$kt->loadFireteams();
-					$kt->loadPloys();
-					$kt->loadEquipments();
 					$this->killteams[] = $kt;
 				}
 			}

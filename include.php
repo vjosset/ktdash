@@ -19,8 +19,8 @@
 	require_once $root . '/classes/faction.php';
 	require_once $root . '/classes/user.php';
 	require_once $root . '/classes/session.php';
-	require_once $root . '/classes/userteam.php';
-	require_once $root . '/classes/userteamoperative.php';
+	require_once $root . '/classes/roster.php';
+	require_once $root . '/classes/rosteroperative.php';
 	
 	function replacedistance($input) {
 		$output = $input;

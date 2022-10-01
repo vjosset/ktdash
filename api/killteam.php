@@ -21,8 +21,6 @@
 		$factionid = $_REQUEST['factionid'];
 		$killteamid = $_REQUEST['killteamid'];
 		
-		sleep(1);
-		
 		if ($killteamid == null || $killteamid == '') {
 			// No killteam id passed in, return all killteams
 			$killteams = Killteam::GetKillteams();
