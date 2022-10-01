@@ -30,7 +30,8 @@
 			$this->skipfields = [
 				"baseoperative", "weapons", "equipments",
 				"M", "APL", "GA", "DF", "SV", "W",
-				"username", "rostername", "factionname", "killteamname", "fireteamname", "optype"
+				"username", "rostername", "factionname", "killteamname", "fireteamname", "optype",
+				"keywords", "abilities", "uniqueactions"
 			];
         }
 		

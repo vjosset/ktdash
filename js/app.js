@@ -355,6 +355,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.myRosters.splice(idx, 1);
 						}
 						
+						// Update roster list
+						$scope.initRosters();
+						
 						// Done
 						toast("Roster \"" + $scope.deleteRoster.rostername + "\" deleted");
 				
@@ -441,10 +444,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					dataType: 'json',
 					data: JSON.stringify(roster),
 					success: function(data) {
-						// Put this team at the top (first in the array)
-						$scope.myRosters.splice(0, 0, data);
-						$scope.$apply();
 						toast("Roster " + roster.rostername + " saved!");
+						
+						// Send the user to their new roster
+						window.location.href = "/roster.php?rid=" + data.rosterid;
 					},
 					error: function(error) {
 						// Failed to save roster
@@ -547,7 +550,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Send the POST request to the API
 					$.ajax({
 						type: "POST",
-						url: APIURL + "roster.php?rid=" + roster.rosterid + "&clone=1&debug=1",
+						url: APIURL + "roster.php?rid=" + roster.rosterid + "&clone=1",
 						timeout: 5000,
 						async: true,
 						
@@ -556,8 +559,8 @@ var app = angular.module("kt", ['ngSanitize'])
 							// All good
 							roster = data;
 							
-							// Done
-							$scope.$apply();
+							// Send the user to their newly-cloned team
+							location.href = "/roster.php?rid=" + roster.rosterid;
 						},
 						// Failure
 						error: function(data, status, error) { // Failed to save operative

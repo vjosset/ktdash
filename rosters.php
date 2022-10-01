@@ -31,7 +31,7 @@
 		<?php include "header.shtml" ?>
 		
 		<?php
-		$pagetitle = ($ismine ? "My" : $myUser->username) . " Rosters";
+		$pagetitle = ($ismine ? "My" : $myUser->username . "'s") . " Rosters";
 		
 		include "og.php"
 		?>
@@ -80,7 +80,7 @@
 			<div ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 				<div class="row">
 					<div class="col-7">
-						<h3 id="myRoster.rosterid"><a href="/roster.php?utid={{ myRoster.rosterid }}">{{ myRoster.seq }} - {{ myRoster.rostername }}</a></h3>
+						<h3 id="myRoster.rosterid"><a href="/roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.seq }} - {{ myRoster.rostername }}</a></h3>
 					<?php
 						if ($ismine) {
 						?>

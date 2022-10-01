@@ -113,8 +113,8 @@
 			$paramtypes = "ss";
 			$params = array();
 			$params[] =& $paramtypes;
-			$params[] =& $r->userid;
-			$params[] =& $r->userid;
+			$params[] =& $this->userid;
+			$params[] =& $this->userid;
 
 			call_user_func_array(array($cmd, "bind_param"), $params);
 			$cmd->execute();

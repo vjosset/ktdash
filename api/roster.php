@@ -65,7 +65,7 @@
 			$u = Session::CurrentUser();
 			
 			// If this is a copy/clone/import
-			if ($_REQUEST["clone"] == 1) {
+			if ($_REQUEST["clone"] == "1") {
 				// Clone/import existing team
 				
 				// Prepare a new rosterid
@@ -79,6 +79,10 @@
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
 				
+				// Reorder all rosters and set the new roster's seq so it's always first
+				$u->reorderRosters();
+				$roster->seq = -1;
+				
 				// Commit this roster
 				$roster->DBInsert();
 				
@@ -91,6 +95,12 @@
 					// Commit this operative
 					$op->DBInsert();
 				}
+				
+				// Reorder all rosters
+				$u->reorderRosters();
+				
+				// Now get a fresh copy from DB
+				$roster = Roster::GetRoster($roster->rosterid);
 				
 				// All done
 				echo json_encode($roster);
@@ -187,6 +197,9 @@
 				foreach($r->operatives as $op) {
 					$op->DBDelete();
 				}
+				
+				// Now re-sort the rosters
+				$u->reorderRosters();
 				
 				// Done
 				echo "OK";

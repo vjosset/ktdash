@@ -3,16 +3,16 @@
 	require_once $root . '/include.php';
 	global $dbcon;
 	
-	// Get the requested user team id
-	$utid = $_REQUEST['ut'];
-	if ($utid == null || $utid == '') {
-		$utid = $_REQUEST['utid'];
+	// Get the requested roster id
+	$rid = $_REQUEST['r'];
+	if ($rid == null || $rid == '') {
+		$rid = $_REQUEST['rid'];
 	}
-	if ($utid == null || $utid == '') {
-		$utid = $_REQUEST['rosterid'];
+	if ($rid == null || $rid == '') {
+		$rid = $_REQUEST['rosterid'];
 	}
 	
-	$myRoster = Roster::GetRoster($utid);
+	$myRoster = Roster::GetRoster($rid);
 	$myRoster->loadOperatives();
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myRoster->userid;
