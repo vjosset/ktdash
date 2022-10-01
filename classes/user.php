@@ -68,9 +68,6 @@
             return null;
         }
 		
-		/* GetRosters()
-		** Returns an array of all the teams for the current user
-		*/
 		public function loadRosters() {
 			global $dbcon;
 			
@@ -92,6 +89,35 @@
 					$this->rosters[] = $ut;
                 }
             }
+		}
+		
+		public function reorderRosters() {
+			global $dbcon;
+			
+			// Always put new rosters first, pushing all other rosters down
+			// First, reorder the user's rosters starting at 0 (row_number() starts at 1 so we use "- 1")
+			$sql =
+				"UPDATE
+					Roster AS R
+				  JOIN
+					( SELECT rosterid, row_number() OVER (PARTITION BY userid ORDER BY seq) AS rownum
+					  FROM Roster
+					  WHERE userid = ?
+					) AS S
+				  ON  S.rosterid = R.rosterid
+				SET
+					R.seq = S.rownum - 1 
+				WHERE R.userid = ?;";
+			
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "ss";
+			$params = array();
+			$params[] =& $paramtypes;
+			$params[] =& $r->userid;
+			$params[] =& $r->userid;
+
+			call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->execute();
 		}
 	}
 ?>

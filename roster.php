@@ -47,7 +47,7 @@
 							if ($me != null) {
 								// User is logged in
 								?>
-								<a href="" ng-click="initImportRoster(myRoster);"><i class="far fa-plus-square fa-fw"></i> Add to My Rosters</a>
+								<a href="" ng-click="cloneRoster(myRoster);"><i class="far fa-plus-square fa-fw"></i> Add to My Rosters</a>
 								<?php
 							} else {
 								// User is not logged in

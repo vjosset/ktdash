@@ -64,82 +64,69 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 			
-			// Get the submitted roster
-			$r = Roster::FromJSON(file_get_contents('php://input'));
+			// If this is a copy/clone/import
+			if ($_REQUEST["clone"] == 1) {
+				// Clone/import existing team
 				
-			// Force the user id on the roster to be the current user
-			$r->userid = $u->userid;
+				// Prepare a new rosterid
+				$newrosterid = CommonUtils\shortId();
 				
-			// Validate the roster's faction and killteam
-			$kt = KillTeam::FromDB($r->factionid, $r->killteamid);
-			
-			if ($kt == null) {
-				// Faction or killteam don't exist
-				header('HTTP/1.0 404 Faction or Killteam not found');
-				die();
-			}
-			
-			// Check if this team exists
-			if ($r->rosterid == null || $r->rosterid == "") {
-				// No user team ID, create a new one
-				$r->rosterid = CommonUtils\shortId();
+				// Get the original roster
+				$origrosterid = $_REQUEST['rid'];
+				$roster = Roster::GetRoster($origrosterid);
 				
-				global $dbcon;
+				// Update its values for the current user and new roster id
+				$roster->rosterid = $newrosterid;
+				$roster->userid = $u->userid;
 				
-				// Always put new rosters first, pushing all other rosters down
-				// First, reorder the user's rosters starting at 1
-				$sql =
-					"UPDATE
-						Roster AS R
-					  JOIN
-						( SELECT rosterid, row_number() OVER (PARTITION BY userid ORDER BY seq) AS rownum
-						  FROM Roster
-						  WHERE userid = ?
-						) AS S
-					  ON  S.rosterid = R.rosterid
-					SET
-						R.seq = S.rownum
-					WHERE R.userid = ?;";
+				// Commit this roster
+				$roster->DBInsert();
 				
-				$cmd = $dbcon->prepare($sql);
-				$paramtypes = "ss";
-				$params = array();
-				$params[] =& $paramtypes;
-				$params[] =& $r->userid;
-				$params[] =& $r->userid;
-
-				call_user_func_array(array($cmd, "bind_param"), $params);
-				$cmd->execute();
-				
-				// Rosters are now order by Seq, starting at 1 (not 0)
-				// Now we can insert this new team as Seq = 0
-				$r->seq = 0;
-				
-				// Now save this team to DB
-				$r->DBInsert();
-				
-				// Now get a fresh copy from DB
-				$r = Roster::GetRoster($r->rosterid);
-				
-				// Done
-				echo json_encode($r);
-			}
-			else {
-				// Submitted roster has an ID, check if this user owns it
-				$tempr = Roster::GetRoster($r->rosterid);
-				
-				if ($tempr == null || $tempr->userid != $u->userid) {
-					// Roster not found or belongs to someone else		
-					header('HTTP/1.0 404 Roster not found');
-					die();
-				} else {
-					// Roster exists and belongs to this user, good to update
-					//	Can't change faction or kill team on a roster - Overwrite submitted values
-					$r->factionid = $tempr->factionid;
-					$r->killteamid = $tempr->killteamid;
+				// Update all operatives
+				foreach($roster->operatives as $op) {
+					$op->rosteropid = CommonUtils\shortId();
+					$op->userid = $u->userid;
+					$op->rosterid = $newrosterid;
 					
-					// Commit to DB
-					$r->DBUpdate();
+					// Commit this operative
+					$op->DBInsert();
+				}
+				
+				// All done
+				echo json_encode($roster);
+			} else {
+				// Get the submitted roster
+				$r = Roster::FromJSON(file_get_contents('php://input'));
+				
+				// Force the user id on the roster to be the current user
+				$r->userid = $u->userid;
+					
+				// Validate the roster's faction and killteam
+				$kt = KillTeam::FromDB($r->factionid, $r->killteamid);
+				
+				if ($kt == null) {
+					// Faction or killteam don't exist
+					header('HTTP/1.0 404 Faction or Killteam not found');
+					die();
+				}
+				
+				// Check if this team exists
+				if ($r->rosterid == null || $r->rosterid == "") {
+					// No user team ID, create a new one
+					$r->rosterid = CommonUtils\shortId();
+					
+					// Make sure rosters are in seq order
+					$u->reorderRosters();
+					
+					// Rosters are now order by Seq, starting at 10
+					// Now we can insert this new team as Seq = -1
+					$r->seq = -1;
+					
+					// Now save this team to DB
+					$r->DBInsert();
+					
+					// Now re-sort the rosters
+					$u->reorderRosters();
 					
 					// Now get a fresh copy from DB
 					$r = Roster::GetRoster($r->rosterid);
@@ -147,7 +134,32 @@
 					// Done
 					echo json_encode($r);
 				}
+				else {
+					// Submitted roster has an ID, check if this user owns it
+					$tempr = Roster::GetRoster($r->rosterid);
+					
+					if ($tempr == null) {
+						// Roster not found or belongs to someone else		
+						header('HTTP/1.0 404 Roster not found');
+						die();
+					} else {
+						// Roster exists and belongs to this user, good to update
+						//	Can't change faction or kill team on an existing roster - Overwrite submitted values
+						$r->factionid = $tempr->factionid;
+						$r->killteamid = $tempr->killteamid;
+						
+						// Commit to DB
+						$r->DBUpdate();
+						
+						// Now get a fresh copy from DB
+						$r = Roster::GetRoster($r->rosterid);
+						
+						// Done
+						echo json_encode($r);
+					}
+				}
 			}
+				
 		}
 	}
 	

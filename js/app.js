@@ -535,6 +535,38 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+		
+			// cloneRoster()
+			// Clones the specified roster into the current user's rosters
+			// Can be used for imports or clones
+			$scope.cloneRoster = function(roster) {
+				if ($scope.currentuser == null) {
+					// Not logged in - Cannot import
+					toast("Cannot import this roster - You are not logged in");
+				} else {
+					// Send the POST request to the API
+					$.ajax({
+						type: "POST",
+						url: APIURL + "roster.php?rid=" + roster.rosterid + "&clone=1&debug=1",
+						timeout: 5000,
+						async: true,
+						
+						// Success
+						success: function(data) { // Saved
+							// All good
+							roster = data;
+							
+							// Done
+							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not save this roster: \r\n" + error);
+							console.log("Error: " + error);
+						}
+					});
+				}
+			}
 		}
 		
 		// OPERATIVES

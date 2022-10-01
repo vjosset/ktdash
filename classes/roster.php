@@ -15,10 +15,10 @@
         function __construct() {
             $this->TableName = "Roster";
             $this->Keys = ["rosterid"];
-			$this->skipfields = ["operatives"];
+			$this->skipfields = ["operatives","username","factionname","killteamname","oplist"];
         }
 		
-		public function GetRoster($utid) {
+		public function GetRoster($rid) {
 			global $dbcon;
 			
 			// Get the operatives for this team
@@ -27,7 +27,7 @@
 			$paramtypes = "s";
 			$params = array();
             $params[] =& $paramtypes;
-            $params[] =& $utid;
+            $params[] =& $rid;
 
             call_user_func_array(array($cmd, "bind_param"), $params);
             $cmd->execute();
