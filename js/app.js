@@ -49,18 +49,15 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Rosters"
-					console.log("Already logged in - Sending user to My Rosters");
 					window.location.href = "/rosters.php";
 				}
 				
 				$scope.loading = false;
-				trackEvent('auth', 'form');
 				var ru = GetQS("ru");
 				if (ru == "" || ru == null) {
 					// No redirect URL defined, use default
 					ru = "/rosters.php";
 				}
-				console.log("Loaded login form with RU: " + ru);
 				$scope.loginForm.redirectUrl = ru;
 			}
 			
@@ -142,7 +139,6 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Rosters"
-					console.log("Already logged in - Sending user to My Rosters");
 					window.location.href = "/rosters.php";
 				}
 			};
@@ -151,8 +147,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Signs the user up by creating a new user record, signing them in, and sending them to the "My Rosters" page.
 			$scope.signUp = function() {
 				$scope.signUpForm.error = null;
-				
-				console.log("signUp()");
 				
 				$.ajax({
 					type: "POST",
@@ -189,9 +183,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Initializes the "My Rosters" page
 			$scope.initRosters = function(uid) {
 				$scope.loading = true;
-				console.log("initRosters(" + uid + ")");
 				
-				let isMe = uid == null || uid == "" && $scope.currentuser != null && uid == $scope.currentuser.userid;
+				let isMe = ($scope.currentuser != null && uid == $scope.currentuser.userid);
 				
 				if (isMe) {
 					$scope.MODE = "MyRosters";
@@ -245,8 +238,6 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.loading = true;
 				$scope.MODE = "Roster";
 				
-				console.log("MODE: " + $scope.MODE);
-				
 				$.ajax({
 					type: "GET",
 					url: APIURL + "roster.php?rid=" + rid,
@@ -268,7 +259,26 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.MODE = "Roster";
 						}
 						
-						console.log("Got roster: " + JSON.stringify($scope.myRoster));
+						// Get the roster's killteam and fireteam info
+						if (!$scope.myRoster.killteam || $scope.myRoster.killteam == null) {
+							// Not yet loaded - Get it
+							$.ajax({
+								type: "GET",
+								url: APIURL + "killteam.php?fa=" + $scope.myRoster.factionid + "&kt=" + $scope.myRoster.killteamid,
+								timeout: 5000,
+								async: false,
+								dataType: 'json',
+								success: function(data) {
+									// Got it
+									$scope.myRoster.killteam = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+								},
+								error: function(error) {
+									// Failed to save roster
+									toast("Could not get killteam: " + error);
+									$scope.$apply();
+								}
+							});
+						}
 						
 						$scope.loading = false;
 						$scope.$apply();
@@ -368,7 +378,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Failure
 					error: function(data, status, error) { // Failed to save operative
 						toast("Could not delete this roster: \r\n" + error);
-						console.log("Error: " + error);
 				
 						// Close the modal
 						$('#deleterostermodal').modal("hide");
@@ -451,7 +460,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					},
 					error: function(error) {
 						// Failed to save roster
-						console.log("Could not save roster: " + error);
 						toast("Could not save roster: \r\n" + error);
 						$scope.$apply();
 					}
@@ -465,18 +473,15 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Moves the specified roster up in the list (decrease seq)
 			$scope.moveRosterUp = function(roster, index) {
 				// Decrement the index for this roster
-				console.log("moveRosterUp(" + roster.seq + "-" + roster.rostername + " up (index: " + index + ")");
 				if (index > 0) {
 					// Roster is not the first one in the list - Reduce its index
 					roster.seq = roster.seq - 1;
-					console.log("   New seq: " + roster.seq);
 					
 					// Push this update to the API
 					$scope.commitRoster(roster);
 					
 					// Now find the roster that used to be at the previous seq and increase its seq
 					let prev = $scope.myRosters[index - 1];
-					console.log("   Moving [" + (index - 1) + "] " + prev.rostername + " down");
 					$scope.myRosters[index - 1].seq = $scope.myRosters[index - 1].seq + 1;
 					
 					// Push this update to the API
@@ -494,8 +499,6 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (index >= $scope.myRosters.length) {
 					// Already at the end - nothing to do
 				} else {
-					console.log("moveRosterDown(" + roster.seq + "-" + roster.rostername + " up (index: " + index + ")");
-					console.log("Moving [" + index + "] " + roster.rostername + " down");
 					$scope.moveRosterUp($scope.myRosters[index + 1], index + 1);
 				}
 			}
@@ -534,7 +537,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Failure
 					error: function(data, status, error) { // Failed to save operative
 						toast("Could not save this roster: \r\n" + error);
-						console.log("Error: " + error);
 					}
 				});
 			}
@@ -565,10 +567,35 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Failure
 						error: function(data, status, error) { // Failed to save operative
 							toast("Could not save this roster: \r\n" + error);
-							console.log("Error: " + error);
 						}
 					});
 				}
+			}
+			
+			// initRenameRoster();
+			// Pop-up the roster rename modal
+			$scope.initRenameRoster = function(roster) {
+				console.log("initRenameRoster(" + roster.rostername + ")");
+				$scope.renameRoster = roster;
+				$scope.renameRoster.newrostername =  roster.rostername;
+				
+				// Show the modal
+				$('#renamerostermodal').modal("show");
+			}
+			
+			// saveRenameRoster()
+			// Save roster rename
+			$scope.saveRenameRoster = function() {				
+				$scope.renameRoster.rostername = $scope.renameRoster.newrostername;
+				delete $scope.renameRoster.newrostername;
+				
+				// Commit to API/DB
+				$scope.commitRoster($scope.renameRoster);
+				
+				// Close the modal
+				$('#renamerostermodal').modal("hide");
+				
+				$scope.$apply();
 			}
 		}
 		
@@ -643,8 +670,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
 				}
 				
-				trackEvent('dashboard', 'opwounds', inc);
-				
 				if (op.curW == 0) {
 					// This operative is now dead/incapacitated - Collapse its info
 					// First, find this operative
@@ -661,7 +686,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns a boolean indicating whether the specified operative has any equipments of the specified type.
 			// If type is not specified, returns a boolean indicating whether the operative has any equipments.
 			$scope.opHasEq = function(op, eqtype, eqvar1) {
-				//console.log("opHasEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
 				if (op == null) {
 					return false;
 				}
@@ -690,7 +714,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns an array of the specified operative's equipments of the specified type.
 			// If type is not specified, returns an array of the specified operative's equipments.
 			$scope.getOpEq = function(op, eqtype, eqvar1) {
-				//console.log("getOpEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
 				if (op == null) {
 					return [];
 				}
@@ -715,28 +738,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initAddOp()
 			// Pops-up the "Add Operative" modal
 			$scope.initAddOp = function(roster) {
-				// Load the killteam for this roster
-				if (!roster.killteam || roster.killteam == null) {
-					// Not yet loaded - Get it
-					$.ajax({
-						type: "GET",
-						url: APIURL + "killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid,
-						timeout: 5000,
-						async: false,
-						dataType: 'json',
-						success: function(data) {
-							// Got it
-							roster.killteam = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-						},
-						error: function(error) {
-							// Failed to save roster
-							console.log("Could not get killteam: " + error);
-							toast("Could not get killteam: " + error);
-							$scope.$apply();
-						}
-					});
-				}
-				
 				// Prepare the dialog to add an operative to the selected team
 				if ($scope.addop == null || $scope.roster != $scope.addop.roster) {
 					// Only reset the operative if this is for a different team than last time use added an operative
@@ -757,6 +758,33 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#addoptorostermodal').modal("show");
 			}
 			
+			// commitRoster()
+			// Commits the specified roster to the DB/API.
+			$scope.commitRosterOp = function(operative) {
+				// Send the update request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosteroperative.php",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					data: JSON.stringify(operative),
+					
+					// Success
+					success: function(data) { // Saved
+						// All good
+						operative = data;
+						
+						// Done
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not save this operative: \r\n" + error);
+					}
+				});
+			}
+		
 			// Add the selected operative
 			$scope.addOperative = function() {
 				// Validate the input
@@ -787,8 +815,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					"curW": $scope.addop.W,
 					"notes": ""
 				};
-				
-				console.log("Adding new operative: \r\n" + JSON.stringify(newop));
 				
 				// Parse the weapons
 				newop.wepids = "";
@@ -836,7 +862,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					},
 					error: function(error) {
 						// Failed to save roster
-						console.log("Could not add operative to roster: " + error);
 						toast("Could not add operative to roster: " + error);
 					}
 				});
@@ -844,7 +869,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.getaddopname = function() {
-				trackEvent("myteams", "genopname", $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid);
 				var url = APIURL + "/name.php?factionid=" + $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid;
 				$.ajax({
 					type: "GET",
@@ -862,7 +886,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
-				trackEvent("myteams", "genopname", faid + "_" + ktid + "_" + ftid + "_" + opid);
 				var url = APIURL + "/name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
 				$.ajax({
 					type: "GET",
@@ -877,6 +900,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+			
 		}
 		
 		// COMPENDIUM
@@ -894,7 +918,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					dataType: 'json',
 					success: function(data) {
 						// Got factions
-						console.log("Got factions: " + JSON.stringify(data));
 						$scope.factions = data;
 						$scope.loading = false;
 						$scope.$apply();
@@ -1005,7 +1028,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) {
-						console.log("Data: " + data);
 						id = data;
 					},
 					
@@ -1051,7 +1073,6 @@ var app = angular.module("kt", ['ngSanitize'])
 						"ruletext": weprules[i].trim()
 					}
 					
-					//console.log("Looking at rule #" + i + "\r\n" + JSON.stringify(rule));
 					if (rule.rulename.startsWith("*")) {
 						// One-off special weapon rules (e.g. "*Detonate" or "*Custom"); skip these in the popup.
 						// Their description should be in the operative's abilities.

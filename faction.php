@@ -72,7 +72,7 @@
 		
 		<div ng-hide="loading">
 			<div class="card-group">
-				<div ng-repeat="killteam in faction.killteams" class="col-12 col-md-6 col-xl-4">
+				<div ng-repeat="killteam in faction.killteams" class="col-12 col-md-6 col-xl-4 p-1">
 					<div class="card border-light shadow darkcard">
 						<!-- Portrait -->
 						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.png" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />

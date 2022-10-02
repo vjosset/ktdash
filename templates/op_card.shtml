@@ -1,13 +1,13 @@
-<div class="card darkcard">
+<div class="card darkcard card-body m-1 p-1">
 	<!-- Compendium Card Title -->
 	<div ng-if="MODE == 'Compendium'" class="pointer card-title">
 		<div ng-click="showpopup(operative.opname, operative.description);">
-			<h4 style="display: inline;">{{ operative.opname }} C</h4>
+			<h4 style="display: inline;">{{ operative.opname }}</h4>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 		</div>
 	</div>
 	
-	<!-- User Team Card Title -->
+	<!-- Roster Card Title -->
 	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title">
 		<h3>
 			{{ operative.opname }}
@@ -15,8 +15,11 @@
 		<span class="text-tiny">
 			{{ operative.optype }}
 		</span>
-		<i class="pointer fas fa-trash fa-fw float-end"></i>
-		<i class="pointer fas fa-edit fa-fw float-end"></i>
+		
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-trash fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
 	</div>
 	
 	<!-- Dashboard Card Title -->
@@ -31,7 +34,7 @@
 	</div>
 	
 	<!-- Card Content -->
-	<div id="opinfo_{{ $index }}" class="collapse show m-1 p-0 m-0">
+	<div id="opinfo_{{ $index }}" class="collapse show">
 		<!-- Dashboard Actions -->
 		<div class="row small m-0 p-0" ng-if="MODE == 'Dashboard'">
 			<div class="col-6 small">
@@ -42,7 +45,7 @@
 			</div>
 		</div>
 		
-		<div class="row m-0 p-0" class="m-0 p-0">
+		<div class="row m-0 p-0">
 			<div class="col-5 m-0 p-0"
 				style=
 				"background-image: url('/img/portraits/{{ operative.factionid }}/{{ operative.killteamid }}/{{ operative.fireteamid }}/{{ operative.opid }}.jpg');
@@ -99,7 +102,7 @@
 		</div>
 		
 		<!-- Weapons List-->
-		<table ng-if="operative.weapons.length > 0" width="100%" class="m-1 line-top-light">
+		<table ng-if="operative.weapons.length > 0" width="100%" class="line-top-light">
 			<thead>
 				<tr>
 					<td>
@@ -217,7 +220,7 @@
 		</table>
 		
 		<!-- Abilities -->
-		<div class="m-1 line-top-light" ng-show="operative.abilities != null && (operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
+		<div class="line-top-light" ng-show="operative.abilities != null && (operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
 			<h6>Abilities</h6>
 			<!-- Regular Abilities -->
 			<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
@@ -232,7 +235,7 @@
 		</div>
 		
 		<!-- Unique Actions -->
-		<div class="m-1 line-top-light" ng-show="operative.uniqueactions != null && (operative.uniqueactions.length + operative.equipments.filter(eqIsAction).length) > 0">
+		<div class="line-top-light" ng-show="operative.uniqueactions != null && (operative.uniqueactions.length + operative.equipments.filter(eqIsAction).length) > 0">
 			<h6>Unique Actions</h6>
 			<!-- Regular Unique Actions -->
 			<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
@@ -247,9 +250,9 @@
 		</div>
 		
 		<!-- Equipment -->
-		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="m-1 line-top-light">
-			<h6 class="pointer" ng-click="initEditOpEq(operative);">
-				Equipment <sup class="small text-end"><i class="fas fa-edit fa-fw"></i></sup>
+		<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0" class="m-1 line-top-light">
+			<h6>
+				Equipment</sup>
 			</h6>
 			<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 				{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
@@ -257,10 +260,17 @@
 		</div>
 		
 		<!-- Notes -->
-		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="m-1" class="m-1 line-top-light">
-			<h6 class="line-top-light">Notes</h6>
-			<textarea style="border: 0px solid; width: 100%;" rows="1" class="darkcard d-block" ng-model="operative.notes" ng-change="commitTeams();"></textarea>
-			<!-- div contenteditable="true" ng-model="operative.notes" ng-change="commitTeams();"></div -->
+		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="line-top-light">
+			<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
+				<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
+			</h6>
+			<div id="opnotes_{{ operative.rosteropid }}" class="collapse">
+				<textarea style="border: 0px solid; width: 100%; color: #EEE;" rows="3" class="darkcard d-block" ng-model="operative.notes" ng-change="commitRosterOp(operative);"></textarea>
+			</div>
+		</div>
+		<div ng-if="MODE == 'Roster' && operative.notes != null && operative.notes != ''" class="m-1 line-top-light">
+			<h6>Notes</h6>
+			{{ operative.notes }}
 		</div>
 	
 		<!-- Keywords -->

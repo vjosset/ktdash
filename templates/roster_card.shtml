@@ -1,0 +1,44 @@
+<div class="card darkcard m-1">
+	<!-- Portrait -->
+	<a href="roster.php?rid={{ myRoster.rosterid }}">
+		<img class="card-img-top" ng-src="/img/portraits/{{ myRoster.factionid }}/{{ myRoster.killteamid }}/{{ myRoster.killteamid }}.png" style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;" />
+	</a>
+	
+	<div class="card-title orange p-1">
+		<h2 class="text-center d-inline">
+			<a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a>
+		</h2>
+		<i class="float-end text-tiny pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
+		<div class="row">
+			<div class="col-6">
+				<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
+					{{ myRoster.killteamname }}
+				</a>
+			</div>
+			<div class="col-6" style="text-align: right;">
+				<?php
+				if ($ismine) {
+				?>
+				<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
+				<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
+				<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
+				<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Roster"></i>
+				<i class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"></i>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+	</div>
+	
+	<p class="card-text p-1 m-0 oswald" style="text-align:justify;">
+		{{ myRoster.notes }}
+	</p>
+	<p class="card-text p-1 m-0 oswald" style="text-align:justify;">
+		<em>{{ myRoster.opList }}</em>
+	</p>
+	<div ng-if="MODE == 'MyRosters'">
+		<h1><button class="btn btn-primary">DEPLOY</button></h1>
+	</div>
+</div>
+<br/>

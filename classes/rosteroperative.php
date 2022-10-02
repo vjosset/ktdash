@@ -35,20 +35,20 @@
 			];
         }
 		
-		public function GetRosterOperative($utoid) {
+		public function GetRosterOperative($roid) {
 			global $dbcon;
 			
 			//Get the requested RosterOperative
-			$uto = RosterOperative::FromDB($utoid);
+			$ro = RosterOperative::FromDB($roid);
 			
 			// Load the base operative for this RosterOperative
-			$uto->loadBaseOperative();
+			$ro->loadBaseOperative();
 			
 			// Load this operative's weapons and equipments
-			$uto->loadWeapons();
-			$uto->loadEquipments();
+			$ro->loadWeapons();
+			$ro->loadEquipments();
 			
-			return $uto;
+			return $ro;
 		}
 		
 		public function loadBaseOperative() {

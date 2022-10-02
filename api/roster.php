@@ -75,12 +75,14 @@
 				$origrosterid = $_REQUEST['rid'];
 				$roster = Roster::GetRoster($origrosterid);
 				
+				if ($roster->userid == $u->userid) {
+					// This is a clone of an existing roster for the current user - Rename the team "Copy"
+					$roster->rostername = "Copy of " . $roster->rostername;
+				}
+				
 				// Update its values for the current user and new roster id
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
-				
-				// Rename the team "Copy"
-				$roster->rostername = "Copy of " . $roster->rostername;
 				
 				// Reorder all rosters and set the new roster's seq so it's always first
 				$u->reorderRosters();
