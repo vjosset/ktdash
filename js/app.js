@@ -661,7 +661,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns a boolean indicating whether the specified operative has any equipments of the specified type.
 			// If type is not specified, returns a boolean indicating whether the operative has any equipments.
 			$scope.opHasEq = function(op, eqtype, eqvar1) {
-				console.log("opHasEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
+				//console.log("opHasEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
 				if (op == null) {
 					return false;
 				}
@@ -690,7 +690,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns an array of the specified operative's equipments of the specified type.
 			// If type is not specified, returns an array of the specified operative's equipments.
 			$scope.getOpEq = function(op, eqtype, eqvar1) {
-				console.log("getOpEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
+				//console.log("getOpEq(" + op.opid + ", " + eqtype + ", " + eqvar1);
 				if (op == null) {
 					return [];
 				}
@@ -710,6 +710,172 @@ var app = angular.module("kt", ['ngSanitize'])
 						return [];
 					}
 				}
+			}
+		
+			// initAddOp()
+			// Pops-up the "Add Operative" modal
+			$scope.initAddOp = function(roster) {
+				// Load the killteam for this roster
+				if (!roster.killteam || roster.killteam == null) {
+					// Not yet loaded - Get it
+					$.ajax({
+						type: "GET",
+						url: APIURL + "killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid,
+						timeout: 5000,
+						async: false,
+						dataType: 'json',
+						success: function(data) {
+							// Got it
+							roster.killteam = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						},
+						error: function(error) {
+							// Failed to save roster
+							console.log("Could not get killteam: " + error);
+							toast("Could not get killteam: " + error);
+							$scope.$apply();
+						}
+					});
+				}
+				
+				// Prepare the dialog to add an operative to the selected team
+				if ($scope.addop == null || $scope.roster != $scope.addop.roster) {
+					// Only reset the operative if this is for a different team than last time use added an operative
+					$scope.addop = {
+						"faction": roster.faction,
+						"killteam": roster.killteam,
+						"team": roster,
+						"fireteam": roster.killteam.fireteams[0],
+						"operative": roster.killteam.fireteams[0].operatives[0],
+						"opname": ""
+					};
+				}
+				
+				// Always reset the name
+				$scope.addop.opname = "";
+
+				// Show the modal
+				$('#addoptorostermodal').modal("show");
+			}
+			
+			// Add the selected operative
+			$scope.addOperative = function() {
+				// Validate the input
+				if ($scope.addop.operative == null) {
+					// No operative selected
+					toast("Please select an operative");
+					return;
+				}
+				
+				// Validate the input
+				if ($scope.addop.opname == null || $scope.addop.opname.trim() == "") {
+					// No name entered
+					toast("Please enter a name for this operative");
+					return;
+				}
+				
+				// Copy the selected operative from the form
+				let newop = {
+					"userid": $scope.currentuser.userid,
+					"rosterid": $scope.myRoster.rosterid,
+					"factionid": $scope.addop.operative.factionid,
+					"killteamid": $scope.addop.operative.killteamid,
+					"fireteamid": $scope.addop.operative.fireteamid,
+					"opid": $scope.addop.operative.opid,
+					"opname": $scope.addop.opname,
+					"wepids": "",
+					"eqids": "",
+					"curW": $scope.addop.W,
+					"notes": ""
+				};
+				
+				console.log("Adding new operative: \r\n" + JSON.stringify(newop));
+				
+				// Parse the weapons
+				newop.wepids = "";
+				for (let i = 0; i < $scope.addop.operative.weapons.length; i++) {
+					if ($scope.addop.operative.weapons[i].isselected) {
+						if (newop.wepids.length > 0) {
+							// Put a comma between weapons
+							newop.wepids += ",";
+						}
+						newop.wepids += $scope.addop.operative.weapons[i].wepid;
+					}
+				}
+				
+				// Parse the equipment
+				newop.eqids = "";
+				if ($scope.addop.operative.equipments) {
+					for (let i = 0; i < $scope.addop.operative.equipments.length; i++) {
+						if ($scope.addop.equipments.weapons[i].isselected) {
+							if (newop.eqids.length > 0) {
+								// Put a comma between equipments
+								newop.eqids += ",";
+							}
+							newop.eqids += $scope.addop.operative.equipments[i].eqids;
+						}
+					}
+				}
+				
+				// Commit this new operative to the API/DB
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosteroperative.php",
+					timeout: 5000,
+					async: false,
+					datatype: 'json',
+					data: JSON.stringify(newop),
+					success: function(data) {
+						// All good, refresh this team
+						$scope.initRoster();
+				
+						// Close the modal
+						$('#addoptorostermodal').modal("hide");
+						
+						// Tell the user their operative has been added
+						toast("Operative " + $scope.addop.opname + " added to team!");
+					},
+					error: function(error) {
+						// Failed to save roster
+						console.log("Could not add operative to roster: " + error);
+						toast("Could not add operative to roster: " + error);
+					}
+				});
+			}
+			
+			// Generate a name for an operative
+			$scope.getaddopname = function() {
+				trackEvent("myteams", "genopname", $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid);
+				var url = APIURL + "/name.php?factionid=" + $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid;
+				$.ajax({
+					type: "GET",
+					url: url,
+					timeout: 5000,
+					async: true,
+					dataType: 'text',
+					success: function(data) {
+						$scope.addop.opname = data.replace(/[\n\r]/g, '');
+						
+						$scope.$apply();
+					}
+				});
+			}
+			
+			// Generate a name for an operative
+			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
+				trackEvent("myteams", "genopname", faid + "_" + ktid + "_" + ftid + "_" + opid);
+				var url = APIURL + "/name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
+				$.ajax({
+					type: "GET",
+					url: url,
+					timeout: 5000,
+					async: true,
+					dataType: 'text',
+					success: function(data) {
+						op[namevar] = data.replace(/[\n\r]/g, '');;
+						
+						$scope.$apply();
+					}
+				});
 			}
 		}
 		
@@ -786,7 +952,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Now get the faction
 						$.ajax({
 							type: "GET",
-							url: APIURL + "killteam.php?factionid=" + GetQS('fa') + "&killteamid=" + GetQS("kt"),
+							url: APIURL + "killteam.php?fa=" + GetQS('fa') + "&kt=" + GetQS("kt"),
 							timeout: 5000,
 							async: true,
 							dataType: 'json',

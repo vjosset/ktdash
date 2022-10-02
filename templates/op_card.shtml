@@ -2,16 +2,9 @@
 	<!-- Compendium Card Title -->
 	<div ng-if="MODE == 'Compendium'" class="pointer card-title">
 		<div ng-click="showpopup(operative.opname, operative.description);">
-			<h4 style="display: inline;">{{ operative.opname }}</h4>
+			<h4 style="display: inline;">{{ operative.opname }} C</h4>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 		</div>
-	</div>
-	
-	<!-- My Team Card Title -->
-	<div ng-if="MODE == 'MyRoster'" class="card-title">
-		<h3>
-			{{ operative.opname }}
-		</h3>
 	</div>
 	
 	<!-- User Team Card Title -->
@@ -22,15 +15,15 @@
 		<span class="text-tiny">
 			{{ operative.optype }}
 		</span>
-		<i class="fas fa-trash fa-fw float-end"></i>
-		<i class="fas fa-edit fa-fw float-end"></i>
+		<i class="pointer fas fa-trash fa-fw float-end"></i>
+		<i class="pointer fas fa-edit fa-fw float-end"></i>
 	</div>
 	
 	<!-- Dashboard Card Title -->
 	<div ng-if="MODE == 'Dashboard'" class="card-title">
 		<h3 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
-			<i class="fas fa-chevron-down fa-fw"></i>
-			{{ operative.opname }}
+			<i class="pointer fas fa-chevron-down fa-fw"></i>
+			{{ operative.opname }} D
 			<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
 			<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 			<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>

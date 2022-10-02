@@ -79,6 +79,9 @@
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
 				
+				// Rename the team "Copy"
+				$roster->rostername = "Copy of " . $roster->rostername;
+				
 				// Reorder all rosters and set the new roster's seq so it's always first
 				$u->reorderRosters();
 				$roster->seq = -1;

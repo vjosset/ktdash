@@ -71,5 +71,32 @@
                 }
             }
 		}
+		
+		public function reorderOperatives() {
+			global $dbcon;
+			
+			$sql =
+				"UPDATE
+					RosterOperative AS RO
+				  JOIN
+					( SELECT rosteropid, row_number() OVER (PARTITION BY rosterid ORDER BY seq) AS rownum
+					  FROM RosterOperative
+					  WHERE rosterid = ?
+					) AS S
+				  ON  S.rosteropid = R.rosteropid
+				SET
+					RO.seq = S.rownum - 1 
+				WHERE R.rosterid = ?;";
+			
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "ss";
+			$params = array();
+			$params[] =& $paramtypes;
+			$params[] =& $this->rosterid;
+			$params[] =& $this->rosterid;
+
+			call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->execute();
+		}
 	}
 ?>

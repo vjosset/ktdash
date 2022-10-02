@@ -92,7 +92,7 @@
 						<a class="float-end" ng-href="/killteam.php?fa={{myRoster.factionid}}&kt={{myRoster.killteamid}}">{{myRoster.killteamname}}</a><br/>
 						<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);"></i>
 						<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);"></i>
-						<a href="/roster.php?utid={{ myRoster.rosterid }}"><i class="fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);"></i></a>
+						<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);"></i>
 						<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);"></i>
 						<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);"></i>
 						<!-- i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);"></i -->

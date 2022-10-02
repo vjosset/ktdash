@@ -144,11 +144,11 @@
 </div>
 
 <!-- Add operative modal dialog -->
-<div class="modal fade oswald" id="addoptoteammodal" tabindex="-1" role="dialog" aria-labelledby="addoptoteammodallabel" aria-hidden="true">
+<div class="modal fade oswald" id="addoptorostermodal" tabindex="-1" role="dialog" aria-labelledby="addoptorostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="addoptoteammodallabel">Add Operative to {{ addop.team.teamname }}</h5>
+				<h5 class="modal-title cinzel" id="addoptorostermodallabel">Add Operative to {{ addop.roster.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">

@@ -13,10 +13,6 @@
 			//Create a new operative
 			POSTRosterOperative();
 			break;
-		case "PUT":
-			//Update an existing operative (also uses the "POST" method)
-			POSTRosterOperative();
-			break;
 		case "DELETE":
 			//Delete an existing operative
 			DELETERosterOperative();
@@ -30,20 +26,20 @@
 
     function GETRosterOperative() {
 		// Get the requested operative
-		$utoid = $_REQUEST['utoid'];
+		$roid = $_REQUEST['roid'];
 		
-		if ($utoid == null || $utoid == '') {
+		if ($roid == null || $roid == '') {
 			// No rosteropid specified - fail
-			header('HTTP/1.0 404 Invalid rosteropid/utoid');
+			header('HTTP/1.0 404 Invalid rosteropid');
 			die();
 		} else {
 			// Try to find this operative
-			$uto = RosterOperative::GetRosterOperative($utoid);
-			if ($uto == null) {
+			$ro = RosterOperative::GetRosterOperative($roid);
+			if ($roid == null) {
 				header('HTTP/1.0 404 Operative not found');
 				die();
 			} else {
-				echo json_encode($uto);
+				echo json_encode($roid);
 			}
 		}
     }
@@ -59,25 +55,25 @@
 			$u = Session::CurrentUser();
 			
 			// Get the requested operative
-			$utoid = $_REQUEST['utoid'];
+			$roid = $_REQUEST['roid'];
 			
-			if ($utoid == null || $utoid == '') {
+			if ($roid == null || $roid == '') {
 				// No rosteropid specified - fail
-				header('HTTP/1.0 404 Invalid rosteropid/utoid');
+				header('HTTP/1.0 404 Invalid rosteropid');
 				die();
 			} else {
 				// Try to find this operative
-				$uto = RosterOperative::GetRosterOperative($utoid);
-				if ($uto == null) {
-					header('HTTP/1.0 404 Operative not found A');
+				$ro = RosterOperative::GetRosterOperative($roid);
+				if ($ro == null) {
+					header('HTTP/1.0 404 Operative not found');
 					die();
 				} else {
-					if ($uto->userid != $u->userid) {
+					if ($ro->userid != $u->userid) {
 						// This operative belongs to someone else - Fail
-						header('HTTP/1.0 404 Operative not found B');
+						header('HTTP/1.0 404 Operative not found');
 						die();
 					} else {
-						$uto->DBDelete();
+						$ro->DBDelete();
 						echo "OK";
 					}
 				}
@@ -95,58 +91,50 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 			
-			// Get the requested operative from the input JSON
+			// Get the new operative from the input JSON
 			$newop = RosterOperative::FromJSON(file_get_contents('php://input'));
-			echo "Puttting or Posting operative " . $newop->rosteropid;
-			$utoid = $newop->rosteropid;
 			
-			if ($utoid == null || $utoid == '') {
-				// No rosteropid specified - fail
-				header('HTTP/1.0 404 Invalid rosteropid/utoid');
-				die();
-			} else {
+			if ($newop->rosteropid != null || $newop->rosteropid != '') {
 				// Try to find this operative
-				$uto = RosterOperative::GetRosterOperative($utoid);
-				echo "UTO: " + json_encode($uto);
-				if ($uto == null) {
-					header('HTTP/1.0 404 Operative not found A');
+				$ro = RosterOperative::GetRosterOperative($roid);
+				
+				if ($ro == null) {
+					header('HTTP/1.0 404 Operative not found');
 					die();
 				} else {
-					if ($uto->userid != $u->userid) {
+					if ($ro->userid != $u->userid) {
 						// This operative belongs to someone else - Fail
-						header('HTTP/1.0 404 Operative not found B');
+						header('HTTP/1.0 404 Operative not found');
 						die();
-					} else {
-						// Got the operative - Now find its updates
-						echo "Got operative " + json_encode($newop);
-						
-						// Check the team this operative should be added to
-						$ut = Roster::GetRoster($newop->rosterid);
-						if ($ut == null || $ut->userid != $u->userid) {
-							// User team not found or belongs to someone else
-							header('HTTP/1.0 404 Operative not found C');
-							die();
-						} else {
-							// All good
-							if ($newop->rosteropid == null || $newop->rosterid == "") {
-								$newop->rosteropid = CommonUtils\shortId();
-							}
-							
-							// Make sure they're assigned correctly
-							$newop->userid = $u->userid;
-							
-							// Validate the faction and killteam
-							if ($newop->factionid != $ut->factionid || $newop->killteamid != $ut->killteamid) {
-								header('HTTP/1.0 401 Invalid operative for this killteam');
-								die();
-							} else {
-								// Done
-								$newop->DBSave();
-								echo json_encode($newop);
-							}
-						}
-						
 					}
+				}
+			}
+			
+			// Check the roster this operative should be added to
+			$r = Roster::GetRoster($newop->rosterid);
+			if ($r == null || $r->userid != $u->userid) {
+				// User team not found or belongs to someone else
+				header('HTTP/1.0 404 Roster not found');
+				die();
+			} else {
+				// All good
+				if ($newop->rosteropid == null || $newop->rosterid == "") {
+					// No roster operative ID, generate a new one
+					$newop->rosteropid = CommonUtils\shortId();
+				}
+				
+				// Make sure the fields are assigned correctly
+				$newop->userid = $u->userid;
+				$newop->rosterid = $r->rosterid;
+				
+				// Validate the faction and killteam
+				if ($newop->factionid != $r->factionid || $newop->killteamid != $r->killteamid) {
+					header('HTTP/1.0 401 Invalid operative for this killteam');
+					die();
+				} else {
+					// Done
+					$newop->DBSave();
+					echo json_encode($newop);
 				}
 			}
 		}

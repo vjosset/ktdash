@@ -36,11 +36,16 @@
 				<div class="col-5" style="text-align: right;">
 					<a ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>&nbsp;&nbsp;
 					<div class="col-12" ng-if="!loading && <?php echo $ismine > 0 ? "true" : "false" ?>">
-						<i class="far fa-plus-square fa-fw" ng-click="initAddOp(myRoster);"></i>
-						<i class="fas fa-edit fa-fw" ng-click="initRenameTeam(myRoster);"></i>
-						<i class="fas fa-share-square fa-fw" ng-click="trackEvent('myRoster', 'getshareurl'); showShareRoster(myRoster);"></i>
-						<i class="fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);"></i>
+						<i class="pointer far fa-plus-square fa-fw" ng-click="initAddOp(myRoster);"></i>
+						<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);"></i>
+						<i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);"></i>
 						&nbsp;&nbsp;
+						<?php
+						if ($ismine) {
+						?>
+						<button class="btn btn-sm btn-secondary" ng-click="initDeploy(myRoster);">Deploy!</button>
+						<?php
+					} ?>
 					</div>
 					<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
 						<?php
