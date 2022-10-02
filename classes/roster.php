@@ -83,10 +83,10 @@
 					  FROM RosterOperative
 					  WHERE rosterid = ?
 					) AS S
-				  ON  S.rosteropid = R.rosteropid
+				  ON  S.rosteropid = RO.rosteropid
 				SET
 					RO.seq = S.rownum - 1 
-				WHERE R.rosterid = ?;";
+				WHERE RO.rosterid = ?;";
 			
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "ss";

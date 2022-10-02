@@ -74,6 +74,10 @@
 						die();
 					} else {
 						$ro->DBDelete();
+						
+						// Now re-order operatives so their seqs are always sequential
+						$r = Roster::GetRoster($ro->rosterid);
+						$r->reorderOperatives();
 						echo "OK";
 					}
 				}
@@ -132,8 +136,13 @@
 					header('HTTP/1.0 401 Invalid operative for this killteam');
 					die();
 				} else {
-					// Done
+					// Save this operative to DB
 					$newop->DBSave();
+					
+					// Reorder operatives so their seqs are always sequential
+					$r->reorderOperatives();
+					
+					// Done
 					echo json_encode($newop);
 				}
 			}

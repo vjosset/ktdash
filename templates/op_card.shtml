@@ -10,16 +10,16 @@
 	<!-- Roster Card Title -->
 	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title">
 		<h3>
-			{{ operative.opname }}
+			{{ operative.seq }} - {{ operative.opname }}
 		</h3>
 		<span class="text-tiny">
 			{{ operative.optype }}
 		</span>
 		
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-trash fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-trash fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-edit fa-fw" ng-click="initEditOp(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
+		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
 	</div>
 	
 	<!-- Dashboard Card Title -->
@@ -274,7 +274,7 @@
 		</div>
 	
 		<!-- Keywords -->
-		<div class="small m-1 line-top-light">
+		<div class="card-footer small m-1 line-top-light align-bottom">
 			<em class="small">{{ operative.keywords }}</em>
 		</div>
 	</div>

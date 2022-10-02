@@ -30,7 +30,11 @@
 		<?php include "templates/dialogs.shtml" ?>
 		
 		<div class="orange container-fluid">
-			<h1 style="display: inline;"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo $ismine ? "" : $myRoster->username . "'s " ?><?php echo $myRoster->rostername ?></h1>
+			<h1 style="display: inline;"><span class="fas fa-users fa-fw"></span>&nbsp;
+				<!-- ?php echo $ismine ? "" : $myRoster->username . "'s " ? --><!-- ?php echo $myRoster->rostername ? -->
+				<!-- span ng-if="!<?php echo $ismine ? "true" : "false" ?>"><?php echo $myRoster->username . ($myRoster->userid == "prebuilt" ? "" : "'s ") ?></span -->
+				<span>{{ myRoster.rostername }}</span>
+			</h1>
 			<div class="row">
 				<div class="col-7">
 					<a ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>&nbsp;&nbsp;

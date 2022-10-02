@@ -573,7 +573,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			// initRenameRoster();
-			// Pop-up the roster rename modal
+			// Pops-up the roster rename modal
 			$scope.initRenameRoster = function(roster) {
 				console.log("initRenameRoster(" + roster.rostername + ")");
 				$scope.renameRoster = roster;
@@ -852,7 +852,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					data: JSON.stringify(newop),
 					success: function(data) {
 						// All good, refresh this team
-						$scope.initRoster();
+						$scope.initRoster(newop.rosterid);
 				
 						// Close the modal
 						$('#addoptorostermodal').modal("hide");
@@ -899,6 +899,84 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.$apply();
 					}
 				});
+			}
+			
+			// initDeleteOp()
+			// Pops-up the "Delete Operative" modal
+			$scope.initDeleteOp = function(op, roster) {
+				console.log("initDeleteOperative(" + op.opname + ", " + roster.rostername + ")");
+				$scope.optodelete = {
+					"operative": op,
+					"roster": roster,
+				};
+
+				// Show the modal
+				$('#deleteopmodal').modal("show");
+			}
+			
+			// deleteOp()
+			// Delete the specified operative from its team
+			$scope.deleteOp = function() {	
+				let idx = $scope.optodelete.roster.operatives.indexOf($scope.optodelete.operative);
+				if (idx > -1) {
+					$scope.optodelete.roster.operatives.splice(idx, 1);
+				}
+				
+				$.ajax({
+					type: "DELETE",
+					url: APIURL + "/rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid,
+					timeout: 5000,
+					async: true,
+					dataType: 'text',
+					success: function(data) {
+						// Close the modal
+						$('#deleteopmodal').modal("hide");
+						
+						// Reload this roster
+						$scope.initRoster($scope.optodelete.roster.rosterid);
+						
+						// Tell the user their operative has been deleted
+						toast("Operative " + $scope.optodelete.operative.opname + " deleted");
+					},
+					error: function(error) {
+						console.log("Could not commit op deletion: " + error);
+					}
+				});
+				
+			}
+			
+			// moveOpUp()
+			// Moves the specified operative up in the roster (decrease seq)
+			$scope.moveOpUp = function(roster, op, index) {
+				// Decrement the index for this roster
+				if (index > 0) {
+					// Operative is not the first one in the list - Reduce its index
+					op.seq = op.seq - 1;
+					
+					// Push this update to the API
+					$scope.commitRosterOp(op);
+					
+					// Now find the operative that used to be at the previous seq and increase its seq
+					let prev = roster.operatives[index - 1];
+					roster.operatives[index - 1].seq = roster.operatives[index - 1].seq + 1;
+					
+					// Push this update to the API
+					$scope.commitRosterOp(roster.operatives[index - 1]);
+					
+					// Now make sure the array indexes match the seqs
+					[roster.operatives[index], roster.operatives[index - 1]] = [roster.operatives[index - 1], roster.operatives[index]];
+				}
+			}
+			
+			// moveOpDown()
+			// Moves the specified operative down in the roster (increase seq)
+			$scope.moveOpDown = function(roster, op, index) {
+				// Same as moving the next operative up
+				if (index >= roster.operatives.length) {
+					// Already at the end - nothing to do
+				} else {
+					$scope.moveOpUp(roster, roster.operatives[index + 1], index + 1);
+				}
 			}
 			
 		}
