@@ -8,13 +8,7 @@
 		<h2 class="text-center d-inline">
 			<a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a>
 		</h2>
-		<?php
-		if ($ismine) {
-		?>
-		<i class="float-end text-tiny pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
-		<?php
-		}
-		?>
+		
 		<div class="row">
 			<div class="col-6">
 				<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
@@ -25,6 +19,7 @@
 				<?php
 				if ($ismine) {
 				?>
+				<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
 				<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
 				<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
 				<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>

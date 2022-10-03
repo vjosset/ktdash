@@ -758,7 +758,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#addoptorostermodal').modal("show");
 			}
 			
-			// commitRoster()
+			// commitRosterOp()
 			// Commits the specified roster to the DB/API.
 			$scope.commitRosterOp = function(operative) {
 				// Send the update request to the API
@@ -772,7 +772,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) { // Saved
-						// All good
+						// All good, response contains the updated operative
 						operative = data;
 						
 						// Done
@@ -979,6 +979,87 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// initEditOp()
+			// Pops-up the "Edit Operative" modal
+			$scope.initEditOp = function(op, roster) {
+				// Prepare the dialog to edit the operative
+				
+				// Prepare the op to edit (will be used in saveEditOperative())
+				$scope.optoedit = op;
+				
+				// Create a deep-copy clone of this op to be edits
+				$scope.editop = JSON.parse(JSON.stringify(op));
+				
+				// Clear weapons
+				$scope.editop.weapons = [];
+				
+				// Set the weapon selections
+				for (let wepnum = 0; wepnum < op.baseoperative.weapons.length; wepnum++) {
+					let wep = JSON.parse(JSON.stringify(op.baseoperative.weapons[wepnum]));
+					wep.isselected = ("," + op.wepids + ",").indexOf("," + wep.wepid + ",") >= 0;
+					$scope.editop.weapons.push(wep);
+				}
+				
+				// Clear equipments
+				$scope.editop.equipments = [];
+				
+				// Rebuild equipments from all available, marking the right ones as selected for this operative
+				for (let eqnum = 0; eqnum < roster.killteam.equipments.length; eqnum++) {
+					let eq = JSON.parse(JSON.stringify(roster.killteam.equipments[eqnum]));
+					eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
+					$scope.editop.equipments.push(eq);
+				}
+				
+				// Show the modal
+				$('#editopmodal').modal("show");
+			}
+			
+			// saveEditOp()
+			// Save the changes to the edited operative
+			$scope.saveEditOp = function() {
+				// Set the new operative name
+				$scope.optoedit.opname = $scope.editop.opname;
+				
+				// Parse the weapons to build the wepids
+				$scope.optoedit.wepids = "";
+				for (let i = 0; i < $scope.editop.weapons.length; i++) {
+					if ($scope.editop.weapons[i].isselected) {
+						if ($scope.optoedit.wepids.length > 0) {
+							// Put a comma between weapon IDs
+							$scope.optoedit.wepids += ",";
+						}
+						
+						// Add this weapon to the operative
+						$scope.optoedit.wepids += $scope.editop.weapons[i].wepid;
+					}
+				}
+				
+				// Parse the equipments to build the eqids
+				$scope.optoedit.eqids = "";
+				for (let i = 0; i < $scope.editop.equipments.length; i++) {
+					if ($scope.editop.equipments[i].isselected) {
+						if ($scope.optoedit.eqids.length > 0) {
+							// Put a comma between equipment IDs
+							$scope.optoedit.eqids += ",";
+						}
+						
+						// Add this equipment to the operative
+						$scope.optoedit.eqids += $scope.editop.equipments[i].eqid;
+					}
+				}
+				
+				// Remove the model before saving
+				delete $scope.editop.operative;
+				
+				// Save all changes
+				$scope.commitRosterOp($scope.optoedit);
+				
+				// Close the modal
+				$('#editopmodal').modal("hide");
+				
+				// Tell the user their operative has been added
+				toast("Operative " + $scope.editop.opname + " saved");
+			}
 		}
 		
 		// COMPENDIUM

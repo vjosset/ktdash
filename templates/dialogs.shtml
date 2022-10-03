@@ -286,35 +286,34 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="editopmodallabel">Edit {{ editop.opname }} ({{ editop.optype }})</h5>
+				<h5 class="modal-title cinzel" id="editopmodallabel">{{ editop.opname }} ({{ editop.optype }})</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
-				<h4 class="oswald">Operative Name</h4>
-				<span class="oswald float-end">
+				<span class="float-end">
 					<a ng-click="generateOpName(editop.operative.factionid, editop.operative.killteamid, editop.operative.fireteamid, editop.operative.opid, editop, 'newopname');" ng-if="editop.operative != null">Generate Name</a>
 				</span><br/>
-				<input type="text" id="newopname" class="form-control oswald" ng-model="editop.newopname" />
+				<input type="text" id="newopname" class="form-control" style="font-family: Anton;" ng-model="editop.opname" />
 				
-				<h4 class="oswald">Select Weapons</h4>
+				<br/>
 				
 				<!-- Weapons List-->
-				<table ng-if="editop.operative.weapons.length > 0" class="m-1" style="width: 100%">
+				<table ng-if="editop.weapons.length > 0" class="m-1" style="width: 100%">
 					<tr class="h6 cinzel line-top-light">
 						<th class="">
-							Weapon
+							<h6>Weapon</h6>
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;A&nbsp;&nbsp;
+							<h6>&nbsp;&nbsp;A&nbsp;&nbsp;</h6>
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;BS&nbsp;&nbsp;
+							<h6>&nbsp;&nbsp;BS&nbsp;&nbsp;</h6>
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;D&nbsp;&nbsp;
+							<h6>&nbsp;&nbsp;D&nbsp;&nbsp;</h6>
 						</th>
 					</tr>
-					<tbody ng-repeat="weapon in editop.operative.weapons" class="oswald">
+					<tbody ng-repeat="weapon in editop.weapons" class="oswald">
 						<!-- Single Profile -->
 						<tr ng-if="weapon.profiles.length < 2">
 							<td>
@@ -372,33 +371,19 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="modal-footer dark">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" ng-click="saveEditOperative();">Save</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Edit operative equipment modal dialog -->
-<div class="modal fade oswald" id="editopeqmodal" tabindex="-1" role="dialog" aria-labelledby="editopeqmodallabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content dark">
-			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="editopeqmodallabel">{{ opeq.operative.opname }}'s Equipment</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body dark">				
-				<!-- Equipment List-->
-				<div ng-repeat="eq in opeq.equipments track by $index">
+				<br/>
+				
+				<h6 class="line-top-light">Equipment</h6>
+				
+				<!-- Equipments List-->
+				<div ng-repeat="eq in editop.equipments track by $index">
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
 					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
 				</div>
 			</div>
 			<div class="modal-footer dark">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" ng-click="saveEditOpEq();">Save</button>
+				<button type="button" class="btn btn-primary" ng-click="saveEditOp();">Save</button>
 			</div>
 		</div>
 	</div>
