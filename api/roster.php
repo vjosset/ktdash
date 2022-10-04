@@ -109,6 +109,52 @@
 				
 				// All done
 				echo json_encode($roster);
+			} else if ($_REQUEST["swapseq"] == "1") {
+				// Swap the Seqs for two rosters (moveup/movedown)
+				
+				// Get the user id
+				$uid = $u->userid;
+				
+				// Get the opid and seq for roster 1
+				$seq1 = $_REQUEST["seq1"];
+				$rid1 = $_REQUEST["rid1"];
+				
+				// Get the opid and seq for roster 2
+				$seq2 = $_REQUEST["seq2"];
+				$rid2 = $_REQUEST["rid2"];
+				
+				global $dbcon;
+				$sql = "UPDATE Roster SET seq = ? WHERE userid = ? AND rosterid = ?;";
+				
+				// Roster 1
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "sss";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $seq1;
+				$params[] =& $uid;
+				$params[] =& $rid1;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+				
+				// Roster 2
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "sss";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $seq2;
+				$params[] =& $uid;
+				$params[] =& $rid2;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+					
+				// Finally re-sort the rosters
+				$u->reorderRosters();
+				
+				header('Content-Type: text/plain');
+				echo "OK";
 			} else {
 				// Get the submitted roster
 				$r = Roster::FromJSON(file_get_contents('php://input'));

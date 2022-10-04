@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="container-fluid">
 			<!-- loadWaiter -->
 			<h3 class="center" ng-show="loading">
 				<br/>

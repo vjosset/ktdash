@@ -1,6 +1,6 @@
-<div class="card darkcard card-body m-1 p-0">
+<div class="card darkcard card-body m-1 p-1">
 	<!-- Compendium Card Title -->
-	<div ng-if="MODE == 'Compendium'" class="orange pointer card-title">
+	<div ng-if="MODE == 'Compendium'" class="pointer card-title">
 		<div ng-click="showpopup(operative.opname, operative.description);">
 			<h4 style="display: inline;">{{ operative.opname }}</h4>
 			<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
@@ -8,19 +8,17 @@
 	</div>
 	
 	<!-- Roster Card Title -->
-	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="orange card-title">
-		<h3 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}">
-			<i class="pointer fas fa-chevron-down fa-fw"></i>
-			{{ operative.opname }}
-		</h3>
-		<span class="text-tiny">
+	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row">
+		<h2>{{ operative.seq }} - {{ operative.opname }}</h2>
+		<div class="col-7">
 			{{ operative.optype }}
-		</span>
-		
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-trash fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-edit fa-fw" ng-click="initEditOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
-		<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="float-end pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
+		</div>
+		<div class="col-5 text-end">
+			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
+			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
+			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-edit fa-fw" ng-click="initEditOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
+			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-trash fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
+		</div>
 	</div>
 	
 	<!-- Dashboard Card Title -->
@@ -35,7 +33,7 @@
 	</div>
 	
 	<!-- Card Content -->
-	<div id="opinfo_{{ $index }}" class="collapse show">
+	<div id="opinfo_{{ $index }}" class="collapse show m-0 p-0">
 		<!-- Dashboard Actions -->
 		<div class="row small m-0 p-0" ng-if="MODE == 'Dashboard'">
 			<div class="col-6 small">
@@ -251,10 +249,8 @@
 		</div>
 		
 		<!-- Equipment -->
-		<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0" class="m-1 line-top-light">
-			<h6>
-				Equipment</sup>
-			</h6>
+		<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0" class="line-top-light">
+			<h6>Equipment</h6>
 			<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 				{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
 			</span>
@@ -275,7 +271,7 @@
 		</div>
 	
 		<!-- Keywords -->
-		<div class="card-footer small m-1 line-top-light align-bottom">
+		<div class="line-top-light align-bottom">
 			<em class="small">{{ operative.keywords }}</em>
 		</div>
 	</div>

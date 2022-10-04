@@ -292,9 +292,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 		
-			// commitRosterOperative()
+			/*
+			// commitRosterOp()
 			// Commits the specified operative to the DB
-			$scope.commitRosterOperative = function(op) {
+			$scope.commitRosterOp = function(op) {
 				// Prepare the object to PUT
 				let opdata = {
 					userid: op.userid,
@@ -335,6 +336,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+			*/
 			
 			// initDeleteRoster()
 			// Pops-up the roster deletion modal
@@ -474,21 +476,39 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.moveRosterUp = function(roster, index) {
 				// Decrement the index for this roster
 				if (index > 0) {
-					// Roster is not the first one in the list - Reduce its index
-					roster.seq = roster.seq - 1;
-					
-					// Push this update to the API
-					$scope.commitRoster(roster);
-					
-					// Now find the roster that used to be at the previous seq and increase its seq
+					// Roster is not the first one in the list - We will swap its seq with the one above/before it
+					// Find the roster that used to be at the previous seq and increase its seq
 					let prev = $scope.myRosters[index - 1];
-					$scope.myRosters[index - 1].seq = $scope.myRosters[index - 1].seq + 1;
 					
-					// Push this update to the API
-					$scope.commitRoster($scope.myRosters[index - 1]);
+					// Now prepare the request to swap their seqs
+					let qs = "swapseq=1&rid1=" + roster.rosterid + "&seq1=" + prev.seq;
+					qs += "&rid2=" + prev.rosterid + "&seq2=" + roster.seq;
+					
+					// Update local seqs
+					roster.seq = roster.seq - 1;
+					prev.seq = prev.seq + 1;
 					
 					// Now make sure the array indexes match the seqs
 					[$scope.myRosters[index], $scope.myRosters[index - 1]] = [$scope.myRosters[index - 1], $scope.myRosters[index]];
+					
+					// Commit the changes to the API/DB
+					$.ajax({
+						type: "POST",
+						url: APIURL + "roster.php?" + qs,
+						timeout: 5000,
+						async: true,
+						dataType: "text",
+						
+						// Success
+						success: function(data) { // Saved
+							// Done
+							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not move roster: \r\n" + error);
+						}
+					});
 				}
 			}
 			
@@ -612,7 +632,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.curW = parseInt(op.W);
 				}
 				
-				$scope.commitRosterOperative(op);
+				$scope.commitRosterOp(op);
 				
 				let wasInjured = op.isInjured;
 				if (wasInjured == null) {
@@ -772,7 +792,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) { // Saved
-						// All good, response contains the updated operative
+						// All good, response contains the updated operative - Refresh it
 						operative = data;
 						
 						// Done
@@ -948,29 +968,49 @@ var app = angular.module("kt", ['ngSanitize'])
 			// moveOpUp()
 			// Moves the specified operative up in the roster (decrease seq)
 			$scope.moveOpUp = function(roster, op, index) {
-				// Decrement the index for this roster
+				console.log("moveOpUp(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
+				// Decrement the seq for this operative
 				if (index > 0) {
-					// Operative is not the first one in the list - Reduce its index
-					op.seq = op.seq - 1;
-					
-					// Push this update to the API
-					$scope.commitRosterOp(op);
-					
-					// Now find the operative that used to be at the previous seq and increase its seq
+					// Operative is not the first one in the list - We will swap its seq with the one above/before it
+					// Find the operative that used to be at the previous seq and increase its seq
 					let prev = roster.operatives[index - 1];
-					roster.operatives[index - 1].seq = roster.operatives[index - 1].seq + 1;
 					
-					// Push this update to the API
-					$scope.commitRosterOp(roster.operatives[index - 1]);
+					// Now prepare the request to swap their seqs
+					let qs = "swapseq=1&rid=" + roster.rosterid + "&roid1=" + op.rosteropid + "&seq1=" + prev.seq;
+					qs += "&roid2=" + prev.rosteropid + "&seq2=" + op.seq;
+					
+					// Update local seqs
+					op.seq = op.seq - 1;
+					prev.seq = prev.seq + 1;
 					
 					// Now make sure the array indexes match the seqs
 					[roster.operatives[index], roster.operatives[index - 1]] = [roster.operatives[index - 1], roster.operatives[index]];
+					
+					// Commit the changes to the API/DB
+					$.ajax({
+						type: "POST",
+						url: APIURL + "rosteroperative.php?" + qs,
+						timeout: 5000,
+						async: true,
+						dataType: "text",
+						
+						// Success
+						success: function(data) { // Saved
+							// Done
+							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not move operative: \r\n" + error);
+						}
+					});
 				}
 			}
 			
 			// moveOpDown()
 			// Moves the specified operative down in the roster (increase seq)
 			$scope.moveOpDown = function(roster, op, index) {
+				console.log("moveOpDown(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
 				// Same as moving the next operative up
 				if (index >= roster.operatives.length) {
 					// Already at the end - nothing to do

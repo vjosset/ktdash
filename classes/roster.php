@@ -35,9 +35,14 @@
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 if ($row = $result->fetch_object()) {
-                    $ut = Roster::FromRow($row);
-					$ut->loadOperatives();
-					return $ut;
+                    $r = Roster::FromRow($row);
+					
+					// Reorder operatives so their seqs are always sequential
+					$r->reorderOperatives();
+					
+					// Now load the operatives
+					$r->loadOperatives();
+					return $r;
                 }
             }
 		}

@@ -1,34 +1,31 @@
-<div class="card darkcard m-1">
+<div class="card darkcard card-body m-1 p-1">
 	<!-- Portrait -->
 	<a href="roster.php?rid={{ myRoster.rosterid }}">
 		<img class="card-img-top" ng-src="/img/portraits/{{ myRoster.factionid }}/{{ myRoster.killteamid }}/{{ myRoster.killteamid }}.png" style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;" />
 	</a>
 	
-	<div class="card-title orange p-1">
-		<h2 class="text-center d-inline">
+	<div class="card-title row">
+		<h2>
 			<a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a>
 		</h2>
-		
-		<div class="row">
-			<div class="col-6">
-				<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
-					{{ myRoster.killteamname }}
-				</a>
-			</div>
-			<div class="col-6" style="text-align: right;">
-				<?php
-				if ($ismine) {
-				?>
-				<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
-				<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
-				<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
-				<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
-				<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Roster"></i>
-				<i class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"></i>
-				<?php
-				}
-				?>
-			</div>
+		<div class="col-7">
+			<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
+				{{ myRoster.killteamname }}
+			</a>
+		</div>
+		<div class="col-5 text-end text-tiny">
+			<?php
+			if ($ismine) {
+			?>
+			<!-- i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i -->
+			<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
+			<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
+			<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
+			<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Roster"></i>
+			<i class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"></i>
+			<?php
+			}
+			?>
 		</div>
 	</div>
 	
