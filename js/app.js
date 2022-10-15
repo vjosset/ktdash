@@ -617,6 +617,94 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				$scope.$apply();
 			}
+		
+			// initUploadRosterPortrait()
+			// Pops-up the portrait uploader for the specified roster
+			$scope.initUploadRosterPortrait = function(roster) {
+				console.log("initUploadRosterPortrait(" + roster.rosterid + ")");
+				$scope.rostertoedit = roster;
+				$scope.rostertoedit.timestamp = (new Date()).getTime();
+				
+				// Show the modal
+				$('#rosterportraitmodal').modal("show");
+			}
+			
+			$scope.previewRosterPortrait = function(el) {
+				// Refresh the portrait preview box
+				console.log("Previewing new portrait");
+				let file = $('#rosterportraitfile')[0].files[0];
+				if(file){
+					const reader = new FileReader();
+					reader.onload = function(){
+						const result = reader.result;
+						$("#rosterportraitpreview").attr("src", result);
+					};
+					reader.readAsDataURL(file);
+				}
+			}
+			
+			$scope.refreshRosterPortrait = function(roid) {
+				// Force a refresh of the roster's portrait
+				let newimg = "/api/rosterportrait.php?rid=" + $scope.rostertoedit.rosterid + "&cb=" + (new Date()).getTime();
+				$("#rosterportrait_" + $scope.rostertoedit.rosterid).attr("src", newimg);
+			}
+			
+			// saveUploadRosterPortrait()
+			// Save the specified operative portrait
+			$scope.saveUploadRosterPortrait = function() {
+				// Upload the image to the API for this roster
+				let imgData = "";
+				if ($scope.rostertoedit.usedefaultportrait) {
+					// Use the default portrait - Clear this roster's saved portrait from the DB
+					imgData = "";
+					$.ajax({
+						type: "DELETE",
+						url: APIURL + "rosterportrait.php?rid=" + $scope.rostertoedit.rosterid,
+						timeout: 5000,
+						async: true,
+						
+						// Success
+						success: function(data) { // Saved
+							// Hide the modal
+							$('#rosterportraitmodal').modal("hide");
+							
+							// Reload the roster's portrait
+							$scope.refreshRosterPortrait($scope.rostertoedit.rosterid);
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save roster
+							toast("Could not remove roster portrait: \r\n" + error);
+						}
+					});
+				} else {
+					// Use the specified file - Push to the API
+					// Send the update to the API
+					var formData = new FormData();
+					formData.append('file', $('#rosterportraitfile')[0].files[0]);
+
+					$.ajax({
+						url : APIURL + "rosterportrait.php?rid=" + $scope.rostertoedit.rosterid,
+						type : 'POST',
+						data : formData,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,  // tell jQuery not to set contentType\
+						   
+						// Success
+					    success : function(data) {
+							// Hide the modal
+							$('#rosterportraitmodal').modal("hide");
+							toast("Roster portrait set!");
+
+							// Reload the roster's portrait
+							$scope.refreshRosterPortrait($scope.rostertoedit.rosterid);
+					    },
+						// Failure
+						error: function(data, status, error) { // Failed to save roster
+							toast("Could not set roster portrait: \r\n" + error);
+						}
+					});
+				}
+			}
 		}
 		
 		// OPERATIVES
@@ -1100,28 +1188,35 @@ var app = angular.module("kt", ['ngSanitize'])
 				toast("Operative " + $scope.optoedit.opname + " saved");
 			}
 			
-			// initUploadPortrait()
+			// initUploadOpPortrait()
 			// Pops-up the portrait uploader for the specified operative
 			$scope.initUploadOpPortrait = function(operative) {
 				$scope.optoedit = operative;
-				$scope.optoedit.tempportrait = $scope.optoedit.portrait;
-				$scope.optoedit.usedefaultportrait = operative.portrait == null || operative.portrait == '';
 				$scope.optoedit.timestamp = (new Date()).getTime();
 				
 				// Show the modal
 				$('#opportraitmodal').modal("show");
 			}
 			
+			$scope.previewOpPortrait = function(el) {
+				// Refresh the portrait preview box
+				console.log("Previewing new portrait");
+				let file = $('#opportraitfile')[0].files[0];
+				if(file){
+					const reader = new FileReader();
+					reader.onload = function(){
+						const result = reader.result;
+						$("#opportraitpreview").attr("src", result);
+					};
+					reader.readAsDataURL(file);
+				}
+			}
+			
 			$scope.refreshOpPortrait = function(roid) {
 				// Force a refresh of the operative's portrait (uses background-image)
-				console.log("Refreshing portrait in #opportrait_" + $scope.optoedit.rosteropid);
-				console.log("Old BG Image: " + $("#opportrait_" + $scope.optoedit.rosteropid).css("background-image"));
-				let newimg = "https://beta.ktdash.app/api/operativeportrait.php?roid=" + $scope.optoedit.rosteropid + "&cb=" + (new Date()).getTime();
-				console.log("Setting BG Image to " + newimg);
-				if (!$("#opportrait_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})) {
-					console.log("Couldn't set BG image");
-				}
-				console.log("New BG Image: " + $("#opportrait_" + $scope.optoedit.rosteropid).css("background-image"));
+				let newimg = "/api/operativeportrait.php?roid=" + $scope.optoedit.rosteropid + "&cb=" + (new Date()).getTime();
+				$("#opportrait_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})
+				$("#opcard_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})
 			}
 			
 			// saveUploadOpPortrait()
@@ -1155,7 +1250,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Use the specified file - Push to the API
 					// Send the update to the API
 					var formData = new FormData();
-					formData.append('file', $('#opportraitfile')[0].files[0]); // [TBD] - Selected file from upload in dialog
+					formData.append('file', $('#opportraitfile')[0].files[0]);
 
 					$.ajax({
 						url : APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,

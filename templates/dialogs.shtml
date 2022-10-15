@@ -475,17 +475,48 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
-				<img width="300" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
-				<br/><br/>
-				<h4>Upload New Portrait</h4>
-				<input class="btn btn-primary" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" />
+				<div style="width: 300px; height: 200px; overflow: hidden;">
+					<img width="300" id="opportraitpreview" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
+				</div>
 				<br/>
 				Image will be resized to 300 x 200 px
+				<br/>
+				<h4>Upload New Portrait</h4>
+				<input accept="image/*" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" onchange="angular.element(this).scope().previewOpPortrait(this);" />
+				<br/>
 			</div>
 			<div class="modal-footer dark">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-secondary" role="button" ng-click="optoedit.usedefaultportrait = true; saveUploadOpPortrait()" data-bs-dismiss="modal">Delete Custom Portrait</button>
 				<button type="button" class="btn btn-primary" role="button" ng-click="optoedit.usedefaultportrait = false; saveUploadOpPortrait()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Roster Portrait Upload -->
+<div class="modal fade oswald" id="rosterportraitmodal" tabindex="-1" role="dialog" aria-labelledby="rosterportraitmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="rosterportraitmodallabel">{{ rostertoedit.rostername }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<div style="width: 300px; height: 200px; overflow: hidden;">
+					<img width="300" id="rosterportraitpreview" src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
+				</div>
+				<br/>
+				Image will be resized to 300 x 200 px
+				<br/>
+				<h4>Upload New Portrait</h4>
+				<input accept="image/*" id="rosterportraitfile" type="file" name="image" ng-model="rostertoedit.imagefile" onchange="angular.element(this).scope().previewRosterPortrait(this);" />
+				<br/>
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-secondary" role="button" ng-click="rostertoedit.usedefaultportrait = true; saveUploadRosterPortrait()" data-bs-dismiss="modal">Delete Custom Portrait</button>
+				<button type="button" class="btn btn-primary" role="button" ng-click="rostertoedit.usedefaultportrait = false; saveUploadRosterPortrait()">Save</button>
 			</div>
 		</div>
 	</div>

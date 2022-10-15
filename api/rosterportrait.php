@@ -5,16 +5,16 @@
     
     switch ($_SERVER['REQUEST_METHOD']) {
 		case "GET":
-			//Get the requested operative's portrait
-			GETRosterOperativePortrait();
+			//Get the requested roster's portrait
+			GETRosterPortrait();
 			break;
 		case "POST":
-			//Create a new operative portrait
-			POSTRosterOperativePortrait();
+			//Create a new roster portrait
+			POSTRosterPortrait();
 			break;
 		case "DELETE":
-			//Delete an existing operative portrait
-			DELETERosterOperativePortrait();
+			//Delete an existing roster portrait
+			DELETERosterPortrait();
 			break;
         default:
             //Invalid verb
@@ -23,41 +23,41 @@
             break;
     }
 
-    function GETRosterOperativePortrait() {
-		// Get the requested operative
-		$roid = $_REQUEST['roid'];
+    function GETRosterPortrait() {
+		// Get the requested roster
+		$rid = $_REQUEST['rid'];
 		
-		if ($roid == null || $roid == '') {
-			// No rosteropid specified - fail
-			header('HTTP/1.0 404 Invalid rosteropid');
+		if ($rid == null || $rid == '') {
+			// No rosterid specified - fail
+			header('HTTP/1.0 404 Invalid rosterid');
 			die();
 		} else {
-			// Try to find this operative
-			$ro = RosterOperative::GetRosterOperative($roid);
+			// Try to find this roster
+			$r = Roster::GetRoster($rid);
 			
-			if ($ro != null) {
-				// Check if this operative has a custom portrait
-				if (file_exists("../img/opportraits/{$roid}.jpg")) {
+			if ($r != null) {
+				// Check if this roster has a custom portrait
+				if (file_exists("../img/rosterportraits/{$rid}.jpg")) {
 					// File was found; read it and serve it
-					$filepath = "../img/opportraits/{$roid}.jpg";
+					$filepath = "../img/rosterportraits/{$rid}.jpg";
 				} else {
-					// File not found, serve the generic portrait for this operative
-					$filepath = "../img/portraits/{$ro->factionid}/{$ro->killteamid}/{$ro->fireteamid}/{$ro->opid}.jpg";
+					// File not found, serve the generic portrait for this roster
+					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.png";
 				}
 				
 				// Read the found file and serve it
 				$thumb = imagecreatefromstring(file_get_contents($filepath));
-				header('Content-Type: image/jpg');
-				imagejpeg($thumb);
+				header('Content-Type: image/png');
+				imagepng($thumb);
 			} else {
-				// Operative not found - Serve nothing?
-				header('HTTP/1.0 404 Operative not found');
+				// Roster not found - Serve nothing?
+				header('HTTP/1.0 404 Roster not found');
 				die();
 			}
 		}
     }
 	
-	function DELETERosterOperativePortrait() {
+	function DELETERosterPortrait() {
 		// Check that the user is currently logged in
 		if (!Session::IsAuth()) {
 			// Not logged in - Return error				
@@ -65,33 +65,29 @@
 			die();
 		} else {
 			// Get the current user
-			echo "A";
 			$u = Session::CurrentUser();
 			
-			// Get the requested operative
-			$roid = $_REQUEST['roid'];
-			echo "B";
+			// Get the requested roster
+			$rid = $_REQUEST['rid'];
 			
-			if ($roid == null || $roid == '') {
-				// No rosteropid specified - fail
-				echo "C";
-				header('HTTP/1.0 404 Invalid rosteropid');
+			if ($rid == null || $rid == '') {
+				// No rosterid specified - fail
+				header('HTTP/1.0 404 Invalid rosterid');
 				die();
 			} else {
-				// Try to find this operative
-				echo "D";
-				$ro = RosterOperative::GetRosterOperative($roid);
-				if ($ro == null) {
-					header('HTTP/1.0 404 Operative not found');
+				// Try to find this roster
+				$r = Roster::GetRoster($rid);
+				if ($r == null) {
+					header('HTTP/1.0 404 Roster not found');
 					die();
 				} else {
-					if ($ro->userid != $u->userid) {
-						// This operative belongs to someone else - Fail
-						header('HTTP/1.0 404 Operative not found');
+					if ($r->userid != $u->userid) {
+						// This roster belongs to someone else - Fail
+						header('HTTP/1.0 404 Roster not found');
 						die();
 					} else {
-						// Delete the portrait for this operative
-						unlink("../img/opportraits/{$roid}.jpg");
+						// Delete the portrait for this roster
+						unlink("../img/rosterportraits/{$rid}.jpg");
 						echo "OK";
 					}
 				}
@@ -99,7 +95,7 @@
 		}
 	}
 	
-	function POSTRosterOperativePortrait() {
+	function POSTRosterPortrait() {
 		// Check that the user is currently logged in
 		if (!Session::IsAuth()) {
 			// Not logged in - Return error				
@@ -109,22 +105,22 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 			
-			// Get the requested operative
-			$roid = $_REQUEST['roid'];
+			// Get the requested roster
+			$rid = $_REQUEST['rid'];
 			
-			if ($roid == null || $roid == '') {
-				// No rosteropid specified - fail
-				header('HTTP/1.0 404 Invalid rosteropid');
+			if ($rid == null || $rid == '') {
+				// No rosterid specified - fail
+				header('HTTP/1.0 404 Invalid rosterid');
 				die();
 			} else {
-				// Try to find this operative
-				$ro = RosterOperative::GetRosterOperative($roid);
-				if ($ro == null) {
-					header('HTTP/1.0 404 Operative not found A');
+				// Try to find this roster
+				$r = Roster::GetRoster($rid);
+				if ($r == null) {
+					header('HTTP/1.0 404 Roster not found A');
 					die();
 				} else {
-					if ($ro->userid != $u->userid) {
-						// This operative belongs to someone else - Fail
+					if ($r->userid != $u->userid) {
+						// This roster belongs to someone else - Fail
 						header('HTTP/1.0 404 Operative not found B');
 						die();
 					} else {
@@ -151,10 +147,10 @@
 							echo $thumb;
 							
 							// Save the file
-							if (!is_dir("../img/opportraits")) {
-								mkdir("../img/opportraits");
+							if (!is_dir("../img/rosterportraits")) {
+								mkdir("../img/rosterportraits");
 							}
-							$filepath = "../img/opportraits/" . $roid . ".jpg";
+							$filepath = "../img/rosterportraits/" . $rid . ".jpg";
 							if (!imagejpeg($thumb, $filepath) ) {
 								// Failed to save the image
 								header("HTTP/1.0 500 Could not save portrait");
