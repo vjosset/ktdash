@@ -475,11 +475,12 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
-				<div style="width: 300px; height: 200px; overflow: hidden;">
-					<img width="300" id="opportraitpreview" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
+				<div style="max-height: 250px; overflow: hidden;">
+					<img width="100%" id="opportraitpreview" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
 				</div>
 				<br/>
-				Image will be resized to 600 x 400 px
+				Image will be resized to 600 x 400 px<br/>
+				Max upload file size: 2 MB
 				<br/>
 				<h4>Upload New Portrait</h4>
 				<input accept="image/*" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" onchange="angular.element(this).scope().previewOpPortrait(this);" />
@@ -503,11 +504,12 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
-				<div style="width: 300px; height: 200px; overflow: hidden;">
-					<img width="300" id="rosterportraitpreview" src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
+				<div style="max-height: 250px; overflow: hidden;">
+					<img width="100%" id="rosterportraitpreview" src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
 				</div>
 				<br/>
-				Image will be resized to 600 x 400 px
+				Image will be resized to 600 x 400 px<br/>
+				Max upload file size: 2 MB
 				<br/>
 				<h4>Upload New Portrait</h4>
 				<input accept="image/*" id="rosterportraitfile" type="file" name="image" ng-model="rostertoedit.imagefile" onchange="angular.element(this).scope().previewRosterPortrait(this);" />

@@ -625,6 +625,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.rostertoedit = roster;
 				$scope.rostertoedit.timestamp = (new Date()).getTime();
 				
+				// Reset the file input field
+				$("#rosterportraitfile").replaceWith($("#rosterportraitfile").val('').clone(true));
+				
 				// Show the modal
 				$('#rosterportraitmodal').modal("show");
 			}
@@ -1193,6 +1196,9 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initUploadOpPortrait = function(operative) {
 				$scope.optoedit = operative;
 				$scope.optoedit.timestamp = (new Date()).getTime();
+				
+				// Reset the file input field
+				$("#opportraitfile").replaceWith($("#opportraitfile").val('').clone(true));
 				
 				// Show the modal
 				$('#opportraitmodal').modal("show");
