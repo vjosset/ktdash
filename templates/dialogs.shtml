@@ -152,31 +152,32 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
-				<h4 class="oswald">FireTeam</h4>
-				<select class="form-control oswald" ng-model="addop.fireteam" ng-change="addop.operative = addop.fireteam.operatives[0]">
+				<h6 ng-if="add.op.team.killteam.fireteams.length > 1">FireTeam</h6>
+				<select class="form-control oswald" ng-model="addop.fireteam" ng-if="add.op.team.killteam.fireteams.length > 1" ng-change="addop.operative = addop.fireteam.operatives[0]">
 					<option ng-repeat="fireteam in addop.team.killteam.fireteams" ng-value="fireteam">
 						{{ fireteam.fireteamname }}
 					</option>
 				</select>
 				
-				<h4 class="oswald">Operative</h4>
+				<h6>Operative</h6>
 				<select class="form-control oswald" ng-model="addop.operative">
 					<option ng-repeat="operative in addop.fireteam.operatives" ng-value="operative">
 						{{ operative.opname }}
 					</option>
 				</select>
 				
-				<span class="h4 oswald">Operative Name</span>
+				<h6 class="d-inline">Operative Name</h6>
 				<span class="oswald float-end">
 					<a ng-click="generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');" ng-if="addop.operative != null">Generate Name</a>
 				</span><br/>
 				<input type="text" id="newopname" class="form-control oswald" ng-model="addop.opname" />
+				<br/>
 				
 				<!-- Characteristics/Stats -->
 				<div ng-if="addop.operative != null">
-					<center>
-						<table width="100%" class="text-center cinzel">
-							<tr class="h4 orange">
+					<h3>
+						<table width="100%" class="text-center">
+							<tr class="orange">
 								<th width="16%">M</th>
 								<th width="16%">APL</th>
 								<th width="16%">GA</th>
@@ -184,7 +185,7 @@
 								<th width="16%">SV</th>
 								<th width="16%">W</th>
 							</tr>
-							<tr class="h3">
+							<tr>
 								<td ng-bind-html="addop.operative.M"></td>
 								<td>{{ addop.operative.APL }}</td>
 								<td>{{ addop.operative.GA }}</td>
@@ -193,9 +194,7 @@
 								<td>{{ addop.operative.W }}</td>
 							</tr>
 						</table>
-					</center>
-					
-					<h4 class="oswald">Select Weapons</h4>
+					</h3>
 					
 					<!-- Weapons List-->
 					<table ng-if="addop.operative.weapons.length > 0" class="m-1" style="width: 100%">
@@ -286,19 +285,20 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="editopmodallabel">{{ editop.opname }} ({{ editop.optype }})</h5>
+				<h5 class="modal-title cinzel" id="editopmodallabel">{{ optoedit.opname }} ({{ optoedit.optype }})</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
+				<h6 class="d-inline">Operative Name</h6>
 				<span class="float-end">
-					<a ng-click="generateOpName(editop.operative.factionid, editop.operative.killteamid, editop.operative.fireteamid, editop.operative.opid, editop, 'newopname');" ng-if="editop.operative != null">Generate Name</a>
+					<a ng-click="generateOpName(tempeditop.factionid, tempeditop.killteamid, tempeditop.fireteamid, tempeditop.opid, tempeditop, 'opname');" ng-if="tempeditop != null">Generate Name</a>
 				</span><br/>
-				<input type="text" id="newopname" class="form-control" style="font-family: Anton;" ng-model="editop.opname" />
+				<input type="text" id="newopname" class="form-control" style="font-family: Anton;" ng-model="tempeditop.opname" />
 				
 				<br/>
 				
 				<!-- Weapons List-->
-				<table ng-if="editop.weapons.length > 0" class="m-1" style="width: 100%">
+				<table ng-if="tempeditop.weapons.length > 0" class="m-1" style="width: 100%">
 					<tr class="h6 cinzel line-top-light">
 						<th class="">
 							<h6>Weapon</h6>
@@ -313,7 +313,7 @@
 							<h6>&nbsp;&nbsp;D&nbsp;&nbsp;</h6>
 						</th>
 					</tr>
-					<tbody ng-repeat="weapon in editop.weapons" class="oswald">
+					<tbody ng-repeat="weapon in tempeditop.weapons" class="oswald">
 						<!-- Single Profile -->
 						<tr ng-if="weapon.profiles.length < 2">
 							<td>
@@ -376,7 +376,7 @@
 				<h6 class="line-top-light">Equipment</h6>
 				
 				<!-- Equipments List-->
-				<div ng-repeat="eq in editop.equipments track by $index">
+				<div ng-repeat="eq in tempeditop.equipments track by $index">
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
 					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
 				</div>
@@ -466,6 +466,31 @@
 	</div>
 </div>
 
+<!-- Operative Portrait Upload -->
+<div class="modal fade oswald" id="opportraitmodal" tabindex="-1" role="dialog" aria-labelledby="opportraitmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title cinzel" id="opportraitmodallabel">{{ optoedit.opname }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark">
+				<img width="300" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
+				<br/><br/>
+				<h4>Upload New Portrait</h4>
+				<input class="btn btn-primary" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" />
+				<br/>
+				Image will be resized to 300 x 200 px
+			</div>
+			<div class="modal-footer dark">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-secondary" role="button" ng-click="optoedit.usedefaultportrait = true; saveUploadOpPortrait()" data-bs-dismiss="modal">Delete Custom Portrait</button>
+				<button type="button" class="btn btn-primary" role="button" ng-click="optoedit.usedefaultportrait = false; saveUploadOpPortrait()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Install Prompt -->
 <div class="modal fade oswald" id="installmodal" tabindex="-1" role="dialog" aria-labelledby="installmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -487,7 +512,5 @@
 	</div>
 </div>
 
-
-			
 <!-- PWA Install Prompt -->
 <script type="text/javascript" src="/js/install.js?sdf=seffdf"></script>

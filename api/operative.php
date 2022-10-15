@@ -6,8 +6,8 @@
     header('Content-Type: application/json');
     switch ($_SERVER['REQUEST_METHOD']) {
 		case "GET":
-			//Get the requested skill
-			GETFaction();
+			//Get the operatiev
+			GETOperative();
 			break;
         default:
             //Invalid verb

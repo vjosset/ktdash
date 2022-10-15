@@ -79,7 +79,7 @@
 			
 			<div class="row">
 				<div class="col-12 col-md-6 col-xl-4 m-0 p-1" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
-					<?php include "templates/roster_card.shtml" ?>
+					<?php include "templates/roster_list.shtml" ?>
 				</div>
 			</div>
 		</div>

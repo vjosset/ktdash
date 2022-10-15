@@ -764,7 +764,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.addop = {
 						"faction": roster.faction,
 						"killteam": roster.killteam,
-						"team": roster,
+						"roster": roster,
 						"fireteam": roster.killteam.fireteams[0],
 						"operative": roster.killteam.fireteams[0].operatives[0],
 						"opname": ""
@@ -1022,32 +1022,26 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initEditOp()
 			// Pops-up the "Edit Operative" modal
 			$scope.initEditOp = function(op, roster) {
-				// Prepare the dialog to edit the operative
-				
 				// Prepare the op to edit (will be used in saveEditOperative())
 				$scope.optoedit = op;
 				
-				// Create a deep-copy clone of this op to be edits
-				$scope.editop = JSON.parse(JSON.stringify(op));
+				// Create a deep-copy clone of this op to be edited
+				$scope.tempeditop = JSON.parse(JSON.stringify(op));
 				
-				// Clear weapons
-				$scope.editop.weapons = [];
-				
-				// Set the weapon selections
+				// Set the weapon selections from all available, marking the right ones as selected for this operative
+				$scope.tempeditop.weapons = [];
 				for (let wepnum = 0; wepnum < op.baseoperative.weapons.length; wepnum++) {
 					let wep = JSON.parse(JSON.stringify(op.baseoperative.weapons[wepnum]));
 					wep.isselected = ("," + op.wepids + ",").indexOf("," + wep.wepid + ",") >= 0;
-					$scope.editop.weapons.push(wep);
+					$scope.tempeditop.weapons.push(wep);
 				}
 				
-				// Clear equipments
-				$scope.editop.equipments = [];
-				
 				// Rebuild equipments from all available, marking the right ones as selected for this operative
+				$scope.tempeditop.equipments = [];
 				for (let eqnum = 0; eqnum < roster.killteam.equipments.length; eqnum++) {
 					let eq = JSON.parse(JSON.stringify(roster.killteam.equipments[eqnum]));
 					eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
-					$scope.editop.equipments.push(eq);
+					$scope.tempeditop.equipments.push(eq);
 				}
 				
 				// Show the modal
@@ -1058,38 +1052,43 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Save the changes to the edited operative
 			$scope.saveEditOp = function() {
 				// Set the new operative name
-				$scope.optoedit.opname = $scope.editop.opname;
+				$scope.optoedit.opname = $scope.tempeditop.opname;
 				
 				// Parse the weapons to build the wepids
 				$scope.optoedit.wepids = "";
-				for (let i = 0; i < $scope.editop.weapons.length; i++) {
-					if ($scope.editop.weapons[i].isselected) {
+				$scope.optoedit.weapons = [];
+				for (let i = 0; i < $scope.tempeditop.weapons.length; i++) {
+					if ($scope.tempeditop.weapons[i].isselected) {
 						if ($scope.optoedit.wepids.length > 0) {
 							// Put a comma between weapon IDs
 							$scope.optoedit.wepids += ",";
 						}
 						
 						// Add this weapon to the operative
-						$scope.optoedit.wepids += $scope.editop.weapons[i].wepid;
+						$scope.optoedit.wepids += $scope.tempeditop.weapons[i].wepid;
+						
+						// Make sure to track this locally too
+						$scope.optoedit.weapons.push($scope.tempeditop.weapons[i]);
 					}
 				}
 				
 				// Parse the equipments to build the eqids
 				$scope.optoedit.eqids = "";
-				for (let i = 0; i < $scope.editop.equipments.length; i++) {
-					if ($scope.editop.equipments[i].isselected) {
+				$scope.optoedit.equipments = [];
+				for (let i = 0; i < $scope.tempeditop.equipments.length; i++) {
+					if ($scope.tempeditop.equipments[i].isselected) {
 						if ($scope.optoedit.eqids.length > 0) {
 							// Put a comma between equipment IDs
 							$scope.optoedit.eqids += ",";
 						}
 						
 						// Add this equipment to the operative
-						$scope.optoedit.eqids += $scope.editop.equipments[i].eqid;
+						$scope.optoedit.eqids += $scope.tempeditop.equipments[i].eqid;
+						
+						// Make sure to track this locally too
+						$scope.optoedit.equipments.push($scope.tempeditop.equipments[i]);
 					}
 				}
-				
-				// Remove the model before saving
-				delete $scope.editop.operative;
 				
 				// Save all changes
 				$scope.commitRosterOp($scope.optoedit);
@@ -1098,7 +1097,88 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editopmodal').modal("hide");
 				
 				// Tell the user their operative has been added
-				toast("Operative " + $scope.editop.opname + " saved");
+				toast("Operative " + $scope.optoedit.opname + " saved");
+			}
+			
+			// initUploadPortrait()
+			// Pops-up the portrait uploader for the specified operative
+			$scope.initUploadOpPortrait = function(operative) {
+				$scope.optoedit = operative;
+				$scope.optoedit.tempportrait = $scope.optoedit.portrait;
+				$scope.optoedit.usedefaultportrait = operative.portrait == null || operative.portrait == '';
+				$scope.optoedit.timestamp = (new Date()).getTime();
+				
+				// Show the modal
+				$('#opportraitmodal').modal("show");
+			}
+			
+			$scope.refreshOpPortrait = function(roid) {
+				// Force a refresh of the operative's portrait (uses background-image)
+				console.log("Refreshing portrait in #opportrait_" + $scope.optoedit.rosteropid);
+				console.log("Old BG Image: " + $("#opportrait_" + $scope.optoedit.rosteropid).css("background-image"));
+				let newimg = "https://beta.ktdash.app/api/operativeportrait.php?roid=" + $scope.optoedit.rosteropid + "&cb=" + (new Date()).getTime();
+				console.log("Setting BG Image to " + newimg);
+				if (!$("#opportrait_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})) {
+					console.log("Couldn't set BG image");
+				}
+				console.log("New BG Image: " + $("#opportrait_" + $scope.optoedit.rosteropid).css("background-image"));
+			}
+			
+			// saveUploadOpPortrait()
+			// Save the specified operative portrait
+			$scope.saveUploadOpPortrait = function() {
+				// Upload the image to the API for this operative
+				let imgData = "";
+				if ($scope.optoedit.usedefaultportrait) {
+					// Use the default portrait - Clear this operative's saved portrait from the DB
+					imgData = "";
+					$.ajax({
+						type: "DELETE",
+						url: APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
+						timeout: 5000,
+						async: true,
+						
+						// Success
+						success: function(data) { // Saved
+							// Hide the modal
+							$('#opportraitmodal').modal("hide");
+							
+							// Reload the operative's portrait
+							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not remove operative portrait: \r\n" + error);
+						}
+					});
+				} else {
+					// Use the specified file - Push to the API
+					// Send the update to the API
+					var formData = new FormData();
+					formData.append('file', $('#opportraitfile')[0].files[0]); // [TBD] - Selected file from upload in dialog
+
+					$.ajax({
+						url : APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
+						type : 'POST',
+						data : formData,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,  // tell jQuery not to set contentType\
+						   
+						// Success
+					    success : function(data) {
+							// Hide the modal
+							$('#opportraitmodal').modal("hide");
+							toast("Operative portrait set!");
+
+							// Reload the operative's portrait
+							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
+					    },
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not set operative portrait: \r\n" + error);
+						}
+					});
+				}
 			}
 		}
 		

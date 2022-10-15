@@ -1,0 +1,33 @@
+<div class="m-1">
+	<div class="row">
+		<div class="col-7">
+			<h2><a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a></h2>
+			<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
+				{{ myRoster.killteamname }}
+			</a>
+		</div>
+		<div class="col-5 text-end text-tiny">
+			<h1 ng-if="MODE == 'MyRosters'"><button class="btn btn-primary">DEPLOY</button></h1>
+			<?php
+			if ($ismine) {
+			?>
+			<!-- i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i -->
+			<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
+			<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
+			<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
+			<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Roster"></i>
+			<i class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"></i>
+			<?php
+			}
+			?>
+		</div>
+	</div>
+	
+	<p class="p-1 m-0 oswald" style="text-align:justify;">
+		{{ myRoster.notes }}
+	</p>
+	<p class="p-1 m-0 oswald" style="text-align:justify;">
+		<em>{{ myRoster.opList }}</em>
+	</p>
+</div>
+<br/><br/>

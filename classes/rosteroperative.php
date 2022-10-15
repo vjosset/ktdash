@@ -109,6 +109,15 @@
                 while ($row = $result->fetch_object()) {
                     $eq = Equipment::FromRow($row);
 					$this->equipments[] = $eq;
+					
+					// Parse this equipment to see if it modifies this operative's characteristics or its weapons characteristics
+					switch ($eq->eqtype) {
+						case "WepMod":
+							// eqvar1 is the filter for which weapon this applies to
+							// eqvar2 is the stat that this will change on the applicable weapon(s)
+							// eqvar3 is the change to the applicable stat on the applicable weapon
+							break;
+					}
                 }
             }
 		}

@@ -7,6 +7,7 @@
     
     require_once $root . '/../common/include.php';
     
+    require_once $root . '/classes/utils.php';
     require_once $root . '/classes/weaponprofile.php';
     require_once $root . '/classes/weapon.php';
 	require_once $root . '/classes/ploy.php';
