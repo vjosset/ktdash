@@ -146,7 +146,7 @@
 							$img = imagecreatefromstring(file_get_contents($tempname));
 							
 							// Resize the image
-							$thumb = Utils::ResizeImage($img, 300, 200);
+							$thumb = Utils::ResizeImage($img, 600, 400);
 							
 							echo $thumb;
 							

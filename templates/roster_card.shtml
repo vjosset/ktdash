@@ -1,8 +1,9 @@
 <div class="card darkcard card-body m-1 p-1">
 	<!-- Portrait -->
+	<i ng-if="MODE == 'MyRosters'" style="position: absolute; top: 10px; left: 10px;" class="pointer fas fa-edit fa-fw" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"></i>
 	<!-- img class="card-img-top" ng-src="/img/portraits/{{ myRoster.factionid }}/{{ myRoster.killteamid }}/{{ myRoster.killteamid }}.png" style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;" / -->
 	<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top" ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}" style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;" />
-	<i ng-if="MODE == 'MyRosters'" style="position: relative; top: 0px; left: 0px;" class="pointer fas fa-edit fa-fw" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"></i>
+	
 	
 	<div class="card-title row">
 		<h2>
@@ -17,7 +18,7 @@
 			<?php
 			if ($ismine) {
 			?>
-			<!-- i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i -->
+			<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
 			<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
 			<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
 			<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
