@@ -22,6 +22,13 @@ var app = angular.module("kt", ['ngSanitize'])
 			} else {
 				// [TBD]
 			}
+			
+			setTimeout(function() {
+			// Set all links to other pages to show the loader on click
+			console.log("Adding listeners...");
+			//$(".navloader").on("click", function(){ $('#navloadermodal').modal("show"); });
+			$(".navloader").on("click", function(){ toast("Loading..."); });
+			}, 1000);
 		}
 		
 		// SESSION & LOG IN

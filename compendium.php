@@ -41,7 +41,7 @@
 					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 					
 					<h1 class="card-title orange text-center">
-						<a href="/faction.php?fa={{ faction.factionid }}">
+						<a class="navloader" href="/faction.php?fa={{ faction.factionid }}">
 							{{ faction.factionname }}
 						</a>
 					</h1>

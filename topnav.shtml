@@ -13,12 +13,33 @@
 				
 				<div class="navbar-collapse collapse" id="navbarNav" data-toggle="collapse" data-target="#navbarNav">
 					<ul class="navbar-nav ms-auto">
-						<li class="nav-item"><a class="nav-link" href="/compendium.php"><span class="fas fa-book-dead fa-fw"></span>&nbsp;Compendium</a></li>
-						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link" href="/signup.htm"><span class="fas fa-user fa-fw"></span>&nbsp;Sign Up</a></li>
-						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link" href="/login.htm"><span class="fas fa-lock fa-fw"></span>&nbsp;Log In</a></li>
-						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link" href="/dashboard.htm"><span class="fas fa-dice fa-fw"></span>&nbsp;Dashboard</a></li>
-						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link" href="/rosters.php"><span class="fas fa-users fa-fw"></span>&nbsp;My Rosters</a></li>
-						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link" href="#" ng-click="logOut();"><span class="fas fa-lock fa-fw"></span>&nbsp;Log Out</a></li>
+						<li class="nav-item"><a class="nav-link navloader" href="/compendium.php"><span class="fas fa-book-dead fa-fw"></span>&nbsp;Compendium</a></li>
+						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/signup.htm"><span class="fas fa-user fa-fw"></span>&nbsp;Sign Up</a></li>
+						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/login.htm"><span class="fas fa-lock fa-fw"></span>&nbsp;Log In</a></li>
+						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/dashboard.htm"><span class="fas fa-dice fa-fw"></span>&nbsp;Dashboard</a></li>
+						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/rosters.php"><span class="fas fa-users fa-fw"></span>&nbsp;My Rosters</a></li>
+						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="#" ng-click="logOut();"><span class="fas fa-lock fa-fw"></span>&nbsp;Log Out</a></li>
 					</ul>
 				</div>
 			</nav>
+			
+			<!-- Laoding Modal -->
+			<div class="modal fade oswald" id="navloadermodal" tabindex="-1" role="dialog" aria-labelledby="navloadermodallabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content dark">
+						<div class="modal-header orange">
+							<h5 class="modal-title cinzel" id="navloadermodallabel">Loading</h5>
+						</div>
+						<div class="modal-body dark">
+							<h3 class="center">
+								<br/>
+								<div>
+									<i class="fas fa-undo-alt fa-fw rotate" ></i>
+									<br />
+									Loading...
+								</div>
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>

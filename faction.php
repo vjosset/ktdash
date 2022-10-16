@@ -78,7 +78,7 @@
 						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.png" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 						
 						<h2 class="card-title orange text-center">
-							<a  href="/killteam.php?fa={{ faction.factionid }}&kt={{ killteam.killteamid }}">
+							<a class="navloader" href="/killteam.php?fa={{ faction.factionid }}&kt={{ killteam.killteamid }}">
 								{{ killteam.killteamname }}
 							</a>
 						</h2>

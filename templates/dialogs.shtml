@@ -104,7 +104,7 @@
 	</div>
 </div>
 
-<!-- Rename roster modal dialog -->
+<!-- Edit roster modal dialog -->
 <div class="modal fade oswald" id="editrostermodal" tabindex="-1" role="dialog" aria-labelledby="editrostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
