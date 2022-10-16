@@ -28,21 +28,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include "header.shtml" ?>
-		
 		<?php
-		$pagetitle = ($ismine ? "My" : $myUser->username . "'s") . " Rosters";
-		
-		include "og.php"
+			include "header.shtml";
+			$pagetitle = ($ismine ? "My" : $myUser->username . "'s") . " Rosters";
+			include "og.php";
 		?>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRosters('<?php echo $uid ?>');">
-		<?php include "topnav.shtml" ?>
-			
-		<!-- Dialogs -->
-		<?php include "templates/dialogs.shtml" ?>
+		<?php
+			include "topnav.shtml";
+			include "templates/dialogs.shtml";
+		?>
 		
-		<h1 class="orange"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : $myUser->username) ?> Rosters</h1>
+		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : $myUser->username) ?> Rosters</h1>
 		
 		<!-- loadWaiter -->
 		<h3 class="center" ng-show="loading">
@@ -53,9 +51,9 @@
 				Loading Rosters...
 			</div>
 		</h3>
-		<br/>
+		
 		<!-- Show this player's rosters -->
-		<div class="container-fluid" ng-hide="loading">
+		<div class="container-fluid ng-cloak" ng-hide="loading">
 			<div ng-if="myRosters.length < 1" >
 				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet.</span>
 				<span ng-if="MODE == 'Rosters'">This user doesn't have any Rosters yet.</span>
@@ -77,7 +75,7 @@
 				<?php
 			} ?>
 			
-			<div class="row">
+			<div ng-if="myRosters.length > 0" class="row">
 				<div class="col-12 col-md-6 col-xl-4 m-0 p-1" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 					<?php include "templates/roster_card.shtml" ?>
 				</div>

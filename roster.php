@@ -20,21 +20,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include "header.shtml" ?>
-		<title><?php echo $myRoster->rostername ?> | KTDash.app</title>
+		<?php
+			include "header.shtml";
+			$pagetitle = $myRoster->rostername;
+			include "og.php";
+		?>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRoster('<?php echo $myRoster->rosterid ?>');">
-		<?php include "topnav.shtml" ?>
-			
-		<!-- Dialogs -->
-		<?php include "templates/dialogs.shtml" ?>
+		<?php
+			include "topnav.shtml";
+			include "templates/dialogs.shtml";
+		?>
 		
 		<div class="orange container-fluid">
-			<h1 style="display: inline;"><span class="fas fa-users fa-fw"></span>&nbsp;
-				<!-- ?php echo $ismine ? "" : $myRoster->username . "'s " ? --><!-- ?php echo $myRoster->rostername ? -->
-				<!-- span ng-if="!<?php echo $ismine ? "true" : "false" ?>"><?php echo $myRoster->username . ($myRoster->userid == "prebuilt" ? "" : "'s ") ?></span -->
-				<span>{{ myRoster.rostername }}</span>
-			</h1>
+			<h1><i class="fas fa-users fa-fw"></i>&nbsp;{{ myRoster.rostername }}</h1>
 			<div class="row">
 				<div class="col-7">
 					<a ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>&nbsp;&nbsp;
@@ -65,29 +64,25 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid">
-			<!-- loadWaiter -->
-			<h3 class="center" ng-show="loading">
-				<br/>
-				<div>
-					<i class="fas fa-undo-alt fa-fw rotate" ></i>
-					<br />
-					Loading Roster...
-				</div>
-			</h3>
+		<!-- loadWaiter -->
+		<h3 class="center" ng-show="loading">
+			<br/>
+			<div>
+				<i class="fas fa-undo-alt fa-fw rotate" ></i>
+				<br />
+				Loading Roster...
+			</div>
+		</h3>
+		
+		<!-- Show this roster and its operatives -->
+		<div class="ng-cloak container-fluid" ng-hide="loading">
 			<?php 
 			if ($ismine) {
 			?>
 			<br/>
-			<div ng-hide="loading" ng-if="myRoster.operatives == null || myRoster.operatives.length == 0">
+			<div ng-if="myRoster.operatives == null || myRoster.operatives.length == 0">
 				This roster does not have any operatives yet, <a href="" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative">add one now</a>
 			</div>
-			<?php
-			}
-			?>
-			<?php 
-			if ($ismine) {
-			?>
 			<h3 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Killteam Composition">
 				<i class="fas fa-chevron-down fa-fw"></i>&nbsp;KillTeam Composition
 			</h3>
@@ -103,11 +98,9 @@
 			?>
 			
 			<!-- Show this roster -->
-			<div ng-hide="loading" ng-if="myRoster.operatives.length > 0">
-				<div class="row p-0 m-0">
-					<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in myRoster.operatives track by $index">
-						<?php include "templates/op_card.shtml" ?>
-					</div>
+			<div class="row">
+				<div class="col-12 col-md-6 col-xl-4 m-0 p-1" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
+					<?php include "templates/op_card.shtml" ?>
 				</div>
 			</div>
 		</div>
