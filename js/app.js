@@ -8,26 +8,10 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.loading = false;
 			$scope.MODE = "";
 			
-			// Check if we have some localStorage teams we can try to convert to DB teams
-			oldTeamsJson = window.localStorage.getItem("myteams");
-			if (oldTeamsJson != null && oldTeamsJson != "") {
-				// At least one team to try to convert
-				let oldTeams = JSON.parse(oldTeamsJson);
-				let msg = "We found the following teams to import into v2:\r\n";
-				for (let i = 0; i < oldTeams.length; i++) {
-					msg += oldTeams[i].teamname + "\r\n";
-				}
-				
-				// [TBD]
-			} else {
-				// [TBD]
-			}
-			
 			setTimeout(function() {
-			// Set all links to other pages to show the loader on click
-			console.log("Adding listeners...");
-			//$(".navloader").on("click", function(){ $('#navloadermodal').modal("show"); });
-			$(".navloader").on("click", function(){ toast("Loading..."); });
+				// Set tagged links to show the loader on click
+				console.log("Adding listeners...");
+				$(".navloader").on("click", function(){ toast("Loading..."); });
 			}, 1000);
 		}
 		
@@ -201,6 +185,99 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// ROSTERS
 		{
+			$scope.importV1Teams = function() {
+				// Check if the logged-in user has some teams that were not imported from v1 (localStorage)
+				let oldTeamsJson = window.localStorage.getItem("myteams");
+				if (oldTeamsJson != null && oldTeamsJson != "") {
+					// At least one team to try to convert
+					let oldTeams = JSON.parse(oldTeamsJson);
+					let msg = "We found the following teams to import into v2:\r\n";
+					for (let i = 0; i < oldTeams.length; i++) {
+						msg += oldTeams[i].teamname + "\r\n";
+					}
+					
+					toast("Importing teams from v1...");
+					$scope.loading = true;
+					
+					console.log(msg);
+					
+					// Prepare and send the request for each team from localStorage
+					for (let i = 0; i < oldTeams.length; i++) {
+						let team = oldTeams[i];
+						
+						toast("Importing team #" + (i + 1) + "/" + oldTeams.length + ": " + team.teamname + "...");
+						
+						// Create a new roster for the specified faction and killteam
+						let roster = {
+							"userid": $scope.currentuser.userid,
+							"factionid": team.factionid,
+							"killteamid": team.killteamid,
+							"rostername": team.teamname
+						};
+						
+						// Send the request to the API
+						$.ajax({
+							type: "POST",
+							url: APIURL + "roster.php",
+							timeout: 5000,
+							async: false,
+							dataType: 'json',
+							data: JSON.stringify(roster),
+							success: function(data) {
+								roster = data;
+							},
+							error: function(error) {
+								// Failed to save roster
+								toast("Could not import team " + team.teamname + ": \r\n" + error);
+							}
+						});
+						
+						// We should now have a roster ID, use it to import the operatives for this roster
+						for (let j = 0; j < team.operatives.length; j++) {
+							let oldOp = team.operatives[j];
+							
+							// Create a new roster for the specified faction and killteam
+							let op = {
+								"userid": $scope.currentuser.userid,
+								"rosterid": roster.rosterid,
+								"factionid": oldOp.factionid,
+								"killteamid": oldOp.killteamid,
+								"fireteamid": oldOp.fireteamid,
+								"opid": oldOp.opid,
+								"opname": oldOp.opname,
+								"wepids": oldOp.wepids
+							};
+							
+							// Send the request to the API
+							$.ajax({
+								type: "POST",
+								url: APIURL + "rosteroperative.php",
+								timeout: 5000,
+								async: false,
+								dataType: 'json',
+								data: JSON.stringify(op),
+								success: function(data) {
+									op = data;
+								},
+								error: function(error) {
+									// Failed to save roster
+									toast("Could not import operative " + oldOp.opname + ": \r\n" + error);
+								}
+							});
+						}
+					}
+					
+					// Now delete these teams since they've been imported/converted
+					localStorage.removeItem("myteams");
+						
+					// Team finished importing
+					toast("All v1 teams have been imported");
+					
+					// All done
+					$scope.loading = false;
+				}
+			}
+			
 			// initRosters()
 			// Initializes the "My Rosters" page
 			$scope.initRosters = function(uid) {
@@ -212,6 +289,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.MODE = "MyRosters";
 				} else {
 					$scope.MODE = "Rosters";
+				}
+				
+				if ($scope.MODE == "MyRosters") {
+					$scope.importV1Teams();
 				}
 				
 				// Check if user is already logged in
@@ -313,52 +394,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
-		
-			/*
-			// commitRosterOp()
-			// Commits the specified operative to the DB
-			$scope.commitRosterOp = function(op) {
-				// Prepare the object to PUT
-				let opdata = {
-					userid: op.userid,
-					rosterid: op.rosterid,
-					rosteropid: op.rosteropid,
-					seq: op.seq,
-					opname: op.opname,
-					
-					factionid: op.factionid,
-					killteamid: op.killteamid,
-					fireteamid: op.fireteamid,
-					opid: op.opid,
-					
-					eqids: op.eqids,
-					wepids: op.wepids,
-					
-					curW: op.curW,
-					notes: op.notes
-				};
-				
-				$.ajax({
-					type: "PUT",
-					url: APIURL + "rosteroperative.php",
-					timeout: 5000,
-					async: true,
-					dataType: 'json',
-					data: JSON.stringify(opdata),
-					
-					// Success
-					success: function(data) { // Saved this operative
-						// All good
-						toast("Saved");
-					},
-					// Failure
-					error: function(data, status, error) { // Failed to save operative
-						toast("Could not save operative: \r\n" + error);
-						$scope.$apply();
-					}
-				});
-			}
-			*/
 			
 			// initDeleteRoster()
 			// Pops-up the roster deletion modal
@@ -464,8 +499,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					"userid": $scope.currentuser.userid,
 					"factionid": $scope.newroster.faction.factionid,
 					"killteamid": $scope.newroster.killteam.killteamid,
-					"rostername": $scope.newroster.rostername,
-					"seq": 0 // Always put new teams first
+					"rostername": $scope.newroster.rostername
 				};
 				
 				// Send the request to the API
@@ -591,6 +625,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Not logged in - Cannot import
 					toast("Cannot import this roster - You are not logged in");
 				} else {
+					toast("Copying team " + roster.rostername + "...");
 					// Send the POST request to the API
 					$.ajax({
 						type: "POST",
@@ -604,6 +639,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							roster = data;
 							
 							// Send the user to their newly-cloned team
+							toast("Team copied - Redirecting...");
 							location.href = "/roster.php?rid=" + roster.rosterid;
 						},
 						// Failure
@@ -743,6 +779,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Show the modal
 				$('#sharerostermodal').modal("show");
 			}
+			
 		}
 		
 		// OPERATIVES

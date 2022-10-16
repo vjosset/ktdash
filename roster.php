@@ -46,6 +46,7 @@
 						<i class="pointer far fa-plus-square fa-fw" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>
 						<i class="pointer fas fa-edit fa-fw" ng-click="initRenameRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
 						<i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i>
+						<i class="pointer far fa-question-circle fa-fw" id="myrosterhelpbutton" onclick="$('#myrosterhelpmodal').modal('show');"></i>
 					</div>
 					<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
 						<?php
@@ -62,6 +63,28 @@
 							}
 						?>
 						&nbsp;&nbsp;
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Help Box -->
+		<div class="modal fade oswald" id="myrosterhelpmodal" tabindex="-1" role="dialog" aria-labelledby="myrosterhelpmodallabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content dark">
+					<div class="modal-header orange">
+						<h5 class="modal-title cinzel" id="myrosterhelpmodallabel">My Roster - Help</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="m-0 modal-body dark">
+						Manage your Roster and Operatives here.
+						<br/>
+						<img width="100%" src="/img/RosterHelp.jpg" /><br/>
+						<h6 class="d-inline fa-fw">1:</h6>&nbsp;&nbsp;<i class="fas fa-edit fa-fw"></i> Change Operative Portrait</br>
+						<h6 class="d-inline fa-fw">2:</h6>&nbsp;&nbsp;<i class="fas fa-arrow-up fa-fw"></i> Move Operative Up</br>
+						<h6 class="d-inline fa-fw">3:</h6>&nbsp;&nbsp;<i class="fas fa-arrow-down fa-fw"></i> Move Operative Down</br>
+						<h6 class="d-inline fa-fw">4:</h6>&nbsp;&nbsp;<i class="fas fa-edit fa-fw"></i> Edit Operative (name, weapons, and equipment)</br>
+						<h6 class="d-inline fa-fw">5:</h6>&nbsp;&nbsp;<i class="fas fa-trash-alt fa-fw"></i> Delete Operative
 					</div>
 				</div>
 			</div>

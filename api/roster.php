@@ -84,9 +84,8 @@
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
 				
-				// Reorder all rosters and set the new roster's seq so it's always first
-				$u->reorderRosters();
-				$roster->seq = -1;
+				// Put this cloned roster at the end of the list
+				$roster->seq = 10000;
 				
 				// Commit this roster
 				$roster->DBInsert();

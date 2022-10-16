@@ -184,11 +184,7 @@
 						$newop->rosteropid = CommonUtils\shortId();
 						
 						// This means this is a new operative that was added to the team; set its set to be last in the roster
-						$maxseq = 0;
-						foreach ($r->operatives as $tempop) {
-							$maxseq = $maxseq > $tempop->seq ? $maxseq : $tempop->seq;
-						}
-						$newop->seq = $maxseq + 1;
+						$newop->seq = 10000;
 					}
 					
 					// Make sure the fields are assigned correctly

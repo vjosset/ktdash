@@ -7,10 +7,10 @@
 		
 		<div class="card-title row p-1">
 			<h2>
-				<a class="navloader" href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a>
+				<a class="navloader" href="roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives">{{ myRoster.rostername }}</a>
 			</h2>
 			<div class="col-6">
-				<a class="navloader" href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
+				<a class="navloader" href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">
 					{{ myRoster.killteamname }}
 				</a>
 			</div>
@@ -22,7 +22,7 @@
 				<i class="pointer fas fa-arrow-up fa-fw" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"></i>
 				<i class="pointer fas fa-arrow-down fa-fw" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"></i>
 				<i class="pointer fas fa-share-square fa-fw" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"></i>
-				<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Roster"></i>
+				<i class="pointer far fa-copy fa-fw" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"></i>
 				<i class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"></i>
 				<?php
 				}

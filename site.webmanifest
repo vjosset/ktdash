@@ -57,9 +57,9 @@
 			"purpose": "maskable any"
         }
     ],
-	"start_url": "/dashboard.htm?source=pwa",
+	"start_url": "/rosters.php?source=pwa",
     "theme_color": "#c54c21",
     "background_color": "#343a40",
     "display": "standalone",
-    "description": "KillTeam Dashboard and Teams"
+    "description": "KillTeam Dashboard and Rosters"
 }
