@@ -7,6 +7,21 @@ var app = angular.module("kt", ['ngSanitize'])
 		{
 			$scope.loading = false;
 			$scope.MODE = "";
+			
+			// Check if we have some localStorage teams we can try to convert to DB teams
+			oldTeamsJson = window.localStorage.getItem("myteams");
+			if (oldTeamsJson != null && oldTeamsJson != "") {
+				// At least one team to try to convert
+				let oldTeams = JSON.parse(oldTeamsJson);
+				let msg = "We found the following teams to import into v2:\r\n";
+				for (let i = 0; i < oldTeams.length; i++) {
+					msg += oldTeams[i].teamname + "\r\n";
+				}
+				
+				// [TBD]
+			} else {
+				// [TBD]
+			}
 		}
 		
 		// SESSION & LOG IN
@@ -592,28 +607,31 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
-			// initRenameRoster();
-			// Pops-up the roster rename modal
-			$scope.initRenameRoster = function(roster) {
-				console.log("initRenameRoster(" + roster.rostername + ")");
-				$scope.renameRoster = roster;
-				$scope.renameRoster.newrostername =  roster.rostername;
+			// initEditRoster();
+			// Pops-up the roster edit modal
+			$scope.initEditRoster = function(roster) {
+				console.log("initEditRoster(" + roster.rostername + ")");
+				$scope.rostertoedit = roster;
+				$scope.rostertoedit.newrostername =  roster.rostername;
+				$scope.rostertoedit.newnotes =  roster.notes;
 				
 				// Show the modal
-				$('#renamerostermodal').modal("show");
+				$('#editrostermodal').modal("show");
 			}
 			
-			// saveRenameRoster()
-			// Save roster rename
-			$scope.saveRenameRoster = function() {				
-				$scope.renameRoster.rostername = $scope.renameRoster.newrostername;
-				delete $scope.renameRoster.newrostername;
+			// saveEditRoster()
+			// Save roster edits
+			$scope.saveEditRoster = function() {				
+				$scope.rostertoedit.rostername = $scope.rostertoedit.newrostername;
+				$scope.rostertoedit.notes = $scope.rostertoedit.newnotes;
+				delete $scope.rostertoedit.newrostername;
+				delete $scope.rostertoedit.newnotes;
 				
 				// Commit to API/DB
-				$scope.commitRoster($scope.renameRoster);
+				$scope.commitRoster($scope.rostertoedit);
 				
 				// Close the modal
-				$('#renamerostermodal').modal("hide");
+				$('#editrostermodal').modal("hide");
 				
 				$scope.$apply();
 			}

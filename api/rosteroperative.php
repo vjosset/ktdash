@@ -150,7 +150,8 @@
 				
 				header('Content-Type: text/plain');
 				echo "OK";
-			} else {
+			}
+			else {
 				// Get the new operative from the input JSON
 				$newop = RosterOperative::FromJSON(file_get_contents('php://input'));
 				
@@ -181,6 +182,13 @@
 					if ($newop->rosteropid == null || $newop->rosterid == "") {
 						// No roster operative ID, generate a new one
 						$newop->rosteropid = CommonUtils\shortId();
+						
+						// This means this is a new operative that was added to the team; set its set to be last in the roster
+						$maxseq = 0;
+						foreach ($r->operatives as $tempop) {
+							$maxseq = $maxseq > $tempop->seq ? $maxseq : $tempop->seq;
+						}
+						$newop->seq = $maxseq + 1;
 					}
 					
 					// Make sure the fields are assigned correctly
