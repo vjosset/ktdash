@@ -52,19 +52,19 @@
 </div>
 
 <!-- Share team modal dialog -->
-<div class="modal fade oswald" id="shareteammodal" tabindex="-1" role="dialog" aria-labelledby="shareteammodallabel" aria-hidden="true">
+<div class="modal fade oswald" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="shareteammodallabel">Share KillTeam</h5>
+				<h5 class="modal-title cinzel" id="sharerostermodallabel">Share Roster</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
 				Team share link:<br/>
-				<a ng-href="{{ shareteam.url }}" target="_blank">{{ shareteam.teamname }}</a><br/>
+				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
 				<hr/>
 				<!-- QR Code -->
-				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareteam.url }}" />
+				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
 			</div>
 		</div>
 	</div>

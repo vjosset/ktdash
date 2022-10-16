@@ -4,11 +4,11 @@
 			$pagedesc = str_replace('\r\n', ' ', str_replace('"', '\'', str_replace('<br/>', ' ', $pagedesc)));
 		?>
 		
-		<!-- OpenGraph Tags -->
+		<!-- General Meta Tags -->
 		<title><?php echo $pagetitle ?></title>
 		<meta name="description" content="<?php echo $pagedesc ?>">
-
-		<!-- Facebook Meta Tags -->
+		
+		<!-- OpenGraph Tags -->
 		<meta property="og:url" content="<?php echo $pageurl ?>">
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="<?php echo $pagetitle ?>">
