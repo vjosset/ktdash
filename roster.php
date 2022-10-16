@@ -23,7 +23,7 @@
 		<?php
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam";
-			$pagedesc  = "View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam '" . $myRoster->rostername . "': \r\n" . $myRoster->opList;
+			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : ucwords($myRoster->userid) . "'s ") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->opList;
 			$pageimg   = "https://beta.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
 			$pageurl   = "https://beta.ktdash.app/roster.php?rid={$myRoster->rosterid}";
 			include "og.php";
