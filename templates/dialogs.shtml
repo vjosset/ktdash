@@ -479,7 +479,7 @@
 			</div>
 			<div class="modal-body dark">
 				<div style="max-height: 250px; overflow: hidden;">
-					<img width="100%" id="opportraitpreview" src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
+					<img width="100%" id="opportraitpreview" ng-src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
 				</div>
 				<br/>
 				Image will be resized to 600 x 400 px<br/>
@@ -508,7 +508,7 @@
 			</div>
 			<div class="modal-body dark">
 				<div style="max-height: 250px; overflow: hidden;">
-					<img width="100%" id="rosterportraitpreview" src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
+					<img width="100%" id="rosterportraitpreview" ng-src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
 				</div>
 				<br/>
 				Image will be resized to 600 x 400 px<br/>
