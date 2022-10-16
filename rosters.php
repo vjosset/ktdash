@@ -30,7 +30,16 @@
 	<head>
 		<?php
 			include "header.shtml";
-			$pagetitle = ($ismine ? "My" : $myUser->username . "'s") . " Rosters";
+			if ($uid == 'prebuilt') {
+				$pagetitle = "Pre-Built KillTeam Rosters";
+			}
+			else {
+				$pagetitle = ucwords($myUser->username) . "'s KillTeam Rosters";
+			}
+			
+			$pagedesc  = "View and import " . $pagetitle;
+			$pageimg   = "https://beta.ktdash.app/img/og/Home.png";
+			$pageurl   = "https://beta.ktdash.app/roster.php?rid={$myRoster->rosterid}";
 			include "og.php";
 		?>
 	</head>
