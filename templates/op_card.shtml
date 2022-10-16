@@ -51,13 +51,12 @@
 		</div>
 		
 		<div class="row m-0 p-0">
-			<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="col-5" id="opportrait_{{operative.rosteropid}}"
+			<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="col-5 m-0 p-0" id="opportrait_{{operative.rosteropid}}"
 				style=
 				"background-image: url('/api/operativeportrait.php?roid={{operative.rosteropid}}');
 				background-size: cover;
 				background-position: center top;"
 				>
-				&nbsp;
 				<i ng-if="MODE == 'MyRoster'" class="pointer fas fa-edit fa-fw" ng-click="initUploadOpPortrait(operative)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"></i>
 			</div>
 			<div ng-if="MODE == 'Compendium'" class="col-5 m-0 p-0" id="opportrait_{{operative.rosteropid}}"

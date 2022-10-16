@@ -9,12 +9,12 @@
 		<h2>
 			<a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a>
 		</h2>
-		<div class="col-7">
+		<div class="col-6">
 			<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
 				{{ myRoster.killteamname }}
 			</a>
 		</div>
-		<div class="col-5 text-end text-tiny">
+		<div class="col-6 text-end text-tiny">
 			<?php
 			if ($ismine) {
 			?>
