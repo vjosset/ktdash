@@ -97,7 +97,7 @@
 			<div>
 				<span class="float-start">
 					Build a <a href="#" ng-click="initNewRoster();">new roster</a>
-					or import a <a href="rosters.php?uid=prebuilt">pre-built roster</a>
+					or import a <a class="navloader" href="rosters.php?uid=prebuilt">pre-built roster</a>
 				</span>
 				<span class="float-end">
 					<i id="myrostershelpbutton" class="pointer far fa-question-circle fa-fw" onclick="$('#myrostershelpmodal').modal('show');"></i>
