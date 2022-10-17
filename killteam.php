@@ -38,7 +38,14 @@
 		include "og.php"
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initKillteam();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initKillteam();"
+		style="
+			background-color: rgba(32, 32, 32, 0.9);
+			background-attachment:fixed;
+			background-image: url(<?php echo "/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png" ?>);
+			background-position: top center;
+			background-size: cover;
+			background-blend-mode: multiply;">
 		<?php include "topnav.shtml" ?>
 			
 		<!-- Dialogs -->
@@ -79,7 +86,7 @@
 			
 		<div ng-hide="loading">
 			<!-- Killteam Composition -->
-			<h2 aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp"><i class="fas fa-chevron-down fa-fw"></i>KillTeam Composition</h2>
+			<h2 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp"><i class="fas fa-chevron-down fa-fw"></i>KillTeam Composition</h2>
 			<p id="killteamcomp" class="collapse" ng-bind-html="killteam.killteamcomp"></p> <!-- style="-webkit-columns: 40px 3; -moz-columns: 60px 3; columns: 60px 3;"></p -->
 			
 			<br/>
@@ -105,7 +112,7 @@
 					<!-- Operatives -->
 					<div class="row p-0 m-0">
 						<div ng-repeat="fireteam in killteam.fireteams">
-							<div ng-show="killteam.fireteams.length > 1">
+							<div class="pointer" ng-show="killteam.fireteams.length > 1">
 								<i class="h3 fas fa-chevron-down fa-fw" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#ft_{{ fireteam.fireteamid }}"></i>
 								<span ng-click="showpopup('FireTeam Composition', fireteam.fireteamcomp);">
 									<h3 style="display: inline;">{{ fireteam.fireteamname }}</h3>

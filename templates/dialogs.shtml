@@ -1,16 +1,16 @@
-<!-- Select team operatives dialog -->
-<div class="modal fade oswald" id="selectteamopsmodal" tabindex="-1" role="dialog" aria-labelledby="selectteamopsmodallabel" aria-hidden="true">
+<!-- Select roster operatives dialog -->
+<div class="modal fade oswald" id="selectrosteropsmodal" tabindex="-1" role="dialog" aria-labelledby="selectrosteropsmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="selectteamopsmodallabel">{{ selectteamops.team.teamname }}</h5>
+				<h5 class="modal-title cinzel" id="selectrosteropsmodallabel">{{ selectrosterops.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="m-0 modal-body dark">
 				<!-- Tab Control -->
-				<ul class="m-0 nav nav-tabs oswald dark" id="selectteamopstabs" role="tablist">
+				<ul class="m-0 nav nav-tabs oswald dark" id="selectrosteropstabs" role="tablist">
 					<li class="nav-item m-0 p-0" role="presentation">
-						<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#selectteamopslist" type="button" role="tab" aria-controls="ops" aria-selected="true">
+						<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#selectrosteropslist" type="button" role="tab" aria-controls="ops" aria-selected="true">
 							Operatives
 						</a>
 					</li>
@@ -23,15 +23,13 @@
 				
 				<div class="m-0 tab-content">
 					<!-- Operative Selection -->
-					<div class="tab-pane show active" id="selectteamopslist" role="tabpanel">
-						<div ng-repeat="operative in selectteamops.team.operatives track by $index">
-							<div class="cinzel">
-								<input type="checkbox" ng-model="operative.hidden" ng-true-value="false" ng-false-value="true" ng-change="commitTeams();" />
-								{{ operative.opname }}
+					<div class="tab-pane show active" id="selectrosteropslist" role="tabpanel">
+						<div ng-repeat="operative in selectrosterops.operatives track by $index">
+							<div>
+								<input type="checkbox" ng-model="operative.hidden" ng-true-value="0" ng-false-value="1" ng-change="commitTeams();" />
+								<h6 class="d-inline">{{ operative.opname }}</h6> ({{ operative.fireteamname}} - {{ operative.optype }})
 							</div>
 							<div class="container">
-								<span class="small oswald"> ({{ operative.fireteam.fireteamname}} - {{ operative.optype }})</span>
-								<br/>
 								<span ng-repeat="weapon in operative.weapons" class="d-inline">
 									{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
 									{{$last ? '' : ', '}}							
@@ -43,7 +41,7 @@
 					
 					<!-- KillTeam Composition Rules -->
 					<div class="tab-pane show" id="killteamcomp" role="tabpanel">
-						<div ng-bind-html="selectteamops.team.killteam.killteamcomp"></div>
+						<div ng-bind-html="selectrosterops.killteam.killteamcomp"></div>
 					</div>
 				</div>
 			</div>

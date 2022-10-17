@@ -86,6 +86,7 @@
                 while ($row = $result->fetch_object()) {
 					$ut = Roster::FromRow($row);
 					$ut->loadOperatives();
+					$ut->loadKillTeam();
 					$this->rosters[] = $ut;
                 }
             }

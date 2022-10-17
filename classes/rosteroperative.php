@@ -18,6 +18,7 @@
 		public $eqids = "";
 		
 		public $curW = 0;
+		public $activated = 0;
 		public $notes = "";
 		
 		public $baseoperative = null;
@@ -30,7 +31,10 @@
 			$this->skipfields = [
 				"baseoperative", "weapons", "equipments",
 				"M", "APL", "GA", "DF", "SV", "W",
-				"username", "rostername", "factionname", "killteamname", "fireteamname", "optype",
+				"username", "rostername", "factionname", "optype",
+				"killteamname", "fireteamname", "killteam", "fireteam",
+				"archetype",
+				"isInjured","isinjured","hidden",
 				"keywords", "abilities", "uniqueactions"
 			];
         }

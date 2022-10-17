@@ -10,7 +10,6 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			setTimeout(function() {
 				// Set tagged links to show the loader on click
-				console.log("Adding listeners...");
 				$(".navloader").on("click", function(){ toast("Loading..."); });
 			}, 1000);
 		}
@@ -38,6 +37,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) {
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)))
 						$scope.currentuser = data;
 					},
 					
@@ -584,6 +584,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			// commitRoster()
 			// Commits the specified roster to the DB/API.
 			$scope.commitRoster = function(roster) {
+				//console.log("Committing roster");
+				//console.log(roster);
 				// Prepare just the relevant data points for the roster to commit
 				let data = {
 					"userid": roster.userid,
@@ -592,7 +594,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					"factionid": roster.factionid,
 					"killteamid": roster.killteamid,
 					"seq": roster.seq,
-					"notes": roster.notes
+					"notes": roster.notes,
+					"CP": roster.CP,
+					"TP": roster.TP,
+					"VP": roster.VP
 				};
 				
 				// Send the update request to the API
@@ -946,6 +951,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			// commitRosterOp()
 			// Commits the specified roster to the DB/API.
 			$scope.commitRosterOp = function(operative) {
+				//console.log("Committing operative");
+				//console.log(operative);
 				// Send the update request to the API
 				$.ajax({
 					type: "POST",
@@ -1355,6 +1362,33 @@ var app = angular.module("kt", ['ngSanitize'])
 					});
 				}
 			}
+		
+			// getRosterArchetype()
+			// Returns a string representing the archetype for the specified roster, using its operatives' fireteams' archetype
+			$scope.getRosterArchetype = function(roster) {
+				let rosterArchetype = "";
+				
+				for (var opnum = 0; opnum < roster.operatives.length; opnum++) {
+					let op = roster.operatives[opnum];
+					let archetypes = op.archetype.split('/');
+					
+					for (let archnum = 0; archnum < archetypes.length; archnum++) {
+						let arch = archetypes[archnum];
+						
+						if (!rosterArchetype.includes(arch)) {
+							// Append this roster archetype to the output
+							if (rosterArchetype.length > 0) {
+								// Put a slash between archetypes
+								rosterArchetype += "/";
+							}
+							rosterArchetype += arch;
+						}
+					}
+				}
+				
+				// Done
+				return rosterArchetype;
+			}
 		}
 		
 		// COMPENDIUM
@@ -1455,6 +1489,180 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.$apply();
 					}
 				});
+			}
+		}
+		
+		// DASHBOARD
+		{
+			$scope.getDashboardRosterId = function() {
+				return localStorage.getItem("dashboardrosterid");
+			}
+			
+			$scope.setDashboardRosterId = function(rosterid) {
+				localStorage.setItem("dashboardrosterid", rosterid);
+			}
+			
+			// initDashboard()
+			// Initializes the dashboard
+			$scope.initDashboard = function() {
+				$scope.loading = true;
+				$scope.MODE = 'Dashboard';
+				
+				// Require the user to be logged in
+				if ($scope.currentuser == null) {
+					// Not logged in - Send user to "Log In"
+					$scope.loading = false;
+					console.log("Not logged in");
+					toast("Not logged in!");
+					window.location.href = "/login.htm";
+				}
+				else {
+					// User is logged in, check if they have at least one roster/team
+					if ($scope.currentuser.rosters.length < 1) {
+						$scope.loading = false;
+						console.log("No rosters for this user");
+						toast("You don't have any rosters!");
+						window.location.href = "/rosters.php";
+					}
+					else {
+						// Get the current deployed roster
+						//	May be set from the query string ("Deploy" button on rosters)
+						if (GetQS("rid") != "" && GetQS("rid") != null) {
+							$scope.setDashboardRosterId(GetQS("rid"));
+						}
+						
+						$scope.dashboardrosterid = $scope.getDashboardRosterId();
+						if ($scope.dashboardrosterid == null || $scope.dashboardrosterid == "") {
+							// Just select the first roster for the current user
+							$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
+							$scope.setDashboardRosterId($scope.dashboardrosterid);
+						}
+						
+						// Now check that this roster actually exists
+						$scope.dashboardroster = null;
+						for (let i = 0; i < $scope.currentuser.rosters.length; i++) {
+							if ($scope.currentuser.rosters[i].rosterid == $scope.dashboardrosterid) {
+								// Found it
+								$scope.dashboardroster = $scope.currentuser.rosters[i];
+							}
+						}
+						
+						if ($scope.dashboardroster == null) {
+							// Did not find the assigned roster, use the first one instead
+							$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
+							$scope.setDashboardRosterId($scope.dashboardrosterid);
+							$scope.dashboardroster = $scope.currentuser.rosters[0];
+							$scope.setDashboardRosterId($scope.dashboardrosterid);
+						}
+						
+						console.log("DashboardRosterID: " + $scope.dashboardrosterid);
+						console.log("DashboardRoster: " + JSON.stringify($scope.dashboardroster));
+					}
+				}
+				$scope.loading = false;
+			}
+			
+			// selectDashboardRoster()
+			// Sets the specified roster as the dashboard roster
+			$scope.selectDashboardRoster = function(roster) {
+				$scope.dashboardroster = roster;
+				$scope.setDashboardRosterId(roster.rosterid);
+			}
+			
+			// Pop-up the roster operative selection modal
+			$scope.initSelectRosterOps = function(roster) {
+				$scope.selectrosterops = roster;
+				
+				// Show the modal
+				$('#selectrosteropsmodal').modal("show");
+			}
+			
+			// resetDash()
+			// Resets the dashboard, returning scores to their default values and resetting operative wounds/curw
+			$scope.resetDash = function(roster) {
+				trackEvent("dashboard", "reset", "");
+				
+				// Update local roster
+				roster.CP = 2;
+				roster.VP = 0;
+				roster.TP = 1;
+				roster.RP = 0;
+				
+				// Push local roster to DB/API
+				$scope.commitRoster(roster);
+				
+				// Reset operatives (not injured)
+				for (let i = 0; i < roster.operatives.length; i++) {
+					let op = roster.operatives[i];
+					
+					// Not activated
+					op.activated = false;
+					
+					// No longer wounded - Show their details
+					$("#opinfo_" + i).collapse('show');
+					
+					// Reset their Wounds
+					op.curW = parseInt(op.W);
+					
+					// Reset Hidden
+					op.hidden = false;
+					
+					// Reset their injury debuffs
+					if (op.isInjured) {
+						// Operative is no longer injured, was injured before
+						op.isInjured = false;
+						
+						// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
+						// This does NOT apply to Pathfinder Assault Grenadiers
+						if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
+							for (let i = 0; i < op.weapons.length; i++) {
+								let wep = op.weapons[i];
+								for (let j = 0; j < wep.profiles.length; j++) {
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+								}
+							}
+						}
+						
+						// Increase the M on the operative
+						op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
+						op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
+						op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
+						op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
+						op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
+					}
+					
+					$scope.commitRosterOp(op);
+				}
+				
+				toast('Dashboard Reset');
+			}
+		
+			$scope.updateCP = function(inc, roster) {
+				roster.CP += inc;
+				if (roster.CP < 0) {
+					roster.CP = 0;
+				}
+				$scope.commitRoster(roster);
+			}
+			
+			$scope.updateVP = function(inc, roster) {
+				roster.VP += inc;
+				if (roster.VP < 0) {
+					roster.VP = 0;
+				}
+				$scope.commitRoster(roster);
+			}
+			
+			$scope.updateTP = function(inc, roster) {
+				roster.TP += inc;
+				if (roster.TP < 1) {
+					roster.TP = 1;
+				}
+				$scope.commitRoster(roster);
 			}
 		}
 		

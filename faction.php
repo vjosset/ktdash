@@ -36,7 +36,14 @@
 		?>
 		
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initFaction();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initFaction();"
+		style="
+			background-color: rgba(32, 32, 32, 0.9);
+			background-attachment:fixed;
+			background-image: url(<?php echo "/img/portraits/". $factionid . "/" . $factionid . ".jpg" ?>);
+			background-position: top center;
+			background-size: cover;
+			background-blend-mode: multiply;">
 		<?php include "topnav.shtml" ?>
 		
 		<h1 class="orange"><?php echo $faction->factionname ?></h1>

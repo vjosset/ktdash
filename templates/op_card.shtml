@@ -1,4 +1,4 @@
-<div id="opccard_{{operative.rosteropid}}" class="ng-cloak card darkcard m-1 p-0">
+<div ng-if="!operative.hidden || MODE != 'Dashboard'" id="opccard_{{operative.rosteropid}}" class="ng-cloak card darkcard m-1 p-0">
 		<!--
 		style="
 		background-color: rgba(32, 32, 32, 0.95);
@@ -32,7 +32,7 @@
 		
 		<!-- Dashboard Card Title -->
 		<div ng-if="MODE == 'Dashboard'" class="card-title">
-			<h3 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 				<i class="pointer fas fa-chevron-down fa-fw"></i>
 				{{ operative.opname }}
 				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
@@ -44,18 +44,18 @@
 		<!-- Card Content -->
 		<div id="opinfo_{{ $index }}" class="collapse show">
 			<!-- Dashboard Actions -->
-			<div class="row small m-0 p-0" ng-if="MODE == 'Dashboard'">
+			<div class="row m-0 p-0" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small">
 					{{ operative.optype }}
 				</div>
 				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
-					<input type="checkbox" ng-model="operative.activated" ng-change="commitTeams();" /> Activated
+					<input type="checkbox" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" /> Activated
 				</div>
 			</div>
 			
 			<!-- Portrait and Stats -->
 			<div class="row m-0">
-				<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="col-5" id="opportrait_{{operative.rosteropid}}"
+				<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster'" class="col-5" id="opportrait_{{operative.rosteropid}}"
 					style=
 					"background-image: url('/api/operativeportrait.php?roid={{operative.rosteropid}}');
 					background-size: cover;
@@ -106,11 +106,11 @@
 									&nbsp;<span ng-show="!opHasEq(operative, 'OpMod', 'SV')">{{ operative.SV }}</span><span ng-repeat="eq in getOpEq(operative, 'OpMod', 'SV')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
 								</td>
 								<td ng-if="MODE == 'Dashboard'">
-									<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+									<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
 									
 									{{ operative.curW }}
 									
-									<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+									<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
 								</td>
 								<td ng-if="MODE != 'Dashboard'">
 									{{ operative.W }}

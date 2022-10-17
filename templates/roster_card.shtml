@@ -37,7 +37,7 @@
 			<em>{{ myRoster.opList }}</em>
 		</p>
 		<div class="p-1" ng-if="MODE == 'MyRosters'">
-			<h1><button class="btn btn-primary">DEPLOY</button></h1>
+			<h1><a class="navloader" href="dashboard.php?rid={{ myRoster.rosterid}}"><button class="btn btn-primary">DEPLOY</button></a></h1>
 		</div>
 	</div>
 </div>

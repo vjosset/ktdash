@@ -15,7 +15,7 @@
         function __construct() {
             $this->TableName = "Roster";
             $this->Keys = ["rosterid"];
-			$this->skipfields = ["operatives","username","factionname","killteamname","opList","oplist","killteamdescription"];
+			$this->skipfields = ["operatives","username","factionname","killteamname","opList","oplist","killteamdescription","archetype"];
         }
 		
 		public function GetRoster($rid) {
@@ -42,6 +42,8 @@
 					
 					// Now load the operatives
 					$r->loadOperatives();
+					
+					// Done
 					return $r;
                 }
             }
@@ -75,6 +77,10 @@
 					$this->operatives[] = $op;
                 }
             }
+		}
+		
+		public function loadKillTeam() {
+			$this->killteam = Killteam::GetKillTeam($this->factionid, $this->killteamid);
 		}
 		
 		public function reorderOperatives() {
