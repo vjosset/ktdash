@@ -273,8 +273,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Team finished importing
 					toast("All v1 teams have been imported");
 					
-					// All done
+					// All done, reload the page so the user can see their newly-imported teams
 					$scope.loading = false;
+					toast("Loading...");
+					window.location.reload();
 				}
 			}
 			

@@ -1,4 +1,4 @@
-<!-- Edit team killteam dialog -->
+<!-- Select team operatives dialog -->
 <div class="modal fade oswald" id="selectteamopsmodal" tabindex="-1" role="dialog" aria-labelledby="selectteamopsmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
@@ -56,7 +56,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="sharerostermodallabel">Share Roster</h5>
+				<h5 class="modal-title cinzel" id="sharerostermodallabel"><i class="fas fa-share-square fa-fw"></i> Share Roster</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -75,7 +75,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="newrostermodallabel">New Roster</h5>
+				<h5 class="modal-title cinzel" id="newrostermodallabel"><i class="pointer far fa-plus-square fa-fw"></i> New Roster</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -109,7 +109,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="editrostermodallabel">Edit Roster {{ rostertoedit.rostername }}</h5>
+				<h5 class="modal-title cinzel" id="editrostermodallabel"><i class="fas fa-edit fa-fw"></i> {{ rostertoedit.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -132,7 +132,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="deleterostermodallabel">Delete Roster {{ deleteRoster.rostername }}</h5>
+				<h5 class="modal-title cinzel" id="deleterostermodallabel"><i class="fas fa-trash-alt fa-fw"></i> Delete Roster {{ deleteRoster.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -151,7 +151,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="addoptorostermodallabel">Add Operative to {{ addop.roster.rostername }}</h5>
+				<h5 class="modal-title cinzel" id="addoptorostermodallabel"><i class="pointer far fa-plus-square fa-fw"></i> Add Operative to {{ addop.roster.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -288,8 +288,11 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="editopmodallabel">{{ optoedit.opname }} ({{ optoedit.optype }})</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div id="editopmodallabel" class="modal-title m-0 p-0" style="line-height: 1;">
+					<h5><i class="fas fa-edit fa-fw"></i> {{ optoedit.opname }}</h5>
+					{{ optoedit.optype }}
+				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br/>
 			</div>
 			<div class="modal-body dark">
 				<h6 class="d-inline">Operative Name</h6>
@@ -327,7 +330,7 @@
 								  <ANY ng-switch-default>&#x26ED;</ANY>
 								</ANY>
 								{{ weapon.wepname }}
-								<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
+								<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
@@ -356,7 +359,7 @@
 							<td>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								- {{ profile.name }}
-								<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" style="font-style:italic;"></div>
+								<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
@@ -381,7 +384,7 @@
 				<!-- Equipments List-->
 				<div ng-repeat="eq in tempeditop.equipments track by $index">
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
-					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
+					<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
 				</div>
 			</div>
 			<div class="modal-footer dark">
@@ -397,7 +400,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="deleteopmodallabel">Delete Operative {{ optoremove.operative.opname }}</h5>
+				<h5 class="modal-title cinzel" id="deleteopmodallabel"><i class="fas fa-trash-alt fa-fw"></i> Delete Operative {{ optoremove.operative.opname }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -417,8 +420,8 @@
 		<div class="modal-content dark">
 			<div class="modal-header orange">
 				<h5 class="modal-title cinzel" id="wepsrmodallabel">
-				{{ wepsr.wepname }}
-				<span ng-if="wepsr.profiles.length > 1"> - {{ wepsr.profile.name }}</span>
+					<i class="far fa-question-circle fa-fw"></i> {{ wepsr.wepname }}
+					<span ng-if="wepsr.profiles.length > 1"> - {{ wepsr.profile.name }}</span>
 				</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
@@ -459,7 +462,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="popupmodallabel">{{ popup.title }}</h5>
+				<h5 class="modal-title cinzel" id="popupmodallabel"><i class="far fa-question-circle fa-fw"></i> {{ popup.title }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -474,7 +477,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="opportraitmodallabel">{{ optoedit.opname }}</h5>
+				<h5 class="modal-title cinzel" id="opportraitmodallabel"><i class="fas fa-edit fa-fw"></i> {{ optoedit.opname }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">
@@ -503,7 +506,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title cinzel" id="rosterportraitmodallabel">{{ rostertoedit.rostername }}</h5>
+				<h5 class="modal-title cinzel" id="rosterportraitmodallabel"><i class="fas fa-edit fa-fw"></i> {{ rostertoedit.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark">

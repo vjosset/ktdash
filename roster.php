@@ -29,7 +29,14 @@
 			include "og.php";
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRoster('<?php echo $myRoster->rosterid ?>');">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRoster('<?php echo $myRoster->rosterid ?>');"
+		style="
+			background-color: rgba(32, 32, 32, 0.9);
+			background-attachment:fixed;
+			background-image: url(/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>);
+			background-position: top center;
+			background-size: cover;
+			background-blend-mode: multiply;">
 		<?php
 			include "topnav.shtml";
 			include "templates/dialogs.shtml";
@@ -73,7 +80,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content dark">
 					<div class="modal-header orange">
-						<h5 class="modal-title cinzel" id="myrosterhelpmodallabel">My Roster - Help</h5>
+						<h5 class="modal-title cinzel" id="myrosterhelpmodallabel"><i class="pointer far fa-question-circle fa-fw"></i> My Roster - Help</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="m-0 modal-body dark">

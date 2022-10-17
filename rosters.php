@@ -56,7 +56,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content dark">
 					<div class="modal-header orange">
-						<h5 class="modal-title cinzel" id="myrostershelpmodallabel">My Rosters - Help</h5>
+						<h5 class="modal-title cinzel" id="myrostershelpmodallabel"><i class="far fa-question-circle fa-fw"></i> My Rosters - Help</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="m-0 modal-body dark">
