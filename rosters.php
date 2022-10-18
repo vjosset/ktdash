@@ -49,7 +49,7 @@
 			include "templates/dialogs.shtml";
 		?>
 		
-		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : $myUser->username) ?> Rosters</h1>
+		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : ($myUser->username . "'s ")) ?> Rosters</h1>
 		
 		<!-- Help Box -->
 		<div class="modal fade oswald" id="myrostershelpmodal" tabindex="-1" role="dialog" aria-labelledby="myrostershelpmodallabel" aria-hidden="true">

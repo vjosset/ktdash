@@ -43,7 +43,17 @@
 		?>
 		
 		<div class="orange container-fluid">
-			<h1><i class="fas fa-users fa-fw"></i>&nbsp;{{ myRoster.rostername }}</h1>
+			<h1>
+				<i class="fas fa-users fa-fw"></i>
+				&nbsp;
+				<?php 
+				if (!$ismine) {
+				?>
+					<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><?php echo $myRoster->username ?></a>'s
+				<?php
+				}?>
+				{{ myRoster.rostername }}
+			</h1>
 			<div class="row">
 				<div class="col-7">
 					<a ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>&nbsp;&nbsp;

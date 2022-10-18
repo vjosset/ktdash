@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		
-		<p class="card-text p-1 oswald" style="text-align:justify;">
+		<p ng-show="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify;">
 			{{ myRoster.notes }}
 		</p>
 		<p class="card-text p-1 oswald" style="text-align:justify;">
