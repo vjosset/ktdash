@@ -36,7 +36,7 @@
 		?>
 		
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initFaction();"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initFaction();"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;

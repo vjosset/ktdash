@@ -8,10 +8,10 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.loading = false;
 			$scope.MODE = "";
 			
-			setTimeout(function() {
+			setInterval(function() {
 				// Set tagged links to show the loader on click
 				$(".navloader").on("click", function(){ toast("Loading..."); });
-			}, 1000);
+			}, 500);
 		}
 		
 		// SESSION & LOG IN

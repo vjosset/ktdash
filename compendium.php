@@ -20,7 +20,7 @@
 		include "og.php"
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initCompendium();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initCompendium();">
 		<?php include "topnav.shtml" ?>
 		
 		<h1 class="cinzel orange">Compendium - Factions</h1>

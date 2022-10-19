@@ -270,9 +270,9 @@
 			</div>
 			
 			<!-- Equipment -->
-			<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0" class="line-top-light">
+			<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" class="line-top-light">
 				<h6>Equipment</h6>
-				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype != 'Ability' && eq.eqtype != 'UniqueAction' && eq.eqtype != 'Weapon'">
 					{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
 				</span>
 			</div>

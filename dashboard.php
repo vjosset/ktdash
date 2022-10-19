@@ -25,7 +25,7 @@
 			include "og.php";
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initDashboard()"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initDashboard()"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;

@@ -38,7 +38,7 @@
 		include "og.php"
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initKillteam();"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initKillteam();"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -128,18 +128,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="ploys" role="tabpanel">
-					<!-- Strategic Ploys -->
-					<div class="h3 cinzel">Strategic Ploys</div>
-					<div class="row p-0 m-0" ng-repeat="ploy in killteam.ploys.strat">
-						<div class="col-12 col-lg-6">
-							<?php include "templates/ploy.shtml" ?>
+				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel">
+					<div class="row container-fluid m-0 p-0">
+						<div class="col-xs-12 col-md-6">
+							<!-- Strategic Ploys -->
+							<h3>Strategic Ploys</h3>
+							<ANY ng-repeat="ploy in killteam.ploys.strat">
+								<?php include "templates/ploy.shtml" ?>
+							</ANY>
 						</div>
-					</div>
-					<div class="h3 cinzel">Tactical Ploys</div>
-					<div class="row p-0 m-0" ng-repeat="ploy in killteam.ploys.tac">
-						<div class="col-12 col-lg-6">
-							<?php include "templates/ploy.shtml" ?>
+						<div class="col-xs-12 col-md-6">
+							<!-- Tactical Ploys -->
+							<h3>Tactical Ploys</h3>
+							<ANY ng-repeat="ploy in killteam.ploys.tac">
+								<?php include "templates/ploy.shtml" ?>
+							</ANY>
 						</div>
 					</div>
 				</div>
