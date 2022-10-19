@@ -3,8 +3,7 @@
     require_once $root . '/include.php';
     
     class Utils {
-		function ResizeImage($source, $tw, $th)
-		{
+		function ResizeImage($source, $tw, $th) {
 			if ($tw == null || $tw == "") {
 				//Invalid width
 				$tw = 200;

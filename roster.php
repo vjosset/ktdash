@@ -52,7 +52,7 @@
 					<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><?php echo $myRoster->username ?></a>'s
 				<?php
 				}?>
-				{{ myRoster.rostername }}
+				<?php echo $myRoster->rostername ?>
 			</h1>
 			<div class="row">
 				<div class="col-7">

@@ -951,15 +951,12 @@ var app = angular.module("kt", ['ngSanitize'])
 			// commitRosterOp()
 			// Commits the specified roster to the DB/API.
 			$scope.commitRosterOp = function(operative) {
-				//console.log("Committing operative");
-				//console.log(operative);
 				// Send the update request to the API
 				$.ajax({
 					type: "POST",
 					url: APIURL + "rosteroperative.php",
 					timeout: 5000,
 					async: true,
-					dataType: 'json',
 					data: JSON.stringify(operative),
 					
 					// Success
@@ -1584,7 +1581,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Update local roster
 				roster.CP = 2;
-				roster.VP = 0;
+				roster.VP = 2;
 				roster.TP = 1;
 				roster.RP = 0;
 				
@@ -1595,17 +1592,18 @@ var app = angular.module("kt", ['ngSanitize'])
 				for (let i = 0; i < roster.operatives.length; i++) {
 					let op = roster.operatives[i];
 					
-					// Not activated
-					op.activated = false;
-					
 					// No longer wounded - Show their details
 					$("#opinfo_" + i).collapse('show');
 					
 					// Reset their Wounds
+					console.log("Setting operative's curW to " + parseInt(op.W));
 					op.curW = parseInt(op.W);
 					
-					// Reset Hidden
-					op.hidden = false;
+					// Reset Hidden - Must be an INT to save properly in DB
+					op.hidden = 0;
+					
+					// Not activated - Must be an INT to save properly in DB
+					op.activated = 0;
 					
 					// Reset their injury debuffs
 					if (op.isInjured) {

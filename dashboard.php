@@ -89,25 +89,25 @@
 					</div>
 					<div class="row">
 						<h3 class="col-4">
-							<span class="pointer small float-start" ng-click="updateCP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateCP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 							
 							<span ng-bind="dashboardroster.CP"></span>
 							
-							<span class="pointer small float-end" ng-click="updateCP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateCP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 						</h3>
 						<h3 class="col-4">
-							<span class="pointer small float-start" ng-click="updateTP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateTP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 							
 							<span ng-bind="dashboardroster.TP"></span>
 							
-							<span class="pointer small float-end" ng-click="updateTP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateTP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 						</h3>
 						<h3 class="col-4">
-							<span class="pointer small float-start" ng-click="updateVP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateVP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 							
 							<span ng-bind="dashboardroster.VP"></span>
 							
-							<span class="pointer small float-end" ng-click="updateVP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+							<span class="pointer small" ng-click="updateVP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 						</h3>
 					</div>
 				</center>
@@ -164,18 +164,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="ploys" role="tabpanel">
-					<!-- Strategic Ploys -->
-					<div class="h3 cinzel">Strategic Ploys</div>
-					<div class="row p-0 m-0" ng-repeat="ploy in dashboardroster.killteam.ploys.strat">
-						<div class="col-12 col-lg-6">
-							<?php include "templates/ploy.shtml" ?>
+				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel">
+					<div class="row container-fluid m-0 p-0">
+						<div class="col-xs-12 col-md-6">
+							<!-- Strategic Ploys -->
+							<h3>Strategic Ploys</h3>
+							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.strat">
+								<?php include "templates/ploy.shtml" ?>
+							</ANY>
 						</div>
-					</div>
-					<div class="h3 cinzel">Tactical Ploys</div>
-					<div class="row p-0 m-0" ng-repeat="ploy in dashboardroster.killteam.ploys.tac">
-						<div class="col-12 col-lg-6">
-							<?php include "templates/ploy.shtml" ?>
+						<div class="col-xs-12 col-md-6">
+							<!-- Tactical Ploys -->
+							<h3>Tactical Ploys</h3>
+							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.tac">
+								<?php include "templates/ploy.shtml" ?>
+							</ANY>
 						</div>
 					</div>
 				</div>

@@ -69,7 +69,7 @@
 				// Clone/import existing team
 				
 				// Prepare a new rosterid
-				$newrosterid = CommonUtils\shortId();
+				$newrosterid = CommonUtils\shortId(5);
 				
 				// Get the original roster
 				$origrosterid = $_REQUEST['rid'];
@@ -92,7 +92,7 @@
 				
 				// Update all operatives
 				foreach($roster->operatives as $op) {
-					$op->rosteropid = CommonUtils\shortId();
+					$op->rosteropid = CommonUtils\shortId(5);
 					$op->userid = $u->userid;
 					$op->rosterid = $newrosterid;
 					
@@ -173,7 +173,7 @@
 				// Check if this team exists
 				if ($r->rosterid == null || $r->rosterid == "") {
 					// No user team ID, create a new one
-					$r->rosterid = CommonUtils\shortId();
+					$r->rosterid = CommonUtils\shortId(5);
 					
 					// Make sure rosters are in seq order
 					$u->reorderRosters();
@@ -242,10 +242,15 @@
 				// Current user owns this roster, OK to delete
 				$r->DBDelete();
 				
+				// Delete this roster's portrait if it exists
+				unlink("../img/rosterportraits/{$r->rosterid}.jpg");
+				
 				// Load the roster's operatives so we can delete them
 				$r->loadOperatives();
-				foreach($r->operatives as $op) {
-					$op->DBDelete();
+				foreach($r->operatives as $ro) {
+					$ro->DBDelete();
+					// Delete this operative's portrait if it exists
+					unlink("../img/opportraits/{$ro->rosteropid}.jpg");
 				}
 				
 				// Now re-sort the rosters

@@ -19,6 +19,7 @@
 		
 		public $curW = 0;
 		public $activated = 0;
+		public $hidden = 0;
 		public $notes = "";
 		
 		public $baseoperative = null;
@@ -34,7 +35,7 @@
 				"username", "rostername", "factionname", "optype",
 				"killteamname", "fireteamname", "killteam", "fireteam",
 				"archetype",
-				"isInjured","isinjured","hidden",
+				"isInjured","isinjured",
 				"keywords", "abilities", "uniqueactions"
 			];
         }
@@ -66,7 +67,7 @@
 			global $dbcon;
 			
 			// Get the weapons for this operative
-			$sql = "SELECT * FROM Weapon WHERE factionid = ? AND killteamid = ? AND fireteamid = ? AND opid = ? AND CONCAT(',', ?, ',') LIKE CONCAT('%,', wepid, ',%') ORDER BY wepseq";
+			$sql = "SELECT * FROM Weapon WHERE factionid = ? AND killteamid = ? AND fireteamid = ? AND opid = ? AND CONCAT(',', ?, ',') LIKE CONCAT('%,', wepid, ',%') ORDER BY wepseq, weptype DESC";
 			
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "sssss";

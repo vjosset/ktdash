@@ -75,6 +75,9 @@
 					} else {
 						$ro->DBDelete();
 						
+						// Delete this operative's portrait if it exists
+						unlink("../img/opportraits/{$ro->rosteropid}.jpg");
+						
 						// Now re-order operatives so their seqs are always sequential
 						$r = Roster::GetRoster($ro->rosterid);
 						$r->reorderOperatives();
@@ -106,7 +109,7 @@
 				
 				if ($r == null || $r->userid != $u->userid) {
 					// Roster not found or belongs to someone else
-					header('HTTP/1.0 404 Roster not found');
+					header('HTTP/1.0 404 Roster not found A');
 					die();
 				}
 				
@@ -174,17 +177,20 @@
 				// Check the roster this operative should be added to
 				$r = Roster::GetRoster($newop->rosterid);
 				if ($r == null || $r->userid != $u->userid) {
-					// User team not found or belongs to someone else
-					header('HTTP/1.0 404 Roster not found');
+					// Roster not found or belongs to someone else
+					header('HTTP/1.0 404 Roster not found B');
 					die();
 				} else {
 					// All good
 					if ($newop->rosteropid == null || $newop->rosterid == "") {
 						// No roster operative ID, generate a new one
-						$newop->rosteropid = CommonUtils\shortId();
+						$newop->rosteropid = CommonUtils\shortId(5);
 						
 						// This means this is a new operative that was added to the team; set its set to be last in the roster
 						$newop->seq = 10000;
+						
+						// Set its curW based on the the base operative's W
+						$newop->curW = (Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid))->W;
 					}
 					
 					// Make sure the fields are assigned correctly
@@ -198,6 +204,8 @@
 					} else {
 						// Save this operative to DB
 						$newop->DBSave();
+						
+						$newop = RosterOperative::GetRosterOperative($newop->rosteropid);
 						
 						// Reorder operatives so their seqs are always sequential
 						$r->reorderOperatives();
