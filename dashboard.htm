@@ -43,7 +43,7 @@
 										<span class="h3">{{ dashboard.myteam.teamname }}</span>
 									</button>
 									<div class="dropdown-menu" id="teamselect">
-										<a class="dropdown-item" type="button" ng-repeat="team in myteams" ng-click="selectDashTeam(team);trackEvent('dashboard', 'selectTeam');">
+										<a class="dropdown-item" type="button" ng-repeat="team in myteams track by $index" ng-click="selectDashTeam(team);trackEvent('dashboard', 'selectTeam');">
 											{{ team.teamname }}
 										</a>
 									</div>

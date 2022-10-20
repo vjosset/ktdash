@@ -3,7 +3,6 @@
     require_once $root . '/include.php';
     global $dbcon;
     
-    header('Content-Type: application/json');
     switch ($_SERVER['REQUEST_METHOD']) {
 		case "GET":
 			//Get the requested thing

@@ -19,10 +19,18 @@
 	function GetName() {
 		$nametype = $_REQUEST["nametype"];
 		switch ($nametype) {
+			case "ADMECH":
+				return GetAdMechName();
 			case "AELDARI-M":
 				return GetAeldariMaleName() . " " . GetAeldariMaleName();
 			case "AELDARI-F":
 				return GetAeldariFemaleName() . " " . GetAeldariFemaleName();
+			case "CHAOSMARINES":
+				return GetChaosMarineName();
+			case "DAEMONETTE":
+				return GetDaemonetteName();
+			case "DAEMON":
+				return GetDaemonName();
 			case "DARKAELDARI-M":
 				return GetDarkAeldariMaleName() . " " . GetDarkAeldariMaleName();
 			case "DARKAELDARI-F":
@@ -31,26 +39,20 @@
 				return GetHumanMaleName();
 			case "HUMAN-F":
 				return GetHumanFemaleName();
-			case "TYRANID":
-				return GetTyranidName();
+			case "KROOT":
+				return GetKrootName();
+			case "NECRON":
+				return GetNecronName();
+			case "ORK":
+				return GetOrkName();
 			case "SISTERSOFBATTLE":
 				return GetSistersOfBattleName();
 			case "SPACEMARINES":
 				return GetSpaceMarineName();
 			case "TAU":
 				return GetTauName();
-			case "NECRON":
-				return GetNecronName();
-			case "ORK":
-				return GetOrkName();
-			case "ADMECH":
-				return GetAdMechName();
-			case "CHAOSMARINES":
-				return GetChaosMarineName();
-			case "DAEMONETTE":
-				return GetDaemonetteName();
-			case "DAEMON":
-				return GetDaemonName();
+			case "TYRANID":
+				return GetTyranidName();
 		}
 		
 		// Return a name for the requested faction/killteam/fireteam/operative
@@ -320,7 +322,7 @@
 			case "TAU|CM|CM|KTX": //Krootox
 			case "TAU|CM|CM|LDR": //Kroot Carnivore Leader
 			case "TAU|CM|CM|WAR": //Kroot Carnivore Warrior
-				break;
+				return GetKrootName();
 			case "TAU|HC|DRN|DS8": //DS8 Tactical Support Turret
 			case "TAU|HC|DRN|MB3": //MB3 Recon Drone
 			case "TAU|HC|DRN|MV1": //MV1 Gun Drone
@@ -384,6 +386,14 @@
 	
 	function GetGenericName() {
 		return GetHumanName();
+	}
+	
+	function GetKrootName() {
+		$name0 = ["Kra", "Gohk", "Ahkra", "Dohra", "Cho", "Byakh", "Grahm", "Khor", "Ohrak", "Tehk", "Chok", "Khrek", "Tobok", "Obak", "Grark", "Byahm", "Doryc", "Te", "Khrob", "Jiynko", "Ahoc", "Obyn", "Anghor", "Avhra", "Yuka", "Doakh", "Byek", "Gho", "Lucu", "Tohra", "Dra", "Ahahk", "Gerba", "Alhar", "Bakor", "Tebek"];
+		$name1 = ["'to", " Cha", "'ka", "'yo", " Grok", "'ah", "'ohk", " Ek", "'tcha", "", "'ya", " Ahk", " Ba", "'tcho", "'ke", " Ot", " Ak", "'hrakh", " Che", "'yc", " Khe", "", "'grahk", "'ab", "'cha", " Ohk", " Ye", "'grekh", " Da", "'gr", " Ekh", " Yo", "'eht", "", " Rek", "'tche"];
+		$name2 = ["Gota", "Krrah", "Ch'choh", "Tohrrok", "Ga'ah", "Kyrek", "Ghorka", "Drr'rr", "Yo'toh", "Rhekk", "Prok", "Teleb", "Talar", "Pre'lek", "Yrr'dk", "Goba", "Ta'bak", "Ga'toh", "Yabek", "Cho'yar", "Rhehor", "Kaa'he", "Rrok", "Kyr'am", "Mebekh", "Batam", "Dyr'yn", "Gabt", "Krarh", "Yr'be", "Drekh", "Orak", "Caroch", "Akchan", "Trosk", "Belet"];
+		
+		return $name0[array_rand($name0)] . $name1[array_rand($name1)] . " " . $name2[array_rand($name2)];
 	}
 	
 	function GetAdMechName() {

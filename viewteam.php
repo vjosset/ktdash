@@ -21,7 +21,7 @@
 		$pagetitle = $teamname . " - " . $killteam->killteamname . " KillTeam";
 		$pagedesc  = "Import " . $killteam->killteamname . " KillTeam " . $teamname;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png";
-		$pageurl   = "https://ktdash.app/viewteam.php?mportteam=" . $_REQUEST['importteam'];
+		$pageurl   = "https://ktdash.app/viewteam.php?importteam=" . $_REQUEST['importteam'];
 		
 		include "og.php"
 		?>

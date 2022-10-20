@@ -409,6 +409,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.dashboard.RP = 0;
 				
 				for (let i =0; i < team.operatives.length; i++) {
+					// Mark all operatives as selected
+					team.operatives[i].hidden = false;
+					
+					// Reset wounds for all operatives
 					if (team.operatives[i].curW == null) {
 						team.operatives[i].curW = parseInt(team.operatives[i].W);
 					}
@@ -1286,9 +1290,36 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				$scope.importTeam = importTeam;
 			}
+				
+			$scope.getShortId = function() {
+				// Get a new short ID
+				var id = "";
+				$.ajax({
+					type: "GET",
+					url: APIURL + "id.php",
+					timeout: 5000,
+					async: false,
+					dataType: 'text',
+					
+					// Success
+					success: function(data) {
+						console.log("Data: " + data);
+						id = data;
+					},
+					
+					// Failure
+					error: function(error) {
+						id = error;
+					}
+				});
+				
+				return id.trim();
+			}
 			
 			// Newer, shorter format for team imports
 			$scope.initImportTeam2 = function(importstring) {
+				let sql = "";
+				
 				let data = importstring.split("|");
 				
 				let importTeam = {
@@ -1301,6 +1332,12 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Set the killteam
 				importTeam.killteam = $scope.getKillteam(importTeam.factionid, importTeam.killteamid);
 				
+				let userteamid = $scope.getShortId();
+				
+				// Build the SQL for the userteam
+				sql += "INSERT INTO Roster VALUES ('bkq7vXGBhA', '" + userteamid + "', 0, '" + importTeam.teamname + "', '" + importTeam.factionid + "', '" + importTeam.killteamid + "', '');\r\n";
+				
+				// Load operatives
 				for (let opnum = 3; opnum < data.length; opnum++) {
 					let opdata = data[opnum].split("/");
 					
@@ -1327,12 +1364,21 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					}
 					
+					let utopid = $scope.getShortId();
+					sql += "INSERT INTO RosterOperative VALUES (";
+					sql += "'bkq7vXGBhA', '" + userteamid + "', '" + utopid + "', " + (opnum - 3) + ", '" + op.opname + "', '" + importTeam.factionid + "', '" + importTeam.killteamid + "', '" + op.fireteamid + "', '" + op.opid + "', '" + opdata[3].split(",") + "', '', " + opmodel.W + ", '');\r\n";
+					
 					// Done, add this operative to the team
 					importTeam.operatives.push(op);
 				}
 				
 				// Set the team to be imported				
 				$scope.importTeam = importTeam;
+				
+				console.log("ImportTeam2:\r\n" + JSON.stringify($scope.importTeam));
+				
+				// Spit it out
+				console.log("SQL: \r\n" + sql);
 			}
 		
 			// Import the team into this user's team list
@@ -1481,6 +1527,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 						myteamsjson = $scope.cleanSpecialChars(myteamsjson, false);
 						$scope.myteams = JSON.parse(myteamsjson);
+						
+						console.log("My Teams: \r\n" + JSON.stringify($scope.myteams));
 						
 						// Fill in the additional info for the player's teams
 						for (let teamnum = 0; teamnum < $scope.myteams.length; teamnum++) {

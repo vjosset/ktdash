@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--#include virtual="header.shtml" -->
+		
+		<!-- OpenGraph/Twitter Meta Tags -->
+		<!-- Title -->
+		<title>Push Teams to Beta | KTDash.app</title>
+		<meta property="og:title"  content="My Teams | KTDash.app">
+		<meta name="twitter:title" content="My Teams | KTDash.app">
+		<!-- Description -->
+		<meta name="description"         content="Manage your KillTeam 2021 teams and roster">
+		<meta property="og:description"  content="Manage your KillTeam 2021 teams and roster">
+		<meta name="twitter:description" content="Manage your KillTeam 2021 teams and roster">
+		<!-- URL -->
+		<meta property="og:url"      content="https://ktdash.app/myteams.htm">
+		<meta property="twitter:url" content="https://ktdash.app/myteams.htm">
+		<!-- Image -->
+		<meta property="og:image"  content="https://ktdash.app/img/og/MyTeams.png">
+		<meta name="twitter:image" content="https://ktdash.app/img/og/MyTeams.png">
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+		<!--#include virtual="topnav.shtml" -->
+			
+		<!-- Dialogs -->
+		<!--#include virtual="templates/dialogs.shtml" -->
+		
+		<p>
+			Push your ktdash teams to the v2 beta.<br/>
+			Note that you must be logged in on beta.ktdash.app for these links to work.
+		</p>
+		
+		<div class="oswald" ng-repeat="team in myteams track by $index">
+			<h3 class="cinzel">{{ team.teamname }}</h3>
+			<a href="https://beta.ktdash.app/importv1team.htm?t={{ getTeamFormat(team) }}" target="_blank">Push to v2 beta</a>
+			<hr/>
+		</div>
+		
+		<!--#include virtual="footer.shtml" -->
+	</body>
+</html>
