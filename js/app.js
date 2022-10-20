@@ -37,7 +37,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) {
-						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)))
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 						$scope.currentuser = data;
 					},
 					
@@ -185,6 +185,94 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// ROSTERS
 		{
+			$scope.initImportV1Team = function() {
+				$scope.loading = true;
+				
+				// Check that the user is logged in
+				if ($scope.currentuser == null) {
+					// Not logged in - Send user to "Log In"
+					$scope.loading = false;
+					toast("Not logged in!");
+					window.location.href = "/login.htm";
+				} else {
+					// Parse the input
+					let importstring = GetQS("t");
+					if (importstring == null || importstring == "") {
+						toast("No team to import");
+					} else {
+						let data = importstring.split("|");
+					
+						let roster = {
+							"userid": $scope.currentuser.userid,
+							"rostername": data[0],
+							"factionid": data[1],
+							"killteamid": data[2],
+							"operatives": []
+						};
+						
+						// Send the request to the API
+						$.ajax({
+							type: "POST",
+							url: APIURL + "roster.php",
+							timeout: 5000,
+							async: false,
+							dataType: 'json',
+							data: JSON.stringify(roster),
+							success: function(data) {
+								roster = data;
+							},
+							error: function(error) {
+								// Failed to save roster
+								toast("Could not import team " + team.teamname + ": \r\n" + error);
+							}
+						});
+						
+						
+						// We should now have a roster ID, use it to import the operatives for this roster
+						for (let j = 3; j < data.length; j++) {
+							let opdata = data[j].split("/");
+							
+							let op = {
+								"userid": $scope.currentuser.userid,
+								"rosterid": roster.rosterid,
+								"factionid": roster.factionid,
+								"killteamid": roster.killteamid,
+								"fireteamid": opdata[0],
+								"seq": (j - 3), // Make sure they stay in order
+								"opid": opdata[1],
+								"opname": opdata[2],
+								"wepids": opdata[3]
+							};
+							
+							// Send the request to the API
+							$.ajax({
+								type: "POST",
+								url: APIURL + "rosteroperative.php",
+								timeout: 5000,
+								async: false,
+								dataType: 'json',
+								data: JSON.stringify(op),
+								success: function(data) {
+									op = data;
+								},
+								error: function(error) {
+									// Failed to save roster
+									toast("Could not import operative " + op.opname + ": \r\n" + error);
+								}
+							});
+						}
+						
+						// All done, send the user to their new roster
+						$scope.importedroster = roster;
+					}
+				}
+				
+				$scope.loading = false;
+			}
+			
+			// importV1Teams()
+			// Auto-import from localStorage at "My Rosters" load
+			//	NOT the same as the importer for the beta; this will be used when we go live
 			$scope.importV1Teams = function() {
 				// Check if the logged-in user has some teams that were not imported from v1 (localStorage)
 				let oldTeamsJson = window.localStorage.getItem("myteams");

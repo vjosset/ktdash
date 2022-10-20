@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#include virtual="/header.shtml" -->
+		<title>Log In | KTDash.app</title>
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initImportV1Team();">
+		<!--#include virtual="/topnav.shtml" -->
+		
+		<h1 class="orange"><i class="fas fa-file-import fa-fw"></i>&nbsp;&nbsp;Import V1 Team</h1>
+		
+		<a ng-hide="loading" href="/roster.php?rid={{ importedroster.rosterid }}">{{ importedroster.rostername }}</a> imported!
+		
+		</div>
+		<!--#include virtual="/footer.shtml" -->
+	</body>
+</html>

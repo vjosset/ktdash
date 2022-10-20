@@ -178,8 +178,8 @@
 					// Make sure rosters are in seq order
 					$u->reorderRosters();
 					
-					// Rosters are now order by Seq, starting at 10
-					// Now we can insert this new team as Seq = -1
+					// Rosters are now ordered by Seq, starting at 0
+					// Now we can insert this new team as Seq = -1 so new teams are always first
 					$r->seq = -1;
 					
 					// Now save this team to DB
