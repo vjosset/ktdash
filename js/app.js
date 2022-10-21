@@ -875,6 +875,21 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#sharerostermodal').modal("show");
 			}
 			
+			// totalEqPts()
+			// Returns the total equipment points for all operatives in the specified roster
+			$scope.totalEqPts = function(roster) {
+				console.log("Getting EqPts for " + roster.rostername);
+				let total = 0;
+				for (let i = 0; i < roster.operatives.length; i++) {
+					let op = roster.operatives[i];
+					for (let j = 0; j < op.equipments.length; j++) {
+						total += parseInt(op.equipments[j].eqpts);
+					}
+				}
+				
+				// Done
+				return total;
+			}
 		}
 		
 		// OPERATIVES
@@ -1299,6 +1314,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					let eq = JSON.parse(JSON.stringify(roster.killteam.equipments[eqnum]));
 					eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
 					$scope.tempeditop.equipments.push(eq);
+					if (eq.eqtype == 'Weapon') {
+						console.log("Found equipment weapon: " + eq.weapon.wepname);
+					}
 				}
 				
 				// Show the modal
@@ -1882,7 +1900,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "HOT":
 								rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
 								break;
+							case "IND":
 							case "INDIRECT":
+								rule.rulename = "Indirect";
 								rule.ruletext = "Ignores cover when selecting valid targets. Must still be Visible and not Obscured.";
 								break;
 							case "LIM":

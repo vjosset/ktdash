@@ -56,7 +56,10 @@
 			</h1>
 			<div class="row">
 				<div class="col-7">
-					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>&nbsp;&nbsp;
+					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
+						<?php echo $myRoster->killteamname ?>
+					</a>
+					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
 				</div>
 				<div class="col-5" style="text-align: right;">
 					<div class="col-12" ng-if="!loading && <?php echo $ismine > 0 ? "true" : "false" ?>">
@@ -140,7 +143,7 @@
 			}
 			?>
 			
-			<!-- Show this roster -->
+			<!-- Show this roster's operatives -->
 			<div class="row">
 				<div class="col-12 col-md-6 col-xl-4 m-0 p-1" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
 					<?php include "templates/op_card.shtml" ?>

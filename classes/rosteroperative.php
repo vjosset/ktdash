@@ -113,92 +113,16 @@
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
                     $eq = Equipment::FromRow($row);
-					$this->equipments[] = $eq;
 					
-					// Parse this equipment to see if it modifies this operative's characteristics or its weapons characteristics
-					switch ($eq->eqtype) {
-						case "WepMod":
-							// eqvar1 is the filter for which weapon this applies to
-							// eqvar2 is the stat that this will change on the applicable weapon(s)
-							// eqvar3 is the change to the applicable stat on the applicable weapon
-							break;
+					// Get the sub-info if it's a weapon
+					if ($eq->eqtype == 'Weapon') {
+						$eq->weapon = Weapon::FromDB($eq->factionid, $eq->killteamid, 'EQ', 'EQ', $eq->eqid);
+						$eq->weapon->loadWeaponProfiles();
 					}
+					
+					$this->equipments[] = $eq;
                 }
             }
 		}
-		
-		/* COMMENTED OUT - UI SHOULD DO THIS WITH "PUTS" FOR THE USERTEAMOPERATIVES
-		public function move($inc) {
-			global $dbcon;
-			
-			if ($inc == 1) {
-				// Moving down (higher seq)
-				$sql = "SELECT MAX(seq) AS maxseq FROM RosterOperative WHERE rosterid = ?;";
-				
-				$cmd = $dbcon->prepare($sql);
-				$paramtypes = "s";
-				$params = array();
-				$params[] =& $paramtypes;
-				$params[] =& $this->rosterid;
-
-				call_user_func_array(array($cmd, "bind_param"), $params);
-				$cmd->execute();
-
-				$maxseq = -1;
-				if ($result = $cmd->get_result()) {
-					if ($row = $result->fetch_object()) {
-						$maxseq = $row->maxseq;
-					}
-				}
-				
-				if ($this->seq == $maxseq) {
-					// Already last, nothing to move
-				} else {
-					// Not yet at the bottom (seq maxseq), swap seq with the following operative
-					$sql  = "UPDATE RosterOperative SET seq = seq + 101 WHERE rosterid = ? AND seq = ?;";
-					$sql .= "UPDATE RosterOperative SEQ seq = seq -   1 WHERE rosterid = ? AND Seq = ?;";
-					$sql .= "UPDATE RosterOperative SET seq = seq - 100 WHERE rosterid = ? AND seq = ?;";
-					
-					$cmd = $dbcon->prepare($sql);
-					$paramtypes = "sssss";
-					$params = array();
-					$params[] =& $paramtypes;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq - 1;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq + 101;
-
-					call_user_func_array(array($cmd, "bind_param"), $params);
-					$cmd->execute();
-				}
-			} else if ($inc == -1) {
-				// Moving up (lower seq)
-				if ($this->seq == 0) {
-					// Already at the top (seq 0), nothing to do
-				} else {
-					// Not yet at the top (seq 0), swap seqs with previous operative
-					$sql  = "UPDATE RosterOperative SET seq = seq +  99 WHERE rosterid = ? AND seq = ?;";
-					$sql .= "UPDATE RosterOperative SEQ seq = seq +   1 WHERE rosterid = ? AND Seq = ?;";
-					$sql .= "UPDATE RosterOperative SET seq = seq - 100 WHERE rosterid = ? AND seq = ?;";
-					
-					$cmd = $dbcon->prepare($sql);
-					$paramtypes = "sssss";
-					$params = array();
-					$params[] =& $paramtypes;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq + 1;
-					$params[] =& $this->rosterid;
-					$params[] =& $this->seq + 99;
-
-					call_user_func_array(array($cmd, "bind_param"), $params);
-					$cmd->execute();
-				}
-			}			
-		}
-		*/
 	}
 ?>

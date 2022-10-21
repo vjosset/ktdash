@@ -190,7 +190,12 @@
 						$newop->seq = 10000;
 						
 						// Set its curW based on the the base operative's W
-						$newop->curW = (Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid))->W;
+						$baseop = Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid);
+						if (is_numeric($baseop->W)) {
+							$newop->curW = $baseop->W;
+						} else {
+							$newop->curW = 0;
+						}
 					}
 					
 					// Make sure the fields are assigned correctly

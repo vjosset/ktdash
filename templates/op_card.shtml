@@ -35,9 +35,9 @@
 			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 				<i class="pointer fas fa-chevron-down fa-fw"></i>
 				{{ operative.opname }}
-				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
-				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
-				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
+				<i class="fas fa-check fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.activated && operative.curW > 0"></i>
+				<i class="fas fa-skull fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.curW == 0"></i>
+				<i class="fas fa-heartbeat fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.isInjured && operative.curW > 0"></i>
 			</h3>
 		</div>
 		
@@ -48,7 +48,7 @@
 				<div class="col-6 small">
 					{{ operative.optype }}
 				</div>
-				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
+				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="isInteger(operative.baseoperative.W) && operative.curW > 0">
 					<input type="checkbox" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" /> Activated
 				</div>
 			</div>
@@ -106,11 +106,16 @@
 									&nbsp;<span ng-show="!opHasEq(operative, 'OpMod', 'SV')">{{ operative.SV }}</span><span ng-repeat="eq in getOpEq(operative, 'OpMod', 'SV')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
 								</td>
 								<td ng-if="MODE == 'Dashboard'">
-									<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
-									
-									{{ operative.curW }}
-									
-									<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+									<ANY ng-if="operative.baseoperative.W != '-'">
+										<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+										
+										{{ operative.curW }}
+										
+										<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+									</ANY>
+									<ANY ng-if="operative.baseoperative.W == '-'">
+									- 
+									</ANY>
 								</td>
 								<td ng-if="MODE != 'Dashboard'">
 									{{ operative.W }}
