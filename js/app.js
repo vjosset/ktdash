@@ -1492,6 +1492,62 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Done
 				return rosterArchetype;
 			}
+			
+			// initEditOpEq()
+			// Pop-up the operative equipment modal
+			$scope.initEditOpEq = function(roster, operative) {
+				$scope.opeq = {
+					"operative": operative,
+					"equipments": roster.killteam.equipments
+				};
+				
+				// Set the current selection
+				for (let eqnum = 0; eqnum < $scope.opeq.equipments.length; eqnum++) {
+					let eq = $scope.opeq.equipments[eqnum];
+					eq.isselected = false;
+					
+					if ($scope.opeq.operative.equipments == null) {
+						$scope.opeq.operative.equipments = [];
+					}
+					
+					for (let opeqnum = 0; opeqnum < $scope.opeq.operative.equipments.length; opeqnum++) {
+						if ($scope.opeq.operative.equipments[opeqnum].eqid == eq.eqid) {
+							// This operative has this equipment selected
+							eq.isselected = true;
+						}
+					}
+				}
+				
+				// Show the modal
+				$('#editopeqmodal').modal("show");
+			}
+			
+			// saveEditOpEq()
+			// Commit operative equipment selections
+			$scope.saveEditOpEq = function() {
+				// Remove the operative's previous equipment
+				$scope.opeq.operative.equipments = [];
+				$scope.opeq.operative.eqids = "";
+				
+				// Add the selected equipment to the operative
+				for (let i = 0; i < $scope.opeq.equipments.length; i++) {
+					if ($scope.opeq.equipments[i].isselected) {
+						if ($scope.opeq.operative.eqids.length > 0) {
+							// Put a comma between equipments
+							$scope.opeq.operative.eqids += ",";
+						}
+						$scope.opeq.operative.eqids += $scope.opeq.equipments[i].eqid;
+						
+						$scope.opeq.operative.equipments.push($scope.opeq.equipments[i]);
+					}
+				}
+				
+				// Commit changes
+				$scope.commitRosterOp($scope.opeq.operative);
+				
+				// Hide the modal
+				$('#editopeqmodal').modal("hide");
+			}
 		}
 		
 		// COMPENDIUM

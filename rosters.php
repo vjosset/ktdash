@@ -32,8 +32,7 @@
 			include "header.shtml";
 			if ($uid == 'prebuilt') {
 				$pagetitle = "Pre-Built KillTeam Rosters";
-			}
-			else {
+			} else {
 				$pagetitle = ($ismine ? "My" : (ucwords($myUser->username) . "'s")) . " KillTeam Rosters";
 			}
 			
@@ -49,7 +48,7 @@
 			include "templates/dialogs.shtml";
 		?>
 		
-		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : (ucwords($myUser->username) . "'s ")) ?> Rosters</h1>
+		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : ($uid == 'prebuilt' ? 'Pre-Built ' : (ucwords($myUser->username) . "'s "))) ?> Rosters</h1>
 		
 		<!-- Help Box -->
 		<div class="modal fade oswald" id="myrostershelpmodal" tabindex="-1" role="dialog" aria-labelledby="myrostershelpmodallabel" aria-hidden="true">
@@ -88,7 +87,7 @@
 		<!-- Show this player's rosters -->
 		<div class="container-fluid ng-cloak" ng-hide="loading">
 			<div ng-if="myRosters.length < 1" >
-				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet.</span>
+				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet. To import your v1 teams into the V2 Beta, click <a href="https://ktdash.app/pushtobeta.htm" target="_blank">here</a>.</span>
 				<span ng-if="MODE == 'Rosters'">This user doesn't have any Rosters yet.</span>
 			</div>
 			<?php

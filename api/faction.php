@@ -19,6 +19,9 @@
     function GETFaction() {
 		// Get the requested faction id
 		$factionid = $_REQUEST['factionid'];
+		if ($faction == "" || $faction == null) {
+			$factionid = $_REQUEST['faid'];
+		}
 		$loadkillteams = ($_REQUEST['loadkts'] == '1');
 		$loadops = ($_REQUEST['loadops'] == '1');
 		
