@@ -22,7 +22,7 @@
 	<head>
 		<?php
 			include "header.shtml";
-			$pagetitle = $myRoster->rostername . " - " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam";
+			$pagetitle = $myRoster->rostername . " - " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam". ($ismine ? "" : (" by " . $myRoster->username));
 			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->opList;
 			$pageimg   = "https://beta.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
 			$pageurl   = "https://beta.ktdash.app/roster.php?rid={$myRoster->rosterid}";
@@ -46,18 +46,13 @@
 			<h1>
 				<i class="fas fa-users fa-fw"></i>
 				&nbsp;
-				<?php 
-				if (!$ismine) {
-				?>
-					<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><?php echo $myRoster->username ?></a>'s
-				<?php
-				}?>
 				<?php echo $myRoster->rostername ?>
 			</h1>
 			<div class="row">
 				<div class="col-7">
 					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
 						<?php echo $myRoster->killteamname ?>
+						by <a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><i class="fas fa-user fa-fw"></i> <?php echo $myRoster->username ?></a>
 					</a>
 					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
 				</div>
