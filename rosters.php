@@ -37,8 +37,8 @@
 			}
 			
 			$pagedesc  = "View and import " . $pagetitle;
-			$pageimg   = "https://beta.ktdash.app/img/og/Home.png";
-			$pageurl   = "https://beta.ktdash.app/roster.php?rid={$myRoster->rosterid}";
+			$pageimg   = "https://ktdash.app/img/og/Home.png";
+			$pageurl   = "https://ktdash.app/rosters.php?uid={$uid}";
 			include "og.php";
 		?>
 	</head>

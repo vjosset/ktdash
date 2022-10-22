@@ -24,8 +24,8 @@
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam". ($ismine ? "" : (" by " . $myRoster->username));
 			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->opList;
-			$pageimg   = "https://beta.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
-			$pageurl   = "https://beta.ktdash.app/roster.php?rid={$myRoster->rosterid}";
+			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
+			$pageurl   = "https://ktdash.app/roster.php?rid={$myRoster->rosterid}";
 			include "og.php";
 		?>
 	</head>

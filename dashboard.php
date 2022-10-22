@@ -20,8 +20,8 @@
 			include "header.shtml";
 			$pagetitle = "Dashboard";
 			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->opList;
-			$pageimg   = "https://beta.ktdash.app/img/dashboard.png";
-			$pageurl   = "https://beta.ktdash.app/dashboard.php";
+			$pageimg   = "https://ktdash.app/img/dashboard.png";
+			$pageurl   = "https://ktdash.app/dashboard.php";
 			include "og.php";
 		?>
 	</head>
