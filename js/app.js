@@ -1583,7 +1583,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.MODE = "Compendium";
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
+					url: APIURL + "faction.php?factionid=" + GetQS('fa') + "&loadkts=1",
 					timeout: 5000,
 					async: true,
 					dataType: 'json',

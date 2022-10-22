@@ -29,7 +29,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.min.js"></script>
 		
 		<!-- JS Utils -->
-		<script type="text/javascript" src="/js/utils.js?ui=20220707_2"></script>
+		<script type="text/javascript" src="/js/utils.js?ui=202210211603"></script>
 		
 		<!-- App/Controller -->
 		<script type="text/javascript" src="js/app.js?ui=202210211603"></script>
@@ -45,7 +45,7 @@
 		<!-- Other Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&family=Black+Ops+One&family=Bungee&family=Jockey+One&family=Mate+SC&family=Staatliches&display=swap" rel="stylesheet"> 
 		<!-- Bespoke Styles -->
-		<link rel="stylesheet" href="css/styles.css?sdf=adf" />
+		<link rel="stylesheet" href="css/styles.css?ui=202210211603" />
 		
 		<!-- PWA stuff -->
 		<script src="/sw.js"></script>
