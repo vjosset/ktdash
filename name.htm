@@ -29,11 +29,11 @@
 			trackEvent("tools", "namegen");
 		</script>
 		
-		<h1 class="orange cinzel">Name Generator</h1>
+		<h1 class="orange">Name Generator</h1>
 		
 		<div class="container">
 			<h4 class="oswald">Name Type</h4>
-			<select class="form-control oswald" ng-model="generatenametype" ng-change="generatename();">
+			<select class="form-control" ng-model="generatenametype" ng-change="generatename();">
 				<option value="ADMECH">Adeptus Mechanicus</option>
 				<option value="AELDARI-F">Aeldari - Female</option>
 				<option value="AELDARI-M">Aeldari - Male</option>
@@ -50,6 +50,8 @@
 				<option value="HUMAN-F">Human - Female</option>
 				<option value="HUMAN-M" selected>Human - Male</option>
 				
+				<option value="KROOT">Kroot</option>
+				
 				<option value="NECRON">Necron</option>
 				
 				<option value="ORK">Ork</option>
@@ -63,10 +65,10 @@
 			</select>
 			<br/>
 			<center>
-				<button class="btn btn-primary oswald" ng-click="generatename();trackEvent('tools', 'namegen', generatenametype);">Generate Name</button>
+				<button class="btn btn-primary" ng-click="generatename();trackEvent('tools', 'namegen', generatenametype);">Generate Name</button>
 			</center>
 			<br/><br/>
-			<div class="cinzel h1 orange text-center">{{ generatedname }}</div>
+			<h1 class="orange text-center">{{ generatedname }}</h1>
 		</div>
 		<!--#include virtual="footer.shtml" -->
 	</body>

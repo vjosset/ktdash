@@ -2049,6 +2049,28 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Now show the popup
 				$("#wepsrmodal").modal("show");
 			}
+		
+			// Init name generator
+			$scope.generatenametype = "HUMAN-M";
+			$scope.generatedname = "";
+			
+			// generatename()
+			// Generates a name for the name type
+			$scope.generatename = function() {
+				var url = APIURL + "/name.php?nametype=" + $scope.generatenametype;
+				$.ajax({
+					type: "GET",
+					url: url,
+					timeout: 5000,
+					async: true,
+					dataType: 'text',
+					success: function(data) {
+						$scope.generatedname = data.replace(/[\n\r]/g, '');;
+						
+						$scope.$apply();
+					}
+				});
+			}
 		}
 			
 		// Always initialize the session

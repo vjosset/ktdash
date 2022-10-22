@@ -37,6 +37,8 @@
 				return GetSistersOfBattleName();
 			case "SPACEMARINES":
 				return GetSpaceMarineName();
+			case "KROOT":
+				return GetKrootName();
 			case "TAU":
 				return GetTauName();
 			case "NECRON":
