@@ -19,18 +19,10 @@
 	function GetName() {
 		$nametype = $_REQUEST["nametype"];
 		switch ($nametype) {
-			case "ADMECH":
-				return GetAdMechName();
 			case "AELDARI-M":
 				return GetAeldariMaleName() . " " . GetAeldariMaleName();
 			case "AELDARI-F":
 				return GetAeldariFemaleName() . " " . GetAeldariFemaleName();
-			case "CHAOSMARINES":
-				return GetChaosMarineName();
-			case "DAEMONETTE":
-				return GetDaemonetteName();
-			case "DAEMON":
-				return GetDaemonName();
 			case "DARKAELDARI-M":
 				return GetDarkAeldariMaleName() . " " . GetDarkAeldariMaleName();
 			case "DARKAELDARI-F":
@@ -39,20 +31,26 @@
 				return GetHumanMaleName();
 			case "HUMAN-F":
 				return GetHumanFemaleName();
-			case "KROOT":
-				return GetKrootName();
-			case "NECRON":
-				return GetNecronName();
-			case "ORK":
-				return GetOrkName();
+			case "TYRANID":
+				return GetTyranidName();
 			case "SISTERSOFBATTLE":
 				return GetSistersOfBattleName();
 			case "SPACEMARINES":
 				return GetSpaceMarineName();
 			case "TAU":
 				return GetTauName();
-			case "TYRANID":
-				return GetTyranidName();
+			case "NECRON":
+				return GetNecronName();
+			case "ORK":
+				return GetOrkName();
+			case "ADMECH":
+				return GetAdMechName();
+			case "CHAOSMARINES":
+				return GetChaosMarineName();
+			case "DAEMONETTE":
+				return GetDaemonetteName();
+			case "DAEMON":
+				return GetDaemonName();
 		}
 		
 		// Return a name for the requested faction/killteam/fireteam/operative
@@ -110,6 +108,15 @@
 			case "CHAOS|DAEM|BL|FTR": //Bloodletter Fighter
 			case "CHAOS|DAEM|BL|HB": //Bloodletter Horn Bearer
 			case "CHAOS|DAEM|BL|IB": //Bloodletter Icon Bearer
+			case "CHAOS|GPI|GPI|BS": // Bloatspawn
+			case "CHAOS|GPI|GPI|FS": // Fleshscreamer
+			case "CHAOS|GPI|GPI|GL": // Glitchling
+			case "CHAOS|GPI|GPI|GM": // Gellerpox Mutant
+			case "CHAOS|GPI|GPI|LG": // Lumberghast
+			case "CHAOS|GPI|GPI|VTC": // Vulgrar Thrice-Cursed
+			case "CHAOS|GPI|MV|CM": // Cursemite
+			case "CHAOS|GPI|MV|ESS": // Eyestinger Swarm
+			case "CHAOS|GPI|MV|SG": // Sludge-Grub
 				return GetDaemonName();
 			case "CHAOS|DAEM|DETTE|AL": //Alluress
 			case "CHAOS|DAEM|DETTE|FTR": //Daemonette Fighter
@@ -165,6 +172,25 @@
 			case "IMP|ECC|REP|REP": //Sister Repentia
 			case "IMP|ECC|REP|SUP": //Repentia Superior
 				return GetSistersOfBattleName();
+			
+			// Elucidian Starstriders
+			case "IMP|ESS|ESS|CAN": // Canid
+				return "Aximillion";
+			case "IMP|ESS|ESS|DCE": // Death Cult Executioner
+				return "Knosso Prond";
+			case "IMP|ESS|ESS|EV": // Elucia Vhane
+				return "Elucia Vhane";
+			case "IMP|ESS|ESS|LM": // Lectro-Maester
+				return "Larsen van der Gauss";
+			case "IMP|ESS|ESS|PSA": // Privateer Support Assets
+				return "Privateer Support Assets";
+			case "IMP|ESS|ESS|REJAD": // Rejuvenat Adept
+				return "Sanistasia Minst";
+			case "IMP|ESS|ESS|VM": // Voidsman
+				return "Stromian Grell";
+			case "IMP|ESS|ESS|VMST": // Voidmaster
+				return "Voidmaster Nitsch";
+				
 			case "IMP|FW|SIC|INF": //Sicarian Infiltrator Trooper
 			case "IMP|FW|SIC|INFPRI": //Sicarian Infiltrator Princeps
 			case "IMP|FW|SIC|PRI": //Sicarian Ruststalker Princeps
@@ -322,6 +348,17 @@
 			case "TAU|CM|CM|KTX": //Krootox
 			case "TAU|CM|CM|LDR": //Kroot Carnivore Leader
 			case "TAU|CM|CM|WAR": //Kroot Carnivore Warrior
+			case "TAU|FSKB|FSKB|BH": // FSKB - Kroot Bow-Hunter
+			case "TAU|FSKB|FSKB|CB": // FSKB - Kroot Cold-Blood
+			case "TAU|FSKB|FSKB|CS": // FSKB - Kroot Cut-Skin
+			case "TAU|FSKB|FSKB|HGNR": // FSKB - Kroot Heavy Gunner
+			case "TAU|FSKB|FSKB|HND": // FSKB - Kroot Hound
+			case "TAU|FSKB|FSKB|KB": // FSKB - Kroot Kill-Broker
+			case "TAU|FSKB|FSKB|LS": // FSKB - Kroot Long-Sight
+			case "TAU|FSKB|FSKB|PST": // FSKB - Kroot Pistolier
+			case "TAU|FSKB|FSKB|STK": // FSKB - Kroot Stalker
+			case "TAU|FSKB|FSKB|TRK": // FSKB - Kroot Tracker
+			case "TAU|FSKB|FSKB|WAR": // FSKB - Kroot Warrior
 				return GetKrootName();
 			case "TAU|HC|DRN|DS8": //DS8 Tactical Support Turret
 			case "TAU|HC|DRN|MB3": //MB3 Recon Drone
