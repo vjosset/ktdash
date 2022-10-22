@@ -87,7 +87,7 @@
 		<!-- Show this player's rosters -->
 		<div class="container-fluid ng-cloak" ng-hide="loading">
 			<div ng-if="myRosters.length < 1" >
-				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet. To import your v1 teams into the V2 Beta, click <a href="https://ktdash.app/pushtobeta.htm" target="_blank">here</a>.</span>
+				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet.</span>
 				<span ng-if="MODE == 'Rosters'">This user doesn't have any Rosters yet.</span>
 			</div>
 			<?php

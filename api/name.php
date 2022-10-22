@@ -41,6 +41,8 @@
 				return GetKrootName();
 			case "TAU":
 				return GetTauName();
+			case "KASRKIN":
+				return GetKasrkinName();
 			case "NECRON":
 				return GetNecronName();
 			case "ORK":
@@ -240,6 +242,15 @@
 			case "IMP|INTS|INTS|IWAR": //Intercession Squad Intercessor Warrior
 			case "IMP|INTS|INTS|IGNR": //Intercession Squad Intercessor Gunner
 				return GetSpaceMarineName();
+			case "IMP|KAS|KAS|SGT":
+			case "IMP|KAS|KAS|MED":
+			case "IMP|KAS|KAS|DEMO":
+			case "IMP|KAS|KAS|GNR":
+			case "IMP|KAS|KAS|REC":
+			case "IMP|KAS|KAS|SS":
+			case "IMP|KAS|KAS|TRP":
+			case "IMP|KAS|KAS|VOX":
+				return GetKasrkinName();
 			case "IMP|NOV|NOV|CON": //Novitiate Condemnor
 			case "IMP|NOV|NOV|DIA": //Novitiate Dialogus
 			case "IMP|NOV|NOV|DUE": //Novitiate Duellist
@@ -425,6 +436,12 @@
 	
 	function GetGenericName() {
 		return GetHumanName();
+	}
+	
+	function GetKasrkinName() {
+		$names = ["Jens", "Kasrk", "Otwin", "Hekler", "Reeve", "Pavlo", "Hektor", "Ogan", "Thenmann", "Kyser", "Erlen", "Raphe", "Creed", "Ackerman", "Mattias", "Mortens", "Dansk", "Feodor", "Tomas", "Kolson", "Vance", "Pask", "Niems", "Gryf", "Willem", "Sonnen", "Echter", "Farestein", "Dekker", "Graf", "Arvans", "Viers", "Kolm", "Bask", "Vesker", "Henker"];
+		
+		return $names[array_rang($names)];
 	}
 	
 	function GetKrootName() {

@@ -869,7 +869,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Pop-up the "Share Roster" modal
 			$scope.showShareRoster = function(roster) {
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://beta.ktdash.app/roster.php?rid=" + roster.rosterid;
+				$scope.shareroster.url = "https://ktdash.app/roster.php?rid=" + roster.rosterid;
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");

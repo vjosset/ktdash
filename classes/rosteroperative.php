@@ -84,9 +84,9 @@
 
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
-                    $op = Weapon::FromRow($row);
-					$op->loadWeaponProfiles();
-					$this->weapons[] = $op;
+                    $wep = Weapon::FromRow($row);
+					$wep->loadWeaponProfiles();
+					$this->weapons[] = $wep;
                 }
             }
 		}
@@ -117,7 +117,9 @@
 					// Get the sub-info if it's a weapon
 					if ($eq->eqtype == 'Weapon') {
 						$eq->weapon = Weapon::FromDB($eq->factionid, $eq->killteamid, 'EQ', 'EQ', $eq->eqid);
-						$eq->weapon->loadWeaponProfiles();
+						if ($eq->weapon != null) {
+							$eq->weapon->loadWeaponProfiles();
+						}
 					}
 					
 					$this->equipments[] = $eq;

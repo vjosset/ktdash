@@ -122,13 +122,19 @@
 		
 		<!-- Show this roster and its operatives -->
 		<div class="ng-cloak container-fluid" ng-hide="loading">
+			<div ng-if="myRoster.operatives == null || myRoster.operatives.length == 0">
+				This roster does not have any operatives yet
+				<?php 
+				if ($ismine) {
+				?>
+				<a href="" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative">add one now</a>
+				<?php
+				}
+				?>
+			</div>
 			<?php 
 			if ($ismine) {
 			?>
-			<br/>
-			<div ng-if="myRoster.operatives == null || myRoster.operatives.length == 0">
-				This roster does not have any operatives yet, <a href="" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative">add one now</a>
-			</div>
 			<h3 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Killteam Composition">
 				<i class="fas fa-chevron-down fa-fw"></i>&nbsp;KillTeam Composition
 			</h3>
