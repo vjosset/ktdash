@@ -8,7 +8,7 @@
 		<div class="card-title row p-1">
 			<h2>
 				<a class="navloader" href="roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives">
-					{{ myRoster.rostername }} <sup class="small" style="font-size: 0.7em;"><i class="fas fa-eye fa-fw"></i></sup>
+					{{ myRoster.rostername }} <!-- sup class="text-tiny"><i class="fas fa-eye fa-fw"></i></sup -->
 				</a>
 			</h2>
 			<div class="col-6">

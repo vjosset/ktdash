@@ -49,18 +49,22 @@
 				<?php echo $myRoster->rostername ?>
 			</h1>
 			<div class="row">
-				<div class="col-7">
+				<div class="col-8">
 					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
 						<?php echo $myRoster->killteamname ?>
-						by <a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><i class="fas fa-user fa-fw"></i> <?php echo $myRoster->username ?></a>
+						<?php if (!$ismine && $myRoster->userid != 'prebuilt') { ?>
+						&nbsp;by <a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></a>
+						<?php }
+						else {?>
+						<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
+						<?php }?>
 					</a>
-					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
 				</div>
-				<div class="col-5" style="text-align: right;">
+				<div class="col-4" style="text-align: right;">
 					<div class="col-12" ng-if="!loading && <?php echo $ismine > 0 ? "true" : "false" ?>">
 						<i class="pointer far fa-plus-square fa-fw" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>
 						<i class="pointer fas fa-edit fa-fw" ng-click="initEditRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
-						<i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i>
+						<!-- i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i -->
 						<i class="pointer far fa-question-circle fa-fw" id="myrosterhelpbutton" onclick="$('#myrosterhelpmodal').modal('show');"></i>
 					</div>
 					<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
@@ -68,7 +72,8 @@
 							if ($me != null) {
 								// User is logged in
 								?>
-								<a href="" ng-click="cloneRoster(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Add to My Rosters</a>
+								<a href="" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i>
+								<span class="d-none d-md-inline">Add to My Rosters</span></a>
 								<?php
 							} else {
 								// User is not logged in
