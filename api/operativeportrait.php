@@ -48,6 +48,7 @@
 				// Read the found file and serve it
 				$thumb = imagecreatefromstring(file_get_contents($filepath));
 				header('Content-Type: image/jpg');
+				header('Content-Disposition: filename="' . $ro->opname . '.jpg"');
 				imagejpeg($thumb);
 			} else {
 				// Operative not found - Serve nothing?
@@ -144,6 +145,9 @@
 						} else {
 							// Get the uploaded image
 							$img = imagecreatefromstring(file_get_contents($tempname));
+							
+							// Scale the image
+							$img = imagescale($img, 600);
 							
 							// Resize the image
 							$thumb = Utils::ResizeImage($img, 600, 400);

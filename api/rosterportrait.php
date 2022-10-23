@@ -40,15 +40,22 @@
 				if (file_exists("../img/rosterportraits/{$rid}.jpg")) {
 					// File was found; read it and serve it
 					$filepath = "../img/rosterportraits/{$rid}.jpg";
+				
+					// Read the found file and serve it
+					$thumb = imagecreatefromstring(file_get_contents($filepath));
+					header('Content-Type: image/jpg');
+					header('Content-Disposition: filename="' . $r->rostername . '.jpg"');
+					imagejpeg($thumb);
 				} else {
 					// File not found, serve the generic portrait for this roster
 					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.png";
-				}
 				
-				// Read the found file and serve it
-				$thumb = imagecreatefromstring(file_get_contents($filepath));
-				header('Content-Type: image/png');
-				imagepng($thumb);
+					// Read the found file and serve it
+					$thumb = imagecreatefromstring(file_get_contents($filepath));
+					header('Content-Type: image/png');
+					header('Content-Disposition: filename="' . $r->rostername . '.png"');
+					imagepng($thumb);
+				}
 			} else {
 				// Roster not found - Serve nothing?
 				header('HTTP/1.0 404 Roster not found');
@@ -140,6 +147,9 @@
 						} else {
 							// Get the uploaded image
 							$img = imagecreatefromstring(file_get_contents($tempname));
+							
+							// Scale the image
+							$img = imagescale($img, 600);
 							
 							// Resize the image
 							$thumb = Utils::ResizeImage($img, 600, 400);
