@@ -1,4 +1,4 @@
-<div ng-if="!operative.hidden || MODE != 'Dashboard'" id="opccard_{{operative.rosteropid}}" class="ng-cloak card darkcard m-1 p-0">
+<div ng-if="!operative.hidden || MODE != 'Dashboard'" id="opccard_{{operative.rosteropid}}" class="ng-cloak card darkcard m-1 p-0 h-100">
 		<!--
 		style="
 		background-color: rgba(32, 32, 32, 0.95);
@@ -277,18 +277,19 @@
 			<!-- Equipment -->
 			<div ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" class="line-top-light">
 				<h6>Equipment</h6>
-				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype != 'Ability' && eq.eqtype != 'UniqueAction' && eq.eqtype != 'Weapon'">
+				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype != 'Ability' && eq.eqtype != 'Action' && eq.eqtype != 'Weapon'">
 					{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
 				</span>
 			</div>
 			<div ng-if="MODE == 'Dashboard'" class="line-top-light">
 				<h6 class="pointer" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i class="pointer fas fa-edit fa-fw"></i></h6>
-				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype != 'Ability' && eq.eqtype != 'UniqueAction' && eq.eqtype != 'Weapon'">
+				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype != 'Ability' && eq.eqtype != 'Action' && eq.eqtype != 'Weapon'">
 					{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
 				</span>
 			</div>
 			
 			<!-- Notes -->
+			<!-- 
 			<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="line-top-light">
 				<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
@@ -301,11 +302,13 @@
 				<h6>Notes</h6>
 				{{ operative.notes }}
 			</div>
-		
-			<!-- Keywords -->
-			<div class="line-top-light align-bottom">
-				<em class="small">{{ operative.keywords }}</em>
-			</div>
+			-->
+		</div>
+	</div>
+	<div class="card-footer m-0 p-1">
+		<!-- Keywords -->
+		<div class="line-top-light align-bottom">
+			<em class="small">{{ operative.keywords }}</em>
 		</div>
 	</div>
 </div>

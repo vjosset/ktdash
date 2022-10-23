@@ -1,13 +1,19 @@
-<div class="m-1">
+<div class="container-fluid m-0 p-1">
 	<div class="row">
 		<div class="col-7">
 			<h2><a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a></h2>
+		</div>
+		<div class="col-5 text-end text-tiny">
+			<h1 ng-if="MODE == 'MyRosters'"><button class="btn btn-primary">DEPLOY</button></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
 			<a href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}">
 				{{ myRoster.killteamname }}
 			</a>
 		</div>
-		<div class="col-5 text-end text-tiny">
-			<h1 ng-if="MODE == 'MyRosters'"><button class="btn btn-primary">DEPLOY</button></h1>
+		<div class="col-6 text-end">
 			<?php
 			if ($ismine) {
 			?>
@@ -20,14 +26,15 @@
 			<?php
 			}
 			?>
+		
 		</div>
 	</div>
 	
-	<p class="p-1 m-0 oswald" style="text-align:justify;">
+	<p class="p-0 m-0 oswald" style="text-align:justify;">
 		{{ myRoster.notes }}
 	</p>
-	<p class="p-1 m-0 oswald" style="text-align:justify;">
+	<p class="p-0 m-0 oswald" style="text-align:justify;">
 		<em>{{ myRoster.opList }}</em>
 	</p>
 </div>
-<br/><br/>
+<hr/>

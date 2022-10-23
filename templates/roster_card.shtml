@@ -1,4 +1,4 @@
-<div class="card darkcard m-1 p-0">
+<div class="card darkcard m-1 p-0 h-100">
 	<div class="card-body m-1 p-0">
 		<!-- Portrait -->
 		<i ng-if="MODE == 'MyRosters'" style="position: absolute; top: 10px; left: 10px;" class="pointer fas fa-edit fa-fw" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"></i>
@@ -38,6 +38,8 @@
 		<p class="card-text p-1 oswald" style="text-align:justify;">
 			<em>{{ myRoster.opList }}</em>
 		</p>
+	</div>
+	<div class="card-footer p-1">
 		<div class="p-1" ng-if="MODE == 'MyRosters'">
 			<h1><a class="navloader" href="dashboard.php?rid={{ myRoster.rosterid}}"><button class="navloader btn btn-primary">DEPLOY</button></a></h1>
 		</div>

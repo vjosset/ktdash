@@ -15,7 +15,7 @@
 			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
 			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
 			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-edit fa-fw" ng-click="initEditOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
-			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-trash fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
+			<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
 		</div>
 	</div>
 	
@@ -244,6 +244,7 @@
 		</div>
 		
 		<!-- Notes -->
+		<!--
 		<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="line-top-light">
 			<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 				<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
@@ -256,15 +257,13 @@
 			<h6>Notes</h6>
 			{{ operative.notes }}
 		</div>
+		-->
 	
 		<!-- Keywords -->
 		<div class="line-top-light align-bottom">
 			<em class="small">{{ operative.keywords }}</em>
 		</div>
 	</div>
-	
-	<!-- Roster Content -->
-	
-	<!-- Dashboard Content -->
 </div>
-<br/><br/>
+<hr/>
+

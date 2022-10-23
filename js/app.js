@@ -12,6 +12,32 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Set tagged links to show the loader on click
 				$(".navloader").on("click", function(){ toast("Loading..."); });
 			}, 500);
+			
+			// Settings
+			$scope.settings = {display: 'card'};
+			
+			$scope.loadSettings = function() {
+				let settingsJson = localStorage.getItem("settings").toLowerCase();
+				if (settingsJson != "" && settingsJson != null) {
+					$scope.settings = JSON.parse(settingsJson.toLowerCase());
+				} else {
+					// No settings yet, fill in defaults
+					$scope.settings = {display: 'card'};
+					$scope.saveSettings();
+				}
+			}
+			
+			$scope.saveSettings = function() {
+				let settingsJson = JSON.stringify($scope.settings).toLowerCase();
+				localStorage.setItem("settings", settingsJson);
+			}
+			
+			$scope.setSetting = function(key, value) {
+				$scope.settings[key] = value;
+				$scope.saveSettings();
+			}
+			
+			$scope.loadSettings();
 		}
 		
 		// SESSION & LOG IN
@@ -878,12 +904,13 @@ var app = angular.module("kt", ['ngSanitize'])
 			// totalEqPts()
 			// Returns the total equipment points for all operatives in the specified roster
 			$scope.totalEqPts = function(roster) {
-				console.log("Getting EqPts for " + roster.rostername);
 				let total = 0;
-				for (let i = 0; i < roster.operatives.length; i++) {
-					let op = roster.operatives[i];
-					for (let j = 0; j < op.equipments.length; j++) {
-						total += parseInt(op.equipments[j].eqpts);
+				if (roster) {
+					for (let i = 0; i < roster.operatives.length; i++) {
+						let op = roster.operatives[i];
+						for (let j = 0; j < op.equipments.length; j++) {
+							total += parseInt(op.equipments[j].eqpts);
+						}
 					}
 				}
 				
@@ -1866,6 +1893,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// showPopup()
 			// Shows a popup modal with the specified title and message
 			$scope.showpopup = function(title, message) {
+				console.log("Showing popup " + title);
 				$scope.popup = {
 					"title": title,
 					"text": message
@@ -2070,6 +2098,22 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.$apply();
 					}
 				});
+			}
+		
+			$scope.getKillTeamComp = function(roster) {
+				let out = "";
+				out = "<h1>" + roster.killteam.killteamname + "</h1>" + roster.killteam.killteamcomp;
+				
+				if (roster.killteam.fireteams.length > 1) {
+					out += "<br/><br/>";
+					for (let i = 0; i < roster.killteam.fireteams.length; i++) {
+						let ft = roster.killteam.fireteams[i];
+						out += "<h4>" + ft.fireteamname + "</h4>" + ft.fireteamcomp + "<br/><br/>";
+					}
+				}
+				
+				// Done
+				return out;
 			}
 		}
 			

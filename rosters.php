@@ -31,9 +31,9 @@
 		<?php
 			include "header.shtml";
 			if ($uid == 'prebuilt') {
-				$pagetitle = "Pre-Built KillTeam Rosters";
+				$pagetitle = "Pre-Built Rosters";
 			} else {
-				$pagetitle = ($ismine ? "My" : (ucwords($myUser->username) . "'s")) . " KillTeam Rosters";
+				$pagetitle = ($ismine ? "My" : (ucwords($myUser->username) . "'s")) . " Rosters";
 			}
 			
 			$pagedesc  = "View and import " . $pagetitle;
@@ -48,7 +48,25 @@
 			include "templates/dialogs.shtml";
 		?>
 		
-		<h1 class="orange container-fluid"><span class="fas fa-users fa-fw"></span>&nbsp;<?php echo ($ismine ? "My" : ($uid == 'prebuilt' ? 'Pre-Built ' : (ucwords($myUser->username) . "'s "))) ?> Rosters</h1>
+		<div class="row m-0 p-1 orange container-fluid">
+			<h1 class="col-8">
+				<span class="fas fa-users fa-fw"></span>&nbsp;
+				<?php echo ($ismine ? "My" : ($uid == 'prebuilt' ? 'Pre-Built ' : (ucwords($myUser->username) . "'s "))) ?> Rosters
+			</h1>
+			<?php 
+			if ($ismine) {
+			?>
+			<h6 class="col-4 text-end align-bottom">
+				<span class="float-end">
+					<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
+					<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
+					<i id="myrostershelpbutton" class="pointer far fa-question-circle fa-fw" onclick="$('#myrostershelpmodal').modal('show');"></i>
+				</span>
+			</h6>
+			<?php
+			}
+			?>
+		</div>
 		
 		<!-- Help Box -->
 		<div class="modal fade oswald" id="myrostershelpmodal" tabindex="-1" role="dialog" aria-labelledby="myrostershelpmodallabel" aria-hidden="true">
@@ -98,18 +116,18 @@
 					Build a <a href="#" ng-click="initNewRoster();">new roster</a>
 					or import a <a class="navloader" href="rosters.php?uid=prebuilt">pre-built roster</a>
 				</span>
-				<span class="float-end">
-					<i id="myrostershelpbutton" class="pointer far fa-question-circle fa-fw" onclick="$('#myrostershelpmodal').modal('show');"></i>
-				</span>
 			</div>
 			<br/>
 			<br/>
 				<?php
 			} ?>
 			
-			<div ng-if="myRosters.length > 0" class="row">
-				<div class="col-12 col-md-6 col-xl-4 m-0 p-1" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+			<div ng-if="myRosters.length > 0" class="row p-0 m-0">
+				<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 					<?php include "templates/roster_card.shtml" ?>
+				</div>
+				<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+					<?php include "templates/roster_list.shtml" ?>
 				</div>
 			</div>
 		</div>
