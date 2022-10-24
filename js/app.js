@@ -17,7 +17,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.settings = {display: 'card'};
 			
 			$scope.loadSettings = function() {
-				let settingsJson = localStorage.getItem("settings").toLowerCase();
+				let settingsJson = localStorage.getItem("settings");
 				if (settingsJson != "" && settingsJson != null) {
 					$scope.settings = JSON.parse(settingsJson.toLowerCase());
 				} else {
@@ -1063,16 +1063,19 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Only reset the operative if this is for a different team than last time use added an operative
 					$scope.addop = {
 						"faction": roster.faction,
+						"factionid": roster.factionid,
 						"killteam": roster.killteam,
+						"killteamid": roster.killteamid,
 						"roster": roster,
 						"fireteam": roster.killteam.fireteams[0],
+						"fireteamid": roster.killteam.fireteams[0].fireteamid,
 						"operative": roster.killteam.fireteams[0].operatives[0],
+						"opid": roster.killteam.fireteams[0].operatives[0].opid,
 						"opname": ""
 					};
 				}
-				
-				// Always reset the name
-				$scope.addop.opname = "";
+					
+				$scope.generateOpName($scope.addop.factionid, $scope.addop.killteamid, $scope.addop.fireteamid, $scope.addop.opid, $scope.addop, 'opname');
 
 				// Show the modal
 				$('#addoptorostermodal').modal("show");

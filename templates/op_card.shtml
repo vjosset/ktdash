@@ -32,23 +32,23 @@
 		
 		<!-- Dashboard Card Title -->
 		<div ng-if="MODE == 'Dashboard'" class="card-title">
-			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.opid }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 				<i class="pointer fas fa-chevron-down fa-fw"></i>
 				{{ operative.opname }}
-				<i class="fas fa-check fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.activated && operative.curW > 0"></i>
-				<i class="fas fa-skull fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.curW == 0"></i>
-				<i class="fas fa-heartbeat fa-fw float-end" ng-if="isInteger(operative.baseoperative.W) && operative.isInjured && operative.curW > 0"></i>
+				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
+				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
+				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
 			</h3>
 		</div>
 		
 		<!-- Card Content -->
-		<div id="opinfo_{{ $index }}" class="collapse show">
+		<div class="opinfo_{{ operative.opid }} collapse show">
 			<!-- Dashboard Actions -->
 			<div class="row m-0 p-0" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small">
 					{{ operative.optype }}
 				</div>
-				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="isInteger(operative.baseoperative.W) && operative.curW > 0">
+				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
 					<input type="checkbox" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" /> Activated
 				</div>
 			</div>
@@ -305,7 +305,7 @@
 			-->
 		</div>
 	</div>
-	<div class="card-footer m-0 p-1">
+	<div class="opinfo_{{ operative.opid }} collapse show card-footer m-0 p-1">
 		<!-- Keywords -->
 		<div class="line-top-light align-bottom">
 			<em class="small">{{ operative.keywords }}</em>

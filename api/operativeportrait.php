@@ -132,6 +132,21 @@
 						// Get the submitted image and validate it, then resize and save it
 						$filename = $_FILES["file"]["name"];
 						$tempname = $_FILES["file"]["tmp_name"];
+						if ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+							// File failed to upload
+							$phpFileUploadErrors = array(
+								0 => 'There is no error, the file uploaded with success',
+								1 => 'File is too large', // 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+								2 => 'File is too large', // 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+								3 => 'The uploaded file was only partially uploaded',
+								4 => 'No file was uploaded',
+								6 => 'Missing a temporary folder',
+								7 => 'Failed to write file to disk.',
+								8 => 'A PHP extension stopped the file upload.',
+							);
+							header("HTTP/1.0 400 " . $phpFileUploadErrors[$_FILES['file']['error']]);
+							die();
+						}
 						$filesize= $_FILES['file']['size'];
 						$fileext = strtolower(end(explode('.', $filename)));
 						

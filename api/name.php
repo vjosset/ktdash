@@ -43,6 +43,8 @@
 				return GetTauName();
 			case "KASRKIN":
 				return GetKasrkinName();
+			case "HIEROTEK":
+				return GetHierotekName();
 			case "NECRON":
 				return GetNecronName();
 			case "ORK":
@@ -335,6 +337,18 @@
 			case "NEC|TW|IMM|WAR": //Immortal Warrior
 			case "NEC|TW|NC|NEC": //Necron Warrior
 				return GetNecronName();
+			case "NEC|HIER|HIER|CHRON": // Chronomancer
+			case "NEC|HIER|HIER|PSYCH": // Psychomancer
+			case "NEC|HIER|HIER|TECH": // Technomancer
+			case "NEC|HIER|HIER|APP": // Apprentek
+			case "NEC|HIER|HIER|DM": // Deathmark
+			case "NEC|HIER|HIER|ID": // Immortal Despotek
+			case "NEC|HIER|HIER|IG": // Immortal Guardian
+				return GetHierotekName();
+			case "NEC|HIER|HIER|PA": // Plasmacyte Accelerator
+				return "Plasmacyte Accelerator";
+			case "NEC|HIER|HIER|PR": // Plasmacyte Reanimator
+				return "Plasmacyte Reanimator";
 			case "ORK|GSK|BOY|BN": //Boss Nob
 			case "ORK|GSK|BOY|FTR": //Boy Fighter
 			case "ORK|GSK|BOY|GNR": //Boy Gunner
@@ -361,6 +375,7 @@
 			case "TAU|CM|CM|KTX": //Krootox
 			case "TAU|CM|CM|LDR": //Kroot Carnivore Leader
 			case "TAU|CM|CM|WAR": //Kroot Carnivore Warrior
+				return GetKrootName();
 			case "TAU|FSKB|FSKB|BH": // FSKB - Kroot Bow-Hunter
 			case "TAU|FSKB|FSKB|CB": // FSKB - Kroot Cold-Blood
 			case "TAU|FSKB|FSKB|CS": // FSKB - Kroot Cut-Skin
@@ -802,6 +817,13 @@
 		$lastname = $LN1[array_rand($LN1)] . $LN2[array_rand($LN2)];
 		
 		return $firstname . " " . $lastname;
+	}
+	
+	function GetHierotekName() {
+		$names0 = ["Ankhep", "Tamonhak", "Eknotath", "Khotek", "Thanatar", "Amhut", "Karok", "Zan-Tep", "Unakh", "Khophec", "Tzantath", "Tahar", "Imonekh", "Trazat", "Xeoptar", "Hamanet", "Oberek", "Banatur", "Ahmnok", "Kophesh", "Teznet", "Odakhar", "Kythok", "Eknothet", "Anubitar", "Anokh", "Thotep", "Anhutek", "Ikhatar", "Thotmek", "Ramatek", "Homanat", "Taknophet", "Makhret", "", "Zanatek"];
+		$names1 = ["the Unliving", "the Gilded", "the Great", "the Exalted", "the Loyal", "the Cruel", "the Storm's Eye", "the Bloodied", "the Mighty", "the Relentless", "the Unforgiving", "the Merciless", "the Glorious", "the Devoted", "the Victorious", "the Destroyer", "the Shrouded", "the Flenser", "the Unstoppable", "the Beheader", "the Impaler", "the Magnificent", "the Illuminated", "the Executioner", "the Phaeron's Hand", "of the Eternal Gaze", "the Gatekeeper", "the All-Seeing", "the All-Knowing", "the Starwalker", "the Starkiller", "the Lifetaker", "the Godbreaker", "the Torchbearer", "the Stormbringer", "the Colossus"];
+		
+		return $names0[array_rand($names0)] . ' ' . $names1[array_rand($names1)];
 	}
 	
 	function GetNecronName() {

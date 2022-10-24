@@ -154,14 +154,14 @@
 			</div>
 			<div class="modal-body dark">
 				<h6 ng-if="addop.killteam.fireteams.length > 1">FireTeam</h6>
-				<select class="form-control oswald" ng-model="addop.fireteam" ng-if="addop.killteam.fireteams.length > 1" ng-change="addop.operative = addop.fireteam.operatives[0]">
+				<select class="form-control oswald" ng-model="addop.fireteam" ng-if="addop.killteam.fireteams.length > 1" ng-change="addop.operative = addop.fireteam.operatives[0];generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');">
 					<option ng-repeat="fireteam in addop.killteam.fireteams" ng-value="fireteam">
 						{{ fireteam.fireteamname }}
 					</option>
 				</select>
 				
 				<h6>Operative</h6>
-				<select class="form-control oswald" ng-model="addop.operative">
+				<select class="form-control oswald" ng-model="addop.operative" ng-change="generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');">
 					<option ng-repeat="operative in addop.fireteam.operatives" ng-value="operative">
 						{{ operative.opname }}
 					</option>
