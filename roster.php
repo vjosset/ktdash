@@ -43,11 +43,11 @@
 		?>
 		
 		<div class="orange container-fluid">
-			<h1 class="pointer" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster));">
+			<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster));">
 				<i class="fas fa-users fa-fw"></i>
 				&nbsp;
 				<?php echo $myRoster->rostername ?>
-				<sup class="h6 far fa-question-circle fa-fw"></sup>
+				<sup><i class="h5 fas fa-info-circle fa-fw"></i></sup>
 			</h1>
 			<div class="row">
 				<div class="col-7">

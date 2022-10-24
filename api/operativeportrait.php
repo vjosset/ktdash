@@ -37,9 +37,10 @@
 			
 			if ($ro != null) {
 				// Check if this operative has a custom portrait
-				if (file_exists("../img/opportraits/{$roid}.jpg")) {
+				$custopportraitpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}/op_{$ro->rosteropid}.jpg";
+				if (file_exists($custopportraitpath)) {
 					// File was found; read it and serve it
-					$filepath = "../img/opportraits/{$roid}.jpg";
+					$filepath = $custopportraitpath;
 				} else {
 					// File not found, serve the generic portrait for this operative
 					$filepath = "../img/portraits/{$ro->factionid}/{$ro->killteamid}/{$ro->fireteamid}/{$ro->opid}.jpg";
@@ -66,21 +67,17 @@
 			die();
 		} else {
 			// Get the current user
-			echo "A";
 			$u = Session::CurrentUser();
 			
 			// Get the requested operative
 			$roid = $_REQUEST['roid'];
-			echo "B";
 			
 			if ($roid == null || $roid == '') {
 				// No rosteropid specified - fail
-				echo "C";
 				header('HTTP/1.0 404 Invalid rosteropid');
 				die();
 			} else {
 				// Try to find this operative
-				echo "D";
 				$ro = RosterOperative::GetRosterOperative($roid);
 				if ($ro == null) {
 					header('HTTP/1.0 404 Operative not found');
@@ -92,7 +89,8 @@
 						die();
 					} else {
 						// Delete the portrait for this operative
-						unlink("../img/opportraits/{$roid}.jpg");
+						$custopportraitpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}/op_{$ro->rosteropid}.jpg";
+						unlink($custopportraitpath);
 						echo "OK";
 					}
 				}
@@ -170,11 +168,13 @@
 							echo $thumb;
 							
 							// Save the file
-							if (!is_dir("../img/opportraits")) {
-								mkdir("../img/opportraits");
+							$custopportraitfolderpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}";
+							$customopportraitimgpath = $custopportraitfolderpath . "/op_{$ro->rosteropid}.jpg";
+							if (!is_dir($custopportraitfolderpath)) {
+								mkdir($custopportraitfolderpath);
 							}
-							$filepath = "../img/opportraits/" . $roid . ".jpg";
-							if (!imagejpeg($thumb, $filepath) ) {
+							
+							if (!imagejpeg($thumb, $customopportraitimgpath) ) {
 								// Failed to save the image
 								header("HTTP/1.0 500 Could not save portrait");
 								die();

@@ -29,10 +29,10 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.min.js"></script>
 		
 		<!-- JS Utils -->
-		<script type="text/javascript" src="/js/utils.js?ui=202210211603"></script>
+		<script type="text/javascript" src="/js/utils.js?cb=202210240845"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" src="js/app.js?ui=202210231324"></script>
+		<script type="text/javascript" src="js/app.js?cb=202210240845"></script>
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,15 +45,15 @@
 		<!-- Other Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&family=Black+Ops+One&family=Bungee&family=Jockey+One&family=Mate+SC&family=Staatliches&display=swap" rel="stylesheet"> 
 		<!-- Bespoke Styles -->
-		<link rel="stylesheet" href="css/styles.css?ui=202210211603" />
+		<link rel="stylesheet" href="css/styles.css?cb=202210240845" />
 		
 		<!-- PWA stuff -->
 		<script src="/sw.js"></script>
 		<script src="/sw-register.js"></script>
 		
 		<!-- Toasts -->
-		<link rel="stylesheet" href="css/toast.css?sdfg=asdfdf" />
-		<script type="text/javascript" src="js/toast.js?sdf=asddf"></script>
+		<link rel="stylesheet" href="css/toast.css?cb=202210240845" />
+		<script type="text/javascript" src="js/toast.js?cb=202210240845"></script>
 		
 		<!-- Google Analytics -->
 		<!-- Global site tag (gtag.js) - Google Analytics -->

@@ -123,10 +123,10 @@
 			} ?>
 			
 			<div ng-if="myRosters.length > 0" class="row p-0 m-0">
-				<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+				<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0 g-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 					<?php include "templates/roster_card.shtml" ?>
 				</div>
-				<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+				<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0 g-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 					<?php include "templates/roster_list.shtml" ?>
 				</div>
 			</div>

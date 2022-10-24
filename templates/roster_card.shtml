@@ -36,7 +36,8 @@
 			{{ myRoster.notes }}
 		</p>
 		<p class="card-text p-1 oswald" style="text-align:justify;">
-			<em>{{ myRoster.opList }}</em>
+			<em ng-if="myRoster.oplist != ''">{{ myRoster.oplist }}</em>
+			<em ng-if="myRoster.oplist == '' || myRoster.oplist == null">(This roster does not have any operatives)</em>
 		</p>
 	</div>
 	<div class="card-footer p-1">
@@ -45,4 +46,3 @@
 		</div>
 	</div>
 </div>
-<br/>

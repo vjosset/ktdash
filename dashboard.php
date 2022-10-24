@@ -67,10 +67,10 @@
 							</div>
 						</h1>
 					</div>
-					<div class="col-4 text-end">				
-						<a class="pointer" ng-click="resetDash(dashboardroster);">
-							<i class="fas fa-undo-alt fa-fw"></i>
-						</a>
+					<div class="col-4 text-end">
+						<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
+						<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
+						<i class="pointer fas fa-undo-alt fa-fw"ng-click=" resetDash(dashboardroster);"></i>
 					</div>
 				</div>
 				
@@ -115,15 +115,15 @@
 			
 			
 			<!-- Resource Point tracker -->
-			<div class="cinzel container-fluid cinzel" ng-if="dashboardroster.killteamid == 'NOV' || dashboardroster.killteamid == 'VDT'">
+			<div class="container-fluid" ng-if="dashboardroster.killteamid == 'NOV' || dashboardroster.killteamid == 'VDT' || dashboardroster.killteamid == 'KAS'">
 				<div class="h5">
 					{{ RPLabels[dashboardroster.factionid][dashboardroster.killteamid]["Label"] }}
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="small" ng-click="updateRP(-1);commitTeams();"><i class="far fa-minus-square fa-fw"></i></span>
+					<span class="small" ng-click="updateRP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 					
 					<span ng-bind="dashboardroster.RP"></span>
 					
-					<span class="small" ng-click="updateRP(1);commitTeams();"><i class="far fa-plus-square fa-fw"></i></span>
+					<span class="small" ng-click="updateRP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 				</div>
 			</div>
 			
@@ -146,8 +146,6 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane show active" id="ops" role="tabpanel">
-					<!-- KillTeam Comp popup -->
-					<!-- h3 class="cinzel" ng-click="showpopup(dashboard.myteam.killteam.killteamname + ' - KillTeam Composition', dashboard.myteam.killteam.killteamcomp);" -->
 					
 					<!-- Operative Selector -->
 					<h3 class="pointer" ng-click="initSelectRosterOps(dashboardroster);">
@@ -159,8 +157,11 @@
 					
 					<!-- Operatives -->
 					<div class="row p-0 m-0">
-						<div class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index" ng-if="!operative.hidden">
+						<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index" ng-if="!operative.hidden">
 							<?php include "templates/op_card.shtml" ?>
+						</div>
+						<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index" ng-if="!operative.hidden">
+							<?php include "templates/op_list.shtml" ?>
 						</div>
 					</div>
 				</div>

@@ -9,6 +9,7 @@
 		-->
 	<div class="card-body m-1 p-0">
 		<!-- Compendium Card Title -->
+		{{ operative.opid }}
 		<div ng-if="MODE == 'Compendium'" class="pointer card-title">
 			<div ng-click="showpopup(operative.opname, operative.description);">
 				<h4 style="display: inline;">{{ operative.opname }}</h4>
@@ -49,7 +50,8 @@
 					{{ operative.optype }}
 				</div>
 				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
-					<input type="checkbox" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" /> Activated
+					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" />
+					<label for="chkactivated_{{ operative.rosteropid }}"> Activated</label>
 				</div>
 			</div>
 			
@@ -312,4 +314,3 @@
 		</div>
 	</div>
 </div>
-<br/>

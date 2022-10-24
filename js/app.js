@@ -711,7 +711,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					"notes": roster.notes,
 					"CP": roster.CP,
 					"TP": roster.TP,
-					"VP": roster.VP
+					"VP": roster.VP,
+					"RP": roster.RP
 				};
 				
 				// Send the update request to the API
@@ -1683,10 +1684,49 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// DASHBOARD
 		{
+			// Labels for Resource Points
+			$scope.RPLabels = {
+				"IMP": {
+					"NOV": {
+						"Label": "Faith Points",
+						"Shortcut": "FP"
+					},
+					"KAS": {
+						"Label": "Elite Points",
+						"Shortcut": "EP"
+					}
+				},
+				"AEL": {
+					"VDT": {
+						"Label": "Performance Tally",
+						"Shortcut": "PT"
+					}
+				},
+				"CHAOS": {
+					"BLD": {
+						"Label": "Blooded Tokens",
+						"Shortcut": "BT"
+					}
+				}
+			};
+			$scope.OpTokens = {
+				"CHAOS": {
+					"BLD": {
+						"Label": "Blooded",
+						"Shortcut": "BT",
+						"Type": "boolean"
+					}
+				}
+			}
+			
+			// getDashboardRosterId()
+			// Returns the currently-selected roster id for the dashboard
 			$scope.getDashboardRosterId = function() {
 				return localStorage.getItem("dashboardrosterid");
 			}
 			
+			// setDashboardRosterId()
+			// Set the currently-selected roster id for the dashboard
 			$scope.setDashboardRosterId = function(rosterid) {
 				localStorage.setItem("dashboardrosterid", rosterid);
 			}
@@ -1851,6 +1891,16 @@ var app = angular.module("kt", ['ngSanitize'])
 				roster.TP += inc;
 				if (roster.TP < 1) {
 					roster.TP = 1;
+				}
+				$scope.commitRoster(roster);
+			}
+		
+			
+			// Increment Resource Points (e.g. Faith Points for Novitiates)
+			$scope.updateRP = function(inc, roster)  {
+				roster.RP += inc;
+				if (roster.RP < 1) {
+					roster.RP = 0;
 				}
 				$scope.commitRoster(roster);
 			}
@@ -2105,13 +2155,13 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 			$scope.getKillTeamComp = function(roster) {
 				let out = "";
-				out = "<h1>" + roster.killteam.killteamname + "</h1>" + roster.killteam.killteamcomp;
+				out = "<h2>" + roster.killteam.killteamname + "</h2>" + roster.killteam.killteamcomp;
 				
 				if (roster.killteam.fireteams.length > 1) {
-					out += "<br/><br/>";
 					for (let i = 0; i < roster.killteam.fireteams.length; i++) {
 						let ft = roster.killteam.fireteams[i];
-						out += "<h4>" + ft.fireteamname + "</h4>" + ft.fireteamcomp + "<br/><br/>";
+						
+						out += "<hr/><h5>Fireteam: " + ft.fireteamname + "</h5>" + ft.fireteamcomp;
 					}
 				}
 				

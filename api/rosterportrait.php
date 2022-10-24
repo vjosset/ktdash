@@ -37,9 +37,10 @@
 			
 			if ($r != null) {
 				// Check if this roster has a custom portrait
-				if (file_exists("../img/rosterportraits/{$rid}.jpg")) {
+				$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
+				if (file_exists($custrosterportraitpath)) {
 					// File was found; read it and serve it
-					$filepath = "../img/rosterportraits/{$rid}.jpg";
+					$filepath = $custrosterportraitpath;
 				
 					// Read the found file and serve it
 					$thumb = imagecreatefromstring(file_get_contents($filepath));
@@ -94,7 +95,8 @@
 						die();
 					} else {
 						// Delete the portrait for this roster
-						unlink("../img/rosterportraits/{$rid}.jpg");
+						$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
+						unlink($custrosterportraitpath);
 						echo "OK";
 					}
 				}
@@ -173,11 +175,14 @@
 							echo $thumb;
 							
 							// Save the file
-							if (!is_dir("../img/rosterportraits")) {
-								mkdir("../img/rosterportraits");
+							
+							$custrosterportraitfolderpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}";
+							$custrosterportraitimgpath = $custrosterportraitfolderpath . "/roster_{$r->rosterid}.jpg";
+							if (!is_dir($custrosterportraitfolderpath)) {
+								mkdir($custrosterportraitfolderpath);
 							}
-							$filepath = "../img/rosterportraits/" . $rid . ".jpg";
-							if (!imagejpeg($thumb, $filepath) ) {
+							
+							if (!imagejpeg($thumb, $custrosterportraitimgpath) ) {
 								// Failed to save the image
 								header("HTTP/1.0 500 Could not save portrait");
 								die();

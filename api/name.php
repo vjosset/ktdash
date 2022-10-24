@@ -456,7 +456,7 @@
 	function GetKasrkinName() {
 		$names = ["Jens", "Kasrk", "Otwin", "Hekler", "Reeve", "Pavlo", "Hektor", "Ogan", "Thenmann", "Kyser", "Erlen", "Raphe", "Creed", "Ackerman", "Mattias", "Mortens", "Dansk", "Feodor", "Tomas", "Kolson", "Vance", "Pask", "Niems", "Gryf", "Willem", "Sonnen", "Echter", "Farestein", "Dekker", "Graf", "Arvans", "Viers", "Kolm", "Bask", "Vesker", "Henker"];
 		
-		return $names[array_rang($names)];
+		return $names[array_rand($names)];
 	}
 	
 	function GetKrootName() {
