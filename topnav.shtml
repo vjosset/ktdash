@@ -17,7 +17,7 @@
 						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/signup.htm"><span class="fas fa-user fa-fw"></span>&nbsp;Sign Up</a></li>
 						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/login.htm"><span class="fas fa-lock fa-fw"></span>&nbsp;Log In</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/dashboard.php"><span class="fas fa-dice fa-fw"></span>&nbsp;Dashboard</a></li>
-						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/rosters.php"><span class="fas fa-users fa-fw"></span>&nbsp;My Rosters</a></li>
+						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/rosters.php?uid={{currentuser.userid}}"><span class="fas fa-users fa-fw"></span>&nbsp;My Rosters</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="#" ng-click="logOut();"><span class="fas fa-lock fa-fw"></span>&nbsp;Log Out</a></li>
 					</ul>
 				</div>

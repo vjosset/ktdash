@@ -153,7 +153,8 @@
 						}
 						
 						$filesize = $_FILES["file"]["size"];
-						$fileext = strtolower(end(explode('.', $filename)));
+						$tmpext = explode('.', $filename);
+						$fileext = strtolower(end($tmpext));
 						
 						// Save the resized image
 						if (!in_array($fileext, array('jpg','jpeg','png','gif','JPG','JPEG','PNG','GIF'))) {
@@ -172,6 +173,7 @@
 							// Resize the image
 							$thumb = Utils::ResizeImage($img, 600, 400);
 							
+							// Output the image
 							echo $thumb;
 							
 							// Save the file
@@ -179,7 +181,7 @@
 							$custrosterportraitfolderpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}";
 							$custrosterportraitimgpath = $custrosterportraitfolderpath . "/roster_{$r->rosterid}.jpg";
 							if (!is_dir($custrosterportraitfolderpath)) {
-								mkdir($custrosterportraitfolderpath);
+								mkdir($custrosterportraitfolderpath, 0777, true);
 							}
 							
 							if (!imagejpeg($thumb, $custrosterportraitimgpath) ) {

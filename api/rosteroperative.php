@@ -76,7 +76,10 @@
 						$ro->DBDelete();
 						
 						// Delete this operative's portrait if it exists
-						unlink("../img/opportraits/{$ro->rosteropid}.jpg");
+						$custrosteropportraitpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}/op_{$ro->rosteropid}.jpg";
+						if (file_exists($custrosteropportraitpath)) {
+							unlink($custrosterportraitpath);
+						}
 						
 						// Now re-order operatives so their seqs are always sequential
 						$r = Roster::GetRoster($ro->rosterid);

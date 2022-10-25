@@ -1524,6 +1524,48 @@ var app = angular.module("kt", ['ngSanitize'])
 				return rosterArchetype;
 			}
 			
+			$scope.getRosterTextDescription = function(roster) {
+				let out = "";
+				out = "<h6><a href=\"https://ktdash.app/roster.php?rid=" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
+				out += "<a href=\"https://ktdash.app/killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
+				let totalEq = $scope.totalEqPts(roster);
+				if (totalEq > 0) {
+					out += "Total Equipment Points: " + totalEq + "<br/><br/>";
+				}
+				
+				// out += "<ul>";
+				for (let i = 0; i < roster.operatives.length; i++) {
+					let op = roster.operatives[i];
+					out += op.opname + " (" + op.optype + ")<br/>";
+					
+					// Weapons
+					for (let j = 0; j < op.weapons.length; j++) {
+						let wep = op.weapons[j];
+						if (j > 0) {
+							out += ", ";
+						}
+						out += wep.wepname;
+					}
+					
+					for (let j = 0; j < op.equipments.length; j++) {
+						let eq = op.equipments[j];
+						if (j == 0) {
+							out += "<br/>";
+						}
+						if (j > 0) {
+							out += ", ";
+						}
+						out += eq.eqname + (eq.eqpts > 0 ? " (" + eq.eqpts + " pts)" : "");
+					}
+					
+					out += "<br/><br/>";
+				}
+				// out += "</ul>";
+				
+				// Done
+				return out;
+			}
+			
 			// initEditOpEq()
 			// Pop-up the operative equipment modal
 			$scope.initEditOpEq = function(roster, operative) {

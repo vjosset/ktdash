@@ -119,12 +119,12 @@
 				// Try to find this operative
 				$ro = RosterOperative::GetRosterOperative($roid);
 				if ($ro == null) {
-					header('HTTP/1.0 404 Operative not found A');
+					header('HTTP/1.0 404 Operative not found');
 					die();
 				} else {
 					if ($ro->userid != $u->userid) {
 						// This operative belongs to someone else - Fail
-						header('HTTP/1.0 404 Operative not found B');
+						header('HTTP/1.0 404 Operative not found');
 						die();
 					} else {
 						// Get the submitted image and validate it, then resize and save it
@@ -171,7 +171,7 @@
 							$custopportraitfolderpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}";
 							$customopportraitimgpath = $custopportraitfolderpath . "/op_{$ro->rosteropid}.jpg";
 							if (!is_dir($custopportraitfolderpath)) {
-								mkdir($custopportraitfolderpath);
+								mkdir($custopportraitfolderpath, 0777, true);
 							}
 							
 							if (!imagejpeg($thumb, $customopportraitimgpath) ) {

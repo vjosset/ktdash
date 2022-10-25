@@ -32,12 +32,15 @@
 			include "header.shtml";
 			if ($uid == 'prebuilt') {
 				$pagetitle = "Pre-Built Rosters";
+				$pagedesc = "View and Import Pre-Built KillTeam Rosters";
 			} else {
 				$pagetitle = ($ismine ? "My" : (ucwords($myUser->username) . "'s")) . " Rosters";
+				$pagedesc = "View and Import " . ucwords($myUser->username) . "'s KillTeam Rosters";
 			}
 			
-			$pagedesc  = "View and import " . $pagetitle;
-			$pageimg   = "https://ktdash.app/img/og/Home.png";
+			if ($myrosters.length > 0) {
+				$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRosters[0]->rosterid}";
+			}
 			$pageurl   = "https://ktdash.app/rosters.php?uid={$uid}";
 			include "og.php";
 		?>

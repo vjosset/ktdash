@@ -243,14 +243,20 @@
 				$r->DBDelete();
 				
 				// Delete this roster's portrait if it exists
-				unlink("../img/rosterportraits/{$r->rosterid}.jpg");
+				$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
+				if (file_exists($custrosterportraitpath)) {
+					unlink($custrosterportraitpath);
+				}
 				
 				// Load the roster's operatives so we can delete them
 				$r->loadOperatives();
 				foreach($r->operatives as $ro) {
 					$ro->DBDelete();
 					// Delete this operative's portrait if it exists
-					unlink("../img/opportraits/{$ro->rosteropid}.jpg");
+					$custrosteropportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/op_{$ro->rosteropid}.jpg";
+					if (file_exists($custrosteropportraitpath)) {
+						unlink($custrosterportraitpath);
+					}
 				}
 				
 				// Now re-sort the rosters
