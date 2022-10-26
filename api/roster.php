@@ -255,7 +255,7 @@
 					// Delete this operative's portrait if it exists
 					$custrosteropportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/op_{$ro->rosteropid}.jpg";
 					if (file_exists($custrosteropportraitpath)) {
-						unlink($custrosterportraitpath);
+						unlink($custrosteropportraitpath);
 					}
 				}
 				

@@ -45,7 +45,7 @@
 		<!-- Other Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&family=Black+Ops+One&family=Bungee&family=Jockey+One&family=Mate+SC&family=Staatliches&display=swap" rel="stylesheet"> 
 		<!-- Bespoke Styles -->
-		<link rel="stylesheet" href="css/styles.css?cb=202210240845" />
+		<link rel="stylesheet" href="css/styles.css?cb=202210252308" />
 		
 		<!-- PWA stuff -->
 		<script src="/sw.js"></script>

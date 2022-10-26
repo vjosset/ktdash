@@ -49,7 +49,7 @@
 					{{ operative.optype }}
 				</div>
 				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
-					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative);" />
+					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
 					<label for="chkactivated_{{ operative.rosteropid }}"> Activated</label>
 				</div>
 			</div>
@@ -249,15 +249,18 @@
 			<div class="line-top-light" ng-show="operative.abilities != null && (operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
 				<h6>Abilities</h6>
 				<!-- Regular Abilities -->
-				<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
+				<span class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
 					{{ ab.title }} 
 					<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
-				</div>
+					{{$last ? '' : ', '}}
+				</span>
 				<!-- Equipment Abilities -->
-				<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
+				<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
+					<br ng-if="$first" />
 					&#x26ED; {{ eq.eqname }} 
 					<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
-				</div>
+					{{$last ? '' : ', '}}
+				</span>
 			</div>
 			
 			<!-- Unique Actions -->

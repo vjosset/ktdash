@@ -96,7 +96,9 @@
 					} else {
 						// Delete the portrait for this roster
 						$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
-						unlink($custrosterportraitpath);
+						if (file_exists($custrosterportraitpath)) {
+							unlink($custrosterportraitpath);
+						}
 						echo "OK";
 					}
 				}

@@ -1826,6 +1826,67 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.setDashboardRosterId($scope.dashboardrosterid);
 						}
 						
+						// Get the operatives and set their "Injured" flag where appropriate
+						for (let i = 0; i < $scope.dashboardroster.operatives.length; i++) {
+							let op = $scope.dashboardroster.operatives[i];
+							
+							let wasInjured = op.isInjured;
+							if (wasInjured == null) {
+								wasInjured = false;
+							}
+							if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+								// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
+								op.isInjured = true;
+								
+								// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
+								// This does NOT apply to Pathfinder Assault Grenadiers
+								if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
+									for (let i = 0; i < op.weapons.length; i++) {
+										let wep = op.weapons[i];
+										for (let j = 0; j < wep.profiles.length; j++) {
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+										}
+									}
+								}
+								
+								// Reduce the M on the operative
+								op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
+								op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
+								op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
+								op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+								
+							} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
+								// Operative is no longer injured, was injured before
+								op.isInjured = false;
+								
+								// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
+								// This does NOT apply to Pathfinder Assault Grenadiers
+								if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
+									for (let i = 0; i < op.weapons.length; i++) {
+										let wep = op.weapons[i];
+										for (let j = 0; j < wep.profiles.length; j++) {
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+											wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+										}
+									}
+								}
+								
+								// Increase the M on the operative
+								op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
+								op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
+								op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
+								op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
+								op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
+							}
+						}
+						
 						console.log("DashboardRosterID: " + $scope.dashboardrosterid);
 						console.log("DashboardRoster: " + JSON.stringify($scope.dashboardroster));
 					}

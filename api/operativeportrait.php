@@ -90,7 +90,9 @@
 					} else {
 						// Delete the portrait for this operative
 						$custopportraitpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}/op_{$ro->rosteropid}.jpg";
-						unlink($custopportraitpath);
+						if (file_exists($custopportraitpath)) {
+							unlink($custopportraitpath);
+						}
 						echo "OK";
 					}
 				}
