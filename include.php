@@ -33,4 +33,9 @@
 		// Done
 		return $output;
 	}
+	
+	function getIfSet(&$value, $default = "")
+	{
+		return isset($value) ? $value : $default;
+	}
 ?>

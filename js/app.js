@@ -526,7 +526,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Send the delete request to the API
 				$.ajax({
 					type: "DELETE",
-					url: APIURL + "roster.php?utid=" + $scope.deleteRoster.rosterid,
+					url: APIURL + "roster.php?rid=" + $scope.deleteRoster.rosterid,
 					timeout: 5000,
 					async: true,
 					

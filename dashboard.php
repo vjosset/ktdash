@@ -19,7 +19,7 @@
 		<?php
 			include "header.shtml";
 			$pagetitle = "Dashboard";
-			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->opList;
+			$pagedesc  = "KillTeam Game Dashboard";
 			$pageimg   = "https://ktdash.app/img/dashboard.png";
 			$pageurl   = "https://ktdash.app/dashboard.php";
 			include "og.php";

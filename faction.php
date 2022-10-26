@@ -4,12 +4,12 @@
 	global $dbcon;
 	
 	// Get the requested faction id
-	$factionid = $_REQUEST['factionid'];
+	$factionid = getIfSet($_REQUEST['factionid']);
 	if ($factionid == null || $factionid == '') {
-		$factionid = $_REQUEST['faid'];
+		$factionid = getIfSet($_REQUEST['faid']);
 	}
 	if ($factionid == null || $factionid == '') {
-		$factionid = $_REQUEST['fa'];
+		$factionid = getIfSet($_REQUEST['fa']);
 	}
 	
 	if ($factionid == null || $factionid == '') {

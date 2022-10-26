@@ -4,12 +4,14 @@
 	global $dbcon;
 	
 	// Get the requested user id
-	$uid = $_REQUEST['uid'];
+	$uid = getIfSet($_REQUEST['uid']);
 	if ($uid == null || $uid == '') {
-		$uid = $_REQUEST['userid'];
+		$uid = getIfSet($_REQUEST['userid']);
 	}
-	if ($uid == null || $uid == '') {
-		$uid = Session::CurrentUser()->userid;
+	
+	$me = Session::CurrentUser();
+	if (($uid == null || $uid == '') && $me != null) {
+		$uid = $me->userid;
 	}
 	
 	if ($uid == null || $uid == '') {
@@ -20,9 +22,14 @@
 	}
 	
 	$myUser = User::FromDB($uid);
+	
+	if ($myUser == null) {
+		// User not found
+		header("Location: /login.htm");
+		exit;
+	}
 	$myUser->loadRosters();
 	$myRosters = $myUser->rosters;
-	$me = Session::CurrentUser();
 	$ismine = ($me != null && $me->userid == $uid);
 ?>
 <!DOCTYPE html>
@@ -38,8 +45,10 @@
 				$pagedesc = "View and Import " . ucwords($myUser->username) . "'s KillTeam Rosters";
 			}
 			
-			if ($myrosters.length > 0) {
+			if (count($myRosters) > 0) {
 				$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRosters[0]->rosterid}";
+			} else {
+				$pageimg   = "https://ktdash.app/img/og/Home.png";
 			}
 			$pageurl   = "https://ktdash.app/rosters.php?uid={$uid}";
 			include "og.php";

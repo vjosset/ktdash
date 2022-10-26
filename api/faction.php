@@ -18,12 +18,12 @@
 
     function GETFaction() {
 		// Get the requested faction id
-		$factionid = $_REQUEST['factionid'];
+		$factionid = getIfSet($_REQUEST['factionid']);
 		if ($factionid == "" || $factionid == null) {
-			$factionid = $_REQUEST['faid'];
+			$factionid = getIfSet($_REQUEST['faid']);
 		}
-		$loadkillteams = ($_REQUEST['loadkts'] == '1');
-		$loadops = ($_REQUEST['loadops'] == '1');
+		$loadkillteams = (getIfSet($_REQUEST['loadkts']) == '1');
+		$loadops = (getIfSet($_REQUEST['loadops']) == '1');
 		
 		if ($factionid == null || $factionid == '') {
 			// No faction id passed in, return all factions

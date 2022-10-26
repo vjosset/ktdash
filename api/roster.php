@@ -27,8 +27,8 @@
 
     function GETRoster() {
 		// Get the requested roster
-		$rid = $_REQUEST['rid'];
-		$uid = $_REQUEST['uid'];
+		$rid = getIfSet($_REQUEST['rid']);
+		$uid = getIfSet($_REQUEST['uid']);
 		
 		if ($rid == null || $rid == '') {
 			// No roster id passed in, return the specified user's roster
@@ -65,14 +65,14 @@
 			$u = Session::CurrentUser();
 			
 			// If this is a copy/clone/import
-			if ($_REQUEST["clone"] == "1") {
+			if (getIfSet($_REQUEST["clone"]) == "1") {
 				// Clone/import existing team
 				
 				// Prepare a new rosterid
 				$newrosterid = CommonUtils\shortId(5);
 				
 				// Get the original roster
-				$origrosterid = $_REQUEST['rid'];
+				$origrosterid = getIfSet($_REQUEST['rid']);
 				$roster = Roster::GetRoster($origrosterid);
 				
 				if ($roster->userid == $u->userid) {
@@ -108,19 +108,19 @@
 				
 				// All done
 				echo json_encode($roster);
-			} else if ($_REQUEST["swapseq"] == "1") {
+			} else if (getIfSet($_REQUEST["swapseq"]) == "1") {
 				// Swap the Seqs for two rosters (moveup/movedown)
 				
 				// Get the user id
 				$uid = $u->userid;
 				
 				// Get the opid and seq for roster 1
-				$seq1 = $_REQUEST["seq1"];
-				$rid1 = $_REQUEST["rid1"];
+				$seq1 = getIfSet($_REQUEST["seq1"]);
+				$rid1 = getIfSet($_REQUEST["rid1"]);
 				
 				// Get the opid and seq for roster 2
-				$seq2 = $_REQUEST["seq2"];
-				$rid2 = $_REQUEST["rid2"];
+				$seq2 = getIfSet($_REQUEST["seq2"]);
+				$rid2 = getIfSet($_REQUEST["rid2"]);
 				
 				global $dbcon;
 				$sql = "UPDATE Roster SET seq = ? WHERE userid = ? AND rosterid = ?;";
@@ -234,7 +234,7 @@
 			$u = Session::CurrentUser();
 			
 			// Get the requested roster
-			$rid = $_REQUEST['utid'];
+			$rid = getIfSet($_REQUEST['rid']);
 			$r = Roster::FromDB($rid);
 			
 			// Validate the roster's owner

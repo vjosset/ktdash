@@ -25,7 +25,7 @@
 
     function GETRosterOperative() {
 		// Get the requested operative
-		$roid = $_REQUEST['roid'];
+		$roid = getIfSet($_REQUEST['roid']);
 		
 		if ($roid == null || $roid == '') {
 			// No rosteropid specified - fail
@@ -55,7 +55,7 @@
 			$u = Session::CurrentUser();
 			
 			// Get the requested operative
-			$roid = $_REQUEST['roid'];
+			$roid = getIfSet($_REQUEST['roid']);
 			
 			if ($roid == null || $roid == '') {
 				// No rosteropid specified - fail
@@ -102,11 +102,11 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 			
-			if ($_REQUEST["swapseq"] == "1") {
+			if (getIfSet($_REQUEST["swapseq"]) == "1") {
 				// Swap the Seqs for two operatives (moveup/movedown)
 				
 				// Get the roster id
-				$rid = $_REQUEST["rid"];
+				$rid = getIfSet($_REQUEST["rid"]);
 				
 				$r = Roster::GetRoster($rid);
 				
@@ -117,12 +117,12 @@
 				}
 				
 				// Get the opid and seq for op 1
-				$seq1 = $_REQUEST["seq1"];
-				$roid1 = $_REQUEST["roid1"];
+				$seq1  = getIfSet($_REQUEST["seq1"]);
+				$roid1 = getIfSet($_REQUEST["roid1"]);
 				
 				// Get the opid and seq for op 2
-				$seq2 = $_REQUEST["seq2"];
-				$roid2 = $_REQUEST["roid2"];
+				$seq2  = getIfSet($_REQUEST["seq2"]);
+				$roid2 = getIfSet($_REQUEST["roid2"]);
 				
 				global $dbcon;
 				$sql = "UPDATE RosterOperative SET seq = ? WHERE rosterid = ? AND rosteropid = ?;";

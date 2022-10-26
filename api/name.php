@@ -17,7 +17,7 @@
     }
 	
 	function GetName() {
-		$nametype = $_REQUEST["nametype"];
+		$nametype = getIfSet($_REQUEST["nametype"]);
 		switch ($nametype) {
 			case "AELDARI-M":
 				return GetAeldariMaleName() . " " . GetAeldariMaleName();
@@ -60,10 +60,10 @@
 		}
 		
 		// Return a name for the requested faction/killteam/fireteam/operative
-		$faid = $_REQUEST["factionid"];
-		$ktid = $_REQUEST["killteamid"];
-		$ftid = $_REQUEST["fireteamid"];
-		$opid = $_REQUEST["opid"];
+		$faid = getIfSet($_REQUEST["factionid"]);
+		$ktid = getIfSet($_REQUEST["killteamid"]);
+		$ftid = getIfSet($_REQUEST["fireteamid"]);
+		$opid = getIfSet($_REQUEST["opid"]);
 		
 		$key = $faid . "|" . $ktid . "|" . $ftid . "|" . $opid;
 		

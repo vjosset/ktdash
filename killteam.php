@@ -4,21 +4,21 @@
 	global $dbcon;
 	
 	// Get the requested faction id
-	$factionid = $_REQUEST['factionid'];
+	$factionid = getIfSet($_REQUEST['factionid']);
 	if ($factionid == null || $factionid == '') {
-		$factionid = $_REQUEST['faid'];
+		$factionid = getIfSet($_REQUEST['faid']);
 	}
 	if ($factionid == null || $factionid == '') {
-		$factionid = $_REQUEST['fa'];
+		$factionid = getIfSet($_REQUEST['fa']);
 	}
 	
 	// Get the requested killteam id
-	$killteamid = $_REQUEST['killteamid'];
+	$killteamid = getIfSet($_REQUEST['killteamid']);
 	if ($killteamid == null || $killteamid == '') {
-		$killteamid = $_REQUEST['ktid'];
+		$killteamid = getIfSet($_REQUEST['ktid']);
 	}
 	if ($killteamid == null || $killteamid == '') {
-		$killteamid = $_REQUEST['kt'];
+		$killteamid = getIfSet($_REQUEST['kt']);
 	}
 	
 	$faction = Faction::GetFaction($factionid);

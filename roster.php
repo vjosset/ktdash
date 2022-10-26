@@ -4,15 +4,21 @@
 	global $dbcon;
 	
 	// Get the requested roster id
-	$rid = $_REQUEST['r'];
+	$rid = getIfSet($_REQUEST['r'], '');
 	if ($rid == null || $rid == '') {
-		$rid = $_REQUEST['rid'];
+		$rid = getIfSet($_REQUEST['rid']);
 	}
 	if ($rid == null || $rid == '') {
-		$rid = $_REQUEST['rosterid'];
+		$rid = getIfSet($_REQUEST['rosterid']);
 	}
 	
 	$myRoster = Roster::GetRoster($rid);
+	if ($myRoster == null) {
+		// Roster not found
+		//	Send them to login I guess?
+		header("Location: /login.htm");
+		exit;
+	}
 	$myRoster->loadOperatives();
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myRoster->userid;
