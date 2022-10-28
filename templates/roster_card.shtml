@@ -32,6 +32,8 @@
 			</div>
 		</div>
 		
+		<i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount }}
+		<i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}
 		<p ng-show="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify;">
 			{{ myRoster.notes }}
 		</p>

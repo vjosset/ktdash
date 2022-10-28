@@ -60,7 +60,7 @@
 					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
 						<?php echo $myRoster->killteamname ?>
 						<br class="d-inline d-sm-none" />
-						<?php if (!$ismine && $myRoster->userid != 'prebuilt') { ?>
+						<?php if (!$ismine) { ?>
 						by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 						<?php }
 						else {?>
@@ -143,14 +143,11 @@
 				}
 				?>
 			</div>
-			<?php 
-			//if ($ismine) {
-			?>
+			
+			<!--
 			<i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount }}
 			<i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}
-			<?php
-			//}
-			?>
+			-->
 			
 			<!-- Show this roster's operatives -->
 			<div class="row p-0 m-0">
