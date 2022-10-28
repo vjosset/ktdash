@@ -49,7 +49,7 @@
 		?>
 		
 		<div class="orange container-fluid">
-			<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster));">
+			<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster));te('roster', 'killteamcomp', '', myRoster.rosterid);">
 				<i class="fas fa-users fa-fw"></i>
 				&nbsp;
 				<?php echo $myRoster->rostername ?>
@@ -76,7 +76,7 @@
 						<!-- i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i -->
 						<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
 						<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
-						<i class="pointer far fa-question-circle fa-fw" id="myrosterhelpbutton" onclick="$('#myrosterhelpmodal').modal('show');"></i>
+						<i class="pointer far fa-question-circle fa-fw" id="myrosterhelpbutton" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"></i>
 					</div>
 					<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
 						<?php
@@ -144,22 +144,12 @@
 				?>
 			</div>
 			<?php 
-			if ($ismine) {
+			//if ($ismine) {
 			?>
-			<!--
-			<h3 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Killteam Composition">
-				<i class="fas fa-chevron-down fa-fw"></i>&nbsp;KillTeam Composition
-			</h3>
-			<div id="killteamcomp" class="collapse">
-				<p ng-bind-html="myRoster.killteam.killteamcomp"></p>
-				<div ng-if="myRoster.killteam.fireteams.length > 1" ng-repeat="fireteam in myRoster.killteam.fireteams track by $index">
-					<h5>{{ fireteam.fireteamname }}</h5>
-					<p ng-bind-html="fireteam.fireteamcomp"></p>
-				</div>
-			</div>
-			-->
+			<i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount }}
+			<i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}
 			<?php
-			}
+			//}
 			?>
 			
 			<!-- Show this roster's operatives -->

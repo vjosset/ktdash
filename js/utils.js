@@ -1,4 +1,4 @@
-var apiurl = "https://corridors.vjosset.com/api/";
+var apiurl = "https://ktdash.app/api/";
 
 function GetQS(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -59,6 +59,41 @@ function GetReqOPid() {
 
 function GetArrayRandom(arr) {
 	return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
+	console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ")");
+	try {
+		$.ajax({
+			type: "POST",
+			url: APIURL + "event.php",
+			timeout: 5000,
+			async: true,
+			data: {
+				t: t,
+				a: a,
+				l: l,
+				v1: v1,
+				v2: v2,
+				v3: v3,
+				u: window.location.href
+			},
+			
+			// Success
+			success: function(data) {
+				// Do nothing
+			},
+			
+			// Failure
+			error: function(error) {
+				// Something went wrong
+			}
+		});
+	}
+	catch (ex) {
+		// Do nothing
+		console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ") failed: \r\n" + ex);
+	}
 }
 
 function trackEvent(cat, act, lbl) {

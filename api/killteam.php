@@ -18,8 +18,8 @@
 
     function GETKillteam() {
 		// Get the requested killteam id
-		$factionid = $_REQUEST['fa'];
-		$killteamid = $_REQUEST['kt'];
+		$factionid = getIfSet($_REQUEST['fa']);
+		$killteamid = getIfSet($_REQUEST['kt']);
 		
 		if ($killteamid == null || $killteamid == '') {
 			// No killteam id passed in, return all killteams

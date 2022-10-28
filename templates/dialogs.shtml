@@ -187,7 +187,7 @@
 				
 				<h6 class="d-inline">Operative Name</h6>
 				<span class="oswald float-end">
-					<a ng-click="generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');" ng-if="addop.operative != null">Generate Name</a>
+					<a ng-click="te('opname', 'generate', '', addop.operative.factionid + '|' + addop.operative.killteamid + '|' + addop.operative.fireteamid + '|' + addop.operative.opid);generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');" ng-if="addop.operative != null">Generate Name</a>
 				</span><br/>
 				<input type="text" id="newopname" class="form-control oswald" ng-model="addop.opname" />
 				<br/>

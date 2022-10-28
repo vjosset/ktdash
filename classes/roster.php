@@ -15,7 +15,12 @@
         function __construct() {
             $this->TableName = "Roster";
             $this->Keys = ["rosterid"];
-			$this->skipfields = ["operatives","username","factionname","killteamname","opList","oplist","killteamdescription","archetype"];
+			$this->skipfields = [
+				"operatives","username","factionname","killteamname",
+				"opList","oplist",
+				"killteamdescription","archetype",
+				"viewcount","importcount"
+			];
         }
 		
 		public function GetRoster($rid) {

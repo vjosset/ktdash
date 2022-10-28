@@ -34,10 +34,16 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.setSetting = function(key, value) {
 				$scope.settings[key] = value;
+				te('settings', 'set', key, value);
 				$scope.saveSettings();
 			}
 			
 			$scope.loadSettings();
+			
+			// Reference to utils.js "te()"
+			$scope.te = function(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
+				te(t, a, l, v1, v2, v3);
+			}
 		}
 		
 		// SESSION & LOG IN
@@ -122,6 +128,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							// No redirect specified - Send user to "My Rosters"
 							$scope.loginForm.redirectUrl = "/rosters.php";
 						}
+						te("session", "login");
 						window.location.href = $scope.loginForm.redirectUrl;
 					},
 					// Failure
@@ -151,6 +158,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					dataType: 'json',
 					success: function(data) {
 						// Logged out, redirect to home
+						te("session", "logout");
 						window.location.href = "/";
 					},
 					error: function(data, status, error) {
@@ -196,6 +204,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.loading = false;
 						// Set their session
 						$scope.currentuser = data;
+						te("session", "signup");
 						// Send the user to "My Rosters"
 						window.location.href = "/rosters.php";
 					},
@@ -387,6 +396,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Team finished importing
 					toast("All v1 teams have been imported");
 					
+					te("roster", "importv1");
+					
 					// All done, reload the page so the user can see their newly-imported teams
 					$scope.loading = false;
 					toast("Loading...");
@@ -397,6 +408,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initRosters()
 			// Initializes the "My Rosters" page
 			$scope.initRosters = function(uid) {
+				te("rosters", "view", "", uid);
 				$scope.loading = true;
 				
 				let isMe = ($scope.currentuser != null && uid == $scope.currentuser.userid);
@@ -454,6 +466,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
 			$scope.initRoster = function(rid) {
+				te("roster", "view", "", rid);
 				$scope.loading = true;
 				$scope.MODE = "Roster";
 				
@@ -523,6 +536,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// saveDeleteRoster()
 			// Commits the roster deletion
 			$scope.saveDeleteRoster = function() {
+				te("roster", "delete", "", $scope.deleteRoster.rosterid);
 				// Send the delete request to the API
 				$.ajax({
 					type: "DELETE",
@@ -628,6 +642,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					data: JSON.stringify(roster),
 					success: function(data) {
 						toast("Roster " + roster.rostername + " saved!");
+						
+						te("roster", "create", "", data.rosterid);
 						
 						// Send the user to their new roster
 						window.location.href = "/roster.php?rid=" + data.rosterid;
@@ -747,6 +763,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Not logged in - Cannot import
 					toast("Cannot import this roster - You are not logged in");
 				} else {
+					te("roster", "clone", "", roster.rosterid);
 					toast("Copying team " + roster.rostername + "...");
 					// Send the POST request to the API
 					$.ajax({
@@ -786,7 +803,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// saveEditRoster()
 			// Save roster edits
-			$scope.saveEditRoster = function() {				
+			$scope.saveEditRoster = function() {
+				te("roster", "edit", "", $scope.rostertoedit.rosterid);
 				$scope.rostertoedit.rostername = $scope.rostertoedit.newrostername;
 				$scope.rostertoedit.notes = $scope.rostertoedit.newnotes;
 				delete $scope.rostertoedit.newrostername;
@@ -841,6 +859,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Upload the image to the API for this roster
 				let imgData = "";
 				if ($scope.rostertoedit.usedefaultportrait) {
+					te("roster", "portrait", "default", $scope.rostertoedit.rosterid);
 					// Use the default portrait - Clear this roster's saved portrait from the DB
 					imgData = "";
 					$.ajax({
@@ -863,6 +882,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				} else {
+					te("roster", "portrait", "custom", $scope.rostertoedit.rosterid);
 					// Use the specified file - Push to the API
 					// Send the update to the API
 					var formData = new FormData();
@@ -895,6 +915,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// showShareRoster()
 			// Pop-up the "Share Roster" modal
 			$scope.showShareRoster = function(roster) {
+				te("roster", "share", "", roster.rosterid);
 				$scope.shareroster = roster;
 				$scope.shareroster.url = "https://ktdash.app/roster.php?rid=" + roster.rosterid;
 				
@@ -925,6 +946,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// updateOpW()
 			// Increment or decrement the specified operative's wounds
 			$scope.updateOpW = function(op, inc) {
+				te("dasbhoard", "W", "inc", op.rosteropid, inc);
 				op.curW = op.curW + inc;
 				if (op.curW < 0) {
 					op.curW = 0;
@@ -1176,6 +1198,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) {
 						// All good, refresh this team
 						$scope.initRoster(newop.rosterid);
+						
+						te("roster", "addop", "", $scope.myRoster.rosterid, data.rosteropid);
 				
 						// Close the modal
 						$('#addoptorostermodal').modal("hide");
@@ -1254,6 +1278,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) {
 						// Close the modal
 						$('#deleteopmodal').modal("hide");
+						
+						te("roster", "delop", "", $scope.optodelete.operative.rosterid, $scope.optodelete.operative.rosteropid);
 						
 						// Reload this roster
 						$scope.initRoster($scope.optodelete.roster.rosterid);
@@ -1446,6 +1472,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Upload the image to the API for this operative
 				let imgData = "";
 				if ($scope.optoedit.usedefaultportrait) {
+					te("roster", "opportrait", "default", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 					// Use the default portrait - Clear this operative's saved portrait from the DB
 					imgData = "";
 					$.ajax({
@@ -1468,6 +1495,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				} else {
+					te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 					// Use the specified file - Push to the API
 					// Send the update to the API
 					var formData = new FormData();
@@ -1525,6 +1553,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.getRosterTextDescription = function(roster) {
+				te("roster", "gettext", "", roster.rosterid);
 				let out = "";
 				out = "<h6><a href=\"https://ktdash.app/roster.php?rid=" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
 				out += "<a href=\"https://ktdash.app/killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
@@ -1628,6 +1657,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initCompendium()
 			// Loads all factions
 			$scope.initCompendium = function() {
+				te("compendium", "allfactions");
 				$scope.loading = true;
 				$scope.MODE = "Compendium";
 				$.ajax({
@@ -1652,6 +1682,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.initFaction = function() {
+				te("compendium", "faction", "", GetQS('fa'));
 				$scope.loading = true;
 				$scope.MODE = "Compendium";
 				$.ajax({
@@ -1676,6 +1707,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.initKillteam = function() {
+				te("compendium", "faction", "", GetQS('fa'), GetQS("kt"));
 				// First get the faction
 				//	On success, we'll get the killteam
 				$scope.loading = true;
@@ -1776,6 +1808,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initDashboard()
 			// Initializes the dashboard
 			$scope.initDashboard = function() {
+				te("dashboard", "init");
 				$scope.loading = true;
 				$scope.MODE = 'Dashboard';
 				
@@ -1897,6 +1930,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// selectDashboardRoster()
 			// Sets the specified roster as the dashboard roster
 			$scope.selectDashboardRoster = function(roster) {
+				te("dashboard", "selectroster", "", roster.rosterid);
 				$scope.dashboardroster = roster;
 				$scope.setDashboardRosterId(roster.rosterid);
 			}
@@ -1912,7 +1946,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// resetDash()
 			// Resets the dashboard, returning scores to their default values and resetting operative wounds/curw
 			$scope.resetDash = function(roster) {
-				trackEvent("dashboard", "reset", "");
+				te("dashboard", "reset", "", roster.rosterid);
 				
 				// Update local roster
 				roster.CP = 2;
@@ -1975,6 +2009,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 		
 			$scope.updateCP = function(inc, roster) {
+				te("dashboard", "CP", "inc", roster.rosterid, inc);
 				roster.CP += inc;
 				if (roster.CP < 0) {
 					roster.CP = 0;
@@ -1983,6 +2018,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.updateVP = function(inc, roster) {
+				te("dashboard", "VP", "inc", roster.rosterid, inc);
 				roster.VP += inc;
 				if (roster.VP < 0) {
 					roster.VP = 0;
@@ -1991,6 +2027,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.updateTP = function(inc, roster) {
+				te("dashboard", "TP", "inc", roster.rosterid, inc);
 				roster.TP += inc;
 				if (roster.TP < 1) {
 					roster.TP = 1;
@@ -2001,6 +2038,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Increment Resource Points (e.g. Faith Points for Novitiates)
 			$scope.updateRP = function(inc, roster)  {
+				te("dashboard", "RP", "inc", roster.rosterid, inc);
 				roster.RP += inc;
 				if (roster.RP < 1) {
 					roster.RP = 0;
