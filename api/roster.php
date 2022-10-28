@@ -73,9 +73,11 @@
 				
 				// Get the original roster
 				$origrosterid = getIfSet($_REQUEST['rid']);
+				$origroster = Roster::GetRoster($origrosterid);
 				$roster = Roster::GetRoster($origrosterid);
 				
-				if ($roster->userid == $u->userid) {
+				$selfclone = $roster->userid == $u->userid;
+				if ($selfclone) {
 					// This is a clone of an existing roster for the current user - Rename the team "Copy"
 					$roster->rostername = "Copy of " . $roster->rostername;
 				}
@@ -83,6 +85,23 @@
 				// Update its values for the current user and new roster id
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
+				
+				// If self-clone, copy the roster's portrait if it exists
+				if ($selfclone) {
+					$origrosterfolderpath = "../img/customportraits/user_{$u->userid}/roster_{$origrosterid}";
+					$origrosterportraitfile = $origrosterfolderpath . "/roster_{$origrosterid}.jpg";
+					if (is_dir($origrosterfolderpath)) {
+						// Copy the roster directory
+						$newrosterfolderpath = "../img/customportraits/user_{$u->userid}/roster_{$newrosterid}";
+						$newrosterportraitfile = $newrosterfolderpath . "/roster_{$newrosterid}.jpg";
+						mkdir($newrosterfolderpath, 0777, true);
+						
+						if (file_exists($origrosterportraitfile)) {
+							// Copy the roster portrait
+							copy($origrosterportraitfile, $newrosterportraitfile);
+						}
+					}
+				}
 				
 				// Put this cloned roster at the end of the list
 				$roster->seq = 10000;
@@ -92,12 +111,27 @@
 				
 				// Update all operatives
 				foreach($roster->operatives as $op) {
+					$origopid = $op->rosteropid;
+					$origrosterid = $op->rosterid;
+					
 					$op->rosteropid = CommonUtils\shortId(5);
 					$op->userid = $u->userid;
 					$op->rosterid = $newrosterid;
 					
 					// Commit this operative
 					$op->DBInsert();
+					
+					if ($selfclone) {
+						// Copy this operative's portrait if it exists
+						$origrosterfolderpath = "../img/customportraits/user_{$u->userid}/roster_{$origrosterid}";
+						$origopfile = $origrosterfolderpath . "/op_{$origopid}.jpg";
+						$newrosterfolderpath = "../img/customportraits/user_{$u->userid}/roster_{$newrosterid}";
+						$newopfile = $newrosterfolderpath . "/op_{$op->rosteropid}.jpg";
+						if (file_exists($origopfile)) {
+							// Copy the roster portrait
+							copy($origopfile, $newopfile);
+						}
+					}
 				}
 				
 				// Reorder all rosters
@@ -240,7 +274,6 @@
 			// Validate the roster's owner
 			if ($r->userid == $u->userid) {
 				// Current user owns this roster, OK to delete
-				$r->DBDelete();
 				
 				// Delete this roster's portrait if it exists
 				$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
@@ -251,13 +284,24 @@
 				// Load the roster's operatives so we can delete them
 				$r->loadOperatives();
 				foreach($r->operatives as $ro) {
-					$ro->DBDelete();
-					// Delete this operative's portrait if it exists
 					$custrosteropportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/op_{$ro->rosteropid}.jpg";
+					
+					$ro->DBDelete();
+					
+					// Delete this operative's portrait if it exists
 					if (file_exists($custrosteropportraitpath)) {
 						unlink($custrosteropportraitpath);
 					}
 				}
+				
+				// Now delete the custom portrait folder
+				$custrosterportraitfolder = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}";
+				if (is_dir($custrosterportraitfolder)) {
+					rmdir($custrosterportraitfolder);
+				}
+				
+				// Delete this roster
+				$r->DBDelete();
 				
 				// Now re-sort the rosters
 				$u->reorderRosters();

@@ -59,8 +59,9 @@
 				<div class="col-7">
 					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
 						<?php echo $myRoster->killteamname ?>
+						<br class="d-inline d-sm-none" />
 						<?php if (!$ismine && $myRoster->userid != 'prebuilt') { ?>
-						&nbsp;by <a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></a>
+						by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 						<?php }
 						else {?>
 						<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
@@ -131,7 +132,7 @@
 		</h3>
 		
 		<!-- Show this roster and its operatives -->
-		<div class="ng-cloak container-fluid" ng-hide="loading">
+		<div class="ng-cloak p-0 m-1" ng-hide="loading">
 			<div ng-if="myRoster.operatives == null || myRoster.operatives.length == 0">
 				This roster does not have any operatives yet
 				<?php 

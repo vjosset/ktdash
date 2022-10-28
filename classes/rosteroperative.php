@@ -41,8 +41,6 @@
         }
 		
 		public function GetRosterOperative($roid) {
-			global $dbcon;
-			
 			//Get the requested RosterOperative
 			$ro = RosterOperative::FromDB($roid);
 			

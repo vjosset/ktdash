@@ -115,8 +115,8 @@
 		</h3>
 		
 		<!-- Show this player's rosters -->
-		<div class="container-fluid ng-cloak" ng-hide="loading">
-			<div ng-if="myRosters.length < 1" >
+		<div class="m-0 p-1" ng-hide="loading">
+			<div ng-if="myRosters.length < 1" class="m-0 p-0">
 				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet.</span>
 				<span ng-if="MODE == 'Rosters'">This user doesn't have any Rosters yet.</span>
 			</div>
@@ -124,22 +124,23 @@
 				if ($ismine) {
 				?>
 			<div>
-				<span class="float-start">
+				<span>
 					Build a <a href="#" ng-click="initNewRoster();">new roster</a>
 					or import a <a class="navloader" href="rosters.php?uid=prebuilt">pre-built roster</a>
 				</span>
 			</div>
 			<br/>
-			<br/>
 				<?php
 			} ?>
 			
-			<div ng-if="myRosters.length > 0" class="row p-0 m-0">
-				<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0 g-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
-					<?php include "templates/roster_card.shtml" ?>
-				</div>
-				<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0 g-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
-					<?php include "templates/roster_list.shtml" ?>
+			<div class="m-0 p-0">
+				<div ng-if="myRosters.length > 0" class="row p-0 m-0">
+					<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+						<?php include "templates/roster_card.shtml" ?>
+					</div>
+					<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+						<?php include "templates/roster_list.shtml" ?>
+					</div>
 				</div>
 			</div>
 		</div>

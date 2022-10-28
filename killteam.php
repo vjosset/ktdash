@@ -23,6 +23,26 @@
 	
 	$faction = Faction::GetFaction($factionid);
 	$killteam = KillTeam::GetKillTeam($factionid, $killteamid);
+	
+	global $dbcon;
+	$sql = "SELECT rosterid, rostername FROM Roster WHERE userid = 'prebuilt' AND factionid = ? AND killteamid = ?";
+	
+	$cmd = $dbcon->prepare($sql);
+	$paramtypes = "ss";
+	$params = array();
+	$params[] =& $paramtypes;
+	$params[] =& $factionid;
+	$params[] =& $killteamid;
+	
+	call_user_func_array(array($cmd, "bind_param"), $params);
+	$cmd->execute();
+
+	$prebuilt = null;
+	if ($result = $cmd->get_result()) {
+		while ($row = $result->fetch_object()) {
+			$prebuilt = $row;
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,6 +105,16 @@
 		</h3>
 			
 		<div ng-hide="loading">
+			<!-- Prebuilt Team -->
+			<?php
+			if ($prebuilt != null) {
+				// We have at least one pre-built roster for this killteam; show a shortcut to import it
+				?>
+				Import <h6 class="d-inline"><a href="/roster.php?rid=<?php echo $prebuilt->rosterid ?>"><?php echo $prebuilt->rostername ?></a></h6>, a pre-built <?php echo $killteam->killteamname ?> roster.<br/><br/>
+				<?php
+			}
+			?>
+			
 			<!-- Killteam Composition -->
 			<h2 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp"><i class="fas fa-chevron-down fa-fw"></i>KillTeam Composition</h2>
 			<p id="killteamcomp" class="collapse" ng-bind-html="killteam.killteamcomp"></p> <!-- style="-webkit-columns: 40px 3; -moz-columns: 60px 3; columns: 60px 3;"></p -->
@@ -111,7 +141,7 @@
 				<div class="tab-pane show active" id="ops" role="tabpanel">
 					<!-- Operatives -->
 					<div class="row p-0 m-0">
-						<div ng-repeat="fireteam in killteam.fireteams">
+						<div class="m-0 p-0" ng-repeat="fireteam in killteam.fireteams">
 							<div class="pointer" ng-show="killteam.fireteams.length > 1">
 								<i class="h3 fas fa-chevron-down fa-fw" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#ft_{{ fireteam.fireteamid }}"></i>
 								<span ng-click="showpopup('FireTeam Composition', fireteam.fireteamcomp);">
@@ -121,7 +151,7 @@
 							</div>
 							
 							<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
-								<div class="col-12 col-md-6 col-xl-4 p-0 m-0 align-items-stretch" ng-repeat="operative in fireteam.operatives">
+								<div class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
 									<?php include "templates/op_card.shtml" ?>
 								</div>
 							</div>

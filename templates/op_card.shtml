@@ -70,8 +70,6 @@
 					background-size: cover;
 					background-position: center top;"
 					>
-					&nbsp;
-					<i ng-if="MODE == 'MyRoster'" class="pointer fas fa-edit fa-fw" ng-click="initUploadOpPortrait(operative)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"></i>
 				</div>
 				<div class="col-7 p-0">
 					<h3>
