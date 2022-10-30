@@ -51,7 +51,7 @@
 			<!-- Header/Title - Team selection and CP/VP/TP tracker -->
 			<div class="container-fluid orange">
 				<div class="row">
-					<div class="col-8">
+					<div class="col-11">
 						<!-- Roster Selector -->
 						<h1>
 							<div class="dropdown">
@@ -67,10 +67,19 @@
 							</div>
 						</h1>
 					</div>
-					<div class="col-4 text-end">
-						<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
-						<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
-						<i class="pointer fas fa-undo-alt fa-fw"ng-click=" resetDash(dashboardroster);"></i>
+			
+					<div class="col-1 m-0 p-0 align-text-top text-end">
+						<div class="btn-group">
+							<a role="button" id="dashactions" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-ellipsis-h fa-fw"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
+								<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="far fa-id-card fa-fw"></i> Show Portraits</a></li>
+								<li ng-if="settings['display'] == 'card' || settings['display'] == null"><a class="pointer dropdown-item" ng-click="setSetting('display', 'list');"><i class="fas fa-list fa-fw"></i> Hide Portraits</a></li>
+								<li><a class="pointer dropdown-item" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i>Select Operatives</a></li>
+								<li><a class="pointer dropdown-item" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				
@@ -146,12 +155,6 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane show active" id="ops" role="tabpanel">
-					
-					<!-- Operative Selector -->
-					<h3 class="pointer" ng-click="initSelectRosterOps(dashboardroster);">
-						<i class="text-small fas fa-edit fa-fw"></i>Select Operatives <sup class="small"></sup>
-					</h3>
-					
 					<!-- Archetype -->
 					<h6 class="d-inline">Archetype</h6>: <small ng-bind="getRosterArchetype(dashboardroster)"></small>
 					

@@ -49,53 +49,57 @@
 		?>
 		
 		<div class="orange container-fluid">
-			<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster));te('roster', 'killteamcomp', '', myRoster.rosterid);">
-				<i class="fas fa-users fa-fw"></i>
-				&nbsp;
-				<?php echo $myRoster->rostername ?>
-				<sup><i class="h5 fas fa-info-circle fa-fw"></i></sup>
-			</h1>
 			<div class="row">
-				<div class="col-7">
-					<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
-						<?php echo $myRoster->killteamname ?>
-						<br class="d-inline d-sm-none" />
-						<?php if (!$ismine) { ?>
-						by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
-						<?php }
-						else {?>
-						<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
-						<?php }?>
-					</a>
-				</div>
-				<div class="col-5 text-end">
-					<div class="col-12" ng-if="!loading && <?php echo $ismine > 0 ? "true" : "false" ?>">
-						<i class="pointer far fa-plus-square fa-fw" ng-click="initAddOp(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>
-						<i class="pointer fas fa-edit fa-fw" ng-click="initEditRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i>
-						<i class="pointer fas fa-file-alt fa-fw" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"></i>
-						<!-- i class="pointer fas fa-print fa-fw" ng-click="initPrintRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i -->
-						<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
-						<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
-						<i class="pointer far fa-question-circle fa-fw" id="myrosterhelpbutton" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"></i>
+				<h1 class="pointer col-11 m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster.killteam));te('roster', 'killteamcomp', '', myRoster.rosterid);">
+					<?php echo $myRoster->rostername ?>
+					<sup><i class="h5 fas fa-info-circle fa-fw"></i></sup>
+				</h1>
+				<div class="h3 col-1 m-0 p-0 align-text-top text-end">
+					<div class="btn-group">
+						<a role="button" id="rosteractions_{{ myRoster.rosterid }}" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fas fa-ellipsis-h fa-fw"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rosteractions_{{ myRoster.rosterid }}">
+							<?php
+								if (!$ismine) {
+									// Not my roster - Offer to import if logged in
+									if ($me != null) {
+										// User is logged in
+										?>
+										<li><a class="pointer dropdown-item" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Add to My Rosters</a></li>
+										<?php
+									} else {
+										// User is not logged in
+										?>
+										<li><a onclick="window.location.href = '/login.htm';" class="pointer dropdown-item"><i class="fas fa-lock fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Log in to import"></i> Log In to Import</a></li>
+										<?php
+									}
+								} else {
+							?>
+										<li><a class="pointer dropdown-item" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
+										<li><a class="pointer dropdown-item" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i> Rename Roster</a></li>
+										<li><a class="pointer dropdown-item" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
+										<!-- <li><a class="pointer dropdown-item" ng-click="initPrintRoster(myRoster);"><i class="fas fa-print fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i> Print</a></li> -->
+										<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
+										<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
+										<!-- <li><a class="pointer dropdown-item" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
+							<?php
+								}
+							?>
+						</ul>
 					</div>
-					<div class="col-12" ng-if="!loading && !<?php echo $ismine > 0 ? "true" : "false" ?>">
-						<?php
-							if ($me != null) {
-								// User is logged in
-								?>
-								<a href="" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i>
-								<span class="d-none d-md-inline">Add to My Rosters</span></a>
-								<?php
-							} else {
-								// User is not logged in
-								?>
-								<a href="/login.htm"><i class="fas fa-lock fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Log in to import"></i> Log In to Import</a>
-								<?php
-							}
-						?>
-						&nbsp;&nbsp;
-					</div>
 				</div>
+			</div>
+			<div>
+				<a class="navloader" ng-href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>">
+					<?php echo $myRoster->killteamname ?>
+					<?php if (!$ismine) { ?>
+					by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
+					<?php }
+					else {?>
+					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
+					<?php }?>
+				</a>
 			</div>
 		</div>
 		

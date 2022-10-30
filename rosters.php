@@ -61,23 +61,22 @@
 		?>
 		
 		<div class="row m-0 p-1 orange container-fluid">
-			<h1 class="col-8">
-				<span class="fas fa-users fa-fw"></span>&nbsp;
+			<h1 class="col-11 m-0 p-0">
 				<?php echo ($ismine ? "My" : ($uid == 'prebuilt' ? 'Pre-Built ' : (ucwords($myUser->username) . "'s "))) ?> Rosters
 			</h1>
-			<?php 
-			if ($ismine) {
-			?>
-			<h6 class="col-4 text-end align-bottom">
-				<span class="float-end">
-					<i ng-if="settings['display'] == 'list'" class="pointer far fa-id-card fa-fw" ng-click="setSetting('display', 'card');"></i>
-					<i ng-if="settings['display'] == 'card' || settings['display'] == null" class="pointer fas fa-list fa-fw" ng-click="setSetting('display', 'list');"></i>
-					<i id="myrostershelpbutton" class="pointer far fa-question-circle fa-fw" onclick="$('#myrostershelpmodal').modal('show');te('rosters', 'help');"></i>
-				</span>
-			</h6>
-			<?php
-			}
-			?>
+			<div class="col-1 h3 m-0 p-0 align-text-top text-end" ng-if="MODE == 'MyRosters'">
+				<div class="btn-group">
+					<a role="button" id="rostersactions" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fas fa-ellipsis-h fa-fw"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rostersactions">
+						<li><a class="pointer dropdown-item" ng-click="initNewRoster();"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>  Add New Roster</a></li>
+						<li><a class="pointer dropdown-item" onclick="window.location.href = '/rosters.php?uid=prebuilt'"><i class="fas fa-users fa-fw"></i> Pre-Built Rosters</a></li>
+						<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
+						<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Help Box -->

@@ -25,7 +25,7 @@
 	$killteam = KillTeam::GetKillTeam($factionid, $killteamid);
 	
 	global $dbcon;
-	$sql = "SELECT rosterid, rostername FROM Roster WHERE userid = 'prebuilt' AND factionid = ? AND killteamid = ?";
+	$sql = "SELECT rosterid, rostername, oplist, notes FROM RosterView WHERE userid = 'prebuilt' AND factionid = ? AND killteamid = ?";
 	
 	$cmd = $dbcon->prepare($sql);
 	$paramtypes = "ss";
@@ -37,10 +37,10 @@
 	call_user_func_array(array($cmd, "bind_param"), $params);
 	$cmd->execute();
 
-	$prebuilt = null;
+	$prebuiltrosters = [];
 	if ($result = $cmd->get_result()) {
 		while ($row = $result->fetch_object()) {
-			$prebuilt = $row;
+			$prebuiltrosters[] = $row;
 		}
 	}
 ?>
@@ -105,21 +105,6 @@
 		</h3>
 			
 		<div ng-hide="loading">
-			<!-- Prebuilt Team -->
-			<?php
-			if ($prebuilt != null) {
-				// We have at least one pre-built roster for this killteam; show a shortcut to import it
-				?>
-				Import <h6 class="d-inline"><a href="/roster.php?rid=<?php echo $prebuilt->rosterid ?>"><?php echo $prebuilt->rostername ?></a></h6>, a pre-built <?php echo $killteam->killteamname ?> roster.<br/><br/>
-				<?php
-			}
-			?>
-			
-			<!-- Killteam Composition -->
-			<h2 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#killteamcomp"><i class="fas fa-chevron-down fa-fw"></i>KillTeam Composition</h2>
-			<p id="killteamcomp" class="collapse" ng-bind-html="killteam.killteamcomp"></p> <!-- style="-webkit-columns: 40px 3; -moz-columns: 60px 3; columns: 60px 3;"></p -->
-			
-			<br/>
 			<ul class="nav nav-tabs oswald dark" id="mytabs" role="tablist">
 				<li class="nav-item m-0 p-0" role="presentation">
 					<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#ops" type="button" role="tab" aria-controls="ops" aria-selected="true">
@@ -136,25 +121,41 @@
 						Equip
 					</a>
 				</li>
+				<?php
+				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
+				?>
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
+							Rosters
+						</a>
+					</li>
+				<?php
+				}
+				?>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane show active" id="ops" role="tabpanel">
 					<!-- Operatives -->
+			
+					<!-- Killteam Composition -->
+					<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(killteam));">
+						Kill Team Composition
+						<sup><i class="h5 far fa-question-circle fa-fw"></i></sup>
+					</h1>
+					
 					<div class="row p-0 m-0">
 						<div class="m-0 p-0" ng-repeat="fireteam in killteam.fireteams">
-							<div class="pointer" ng-show="killteam.fireteams.length > 1">
-								<i class="h3 fas fa-chevron-down fa-fw" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#ft_{{ fireteam.fireteamid }}"></i>
-								<span ng-click="showpopup('FireTeam Composition', fireteam.fireteamcomp);">
-									<h3 style="display: inline;">{{ fireteam.fireteamname }}</h3>
-									<sup class="small h6"><i class="far fa-question-circle fa-fw"></i></sup>
-								</span>
-							</div>
+							<h3 class="pointer" ng-show="killteam.fireteams.length > 1" ng-click="showpopup('Fire Team Composition', fireteam.fireteamcomp);">
+								{{ fireteam.fireteamname }}
+								<sup><i class="h5 far fa-question-circle fa-fw"></i></sup>
+							</h3>
 							
 							<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
 								<div class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
 									<?php include "templates/op_card.shtml" ?>
 								</div>
 							</div>
+							<br/>
 						</div>
 					</div>
 				</div>
@@ -184,6 +185,26 @@
 						</div>
 					</div>
 				</div>
+				
+				<?php
+				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
+				?>
+					<div class="tab-pane" id="rosters" role="tabpanel">
+						<h2>Pre-Built Rosters</h2>
+						<ul>
+						<!-- Pre-Built Rosters -->
+						<?php
+						foreach ($prebuiltrosters as $roster) {
+						?>
+							<li><a href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a></li>
+						<?php
+						}
+						?>
+						</ul>
+					</div>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		

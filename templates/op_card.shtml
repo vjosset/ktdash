@@ -17,17 +17,27 @@
 		</div>
 		
 		<!-- Roster Card Title -->
-		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row">
-			<h2>{{ operative.opname }}</h2>
-			<div class="col-7">
-				{{ operative.optype }}
+		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row m-0 p-0">
+			<h2 class="col-11 m-0 p-0">
+				{{ operative.opname }}
+			</h2>
+			
+			<div class="col-1 m-0 p-0 align-text-top text-end" ng-if="MODE == 'MyRoster'">
+				<div class="btn-group">
+					<a role="button" id="opactions_{{ operative.rosteropid }}" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fas fa-ellipsis-h fa-fw"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="opactions_{{ operative.rosteropid }}">
+						<li><a class="pointer dropdown-item" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
+						<li><a class="pointer dropdown-item" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
+						<li><a class="pointer dropdown-item" ng-click="initEditOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"><i class="fas fa-edit fa-fw"></i> Edit</a></li>
+						<li><a class="pointer dropdown-item" ng-click="cloneOp(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone</a></li>
+						<li><a class="pointer dropdown-item" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"><i class="fas fa-trash-alt fa-fw"></i> Delete</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-5 text-end">
-				<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-up fa-fw" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"></i>
-				<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-arrow-down fa-fw" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"></i>
-				<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-edit fa-fw" ng-click="initEditOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Operative"></i>
-				<i ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="pointer fas fa-trash-alt fa-fw" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"></i>
-			</div>
+			
+			{{ operative.optype }}
 		</div>
 		
 		<!-- Dashboard Card Title -->
@@ -45,7 +55,7 @@
 		<div class="opinfo_{{ operative.opid }} collapse show">
 			<!-- Dashboard Actions -->
 			<div class="row m-0 p-0" ng-if="MODE == 'Dashboard'">
-				<div class="col-6 small">
+				<div class="col-6 small m-0 p-0">
 					{{ operative.optype }}
 				</div>
 				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">

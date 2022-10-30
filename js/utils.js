@@ -62,7 +62,13 @@ function GetArrayRandom(arr) {
 }
 
 function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
-	console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ")");
+	//console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ")");
+	
+	gtag('event', t + "." + a, {
+		'event_category': t,
+		'event_label': a
+	});
+		
 	try {
 		$.ajax({
 			type: "POST",
@@ -97,6 +103,7 @@ function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 }
 
 function trackEvent(cat, act, lbl) {
+	/*
 	try {
 		if (act == null) {
 			act = "[None]";
@@ -104,12 +111,13 @@ function trackEvent(cat, act, lbl) {
 		if (lbl == null) {
 			lbl = "";
 		}
-		console.log("trackEvent(" + cat + ", " + act + ", " + lbl + ")");
+		
 		gtag('event', cat + "." + act, {
 			'event_category': cat,
 			'event_label': lbl
 		});
 	} catch (ex) { }
+	*/
 }
 
 function padzero(num, pad) {

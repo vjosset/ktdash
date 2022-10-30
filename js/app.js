@@ -763,7 +763,13 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Not logged in - Cannot import
 					toast("Cannot import this roster - You are not logged in");
 				} else {
-					te("roster", "clone", "", roster.rosterid);
+					if (roster.userid == $scope.currentuser.userid) {
+						// This is a user cloning one of their own rosters
+						te("roster", "clone", "", roster.userid, roster.rosterid);	
+					} else {
+						// This is a user importing someone else's roster
+						te("roster", "import", "", roster.userid, roster.rosterid);
+					}
 					toast("Copying team " + roster.rostername + "...");
 					// Send the POST request to the API
 					$.ajax({
@@ -882,7 +888,6 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				} else {
-					te("roster", "portrait", "custom", $scope.rostertoedit.rosterid);
 					// Use the specified file - Push to the API
 					// Send the update to the API
 					var formData = new FormData();
@@ -900,6 +905,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Hide the modal
 							$('#rosterportraitmodal').modal("hide");
 							toast("Roster portrait set!");
+							te("roster", "portrait", "custom", $scope.rostertoedit.rosterid);
 
 							// Reload the roster's portrait
 							$scope.refreshRosterPortrait($scope.rostertoedit.rosterid);
@@ -1011,17 +1017,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
 					op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
 					op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
-				}
-				
-				if (op.curW == 0) {
-					// This operative is now dead/incapacitated - Collapse its info
-					// First, find this operative
-					for (let i = 0; i < $scope.dashboard.myroster.operatives.length; i++) {
-						if ($scope.dashboard.myroster.operatives[i] == op) {
-							// This is our operative - Hide their details
-							$("#opinfo_" + i).collapse('hide');
-						}
-					}
 				}
 			}
 		
@@ -1294,6 +1289,48 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 			}
 			
+			// cloneOp()
+			// Adds a copy of the specified operative to the same roster
+			$scope.cloneOp = function(origop) {
+				// Copy the new operative from the original
+				let newop = {
+					"userid": $scope.currentuser.userid,
+					"rosterid": origop.rosterid,
+					"factionid": origop.factionid,
+					"killteamid": origop.killteamid,
+					"fireteamid": origop.fireteamid,
+					"opid": origop.opid,
+					"opname": origop.opname + "(copy)",
+					"wepids": origop.wepids,
+					"eqids": origop.eqids,
+					"curW": origop.W,
+					"notes": ""
+				};
+				
+				// Commit this new operative to the API/DB
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosteroperative.php",
+					timeout: 5000,
+					async: false,
+					datatype: 'json',
+					data: JSON.stringify(newop),
+					success: function(data) {
+						// All good, refresh this team
+						$scope.initRoster(newop.rosterid);
+						
+						te("roster", "cloneop", "", newop.rosterid, data.rosteropid);
+						
+						// Tell the user their operative has been added
+						toast("Operative " + newop.opname + " added to team!");
+					},
+					error: function(error) {
+						// Failed to save roster
+						toast("Could not clone operative: " + error);
+					}
+				});
+			}
+			
 			// moveOpUp()
 			// Moves the specified operative up in the roster (decrease seq)
 			$scope.moveOpUp = function(roster, op, index) {
@@ -1495,7 +1532,6 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				} else {
-					te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 					// Use the specified file - Push to the API
 					// Send the update to the API
 					var formData = new FormData();
@@ -1513,6 +1549,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Hide the modal
 							$('#opportraitmodal').modal("hide");
 							toast("Operative portrait set!");
+							te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 
 							// Reload the operative's portrait
 							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
@@ -1707,7 +1744,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.initKillteam = function() {
-				te("compendium", "faction", "", GetQS('fa'), GetQS("kt"));
+				te("compendium", "killteam", "", GetQS('fa'), GetQS("kt"));
 				// First get the faction
 				//	On success, we'll get the killteam
 				$scope.loading = true;
@@ -2294,15 +2331,20 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 		
-			$scope.getKillTeamComp = function(roster) {
+			// getKillTeamComp()
+			// Returns an HTML string with the specified kill team's composition,
+			// including fire team compositions where needed
+			$scope.getKillTeamComp = function(killteam) {
 				let out = "";
-				out = "<h2>" + roster.killteam.killteamname + "</h2>" + roster.killteam.killteamcomp;
+				out = "<h2>" + killteam.killteamname + "</h2>" + killteam.killteamcomp;
 				
-				if (roster.killteam.fireteams.length > 1) {
-					for (let i = 0; i < roster.killteam.fireteams.length; i++) {
-						let ft = roster.killteam.fireteams[i];
+				if (killteam.fireteams.length > 1) {
+					for (let i = 0; i < killteam.fireteams.length; i++) {
+						let ft = killteam.fireteams[i];
 						
-						out += "<hr/><h5>Fireteam: " + ft.fireteamname + "</h5>" + ft.fireteamcomp;
+						if (ft.fireteamcomp != '' && ft.fireteamcomp != killteam.killteamcomp) {
+							out += "<hr/><h5>Fireteam: " + ft.fireteamname + "</h5>" + ft.fireteamcomp;
+						}
 					}
 				}
 				
