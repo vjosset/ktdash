@@ -20,13 +20,13 @@ body {
 	color: #EEE;
 }
 
-.dark {
+.dark, .dropdown-menu-dark {
 	background-color: #202020;
 	color: #EEE;
 }
 
 .darkcard {
-	background-color: #303030;
+	background-color: #242424;
 	border-color: #EEE;
 }
 
@@ -67,7 +67,8 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 }
 
-a, a:link, a:visited, a:hover, a:active 
+a, a:link, a:visited, a:hover, a:active,
+.dropdown-menu-dark a, .dropdown-menu-dark a:link, .dropdown-menu-dark a:visited, .dropdown-menu-dark a:hover, .dropdown-menu-dark a:active
 {
 	cursor: pointer;
 	color: #EEE;
@@ -117,6 +118,10 @@ th, td {
 .pointer
 {
 	cursor: pointer;
+}
+
+.dropdown-menu-dark {
+	border: 1px solid #eee;
 }
 
 @media print {

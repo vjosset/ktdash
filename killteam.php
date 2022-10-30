@@ -104,19 +104,19 @@
 			</div>
 		</h3>
 			
-		<div ng-hide="loading">
-			<ul class="nav nav-tabs oswald dark" id="mytabs" role="tablist">
-				<li class="nav-item m-0 p-0" role="presentation">
+		<div class="ng-cloak" ng-hide="loading">
+			<ul class="nav nav-tabs" id="mytabs" role="tablist">
+				<li class="nav-item m-0 p-0 dark" role="presentation">
 					<a class="nav-link active dark" id="op-tab" data-bs-toggle="tab" data-bs-target="#ops" type="button" role="tab" aria-controls="ops" aria-selected="true">
 						Operatives
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0" role="presentation">
+				<li class="nav-item m-0 p-0 dark" role="presentation">
 					<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#ploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
 						Ploys
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0" role="presentation">
+				<li class="nav-item m-0 p-0 dark" role="presentation">
 					<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#eqs" type="button" role="tab" aria-controls="eqs" aria-selected="false">
 						Equip
 					</a>

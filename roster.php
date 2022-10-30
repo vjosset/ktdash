@@ -66,23 +66,23 @@
 									if ($me != null) {
 										// User is logged in
 										?>
-										<li><a class="pointer dropdown-item" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Add to My Rosters</a></li>
+										<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Add to My Rosters</a></li>
 										<?php
 									} else {
 										// User is not logged in
 										?>
-										<li><a onclick="window.location.href = '/login.htm';" class="pointer dropdown-item"><i class="fas fa-lock fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Log in to import"></i> Log In to Import</a></li>
+										<li><a href="/login.htm" class="pointer dropdown-item p-1"><i class="fas fa-lock fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Log in to import"></i> Log In to Import</a></li>
 										<?php
 									}
 								} else {
 							?>
-										<li><a class="pointer dropdown-item" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
-										<li><a class="pointer dropdown-item" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i> Rename Roster</a></li>
-										<li><a class="pointer dropdown-item" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
-										<!-- <li><a class="pointer dropdown-item" ng-click="initPrintRoster(myRoster);"><i class="fas fa-print fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i> Print</a></li> -->
-										<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
-										<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
-										<!-- <li><a class="pointer dropdown-item" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
+										<li><a class="pointer dropdown-item p-1" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
+										<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i> Rename Roster</a></li>
+										<li><a class="pointer dropdown-item p-1" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
+										<!-- <li><a class="pointer dropdown-item p-1" ng-click="initPrintRoster(myRoster);"><i class="fas fa-print fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i> Print</a></li> -->
+										<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
+										<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item p-1"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
+										<!-- <li><a class="pointer dropdown-item p-1" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
 							<?php
 								}
 							?>

@@ -70,10 +70,10 @@
 						<i class="fas fa-ellipsis-h fa-fw"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rostersactions">
-						<li><a class="pointer dropdown-item" ng-click="initNewRoster();"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>  Add New Roster</a></li>
-						<li><a class="pointer dropdown-item" onclick="window.location.href = '/rosters.php?uid=prebuilt'"><i class="fas fa-users fa-fw"></i> Pre-Built Rosters</a></li>
-						<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
-						<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
+						<li><a class="pointer dropdown-item p-1" ng-click="initNewRoster();"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>  Add New Roster</a></li>
+						<li><a class="pointer dropdown-item p-1" ng-href="/rosters.php?uid=prebuilt"><i class="fas fa-users fa-fw"></i> Pre-Built Rosters</a></li>
+						<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'card');"><i class="pointer far fa-id-card fa-fw"></i> Show Portraits</a></li>
+						<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item p-1"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
 					</ul>
 				</div>
 			</div>
@@ -114,23 +114,20 @@
 		</h3>
 		
 		<!-- Show this player's rosters -->
-		<div class="m-0 p-1" ng-hide="loading">
+		<div class="m-0 p-1 ng-cloak" ng-hide="loading">
 			<div ng-if="myRosters.length < 1" class="m-0 p-0">
 				<span ng-if="MODE == 'MyRosters'">You don't have any Rosters yet.</span>
 				<span ng-if="MODE == 'Rosters'">This user doesn't have any Rosters yet.</span>
-			</div>
-			<?php
+				<?php
 				if ($ismine) {
 				?>
-			<div>
-				<span>
-					Build a <a href="#" ng-click="initNewRoster();">new roster</a>
-					or import a <a class="navloader" href="rosters.php?uid=prebuilt">pre-built roster</a>
-				</span>
-			</div>
-			<br/>
+				Build a <a href="#" ng-click="initNewRoster();">new roster</a>
+				or import a <a class="navloader" href="rosters.php?uid=prebuilt">pre-built roster</a>
 				<?php
-			} ?>
+				}
+				?>
+				<br/>
+			</div>
 			
 			<div class="m-0 p-0">
 				<div ng-if="myRosters.length > 0" class="row p-0 m-0">
