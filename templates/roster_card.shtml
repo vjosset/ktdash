@@ -1,5 +1,5 @@
 <div class="card darkcard m-1 p-0 h-100">
-	<div class="card-body m-1 p-0">
+	<div class="card-body m-0 p-0">
 		<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top" ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}" style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;" />
 		
 		<div class="card-title row p-1">

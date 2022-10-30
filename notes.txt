@@ -9,4 +9,4 @@ SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166
 #SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 #SELECT * FROM Event WHERE action = 'gettext' ORDER BY eventid DESC;
 #SELECT * FROM Event WHERE action = 'help' ORDER BY eventid DESC;
-SELECT COUNT(*) AS UserCount FROM User; SELECT COUNT(*) AS RosterCount FROM Roster;
+SELECT COUNT(*) AS UserCount FROM User WHERE userid != 'prebuilt'; SELECT COUNT(*) AS RosterCount FROM Roster WHERE userid != 'prebuilt';

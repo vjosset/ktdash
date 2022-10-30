@@ -24,24 +24,24 @@
 		$user = Session::CurrentUser();
 		$paramtypes = "sssssssss";
 		$params = array();
-		$params[] =& $paramtypes;
 		$userid = ($user == null ? '[anon]' : $user->userid);
-		$params[] =& $userid; // userid
+		$params[] = $userid; // userid
 		
-		$params[] =& substr(getIfSet($_REQUEST['t']), 0, 50); // eventtype
-		$params[] =& substr(getIfSet($_REQUEST['a']), 0, 45); // action
-		$params[] =& substr(getIfSet($_REQUEST['l']), 0, 45); // label
+		$params[] = substr(getIfSet($_REQUEST['t']), 0, 50); // eventtype
+		$params[] = substr(getIfSet($_REQUEST['a']), 0, 45); // action
+		$params[] = substr(getIfSet($_REQUEST['l']), 0, 45); // label
 		
-		$params[] =& substr(getIfSet($_REQUEST['v1']), 0, 45); // var1
-		$params[] =& substr(getIfSet($_REQUEST['v2']), 0, 45); // var2
-		$params[] =& substr(getIfSet($_REQUEST['v3']), 0, 45); // var3
+		$params[] = substr(getIfSet($_REQUEST['v1']), 0, 45); // var1
+		$params[] = substr(getIfSet($_REQUEST['v2']), 0, 45); // var2
+		$params[] = substr(getIfSet($_REQUEST['v3']), 0, 45); // var3
 		
-		$params[] =& substr(getIfSet($_REQUEST['u']), 0, 500); // url
+		$params[] = substr(getIfSet($_REQUEST['u']), 0, 500); // url
 		
-		$params[] =& $_SERVER['REMOTE_ADDR']; // userip
+		$params[] = $_SERVER['REMOTE_ADDR']; // userip
 
 		$cmd = $dbcon->prepare($sql);
-		call_user_func_array(array($cmd, "bind_param"), $params);
+		//call_user_func_array(array($cmd, "bind_param"), $params);
+		$cmd->bind_param($paramtypes, ...$params);
 		$cmd->execute();
 
 		echo "OK";
