@@ -25,7 +25,8 @@
 		$paramtypes = "sssssssss";
 		$params = array();
 		$params[] =& $paramtypes;
-		$params[] =& ($user == null ? '[anon]' : $user->userid); // userid
+		$userid = ($user == null ? '[anon]' : $user->userid);
+		$params[] =& $userid; // userid
 		
 		$params[] =& substr(getIfSet($_REQUEST['t']), 0, 50); // eventtype
 		$params[] =& substr(getIfSet($_REQUEST['a']), 0, 45); // action
