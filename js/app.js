@@ -202,11 +202,29 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) { // Success
 						// User is now logged in
 						$scope.loading = false;
+						
 						// Set their session
 						$scope.currentuser = data;
 						te("session", "signup");
-						// Send the user to "My Rosters"
-						window.location.href = "/rosters.php";
+						
+						// Load a default roster for this user to get them started
+						$.ajax({
+							type: "POST",
+							url: APIURL + "roster.php?rid=PB-INTS&clone=1",
+							timeout: 5000,
+							async: true,
+							
+							// Success
+							success: function(data) { // Saved
+								// Send the user to "My Rosters"
+								window.location.href = "/rosters.php";
+							},
+							// Failure
+							error: function(data, status, error) { // Failed to import sample roster
+								// Still send the user to "My Rosters"
+								window.location.href = "/rosters.php";
+							}
+						});
 					},
 					error: function(data, status, error) { // Error
 						$scope.currentuser = null;
@@ -771,6 +789,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						te("roster", "import", "", roster.userid, roster.rosterid);
 					}
 					toast("Copying team " + roster.rostername + "...");
+					
 					// Send the POST request to the API
 					$.ajax({
 						type: "POST",
@@ -1460,12 +1479,13 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				// Save all changes
+				te("roster", "editop", "", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 				$scope.commitRosterOp($scope.optoedit);
 				
 				// Close the modal
 				$('#editopmodal').modal("hide");
 				
-				// Tell the user their operative has been added
+				// Tell the user their operative has been saved
 				toast("Operative " + $scope.optoedit.opname + " saved");
 			}
 			
@@ -2005,9 +2025,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					console.log("Setting operative's curW to " + parseInt(op.W));
 					op.curW = parseInt(op.W);
 					
-					// Reset Hidden - Must be an INT to save properly in DB
-					op.hidden = 0;
-					
 					// Not activated - Must be an INT to save properly in DB
 					op.activated = 0;
 					
@@ -2128,6 +2145,16 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.popup = {
 					"title": title,
 					"text": message
+				}
+				
+				$("#popupmodal").modal("show");
+			}
+			
+			$scope.showPhoto = function(title, photourl) {
+				console.log("Showing photo " + title);
+				$scope.popup = {
+					"title": title,
+					"text": "<img src='" + photourl + "' class='w-100' />"
 				}
 				
 				$("#popupmodal").modal("show");

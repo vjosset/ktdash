@@ -67,20 +67,29 @@
 			
 			<!-- Portrait and Stats -->
 			<div class="row m-0">
-				<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster'" class="col-5" id="opportrait_{{operative.rosteropid}}"
+				<!-- Portrait -->
+				<!-- Dashboard/Roster -->
+				<div class="col-5 m-0 p-1" id="opportrait_{{operative.rosteropid}}" ng-if="MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster'"
 					style=
 					"background-image: url('/api/operativeportrait.php?roid={{operative.rosteropid}}');
 					background-size: cover;
 					background-position: center top;"
+					ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 					>
+					<i class="pointer fas fa-expand-arrows-alt" ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"></i>
 				</div>
-				<div ng-if="MODE == 'Compendium'" class="col-5" id="opportrait_{{operative.rosteropid}}"
+				<!-- Compendium -->
+				<div class="col-5 m-0 p-1" id="opportrait_{{operative.opid}}" ng-if="MODE == 'Compendium'"
 					style=
 					"background-image: url('/img/portraits/{{operative.factionid}}/{{operative.killteamid}}/{{operative.fireteamid}}/{{operative.opid}}.jpg');
 					background-size: cover;
 					background-position: center top;"
+					ng-click="showPhoto(operative.opname, '/img/portraits/' + operative.factionid + '/' + operative.killteamid + '/' + operative.fireteamid + '/' + operative.opid + '.jpg');"
 					>
+					<i class="pointer fas fa-expand-arrows-alt" ng-click="showPhoto(operative.opname, '/img/portraits/' + operative.factionid + '/' + operative.killteamid + '/' + operative.fireteamid + '/' + operative.opid + '.jpg');"></i>
 				</div>
+				
+				<!-- Stats -->
 				<div class="col-7 p-0">
 					<h3>
 						<table width="100%" class="text-center">

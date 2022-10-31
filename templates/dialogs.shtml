@@ -26,8 +26,8 @@
 					<div class="tab-pane show active" id="selectrosteropslist" role="tabpanel">
 						<div ng-repeat="operative in selectrosterops.operatives track by $index">
 							<div>
-								<input id="chkshowop_{{ operative.rosteropid}}" type="checkbox" ng-model="operative.hidden" ng-true-value="0" ng-false-value="1" ng-change="commitTeams();" />
-								<label for="chkshowop_{{ operative.rosteropid}}">
+								<input id="chkshowop_{{ operative.rosteropid }}" type="checkbox" ng-model="operative.hidden" ng-true-value="0" ng-false-value="1" ng-change="commitRosterOp(operative);" />
+								<label for="chkshowop_{{ operative.rosteropid }}">
 									<h6 class="d-inline">&nbsp;{{ operative.opname }}</h6>
 								</label>
 								<br class="d-inline d-md-none" />
@@ -491,7 +491,7 @@
 				<h5 class="modal-title cinzel" id="popupmodallabel"><i class="far fa-question-circle fa-fw"></i> {{ popup.title }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body dark">
+			<div class="modal-body dark p-1">
 				<p class="oswald" ng-bind-html="popup.text" style="text-align:justify;"></p>
 			</div>
 		</div>

@@ -25,12 +25,15 @@
 	$killteam = KillTeam::GetKillTeam($factionid, $killteamid);
 	
 	global $dbcon;
-	$sql = "SELECT rosterid, rostername, oplist, notes FROM RosterView WHERE userid = 'prebuilt' AND factionid = ? AND killteamid = ?";
+	$sql = "SELECT CASE WHEN R.userid = 'prebuilt' THEN 10 ELSE 1 END AS seq, U.username, rosterid, rostername, U.userid, oplist, notes FROM RosterView R INNER JOIN User U ON U.userid = R.userid WHERE R.userid IN ('prebuilt', ?) AND factionid = ? AND killteamid = ? ORDER BY 1, 2";
 	
+	$user = Session::CurrentUser();
+	$userid = ($user == null ? "anon" : $user->userid);
 	$cmd = $dbcon->prepare($sql);
-	$paramtypes = "ss";
+	$paramtypes = "sss";
 	$params = array();
 	$params[] =& $paramtypes;
+	$params[] =& $userid;
 	$params[] =& $factionid;
 	$params[] =& $killteamid;
 	
@@ -124,7 +127,7 @@
 				<?php
 				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
 				?>
-					<li class="nav-item m-0 p-0" role="presentation">
+					<li class="nav-item m-0 p-0 dark" role="presentation">
 						<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
 							Rosters
 						</a>
@@ -189,18 +192,20 @@
 				<?php
 				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
 				?>
-					<div class="tab-pane" id="rosters" role="tabpanel">
-						<h2>Pre-Built Rosters</h2>
-						<ul>
+					<div class="tab-pane p-2" id="rosters" role="tabpanel">
 						<!-- Pre-Built Rosters -->
 						<?php
 						foreach ($prebuiltrosters as $roster) {
-						?>
-							<li><a href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a></li>
-						<?php
+							if ($roster->userid == 'prebuilt') {
+								?>
+								<a class="navloader" href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a> (Pre-Built)<br/>
+								<?php
+							} else {
+								?><a class="navloader" href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a><br/>
+							<?php
+							}
 						}
 						?>
-						</ul>
 					</div>
 				<?php
 				}

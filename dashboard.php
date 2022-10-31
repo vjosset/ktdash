@@ -59,7 +59,7 @@
 								<button class="btn dropdown-toggle orange form-control text-start" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-target="#rosterselect">
 									<h3 class="d-inline">{{ dashboardroster.rostername }}</h3>
 								</button>
-								<div class="dropdown-menu" id="rosterselect">
+								<div class="dropdown-menu dropdown-menu-dark" id="rosterselect">
 									<a class="dropdown-item" type="button" ng-repeat="roster in currentuser.rosters" ng-click="selectDashboardRoster(roster);">
 										{{ roster.rostername }}
 									</a>
@@ -74,10 +74,11 @@
 								<i class="fas fa-ellipsis-h fa-fw"></i>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
-								<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item" ng-click="setSetting('display', 'card');"><i class="far fa-id-card fa-fw"></i> Show Portraits</a></li>
-								<li ng-if="settings['display'] == 'card' || settings['display'] == null"><a class="pointer dropdown-item" ng-click="setSetting('display', 'list');"><i class="fas fa-list fa-fw"></i> Hide Portraits</a></li>
-								<li><a class="pointer dropdown-item" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i>Select Operatives</a></li>
-								<li><a class="pointer dropdown-item" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
+								<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid={{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
+								<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'card');"><i class="far fa-id-card fa-fw"></i> Show Portraits</a></li>
+								<li ng-if="settings['display'] == 'card' || settings['display'] == null"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'list');"><i class="fas fa-list fa-fw"></i> Hide Portraits</a></li>
+								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
+								<li><a class="pointer dropdown-item p-1" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
 							</ul>
 						</div>
 					</div>
@@ -160,10 +161,10 @@
 					
 					<!-- Operatives -->
 					<div class="row p-0 m-0">
-						<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index" ng-if="!operative.hidden">
+						<div ng-if="!operative.hidden && (settings['display'] == 'card' || settings['display'] == null)" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index">
 							<?php include "templates/op_card.shtml" ?>
 						</div>
-						<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index" ng-if="!operative.hidden">
+						<div ng-if="!operative.hidden && settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index">
 							<?php include "templates/op_list.shtml" ?>
 						</div>
 					</div>

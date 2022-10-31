@@ -1,6 +1,6 @@
-<div class="m-1 p-1">
-	<div class="row">
-		<div class="col-11">
+<div class="m-1 p-1 h-100">
+	<div class="row m-0 p-0">
+		<div class="col-11 m-0 p-0">
 			<h2><a href="roster.php?rid={{ myRoster.rosterid }}">{{ myRoster.rostername }}</a></h2>
 		</div>
 		<div class="col-1 text-end text-tiny" ng-if="MODE == 'MyRosters'">
@@ -12,7 +12,7 @@
 					<i class="fas fa-ellipsis-h fa-fw"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-dark m-0 p-0" aria-labelledby="rosteractions_{{ myRoster.rosterid }}">
-					<li><a class="pointer dropdown-item p-1" ng-href="/roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives"><i class="fas fa-users fa-fw"></i> Edit Operatives</a></li>
+					<li><a class="pointer dropdown-item p-1 navloader" ng-href="/roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives"><i class="fas fa-users fa-fw"></i> Edit Operatives</a></li>
 					<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Name and Notes"><i class="fas fa-edit fa-fw"></i> Edit Name and Notes</a></li>
 					<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Portrait</a></li>
 					<li><a class="pointer dropdown-item p-1" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
@@ -49,5 +49,5 @@
 	</p>
 	
 	<h1><a class="navloader" href="dashboard.php?rid={{ myRoster.rosterid}}"><button class="navloader btn btn-primary">DEPLOY</button></a></h1>
+
 </div>
-<hr/>
