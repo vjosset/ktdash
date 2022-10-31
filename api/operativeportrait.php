@@ -162,10 +162,10 @@
 							$img = imagecreatefromstring(file_get_contents($tempname));
 							
 							// Scale the image
-							$img = imagescale($img, 600);
+							$img = imagescale($img, 900);
 							
 							// Resize the image
-							$thumb = Utils::ResizeImage($img, 600, 400);
+							$thumb = Utils::ResizeImage($img, 900, 600);
 							
 							echo $thumb;
 							

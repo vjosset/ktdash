@@ -1530,6 +1530,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				let imgData = "";
 				if ($scope.optoedit.usedefaultportrait) {
 					te("roster", "opportrait", "default", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
+					
 					// Use the default portrait - Clear this operative's saved portrait from the DB
 					imgData = "";
 					$.ajax({

@@ -44,12 +44,14 @@
 			//Get the requested RosterOperative
 			$ro = RosterOperative::FromDB($roid);
 			
-			// Load the base operative for this RosterOperative
-			$ro->loadBaseOperative();
-			
-			// Load this operative's weapons and equipments
-			$ro->loadWeapons();
-			$ro->loadEquipments();
+			if ($ro != null) {
+				// Load the base operative for this RosterOperative
+				$ro->loadBaseOperative();
+				
+				// Load this operative's weapons and equipments
+				$ro->loadWeapons();
+				$ro->loadEquipments();
+			}
 			
 			return $ro;
 		}
