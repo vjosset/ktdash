@@ -82,6 +82,11 @@
 					$roster->rostername = "Copy of " . $roster->rostername;
 				}
 				
+				$newrostername = getIfSet($_REQUEST["rostername"]);
+				if ($newrostername != "") {
+					$roster->rostername = $newrostername;
+				}
+				
 				// Update its values for the current user and new roster id
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;

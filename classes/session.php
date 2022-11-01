@@ -2,8 +2,6 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     require_once $root . '/include.php';
     
-    use OFW;
-    
     class Session extends \OFW\OFWObject {
         public $sessionid = "";
         public $userid = "";

@@ -11,6 +11,7 @@
 		public $wepseq = 0;
         public $wepname = "";
 		public $weptype = "";
+		public $isdefault = 0;
 		
 		public $profiles = [];
         

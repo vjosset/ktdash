@@ -210,7 +210,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Load a default roster for this user to get them started
 						$.ajax({
 							type: "POST",
-							url: APIURL + "roster.php?rid=PB-INTS&clone=1",
+							url: APIURL + "roster.php?rid=PB-INTS&clone=1&rostername=Sample Team: Intercessors",
 							timeout: 5000,
 							async: true,
 							
@@ -1193,6 +1193,13 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				}
 				
+				// Validate the input
+				if (newop.wepids == "" && $scope.addop.operative.weapons.length > 0) {
+					// No weapons selected
+					toast("Please select weapons for this operative");
+					return;
+				}
+				
 				// Parse the equipment
 				newop.eqids = "";
 				if ($scope.addop.operative.equipments) {
@@ -2172,10 +2179,9 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.showPhoto = function(title, photourl) {
-				console.log("Showing photo " + title);
 				$scope.popup = {
 					"title": title,
-					"text": "<img src='" + photourl + "' class='w-100' />"
+					"text": "<img src='" + photourl + "#" + (new Date()).getTime() + "' class='w-100' />"
 				}
 				
 				$("#popupmodal").modal("show");

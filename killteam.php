@@ -154,8 +154,11 @@
 							</h3>
 							
 							<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
-								<div class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
+								<div ng-if="settings['display'] == 'card' || settings['display'] == null"  class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
 									<?php include "templates/op_card.shtml" ?>
+								</div>
+								<div ng-if="settings['display'] == 'list'"  class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
+									<?php include "templates/op_list.shtml" ?>
 								</div>
 							</div>
 							<br/>

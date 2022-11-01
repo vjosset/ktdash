@@ -45,9 +45,15 @@
 			// Return the requested faction
 			$faction = Faction::GetFaction($factionid);
 			
-			// Load the faction's killteams
-			$faction->loadKillTeams();
-			echo json_encode($faction);
+			if ($faction != null) {			
+				// Load the faction's killteams
+				$faction->loadKillTeams();
+				echo json_encode($faction);
+			} else {
+				// Something went wrong
+				header("HTTP/1.0 404 Faction not found");
+				die();
+			}
 		}
     }
 ?>

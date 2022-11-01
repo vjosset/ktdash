@@ -43,7 +43,7 @@
 			
 			global $dbcon;
 			
-			$sql = "SELECT W.*, WP.profileid, W.weptype, WP.name, WP.A, WP.BS, WP.D, WP.A, WP.SR FROM Weapon W INNER JOIN WeaponProfile WP ON WP.killteamid = W.killteamid AND WP.fireteamid = W.fireteamid AND W.opid = WP.opid AND WP.wepid = W.wepid WHERE W.factionid = ? AND W.killteamid = ? AND W.fireteamid = ? AND W.opid = ? ORDER BY W.wepseq, W.weptype DESC, W.wepname, WP.profileid;";
+			$sql = "SELECT W.*, WP.profileid, W.weptype, WP.name, WP.A, WP.BS, WP.D, WP.A, WP.SR, W.isdefault FROM Weapon W INNER JOIN WeaponProfile WP ON WP.killteamid = W.killteamid AND WP.fireteamid = W.fireteamid AND W.opid = WP.opid AND WP.wepid = W.wepid WHERE W.factionid = ? AND W.killteamid = ? AND W.fireteamid = ? AND W.opid = ? ORDER BY W.wepseq, W.weptype DESC, W.wepname, WP.profileid;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {
@@ -80,6 +80,8 @@
 						$currwep->wepid = $row->wepid;
 						$currwep->wepname = $row->wepname;
 						$currwep->weptype = $row->weptype;
+						$currwep->isdefault = $row->isdefault;
+						$currwep->isselected = $row->isdefault == 1;
 					}
 					
 					// Load the profile

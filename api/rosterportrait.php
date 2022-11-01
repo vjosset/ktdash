@@ -51,6 +51,12 @@
 					// File not found, serve the generic portrait for this roster
 					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.png";
 				
+					// Check if file exists
+					if (!file_exists($filepath)) {
+						header('HTTP/1.0 404 Portrait not found');
+						die();
+					}
+					
 					// Read the found file and serve it
 					$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/png');
@@ -155,15 +161,14 @@
 						}
 						
 						$filesize = $_FILES["file"]["size"];
-						$tmpext = explode('.', $filename);
-						$fileext = strtolower(end($tmpext));
+						$fileext = strtolower(pathinfo($filename)['extension']);
 						
 						// Save the resized image
 						if (!in_array($fileext, array('jpg','jpeg','png','gif','JPG','JPEG','PNG','GIF'))) {
 							header('HTTP/1.0 400 Invalid File Extension');
 							die();
-						} else if($filesize > 2097152) {
-							header('HTTP/1.0 400 Max portrait size is 2 MB');
+						} else if($filesize > 10485760) {
+							header('HTTP/1.0 400 Max portrait size is 5 MB');
 							die();
 						} else {
 							// Get the uploaded image

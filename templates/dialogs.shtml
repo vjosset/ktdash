@@ -512,7 +512,7 @@
 				</div>
 				<br/>
 				Image will be resized to 900 x 600 px<br/>
-				Max upload file size: 2 MB
+				Max upload file size: 5 MB
 				<br/>
 				<h4>Upload New Portrait</h4>
 				<input accept="image/*" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" onchange="angular.element(this).scope().previewOpPortrait(this);" />
@@ -541,7 +541,7 @@
 				</div>
 				<br/>
 				Image will be resized to 900 x 600 px<br/>
-				Max upload file size: 2 MB
+				Max upload file size: 5 MB
 				<br/>
 				<h4>Upload New Portrait</h4>
 				<input accept="image/*" id="rosterportraitfile" type="file" name="image" ng-model="rostertoedit.imagefile" onchange="angular.element(this).scope().previewRosterPortrait(this);" />
