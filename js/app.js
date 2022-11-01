@@ -566,21 +566,27 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) { // Saved this operative
 						// All good
 						
-						// Remove this roster from the scope									
-						let idx = $scope.myRosters.indexOf($scope.deleteRoster);
-						if (idx > -1) {
-							$scope.myRosters.splice(idx, 1);
-						}
-						
-						// Update roster list
-						$scope.initRosters();
-						
-						// Done
-						toast("Roster \"" + $scope.deleteRoster.rostername + "\" deleted");
-				
 						// Close the modal
 						$('#deleterostermodal').modal("hide");
-						$scope.$apply();
+						
+						// Let the user know
+						toast("Roster \"" + $scope.deleteRoster.rostername + "\" deleted");
+						
+						// Remove this roster from the scope	
+						if ($scope.myRosters) {						
+							let idx = $scope.myRosters.indexOf($scope.deleteRoster);
+							if (idx > -1) {
+								$scope.myRosters.splice(idx, 1);
+							}
+						
+							// Update roster list
+							$scope.initRosters();
+				
+							$scope.$apply();
+						} else {
+							// We're not on the "Rosters" page, so send them there
+							window.location.href = "/rosters.php";
+						}
 					},
 					// Failure
 					error: function(data, status, error) { // Failed to save operative
@@ -2087,6 +2093,20 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (roster.TP < 1) {
 					roster.TP = 1;
 				}
+				
+				if (inc == 1) {
+					// Next Turning Point - Reset "Activated" on each operative
+					// Push local roster to DB/API
+					$scope.commitRoster(roster);
+					
+					// Reset operatives (not injured)
+					for (let i = 0; i < roster.operatives.length; i++) {
+						let op = roster.operatives[i];
+						op.activated = 0;
+						$scope.commitRosterOp(op);
+					}
+				}
+				
 				$scope.commitRoster(roster);
 			}
 		

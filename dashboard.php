@@ -123,10 +123,9 @@
 				</center>
 			</div>
 			
-			
 			<!-- Resource Point tracker -->
-			<div class="container-fluid" ng-if="dashboardroster.killteamid == 'NOV' || dashboardroster.killteamid == 'VDT' || dashboardroster.killteamid == 'KAS'">
-				<div class="h5">
+			<div class="container-fluid" ng-if="RPLabels[dashboardroster.factionid][dashboardroster.killteamid]">
+				<div class="h5 cinzel">
 					{{ RPLabels[dashboardroster.factionid][dashboardroster.killteamid]["Label"] }}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="small" ng-click="updateRP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>

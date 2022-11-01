@@ -511,7 +511,7 @@
 					<img width="100%" id="opportraitpreview" ng-src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
 				</div>
 				<br/>
-				Image will be resized to 600 x 400 px<br/>
+				Image will be resized to 900 x 600 px<br/>
 				Max upload file size: 2 MB
 				<br/>
 				<h4>Upload New Portrait</h4>
@@ -540,7 +540,7 @@
 					<img width="100%" id="rosterportraitpreview" ng-src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
 				</div>
 				<br/>
-				Image will be resized to 600 x 400 px<br/>
+				Image will be resized to 900 x 600 px<br/>
 				Max upload file size: 2 MB
 				<br/>
 				<h4>Upload New Portrait</h4>

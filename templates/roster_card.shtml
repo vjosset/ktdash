@@ -2,13 +2,13 @@
 	<div class="card-body m-0 p-0">
 		<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top pointer"
 			ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}"
-			style="max-height: 200px; min-height: 200px; object-position: center top; object-fit: cover;"
+			style="max-height: 250px; min-height: 200px; object-position: center top; object-fit: cover;"
 			ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"		
 		/>
 		<i class="pointer fas fa-expand-arrows-alt" style="position: absolute; top: 5px; left: 5px;" ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"></i>
 		
 		<div class="card-title row m-0 p-0">
-			<div class="row m-0 p-0">
+			<div class="row m-0 p-0 orange">
 				<div class="col-11 m-0 p-0">
 					<h2 class="m-0 p-1">
 						<a class="navloader" href="roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives">
@@ -30,9 +30,9 @@
 							<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Portrait</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
-							<li><a class="pointer dropdown-item p-1" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share</a></li>
-							<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone</a></li>
-							<li><a class="pointer dropdown-item p-1" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"><i class="fas fa-trash-alt fa-fw"></i> Delete</a></li>
+							<li><a class="pointer dropdown-item p-1" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster</a></li>
+							<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone Roster</a></li>
+							<li><a class="pointer dropdown-item p-1" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"><i class="fas fa-trash-alt fa-fw"></i> Delete Roster</a></li>
 						</ul>
 					</div>
 					<?php

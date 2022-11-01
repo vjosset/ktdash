@@ -43,7 +43,7 @@
 		
 		<!-- Dashboard Card Title -->
 		<div ng-if="MODE == 'Dashboard'" class="card-title">
-			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.opid }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 				<i class="pointer fas fa-chevron-down fa-fw"></i>
 				{{ operative.opname }}
 				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
@@ -53,7 +53,7 @@
 		</div>
 		
 		<!-- Card Content -->
-		<div class="opinfo_{{ operative.opid }} collapse show">
+		<div class="opinfo_{{ operative.rosteropid }} collapse show">
 			<!-- Dashboard Actions -->
 			<div class="row m-0 p-0" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small m-0 p-0">
