@@ -22,6 +22,12 @@
 	}
 	
 	$faction = Faction::GetFaction($factionid);
+	
+	if ($faction == null) {
+		// Faction not found - Go to compendium
+		header("Location: /compendium.php");
+		exit;
+	}
 	$killteam = KillTeam::GetKillTeam($factionid, $killteamid);
 	
 	global $dbcon;

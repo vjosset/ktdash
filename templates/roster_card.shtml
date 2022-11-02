@@ -2,7 +2,7 @@
 	<div class="card-body m-0 p-0">
 		<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top pointer"
 			ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}"
-			style="max-height: 250px; min-height: 200px; object-position: center top; object-fit: cover;"
+			style="max-height: 250px; min-height: 250px; object-position: center top; object-fit: cover;"
 			ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"		
 		/>
 		<i class="pointer fas fa-expand-arrows-alt" style="position: absolute; top: 5px; left: 5px;" ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"></i>

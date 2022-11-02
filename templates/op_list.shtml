@@ -9,7 +9,7 @@
 	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="row">
 		<div class="col-11">
 			<h2>
-				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }} .</span>
+				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				{{ operative.opname }}
 			</h2>
 		</div>

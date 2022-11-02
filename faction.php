@@ -20,6 +20,12 @@
 		$faction = Faction::GetFaction($factionid);
 	}
 	
+	if ($faction == null) {
+		// Faction not found - Go to compendium
+		header("Location: /compendium.php");
+		exit;
+	}
+	
 ?>
 <!DOCTYPE html>
 <html>

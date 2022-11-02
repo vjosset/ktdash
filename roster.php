@@ -81,7 +81,6 @@
 										<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Roster Portrait</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
 										<!-- <li><a class="pointer dropdown-item p-1" ng-click="initPrintRoster(myRoster);"><i class="fas fa-print fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i> Print</a></li> -->
-										<li ng-if="settings['display'] == 'card' || settings['display'] == null" ng-click="setSetting('display', 'list');"><a class="pointer dropdown-item p-1"><i class="pointer fas fa-list fa-fw"></i> Hide Portraits</a></li>
 										<!-- <li><a class="pointer dropdown-item p-1" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
 										<li><a class="pointer dropdown-item p-1" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster, $index);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone Roster</a></li>

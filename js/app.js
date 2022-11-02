@@ -1636,7 +1636,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// out += "<ul>";
 				for (let i = 0; i < roster.operatives.length; i++) {
 					let op = roster.operatives[i];
-					out += op.opname + " (" + op.optype + ")<br/>";
+					out += (op.seq + 1) + ". " + op.opname + " (" + op.optype + ")<br/>";
 					
 					// Weapons
 					for (let j = 0; j < op.weapons.length; j++) {

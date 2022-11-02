@@ -3,7 +3,7 @@
 			$pagetitle = $pagetitle == null ? "KTDash.app" : $pagetitle . " | KTDash.app";
 			$pagedesc = $pagedesc == null ? "" : $pagedesc;
 			$pagedesc = str_replace('\r\n', ' ', str_replace('"', '\'', str_replace('<br/>', ' ', $pagedesc)));
-			$pageimg = $pageimg == null ? "" : $pageimg;
+			$pageimg = (!(isset($pageimg)) || $pageimg == null) ? "" : $pageimg;
 		?>
 		
 		<!-- General Meta Tags -->
