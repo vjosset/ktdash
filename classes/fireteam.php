@@ -24,7 +24,9 @@
 			
 			//Get the requested object
 			$ft = Fireteam::FromDB($fid);
-			$ft->loadOperatives();
+			if ($ft != null) {
+				$ft->loadOperatives();
+			}
 			
 			return $ft;
 		}

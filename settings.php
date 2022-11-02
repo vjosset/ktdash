@@ -63,8 +63,27 @@
 					<i class="pointer fas fa-list fa-fw"></i><br/>
 					Hide
 				</button>
+			</div>
+			
+			<h2>Dashboard Defaults</h2>
+			<div class="m-2">
+				<h6>Default VP</h6>
+				<em>How many VPs should your roster start with when deployed or reset</em><br/>
+				<select class="formcontrol" name="startvp" ng-model="settings['startvp']" ng-change="setSetting('startvp', settings['startvp']);">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select>
 				
 				<br/><br/>
+				
+				<h6>Default CP</h6>
+				<em>How many CPs should your roster start with when deployed or reset</em><br/>
+				<select class="formcontrol" name="startcp" ng-model="settings['startcp']" ng-change="setSetting('startcp', settings['startcp']);">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select>
 			</div>
 			
 			<h2>Install</h2>

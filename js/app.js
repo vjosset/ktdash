@@ -13,8 +13,13 @@ var app = angular.module("kt", ['ngSanitize'])
 				$(".navloader").on("click", function(){ toast("Loading..."); });
 			}, 500);
 			
-			// Settings
-			$scope.settings = {display: 'card'};
+			// Settings - All always lowercase (key and value)
+			$scope.settings = {
+				display: 'card',
+				showopseq: 'n',
+				startvp: 2,
+				startcp: 2
+			};
 			
 			$scope.loadSettings = function() {
 				let settingsJson = localStorage.getItem("settings");
@@ -22,8 +27,27 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.settings = JSON.parse(settingsJson.toLowerCase());
 				} else {
 					// No settings yet, fill in defaults
-					$scope.settings = {display: 'card'};
+					$scope.settings = {
+						display: 'card',
+						showopseq: 'n',
+						startvp: 2,
+						startcp: 2
+					};
 					$scope.saveSettings();
+				}
+				
+				// Set default settings
+				if (!$scope.settings["display"]) {
+					$scope.setSetting("display", "card");
+				}
+				if (!$scope.settings["showopseq"]) {
+					$scope.setSetting("showopseq", "n");
+				}
+				if (!$scope.settings["startvp"]) {
+					$scope.setSetting("startvp", "2");
+				}
+				if (!$scope.settings["startcp"]) {
+					$scope.setSetting("startcp", "2");
 				}
 			}
 			
@@ -653,7 +677,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					"userid": $scope.currentuser.userid,
 					"factionid": $scope.newroster.faction.factionid,
 					"killteamid": $scope.newroster.killteam.killteamid,
-					"rostername": $scope.newroster.rostername
+					"rostername": $scope.newroster.rostername,
+					"CP": $scope.settings["startcp"],
+					"VP": $scope.settings["startvp"]
 				};
 				
 				// Send the request to the API
@@ -2020,8 +2046,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				te("dashboard", "reset", "", roster.rosterid);
 				
 				// Update local roster
-				roster.CP = 2;
-				roster.VP = 2;
+				roster.CP = $scope.settings["startcp"];
+				roster.VP = $scope.settings["startvp"];
 				roster.TP = 1;
 				roster.RP = 0;
 				
