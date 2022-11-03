@@ -76,6 +76,7 @@
 							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
 								<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid={{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
+								<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ dashboardroster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
 							</ul>
 						</div>

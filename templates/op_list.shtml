@@ -1,12 +1,12 @@
 <div class="p-1 m-1">
 	<!-- Compendium Title -->
-	<div ng-if="MODE == 'Compendium'" class="pointer orange" ng-click="showpopup(operative.opname, operative.description);">
+	<div ng-if="MODE == 'Compendium'" class="pointer" ng-click="showpopup(operative.opname, operative.description);">
 		<h1 style="display: inline;">{{ operative.opname }}</h1>
 		<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 	</div>
 	
 	<!-- Roster Title -->
-	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="row orange">
+	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="row">
 		<div class="col-11">
 			<h2>
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
@@ -35,7 +35,7 @@
 	
 	<!-- Dashboard Title -->
 	<div ng-if="MODE == 'Dashboard'">
-		<h1 class="pointer orange" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}">
+		<h1 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}">
 			<i class="pointer fas fa-chevron-down fa-fw"></i>
 			
 			<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }} .</span>
@@ -223,43 +223,48 @@
 			</tbody>
 		</table>
 		
-		<!-- Abilities -->
-		<div class="line-top-light" ng-show="operative.abilities != null && (operative.abilities.length + operative.equipments.filter(eqIsAbility).length) > 0">
-			<h6>Abilities</h6>
-			<!-- Regular Abilities -->
-			<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
-				{{ ab.title }} 
-				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+			<!-- Abilities and UniqueActions -->
+			<div class="p-1" ng-if="operative.abilities.length > 0 || operative.uniqueactions.length > 0">
+				<div class="line-top-light m-0 p-0">
+					<div class="row">
+						<!-- Abilities -->
+						<div ng-if="operative.abilities != null && operative.abilities.length > 0" ng-class="{'col-12': operative.uniqueactions.length < 1, 'col-6': operative.uniqueactions.length > 0}">
+							<h6>Abilities</h6>
+							<div class="row">
+								<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12': operative.uniqueactions.length > 0, 'col-6': operative.uniqueactions.length < 1}">
+									{{ ab.title }} 
+									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
+								</div>
+							</div>
+						</div>
+						
+						<!-- Unique Actions -->
+						<div ng-if="operative.uniqueactions != null && operative.uniqueactions.length > 0" ng-class="{'col-12': operative.abilities.length < 1, 'col-6': operative.abilities.length > 0}">
+							<h6>Unique Actions</h6>
+							<div class="row">
+								<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12': operative.abilities.length > 0, 'col-6': operative.abilities.length < 1}">
+									{{ ua.title }}
+									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!-- Equipment Abilities -->
-			<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Ability'">
-				&#x26ED; {{ eq.eqname }} 
-				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
+			
+			<!-- Operative Equipment -->
+			<div class="p-1" ng-if="MODE == 'Dashboard' || (MODE != 'Compendium' && operative.equipments.length > 0)">
+				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
+				<div class="line-top-light">
+					<h6 ng-if="MODE == 'Dashboard'" class="pointer col-12" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i class="pointer fas fa-edit fa-fw"></i></h6>
+					<h6 ng-if="MODE == 'MyRoster'" class="col-12">Equipment</h6>
+					<div class="row">
+						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+							{{ eq.eqname }}
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		
-		<!-- Unique Actions -->
-		<div class="line-top-light" ng-show="operative.uniqueactions != null && (operative.uniqueactions.length + operative.equipments.filter(eqIsAction).length) > 0">
-			<h6>Unique Actions</h6>
-			<!-- Regular Unique Actions -->
-			<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
-				{{ ua.title }} ({{ ua.AP}} AP)
-				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
-			</div>
-			<!-- Equipment Unique Actions -->
-			<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments" ng-if="eq.eqtype == 'Action'">
-				&#x26ED; {{ eq.eqname }} 
-				<sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup>
-			</div>
-		</div>
-		
-		<!-- Equipment -->
-		<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster') && operative.equipments.length > 0" class="line-top-light">
-			<h6>Equipment</h6>
-			<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
-				{{ eq.eqname }}<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->{{$last ? '' : ', '}}
-			</span>
-		</div>
 		
 		<!-- Notes -->
 		<!--

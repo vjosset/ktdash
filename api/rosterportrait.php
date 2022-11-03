@@ -142,6 +142,10 @@
 						die();
 					} else {
 						// Get the submitted image and validate it, then resize and save it
+						if (!isset($_FILES["file"])) {
+							header("HTTP/1.0 400 No file uploaded");
+							die();
+						}
 						$filename = $_FILES["file"]["name"];
 						$tempname = $_FILES["file"]["tmp_name"];
 						if ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {

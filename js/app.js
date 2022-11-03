@@ -985,6 +985,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Show the modal
 				$('#sharerostermodal').modal("show");
 			}
+		
+			// showShareRosterGallery()
+			// Pop-up the "Share Roster Gallery" modal
+			$scope.showShareRosterGallery = function(roster) {
+				te("roster", "share", "gallery", roster.rosterid);
+				$scope.shareroster = roster;
+				$scope.shareroster.url = "https://ktdash.app/rostergallery.php?rid=" + roster.rosterid;
+				
+				// Show the modal
+				$('#sharerostergallerymodal').modal("show");
+			}
 			
 			// totalEqPts()
 			// Returns the total equipment points for all operatives in the specified roster

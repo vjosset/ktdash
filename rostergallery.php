@@ -60,6 +60,7 @@
 							<i class="fas fa-ellipsis-h fa-fw"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
+							<li><a class="pointer dropdown-item p-1" ng-click="showShareRosterGallery(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</a></li>
 							<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid=<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 						</ul>
 					</div>

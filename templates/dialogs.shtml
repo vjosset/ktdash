@@ -67,12 +67,31 @@
 	</div>
 </div>
 
-<!-- Share team modal dialog -->
+<!-- Share roster modal dialog -->
 <div class="modal fade" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
 				<h5 class="modal-title" id="sharerostermodallabel"><i class="fas fa-share-square fa-fw"></i> Share Roster</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				Team share link:<br/>
+				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
+				<hr/>
+				<!-- QR Code -->
+				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Share roster gallery modal dialog -->
+<div class="modal fade" id="sharerostergallerymodal" tabindex="-1" role="dialog" aria-labelledby="sharerostergallerymodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="sharerostergallerymodallabel"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
