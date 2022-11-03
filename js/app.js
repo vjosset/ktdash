@@ -27,13 +27,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.settings = JSON.parse(settingsJson.toLowerCase());
 				} else {
 					// No settings yet, fill in defaults
-					$scope.settings = {
-						display: 'card',
-						showopseq: 'n',
-						startvp: 2,
-						startcp: 2
-					};
-					$scope.saveSettings();
+					$scope.setSetting("display", "card");
+					$scope.setSetting("showopseq", "n");
+					$scope.setSetting("startvp", "2");
+					$scope.setSetting("startcp", "2");
 				}
 				
 				// Set default settings

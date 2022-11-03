@@ -63,7 +63,7 @@
 							<?php
 								if (!$ismine) {
 										?>
-										<li><a class="pointer dropdown-item p-1" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+										<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
 										<?php
 									// Not my roster - Offer to import if logged in
 									if ($me != null) {
