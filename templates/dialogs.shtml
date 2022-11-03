@@ -76,7 +76,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
-				Team share link:<br/>
+				Roster Share Link:<br/>
 				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
 				<hr/>
 				<!-- QR Code -->
@@ -95,7 +95,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
-				Team share link:<br/>
+				Gallery Share Link:<br/>
 				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
 				<hr/>
 				<!-- QR Code -->
