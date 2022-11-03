@@ -45,7 +45,7 @@
 					// Read the found file and serve it
 					$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/jpeg');
-					header('Content-Disposition: attachment; filename="' . $r->rostername . '.jpg"');
+					header('Content-Disposition: inline; filename="' . $r->rostername . '.jpg"');
 					imagejpeg($thumb);
 				} else {
 					// File not found, serve the generic portrait for this roster
@@ -60,7 +60,7 @@
 					// Read the found file and serve it
 					$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/png');
-					header('Content-Disposition: attachment; filename="' . $r->rostername . '.png"');
+					header('Content-Disposition: inline; filename="' . $r->rostername . '.png"');
 					imagepng($thumb);
 				}
 			} else {

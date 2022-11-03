@@ -1,14 +1,19 @@
 <div class="card darkcard m-1 p-0 h-100">
 	<div class="card-body m-0 p-0">
-		<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top pointer"
-			ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}"
-			style="max-height: 250px; min-height: 250px; object-position: center top; object-fit: cover;"
-			ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"		
-		/>
-		<i class="pointer fas fa-expand-arrows-alt" style="position: absolute; top: 5px; left: 5px;" ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"></i>
+		<!-- Roster Portrait -->
+		<div ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);">
+			<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top pointer"
+				ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}"
+				style="max-height: 250px; min-height: 250px; object-position: center top; object-fit: cover;"
+			/>
+			<i class="pointer fas fa-expand-arrows-alt" style="position: absolute; top: 5px; left: 5px;"></i>
+		</div>
 		
+		<!-- Roster Content -->
 		<div class="card-title row m-0 p-0">
+			<!--- Roster Title -->
 			<div class="row m-0 p-0 orange">
+				<!--- Roster Name -->
 				<div class="col-11 m-0 p-0">
 					<h2 class="m-0 p-1">
 						<a class="navloader" href="roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives">
@@ -16,6 +21,8 @@
 						</a>
 					</h2>
 				</div>
+				
+				<!--- Roster Actions -->
 				<div class="col-1 m-0 p-0 align-text-top text-end">
 					<?php
 					if ($ismine) {
@@ -28,6 +35,7 @@
 							<li><a class="pointer dropdown-item p-1 navloader" ng-href="/roster.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Operatives"><i class="fas fa-users fa-fw"></i> Edit Operatives</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Roster Name and Notes"><i class="fas fa-edit fa-fw"></i> Edit Name and Notes</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Portrait</a></li>
+							<li><a class="pointer dropdown-item p-1" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="moveRosterUp(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="moveRosterDown(myRoster, myRoster.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Roster Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
 							<li><a class="pointer dropdown-item p-1" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster</a></li>
@@ -40,6 +48,8 @@
 					?>
 				</div>
 			</div>
+			
+			<!--- Roster Details -->
 			<div class="m-0 p-1">
 				<a class="navloader" href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">
 					{{ myRoster.killteamname }}

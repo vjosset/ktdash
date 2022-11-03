@@ -1,12 +1,12 @@
 <div class="p-1 m-1">
 	<!-- Compendium Title -->
-	<div ng-if="MODE == 'Compendium'" class="pointer" ng-click="showpopup(operative.opname, operative.description);">
-		<h4 style="display: inline;">{{ operative.opname }}</h4>
+	<div ng-if="MODE == 'Compendium'" class="pointer orange" ng-click="showpopup(operative.opname, operative.description);">
+		<h1 style="display: inline;">{{ operative.opname }}</h1>
 		<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 	</div>
 	
 	<!-- Roster Title -->
-	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="row">
+	<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="row orange">
 		<div class="col-11">
 			<h2>
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
@@ -28,14 +28,14 @@
 				</ul>
 			</div>
 		</div>
-		<div>
-			{{ operative.optype }}
-		</div>
+	</div>
+	<div>
+		{{ operative.optype }}
 	</div>
 	
 	<!-- Dashboard Title -->
 	<div ng-if="MODE == 'Dashboard'">
-		<h3 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+		<h1 class="pointer orange" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#opinfo_{{ $index }}">
 			<i class="pointer fas fa-chevron-down fa-fw"></i>
 			
 			<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }} .</span>
@@ -44,7 +44,7 @@
 			<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
 			<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 			<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
-		</h3>
+		</h1>
 	</div>
 	
 	<!-- Content -->
@@ -55,7 +55,8 @@
 				{{ operative.optype }}
 			</div>
 			<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
-				<input type="checkbox" ng-model="operative.activated" ng-change="commitTeams();" /> Activated
+				<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
+				<label for="chkactivated_{{ operative.rosteropid }}"> Activated</label>
 			</div>
 		</div>
 		

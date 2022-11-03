@@ -505,10 +505,19 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// initRosterGallery()
+			// Initializes the "Roster Gallery" page - Landing page for a single roster			
+			$scope.initRosterGallery = function(rid) {
+				te("roster", "gallery", "", rid);
+				$scope.initRoster(rid, true);
+			}
+			
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
-			$scope.initRoster = function(rid) {
-				te("roster", "view", "", rid);
+			$scope.initRoster = function(rid, skipte) {
+				if (!skipte) {
+					te("roster", "view", "", rid);
+				}
 				$scope.loading = true;
 				$scope.MODE = "Roster";
 				
@@ -1558,8 +1567,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.refreshOpPortrait = function(roid) {
 				// Force a refresh of the operative's portrait (uses background-image)
 				let newimg = "/api/operativeportrait.php?roid=" + $scope.optoedit.rosteropid + "&cb=" + (new Date()).getTime();
-				$("#opportrait_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})
-				$("#opcard_" + $scope.optoedit.rosteropid).css({backgroundImage: "url(" + newimg + ")"})
+				$("#opportrait_" + $scope.optoedit.rosteropid).attr("src", newimg);
 			}
 			
 			// saveUploadOpPortrait()
@@ -2016,9 +2024,6 @@ var app = angular.module("kt", ['ngSanitize'])
 								op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
 							}
 						}
-						
-						console.log("DashboardRosterID: " + $scope.dashboardrosterid);
-						console.log("DashboardRoster: " + JSON.stringify($scope.dashboardroster));
 					}
 				}
 				$scope.loading = false;
@@ -2205,12 +2210,12 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.showPhoto = function(title, photourl) {
-				$scope.popup = {
+				$scope.imagepopup = {
 					"title": title,
-					"text": "<img src='" + photourl + "#" + (new Date()).getTime() + "' class='w-100' />"
+					"image": photourl + "#" + (new Date()).getTime()
 				}
 				
-				$("#popupmodal").modal("show");
+				$("#imagemodal").modal("show");
 			}
 			
 			// toggleDisplay()

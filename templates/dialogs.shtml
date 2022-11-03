@@ -1,5 +1,5 @@
 <!-- Select roster operatives dialog -->
-<div class="modal fade oswald" id="selectrosteropsmodal" tabindex="-1" role="dialog" aria-labelledby="selectrosteropsmodallabel" aria-hidden="true">
+<div class="modal fade" id="selectrosteropsmodal" tabindex="-1" role="dialog" aria-labelledby="selectrosteropsmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -68,7 +68,7 @@
 </div>
 
 <!-- Share team modal dialog -->
-<div class="modal fade oswald" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
+<div class="modal fade" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -87,7 +87,7 @@
 </div>
 
 <!-- New roster modal dialog -->
-<div class="modal fade oswald" id="newrostermodal" tabindex="-1" role="dialog" aria-labelledby="newrostermodallabel" aria-hidden="true">
+<div class="modal fade" id="newrostermodal" tabindex="-1" role="dialog" aria-labelledby="newrostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -121,7 +121,7 @@
 </div>
 
 <!-- Edit roster modal dialog -->
-<div class="modal fade oswald" id="editrostermodal" tabindex="-1" role="dialog" aria-labelledby="editrostermodallabel" aria-hidden="true">
+<div class="modal fade" id="editrostermodal" tabindex="-1" role="dialog" aria-labelledby="editrostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -144,7 +144,7 @@
 </div>
 
 <!-- Confirm delete team modal dialog -->
-<div class="modal fade oswald" id="deleterostermodal" tabindex="-1" role="dialog" aria-labelledby="deleterostermodallabel" aria-hidden="true">
+<div class="modal fade" id="deleterostermodal" tabindex="-1" role="dialog" aria-labelledby="deleterostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -163,7 +163,7 @@
 </div>
 
 <!-- Add operative modal dialog -->
-<div class="modal fade oswald" id="addoptorostermodal" tabindex="-1" role="dialog" aria-labelledby="addoptorostermodallabel" aria-hidden="true">
+<div class="modal fade" id="addoptorostermodal" tabindex="-1" role="dialog" aria-labelledby="addoptorostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -304,7 +304,7 @@
 </div>
 
 <!-- Edit operative modal dialog -->
-<div class="modal fade oswald" id="editopmodal" tabindex="-1" role="dialog" aria-labelledby="editopmodallabel" aria-hidden="true">
+<div class="modal fade" id="editopmodal" tabindex="-1" role="dialog" aria-labelledby="editopmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -420,7 +420,7 @@
 </div>
 
 <!-- Edit operative equipment modal dialog (Dashboard) -->
-<div class="modal fade oswald" id="editopeqmodal" tabindex="-1" role="dialog" aria-labelledby="editopeqmodallabel" aria-hidden="true">
+<div class="modal fade" id="editopeqmodal" tabindex="-1" role="dialog" aria-labelledby="editopeqmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -443,7 +443,7 @@
 </div>
 
 <!-- Confirm delete operative modal dialog -->
-<div class="modal fade oswald" id="deleteopmodal" tabindex="-1" role="dialog" aria-labelledby="deleteopmodallabel" aria-hidden="true">
+<div class="modal fade" id="deleteopmodal" tabindex="-1" role="dialog" aria-labelledby="deleteopmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -462,7 +462,7 @@
 </div>
 
 <!-- Weapon Special Rules -->
-<div class="modal fade oswald" id="wepsrmodal" tabindex="-1" role="dialog" aria-labelledby="wepsrmodallabel" aria-hidden="true">
+<div class="modal fade" id="wepsrmodal" tabindex="-1" role="dialog" aria-labelledby="wepsrmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -484,7 +484,7 @@
 </div>
 
 <!-- Info popup -->
-<div class="modal fade oswald" id="popupmodal" tabindex="-1" role="dialog" aria-labelledby="popupmodallabel" aria-hidden="true">
+<div class="modal fade" id="popupmodal" tabindex="-1" role="dialog" aria-labelledby="popupmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -498,8 +498,23 @@
 	</div>
 </div>
 
+<!-- Photo popup -->
+<div class="modal fade ng-cloak" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="imagemodallabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="imagemodallabel"><i class="fas fa-camera fa-fw"></i> {{ imagepopup.title }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-0">
+				<img ng-src="{{ imagepopup.image }}" width="100%" />
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Operative Portrait Upload -->
-<div class="modal fade oswald" id="opportraitmodal" tabindex="-1" role="dialog" aria-labelledby="opportraitmodallabel" aria-hidden="true">
+<div class="modal fade" id="opportraitmodal" tabindex="-1" role="dialog" aria-labelledby="opportraitmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -528,7 +543,7 @@
 </div>
 
 <!-- Roster Portrait Upload -->
-<div class="modal fade oswald" id="rosterportraitmodal" tabindex="-1" role="dialog" aria-labelledby="rosterportraitmodallabel" aria-hidden="true">
+<div class="modal fade" id="rosterportraitmodal" tabindex="-1" role="dialog" aria-labelledby="rosterportraitmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
@@ -557,7 +572,7 @@
 </div>
 
 <!-- Install Prompt -->
-<div class="modal fade oswald" id="installmodal" tabindex="-1" role="dialog" aria-labelledby="installmodallabel" aria-hidden="true">
+<div class="modal fade" id="installmodal" tabindex="-1" role="dialog" aria-labelledby="installmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">

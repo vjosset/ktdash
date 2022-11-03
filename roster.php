@@ -51,7 +51,7 @@
 		<div class="orange container-fluid">
 			<div class="row">
 				<h1 class="pointer col-11 m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster.killteam));te('roster', 'killteamcomp', '', myRoster.rosterid);">
-					<?php echo $myRoster->rostername ?>
+					<span ng-bind="myRoster.rostername"><?php echo $myRoster->rostername ?></span>
 					<sup><i class="h5 fas fa-info-circle fa-fw"></i></sup>
 				</h1>
 				<div class="h3 col-1 m-0 p-0 align-text-top text-end">
@@ -62,6 +62,9 @@
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rosteractions_{{ myRoster.rosterid }}">
 							<?php
 								if (!$ismine) {
+										?>
+										<li><a class="pointer dropdown-item p-1" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+										<?php
 									// Not my roster - Offer to import if logged in
 									if ($me != null) {
 										// User is logged in
@@ -79,6 +82,7 @@
 										<li><a class="pointer dropdown-item p-1" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i> Rename Roster</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Roster Portrait</a></li>
+										<li><a class="pointer dropdown-item p-1" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
 										<!-- <li><a class="pointer dropdown-item p-1" ng-click="initPrintRoster(myRoster);"><i class="fas fa-print fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Roster"></i> Print</a></li> -->
 										<!-- <li><a class="pointer dropdown-item p-1" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
@@ -157,7 +161,7 @@
 			
 			<!-- Show this roster's operatives -->
 			<div class="row p-0 m-0">
-				<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
+				<div ng-if="settings['display'] == 'card'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
 					<?php include "templates/op_card.shtml" ?>
 				</div>
 				<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">

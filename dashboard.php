@@ -75,8 +75,6 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
 								<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid={{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
-								<li ng-if="settings['display'] == 'list'"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'card');"><i class="far fa-id-card fa-fw"></i> Show Portraits</a></li>
-								<li ng-if="settings['display'] == 'card' || settings['display'] == null"><a class="pointer dropdown-item p-1" ng-click="setSetting('display', 'list');"><i class="fas fa-list fa-fw"></i> Hide Portraits</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
 							</ul>
@@ -153,17 +151,17 @@
 					</a>
 				</li>
 			</ul>
-			<div class="tab-content">
+			<div class="tab-content p-0 m-0">
 				<div class="tab-pane show active" id="ops" role="tabpanel">
 					<!-- Archetype -->
 					<h6 class="d-inline">Archetype</h6>: <small ng-bind="getRosterArchetype(dashboardroster)"></small>
 					
 					<!-- Operatives -->
 					<div class="row p-0 m-0">
-						<div ng-if="!operative.hidden && (settings['display'] == 'card' || settings['display'] == null)" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index">
+						<div ng-if="!operative.hidden && (settings['display'] == 'card' || settings['display'] == null)" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="operative in dashboardroster.operatives track by $index">
 							<?php include "templates/op_card.shtml" ?>
 						</div>
-						<div ng-if="!operative.hidden && settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 p-0 m-0" ng-repeat="operative in dashboardroster.operatives track by $index">
+						<div ng-if="!operative.hidden && settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="operative in dashboardroster.operatives track by $index">
 							<?php include "templates/op_list.shtml" ?>
 						</div>
 					</div>

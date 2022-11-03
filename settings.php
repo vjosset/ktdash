@@ -68,7 +68,7 @@
 			<h2>Dashboard Defaults</h2>
 			<div class="m-2">
 				<h6>Default VP</h6>
-				<em>How many VPs should your roster start with when deployed or reset</em><br/>
+				<em>How many VPs your roster should start with when deployed or reset</em><br/>
 				<select class="formcontrol" name="startvp" ng-model="settings['startvp']" ng-change="setSetting('startvp', settings['startvp']);">
 					<option value="0">0</option>
 					<option value="1">1</option>
@@ -78,7 +78,7 @@
 				<br/><br/>
 				
 				<h6>Default CP</h6>
-				<em>How many CPs should your roster start with when deployed or reset</em><br/>
+				<em>How many CPs your roster should start with when deployed or reset</em><br/>
 				<select class="formcontrol" name="startcp" ng-model="settings['startcp']" ng-change="setSetting('startcp', settings['startcp']);">
 					<option value="0">0</option>
 					<option value="1">1</option>
