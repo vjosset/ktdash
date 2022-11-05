@@ -1,4 +1,4 @@
-<div class="ng-cloak card darkcard m-1 h-100" ng-if="!operative.hidden || MODE != 'Dashboard'">
+<div class="ng-cloak card darkcard m-1 h-100 opcard" ng-if="!operative.hidden || MODE != 'Dashboard'">
 	<div class="card-body m-1 p-0">
 		<!-- Compendium Card Title -->
 		<div ng-if="MODE == 'Compendium'" class="card-title pointer p-1">
@@ -28,6 +28,7 @@
 						<li><a class="pointer dropdown-item p-1" ng-click="cloneOp(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
+						<li><a class="pointer dropdown-item p-1" href="/printop.php?roid={{ operative.rosteropid }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"><i class="fas fa-trash-alt fa-fw"></i> Delete</a></li>
 					</ul>
 				</div>
@@ -266,10 +267,10 @@
 				<div class="line-top-light m-0 p-0">
 					<div class="row">
 						<!-- Abilities -->
-						<div ng-if="operative.abilities != null && operative.abilities.length > 0" ng-class="{'col-12': operative.uniqueactions.length < 1, 'col-6': operative.uniqueactions.length > 0}">
+						<div ng-if="operative.abilities != null && operative.abilities.length > 0" ng-class="{'col-12 w-100': operative.uniqueactions.length < 1, 'col-6 w-50': operative.uniqueactions.length > 0}">
 							<h6>Abilities</h6>
 							<div class="row">
-								<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12': operative.uniqueactions.length > 0, 'col-6': operative.uniqueactions.length < 1}">
+								<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12 w-100': operative.uniqueactions.length > 0, 'col-6 w-50': operative.uniqueactions.length < 1}">
 									{{ ab.title }} 
 									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
 								</div>
@@ -277,11 +278,11 @@
 						</div>
 						
 						<!-- Unique Actions -->
-						<div ng-if="operative.uniqueactions != null && operative.uniqueactions.length > 0" ng-class="{'col-12': operative.abilities.length < 1, 'col-6': operative.abilities.length > 0}">
+						<div ng-if="operative.uniqueactions != null && operative.uniqueactions.length > 0" ng-class="{'col-12 w-100': operative.abilities.length < 1, 'col-6 w-50': operative.abilities.length > 0}">
 							<h6>Unique Actions</h6>
 							<div class="row">
-								<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12': operative.abilities.length > 0, 'col-6': operative.abilities.length < 1}">
-									{{ ua.title }}
+								<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12 w-100': operative.abilities.length > 0, 'col-6 w-50': operative.abilities.length < 1}">
+									{{ ua.title }} ({{ ua.AP }} AP)
 									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
 								</div>
 							</div>
@@ -294,8 +295,8 @@
 			<div class="p-1" ng-if="MODE == 'Dashboard' || (MODE != 'Compendium' && operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="line-top-light">
-					<h6 ng-if="MODE == 'Dashboard'" class="pointer col-12" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i class="pointer fas fa-edit fa-fw"></i></h6>
-					<h6 ng-if="MODE == 'MyRoster'" class="col-12">Equipment</h6>
+					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i class="pointer fas fa-edit fa-fw"></i></h6>
+					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
 					<div class="row">
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 							{{ eq.eqname }}

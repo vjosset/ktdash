@@ -2,11 +2,15 @@ Recent images uploaded:
 find -type f -printf '%T+\t%p\n' | sort -n
 
 SELECT COUNT(DISTINCT userip) AS UserCount30Minute, COUNT(*) AS EventCount30Minute FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -30 minute);
+SELECT COUNT(*) AS EventCount, SUM(CASE sessiontype WHEN 'pwa' THEN 1 ELSE 0 END) AS PWAEventCount, SUM(CASE sessiontype WHEN 'browser' THEN 1 ELSE 0 END) AS BrowserEventCount FROM Event WHERE userip != '68.80.166.102' AND sessiontype <> '';
 SELECT * FROM Event WHERE userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
+SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
-#SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
+SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 #SELECT * FROM Event WHERE action = 'gettext' ORDER BY eventid DESC;
 #SELECT * FROM Event WHERE action = 'help' ORDER BY eventid DESC;
-SELECT COUNT(*) AS UserCount FROM User WHERE userid != 'prebuilt'; SELECT COUNT(*) AS RosterCount FROM Roster WHERE userid != 'prebuilt';
+SELECT COUNT(*) AS UserCount FROM User WHERE userid NOT IN ('prebuilt', 'vince');
+SELECT COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince');
+SELECT COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince');

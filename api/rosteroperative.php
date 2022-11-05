@@ -34,12 +34,12 @@
 		} else {
 			// Try to find this operative
 			$ro = RosterOperative::GetRosterOperative($roid);
-			if ($roid == null) {
+			if ($ro == null) {
 				header('HTTP/1.0 404 Operative not found');
 				die();
 			} else {
 				header('Content-Type: application/json');
-				echo json_encode($roid);
+				echo json_encode($ro);
 			}
 		}
     }

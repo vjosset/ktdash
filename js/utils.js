@@ -62,8 +62,6 @@ function GetArrayRandom(arr) {
 }
 
 function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
-	//console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ")");
-	
 	gtag('event', t + "." + a, {
 		'event_category': t,
 		'event_label': a
@@ -82,7 +80,8 @@ function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 				v1: v1,
 				v2: v2,
 				v3: v3,
-				u: window.location.href
+				u: window.location.href,
+				s: sessionStorage.getItem("sessiontype")
 			},
 			
 			// Success
@@ -100,24 +99,6 @@ function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 		// Do nothing
 		console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ") failed: \r\n" + ex);
 	}
-}
-
-function trackEvent(cat, act, lbl) {
-	/*
-	try {
-		if (act == null) {
-			act = "[None]";
-		}
-		if (lbl == null) {
-			lbl = "";
-		}
-		
-		gtag('event', cat + "." + act, {
-			'event_category': cat,
-			'event_label': lbl
-		});
-	} catch (ex) { }
-	*/
 }
 
 function padzero(num, pad) {
@@ -138,3 +119,12 @@ function array_move(arr, old_index, new_index) {
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr; // for testing
 };
+
+// Set the session type based on PWA or browser
+if (GetQS("source") == "pwa") {
+	console.log("Setting session type to pwa");
+	sessionStorage.setItem("sessiontype", "pwa");
+} else if (sessionStorage.getItem("sessiontype") != "pwa") {
+	console.log("Setting session type to browser");
+	sessionStorage.setItem("sessiontype", "browser");
+}

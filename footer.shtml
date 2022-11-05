@@ -1,5 +1,5 @@
 
-		<div class="footer">
+		<div class="footer noprint">
 			<!-- Footer -->
 			<br/>
 			<hr/>
@@ -11,5 +11,5 @@
 			
 			<!-- Toast Container -->
 			<div id="toast"></div>
+			<br/>
 		</div>
-		<br/>

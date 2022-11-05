@@ -1763,6 +1763,46 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Hide the modal
 				$('#editopeqmodal').modal("hide");
 			}
+		
+			// initPrintOp()
+			// Load the specified operative to be printed
+			$scope.initPrintOp = function(roid) {
+				// Get the operative
+				$scope.loading = true;
+				
+				// Set the mode
+				$scope.MODE = 'Roster';
+				
+				$.ajax({
+					type: "GET",
+					url: APIURL + "rosteroperative.php?roid=" + roid,
+					timeout: 5000,
+					async: true,
+					
+					// Success
+					success: function(data) { // Got
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						$scope.operative = data;
+						
+						// Remove baseop for clarity
+						delete($scope.operative.baseoperative);
+						
+						console.log("Got Operative: \r\n" + JSON.stringify($scope.operative));
+						
+						te("roster", "print", "op", $scope.operative.rosterid, $scope.operative.rosteropid);
+						
+						// Done
+						$scope.loading = false;
+						$scope.$apply();
+						print();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to get operative
+						$scope.loading = false;
+						toast("Could not get operative: \r\n" + error);
+					}
+				});
+			}
 		}
 		
 		// COMPENDIUM

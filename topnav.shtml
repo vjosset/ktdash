@@ -1,5 +1,5 @@
 			<!-- Main Nav -->
-			<nav class="navbar navbar-expand-lg navbar-dark sticky-top dark">
+			<nav class="navbar navbar-expand-lg navbar-dark sticky-top dark noprint">
 				<a class="navbar-brand" href="/">
 					<h1 class="d-inline">
 						<span class="fas fa-book-dead fa-fw" style="color: #c54c21;" ng-class="{'rotate': loading}"></span>
@@ -25,7 +25,7 @@
 			</nav>
 			
 			<!-- Laoding Modal -->
-			<div class="modal fade oswald" id="navloadermodal" tabindex="-1" role="dialog" aria-labelledby="navloadermodallabel" aria-hidden="true">
+			<div class="modal fade oswald noprint" id="navloadermodal" tabindex="-1" role="dialog" aria-labelledby="navloadermodallabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content dark">
 						<div class="modal-header orange">

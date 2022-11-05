@@ -511,7 +511,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
-				<p class="oswald" ng-bind-html="popup.text" style="text-align:justify;"></p>
+				<p ng-bind-html="popup.text" style="text-align:justify;"></p>
 			</div>
 		</div>
 	</div>

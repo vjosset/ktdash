@@ -42,18 +42,33 @@
 		
 		public function GetRosterOperative($roid) {
 			//Get the requested RosterOperative
-			$ro = RosterOperative::FromDB($roid);
+			global $dbcon;
+			$sql = "SELECT * FROM RosterOperativeView WHERE rosteropid = ? ORDER BY seq";
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "s";
+			$params = array();
+            $params[] =& $paramtypes;
+            $params[] =& $roid;
+
+            call_user_func_array(array($cmd, "bind_param"), $params);
+            $cmd->execute();
+
+			$op = null;
+            if ($result = $cmd->get_result()) {
+                while ($row = $result->fetch_object()) {
+                    $op = RosterOperative::FromRow($row);
+					
+					// Load the base operative for this RosterOperative
+					$op->loadBaseOperative();
+					
+					// Load the operative's weapons and equipments
+					$op->loadWeapons();
+					$op->loadEquipments();
+                }
+            }
 			
-			if ($ro != null) {
-				// Load the base operative for this RosterOperative
-				$ro->loadBaseOperative();
-				
-				// Load this operative's weapons and equipments
-				$ro->loadWeapons();
-				$ro->loadEquipments();
-			}
-			
-			return $ro;
+			// Done
+			return $op;
 		}
 		
 		public function loadBaseOperative() {
