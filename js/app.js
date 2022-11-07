@@ -511,7 +511,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
-			$scope.initRoster = function(rid, skipte) {
+			$scope.initRoster = function(rid, skipte, mode) {
 				if (!skipte) {
 					te("roster", "view", "", rid);
 				}
@@ -562,6 +562,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						$scope.loading = false;
 						$scope.$apply();
+						
+						if (mode == 'print') {
+							setTimeout(window.print, 200);
+						}
 					},
 					// Failure
 					error: function(data, status, error) { // Failed to get roster
