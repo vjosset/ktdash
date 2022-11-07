@@ -107,7 +107,7 @@
 						Equip
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0 dark" role="presentation" ng-id="killteam.rosters.length > 0">
+				<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="killteam.rosters.length > 0">
 					<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
 						Rosters
 					</a>

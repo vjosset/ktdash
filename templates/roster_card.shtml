@@ -23,10 +23,7 @@
 				</div>
 				
 				<!--- Roster Actions -->
-				<div class="col-1 m-0 p-0 align-text-top text-end">
-					<?php
-					if ($ismine) {
-					?>
+				<div class="col-1 m-0 p-0 align-text-top text-end" ng-if="MODE == 'MyRosters'">
 					<div class="btn-group m-0 p-0">
 						<a role="button" id="rosteractions_{{ myRoster.rosterid }}" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fas fa-ellipsis-h fa-fw"></i>
@@ -44,9 +41,6 @@
 							<li><a class="pointer dropdown-item p-1" ng-click="initDeleteRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Roster"><i class="fas fa-trash-alt fa-fw"></i> Delete Roster</a></li>
 						</ul>
 					</div>
-					<?php
-					}
-					?>
 				</div>
 			</div>
 			

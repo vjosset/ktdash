@@ -509,9 +509,14 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.initRoster(rid, true);
 			}
 			
+			$scope.initPrintRoster = function(rid) {
+				te("roster", "print", "roster", rid);
+				$scope.initRoster(rid, true, window.print);
+			}
+			
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
-			$scope.initRoster = function(rid, skipte, mode) {
+			$scope.initRoster = function(rid, skipte, s) {
 				if (!skipte) {
 					te("roster", "view", "", rid);
 				}
@@ -563,8 +568,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.loading = false;
 						$scope.$apply();
 						
-						if (mode == 'print') {
-							setTimeout(window.print, 200);
+						if (s) {
+							setTimeout(s, 200);
 						}
 					},
 					// Failure
@@ -1674,6 +1679,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				let out = "";
 				out = "<h6><a href=\"https://ktdash.app/roster.php?rid=" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
 				out += "<a href=\"https://ktdash.app/killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
+				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {
 					out += "Total Equipment Points: " + totalEq + "<br/><br/>";
@@ -1701,10 +1707,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						if (j > 0) {
 							out += ", ";
 						}
-						out += eq.eqname + (eq.eqpts > 0 ? " (" + eq.eqpts + " pts)" : "");
+						out += eq.eqname + (eq.eqpts > 0 ? " (" + eq.eqpts + " EP)" : "");
 					}
 					
-					out += "<br/><br/>";
+					out += "<br/>";
 				}
 				// out += "</ul>";
 				

@@ -8,11 +8,12 @@ SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip
 SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY eventid DESC LIMIT 100;
 #SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
+SELECT * FROM Event WHERE action= 'print' ORDER BY eventid DESC;
 #SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 #SELECT * FROM Event WHERE action = 'gettext' ORDER BY eventid DESC;
 #SELECT * FROM Event WHERE action = 'help' ORDER BY eventid DESC;
-SELECT COUNT(*) AS UserCount FROM User WHERE userid NOT IN ('prebuilt', 'vince');
-SELECT COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince');
-SELECT COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince');
+SELECT 'Users' AS CountType, COUNT(*) AS Count FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
+SELECT 'Rosters', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') UNION
+SELECT 'RosterOps', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince');
 #SELECT * FROM Event WHERE action = 'print' ORDER BY eventid DESC;
 #SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userip != '68.80.166.102' GROUP BY useragent ORDER BY 2 DESC;
