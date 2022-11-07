@@ -130,7 +130,9 @@ th, td {
 }
 
 @media print {
-	* {-webkit-print-color-adjust:exact;}
+	body {
+		color: #000;
+	}
 	
 	.fas, .far {
 		display: none;

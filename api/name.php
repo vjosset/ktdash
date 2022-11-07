@@ -148,6 +148,17 @@
 				return GetChaosMarineName();
 			case "CHAOS|DG|PW|PW": //Poxwalker
 				return "Poxwalker";
+			case "CHAOS|LEG|LEG|AC": //Legionary Aspiring Champion
+			case "CHAOS|LEG|LEG|ANO": //Legionary Anointed
+			case "CHAOS|LEG|LEG|BA": //Legionary Balefire Acolyte
+			case "CHAOS|LEG|LEG|BUT": //Legionary Butcher
+			case "CHAOS|LEG|LEG|CHO": //Legionary Chosen
+			case "CHAOS|LEG|LEG|GNR": //Legionary Gunner
+			case "CHAOS|LEG|LEG|HGNR": //Legionary Heavy Gunner
+			case "CHAOS|LEG|LEG|IB": //Legionary Icon Bearer
+			case "CHAOS|LEG|LEG|STL": //Legionary ShriveTalon
+			case "CHAOS|LEG|LEG|WAR": //Legionary Warrior
+				return GetChaosMarineName();
 			case "CHAOS|TS|RUB|GNR": //Rubric Marine Gunner
 			case "CHAOS|TS|RUB|IB": //Rubric Marine Icon Bearer
 			case "CHAOS|TS|RUB|SOR": //Aspiring Sorcerer

@@ -14,7 +14,7 @@
         function __construct() {
             $this->TableName = "Killteam";
             $this->Keys = ["factionid", "killteamid"];
-			$this->skipfields = ["operatives", "ploys", "equipments"];
+			$this->skipfields = ["operatives", "ploys", "equipments", "rosters"];
         }
 		
 		public function GetKillteam($factionid, $killteamid) {
@@ -31,6 +31,9 @@
 			
 			// Load its equipments
 			$killteam->loadEquipments();
+			
+			// Load its "spotlighted" rosters
+			$killteam->loadRosters();
 			
 			return $killteam;
 		}
@@ -67,6 +70,9 @@
 					
 					//Load its equipments
 					$killteam->loadEquipments();
+			
+					// Load its "spotlighted" rosters
+					$killteam->loadRosters();
 					
 					// Add this faction to the output
 					$killteams[] = $killteam;
@@ -188,6 +194,41 @@
 						}
 					}
 					$this->equipments[] = $e;
+				}
+			}
+		}
+
+		public function loadRosters() {
+			global $dbcon;
+			
+			$me = Session::CurrentUser();
+			
+			$this->rosters = [];
+						
+			$sql = "SELECT DISTINCT CASE R.userid WHEN ? THEN 10 WHEN 'prebuilt' THEN 5 ELSE 1 END AS seq, U.username, R.rosterid, R.rostername, R.userid, R.oplist, R.notes, R.killteamid, R.factionid, K.killteamname FROM RosterView R INNER JOIN User U ON U.userid = R.userid INNER JOIN Killteam K ON K.factionid = R.factionid AND K.killteamid = R.killteamid WHERE R.factionid = ? AND R.killteamid = ? AND (R.userid IN (?, 'prebuilt') OR spotlight = 1) ORDER BY 1 DESC;";
+			
+			$cmd = $dbcon->prepare($sql);
+			if (!$cmd) {
+				//There was an error preparing the SQL statement
+				echo "Error preparing SQL: " . $dbcon->error;
+			}
+			
+			//Set the parameters
+			$userid = $me == null ? 'prebuilt' : $me->userid;
+			$cmd->bind_param('ssss', $userid, $this->factionid, $this->killteamid, $userid);
+			
+			//Run the query
+			if (!$cmd->execute()) {
+				//There was an error running the SQL statement
+				echo "Error running SQL: " . $dbcon->error;
+			}
+
+			//Parse the result
+			if ($result = $cmd->get_result()) {
+				while ($row = $result->fetch_object()) {
+					$r = Roster::FromRow($row);
+					
+					$this->rosters[] = $r;
 				}
 			}
 		}

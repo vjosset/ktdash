@@ -61,13 +61,17 @@
 		
 		<div class="ng-cloak" ng-hide="loading">
 			<div class="card cdarkcard opcard p-2">
-				<div ng-repeat="ab in operative.abilities" class="px-1">
-					<h6>{{ ab.title }}</h6>
+				<div ng-repeat="ab in operative.abilities" class="p-1">
+					<h6 class="d-inline">{{ ab.title }}:</h6>
 					<span ng-bind-html="ab.description" class="text-tiny" style="text-align:justify;"></span>
 				</div>
-				<div ng-repeat="ua in operative.uniqueactions" class="px-1">
-					<h6>{{ ua.title }} ({{ ua.AP }} AP)</h6>
+				<div ng-repeat="ua in operative.uniqueactions" class="p-1">
+					<h6 class="d-inline">{{ ua.title }} ({{ ua.AP }} AP):</h6>
 					<span ng-bind-html="ua.description" class="text-tiny" style="text-align:justify;"></span>
+				</div>
+				<div ng-repeat="eq in operative.equipments" class="p-1" ng-if="eq.eqtype != 'Weapon'">
+					<h6 class="d-inline">{{ eq.eqname }}:</h6>
+					<span ng-bind-html="eq.eqdescription" class="text-tiny" style="text-align:justify;"></span>
 				</div>
 			</div>
 		</div>

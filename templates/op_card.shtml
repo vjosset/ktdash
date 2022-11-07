@@ -28,6 +28,7 @@
 						<li><a class="pointer dropdown-item p-1" ng-click="cloneOp(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
+						<!-- li><a class="pointer dropdown-item p-1" ng-click="printop(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li -->
 						<li><a class="pointer dropdown-item p-1" href="/printop.php?roid={{ operative.rosteropid }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"><i class="fas fa-trash-alt fa-fw"></i> Delete</a></li>
 					</ul>
@@ -299,7 +300,7 @@
 					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
 					<div class="row">
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
-							{{ eq.eqname }}
+							{{ eq.eqname }}<span ng-if="eq.eqpts > 0"> ({{ eq.eqpts }} EP)</span>
 						</div>
 					</div>
 				</div>

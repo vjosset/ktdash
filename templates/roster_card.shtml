@@ -51,16 +51,18 @@
 			
 			<!--- Roster Details -->
 			<div class="m-0 p-1">
-				<a class="navloader" href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">
-					{{ myRoster.killteamname }}
-				</a>
+				<a class="navloader" href="killteam.php?fa={{ myRoster.factionid }}&kt={{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">{{ myRoster.killteamname }}</a>
+				<span ng-if="MODE == 'Compendium'">
+					by&nbsp;<a class="navloader" href="/rosters.php?uid={{ myRoster.userid }}"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;{{ myRoster.username }}</span></a>
+				</span>
 			</div>
 		</div>
 
 		<!-- Roster Stats -->
-		<div class="m-0 p-1" ng-if="myRoster.viewcount + myRoster.importcount > 0">
-			<i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount }}
-			<i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}
+		<div ng-if="(myRoster.viewcount + myRoster.importcount) > 0 || myRoster.spotlight == 1">
+			<span ng-if="myRoster.spotlight == 1"><i class="fas fa-star fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></span>
+			<span ng-if="myRoster.viewcount > 0"><i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount }}</span>
+			<span ng-if="myRoster.importcount > 0"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}</span>
 		</div>
 		
 		<p ng-show="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify;">

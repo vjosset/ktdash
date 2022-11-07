@@ -29,29 +29,6 @@
 		exit;
 	}
 	$killteam = KillTeam::GetKillTeam($factionid, $killteamid);
-	
-	global $dbcon;
-	$sql = "SELECT CASE WHEN R.userid = 'prebuilt' THEN 10 ELSE 1 END AS seq, U.username, rosterid, rostername, U.userid, oplist, notes FROM RosterView R INNER JOIN User U ON U.userid = R.userid WHERE R.userid IN ('prebuilt', ?) AND factionid = ? AND killteamid = ? ORDER BY 1, 2";
-	
-	$user = Session::CurrentUser();
-	$userid = ($user == null ? "anon" : $user->userid);
-	$cmd = $dbcon->prepare($sql);
-	$paramtypes = "sss";
-	$params = array();
-	$params[] =& $paramtypes;
-	$params[] =& $userid;
-	$params[] =& $factionid;
-	$params[] =& $killteamid;
-	
-	call_user_func_array(array($cmd, "bind_param"), $params);
-	$cmd->execute();
-
-	$prebuiltrosters = [];
-	if ($result = $cmd->get_result()) {
-		while ($row = $result->fetch_object()) {
-			$prebuiltrosters[] = $row;
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -130,17 +107,11 @@
 						Equip
 					</a>
 				</li>
-				<?php
-				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
-				?>
-					<li class="nav-item m-0 p-0 dark" role="presentation">
-						<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
-							Rosters
-						</a>
-					</li>
-				<?php
-				}
-				?>
+				<li class="nav-item m-0 p-0 dark" role="presentation" ng-id="killteam.rosters.length > 0">
+					<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
+						Rosters
+					</a>
+				</li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane show active" id="ops" role="tabpanel">
@@ -197,28 +168,19 @@
 						</div>
 					</div>
 				</div>
-				
-				<?php
-				if ($prebuiltrosters != null && count($prebuiltrosters) > 0) {
-				?>
-					<div class="tab-pane p-2" id="rosters" role="tabpanel">
-						<!-- Pre-Built Rosters -->
-						<?php
-						foreach ($prebuiltrosters as $roster) {
-							if ($roster->userid == 'prebuilt') {
-								?>
-								<a class="navloader" href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a> (Pre-Built)<br/>
-								<?php
-							} else {
-								?><a class="navloader" href="/roster.php?rid=<?php echo $roster->rosterid ?>"><?php echo $roster->rostername ?></a><br/>
-							<?php
-							}
-						}
-						?>
+			
+				<div class="tab-pane" id="rosters" role="tabpanel">
+					<div class="m-0 p-0">
+						<div ng-if="killteam.rosters.length > 0" class="row p-0 m-0">
+							<div ng-if="settings['display'] == 'card' || settings['display'] == null" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in killteam.rosters track by $index">
+								<?php include "templates/roster_card.shtml" ?>
+							</div>
+							<div ng-if="settings['display'] == 'list'" class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in killteam.rosters track by $index">
+								<?php include "templates/roster_list.shtml" ?>
+							</div>
+						</div>
 					</div>
-				<?php
-				}
-				?>
+				</div>
 			</div>
 		</div>
 		

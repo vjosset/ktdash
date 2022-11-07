@@ -1763,6 +1763,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Hide the modal
 				$('#editopeqmodal').modal("hide");
 			}
+			
+			$scope.printop = function(operative) {
+				te("roster", "print", "op", operative.rosterid, operative.rosteropid);
+				window.open('https://indocpdf.com/api/pdfrender.php?apikey=D7C57EED-CCE5-4EB7-A6DA-BF6D0E724366&showbackground=false&filename=' + operative.opname  + '.pdf&url=https%3A%2F%2Fktdash.app/printop.php%3Froid=' + operative.rosteropid);
+			}
 		
 			// initPrintOp()
 			// Load the specified operative to be printed
