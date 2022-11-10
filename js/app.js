@@ -1300,7 +1300,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.getaddopname = function() {
-				var url = APIURL + "/name.php?factionid=" + $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid;
+				var url = APIURL + "name.php?factionid=" + $scope.addop.operative.factionid + "&killteamid=" + $scope.addop.operative.killteamid + "&fireteamid=" + $scope.addop.operative.fireteamid + "&opid=" + $scope.addop.operative.opid;
 				$.ajax({
 					type: "GET",
 					url: url,
@@ -1317,7 +1317,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
-				var url = APIURL + "/name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
+				var url = APIURL + "name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
 				$.ajax({
 					type: "GET",
 					url: url,
@@ -1355,7 +1355,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				$.ajax({
 					type: "DELETE",
-					url: APIURL + "/rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid,
+					url: APIURL + "rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid,
 					timeout: 5000,
 					async: true,
 					dataType: 'text',
@@ -1994,107 +1994,123 @@ var app = angular.module("kt", ['ngSanitize'])
 					window.location.href = "/login.htm";
 				}
 				else {
-					// User is logged in, check if they have at least one roster/team
-					if ($scope.currentuser.rosters.length < 1) {
-						$scope.loading = false;
-						console.log("No rosters for this user");
-						toast("You don't have any rosters!");
-						window.location.href = "/rosters.php";
-					}
-					else {
-						// Get the current deployed roster
-						//	May be set from the query string ("Deploy" button on rosters)
-						if (GetQS("rid") != "" && GetQS("rid") != null) {
-							$scope.setDashboardRosterId(GetQS("rid"));
-						}
+					// User is logged in, get their rosters
+					$.ajax({
+						type: "GET",
+						url: APIURL + "roster.php?loadrosterdetail=1&uid=" + $scope.currentuser.userid,
+						timeout: 5000,
+						async: true,
+						dataType: 'json',
 						
-						$scope.dashboardrosterid = $scope.getDashboardRosterId();
-						if ($scope.dashboardrosterid == null || $scope.dashboardrosterid == "") {
-							// Just select the first roster for the current user
-							$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
-							$scope.setDashboardRosterId($scope.dashboardrosterid);
-						}
-						
-						// Now check that this roster actually exists
-						$scope.dashboardroster = null;
-						for (let i = 0; i < $scope.currentuser.rosters.length; i++) {
-							if ($scope.currentuser.rosters[i].rosterid == $scope.dashboardrosterid) {
-								// Found it
-								$scope.dashboardroster = $scope.currentuser.rosters[i];
-							}
-						}
-						
-						if ($scope.dashboardroster == null) {
-							// Did not find the assigned roster, use the first one instead
-							$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
-							$scope.setDashboardRosterId($scope.dashboardrosterid);
-							$scope.dashboardroster = $scope.currentuser.rosters[0];
-							$scope.setDashboardRosterId($scope.dashboardrosterid);
-						}
-						
-						// Get the operatives and set their "Injured" flag where appropriate
-						for (let i = 0; i < $scope.dashboardroster.operatives.length; i++) {
-							let op = $scope.dashboardroster.operatives[i];
+						// Success
+						success: function(data) { // Got user's rosters
+							// Load the rosters into "myRosters"
+							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+							$scope.currentuser.rosters = data;
 							
-							let wasInjured = op.isInjured;
-							if (wasInjured == null) {
-								wasInjured = false;
+							// Get the current deployed roster
+							//	May be set from the query string ("Deploy" button on rosters)
+							if (GetQS("rid") != "" && GetQS("rid") != null) {
+								$scope.setDashboardRosterId(GetQS("rid"));
 							}
-							if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
-								// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
-								op.isInjured = true;
+							
+							$scope.dashboardrosterid = $scope.getDashboardRosterId();
+							if ($scope.dashboardrosterid == null || $scope.dashboardrosterid == "") {
+								// Just select the first roster for the current user
+								$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
+								$scope.setDashboardRosterId($scope.dashboardrosterid);
+							}
+							
+							// Now check that this roster actually exists
+							$scope.dashboardroster = null;
+							for (let i = 0; i < $scope.currentuser.rosters.length; i++) {
+								if ($scope.currentuser.rosters[i].rosterid == $scope.dashboardrosterid) {
+									// Found it
+									$scope.dashboardroster = $scope.currentuser.rosters[i];
+								}
+							}
+							
+							if ($scope.dashboardroster == null) {
+								// Did not find the assigned roster, use the first one instead
+								$scope.dashboardrosterid = $scope.currentuser.rosters[0].rosterid;
+								$scope.setDashboardRosterId($scope.dashboardrosterid);
+								$scope.dashboardroster = $scope.currentuser.rosters[0];
+								$scope.setDashboardRosterId($scope.dashboardrosterid);
+							}
+							
+							// Get the operatives and set their "Injured" flag where appropriate
+							for (let i = 0; i < $scope.dashboardroster.operatives.length; i++) {
+								let op = $scope.dashboardroster.operatives[i];
 								
-								// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
-								// This does NOT apply to Pathfinder Assault Grenadiers
-								if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
-									for (let i = 0; i < op.weapons.length; i++) {
-										let wep = op.weapons[i];
-										for (let j = 0; j < wep.profiles.length; j++) {
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+								let wasInjured = op.isInjured;
+								if (wasInjured == null) {
+									wasInjured = false;
+								}
+								if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+									// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
+									op.isInjured = true;
+									
+									// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
+									// This does NOT apply to Pathfinder Assault Grenadiers
+									if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
+										for (let i = 0; i < op.weapons.length; i++) {
+											let wep = op.weapons[i];
+											for (let j = 0; j < wep.profiles.length; j++) {
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+											}
 										}
 									}
-								}
-								
-								// Reduce the M on the operative
-								op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
-								op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
-								op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
-								op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
-								
-							} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
-								// Operative is no longer injured, was injured before
-								op.isInjured = false;
-								
-								// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
-								// This does NOT apply to Pathfinder Assault Grenadiers
-								if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
-									for (let i = 0; i < op.weapons.length; i++) {
-										let wep = op.weapons[i];
-										for (let j = 0; j < wep.profiles.length; j++) {
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-											wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+									
+									// Reduce the M on the operative
+									op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
+									op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
+									op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
+									op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+									
+								} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
+									// Operative is no longer injured, was injured before
+									op.isInjured = false;
+									
+									// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
+									// This does NOT apply to Pathfinder Assault Grenadiers
+									if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
+										for (let i = 0; i < op.weapons.length; i++) {
+											let wep = op.weapons[i];
+											for (let j = 0; j < wep.profiles.length; j++) {
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+												wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+											}
 										}
 									}
+									
+									// Increase the M on the operative
+									op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
+									op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
+									op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
+									op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
+									op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
 								}
-								
-								// Increase the M on the operative
-								op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
-								op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
-								op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
-								op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
-								op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
 							}
+							
+							// Done
+							$scope.loading = false;
+							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to get rosters
+							toast("Could not get rosters: \r\n" + error);
+							$scope.loading = false;
+							$scope.$apply();
 						}
-					}
+					});
 				}
-				$scope.loading = false;
 			}
 			
 			// selectDashboardRoster()
@@ -2469,7 +2485,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// generatename()
 			// Generates a name for the name type
 			$scope.generatename = function() {
-				var url = APIURL + "/name.php?nametype=" + $scope.generatenametype;
+				var url = APIURL + "name.php?nametype=" + $scope.generatenametype;
 				$.ajax({
 					type: "GET",
 					url: url,

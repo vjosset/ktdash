@@ -47,7 +47,7 @@
 			</div>
 		</h3>
 		
-		<div class="ng-cloak">
+		<div class="ng-cloak" ng-hide="loading">
 			<!-- Header/Title - Team selection and CP/VP/TP tracker -->
 			<div class="container-fluid orange">
 				<div class="row">

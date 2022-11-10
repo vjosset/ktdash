@@ -29,6 +29,7 @@
 		// Get the requested roster
 		$rid = getIfSet($_REQUEST['rid']);
 		$uid = getIfSet($_REQUEST['uid']);
+		$loadrosterdetail = getIfSet($_REQUEST['loadrosterdetail']);
 		
 		if ($rid == null || $rid == '') {
 			// No roster id passed in, return the specified user's roster
@@ -46,7 +47,7 @@
 			
 			// Get the rosters for this user
 			$u = User::FromDB($uid);
-			$u->loadRosters();
+			$u->loadRosters($loadrosterdetail);
 			echo json_encode($u->rosters);
 		} else {
 			// Return the requested roster

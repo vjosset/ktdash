@@ -28,7 +28,7 @@
 		header("Location: /login.htm");
 		exit;
 	}
-	$myUser->loadRosters();
+	$myUser->loadRosters(0);
 	$myRosters = $myUser->rosters;
 	$ismine = ($me != null && $me->userid == $uid);
 ?>

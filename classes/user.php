@@ -66,7 +66,7 @@
             return null;
         }
 		
-		public function loadRosters() {
+		public function loadRosters($loadrosterdetail) {
 			global $dbcon;
 			
 			// Get the teams for this user
@@ -83,8 +83,10 @@
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
 					$ut = Roster::FromRow($row);
-					$ut->loadOperatives();
-					$ut->loadKillTeam();
+					if ($loadrosterdetail > 0) {
+						$ut->loadOperatives();
+						$ut->loadKillTeam();
+					}
 					$this->rosters[] = $ut;
                 }
             }
