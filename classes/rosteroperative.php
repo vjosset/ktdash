@@ -36,7 +36,8 @@
 				"killteamname", "fireteamname", "killteam", "fireteam",
 				"archetype",
 				"isInjured","isinjured",
-				"keywords", "abilities", "uniqueactions"
+				"keywords", "abilities", "uniqueactions",
+				"timestamp", "usedefaultportrait"
 			];
         }
 		

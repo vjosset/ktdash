@@ -34,9 +34,13 @@
 			header("HTTP/1.0 404 Not Found - The user you requested was not found");
 		}
 		
-		// Find the userid for the specified username
-		$userid = (User::FromName($username))->userid;
-
+		$user = User::FromName($username);
+		if ($user == null) {
+			header("HTTP/1.0 404 Not Found - The user you requested was not found");
+		}
+		
+		// Get the userid for the specified username
+		$userid = $user->userid;
 		$myuserid = $myuser->userid;
 		
 		// If no user id was passed in, assume my user id

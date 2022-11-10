@@ -136,6 +136,12 @@
 						die();
 					} else {
 						// Get the submitted image and validate it, then resize and save it
+						if (!isset($_FILES["file"])) {
+							// No file uploaded
+							header("HTTP/1.0 400 No portrait image uploaded");
+							die();
+						}
+					
 						$filename = $_FILES["file"]["name"];
 						$tempname = $_FILES["file"]["tmp_name"];
 						if ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {
@@ -150,7 +156,11 @@
 								7 => 'Failed to write file to disk.',
 								8 => 'A PHP extension stopped the file upload.',
 							);
-							header("HTTP/1.0 400 " . $phpFileUploadErrors[$_FILES['file']['error']]);
+							if ($_FILES['file']['error'] >= 0 && $_FILES['file']['error'] < 9) {
+								header("HTTP/1.0 400 " . $phpFileUploadErrors[$_FILES['file']['error']]);
+							} else {
+								header("HTTP/1.0 400 Could not upload portrait image");
+							}
 							die();
 						}
 						$filesize= $_FILES['file']['size'];

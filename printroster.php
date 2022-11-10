@@ -42,23 +42,23 @@
 		?>
 		
 		<div class="orange container-fluid m-0 p-0">
-			<h1 class="m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition">
+			<h2 class="m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition">
 				<span ng-bind="myRoster.rostername"><?php echo $myRoster->rostername ?></span>
 				<span class="ng-cloak" ng-hide="loading">({{ myRoster.killteamname }})</span>
-			</h1>
+			</h2>
 		</div>
 		<a href="https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>">https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?></a>
 		<br/><br/>
 		
 		<!-- loadWaiter -->
-		<h3 class="center" ng-show="loading">
+		<h4 class="center" ng-show="loading">
 			<br/>
 			<div>
 				<i class="fas fa-undo-alt fa-fw rotate" ></i>
 				<br />
 				Loading Roster...
 			</div>
-		</h3>
+		</h4>
 		
 		<div class="row ng-cloak" style="page-break-after: always;">
 			<div class="col-8">
@@ -101,7 +101,7 @@
 					<div class="row">
 						<div class="col-7">
 							<!-- Operative Name -->
-							<h1>{{ operative.opname }}</h1>
+							<h2>{{ operative.opname }}</h2>
 						</div>
 						<div class="col-5 text-end">
 							<!-- Operative Type -->
@@ -116,20 +116,20 @@
 					
 					<!-- Operative Stats -->
 					<div class="row">
-						<h4 class="col-2 orange text-center">M</h4>
-						<h4 class="col-2 orange text-center">APL</h4>
-						<h4 class="col-2 orange text-center">GA</h4>
-						<h4 class="col-2 orange text-center">DF</h4>
-						<h4 class="col-2 orange text-center">SV</h4>
-						<h4 class="col-2 orange text-center">W</h4>
+						<h5 class="col-2 orange text-center">M</h5>
+						<h5 class="col-2 orange text-center">APL</h5>
+						<h5 class="col-2 orange text-center">GA</h5>
+						<h5 class="col-2 orange text-center">DF</h5>
+						<h5 class="col-2 orange text-center">SV</h5>
+						<h5 class="col-2 orange text-center">W</h5>
 					</div>
 					<div class="row">
-						<h4 class="col-2 text-center" ng-bind-html="operative.M"></h4>
-						<h4 class="col-2 text-center">{{ operative.APL }}</h4>
-						<h4 class="col-2 text-center">{{ operative.GA }}</h4>
-						<h4 class="col-2 text-center">{{ operative.DF }}</h4>
-						<h4 class="col-2 text-center">{{ operative.SV }}</h4>
-						<h4 class="col-2 text-center">{{ operative.W }}</h4>
+						<h5 class="col-2 text-center" ng-bind-html="operative.M"></h5>
+						<h5 class="col-2 text-center">{{ operative.APL }}</h5>
+						<h5 class="col-2 text-center">{{ operative.GA }}</h5>
+						<h5 class="col-2 text-center">{{ operative.DF }}</h5>
+						<h5 class="col-2 text-center">{{ operative.SV }}</h5>
+						<h5 class="col-2 text-center">{{ operative.W }}</h5>
 					</div>
 					
 					<!-- Weapons -->
@@ -138,16 +138,16 @@
 							<thead>
 								<tr>
 									<td>
-										<h5>Weapons</h5>
+										<h6>Weapons</h6>
 									</td>
 									<td class="text-center">
-										<h5>&nbsp;&nbsp;A&nbsp;&nbsp;</h5>
+										<h6>&nbsp;&nbsp;A&nbsp;&nbsp;</h6>
 									</td>
 									<td class="text-center">
-										<h5>&nbsp;&nbsp;BS&nbsp;&nbsp;</h5>
+										<h6>&nbsp;&nbsp;BS&nbsp;&nbsp;</h6>
 									</td>
 									<td class="text-center">
-										<h5>&nbsp;&nbsp;D&nbsp;&nbsp;</h5>
+										<h6>&nbsp;&nbsp;D&nbsp;&nbsp;</h6>
 									</td>
 								</tr>
 							</thead>
@@ -165,13 +165,13 @@
 										{{ weapon.wepname }}
 										<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 										&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ weapon.profiles[0].D }}&nbsp;&nbsp;
 									</td>
 								</tr>
@@ -193,13 +193,13 @@
 										- {{ profile.name }}
 										<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 										&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
 									</td>
 								</tr>
@@ -214,13 +214,13 @@
 										{{ eq.weapon.wepname }}
 										<div class="d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ eq.weapon.profiles[0].A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 										&nbsp;&nbsp;&nbsp;{{ eq.weapon.profiles[0].BS }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ eq.weapon.profiles[0].D }}&nbsp;&nbsp;
 									</td>
 								</tr>
@@ -238,13 +238,13 @@
 										- {{ profile.name }}
 										<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
 										&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h5">
+									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.D }}&nbsp;&nbsp;
 									</td>
 								</tr>
@@ -254,28 +254,34 @@
 					
 					<!-- Abilities -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.abilities.length > 0">
-						<h5>Abilities</h5>
-						<div class="px-1" ng-repeat="ab in operative.abilities">
-							<h6 class="d-inline">{{ ab.title }}</h6>
-							<p class="px-2" ng-bind-html="ab.description"></p>
+						<h6>Abilities</h6>
+						<div ng-style="operative.abilities.length > 1 && {'columns': '200px 2'}">
+							<div class="px-1" ng-repeat="ab in operative.abilities">
+								<strong>{{ ab.title }}: </strong>
+								<p class="d-inline px-2" ng-bind-html="ab.description" style="text-align:justify;"></p>
+							</div>
 						</div>
 					</div>
 					
 					<!-- Unique Actions -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.uniqueactions.length > 0">
-						<h5>Unique Actions</h5>
-						<div class="px-1" ng-repeat="ua in operative.uniqueactions">
-							<h6 class="d-inline">{{ ua.title }} ({{ ua.AP }} AP)</h6>
-							<p class="px-2" ng-bind-html="ua.description"></p>
+						<h6>Unique Actions</h6>
+						<div ng-style="operative.uniqueactions.length > 1 && {'columns': '200px 2'}">
+							<div class="px-1" ng-repeat="ua in operative.uniqueactions">
+								<strong>{{ ua.title }} ({{ ua.AP }} AP): </strong>
+								<p class="d-inline px-2" ng-bind-html="ua.description" style="text-align:justify;"></p>
+							</div>
 						</div>
 					</div>
 					
 					<!-- Equipment -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.equipments.length > 0">
-						<h5>Equipment</h5>
-						<div class="px-1" ng-repeat="eq in operative.equipments">
-							<h6 class="d-inline">{{ eq.eqname }} <span ng-if="eq.eqpts > 0">({{ eq.eqpts }} EP)</span></h6>
-							<p class="px-2" ng-bind-html="eq.eqdescription"></p>
+						<h6>Equipment</h6>
+						<div ng-style="operative.equipments.length > 1 && {'columns': '200px 2'}">
+							<div class="px-1" ng-repeat="eq in operative.equipments">
+								<strong>{{ eq.eqname }} <span ng-if="eq.eqpts > 0">({{ eq.eqpts }} EP)</span>: </strong>
+								<p class="d-inline px-2" ng-bind-html="eq.eqdescription" style="text-align:justify;"></p>
+							</div>
 						</div>
 					</div>
 					
