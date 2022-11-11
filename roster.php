@@ -1,4 +1,9 @@
 <?php
+	if ($_SERVER['REQUEST_METHOD'] != "GET") {
+		header('HTTP/1.0 400 Invalid Request');
+		die();
+	}
+	
 	$root = $_SERVER['DOCUMENT_ROOT'];
 	require_once $root . '/include.php';
 	global $dbcon;

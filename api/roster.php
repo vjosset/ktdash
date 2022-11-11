@@ -31,6 +31,12 @@
 		$uid = getIfSet($_REQUEST['uid']);
 		$loadrosterdetail = getIfSet($_REQUEST['loadrosterdetail']);
 		
+		// Validate Input
+		if (strlen($rid) > 10 || strlen($uid) > 10 || strlen($loadrosterdetail) > 2) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		if ($rid == null || $rid == '') {
 			// No roster id passed in, return the specified user's roster
 			
@@ -74,6 +80,13 @@
 				
 				// Get the original roster
 				$origrosterid = getIfSet($_REQUEST['rid']);
+		
+				// Validate Input
+				if (strlen($origrosterid) > 10) {
+					header("HTTP/1.0 400 Invalid Input");
+					die();
+				}
+				
 				$origroster = Roster::GetRoster($origrosterid);
 				$roster = Roster::GetRoster($origrosterid);
 				
@@ -161,6 +174,12 @@
 				// Get the opid and seq for roster 2
 				$seq2 = getIfSet($_REQUEST["seq2"]);
 				$rid2 = getIfSet($_REQUEST["rid2"]);
+		
+				// Validate Input
+				if (strlen($seq1) > 3 || strlen($rid1) > 10 || strlen($seq2) > 3 || strlen($rid2) > 10) {
+					header("HTTP/1.0 400 Invalid Input");
+					die();
+				}
 				
 				global $dbcon;
 				$sql = "UPDATE Roster SET seq = ? WHERE userid = ? AND rosterid = ?;";

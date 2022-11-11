@@ -22,6 +22,13 @@
 		if ($factionid == "" || $factionid == null) {
 			$factionid = getIfSet($_REQUEST['faid']);
 		}
+		
+		// Validate Input
+		if (strlen($factionid) > 10) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		$loadkillteams = (getIfSet($_REQUEST['loadkts']) == '1');
 		$loadops = (getIfSet($_REQUEST['loadops']) == '1');
 		

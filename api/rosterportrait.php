@@ -27,7 +27,7 @@
 		// Get the requested roster
 		$rid = $_REQUEST['rid'];
 		
-		if ($rid == null || $rid == '') {
+		if ($rid == null || $rid == '' || strlen($rid) > 10) {
 			// No rosterid specified - fail
 			header('HTTP/1.0 404 Invalid rosterid');
 			die();
@@ -84,7 +84,7 @@
 			// Get the requested roster
 			$rid = $_REQUEST['rid'];
 			
-			if ($rid == null || $rid == '') {
+			if ($rid == null || $rid == '' || strlen($rid) > 10) {
 				// No rosterid specified - fail
 				header('HTTP/1.0 404 Invalid rosterid');
 				die();
@@ -125,7 +125,7 @@
 			// Get the requested roster
 			$rid = $_REQUEST['rid'];
 			
-			if ($rid == null || $rid == '') {
+			if ($rid == null || $rid == '' || strlen($rid) > 10) {
 				// No rosterid specified - fail
 				header('HTTP/1.0 404 Invalid rosterid');
 				die();

@@ -27,6 +27,12 @@
 		// Get the requested operative
 		$roid = $_REQUEST['roid'];
 		
+		// Validate Input
+		if (strlen($roid) > 10) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		if ($roid == null || $roid == '') {
 			// No rosteropid specified - fail
 			header('HTTP/1.0 404 Invalid rosteropid');
@@ -78,7 +84,7 @@
 			// Get the requested operative
 			$roid = $_REQUEST['roid'];
 			
-			if ($roid == null || $roid == '') {
+			if ($roid == null || $roid == '' || strlen($roid) > 10) {
 				// No rosteropid specified - fail
 				header('HTTP/1.0 404 Invalid rosteropid');
 				die();
@@ -119,7 +125,7 @@
 			// Get the requested operative
 			$roid = $_REQUEST['roid'];
 			
-			if ($roid == null || $roid == '') {
+			if ($roid == null || $roid == '' || strlen($roid) > 10) {
 				// No rosteropid specified - fail
 				header('HTTP/1.0 404 Invalid rosteropid');
 				die();

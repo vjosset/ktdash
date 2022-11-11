@@ -21,6 +21,12 @@
 		$killteamid = $_REQUEST['killteamid'];
 		$opid = $_REQUEST['opid'];
 		
+		// Validate Input
+		if (strlen($opid) > 10) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		if ($opid != '') {
 			// Return requested operative
 			$ops = Operative::GetOperative($opid);

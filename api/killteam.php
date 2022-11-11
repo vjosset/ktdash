@@ -21,6 +21,12 @@
 		$factionid = getIfSet($_REQUEST['fa']);
 		$killteamid = getIfSet($_REQUEST['kt']);
 		
+		// Validate Input
+		if (strlen($factionid) > 10 || strlen($killteamid) > 10) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		if ($killteamid == null || $killteamid == '') {
 			// No killteam id passed in, return all killteams
 			$killteams = Killteam::GetKillteams();

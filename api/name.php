@@ -18,6 +18,13 @@
 	
 	function GetName() {
 		$nametype = getIfSet($_REQUEST["nametype"]);
+		
+		// Validate Input
+		if (strlen($nametype) > 40) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
+		
 		switch ($nametype) {
 			case "AELDARI-M":
 				return GetAeldariMaleName() . " " . GetAeldariMaleName();
@@ -64,6 +71,12 @@
 		$ktid = getIfSet($_REQUEST["killteamid"]);
 		$ftid = getIfSet($_REQUEST["fireteamid"]);
 		$opid = getIfSet($_REQUEST["opid"]);
+		
+		// Validate Input
+		if (strlen($faid) > 10 || strlen($ktid) > 10 || strlen($ftid) > 10 || strlen($opid) > 10) {
+            header("HTTP/1.0 400 Invalid Input");
+			die();
+		}
 		
 		$key = $faid . "|" . $ktid . "|" . $ftid . "|" . $opid;
 		

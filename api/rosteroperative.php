@@ -27,7 +27,7 @@
 		// Get the requested operative
 		$roid = getIfSet($_REQUEST['roid']);
 		
-		if ($roid == null || $roid == '') {
+		if ($roid == null || $roid == '' || strlen($roid) > 10) {
 			// No rosteropid specified - fail
 			header('HTTP/1.0 404 Invalid rosteropid');
 			die();
@@ -57,7 +57,7 @@
 			// Get the requested operative
 			$roid = getIfSet($_REQUEST['roid']);
 			
-			if ($roid == null || $roid == '') {
+			if ($roid == null || $roid == '' || strlen($roid) > 10) {
 				// No rosteropid specified - fail
 				header('HTTP/1.0 404 Invalid rosteropid');
 				die();
@@ -107,6 +107,12 @@
 				
 				// Get the roster id
 				$rid = getIfSet($_REQUEST["rid"]);
+		
+				// Validate Input
+				if (strlen($rid) > 10) {
+					header("HTTP/1.0 400 Invalid Input");
+					die();
+				}
 				
 				$r = Roster::GetRoster($rid);
 				
@@ -123,6 +129,12 @@
 				// Get the opid and seq for op 2
 				$seq2  = getIfSet($_REQUEST["seq2"]);
 				$roid2 = getIfSet($_REQUEST["roid2"]);
+				
+				// Validate Input
+				if (strlen($seq1) > 3 || strlen($roid1) > 10 || strlen($seq2) > 3 || strlen($roid2) > 10) {
+					header("HTTP/1.0 400 Invalid Input");
+					die();
+				}
 				
 				global $dbcon;
 				$sql = "UPDATE RosterOperative SET seq = ? WHERE rosterid = ? AND rosteropid = ?;";

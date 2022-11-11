@@ -23,17 +23,19 @@
 			// Get the requested Killteam
 			$killteam = Killteam::FromDB($factionid, $killteamid);
 			
-			// Load its fireteams
-			$killteam->loadFireteams();
-			
-			// Load its ploys
-			$killteam->loadPloys();
-			
-			// Load its equipments
-			$killteam->loadEquipments();
-			
-			// Load its "spotlighted" rosters
-			$killteam->loadRosters();
+			if ($killteam != null) {
+				// Load its fireteams
+				$killteam->loadFireteams();
+				
+				// Load its ploys
+				$killteam->loadPloys();
+				
+				// Load its equipments
+				$killteam->loadEquipments();
+				
+				// Load its "spotlighted" rosters
+				$killteam->loadRosters();
+			}
 			
 			return $killteam;
 		}

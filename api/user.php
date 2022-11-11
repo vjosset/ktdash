@@ -81,12 +81,17 @@
 		$confirmpassword = $_REQUEST['confirmpassword'];
 
 		if ($confirmpassword != $password) {
-            header('HTTP/1.0 500 Passwords do not match');
+            header('HTTP/1.0 400 Passwords do not match');
             die();
 		}
 		
 		if (strpos($username, "@")) {
-            header('HTTP/1.0 500 Please do not use an email address as your user name');
+            header('HTTP/1.0 400 Please do not use an email address as your user name');
+            die();
+		}
+		
+		if (strlen($username) > 50 || strlen($password) > 50) {
+            header('HTTP/1.0 400 Invalid Input');
             die();
 		}
 

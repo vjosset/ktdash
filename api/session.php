@@ -11,7 +11,16 @@
 			break;
 		case "POST":
 			// Log the user in
-			$u = Session::Login($_REQUEST['username'], $_REQUEST['password']);
+			$username = getIfSet($_REQUEST['username']);
+			$password = getIfSet($_REQUEST['password']);
+			
+			if (strlen($username) > 50 || strlen($password) > 50) {
+				sleep(3);
+				header('HTTP/1.0 400 Invalid Input');
+				die();
+			}
+			
+			$u = Session::Login($username, $password);
 			if ($u == null) {
 				// Could not log in
 				// Wait a little bit to thwart brute-force login attempts
