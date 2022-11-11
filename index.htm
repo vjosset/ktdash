@@ -19,7 +19,7 @@
 		<meta property="og:image"  content="https://ktdash.app/img/og/Home.png">
 		<meta name="twitter:image" content="https://ktdash.app/img/og/Home.png">
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();" class="p-0 m-0 oswald">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initHome();" class="p-0 m-0 oswald">
 		<!--#include virtual="topnav.shtml" -->	
 		
 		<div class="m-0 p-0"
@@ -85,11 +85,11 @@
 					</a>
 				</h3>
 				<ul>
-					<li ng-repeat="roster in currentuser.rosters">
+					<li ng-repeat="roster in myRosters">
 						<a href="/roster.php?rid={{ roster.rosterid }}">{{ roster.rostername }}</a>
 					</li>
 					<li>
-						<a href="/rosters.php?uid=prebuilt">Pre-built teams</a>
+						<a href="/rosters.php?uid=prebuilt">Pre-built rosters</a>
 					</li>
 				</ul>
 			</div>

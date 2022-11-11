@@ -18,8 +18,8 @@
 
     function GETOperative() {
 		// Get the requested filters
-		$killteamid = $_REQUEST['killteamid'];
-		$opid = $_REQUEST['opid'];
+		$killteamid = getIfSet($_REQUEST['killteamid']);
+		$opid = getIfSet($_REQUEST['opid']);
 		
 		// Validate Input
 		if (strlen($opid) > 10) {

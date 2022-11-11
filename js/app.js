@@ -65,6 +65,37 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.te = function(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 				te(t, a, l, v1, v2, v3);
 			}
+			
+			// initHome()
+			// Home page load
+			$scope.initHome = function() {
+				if ($scope.currentuser != null) {
+					// Get the user's rosters
+					$.ajax({
+						type: "GET",
+						url: APIURL + "roster.php?uid=" + $scope.currentuser.userid,
+						timeout: 5000,
+						async: true,
+						dataType: 'json',
+						
+						// Success
+						success: function(data) { // Got user's rosters
+							// Load the rosters into "myRosters"
+							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+							$scope.myRosters = data;
+							
+							$scope.loading = false;
+							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to get rosters
+							toast("Could not get rosters: \r\n" + error);
+							$scope.loading = false;
+							$scope.$apply();
+						}
+					});
+				}
+			}
 		}
 		
 		// SESSION & LOG IN
