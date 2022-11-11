@@ -277,6 +277,12 @@
 			$rid = getIfSet($_REQUEST['rid']);
 			$r = Roster::FromDB($rid);
 			
+			if ($r == null) {
+				// Roster not found
+				header('HTTP/1.0 404 Roster not found');
+				die();
+			}
+			
 			// Validate the roster's owner
 			if ($r->userid == $u->userid) {
 				// Current user owns this roster, OK to delete

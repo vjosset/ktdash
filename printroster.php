@@ -168,7 +168,7 @@
 									<td class="text-center h6">
 										&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6">
 										&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
 									</td>
 									<td class="text-center h6">
@@ -196,7 +196,7 @@
 									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6">
 										&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 									</td>
 									<td class="text-center h6">
@@ -217,7 +217,7 @@
 									<td class="text-center h6">
 										&nbsp;&nbsp;{{ eq.weapon.profiles[0].A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6">
 										&nbsp;&nbsp;&nbsp;{{ eq.weapon.profiles[0].BS }}&nbsp;&nbsp;
 									</td>
 									<td class="text-center h6">
@@ -241,7 +241,7 @@
 									<td class="text-center h6">
 										&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 									</td>
-									<td class="text-center h6" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+									<td class="text-center h6">
 										&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 									</td>
 									<td class="text-center h6">
@@ -255,7 +255,7 @@
 					<!-- Abilities -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.abilities.length > 0">
 						<h6>Abilities</h6>
-						<div ng-style="operative.abilities.length > 1 && {'columns': '200px 2'}">
+						<div ng-style="(operative.abilities.length > 1 || operative.abilities[0].description.length > 500) && {'columns': '200px 2'}">
 							<div class="px-1" ng-repeat="ab in operative.abilities">
 								<strong>{{ ab.title }}: </strong>
 								<p class="d-inline px-2" ng-bind-html="ab.description" style="text-align:justify;"></p>
@@ -266,7 +266,7 @@
 					<!-- Unique Actions -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.uniqueactions.length > 0">
 						<h6>Unique Actions</h6>
-						<div ng-style="operative.uniqueactions.length > 1 && {'columns': '200px 2'}">
+						<div ng-style="(operative.uniqueactions.length > 1 || operative.uniqueactions[0].description.length > 500) && {'columns': '200px 2'}">
 							<div class="px-1" ng-repeat="ua in operative.uniqueactions">
 								<strong>{{ ua.title }} ({{ ua.AP }} AP): </strong>
 								<p class="d-inline px-2" ng-bind-html="ua.description" style="text-align:justify;"></p>
@@ -277,7 +277,7 @@
 					<!-- Equipment -->
 					<div class="line-top-light px-1 m-0" ng-if="operative.equipments.length > 0">
 						<h6>Equipment</h6>
-						<div ng-style="operative.equipments.length > 1 && {'columns': '200px 2'}">
+						<div ng-style="(operative.equipments.length > 1 || operative.equipments[0].eqdescription.length > 500) && {'columns': '200px 2'}">
 							<div class="px-1" ng-repeat="eq in operative.equipments">
 								<strong>{{ eq.eqname }} <span ng-if="eq.eqpts > 0">({{ eq.eqpts }} EP)</span>: </strong>
 								<p class="d-inline px-2" ng-bind-html="eq.eqdescription" style="text-align:justify;"></p>

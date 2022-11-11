@@ -1656,21 +1656,22 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns a string representing the archetype for the specified roster, using its operatives' fireteams' archetype
 			$scope.getRosterArchetype = function(roster) {
 				let rosterArchetype = "";
-				
-				for (var opnum = 0; opnum < roster.operatives.length; opnum++) {
-					let op = roster.operatives[opnum];
-					let archetypes = op.archetype.split('/');
-					
-					for (let archnum = 0; archnum < archetypes.length; archnum++) {
-						let arch = archetypes[archnum];
+				if (roster) {
+					for (var opnum = 0; opnum < roster.operatives.length; opnum++) {
+						let op = roster.operatives[opnum];
+						let archetypes = op.archetype.split('/');
 						
-						if (!rosterArchetype.includes(arch)) {
-							// Append this roster archetype to the output
-							if (rosterArchetype.length > 0) {
-								// Put a slash between archetypes
-								rosterArchetype += "/";
+						for (let archnum = 0; archnum < archetypes.length; archnum++) {
+							let arch = archetypes[archnum];
+							
+							if (!rosterArchetype.includes(arch)) {
+								// Append this roster archetype to the output
+								if (rosterArchetype.length > 0) {
+									// Put a slash between archetypes
+									rosterArchetype += "/";
+								}
+								rosterArchetype += arch;
 							}
-							rosterArchetype += arch;
 						}
 					}
 				}
