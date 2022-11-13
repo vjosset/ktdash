@@ -137,6 +137,12 @@ th, td {
 	.fas, .far {
 		display: none;
 	}
+
+	/* Unordered Lists */
+	ul {
+		padding-left: 20px;
+		padding-right: 0px;
+	}
 	
 	.card {
 		page-break-inside: avoid;

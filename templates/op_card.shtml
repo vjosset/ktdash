@@ -28,7 +28,7 @@
 						<li><a class="pointer dropdown-item p-1" ng-click="cloneOp(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Clone Roster"><i class="far fa-copy fa-fw"></i> Clone</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpUp(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Up"><i class="fas fa-arrow-up fa-fw"></i> Move Up</a></li>
 						<li><a class="pointer dropdown-item p-1" ng-click="moveOpDown(myRoster, operative, operative.seq);" data-bs-toggle="tooltip" data-bs-placement="top" title="Move Operative Down"><i class="fas fa-arrow-down fa-fw"></i> Move Down</a></li>
-						<!-- li><a class="pointer dropdown-item p-1" ng-click="printop(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li -->
+						<li><a class="pointer dropdown-item p-1" ng-click="printop(operative);" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li>
 						<!-- li><a class="pointer dropdown-item p-1" href="/printop.php?roid={{ operative.rosteropid }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Operative Card"><i class="fas fa-print fa-fw"></i> Print Operative Card</a></li -->
 						<li><a class="pointer dropdown-item p-1" ng-click="initDeleteOp(operative, myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Operative"><i class="fas fa-trash-alt fa-fw"></i> Delete</a></li>
 					</ul>
@@ -50,7 +50,7 @@
 				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
-			</h3>
+			</h2>
 		</div>
 		
 		<!-- Operative Card Content -->
