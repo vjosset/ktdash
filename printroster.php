@@ -142,7 +142,7 @@
 				</div>
 				
 				<!-- Keywords -->
-				<em class="text-tiny"><?php echo $op->keywords ?></em>
+				<em class="small"><?php echo htmlentities($op->keywords, ENT_HTML5  , 'UTF-8') ?></em>
 				
 				<!-- Operative Stats -->
 				<div class="row">
@@ -262,7 +262,11 @@
 										<td>
 											&nbsp;&nbsp;&nbsp;&nbsp;
 											- <?php echo $pro->name ?>
-											<em><?php echo replaceDistance($pro->SR) ?></em>
+											<?php if ($pro->SR != "") {?>
+											<em>(<?php echo replaceDistance($pro->SR) ?>)</em>
+											<?php
+											}
+											?>
 										</td>
 										<td class="text-center h6">
 											&nbsp;&nbsp;<?php echo $pro->A ?>&nbsp;&nbsp;

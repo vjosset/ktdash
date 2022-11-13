@@ -57,11 +57,15 @@
 					<!-- Operative Card Content -->
 					<div class="opinfo_<?php echo $op->rosteropid ?> p-0">
 						<!-- Dashboard Info -->
-						<div class="col-12">
+						<div>
 							<h6>W:
 							<?php
 							for ($i = 0; $i < $op->W; $i++)
 							{
+								// Flag for "Injured" cutoff
+								//if ($i == floor($op->W / 2)) {
+								//	echo " | ";
+								//}
 								?><input type="checkbox" /><?php
 							}
 							?>
@@ -91,7 +95,7 @@
 											<td><?php echo $op->APL ?></td>
 											<td><?php echo $op->GA ?></td>
 										</tr>
-										<tr class="orange">
+										<tr>
 											<td width="16%">DF</td>
 											<td width="16%">SV</td>
 											<td width="16%">W</td>
@@ -206,7 +210,11 @@
 												<td>
 													&nbsp;&nbsp;&nbsp;&nbsp;
 													- <?php echo $pro->name ?>
-													<em><?php echo replaceDistance($pro->SR) ?></em>
+													<?php if ($pro->SR != "") {?>
+													<em>(<?php echo replaceDistance($pro->SR) ?>)</em>
+													<?php
+													}
+													?>
 												</td>
 												<td class="text-center h6">
 													&nbsp;&nbsp;<?php echo $pro->A ?>&nbsp;&nbsp;
@@ -353,8 +361,8 @@
 				<!-- Operative Card Footer -->
 				<div class="opinfo_{{ operative.rosteropid }} collapse show card-footer m-0 p-1">
 					<!-- Operative Keywords -->
-					<div class="line-top-light align-bottom">
-						<em class="small"><?php echo $op->keywords ?></em>
+					<div class="align-bottom">
+						<em class="small"><?php echo htmlentities($op->keywords, ENT_HTML5  , 'UTF-8') ?></em>
 					</div>
 				</div>
 			</div>
