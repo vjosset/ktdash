@@ -251,9 +251,6 @@
 									}
 									
 									echo $wep->wepname;
-									if ($wep->SR != "") {
-										echo " <em>(" . replaceDistance($wep->SR) . ")</em>";
-									}
 									?>
 									</td>
 								</tr>
@@ -352,7 +349,7 @@
 						?>
 							<div class="px-1">
 								<strong><?php echo $ua->title ?> (<?php echo $ua->AP ?> AP): </strong>
-								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($ab->description) ?></p>
+								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($ua->description) ?></p>
 							</div>
 						<?php
 						}
