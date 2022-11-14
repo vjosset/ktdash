@@ -537,7 +537,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title" id="opportraitmodallabel"><i class="fas fa-edit fa-fw"></i> {{ optoedit.opname }}</h5>
+				<h5 class="modal-title" id="opportraitmodallabel"><i class="fas fa-camera fa-fw"></i> {{ optoedit.opname }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
@@ -566,7 +566,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
-				<h5 class="modal-title" id="rosterportraitmodallabel"><i class="fas fa-edit fa-fw"></i> {{ rostertoedit.rostername }}</h5>
+				<h5 class="modal-title" id="rosterportraitmodallabel"><i class="fas fa-camera fa-fw"></i> {{ rostertoedit.rostername }}</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
