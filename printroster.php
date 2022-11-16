@@ -398,14 +398,22 @@
 									if ($eq->eqpts > 0) {
 										echo " (" . $eq->eqpts . " EP)";
 									}
-									echo ":"
 								?></strong>
+								<?php if ($eq->eqtype != 'Weapon') {
+								echo ":";
+								?>
+								
 								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($eq->eqdescription) ?></p>
+								<?php
+								} else {
+									echo " <em>(See Weapons)</em>";
+								}
+								?>
 							</div>
 						<?php
 						}
 						
-						// Close the div for unique actions
+						// Close the div for equipment
 						echo "</div>";
 						?>
 					</div>

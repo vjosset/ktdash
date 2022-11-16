@@ -39,7 +39,7 @@
 			include "og.php";
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRosterGallery('<?php echo $myRoster->rosterid ?>');"
+	<body ng-app="kt" class="ng-cloak" ng-controller="ktCtrl" ng-init="initRosterGallery('<?php echo $myRoster->rosterid ?>');"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -88,7 +88,7 @@
 		</h3>
 		
 		<div class="row p-0 m-0 ng-cloak" ng-hide="loading">
-			<div class="col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer"
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer"
 				style="overflow: hidden;"
 				ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"
 				>
@@ -96,7 +96,7 @@
 					src="/api/rosterportrait.php?rid={{ myRoster.rosterid }}"
 					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
 			</div>
-			<div class="col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden;"
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden;"
 				ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 				>
 				<img id="opportrait_{{operative.rosteropid}}"

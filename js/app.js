@@ -550,11 +550,6 @@ var app = angular.module("kt", ['ngSanitize'])
 				window.open('https://indocpdf.com/api/pdfrender.php?apikey=D7C57EED-CCE5-4EB7-A6DA-BF6D0E724366&showbackground=false&filename=' + roster.rostername + '.pdf&url=https%3A%2F%2Fktdash.app/printroster.php%3Frid=' + roster.rosterid);
 			}
 			
-			$scope.printroster = function(roster) {
-				te("roster", "print", "roster", roster.rosterid);
-				window.open('https://indocpdf.com/api/pdfrender.php?apikey=D7C57EED-CCE5-4EB7-A6DA-BF6D0E724366&showbackground=false&filename=' + roster.rostername + '.pdf&url=https%3A%2F%2Fktdash.app/printroster.php%3Frid=' + roster.rosterid);
-			}
-			
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
 			$scope.initRoster = function(rid, skipte, s) {
