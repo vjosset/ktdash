@@ -547,7 +547,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.printroster = function(roster) {
 				te("roster", "print", "roster", roster.rosterid);
-				window.open('https://indocpdf.com/api/pdfrender.php?apikey=D7C57EED-CCE5-4EB7-A6DA-BF6D0E724366&showbackground=false&filename=' + roster.rostername + '.pdf&url=https%3A%2F%2Fktdash.app/printroster.php%3Frid=' + roster.rosterid);
+				window.open("/api/pdfrender.php?scope=roster&rid=" + roster.rosterid);
 			}
 			
 			// initRoster()
@@ -1813,7 +1813,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.printop = function(operative) {
 				te("roster", "print", "op", operative.rosterid, operative.rosteropid);
-				window.open('https://indocpdf.com/api/pdfrender.php?apikey=D7C57EED-CCE5-4EB7-A6DA-BF6D0E724366&showbackground=false&filename=' + operative.opname  + '.pdf&url=https%3A%2F%2Fktdash.app/printop.php%3Froid=' + operative.rosteropid);
+				window.open("/api/pdfrender.php?scope=op&roid=" + operative.rosteropid);
 			}
 		
 			// initPrintOp()
