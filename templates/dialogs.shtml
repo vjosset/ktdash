@@ -545,10 +545,12 @@
 					<img width="100%" id="opportraitpreview" ng-src="/api/operativeportrait.php?roid={{optoedit.rosteropid}}&cb={{optoedit.timestamp}}">
 				</div>
 				<br/>
-				Image will be resized to 900 x 600 px<br/>
+				<h4>Upload New Portrait</h4>
+				Image will be resized to 900 x 600 px,
 				Max upload file size: 5 MB
 				<br/>
-				<h4>Upload New Portrait</h4>
+				For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
+				<img src="/img/portraithelp.jpg" /><br/>
 				<input accept="image/*" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" onchange="angular.element(this).scope().previewOpPortrait(this);" />
 				<br/>
 			</div>
@@ -573,11 +575,12 @@
 				<div style="max-height: 250px; overflow: hidden;">
 					<img width="100%" id="rosterportraitpreview" ng-src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
 				</div>
-				<br/>
-				Image will be resized to 900 x 600 px<br/>
+				<h4>Upload New Portrait</h4>
+				Image will be resized to 900 x 600 px,
 				Max upload file size: 5 MB
 				<br/>
-				<h4>Upload New Portrait</h4>
+				For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
+				<img src="/img/portraithelp.jpg" /><br/>
 				<input accept="image/*" id="rosterportraitfile" type="file" name="image" ng-model="rostertoedit.imagefile" onchange="angular.element(this).scope().previewRosterPortrait(this);" />
 				<br/>
 			</div>
