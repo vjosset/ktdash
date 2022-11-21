@@ -47,9 +47,9 @@
 			<div class="card darkcard m-1 h-100 opcard small lh-sm">
 				<div class="card-body m-1 p-0">
 					<!-- Print Op Card Title -->
-					<div class="card-title row">
-						<h2 class="col-8"><?php echo $op->opname ?></h2>
-						<div class="col-4 text-end small">
+					<div class="card-title row py-0 my-0">
+						<h2 class="col-7 text-nowrap"><?php echo $op->opname ?></h2>
+						<div class="col-5 text-end small">
 							<?php echo $op->optype ?>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 						</div>
 						
 						<!-- Operative Portrait and Stats Grid -->
-						<div class="row m-0 p-0">
+						<div class="row m-0 p-0 line-top-light">
 							<!-- Dashboard/Roster Portrait -->
 							<div class="col-5 m-0 p-0 pointer" style="overflow: hidden;">
 								<img id="opportrait_<?php echo $op->rosteropid ?>"
@@ -370,13 +370,13 @@
 		
 		<!-- Back of Card -->
 		<div>
-			<div class="card cdarkcard m-1 h-100 opcard small lh-sm">
+			<div class="card darkcard m-1 h-100 opcard small lh-sm">
 				<!-- Abilities -->
 				<?php
 				if (count($op->abilities) > 0)
 				{
 				?>
-					<div class="line-top-light px-1 m-0">
+					<div class="px-1 m-0">
 						<h6>Abilities</h6>
 						<?php
 						if (count($op->abilities) > 1 || strlen($op->abilities[0]->description) > 500)

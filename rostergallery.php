@@ -56,7 +56,7 @@
 			<div class="row">
 				<div class="col-11 m-0 p-0">
 					<h1>
-						<a href="/roster.php?rid=<?php echo $myRoster->rosterid ?>"><?php echo $myRoster->rostername ?></a>
+						<a class="navloader" href="/roster.php?rid=<?php echo $myRoster->rosterid ?>"><?php echo $myRoster->rostername ?></a>
 					</h1>
 				</div>
 				<div class="col-1 m-0 p-0 align-text-top text-end">

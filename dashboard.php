@@ -60,7 +60,7 @@
 									<h3 class="d-inline">{{ dashboardroster.rostername }}</h3>
 								</button>
 								<div class="dropdown-menu dropdown-menu-dark" id="rosterselect">
-									<a class="dropdown-item" type="button" ng-repeat="roster in currentuser.rosters" ng-click="selectDashboardRoster(roster);">
+									<a class="dropdown-item" type="button" ng-repeat="roster in currentuser.rosters track by $index" ng-click="selectDashboardRoster(roster);">
 										{{ roster.rostername }}
 									</a>
 								</div>
@@ -172,14 +172,14 @@
 						<div class="col-xs-12 col-md-6">
 							<!-- Strategic Ploys -->
 							<h3>Strategic Ploys</h3>
-							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.strat">
+							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.strat track by $index">
 								<?php include "templates/ploy.shtml" ?>
 							</ANY>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<!-- Tactical Ploys -->
 							<h3>Tactical Ploys</h3>
-							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.tac">
+							<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.tac track by $index">
 								<?php include "templates/ploy.shtml" ?>
 							</ANY>
 						</div>
@@ -188,7 +188,7 @@
 				<div class="tab-pane" id="eqs" role="tabpanel">
 					<!-- Equipment -->
 					<div class="row p-0 m-0">
-						<div ng-repeat="eq in dashboardroster.killteam.equipments" class="col-12 col-lg-6 col-xl-4">
+						<div ng-repeat="eq in dashboardroster.killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4">
 							<?php include "templates/eq.shtml" ?>
 						</div>
 					</div>
