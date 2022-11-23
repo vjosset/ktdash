@@ -355,6 +355,19 @@
 						<?php
 						}
 						?>
+				
+						<!-- Notes -->
+						<?php
+						if ($op->notes != null && $op->notes != "")
+						{
+						?>
+							<div class="line-top-light px-1 m-0">
+								<h6>Notes</h6>
+								<p class="d-inline px-2" style="text-align:justify;"><?php echo htmlspecialchars($op->notes) ?></p>
+							</div>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 				
