@@ -307,15 +307,15 @@
 			</div>
 			
 			<!-- Notes -->
-			<!-- 
 			<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="line-top-light">
 				<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h6>
-				<div id="opnotes_{{ operative.rosteropid }}" class="collapse">
-					<textarea style="border: 0px solid; width: 100%; color: #EEE;" rows="3" class="darkcard d-block" ng-model="operative.notes" ng-change="commitRosterOp(operative);"></textarea>
+				<div id="opnotes_{{ operative.rosteropid }}" class="collapse sho">
+					<textarea style="border: 1px solid #CCC; width: 100%; color: #EEE;" rows="3" class="darkcard d-block" ng-model="operative.notes" ng-change="commitRosterOp(operative);"></textarea>
 				</div>
 			</div>
+			<!-- Hidden if not mine
 			<div ng-if="MODE == 'Roster' && operative.notes != null && operative.notes != ''" class="m-1 line-top-light">
 				<h6>Notes</h6>
 				{{ operative.notes }}
