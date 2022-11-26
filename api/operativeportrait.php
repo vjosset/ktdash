@@ -61,7 +61,7 @@
 				// Read the found file and serve it
 				$thumb = imagecreatefromstring(file_get_contents($filepath));
 				header('Content-Type: image/jpeg');
-				header('Content-Disposition: inline; filename="' . $ro->opname . '.jpg"');
+				header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $ro->opname) . '.jpg"');
 				imagejpeg($thumb);
 			} else {
 				// Operative not found - Serve nothing?

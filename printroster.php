@@ -313,7 +313,7 @@
 						?>
 							<div class="px-1">
 								<strong><?php echo $ab->title ?>: </strong>
-								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($ab->description) ?></p>
+								<p class="d-inline px-2" style="text-align: justify;"><?php echo replaceDistance($ab->description) ?></p>
 							</div>
 						<?php
 						}
@@ -353,7 +353,7 @@
 						?>
 							<div class="px-1">
 								<strong><?php echo $ua->title ?> (<?php echo $ua->AP ?> AP): </strong>
-								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($ua->description) ?></p>
+								<p class="d-inline px-2" style="text-align: justify;"><?php echo replaceDistance($ua->description) ?></p>
 							</div>
 						<?php
 						}
@@ -403,7 +403,7 @@
 								echo ":";
 								?>
 								
-								<p class="d-inline px-2" style="text-align:justify;"><?php echo replaceDistance($eq->eqdescription) ?></p>
+								<p class="d-inline px-2" style="text-align: justify;"><?php echo replaceDistance($eq->eqdescription) ?></p>
 								<?php
 								} else {
 									echo " <em>(See Weapons)</em>";

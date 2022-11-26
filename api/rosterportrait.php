@@ -45,7 +45,7 @@
 					// Read the found file and serve it
 					$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/jpeg');
-					header('Content-Disposition: inline; filename="' . $r->rostername . '.jpg"');
+					header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $r->rostername) . '.jpg"');
 					imagejpeg($thumb);
 				} else {
 					// File not found, serve the generic portrait for this roster
