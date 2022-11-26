@@ -80,7 +80,7 @@
 			$params[] =& $this->opid;
 			$params[] =& $this->wepid;
 			
-			// Load the operative
+			// Load the profiles
             call_user_func_array(array($cmd, "bind_param"), $params);
             $cmd->execute();
 
