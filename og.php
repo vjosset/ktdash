@@ -4,11 +4,13 @@
 			$pagedesc = $pagedesc == null ? "" : $pagedesc;
 			$pagedesc = str_replace('\r\n', ' ', str_replace('"', '\'', str_replace('<br/>', ' ', $pagedesc)));
 			$pageimg = (!(isset($pageimg)) || $pageimg == null) ? "" : $pageimg;
+			$pagekeywords = $pagekeywords == null ? "" : ($pagekeywords . ",");
 		?>
 		
 		<!-- General Meta Tags -->
 		<title><?php echo $pagetitle ?></title>
 		<meta name="description" content="<?php echo $pagedesc ?>">
+		<meta name="keywords" content="<?php echo $pagekeywords ?>killteam, Kill Team, kill team roster builder, Octarius, Warhammer, 40000, 40k, wh40k, Roster, Battle Scribe, Printable, Card, Datacard, KTDash, dashboard">
 		
 		<!-- OpenGraph Tags -->
 		<meta property="og:url" content="<?php echo $pageurl ?>">

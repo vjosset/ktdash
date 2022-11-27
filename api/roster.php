@@ -31,10 +31,27 @@
 		$uid = getIfSet($_REQUEST['uid']);
 		$loadrosterdetail = getIfSet($_REQUEST['loadrosterdetail']);
 		
+		$randomspotlight = getIfSet($_REQUEST['randomspotlight']);
+		
 		// Validate Input
-		if (strlen($rid) > 10 || strlen($uid) > 10 || strlen($loadrosterdetail) > 2) {
+		if (strlen($rid) > 10 || strlen($uid) > 10 || strlen($loadrosterdetail) > 2 || strlen($randomspotlight) > 1) {
             header("HTTP/1.0 400 Invalid Input");
 			die();
+		}
+		
+		if ($randomspotlight == "1") {
+			// Select a random spotlighted roster
+			global $dbcon;
+			$sql = "SELECT rosterid FROM Roster WHERE spotlight = 1 ORDER BY RAND() LIMIT 1";
+			$cmd = $dbcon->prepare($sql);
+			// Load the stats
+			$cmd->execute();
+
+			if ($result = $cmd->get_result()) {
+				while ($row = $result->fetch_object()) {
+					$rid = $row->rosterid;
+				}
+			}
 		}
 		
 		if ($rid == null || $rid == '') {
@@ -104,6 +121,9 @@
 				// Update its values for the current user and new roster id
 				$roster->rosterid = $newrosterid;
 				$roster->userid = $u->userid;
+				
+				// Mark the cloned team as not spotlighted
+				$roster->spotlight = 0;
 				
 				// If self-clone, copy the roster's portrait if it exists
 				if ($selfclone) {

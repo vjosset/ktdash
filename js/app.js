@@ -69,6 +69,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initHome()
 			// Home page load
 			$scope.initHome = function() {
+				$scope.MODE = 'Home';
 				if ($scope.currentuser != null) {
 					// Get the user's rosters
 					$.ajax({
@@ -95,6 +96,28 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				}
+				
+				// Get a random spolighted roster
+				$.ajax({
+					type: "GET",
+					url: APIURL + "roster.php?randomspotlight=1",
+					timeout: 5000,
+					async: true,
+					dataType: 'json',
+					
+					// Success
+					success: function(data) { // Got user's rosters
+						// Load the rosters into "myRosters"
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						$scope.myRoster = data;
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to get roster
+						$scope.$apply();
+					}
+				});
+				
 			}
 		}
 		

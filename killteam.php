@@ -48,6 +48,7 @@
 		<?php
 		$pagetitle = $killteam->killteamname . " | " . $faction->factionname;
 		$pagedesc  = $killteam->description;
+		$pagekeywords = "Compendium," . $faction->factionname . "," . $killteam->killteamname;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png";
 		$pageurl   = "https://ktdash.app/killteam.php?fa=" . $factionid . "&kt=" . $killteamid;
 		

@@ -20,7 +20,8 @@
 		<meta name="twitter:image" content="https://ktdash.app/img/og/Home.png">
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initHome();" class="p-0 m-0 oswald">
-		<!--#include virtual="topnav.shtml" -->	
+		<!--#include virtual="topnav.shtml" -->
+		<!--#include virtual="templates/dialogs.shtml" -->	
 		
 		<div class="m-0 p-0"
 			style="
@@ -126,7 +127,17 @@
 		</div>
 		
 		<div class="m-0 p-0 row">
-			<div class="m-0 p-0 col-12 col-md-6">
+			<div class="m-0 p-0 col-12 col-md-6 col-lg-4 ng-cloak h-100">
+				<!-- Random Spotlighted Roster -->
+				<h3 class="orange">
+					<a class="orange nav-link" href="/roster.php?rid={{ myRoster.rosterid }}">
+						<i class="fas fa-star fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i>
+						Roster Spotlight
+					</a>
+				</h3>
+				<!--#include virtual="templates/roster_card.shtml" -->
+			</div>
+			<div class="m-0 p-0 col-12 col-md-6 col-lg-8">
 				<h3 class="orange">
 					<a class="orange nav-link" href="/news.htm">
 						<span class="far fa-newspaper fa-fw"></span> News

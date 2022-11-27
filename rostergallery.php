@@ -34,6 +34,7 @@
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - Gallery - " . ($ismine ? "" : (" by " . $myRoster->username));
 			$pagedesc  = $myRoster->rostername . " - Gallery " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam: \r\n" . $myRoster->oplist;
+			$pagekeywords = "Gallery,Photos,Miniatures,Prebuilt,sample,rosters,teams,import," . $myRoster->rostername . "," . $myRoster->killteamname . "," . $myRoster->username;
 			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
 			$pageurl   = "https://ktdash.app/rostergallery.php?rid={$myRoster->rosterid}";
 			include "og.php";
@@ -71,8 +72,10 @@
 					</div>
 				</div>
 			</div>
-			<?php if (!$ismine) { ?>
-			by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
+			<?php
+				echo $myRoster->killteamname;
+				if (!$ismine) { ?>
+				by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 			<?php }
 			?>
 		</div>

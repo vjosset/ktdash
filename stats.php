@@ -58,6 +58,7 @@
 					?>
 				</h1>
 			</div>
+			<em class="small"><?php echo date("Y-m-d H:i:s") ?></em>
 		</div>
 		
 		<div class="p-2">
@@ -78,7 +79,7 @@
 							while ($row = $result->fetch_object()) {
 								// Got a result
 								?>
-								<tr><th><?php echo $row->Date ?></th><td style="text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->SignupCount ?></td></tr>
+								<tr><th><?php echo $row->Date ?></th><td style="text-align: right;"><?php echo $row->SignupCount ?></td></tr>
 								<?php
 							}
 						}
@@ -106,13 +107,89 @@
 							while ($row = $result->fetch_object()) {
 								// Got a result
 								?>
-								<tr><th><?php echo $row->CountType ?></th><td style="text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->Count ?></td></tr>
+								<tr><th><?php echo $row->CountType ?></th><td style="text-align: right;"><?php echo $row->Count ?></td></tr>
 								<?php
 							}
 						}
 						
 						echo "</table>";
 					?>
+				</div>
+			</div>
+			<br/>
+			
+			<!-- Recent Portraits (Data) -->
+			<div class="line-top-light">
+				<h2>Recent Portraits</h2>
+				<?php
+					$sql = "SELECT MAX(datestamp) AS datestamp, COUNT(*) AS Count, var1, url FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' GROUP BY var1, url ORDER BY 1 DESC LIMIT 20";
+					$cmd = $dbcon->prepare($sql);
+						
+					// Load the stats
+					$cmd->execute();
+					
+					echo "<table style=\"width: 100%;\">";
+
+					if ($result = $cmd->get_result()) {
+						while ($row = $result->fetch_object()) {
+							// Got a result
+							?>
+							<tr>
+								<th><?php echo $row->datestamp ?></th>
+								<td><?php echo $row->Count ?></td>
+								<td><a href="/rostergallery.php?rid=<?php echo $row->var1 ?>" target="_blank"><?php echo $row->var1 ?></td>
+							</tr>
+							<?php
+						}
+					}
+					
+					echo "</table>";
+				?>
+			</div>
+			
+			<!-- Recent Portraits (Pictures) -->
+			<div class="line-top-light m-0 p-0 d-none">
+				<h2>Recent Portraits</h2>
+				<div class="row m-0 p-0">
+				<?php
+					//$sql = "SELECT datestamp, action, userid, var1, var2, var1 FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY 1 DESC LIMIT 50";
+					//$cmd = $dbcon->prepare($sql);
+						
+					// Load the stats
+					//$cmd->execute();
+
+					if ($result = $cmd->get_result()) {
+						while ($row = $result->fetch_object()) {
+							// Got a result
+							if ($row->action == 'opportrait') {
+								// Operative
+								?>
+								<!-- div class="col-12 col-md-6 col-lg-4 col-xl-3 pointer" style="overflow: hidden;">
+									<a href="/roster.php?rid=<?php echo $row->var1 ?>" target="_blank">
+										<h4><?php echo $row->datestamp ?></h4>
+										<img
+											src="/api/operativeportrait.php?roid=<?php echo $row->var2 ?>"
+											style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+									</a>
+								</div -->
+								<?php
+							} else{
+								// Roster
+								?>
+								<!-- div class="col-12 col-md-6 col-lg-4 col-xl-3 pointer" style="overflow: hidden;">
+									<a href="/roster.php?rid=<?php echo $row->var1 ?>" target="_blank">
+										<h4><?php echo $row->datestamp ?></h4>
+										<img
+											src="/api/rosterportrait.php?rid=<?php echo $row->var1 ?>"
+											style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+									</a>
+										</a>
+								</div -->
+								<?php
+							}
+						}
+					}
+				?>
 				</div>
 			</div>
 		</div>

@@ -45,9 +45,11 @@
 			if ($uid == 'prebuilt') {
 				$pagetitle = "Pre-Built Rosters";
 				$pagedesc = "View and Import Pre-Built KillTeam Rosters";
+				$pagekeywords = "Prebuilt,sample,rosters,teams,import";
 			} else {
 				$pagetitle = ($ismine ? "My" : (ucwords($myUser->username) . "'s")) . " Rosters";
 				$pagedesc = "View and Import " . ucwords($myUser->username) . "'s KillTeam Rosters";
+				$pagekeywords = $myUser->username . ",rosters,teams,import";
 			}
 			
 			if (count($myRosters) > 0) {
