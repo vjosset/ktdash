@@ -1,4 +1,4 @@
-var apiurl = "https://ktdash.app/api/";
+let apiurl = "https://ktdash.app/api/";
 
 function GetQS(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -61,16 +61,11 @@ function GetArrayRandom(arr) {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
-	gtag('event', t + "." + a, {
-		'event_category': t,
-		'event_label': a
-	});
-		
+function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '', r = '') {
 	try {
 		$.ajax({
 			type: "POST",
-			url: APIURL + "event.php",
+			url: apiurl + "event.php",
 			timeout: 5000,
 			async: true,
 			data: {
@@ -81,7 +76,8 @@ function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 				v2: v2,
 				v3: v3,
 				u: window.location.href,
-				s: sessionStorage.getItem("sessiontype")
+				s: sessionStorage.getItem("sessiontype"),
+				r: document.referrer
 			},
 			
 			// Success
@@ -98,6 +94,15 @@ function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
 	catch (ex) {
 		// Do nothing
 		console.log("te(" + t + ", " + a + ", " + l + ", " + v1 + ", " + v2 + ", " + v3 + ") failed: \r\n" + ex);
+	}
+	
+	try {
+		gtag('event', t + "." + a, {
+			'event_category': t,
+			'event_label': a
+		});
+	} catch (ex) {
+		// Do nothing
 	}
 }
 
@@ -128,3 +133,6 @@ if (GetQS("source") == "pwa") {
 	console.log("Setting session type to browser");
 	sessionStorage.setItem("sessiontype", "browser");
 }
+
+// Track page view
+te('page', 'view');

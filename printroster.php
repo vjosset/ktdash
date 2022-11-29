@@ -35,6 +35,7 @@
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - Print Roster";
 			$pagedesc  = $myRoster->rostername . " - Print Roster";
+			$pagekeywords = "";
 			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
 			$pageurl   = "https://ktdash.app/printroster.php?rid={$myRoster->rosterid}";
 			include "og.php";

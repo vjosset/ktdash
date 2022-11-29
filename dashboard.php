@@ -20,6 +20,7 @@
 			include "header.shtml";
 			$pagetitle = "Dashboard";
 			$pagedesc  = "KillTeam Game Dashboard";
+			$pagekeywords = "Dashboard, track, VP, CP, TP";
 			$pageimg   = "https://ktdash.app/img/dashboard.png";
 			$pageurl   = "https://ktdash.app/dashboard.php";
 			include "og.php";

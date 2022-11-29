@@ -35,6 +35,7 @@
 		<?php
 		$pagetitle = $op->opname . " - Print Operative";
 		$pagedesc  = $op->opname . " - Print Operative";
+		$pagekeywords = "";
 		$pageimg   = "https://ktdash.app/api/operativeportrait.php?roid=" . $roid;
 		$pageurl   = "https://ktdash.app/printop.php?roid=" . $roid;
 		

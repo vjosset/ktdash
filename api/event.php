@@ -18,11 +18,11 @@
 	function POSTEvent() {
 		global $dbcon;
 		
-		$sql = "INSERT INTO Event (userid, eventtype, action, label, var1, var2, var3, url, userip, sessiontype, useragent) ";
-		$sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO Event (userid, eventtype, action, label, var1, var2, var3, url, userip, sessiontype, useragent, referrer) ";
+		$sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		$user = Session::CurrentUser();
-		$paramtypes = "sssssssssss";
+		$paramtypes = "ssssssssssss";
 		$params = array();
 		$userid = ($user == null ? '[anon]' : $user->userid);
 		$params[] = $userid; // userid
@@ -41,6 +41,8 @@
 		
 		$params[] = substr(getIfSet($_REQUEST['s']), 0, 50); // sessiontype
 		$params[] = substr(getIfSet($_SERVER['HTTP_USER_AGENT']), 0, 500); // sessiontype
+		
+		$params[] = substr(getIfSet($_REQUEST['r']), 0, 500); // referrer
 
 		$cmd = $dbcon->prepare($sql);
 		//call_user_func_array(array($cmd, "bind_param"), $params);

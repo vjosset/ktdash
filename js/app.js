@@ -62,8 +62,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.loadSettings();
 			
 			// Reference to utils.js "te()"
-			$scope.te = function(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '') {
-				te(t, a, l, v1, v2, v3);
+			$scope.te = function(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '', r = '') {
+				te(t, a, l, v1, v2, v3, r);
 			}
 			
 			// initHome()
@@ -1088,7 +1088,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// updateOpW()
 			// Increment or decrement the specified operative's wounds
 			$scope.updateOpW = function(op, inc) {
-				te("dasbhoard", "W", "inc", op.rosteropid, inc);
+				te("dashboard", "W", "inc", op.rosterid, op.rosteropid, inc);
 				op.curW = op.curW + inc;
 				if (op.curW < 0) {
 					op.curW = 0;

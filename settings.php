@@ -23,6 +23,7 @@
 			include "header.shtml";
 			$pagetitle = "Settings";
 			$pagedesc  = "KTDash Settings";
+			$pagekeywords = "Settings";
 			$pageurl   = "https://ktdash.app/settings.php";
 			include "og.php";
 		?>

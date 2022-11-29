@@ -42,6 +42,11 @@
 	<head>
 		<?php
 			include "header.shtml";
+			$pagetitle = "";
+			$pagedesc = "";
+			$pagekeywords = "";
+			$pageimg = "";
+			
 			if ($uid == 'prebuilt') {
 				$pagetitle = "Pre-Built Rosters";
 				$pagedesc = "View and Import Pre-Built KillTeam Rosters";

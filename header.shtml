@@ -30,10 +30,10 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.min.js"></script>
 		
 		<!-- JS Utils -->
-		<script type="text/javascript" src="/js/utils.js?cb=202211041343"></script>
+		<script type="text/javascript" src="/js/utils.js?cb=202211282244"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" src="js/app.js?cb=202211271101"></script>
+		<script type="text/javascript" src="js/app.js?cb=202211282244"></script>
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
