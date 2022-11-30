@@ -86,6 +86,22 @@
 			case "AEL|COM|KBL|SYB": //Sybarite
 			case "AEL|COM|KBL|WAR": //Kabalite Warrior
 				return GetAeldariName();
+			case "AEL|COR|COR|FTR": //Wych Fighter
+			case "AEL|COR|COR|HEK": //Hekatrix
+			case "AEL|COR|COR|WAR": //Wych Warrior
+				return GetAeldariFemaleName() . " " . GetAeldariFemaleName();
+			case "AEL|COR|COR|FA": //Voidscarred Felarch
+			case "AEL|COR|COR|FD": //Voidscarred Fate Dealer
+			case "AEL|COR|COR|GNR": //Voidscarred Gunner
+			case "AEL|COR|COR|HGNR": //Voidscarred Heavy Gunner
+			case "AEL|COR|COR|KH": //Voidscarred Kurnite Hunter
+			case "AEL|COR|COR|KU": //Voidscarred Kurnathi
+			case "AEL|COR|COR|SR": //Voidscarred Shade Runner
+			case "AEL|COR|COR|SSD": //Voidscarred Starstorm Duellist
+			case "AEL|COR|COR|SW": //Voidscarred Soul Weaver
+			case "AEL|COR|COR|WAR": //Voidscarred Warrior
+			case "AEL|COR|COR|WS": //Voidscarred Way Seeker
+				return GetAeldariName();
 			case "AEL|COM|WYCH|FTR": //Wych Fighter
 			case "AEL|COM|WYCH|HEK": //Hekatrix
 			case "AEL|COM|WYCH|WAR": //Wych Warrior
