@@ -94,7 +94,7 @@
 				<div ng-repeat="killteam in faction.killteams" class="col-12 col-md-6 col-xl-4 p-1">
 					<div class="card border-light shadow darkcard h-100">
 						<!-- Portrait -->
-						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.png" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 						
 						<h2 class="card-title orange text-center">
 							<a class="navloader" href="/killteam.php?fa={{ faction.factionid }}&kt={{ killteam.killteamid }}">

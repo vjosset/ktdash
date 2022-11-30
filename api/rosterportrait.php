@@ -49,7 +49,7 @@
 					imagejpeg($thumb);
 				} else {
 					// File not found, serve the generic portrait for this roster
-					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.png";
+					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg";
 				
 					// Check if file exists
 					if (!file_exists($filepath)) {
@@ -57,11 +57,8 @@
 						die();
 					}
 					
-					// Read the found file and serve it
-					$thumb = imagecreatefromstring(file_get_contents($filepath));
-					header('Content-Type: image/png');
-					header('Content-Disposition: inline; filename="' . $r->rostername . '.png"');
-					imagepng($thumb);
+					header('HTTP/1.0 302 Default Roster Portrait');
+					header("Location: /img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg");
 				}
 			} else {
 				// Roster not found - Serve nothing?

@@ -49,7 +49,7 @@
 		$pagetitle = $killteam->killteamname . " | " . $faction->factionname;
 		$pagedesc  = $killteam->description;
 		$pagekeywords = "Compendium," . $faction->factionname . "," . $killteam->killteamname;
-		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png";
+		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg";
 		$pageurl   = "https://ktdash.app/killteam.php?fa=" . $factionid . "&kt=" . $killteamid;
 		
 		include "og.php"
@@ -59,7 +59,7 @@
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
-			background-image: url(<?php echo "/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".png" ?>);
+			background-image: url(<?php echo "/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg" ?>);
 			background-position: top center;
 			background-size: cover;
 			background-blend-mode: multiply;">
@@ -79,7 +79,7 @@
 				style="overflow: auto; 
 				background-repeat: no-repeat; background-size: cover;
 				background-position: top;
-				background-image: url('/img/portraits/<?php echo $factionid ?>/<?php echo $killteamid ?>/<?php echo $killteamid ?>.png')">
+				background-image: url('/img/portraits/<?php echo $factionid ?>/<?php echo $killteamid ?>/<?php echo $killteamid ?>.jpg')">
 				&nbsp;
 				<br/><br/><br/><br/>
 				<br/><br/><br/><br/>
