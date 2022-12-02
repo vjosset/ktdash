@@ -1,7 +1,7 @@
 <div class="card darkcard m-1 p-0 h-100">
 	<div class="card-body m-0 p-0">
 		<!-- Roster Portrait -->
-		<div ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);">
+		<div ng-if="settings['display'] == 'card'" ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);">
 			<img id="rosterportrait_{{ myRoster.rosterid }}" class="card-img-top pointer"
 				ng-src="/api/rosterportrait.php?rid={{ myRoster.rosterid}}"
 				style="max-height: 250px; min-height: 250px; object-position: center top; object-fit: cover;"
