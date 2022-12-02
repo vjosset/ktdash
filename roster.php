@@ -34,7 +34,7 @@
 		<?php
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam" . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username));
-			$pagedesc  = $myRoster->rostername . " - View and import " . ($myRoster->userid == 'prebuilt' ? "Pre-Built " : "") . $myRoster->killteamname . " KillTeam" . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . ": \r\n" . $myRoster->oplist;
+			$pagedesc  = $myRoster->rostername . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . ": \r\n" . ($myRoster->notes == '' ? $myRoster->oplist : $myRoster->notes);
 			$pagekeywords = "Prebuilt,sample,rosters,teams,import," . $myRoster->rostername . "," . $myRoster->killteamname . "," . $myRoster->username;
 			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
 			$pageurl   = "https://ktdash.app/roster.php?rid={$myRoster->rosterid}";
@@ -69,7 +69,7 @@
 							<?php
 								if (!$ismine) {
 										?>
-										<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+										<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Photo Gallery</a></li>
 										<?php
 									// Not my roster - Offer to import if logged in
 									if ($me != null) {
@@ -88,7 +88,7 @@
 										<li><a class="pointer dropdown-item p-1" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Roster"></i> Rename Roster</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Roster Portrait</a></li>
-										<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+										<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Photo Gallery</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="showpopup(myRoster.rostername, getRosterTextDescription(myRoster));"><i class="fas fa-file-alt fa-fw"></i> Get Text Description</a></li>
 										<!-- <li><a class="pointer dropdown-item p-1" onclick="$('#myrosterhelpmodal').modal('show');te('roster', 'help');"><i class="far fa-question-circle fa-fw" id="myrosterhelpbutton"></i> Help</a></li> -->
 										<li><a class="pointer dropdown-item p-1" ng-click="trackEvent('myRosters', 'getshareurl'); showShareRoster(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster</a></li>

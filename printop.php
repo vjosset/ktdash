@@ -86,7 +86,7 @@
 							<div class="col-7 p-0">
 								<h4>
 									<table width="100%" class="text-center">
-										<tr>
+										<tr class="orange">
 											<td width="16%">M</td>
 											<td width="16%">APL</td>
 											<td width="16%">GA</td>
@@ -96,7 +96,7 @@
 											<td><?php echo $op->APL ?></td>
 											<td><?php echo $op->GA ?></td>
 										</tr>
-										<tr>
+										<tr class="orange">
 											<td width="16%">DF</td>
 											<td width="16%">SV</td>
 											<td width="16%">W</td>

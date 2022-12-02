@@ -82,12 +82,12 @@
 
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
-					$ut = Roster::FromRow($row);
+					$r = Roster::FromRow($row);
 					if ($loadrosterdetail > 0) {
-						$ut->loadOperatives();
-						$ut->loadKillTeam();
+						$r->loadOperatives();
+						$r->loadKillTeam();
 					}
-					$this->rosters[] = $ut;
+					$this->rosters[] = $r;
                 }
             }
 		}

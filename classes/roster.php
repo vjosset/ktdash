@@ -85,7 +85,17 @@
 		}
 		
 		public function loadKillTeam() {
-			$this->killteam = Killteam::GetKillTeam($this->factionid, $this->killteamid);
+			//$this->killteam = Killteam::GetKillTeam($this->factionid, $this->killteamid);
+			
+			// Don't load the whole thing, takes too long (especially for users with many rosters when they open dashboard)
+			//	Only pull the base information about the kill team + its ploys and equipment
+			$this->killteam = Killteam::FromDB($this->factionid, $this->killteamid);
+			
+			// Load the ploys
+			$this->killteam->loadPloys();
+			
+			// Load the equipments
+			$this->killteam->loadEquipments();
 		}
 		
 		public function reorderOperatives() {

@@ -300,7 +300,7 @@
 					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
 					<div class="row">
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
-							{{ eq.eqname }}<span ng-if="eq.eqpts > 0"> ({{ eq.eqpts }} EP)</span>
+							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 						</div>
 					</div>
 				</div>

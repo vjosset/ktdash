@@ -18,6 +18,7 @@
     function GETRender() {
 		// Get the requested input to render (operative card or full roster)
 		$scope = getIfSet($_REQUEST["scope"]);
+		$bg = getIfSet($_REQUEST["bg"], 'N');
 		
 		if ($scope != "op" && $scope != "roster") {
             header('HTTP/1.0 400 Invalid Scope');

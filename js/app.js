@@ -1,4 +1,5 @@
 const APIURL = "/api/";
+const APITimeout = 30000;
 
 var app = angular.module("kt", ['ngSanitize'])
 	// Controller for main app/pages
@@ -75,7 +76,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "GET",
 						url: APIURL + "roster.php?uid=" + $scope.currentuser.userid,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
 						
@@ -101,7 +102,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "roster.php?randomspotlight=1",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					
@@ -137,7 +138,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "session.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					// This call is NOT async so we can use this method to redirect the user for pages that require a session
 					async: false,
 					dataType: 'json',
@@ -187,7 +188,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					type: "POST",
 					url: APIURL + "session.php",
 					data: { username: $scope.loginForm.userName, password: $scope.loginForm.password },
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					// Success
@@ -271,7 +272,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						password: $scope.signUpForm.password,
 						confirmpassword: $scope.signUpForm.confirmPassword
 					},
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					success: function(data) { // Success
@@ -286,7 +287,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$.ajax({
 							type: "POST",
 							url: APIURL + "roster.php?rid=PB-INTS&clone=1&rostername=Sample Team: Intercessors",
-							timeout: 5000,
+							timeout: APITimeout,
 							async: true,
 							
 							// Success
@@ -342,7 +343,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$.ajax({
 							type: "POST",
 							url: APIURL + "roster.php",
-							timeout: 5000,
+							timeout: APITimeout,
 							async: false,
 							dataType: 'json',
 							data: JSON.stringify(roster),
@@ -376,7 +377,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$.ajax({
 								type: "POST",
 								url: APIURL + "rosteroperative.php",
-								timeout: 5000,
+								timeout: APITimeout,
 								async: false,
 								dataType: 'json',
 								data: JSON.stringify(op),
@@ -435,7 +436,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$.ajax({
 							type: "POST",
 							url: APIURL + "roster.php",
-							timeout: 5000,
+							timeout: APITimeout,
 							async: false,
 							dataType: 'json',
 							data: JSON.stringify(roster),
@@ -468,7 +469,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$.ajax({
 								type: "POST",
 								url: APIURL + "rosteroperative.php",
-								timeout: 5000,
+								timeout: APITimeout,
 								async: false,
 								dataType: 'json',
 								data: JSON.stringify(op),
@@ -533,7 +534,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "GET",
 						url: APIURL + "roster.php?uid=" + uid,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
 						
@@ -585,7 +586,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "roster.php?rid=" + rid,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					
@@ -609,7 +610,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$.ajax({
 								type: "GET",
 								url: APIURL + "killteam.php?fa=" + $scope.myRoster.factionid + "&kt=" + $scope.myRoster.killteamid,
-								timeout: 5000,
+								timeout: APITimeout,
 								async: false,
 								dataType: 'json',
 								success: function(data) {
@@ -657,7 +658,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "DELETE",
 					url: APIURL + "roster.php?rid=" + $scope.deleteRoster.rosterid,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					
 					// Success
@@ -703,7 +704,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php?loadkts=1",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					success: function(data) {
@@ -760,7 +761,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "POST",
 					url: APIURL + "roster.php?pushdown=1",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					data: JSON.stringify(roster),
@@ -807,7 +808,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "POST",
 						url: APIURL + "roster.php?" + qs,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						dataType: "text",
 						
@@ -859,7 +860,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "POST",
 					url: APIURL + "roster.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					data: JSON.stringify(data),
@@ -900,7 +901,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "POST",
 						url: APIURL + "roster.php?rid=" + roster.rosterid + "&clone=1",
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						
 						// Success
@@ -996,7 +997,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "DELETE",
 						url: APIURL + "rosterportrait.php?rid=" + $scope.rostertoedit.rosterid,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						
 						// Success
@@ -1242,7 +1243,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "POST",
 					url: APIURL + "rosteroperative.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					data: JSON.stringify(operative),
 					
@@ -1329,7 +1330,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "POST",
 					url: APIURL + "rosteroperative.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: false,
 					datatype: 'json',
 					data: JSON.stringify(newop),
@@ -1358,7 +1359,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: url,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'text',
 					success: function(data) {
@@ -1375,7 +1376,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: url,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'text',
 					success: function(data) {
@@ -1410,7 +1411,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "DELETE",
 					url: APIURL + "rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'text',
 					success: function(data) {
@@ -1454,7 +1455,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "POST",
 					url: APIURL + "rosteroperative.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: false,
 					datatype: 'json',
 					data: JSON.stringify(newop),
@@ -1499,7 +1500,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "POST",
 						url: APIURL + "rosteroperative.php?" + qs,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						dataType: "text",
 						
@@ -1659,7 +1660,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "DELETE",
 						url: APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						
 						// Success
@@ -1851,7 +1852,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "rosteroperative.php?roid=" + roid,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					
 					// Success
@@ -1891,7 +1892,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					success: function(data) {
@@ -1916,7 +1917,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php?factionid=" + GetQS('fa') + "&loadkts=1",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					success: function(data) {
@@ -1944,7 +1945,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
 					success: function(data) {
@@ -1956,7 +1957,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$.ajax({
 							type: "GET",
 							url: APIURL + "killteam.php?fa=" + GetQS('fa') + "&kt=" + GetQS("kt"),
-							timeout: 5000,
+							timeout: APITimeout,
 							async: true,
 							dataType: 'json',
 							success: function(data) {
@@ -2053,7 +2054,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$.ajax({
 						type: "GET",
 						url: APIURL + "roster.php?loadrosterdetail=1&uid=" + $scope.currentuser.userid,
-						timeout: 5000,
+						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
 						
@@ -2317,7 +2318,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: APIURL + "id.php",
-					timeout: 5000,
+					timeout: APITimeout,
 					async: false,
 					dataType: 'text',
 					
@@ -2544,7 +2545,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$.ajax({
 					type: "GET",
 					url: url,
-					timeout: 5000,
+					timeout: APITimeout,
 					async: true,
 					dataType: 'text',
 					success: function(data) {

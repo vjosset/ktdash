@@ -96,14 +96,14 @@
 			<div class="line-top-light">
 				<h2>Stats</h2>
 				<?php
-					$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount FROM Event WHERE userip != '68.80.166.102' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
+					$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
 					$cmd->execute();
 					
 					echo "<table style=\"width: 100%;\">";
-					echo "<tr><th>Date</th><th style=\"text-align: right;\">Signups</th><th style=\"text-align: right;\">Users</th></tr>";
+					echo "<tr><th>Date</th><th style=\"text-align: right;\">S</th><th style=\"text-align: right;\">U</th><th style=\"text-align: right;\">P</th></tr>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
@@ -113,6 +113,7 @@
 								<th><?php echo $row->Date ?></th>
 								<td style="text-align: right;"><?php echo number_format($row->SignupCount) ?></td>
 								<td style="text-align: right;"><?php echo number_format($row->UserCount) ?></td>
+								<td style="text-align: right;"><?php echo number_format($row->PageViews) ?></td>
 							</tr>
 							<?php
 						}
