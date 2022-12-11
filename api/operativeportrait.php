@@ -59,10 +59,9 @@
 				}
 				
 				// Read the found file and serve it
-				$thumb = imagecreatefromstring(file_get_contents($filepath));
 				header('Content-Type: image/jpeg');
 				header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $ro->opname) . '.jpg"');
-				imagejpeg($thumb);
+				echo file_get_contents($filepath);
 			} else {
 				// Operative not found - Serve nothing?
 				header('HTTP/1.0 404 Operative not found');

@@ -54,6 +54,31 @@
             }
 		}
 		
+		public function GetRosterRow($rid) {
+			global $dbcon;
+			
+			// Get the operatives for this team
+			$sql = "SELECT * FROM Roster WHERE rosterid = ? ORDER BY seq";
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "s";
+			$params = array();
+            $params[] =& $paramtypes;
+            $params[] =& $rid;
+
+            call_user_func_array(array($cmd, "bind_param"), $params);
+            $cmd->execute();
+
+			$ops = [];
+            if ($result = $cmd->get_result()) {
+                if ($row = $result->fetch_object()) {
+                    $r = Roster::FromRow($row);
+					
+					// Done
+					return $r;
+                }
+            }
+		}
+		
 		public function loadOperatives() {
 			global $dbcon;
 			

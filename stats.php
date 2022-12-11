@@ -128,7 +128,12 @@
 			<div class="line-top-light">
 				<h2>Recent Portraits</h2>
 				<?php
-					$sql = "SELECT MAX(datestamp) AS datestamp, COUNT(*) AS Count, var1, url FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' GROUP BY var1, url ORDER BY 1 DESC LIMIT 20";
+					$sql = "
+						SELECT MAX(E.datestamp) AS datestamp, COUNT(*) AS Count, U.username, U.userid, R.rosterid, R.rostername
+						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1
+						WHERE E.action IN ('portrait', 'opportrait') AND E.userip != '68.80.166.102' AND E.label = 'custom'
+						GROUP BY U.username, U.userid, R.rosterid, R.rostername
+						ORDER BY 1 DESC LIMIT 20";
 					$cmd = $dbcon->prepare($sql);
 						
 					// Load the stats
@@ -142,8 +147,11 @@
 							?>
 							<tr>
 								<th><?php echo $row->datestamp ?></th>
-								<td style="text-align: right;"><?php echo number_format($row->Count) ?>&nbsp;&nbsp;&nbsp;</td>
-								<td><a href="/rostergallery.php?rid=<?php echo $row->var1 ?>" target="_blank"><?php echo $row->var1 ?></td>
+								<td>
+									<a href="/rostergallery.php?rid=<?php echo $row->rosterid ?>" target="_blank">
+										<?php echo $row->rostername ?>
+									</a> by <?php echo $row->username ?> (<?php echo number_format($row->Count) ?>)
+								</td>
 							</tr>
 							<?php
 						}

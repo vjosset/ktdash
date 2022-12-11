@@ -18,25 +18,35 @@
         }
 		
 		public function GetKillteam($factionid, $killteamid) {
+			$log = "";
 			global $dbcon;
 			
 			// Get the requested Killteam
+			$log .= "row: " . microtime(true);
 			$killteam = Killteam::FromDB($factionid, $killteamid);
 			
 			if ($killteam != null) {
 				// Load its fireteams
+				$log .= "fts: " . microtime(true);
 				$killteam->loadFireteams();
 				
 				// Load its ploys
+				$log .= "pls: " . microtime(true);
 				$killteam->loadPloys();
 				
 				// Load its equipments
+				$log .= "eqs: " . microtime(true);
 				$killteam->loadEquipments();
 				
 				// Load its "spotlighted" rosters
+				$log .= "srs: " . microtime(true);
 				$killteam->loadRosters();
 			}
 			
+			$log .= "done:" . microtime(true);
+			
+			header('KTTimings: ' . $log);
+					
 			return $killteam;
 		}
 		

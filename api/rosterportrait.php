@@ -24,8 +24,11 @@
     }
 
     function GETRosterPortrait() {
+		global $dbcon;
+		
 		// Get the requested roster
 		$rid = $_REQUEST['rid'];
+		$log = "";
 		
 		if ($rid == null || $rid == '' || strlen($rid) > 10) {
 			// No rosterid specified - fail
@@ -33,21 +36,28 @@
 			die();
 		} else {
 			// Try to find this roster
-			$r = Roster::GetRoster($rid);
+			$log .= "GR:" . microtime(true);
+			$r = Roster::GetRosterRow($rid);
+			$log .= "-" . microtime(true);
 			
 			if ($r != null) {
 				// Check if this roster has a custom portrait
 				$custrosterportraitpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}/roster_{$r->rosterid}.jpg";
+				$log .= "CF:" . microtime(true);
 				if (file_exists($custrosterportraitpath)) {
+					$log .= "-Y" . microtime(true);
 					// File was found; read it and serve it
 					$filepath = $custrosterportraitpath;
+					
+					header('Timings: ' . $log);
 				
 					// Read the found file and serve it
-					$thumb = imagecreatefromstring(file_get_contents($filepath));
+					//$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/jpeg');
 					header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $r->rostername) . '.jpg"');
-					imagejpeg($thumb);
+					echo file_get_contents($filepath);
 				} else {
+					$log .= "-N" . microtime(true);
 					// File not found, serve the generic portrait for this roster
 					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg";
 				
