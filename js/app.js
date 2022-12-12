@@ -1049,7 +1049,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRoster = function(roster) {
 				te("roster", "share", "", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/roster.php?rid=" + roster.rosterid;
+				$scope.shareroster.url = "https://ktdash.app/roster/" + roster.rosterid;
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");
@@ -1910,13 +1910,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
-			$scope.initFaction = function() {
-				te("compendium", "faction", "", GetQS('fa'));
+			$scope.initFaction = function(fa) {
+				if (fa == null) {
+					// Not passed in, get from query string
+					fa = GetQS('fa');
+				}
+				te("compendium", "faction", "", fa);
 				$scope.loading = true;
 				$scope.MODE = "Compendium";
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?factionid=" + GetQS('fa') + "&loadkts=1",
+					url: APIURL + "faction.php?factionid=" + fa + "&loadkts=1",
 					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
@@ -1935,8 +1939,15 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
-			$scope.initKillteam = function() {
-				te("compendium", "killteam", "", GetQS('fa'), GetQS("kt"));
+			$scope.initKillteam = function(fa, kt) {
+				if (fa == null) {
+					// Not passed in, get from query string
+					fa = GetQS('fa');
+				}
+				if (kt == null) {
+					kt = GetQS("kt");
+				}
+				te("compendium", "killteam", "", fa, kt);
 				// First get the faction
 				//	On success, we'll get the killteam
 				$scope.loading = true;
@@ -1944,7 +1955,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?factionid=" + GetQS('fa'),
+					url: APIURL + "faction.php?factionid=" + fa,
 					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
@@ -1956,7 +1967,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Now get the faction
 						$.ajax({
 							type: "GET",
-							url: APIURL + "killteam.php?fa=" + GetQS('fa') + "&kt=" + GetQS("kt"),
+							url: APIURL + "killteam.php?fa=" + fa + "&kt=" + kt,
 							timeout: APITimeout,
 							async: true,
 							dataType: 'json',
@@ -2036,7 +2047,12 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// initDashboard()
 			// Initializes the dashboard
-			$scope.initDashboard = function() {
+			$scope.initDashboard = function(rid) {
+				if (rid == null) {
+					// Not passed in, get from query string
+					rid = GetQS('rid');
+				}
+				
 				te("dashboard", "init");
 				$scope.loading = true;
 				$scope.MODE = 'Dashboard';
@@ -2066,8 +2082,8 @@ var app = angular.module("kt", ['ngSanitize'])
 							
 							// Get the current deployed roster
 							//	May be set from the query string ("Deploy" button on rosters)
-							if (GetQS("rid") != "" && GetQS("rid") != null) {
-								$scope.setDashboardRosterId(GetQS("rid"));
+							if (rid != "" && rid != null) {
+								$scope.setDashboardRosterId(rid);
 							}
 							
 							$scope.dashboardrosterid = $scope.getDashboardRosterId();

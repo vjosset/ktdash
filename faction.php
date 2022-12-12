@@ -17,6 +17,8 @@
 		$factionid = getIfSet($_REQUEST['fa']);
 	}
 	
+	$factionid = strtoupper($factionid);
+	
 	if ($factionid == null || $factionid == '') {
 		// No faction id passed in - Just get the first one
 		$faction = Faction::GetFactions()[0];
@@ -42,13 +44,13 @@
 		$pagedesc  = $faction->description;
 		$pagekeywords = "Compendium," . $faction->factionname;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $factionid . ".jpg";
-		$pageurl   = "https://ktdash.app/faction.php?fa=" . $factionid;
+		$pageurl   = "https://ktdash.app/fa/" . $factionid;
 		
 		include "og.php"
 		?>
 		
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initFaction();"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initFaction('<?php echo $factionid ?>');"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -66,7 +68,7 @@
 				background-repeat: no-repeat; background-size: cover;
 				background-position: top;
 				background-image: url('/img/portraits/<?php echo $factionid ?>/<?php echo $factionid ?>.jpg')"
-				onclick="document.location.href = '/faction.php?fa=<?php echo $factionid ?>">
+				onclick="document.location.href = '/faction/<?php echo $factionid ?>">
 				<br/><br/><br/><br/>
 				<br/><br/><br/><br/>
 			</div>
@@ -92,12 +94,12 @@
 		<div ng-hide="loading">
 			<div class="card-group">
 				<div ng-repeat="killteam in faction.killteams" class="col-12 col-md-6 col-xl-4 p-1">
-					<div class="card border-light shadow darkcard h-100">
+					<div class="card darkcard h-100">
 						<!-- Portrait -->
 						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 						
 						<h2 class="card-title orange text-center">
-							<a class="navloader" href="/killteam.php?fa={{ faction.factionid }}&kt={{ killteam.killteamid }}">
+							<a class="navloader" href="/fa/{{ faction.factionid }}/kt/{{ killteam.killteamid }}">
 								{{ killteam.killteamname }}
 							</a>
 						</h2>

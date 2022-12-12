@@ -16,51 +16,51 @@
 		case "BLADEREACH":
 			// Bladereach
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=BR");
+			header("Location: https://ktdash.app/roster/BR");
 			break;
 		case "INTERDICTORS":
 			// Interdictors (Deathwatch)
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=INTER");
+			header("Location: https://ktdash.app/roster/INTER");
 			break;
 		case "VOX BELLI":
 			// Vox Belli (Ecclisiarchy/SOB)
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=VOX");
+			header("Location: https://ktdash.app/roster/VOX");
 			break;
 			
 		// PREBUILT
 		case "SHOVEL SQUAD":
 			// Shovel Squad (Veteran Guard)
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=PB-VGSHOV");
+			header("Location: https://ktdash.app/roster/PB-VGSHOV");
 			break;
 		case "CONSECRATORS":
 			// Grey Knights/Consecrators
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=PB-GK");
+			header("Location: https://ktdash.app/roster/PB-GK");
 			break;
 		case "VOSS PRIME HUNTER CLADE";
 			// Voss Prime Hunter Clade
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=PB-AMVP");
+			header("Location: https://ktdash.app/roster/PB-AMVP");
 			break;
 		case "TALON SQUAD";
 			// Deathwatch/Talon Squad
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=PB-DWTS");
+			header("Location: https://ktdash.app/roster/PB-DWTS");
 			break;
 		case "PAPA'S NECRONIOS":
 			// Necrons/Tomb World/Papa's Necronios
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=PB-NECTW");
+			header("Location: https://ktdash.app/roster/PB-NECTW");
 			break;
 		
 		// OTHERS
 		case "CHUCK'S HIVE FLEET":
 			// Chuck's Hive Fleet
 			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://ktdash.app/roster.php?rid=9RKcO");
+			header("Location: https://ktdash.app/roster/9RKcO");
 			break;
 		default:
 			// No match found, send them home

@@ -1,101 +1,119 @@
 Recent images uploaded:
-find -type f -printf '%T+\t%p\n' | sort -n
+	find -type f -printf '%T+\t%p\n' | sort -n
 
-SELECT COUNT(DISTINCT userid, userip) AS UserCount30Minute, COUNT(*) AS EventCount30Minute FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -30 minute);
-#SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userid != '68.80.166.102' AND useragent != '' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY useragent ORDER BY COUNT(*) DESC;
-#SELECT COUNT(*) AS EventCount, SUM(CASE sessiontype WHEN 'pwa' THEN 1 ELSE 0 END) AS PWAEventCount, SUM(CASE sessiontype WHEN 'browser' THEN 1 ELSE 0 END) AS BrowserEventCount FROM Event WHERE userip != '68.80.166.102' AND sessiontype <> '';
-SELECT * FROM Event WHERE userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 1000;
-#SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
-SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;
-SELECT referrer, COUNT(*) AS ReferrerCount FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
-SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY eventid DESC LIMIT 100;
-#SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
-#SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
-#SELECT * FROM Event WHERE action= 'print' AND userip != '68.80.166.102' ORDER BY eventid DESC;
-#SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
-#SELECT * FROM Event WHERE action = 'gettext' ORDER BY eventid DESC;
-#SELECT * FROM Event WHERE action = 'help' ORDER BY eventid DESC;SE
-SELECT 'Users' AS CountType, COUNT(*) AS Count FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
-SELECT 'Rosters', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND rostername != 'Sample Team: Intercessors' UNION
-SELECT 'SpotlightRosters', COUNT(*) AS SpotlightCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND spotlight = 1 UNION
-SELECT 'RostersWithNotes', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND notes != '' AND rostername != 'Sample Team: Intercessors' UNION
-SELECT 'RosterOps', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') UNION
-SELECT 'RosterOpsWithNotes', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') AND notes != '';
-#SELECT * FROM Event WHERE action = 'print' ORDER BY eventid DESC;
-#SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userip != '68.80.166.102' GROUP BY useragent ORDER BY 2 DESC;
-SELECT ' 3 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -3 day) UNION
-SELECT ' 7 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) UNION
-SELECT '14 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) UNION
-SELECT '21 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -21 day) UNION
-SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day);
+Rewrite Rules:
+	RewriteEngine on
+	RewriteRule ^/allfactions$ /compendium.php
+	RewriteRule ^/faction/([a-zA-Z0-9]+)$ /faction.php?fa=$1
+	RewriteRule ^/fa/([a-zA-Z0-9]+)$ /faction.php?fa=$1
+	RewriteRule ^/faction/([a-zA-z0-9]+)/killteam/([a-zA-Z0-9]+)$ /killteam.php?fa=$1&kt=$2
+	RewriteRule ^/fa/([a-zA-Z0-9]+)/kt/([a-zA-Z0-9]+)$ /killteam.php?fa=$1&kt=$2
+	RewriteRule ^/roster/([\-a-zA-Z0-9]+)$ /roster.php?rid=$1
+	RewriteRule ^/r/([\-a-zA-Z0-9]+)$ /roster.php?rid=$1
+	RewriteRule ^/user/([a-zA-Z0-9]+)$ /rosters.php?uid=$1
+	RewriteRule ^/u/([a-zA-Z0-9]+)$ /rosters.php?uid=$1
+	RewriteRule ^/u$ /rosters.php
+	RewriteRule ^/rostergallery/([\-a-zA-Z0-9]+)$ /rostergallery.php?rid=$1
+	RewriteRule ^/r/([\-a-zA-Z0-9]+)/g$ /rostergallery.php?rid=$1
+	RewriteRule ^/dashboard/([a-zA-Z0-9]*)$ /dashboard.php?rid=$1
+	RewriteRule ^/dashboard$ /dashboard.php
 
-# Killteams that don't have spotlighted or prebuilt roster
-SELECT *
-FROM Killteam K LEFT JOIN Roster R
-	ON  R.factionid = K.factionid AND R.killteamid = K.killteamid AND (R.spotlight = 1 OR R.userid = 'prebuilt')
-WHERE R.rosterid IS NULL
+SQL Queries:
+	SELECT COUNT(DISTINCT userid, userip) AS UserCount30Minute, COUNT(*) AS EventCount30Minute FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -30 minute);
+	#SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userid != '68.80.166.102' AND useragent != '' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY useragent ORDER BY COUNT(*) DESC;
+	#SELECT COUNT(*) AS EventCount, SUM(CASE sessiontype WHEN 'pwa' THEN 1 ELSE 0 END) AS PWAEventCount, SUM(CASE sessiontype WHEN 'browser' THEN 1 ELSE 0 END) AS BrowserEventCount FROM Event WHERE userip != '68.80.166.102' AND sessiontype <> '';
+	SELECT * FROM Event WHERE userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 1000;
+	#SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
+	SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;
+	SELECT referrer, COUNT(*) AS ReferrerCount FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
+	SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY eventid DESC LIMIT 100;
+	#SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
+	#SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
+	#SELECT * FROM Event WHERE action= 'print' AND userip != '68.80.166.102' ORDER BY eventid DESC;
+	#SELECT * FROM Event WHERE eventtype = 'settings' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
+	#SELECT * FROM Event WHERE action = 'gettext' ORDER BY eventid DESC;
+	#SELECT * FROM Event WHERE action = 'help' ORDER BY eventid DESC;SE
+	SELECT 'Users' AS CountType, COUNT(*) AS Count FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
+	SELECT 'Rosters', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND rostername != 'Sample Team: Intercessors' UNION
+	SELECT 'SpotlightRosters', COUNT(*) AS SpotlightCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND spotlight = 1 UNION
+	SELECT 'RostersWithNotes', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') AND notes != '' AND rostername != 'Sample Team: Intercessors' UNION
+	SELECT 'RosterOps', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') UNION
+	SELECT 'RosterOpsWithNotes', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') AND notes != '';
+	#SELECT * FROM Event WHERE action = 'print' ORDER BY eventid DESC;
+	#SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userip != '68.80.166.102' GROUP BY useragent ORDER BY 2 DESC;
+	SELECT ' 3 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -3 day) UNION
+	SELECT ' 7 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) UNION
+	SELECT '14 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) UNION
+	SELECT '21 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -21 day) UNION
+	SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS ActiveUserCount FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day);
+
+	# Killteams that don't have spotlighted or prebuilt roster
+	SELECT *
+	FROM Killteam K LEFT JOIN Roster R
+		ON  R.factionid = K.factionid AND R.killteamid = K.killteamid AND (R.spotlight = 1 OR R.userid = 'prebuilt')
+	WHERE R.rosterid IS NULL
 
 
-# Action/Event Log
-ALTER VIEW EventLogView
-AS
-SELECT
-	E.datestamp,
-    CASE CONCAT(E.eventtype, '|', E.action)
-		WHEN 'page|view' THEN
-			CONCAT(IFNULL(CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>'), '[Anon]'), ' viewed page <a href="', E.url, '">', E.url, '</a>')
-		WHEN 'roster|addop' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> added ', O.opname, ' "', RO.opname, '" to <a href="/killteam.php?fa=', K.factionid, '&kt=', K.killteamid, '">', K.killteamname, '</a> roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
-		WHEN 'roster|create' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> created new <a href="/killteam.php?fa=', K.factionid, '&kt=', K.killteamid, '">', K.killteamname, '</a> roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
-		WHEN 'roster|importv1' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> imported a v1 roster')
-		WHEN 'roster|gettext' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> viewed roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', '''s text description')
-		WHEN 'roster|cloneop' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> cloned a new operative into roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
-		WHEN 'dashboard|TP' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', CASE WHEN var2 = 1 THEN ' moved to the next TP' ELSE ' went back to the previous TP' END)
-		WHEN 'session|signup' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> signed up')
-		WHEN 'dashboard|W' THEN
-			CONCAT(RO.opname, ' of ','<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 Wound')
-		WHEN 'dashboard|CP' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'used' END, ' 1 CP')
-		WHEN 'dashboard|VP' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 VP')
-		WHEN 'dashboard|RP' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 RP')
-		WHEN 'roster|print' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> printed their "', CASE label WHEN 'roster' THEN R.rostername ELSE RO.opname END, CASE label WHEN 'roster' THEN '" roster' ELSE '" operative' END)
-		WHEN 'roster|opportrait' THEN
-			CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> added a new ', CASE WHEN label = 'custom' THEN 'custom' ELSE 'default' END, ' portrait for "', RO.opname, '" of ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
-		ELSE
-			''
-		END
-	AS ActionLog,
-    E.userid, E.eventtype, E.action, E.label, E.var1, E.var2, E.var3,
-    U.username, R.rostername, RO.opname,
-    O.opname AS optype
-FROM 
-	Event E
-    LEFT JOIN User U
-		ON  U.userid = E.userid
-	LEFT JOIN Roster R
-		ON  R.rosterid = E.var1
-	LEFT JOIN Killteam K
-		ON  K.factionid = R.factionid
-        AND K.killteamid = R.killteamid
-	LEFT JOIN RosterOperative RO
-		ON  RO.rosterid = E.var1
-        AND RO.rosteropid = E.var2
-	LEFT JOIN Operative O
-		ON  O.factionid = RO.factionid
-        AND O.killteamid = RO.killteamid
-        AND O.fireteamid = RO.fireteamid
-        AND O.opid = RO.opid
-WHERE
-	E.eventtype NOT IN ('compendium', 'pwa', 'opname')
-	AND CONCAT(E.eventtype, '|', E.action) NOT IN ('dashboard|selectroster', 'dashboard|reset', 'settings|view', 'roster|edit', 'settings|set', 'session|login', 'roster|view', 'roster|editop', 'roster|delop', 'dashboard|init', 'rosters|view', 'roster|killteamcomp', 'roster|delete', 'roster|gallery')
-ORDER BY
-	E.eventid DESC;
+	# Action/Event Log
+	ALTER VIEW EventLogView
+	AS
+	SELECT
+		E.datestamp,
+		CASE CONCAT(E.eventtype, '|', E.action)
+			WHEN 'page|view' THEN
+				CONCAT(IFNULL(CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>'), '[Anon]'), ' viewed page <a href="', E.url, '">', E.url, '</a>')
+			WHEN 'roster|addop' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> added ', O.opname, ' "', RO.opname, '" to <a href="/killteam.php?fa=', K.factionid, '&kt=', K.killteamid, '">', K.killteamname, '</a> roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
+			WHEN 'roster|create' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> created new <a href="/killteam.php?fa=', K.factionid, '&kt=', K.killteamid, '">', K.killteamname, '</a> roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
+			WHEN 'roster|importv1' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> imported a v1 roster')
+			WHEN 'roster|gettext' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> viewed roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', '''s text description')
+			WHEN 'roster|cloneop' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> cloned a new operative into roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
+			WHEN 'dashboard|TP' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', CASE WHEN var2 = 1 THEN ' moved to the next TP' ELSE ' went back to the previous TP' END)
+			WHEN 'session|signup' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> signed up')
+			WHEN 'dashboard|W' THEN
+				CONCAT(RO.opname, ' of ','<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 Wound')
+			WHEN 'dashboard|CP' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'used' END, ' 1 CP')
+			WHEN 'dashboard|VP' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 VP')
+			WHEN 'dashboard|RP' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a>''s ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>', ' ', CASE WHEN var2 = 1 THEN 'gained' ELSE 'lost' END, ' 1 RP')
+			WHEN 'roster|print' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> printed their "', CASE label WHEN 'roster' THEN R.rostername ELSE RO.opname END, CASE label WHEN 'roster' THEN '" roster' ELSE '" operative' END)
+			WHEN 'roster|opportrait' THEN
+				CONCAT('<a href="/rosters.php?uid=', U.userid, '">', U.username, '</a> added a new ', CASE WHEN label = 'custom' THEN 'custom' ELSE 'default' END, ' portrait for "', RO.opname, '" of ', ' roster <a href="/roster.php?rid=', R.rosterid, '">', R.rostername, '</a>')
+			ELSE
+				''
+			END
+		AS ActionLog,
+		E.userid, E.eventtype, E.action, E.label, E.var1, E.var2, E.var3,
+		U.username, R.rostername, RO.opname,
+		O.opname AS optype
+	FROM 
+		Event E
+		LEFT JOIN User U
+			ON  U.userid = E.userid
+		LEFT JOIN Roster R
+			ON  R.rosterid = E.var1
+		LEFT JOIN Killteam K
+			ON  K.factionid = R.factionid
+			AND K.killteamid = R.killteamid
+		LEFT JOIN RosterOperative RO
+			ON  RO.rosterid = E.var1
+			AND RO.rosteropid = E.var2
+		LEFT JOIN Operative O
+			ON  O.factionid = RO.factionid
+			AND O.killteamid = RO.killteamid
+			AND O.fireteamid = RO.fireteamid
+			AND O.opid = RO.opid
+	WHERE
+		E.eventtype NOT IN ('compendium', 'pwa', 'opname')
+		AND CONCAT(E.eventtype, '|', E.action) NOT IN ('dashboard|selectroster', 'dashboard|reset', 'settings|view', 'roster|edit', 'settings|set', 'session|login', 'roster|view', 'roster|editop', 'roster|delop', 'dashboard|init', 'rosters|view', 'roster|killteamcomp', 'roster|delete', 'roster|gallery')
+	ORDER BY
+		E.eventid DESC;

@@ -36,7 +36,7 @@
 			$pagedesc  = $pagedesc  = $myRoster->rostername . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . ": \r\n" . ($myRoster->notes == '' ? $myRoster->oplist : $myRoster->notes);
 			$pagekeywords = "Gallery,Photos,Miniatures,Prebuilt,sample,rosters,teams,import," . $myRoster->rostername . "," . $myRoster->killteamname . "," . $myRoster->username;
 			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
-			$pageurl   = "https://ktdash.app/rostergallery.php?rid={$myRoster->rosterid}";
+			$pageurl   = "https://ktdash.app/r/{$myRoster->rosterid}/g";
 			include "og.php";
 		?>
 	</head>
@@ -57,7 +57,7 @@
 			<div class="row">
 				<div class="col-11 m-0 p-0">
 					<h1>
-						<a class="navloader" href="/roster.php?rid=<?php echo $myRoster->rosterid ?>"><?php echo $myRoster->rostername ?></a>
+						<a class="navloader" href="/r/<?php echo $myRoster->rosterid ?>"><?php echo $myRoster->rostername ?></a>
 					</h1>
 				</div>
 				<div class="col-1 m-0 p-0 align-text-top text-end">
@@ -67,15 +67,15 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
 							<li><a class="pointer dropdown-item p-1" ng-click="showShareRosterGallery(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</a></li>
-							<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid=<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
+							<li><a class="pointer dropdown-item p-1 navloader" href="/r/<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<a href="/killteam.php?fa=<?php echo $myRoster->factionid ?>&kt=<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>
+			<a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>
 			<?php
 				if (!$ismine) { ?>
-				by&nbsp;<a class="navloader" href="/rosters.php?uid=<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
+				by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 			<?php }
 			?>
 		</div>

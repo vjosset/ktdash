@@ -21,7 +21,7 @@
 		$pagedesc  = "All KillTeam 2021 factions";
 		$pagekeywords = "All Factions";
 		$pageimg   = "https://ktdash.app/img/og/Compendium.png";
-		$pageurl   = "https://ktdash.app/compendium.php";
+		$pageurl   = "https://ktdash.app/allfactions";
 		
 		include "og.php"
 		?>
@@ -42,12 +42,12 @@
 		
 		<div class="card-group" ng-hide="loading">
 			<div ng-repeat="faction in factions" class="col-12 col-md-6 col-xl-4 p-1">
-				<div class="card border-light shadow darkcard">
+				<div class="card darkcard h-100">
 					<!-- Portrait -->
 					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 					
 					<h1 class="card-title orange text-center">
-						<a class="navloader" href="/faction.php?fa={{ faction.factionid }}">
+						<a class="navloader" href="/fa/{{ faction.factionid }}">
 							{{ faction.factionname }}
 						</a>
 					</h1>

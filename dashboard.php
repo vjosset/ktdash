@@ -12,6 +12,14 @@
 	}
 	
 	$uid = Session::CurrentUser()->userid;
+	
+	$rid = getIfSet($_REQUEST['r'], '');
+	if ($rid == null || $rid == '') {
+		$rid = getIfSet($_REQUEST['rid']);
+	}
+	if ($rid == null || $rid == '') {
+		$rid = getIfSet($_REQUEST['rosterid']);
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +34,7 @@
 			include "og.php";
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initDashboard()"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initDashboard('<?php echo $rid ?>')"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;

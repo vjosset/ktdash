@@ -88,10 +88,10 @@
 				</h3>
 				<ul>
 					<li ng-repeat="roster in myRosters">
-						<a class="navloader" href="/roster.php?rid={{ roster.rosterid }}">{{ roster.rostername }}</a>
+						<a class="navloader" href="/r/{{ roster.rosterid }}">{{ roster.rostername }}</a>
 					</li>
 					<li>
-						<a class="navloader" href="/rosters.php?uid=prebuilt">Pre-built rosters</a>
+						<a class="navloader" href="/u/prebuilt">Pre-built rosters</a>
 					</li>
 				</ul>
 			</div>
@@ -103,25 +103,25 @@
 				</h3>
 				<ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
 					<li>
-						<a class="navloader" href="/faction.php?fa=AEL">Aeldari</a>
+						<a class="navloader" href="/fa/AEL">Aeldari</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=CHAOS">Chaos</a>
+						<a class="navloader" href="/fa/CHAOS">Chaos</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=IMP">Imperium</a>
+						<a class="navloader" href="/fa/IMP">Imperium</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=NEC">Necrons</a>
+						<a class="navloader" href="/fa/NEC">Necrons</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=ORK">Orks</a>
+						<a class="navloader" href="/fa/ORK">Orks</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=TAU">T'au Empire</a>
+						<a class="navloader" href="/fa/TAU">T'au Empire</a>
 					</li>
 					<li>
-						<a class="navloader" href="/faction.php?fa=TYR">Tyranids</a>
+						<a class="navloader" href="/fa/TYR">Tyranids</a>
 					</li>
 				</ul>
 			</div>
@@ -131,7 +131,7 @@
 			<div class="m-0 p-0 col-12 col-md-6 col-lg-4 ng-cloak h-100">
 				<!-- Random Spotlighted Roster -->
 				<h3 class="orange">
-					<a class="nav-link navloader" href="/roster.php?rid={{ myRoster.rosterid }}">
+					<a class="nav-link navloader" href="/r/{{ myRoster.rosterid }}">
 						<i class="fas fa-star fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i>
 						Roster Spotlight
 					</a>
@@ -159,8 +159,8 @@
 							<li>
 								Added new killteams:
 								<ul>
-									<li><a href="/killteam.php?fa=IMP&kt=KAS">Kasrkin</a></li>
-									<li><a href="/killteam.php?fa=NEC&kt=HIER">Hierotek Circle</a></li>
+									<li><a href="/fa/IMP/kt/KAS">Kasrkin</a></li>
+									<li><a href="/fa/NEC/kt/HIER">Hierotek Circle</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -172,10 +172,10 @@
 							<li>
 								Added new killteams:
 								<ul>
-									<li><a href="/killteam.php?fa=IMP&kt=INB">Imperial Navy Breachers</a></li>
-									<li><a href="/killteam.php?fa=CHAOS&kt=GPI">Gellerpox Infected</a></li>
-									<li><a href="/killteam.php?fa=TAU&kt=FSKB">Kroot Farstalker Kinband</a></li>
-									<li><a href="/killteam.php?fa=IMP&kt=ESS">Elucidian Starstriders</a></li>
+									<li><a href="/fa/IMP/kt/INB">Imperial Navy Breachers</a></li>
+									<li><a href="/fa/CHAOS/kt/GPI">Gellerpox Infected</a></li>
+									<li><a href="/fa/TAU/kt/FSKB">Kroot Farstalker Kinband</a></li>
+									<li><a href="/fa/IMP/kt/ESS">Elucidian Starstriders</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -192,8 +192,8 @@
 					<li>
 						<strong>18 Aug 2022</strong><br/>
 						<ul>
-							<li>Added <a href="https://ktdash.app/killteam.php?fa=IMP&kt=INTS">Intercession Squad</a> kill team!</li>
-							<li>Added a new <a href="https://rurl.cc/GjILlk">pre-built Intercession Squad</a> kill team</li>
+							<li>Added <a href="/fa/IMP/kt/INTS">Intercession Squad</a> kill team!</li>
+							<li>Added a new <a href="/r/PB-INTS">pre-built Intercession Squad</a> kill team</li>
 						</ul>
 					</li>
 					<li>

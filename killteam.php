@@ -26,6 +26,9 @@
 		$killteamid = getIfSet($_REQUEST['kt']);
 	}
 	
+	$factionid = strtoupper($factionid);
+	$killteamid = strtoupper($killteamid);
+	
 	$faction = Faction::GetFaction($factionid);
 	
 	if ($faction == null) {
@@ -46,16 +49,16 @@
 		<?php include "header.shtml" ?>
 		
 		<?php
-		$pagetitle = $killteam->killteamname . " | " . $faction->factionname;
-		$pagedesc  = $killteam->description;
+		$pagetitle = $killteam->killteamname . " Kill Team";
+		$pagedesc  = str_replace("\n", " ", str_replace("\r", " ", $killteam->description));
 		$pagekeywords = "Compendium," . $faction->factionname . "," . $killteam->killteamname;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg";
-		$pageurl   = "https://ktdash.app/killteam.php?fa=" . $factionid . "&kt=" . $killteamid;
+		$pageurl   = "https://ktdash.app/fa/" . $factionid . "/kt/" . $killteamid;
 		
 		include "og.php"
 		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initKillteam();"
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initKillteam('<?php echo $factionid ?>', '<?php echo $killteamid ?>');"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -69,7 +72,7 @@
 		<?php include "templates/dialogs.shtml" ?>
 		
 		<h1 class="orange">
-			<a href="/faction.php?fa=<?php echo $factionid ?>"><?php echo $faction->factionname ?></a>
+			<a href="/fa/<?php echo $factionid ?>"><?php echo $faction->factionname ?></a>
 			:
 			<?php echo $killteam->killteamname ?>
 		</h1>
@@ -142,7 +145,7 @@
 							</h3>
 							
 							<div class="card-group collapse show" id="ft_{{ fireteam.fireteamid }}">
-								<div class="col-12 col-md-6 col-xl-4 align-items-stretch" ng-repeat="operative in fireteam.operatives">
+								<div class="col-12 col-md-6 col-xl-4" ng-repeat="operative in fireteam.operatives">
 									<?php include "templates/op_card.shtml" ?>
 								</div>
 							</div>

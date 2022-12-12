@@ -139,25 +139,27 @@
 					// Load the stats
 					$cmd->execute();
 					
-					echo "<table style=\"width: 100%;\">";
+					echo "<ul>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
 							// Got a result
 							?>
-							<tr>
-								<th><?php echo $row->datestamp ?></th>
-								<td>
-									<a href="/rostergallery.php?rid=<?php echo $row->rosterid ?>" target="_blank">
-										<?php echo $row->rostername ?>
-									</a> by <?php echo $row->username ?> (<?php echo number_format($row->Count) ?>)
-								</td>
-							</tr>
+							<li><strong><?php echo $row->datestamp ?><br/></strong>
+							<a href="/rostergallery.php?rid=<?php echo $row->rosterid ?>" target="_blank">
+								<?php echo $row->rostername ?>
+							</a>
+							by
+							<a href="/rosters.php?uid=<?php echo $row->userid ?>" target="_blank">
+								<?php echo $row->username ?>
+							</a>
+							(<?php echo number_format($row->Count) ?>)
+							</li>
 							<?php
 						}
 					}
 					
-					echo "</table>";
+					echo "</ul>";
 				?>
 			</div>
 			<br/>
