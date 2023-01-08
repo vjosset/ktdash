@@ -146,13 +146,9 @@
 							// Got a result
 							?>
 							<li><strong><?php echo $row->datestamp ?><br/></strong>
-							<a href="/rostergallery.php?rid=<?php echo $row->rosterid ?>" target="_blank">
-								<?php echo $row->rostername ?>
-							</a>
+							<a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a>
 							by
-							<a href="/rosters.php?uid=<?php echo $row->userid ?>" target="_blank">
-								<?php echo $row->username ?>
-							</a>
+							<a href="/u/<?php echo $row->userid ?>" target="_blank"><?php echo $row->username ?></a>
 							(<?php echo number_format($row->Count) ?>)
 							</li>
 							<?php
@@ -168,7 +164,7 @@
 			<div class="line-top-light">
 				<h2>Event Log</h2>
 				<?php
-					$sql = "SELECT * FROM EventLogView WHERE ActionLog != '' AND userid != 'vince' ORDER BY 1 DESC LIMIT 200";
+					$sql = "SELECT * FROM EventLogView WHERE ActionLog != '' AND userip != '68.80.166.102' ORDER BY 1 DESC LIMIT 200";
 					$cmd = $dbcon->prepare($sql);
 						
 					// Load the stats
@@ -184,52 +180,6 @@
 						}
 					}
 				?>
-			</div>
-			
-			<!-- Recent Portraits (Pictures) -->
-			<div class="line-top-light m-0 p-0 d-none">
-				<h2>Recent Portraits</h2>
-				<div class="row m-0 p-0">
-				<?php
-					//$sql = "SELECT datestamp, action, userid, var1, var2, var1 FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY 1 DESC LIMIT 50";
-					//$cmd = $dbcon->prepare($sql);
-						
-					// Load the stats
-					//$cmd->execute();
-
-					if ($result = $cmd->get_result()) {
-						while ($row = $result->fetch_object()) {
-							// Got a result
-							if ($row->action == 'opportrait') {
-								// Operative
-								?>
-								<!-- div class="col-12 col-md-6 col-lg-4 col-xl-3 pointer" style="overflow: hidden;">
-									<a href="/roster.php?rid=<?php //echo $row->var1 ?>" target="_blank">
-										<h4><?php //echo $row->datestamp ?></h4>
-										<img
-											src="/api/operativeportrait.php?roid=<?php //echo $row->var2 ?>"
-											style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
-									</a>
-								</div -->
-								<?php
-							} else{
-								// Roster
-								?>
-								<!-- div class="col-12 col-md-6 col-lg-4 col-xl-3 pointer" style="overflow: hidden;">
-									<a href="/roster.php?rid=<?php //echo $row->var1 ?>" target="_blank">
-										<h4><?php //echo $row->datestamp ?></h4>
-										<img
-											src="/api/rosterportrait.php?rid=<?php //echo $row->var1 ?>"
-											style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
-									</a>
-										</a>
-								</div -->
-								<?php
-							}
-						}
-					}
-				?>
-				</div>
 			</div>
 		</div>
 		

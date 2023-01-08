@@ -76,9 +76,9 @@
 	}
 
 	function POSTUser() {
-		$username = $_REQUEST['username'];
-		$password = $_REQUEST['password'];
-		$confirmpassword = $_REQUEST['confirmpassword'];
+		$username = getIfSet($_REQUEST['username'], '');
+		$password = getIfSet($_REQUEST['password'], '');
+		$confirmpassword = getIfSet($_REQUEST['confirmpassword'], '');
 
 		if ($confirmpassword != $password) {
             header('HTTP/1.0 400 Passwords do not match');

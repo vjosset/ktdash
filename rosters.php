@@ -29,9 +29,17 @@
 	$myUser = User::FromDB($uid);
 	
 	if ($myUser == null) {
-		// User not found
-		header("Location: /login.htm");
-		exit;
+		// No match on user ID, try to find based on user name
+		$u = User::FromName($uid);
+		
+		if ($u == null) {
+			// User not found
+			header("Location: /login.htm");
+			exit;
+		}
+		
+		$uid = $u->userid;
+		$myUser = $u;
 	}
 	$myUser->loadRosters(0);
 	$myRosters = $myUser->rosters;
@@ -62,7 +70,7 @@
 			} else {
 				$pageimg   = "https://ktdash.app/img/og/Home.png";
 			}
-			$pageurl   = "https://ktdash.app/rosters.php?uid={$uid}";
+			$pageurl   = "https://ktdash.app/u/{$myUser->username}";
 			include "og.php";
 		?>
 	</head>
@@ -83,7 +91,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="rostersactions">
 						<li><a class="pointer dropdown-item p-1" ng-click="initNewRoster();"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i>  Add New Roster</a></li>
-						<li><a class="pointer dropdown-item p-1 navloader" ng-href="/rosters.php?uid=prebuilt"><i class="fas fa-users fa-fw"></i> Pre-Built Rosters</a></li>
+						<li><a class="pointer dropdown-item p-1 navloader" ng-href="/u/KTDash"><i class="fas fa-users fa-fw"></i> Pre-Built Rosters</a></li>
 					</ul>
 				</div>
 			</div>

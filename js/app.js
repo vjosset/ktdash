@@ -19,7 +19,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				display: 'card',
 				showopseq: 'n',
 				startvp: 2,
-				startcp: 2
+				startcp: 3,
+				applyeqmods: 'n',
+				shownarrative: 'y',
+				autoinccp: 'n'
 			};
 			
 			$scope.loadSettings = function() {
@@ -28,25 +31,39 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.settings = JSON.parse(settingsJson.toLowerCase());
 				} else {
 					// No settings yet, fill in defaults
-					$scope.setSetting("display", "card");
-					$scope.setSetting("showopseq", "n");
-					$scope.setSetting("startvp", "2");
-					$scope.setSetting("startcp", "2");
+					$scope.setSetting("display", "card", true);
+					$scope.setSetting("showopseq", "n", true);
+					$scope.setSetting("startvp", "2", true);
+					$scope.setSetting("startcp", "3", true);
+					$scope.setSetting("applyeqmods", "n", true);
+					$scope.setSetting("shownarrative", "y", true);
+					$scope.setSetting("autoinccp", "n", true);
 				}
 				
 				// Set default settings
 				if (!$scope.settings["display"]) {
-					$scope.setSetting("display", "card");
+					$scope.setSetting("display", "card", true);
 				}
 				if (!$scope.settings["showopseq"]) {
-					$scope.setSetting("showopseq", "n");
+					$scope.setSetting("showopseq", "n", true);
 				}
 				if (!$scope.settings["startvp"]) {
-					$scope.setSetting("startvp", "2");
+					$scope.setSetting("startvp", "2", true);
 				}
 				if (!$scope.settings["startcp"]) {
-					$scope.setSetting("startcp", "2");
+					$scope.setSetting("startcp", "3", true);
 				}
+				if (!$scope.settings["applyeqmods"]) {
+					$scope.setSetting("applyeqmods", "n", true);
+				}
+				if (!$scope.settings["shownarrative"]) {
+					$scope.setSetting("shownarrative", "y", true);
+				}
+				if (!$scope.settings["autoinccp"]) {
+					$scope.setSetting("autoinccp", "n", true);
+				}
+				
+				$scope.saveSettings();
 			}
 			
 			$scope.saveSettings = function() {
@@ -54,9 +71,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				localStorage.setItem("settings", settingsJson);
 			}
 			
-			$scope.setSetting = function(key, value) {
+			$scope.setSetting = function(key, value, skipte = false) {
 				$scope.settings[key] = value;
-				te('settings', 'set', key, value);
+				if (!skipte) {
+					te('settings', 'set', key, value);
+				}
 				$scope.saveSettings();
 			}
 			
@@ -163,14 +182,14 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Rosters"
-					window.location.href = "/rosters.php";
+					window.location.href = "/u";
 				}
 				
 				$scope.loading = false;
 				var ru = GetQS("ru");
 				if (ru == "" || ru == null) {
 					// No redirect URL defined, use default
-					ru = "/rosters.php";
+					ru = "/u";
 				}
 				$scope.loginForm.redirectUrl = ru;
 			}
@@ -202,7 +221,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Send the user to the redirect url
 						if ($scope.loginForm.redirectUrl == null || $scope.loginForm.redirectUrl == "") {
 							// No redirect specified - Send user to "My Rosters"
-							$scope.loginForm.redirectUrl = "/rosters.php";
+							$scope.loginForm.redirectUrl = "/u";
 						}
 						te("session", "login");
 						window.location.href = $scope.loginForm.redirectUrl;
@@ -255,7 +274,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Check if user is already logged in
 				if ($scope.currentuser != null) {
 					// Already logged in - Send user to "My Rosters"
-					window.location.href = "/rosters.php";
+					window.location.href = "/u";
 				}
 			};
 			
@@ -293,12 +312,12 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Success
 							success: function(data) { // Saved
 								// Send the user to "My Rosters"
-								window.location.href = "/rosters.php";
+								window.location.href = "/u";
 							},
 							// Failure
 							error: function(data, status, error) { // Failed to import sample roster
 								// Still send the user to "My Rosters"
-								window.location.href = "/rosters.php";
+								window.location.href = "/u";
 							}
 						});
 					},
@@ -397,6 +416,59 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				$scope.loading = false;
+			}
+			
+			// applyEqMods()
+			// Applies equipment mods to the operatives in the specified roster
+			$scope.applyEqMods = function (roster) {
+				if (roster != null) {
+					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
+						let op = roster.operatives[opnum];
+						//console.log("Operative #" + opnum + ": " + op.opname + " (" + op.optype + ")");
+						
+						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
+							let eq = op.equipments[eqnum];
+							//console.log("   Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", " + eq.eqvar1 + ", " + eq.eqvar2 + ", " + eq.eqvar3 + ", " + eq.eqvar4 + ")");
+							
+							switch (eq.eqtype.toLowerCase()) {
+								case "wepmod":
+									//console.log("      WepMod");
+									switch(eq.eqvar1) {
+									}
+									break;
+								case "opmod":
+									//console.log("      OpMod");
+									
+									// Pick the characteristic to mod
+									switch (eq.eqvar1) {
+										case "M":
+											//console.log("         M");
+											if (eq.eqvar2.startsWith("+")) {
+												//console.log("         Adding " + eq.eqvar2 + " to M");
+												op.M += eq.eqvar2;
+											}
+											break;
+										case "W":
+											//console.log("         W");
+											if (eq.eqvar2.startsWith("+")) {
+												//console.log("         Adding " + eq.eqvar2 + " to W");
+												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
+											}
+											break;
+										case "APL":
+											break;
+										case "SV":
+											break;
+										case "DF":
+											break;
+										case "GA":
+											break;
+									}
+									break;
+							}
+						}
+					}
+				}
 			}
 			
 			// importV1Teams()
@@ -616,6 +688,11 @@ var app = angular.module("kt", ['ngSanitize'])
 								success: function(data) {
 									// Got it
 									$scope.myRoster.killteam = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+									
+									// Apply eq mods
+									if ($scope.settings.applyeqmods == 'y') {
+										$scope.applyEqMods($scope.myRoster);
+									}
 								},
 								error: function(error) {
 									// Failed to save roster
@@ -684,7 +761,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.$apply();
 						} else {
 							// We're not on the "Rosters" page, so send them there
-							window.location.href = "/rosters.php";
+							window.location.href = "/u";
 						}
 					},
 					// Failure
@@ -771,7 +848,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						te("roster", "create", "", data.rosterid);
 						
 						// Send the user to their new roster
-						window.location.href = "/roster.php?rid=" + data.rosterid;
+						window.location.href = "/r/" + data.rosterid;
 					},
 					error: function(error) {
 						// Failed to save roster
@@ -911,7 +988,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							
 							// Send the user to their newly-cloned team
 							toast("Team copied - Redirecting...");
-							location.href = "/roster.php?rid=" + roster.rosterid;
+							location.href = "/r/" + roster.rosterid;
 						},
 						// Failure
 						error: function(data, status, error) { // Failed to save operative
@@ -1049,7 +1126,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRoster = function(roster) {
 				te("roster", "share", "", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/roster/" + roster.rosterid;
+				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid;
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");
@@ -1060,7 +1137,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRosterGallery = function(roster) {
 				te("roster", "share", "gallery", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/rostergallery.php?rid=" + roster.rosterid;
+				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid + "/g";
 				
 				// Show the modal
 				$('#sharerostergallerymodal').modal("show");
@@ -1738,8 +1815,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterTextDescription = function(roster) {
 				te("roster", "gettext", "", roster.rosterid);
 				let out = "";
-				out = "<h6><a href=\"https://ktdash.app/roster.php?rid=" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
-				out += "<a href=\"https://ktdash.app/killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
+				out = "<h6><a href=\"https://ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
+				out += "<a href=\"https://ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {
@@ -1878,6 +1955,17 @@ var app = angular.module("kt", ['ngSanitize'])
 						toast("Could not get operative: \r\n" + error);
 					}
 				});
+			}
+			
+			// updateXP()
+			// Increments or decrements the specified RosterOperative's XP
+			$scope.updateXP = function(inc, op) {
+				te("roster", "XP", "inc", op.rosterid, op.rosteropid, inc);
+				op.xp += inc;
+				if (op.xp < 0) {
+					op.xp = 0;
+				}
+				$scope.commitRosterOp(op);
 			}
 		}
 		
@@ -2171,6 +2259,11 @@ var app = angular.module("kt", ['ngSanitize'])
 								}
 							}
 							
+							// Apply eq mods
+							if ($scope.settings.applyeqmods == 'y') {
+								$scope.applyEqMods($scope.dashboardroster);
+							}
+							
 							// Done
 							$scope.loading = false;
 							$scope.$apply();
@@ -2191,6 +2284,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				te("dashboard", "selectroster", "", roster.rosterid);
 				$scope.dashboardroster = roster;
 				$scope.setDashboardRosterId(roster.rosterid);
+				
+				// Apply eq mods
+				if ($scope.settings.applyeqmods == 'y') {
+					$scope.applyEqMods($scope.dashboardroster);
+				}
 			}
 			
 			// Pop-up the roster operative selection modal
@@ -2207,8 +2305,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				te("dashboard", "reset", "", roster.rosterid);
 				
 				// Update local roster
-				roster.CP = $scope.settings["startcp"];
-				roster.VP = $scope.settings["startvp"];
+				roster.CP = parseInt($scope.settings["startcp"]);
+				roster.VP = parseInt($scope.settings["startvp"]);
 				roster.TP = 1;
 				roster.RP = 0;
 				
@@ -2289,11 +2387,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				if (inc == 1) {
-					// Next Turning Point - Reset "Activated" on each operative
-					// Push local roster to DB/API
-					$scope.commitRoster(roster);
+					// Next Turning Point
 					
-					// Reset operatives (not injured)
+					// Update CP if setting is enabled
+					if ($scope.settings["autoinccp"] == "y") {
+						roster.CP += 1;
+					}
+					
+					//// Push local roster to DB/API
+					//$scope.commitRoster(roster);
+					
+					// Reset operatives (not injured, not activated)
 					for (let i = 0; i < roster.operatives.length; i++) {
 						let op = roster.operatives[i];
 						op.activated = 0;

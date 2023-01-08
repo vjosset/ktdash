@@ -21,10 +21,27 @@
         }
 
         public function NewUser($n, $p) {
+			// Validate user name - Letters, numbers, underscores only
+			if (!preg_match ("/^[a-zA-Z0-9_]+$/",$n)) {
+				// Found at least one invalid character
+                header('HTTP/1.0 400 Invalid user name - Only letters, numbers, and underscores allowed');
+                die("Invalid user name");
+			}
+			
+			if (strlen($n) < 5) {
+                header('HTTP/1.0 400 Invalid user name - Minimum 5 characters');
+                die("Invalid user name");
+			}
+			
+			if (strlen($n) > 50) {
+                header('HTTP/1.0 400 Invalid user name - Maximum 50 characters');
+                die("Invalid user name");
+			}
+			
             // Check if there is a user with this name
             if (User::FromName($n)) {
                 // There is a user with that name already
-                header('HTTP/1.0 500 Server Error - UserName already taken');
+                header('HTTP/1.0 400 Server Error - UserName already taken');
                 die("UserName already taken!");
             }
 

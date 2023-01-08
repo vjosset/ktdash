@@ -57,7 +57,7 @@
 			"purpose": "maskable any"
         }
     ],
-	"start_url": "/rosters.php?source=pwa",
+	"start_url": "/u?source=pwa",
     "theme_color": "#c54c21",
     "background_color": "#343a40",
     "display": "standalone",

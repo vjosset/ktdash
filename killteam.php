@@ -57,6 +57,7 @@
 		
 		include "og.php"
 		?>
+		
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initKillteam('<?php echo $factionid ?>', '<?php echo $killteamid ?>');"
 		style="
@@ -174,8 +175,16 @@
 				<div class="tab-pane" id="eqs" role="tabpanel">
 					<!-- Equipment -->
 					<div class="row p-0 m-0">
-						<div ng-repeat="eq in killteam.equipments" class="col-12 col-lg-6 col-xl-4">
-							<?php include "templates/eq.shtml" ?>
+						<div ng-repeat="eq in killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+							<h4 class="text-center line-top-light" ng-if="$index > 0 && killteam.equipments[$index].eqcategory != killteam.equipments[$index - 1].eqcategory">
+								{{ eq.eqcategory }}
+							</h4>
+							<div class="line-top-light">
+								<h5 class="d-inline">{{ eq.eqname }}</h5>
+								<h5 class="d-inline float-end text-end" ng-if="eq.eqpts > '0'">{{ eq.eqpts }} EP&nbsp;&nbsp;</h5>
+								<em class="d-inline float-end text-end" ng-if="eq.eqpts == '0'">{{ eq.eqcategory }}&nbsp;&nbsp;</em>
+							</div>
+							<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
 						</div>
 					</div>
 				</div>

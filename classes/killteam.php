@@ -175,7 +175,7 @@
 			
 			$this->equipments = [];
 						
-			$sql = "SELECT * FROM Equipment WHERE factionid = ? AND killteamid = ? ORDER BY eqseq, eqname;";
+			$sql = "SELECT * FROM Equipment WHERE (factionid = ? AND killteamid = ?) OR (factionid = 'ALL' AND killteamid = 'ALL') ORDER BY eqseq, eqname;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {

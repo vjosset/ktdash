@@ -30,7 +30,7 @@
 			$pagedesc  = "KillTeam Game Dashboard";
 			$pagekeywords = "Dashboard, track, VP, CP, TP";
 			$pageimg   = "https://ktdash.app/img/dashboard.png";
-			$pageurl   = "https://ktdash.app/dashboard.php";
+			$pageurl   = "https://ktdash.app/dashboard";
 			include "og.php";
 		?>
 	</head>
@@ -83,9 +83,9 @@
 								<i class="fas fa-ellipsis-h fa-fw"></i>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
-								<li><a class="pointer dropdown-item p-1 navloader" href="/roster.php?rid={{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
+								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
-								<li><a class="pointer dropdown-item p-1 navloader" href="/rostergallery.php?rid={{ dashboardroster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}/g" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click=" resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
 							</ul>
 						</div>
@@ -195,7 +195,15 @@
 					<!-- Equipment -->
 					<div class="row p-0 m-0">
 						<div ng-repeat="eq in dashboardroster.killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4">
-							<?php include "templates/eq.shtml" ?>
+							<h4 class="text-center line-top-light" ng-if="$index > 0 && dashboardroster.killteam.equipments[$index].eqcategory != dashboardroster.killteam.equipments[$index - 1].eqcategory">
+								{{ eq.eqcategory }}
+							</h4>
+							<div class="line-top-light">
+								<h5 class="d-inline">{{ eq.eqname }}</h5>
+								<h5 class="d-inline float-end text-end" ng-if="eq.eqpts > '0'">{{ eq.eqpts }} EP&nbsp;&nbsp;</h5>
+								<em class="d-inline float-end text-end" ng-if="eq.eqpts == '0'">{{ eq.eqcategory }}&nbsp;&nbsp;</em>
+							</div>
+							<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
 						</div>
 					</div>
 				</div>

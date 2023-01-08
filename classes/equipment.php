@@ -9,6 +9,12 @@
 		public $eqname = "";
 		public $eqdescription = "";
 		public $eqpts = "";
+		public $eqtype = "";
+		public $eqvar1 = "";
+		public $eqvar2 = "";
+		public $eqvar3 = "";
+		public $eqvar4 = "";
+		public $eqcategory = "";
         
         function __construct() {
             $this->TableName = "equipmentid";

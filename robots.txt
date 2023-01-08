@@ -1,0 +1,32 @@
+#Block dotbot
+User-agent: dotbot 
+Disallow: /
+
+#Block Yandex
+User-agent: Yandex 
+Disallow: /
+
+#Block all Semrush crawlers/bots
+User-agent: SemrushBot
+Disallow: /
+User-agent: SplitSignalBot
+Disallow: / 
+User-agent: SiteAuditBot
+Disallow: / 
+User-agent: SemrushBot-BA
+Disallow: / 
+User-agent: SemrushBot-SI
+Disallow: / 
+User-agent: SemrushBot-SWA
+Disallow: / 
+User-agent: SemrushBot-CT
+Disallow: / 
+User-agent: SemrushBot-BM
+Disallow: / 
+
+#Block PetalBot
+User-agent: PetalBot
+Disallow: / 
+
+User-agent: *
+Allow: /

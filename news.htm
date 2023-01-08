@@ -20,7 +20,7 @@
 		<meta property="og:image"  content="https://ktdash.app/img/og/News.png">
 		<meta name="twitter:image" content="https://ktdash.app/img/og/News.png">
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();">
 		<!--#include virtual="topnav.shtml" -->
 			
 		<!-- Dialogs -->
@@ -33,6 +33,27 @@
 			
 		<div class="container">
 			<ul>
+				<li>
+					<strong>26 Dec 2022</strong><br/>
+					Battle Honours and Rare Equipment! Universal Rare Equipment and Battle Honours are loaded for all teams, plus bespoke ones for:
+					<ul>
+						<li><a href="/fa/CHAOS/kt/GPI">Gellerpox Infected</a></li>
+						<li><a href="/fa/IMP/kt/INTS">Intercession Squad</a></li>
+						<li><a href="/fa/IMP/kt/ESS">Elucidian Starstriders</a></li>
+						<li><a href="/fa/IMP/kt/KAS">Kasrkin</a></li>
+						<li><a href="/fa/NEC/kt/HIER">Hierotek Circle</a></li>
+						<li><a href="/fa/TAU/kt/FSKB">Farstalker Kinband</a></li>
+						<li><a href="/fa/IMP/kt/INB">Imperial Navy Breachers</a></li>
+					</ul>
+				</li>
+				<li>
+					<strong>23 Dec 2022</strong><br/>
+					<ul>
+						<li>
+							Applied <a href="https://www.warhammer-community.com/faqs/#kill-team" target="_blank">Dec 2022 Errata</a> and <a href="https://www.warhammer-community.com/wp-content/uploads/2022/09/4PpUFsmOGVDYGaxW.pdf" target="_blank">2022Q4 Balance Dataslate</a> to all killteams.
+						</li>
+					</ul>
+				</li>
 				<li>
 					<strong>06 Nov 2022</strong><br/>
 					<ul>
@@ -47,8 +68,8 @@
 						<li>
 							Added new killteams:
 							<ul>
-								<li><a href="/killteam.php?fa=IMP&kt=KAS">Kasrkin</a></li>
-								<li><a href="/killteam.php?fa=NEC&kt=HIER">Hierotek Circle</a></li>
+								<li><a href="/fa/IMP/kt/KAS">Kasrkin</a></li>
+								<li><a href="/fa/NEC/kt/HIER">Hierotek Circle</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -60,10 +81,10 @@
 						<li>
 							Added new killteams:
 							<ul>
-								<li><a href="/killteam.php?fa=IMP&kt=INB">Imperial Navy Breachers</a></li>
-								<li><a href="/killteam.php?fa=CHAOS&kt=GPI">Gellerpox Infected</a></li>
-								<li><a href="/killteam.php?fa=TAU&kt=FSKB">Kroot Farstalker Kinband</a></li>
-								<li><a href="/killteam.php?fa=IMP&kt=ESS">Elucidian Starstriders</a></li>
+								<li><a href="/fa/IMP/kt/INB">Imperial Navy Breachers</a></li>
+								<li><a href="/fa/CHAOS/kt/GPI">Gellerpox Infected</a></li>
+								<li><a href="/fa/TAU/kt/FSKB">Kroot Farstalker Kinband</a></li>
+								<li><a href="/fa/IMP/kt/ESS">Elucidian Starstriders</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -80,31 +101,31 @@
 				<li>
 					<strong>18 Aug 2022</strong><br/>
 					<ul>
-						<li>Added <a href="https://ktdash.app/killteam.php?fa=IMP&kt=INTS">Intercession Squad</a> kill team!</li>
-						<li>Added a new <a href="https://rurl.cc/GjILlk">pre-built Intercession Squad</a> kill team</li>
+						<li>Added <a href="/fa/IMP/kt/INTS">Intercession Squad</a> kill team!</li>
+						<li>Added a new <a href="/r/PB-INTS">pre-built Intercession Squad</a> kill team</li>
 					</ul>
 				</li>
 				<li>
 					<strong>17 Jul 2022</strong><br/>
 					<ul>
-						<li>Fixed description of Grav-Chute equipment for <a href="/killteam.php?fa=IMP&kt=PHO">Phobos Strike Team</a>.</li>
-						<li>Added a new <a href="/sampleteams.htm">pre-built</a> Phobos Strike Team <a href="https://rurl.cc/b6fpNe">"BladeReach"</a>.</li>
+						<li>Fixed description of Grav-Chute equipment for <a href="/fa/IMP/kt/PHO">Phobos Strike Team</a>.</li>
+						<li>Added a new <a href="/u/KTDash">pre-built</a> <a href="/fa/IMP/kt/PHO">Phobos Strike Team</a> <a href="/r/PB-PHO">"Phobos"</a>.</li>
 					</ul>
 				</li>
 				<li>
 					<strong>14 Jul 2022</strong><br/>
 					<ul>
 						<li>Added missing "Relentless" on the Storm Bolter for Deathwatch Sergeant and Warrior.</li>
-						<li>Fixed typo ("Funner" instead of "Gunner") in <a href="/killteam.php?fa=TAU&kt=HC">Hunter Cadre</a> kill team composition.</li>
-						<li>Combined <a href="killteam.php?fa=IMP&kt=NOV">Novitiates</a> Acts of Faith under one Ability (instead of one Ability per Act).</li>
-						<li>Fixed <a href="/killteam.php?fa=TAU&kt=HC">Hunter Cadre</a> portraits</li>
+						<li>Fixed typo ("Funner" instead of "Gunner") in <a href="/fa/TAU/kt/HC">Hunter Cadre</a> kill team composition.</li>
+						<li>Combined <a href="/fa/IMP/kt/NOV">Novitiates</a> Acts of Faith under one Ability (instead of one Ability per Act).</li>
+						<li>Fixed <a href="/fa/TAU/kt/HC">Hunter Cadre</a> portraits</li>
 					</ul>
 				</li>
 				<li>
 					<strong>06 Jul 2022</strong><br/>
 					<ul>
 						<li>Join our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>!</li>
-						<li>Selected Equipment on the <a href="/dashboard.htm">Dashboard</a> now updates operative characteristics to match!</i>
+						<li>Selected Equipment on the <a href="/dashboard">Dashboard</a> now updates operative characteristics to match!</i>
 					</ul>
 				</li>
 				<li>
@@ -125,7 +146,7 @@
 				<li>
 					<strong>30 May 2022</strong><br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=CHAOS&kt=BLD">Blooded</a> and <a href="/killteam.php?fa=IMP&kt=PHO">Phobos Strike Team</a> killteams.
+						<li>Added <a href="/fa/CHAOS/kt/BLD">Blooded</a> and <a href="/fa/IMP/kt/PHO">Phobos Strike Team</a> killteams.
 						<li>Fixed show/hide portraits on dashboard (in the <a href="/settings.htm">Settings</a>)</li>
 					</ul>
 				</li>
@@ -138,32 +159,32 @@
 				<li>
 					<strong>12 Apr 2022</strong><br/>
 					<ul>
-						<li>Added team archetype to <a href="/myteams.htm">My Teams</a> and <a href="/dashboard.htm">Dashboard</a>.
+						<li>Added team archetype to <a href="/u">My Rosters</a> and <a href="/dashboard">Dashboard</a>.
 					</ul>
 				</li>
 				<li>
 					<strong>15 Mar 2022</strong><br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=AEL&kt=COR">Corsair Voidscarred</a> killteam</li>
+						<li>Added <a href="/fa/AEL/kt/COR">Corsair Voidscarred</a> killteam</li>
 					</ul>
 				</li>
 				<li>
 					<strong>13 Mar 2022</strong><br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=CHAOS&kt=LEG">Legionaries</a> killteam</li>
+						<li>Added <a href="/fa/CHAOS/kt/LEG">Legionaries</a> killteam</li>
 					</ul>
 				</li>
 				<li>
 					<strong>12 Mar 2022</strong><br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=AEL&kt=VDT">Void-Dancer Troupe</a> killteam (replaces Troupe kill team)</li>
+						<li>Added <a href="/fa/AEL/kt/VDT">Void-Dancer Troupe</a> killteam (replaces Troupe kill team)</li>
 					</ul>
 				</li>
 				<li>
 					<strong>09 Mar 2022</strong><br/>
 					<ul>
 						<li>Updated with latest balance dataslate</li>
-						<li>Removed obsolete teams Forge World (replaced with <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade</a>) and Thousand Sons (replaced with <a href="/killteam.php?fa=CHAOS&kt=WC">Warp Coven</a>)</li>
+						<li>Removed obsolete teams Forge World (replaced with <a href="/fa/IMP/kt/HC">Hunter Clade</a>) and Thousand Sons (replaced with <a href="/fa/CHAOS/kt/WC">Warp Coven</a>)</li>
 					</ul>
 				</li>
 				<li>
@@ -185,13 +206,13 @@
 				<li>
 					<strong>01 Feb 2022</strong><br/>
 					<ul>
-						<li>Updated <a href="/killteam.php?fa=TAU&kt=PF">Pathfinder</a> Assault Grenadiers to not worsen their BS/WS when injured on the Dashboard</li>
+						<li>Updated <a href="/fa/TAU/kt/PF">Pathfinder</a> Assault Grenadiers to not worsen their BS/WS when injured on the Dashboard</li>
 					</ul>
 				</li>
 				<li>
 					<strong>28 Jan 2022</strong><br/>
 					<ul>
-						<li>Updated images for the <a href="/killteam.php?fa=IMP&kt=GK">Grey Knights</a></li>
+						<li>Updated images for the <a href="/fa/IMP/kt/GK">Grey Knights</a></li>
 						<li>Added QR Code to the team sharing link</li>
 						<li>Printable operative cards! Use the <i class="fas fa-print fa-fw"></i> button from <a href="/myteams.htm">My Teams</a></li>
 					</ul>
@@ -237,7 +258,7 @@
 				<li>
 					<strong>04 Jan 2022</strong><br/>
 					<ul>
-						<li>Added missing images for <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade</a> KillTeam</li>
+						<li>Added missing images for <a href="/fa/IMP/kt/HC">Hunter Clade</a> KillTeam</li>
 						<li>Added support for re-ordering (<i class="fas fa-arrow-up fa-fw"></i> <i class="fas fa-arrow-down fa-fw"></i>) <a href="/myteams.htm">teams</a></li>
 						<li>Added support for cloning (<i class="far fa-copy fa-fw"></i>) <a href="/myteams.htm">teams</a></li>
 						<li>Added new page for generating operative names: <a href="/name.htm">Name Generator</a></li>
@@ -247,7 +268,7 @@
 					<strong>03 Jan 2022</strong> - Compendium Updates<br/>
 					<ul>
 						<li>Fixed a BUNCH of typos in the compendium</li>
-						<li>Added missing Abilities and Unique Actions for <a href="/killteam.php?fa=IMP&kt=NOV">Novitiates</a> KillTeam</li>
+						<li>Added missing Abilities and Unique Actions for <a href="/fa/IMP/kt/NOV">Novitiates</a> KillTeam</li>
 						<li>UI updates</li>
 						<li>Added a name generator for most operatives in the "Add Operative" dialog when editing your team</li>
 					</ul>
@@ -255,14 +276,14 @@
 				<li>
 					<strong>27 Dec 2021</strong> - Compendium Updates<br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=TAU&kt=PF">Pathfinders</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/fa/TAU/kt/PF">Pathfinders</a> KillTeam to the Compendium</li>
 					</ul>
 				</li>
 				<li>
 					<strong>26 Dec 2021</strong> - Compendium Updates<br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=IMP&kt=VG">Veteran Guardsmen</a> KillTeam to the Compendium</li>
-						<li>Added <a href="/killteam.php?fa=CHAOS&kt=WC">Warp Coven</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/fa/IMP/kt/VG">Veteran Guardsmen</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/fa/CHAOS/kt/WC">Warp Coven</a> KillTeam to the Compendium</li>
 						<li>"Notes" on dashboard operatives are now persistent instead of being cleared when you leave the page</li>
 					</ul>
 				</li>
@@ -281,8 +302,8 @@
 				<li>
 					<strong>23 Dec 2021</strong> - Compendium Updates<br/>
 					<ul>
-						<li>Added <a href="/killteam.php?fa=IMP&kt=NOV">Novitiates</a> KillTeam to the Compendium</li>
-						<li>Added <a href="/killteam.php?fa=ORK&kt=KOM">Kommando</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/fa/IMP/kt/NOV">Novitiates</a> KillTeam to the Compendium</li>
+						<li>Added <a href="/fa/ORK/kt/KOM">Kommando</a> KillTeam to the Compendium</li>
 						<li>Next up: Pathfinders, Warp Coven, and Veteran Guardsmen</li>
 					</ul>
 				</li>
@@ -336,9 +357,9 @@
 				<li>
 					<strong>17 Dec 2021</strong> - Fixed Typos, Style Updates<br/>
 					Updated styles (dark background)<br/>
-					Fixed typos for <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade</a> kill team;
-					added missing weapon (Marksman Bolt Carbine) for Space Marine <a href="/killteam.php?fa=IMP&kt=SM">Infiltrator</a> Warrior;
-					fixed formatting for <a href="/killteam.php?fa=IMP&kt=GK">Grey Knights</a>.
+					Fixed typos for <a href="/fa/IMP/kt/HC">Hunter Clade</a> kill team;
+					added missing weapon (Marksman Bolt Carbine) for Space Marine <a href="/fa/IMP/kt/SM">Infiltrator</a> Warrior;
+					fixed formatting for <a href="/fa/IMP/kt/GK">Grey Knights</a>.
 				</li>
 				<li>
 					<strong>22 Nov 2021</strong> - Style Updates<br/>
@@ -351,7 +372,7 @@
 				</li>
 				<li>
 					<strong>19 Nov 2021</strong> - New KillTeam: Hunter Clade<br/>
-					Added the Adeptus Mechanicus <a href="/killteam.php?fa=IMP&kt=HC">Hunter Clade KillTeam</a> from White Dwarf.
+					Added the Adeptus Mechanicus <a href="/fa/IMP/kt/HC">Hunter Clade KillTeam</a> from White Dwarf.
 				</li>
 				<li>
 					<strong>19 Nov 2021</strong> - Data Clean Up<br/>

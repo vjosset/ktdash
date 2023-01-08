@@ -75,7 +75,7 @@
 			<a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>
 			<?php
 				if (!$ismine) { ?>
-				by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
+				by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->username ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 			<?php }
 			?>
 		</div>
@@ -97,13 +97,18 @@
 				>
 				<img id="rosterportrait_{{ myRoster.rosterid }}"
 					src="/api/rosterportrait.php?rid={{ myRoster.rosterid }}"
+					alt="{{ myRoster.rostername }}"
+					title="{{ myRoster.rostername }}"
 					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
 			</div>
 			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden;"
 				ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 				>
+				<h4 class="orange m-0 p-0">{{ operative.opname }}</h4>
 				<img id="opportrait_{{operative.rosteropid}}"
 					src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
+					alt="{{ operative.opname }}"
+					title="{{ operative.opname }}"
 					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
 			</div>
 		</div>

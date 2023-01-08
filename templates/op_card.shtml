@@ -92,34 +92,50 @@
 						<!-- Card View -->
 						<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
 							<tr class="orange">
-								<td width="16%">M</td>
-								<td width="16%">APL</td>
-								<td width="16%">GA</td>
+								<td width="16%">
+									M
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
+								</td>
+								<td width="16%">
+									APL
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
+								</td>
+								<td width="16%">
+									GA
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
+								</td>
 							</tr>
 							<tr>
 								<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" nowrap="true">
 									<span ng-bind-html="operative.M"></span>
-									<span ng-repeat="eq in getOpEq(operative, 'OpMod', 'M')[0]" ng-bind-html="eq.eqvar2"></span>
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 								</td>
 								<td>
-									<span ng-show="!opHasEq(operative, 'OpMod', 'APL')">{{ operative.APL }}</span><span ng-repeat="eq in getOpEq(operaive, 'OpMod', 'APL')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'APL')[0].eqdescription);">*</sup>
+									{{ operative.APL }}
 								</td>
 								<td>
-									{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
+									{{ operative.GA }}
 								</td>
 							</tr>
 							<tr class="orange">
-								<td width="16%">DF</td>
-								<td width="16%">SV</td>
-								<td width="16%">W</td>
+								<td width="16%">
+									DF
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
+								</td>
+								<td width="16%">
+									SV
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
+								</td>
+								<td width="16%">
+									W
+									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
+								</td>
 							</tr>
 							<tr>
 								<td>
-									{{ operative.DF }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
+									{{ operative.DF }}
 								</td>
 								<td>
-									&nbsp;<span ng-show="!opHasEq(operative, 'OpMod', 'SV')">{{ operative.SV }}</span><span ng-repeat="eq in getOpEq(operative, 'OpMod', 'SV')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
+									&nbsp;{{ operative.SV }}
 								</td>
 								<td ng-if="MODE == 'Dashboard'">
 									<ANY ng-if="operative.baseoperative.W != '-'">
@@ -306,6 +322,16 @@
 			<!-- Abilities and UniqueActions -->
 			<div class="p-1" ng-if="operative.abilities.length > 0 || operative.uniqueactions.length > 0">
 				<div class="line-top-light m-0 p-0">
+					<!-- div  style="columns: 200px 2;">
+						<h6 ng-if="operative.abilities != null && operative.abilities.length > 0">Abilities</h6>
+						<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12 w-100': operative.uniqueactions.length > 0, 'col-6 w-50': operative.uniqueactions.length < 1}">
+							{{ ab.title }} 
+						</div>
+						<h6 ng-if="operative.uniqueactions != null && operative.uniqueactions.length > 0">Unique Actions</h6>
+						<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12 w-100': operative.abilities.length > 0, 'col-6 w-50': operative.abilities.length < 1}">
+							{{ ua.title }} ({{ ua.AP }} AP)
+						</div>
+					</div -->
 					<div class="row">
 						<!-- Abilities -->
 						<div ng-if="operative.abilities != null && operative.abilities.length > 0" ng-class="{'col-12 w-100': operative.uniqueactions.length < 1, 'col-6 w-50': operative.uniqueactions.length > 0}">
@@ -342,6 +368,27 @@
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- XP -->
+			<div class="p-1" ng-if="settings['shownarrative'] == 'y' && MODE == 'MyRoster'">
+				<div class="row line-top-light m-0 p-0">
+					<div class="col-8">
+						<h6 class="d-inline">XP</h6>
+						<em ng-if="operative.xp <= 5">Adept</em>
+						<em ng-if="operative.xp >= 6 && operative.xp <= 15">Veteran</em>
+						<em ng-if="operative.xp >= 16 && operative.xp <= 30">Ace</em>
+						<em ng-if="operative.xp >= 31 && operative.xp <= 50">Grizzled</em>
+						<em ng-if="operative.xp >= 51">Revered</em>
+					</div>
+					<div class="col-4 text-end">
+						<span class="pointer small" ng-click="updateXP(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
+						
+						<h5 ng-bind="operative.xp" class="d-inline"></h5>
+						
+						<span class="pointer small" ng-click="updateXP(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 				</div>
 			</div>

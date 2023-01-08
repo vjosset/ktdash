@@ -17,7 +17,7 @@
 		<?php include "header.shtml" ?>
 		
 		<?php
-		$pagetitle = "Compendium";
+		$pagetitle = "Factions";
 		$pagedesc  = "All KillTeam 2021 factions";
 		$pagekeywords = "All Factions";
 		$pageimg   = "https://ktdash.app/img/og/Compendium.png";

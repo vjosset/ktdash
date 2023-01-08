@@ -133,7 +133,7 @@
 			</div>
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" ng-click="createRoster();">Create Team</button>
+				<button type="button" class="btn btn-primary" ng-click="createRoster();">Create Roster</button>
 			</div>
 		</div>
 	</div>
@@ -425,9 +425,16 @@
 				<h6 class="line-top-light">Equipment</h6>
 				
 				<!-- Equipments List-->
-				<div ng-repeat="eq in tempeditop.equipments track by $index">
+				<div ng-repeat="eq in tempeditop.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+					<h6 ng-if="$index > 0 && tempeditop.equipments[$index].eqcategory != tempeditop.equipments[$index - 1].eqcategory">
+						<br/>{{ eq.eqcategory }}
+					</h6>
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
-					<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
+					<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">
+						{{ eq.eqname }}
+						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} Pts)</span>
+						<i class="far fa-question-circle fa-fw"></i>
+					</span>
 				</div>
 			</div>
 			<div class="modal-footer dark p-1">
@@ -448,9 +455,16 @@
 			</div>
 			<div class="modal-body dark p-1">				
 				<!-- Equipment List-->
-				<div ng-repeat="eq in opeq.equipments track by $index">
+				<div ng-repeat="eq in opeq.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+					<h6 ng-if="$index == 0 || opeq.equipments[$index].eqcategory != opeq.equipments[$index - 1].eqcategory">
+						<br/>{{ eq.eqcategory }}
+					</h6>
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
-					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">{{ eq.eqname }} ({{ eq.eqpts }} Pts) <i class="far fa-question-circle fa-fw"></i></span>
+					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">
+						{{ eq.eqname }}
+						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} Pts)</span>
+						<i class="far fa-question-circle fa-fw"></i></span>
+					</span>
 				</div>
 			</div>
 			<div class="modal-footer dark p-1">

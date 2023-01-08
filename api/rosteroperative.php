@@ -171,6 +171,7 @@
 			}
 			else {
 				// Get the new operative from the input JSON
+				header("Step1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$newop = RosterOperative::FromJSON(file_get_contents('php://input'));
 				
 				if ($newop->rosteropid != null || $newop->rosteropid != '') {
@@ -190,7 +191,9 @@
 				}
 				
 				// Check the roster this operative should be added to
-				$r = Roster::GetRoster($newop->rosterid);
+				header("Step2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				$r = Roster::GetRosterRow($newop->rosterid);
+				header("Step3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				if ($r == null || $r->userid != $u->userid) {
 					// Roster not found or belongs to someone else
 					header('HTTP/1.0 404 Roster not found B');
@@ -205,6 +208,7 @@
 						$newop->seq = 10000;
 						
 						// Set its curW based on the the base operative's W
+						header("Step4: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 						$baseop = Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid);
 						if (is_numeric($baseop->W)) {
 							$newop->curW = $baseop->W;
@@ -223,17 +227,19 @@
 						die();
 					} else {
 						// Save this operative to DB
+						header("Step5: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 						$newop->DBSave();
 						
-						$newop = RosterOperative::GetRosterOperative($newop->rosteropid);
-						
 						// Reorder operatives so their seqs are always sequential
+						header("Step6: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 						$r->reorderOperatives();
 						
 						// Get a fresh copy of this operative
+						header("Step7: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 						$newop = RosterOperative::GetRosterOperative($newop->rosteropid);
 						
 						// Done
+						header("Step8: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 						header('Content-Type: application/json');
 						echo json_encode($newop);
 					}

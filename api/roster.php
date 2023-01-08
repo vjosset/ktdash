@@ -181,7 +181,8 @@
 				
 				// All done
 				echo json_encode($roster);
-			} else if (getIfSet($_REQUEST["swapseq"]) == "1") {
+			}
+			else if (getIfSet($_REQUEST["swapseq"]) == "1") {
 				// Swap the Seqs for two rosters (moveup/movedown)
 				
 				// Get the user id
@@ -233,7 +234,8 @@
 				
 				header('Content-Type: text/plain');
 				echo "OK";
-			} else {
+			}
+			else {
 				// Get the submitted roster
 				$r = Roster::FromJSON(file_get_contents('php://input'));
 				

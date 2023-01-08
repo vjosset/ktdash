@@ -107,7 +107,7 @@
 				<a class="navloader" ng-href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>">
 					<?php echo $myRoster->killteamname ?>
 					<?php if (!$ismine) { ?>
-					by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->userid ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
+					by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->username ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 					<?php }
 					else {?>
 					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>

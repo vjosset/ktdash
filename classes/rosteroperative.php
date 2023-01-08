@@ -111,7 +111,7 @@
 			global $dbcon;
 			
 			// Get the equipments for this operative
-			$sql = "SELECT * FROM Equipment WHERE factionid = ? AND killteamid = ? AND CONCAT(',', ?, ',') LIKE CONCAT('%,', eqid, ',%') ORDER BY eqseq";
+			$sql = "SELECT * FROM Equipment WHERE ((factionid = ? AND killteamid = ?) OR (factionid = 'ALL' AND killteamid = 'ALL')) AND CONCAT(',', ?, ',') LIKE CONCAT('%,', eqid, ',%') ORDER BY eqseq";
 			
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "sss";
