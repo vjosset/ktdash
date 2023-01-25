@@ -25,7 +25,7 @@ SQL Queries:
 	SELECT * FROM Event WHERE userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 1000;
 	#SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 	SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;
-	SELECT referrer, COUNT(*) AS ReferrerCount FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
+	SELECT referrer, COUNT(*) AS ReferrerCount FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
 	SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY eventid DESC LIMIT 100;
 	#SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 	#SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
@@ -121,8 +121,19 @@ SQL Queries:
 
 
 SITEMAP GENERATOR
-	SELECT CONCAT('https://ktdash.app/fa/', factionid) FROM Faction UNION
+	/* All Factions */
+    SELECT CONCAT('https://ktdash.app/fa/', factionid) FROM Faction UNION
+    /* All Killteams */
 	SELECT CONCAT('https://ktdash.app/fa/', factionid, '/kt/', killteamid) FROM Killteam UNION
-	SELECT CONCAT('http://ktdash.app/u/', username) FROM User UNION
-	SELECT CONCAT('http://ktdash.app/r/', rosterid) FROM Roster UNION
-	SELECT CONCAT('http://ktdash.app/r/', rosterid, '/g') FROM Roster;
+    /* Top users */
+	SELECT CONCAT('http://ktdash.app/u/', username) FROM User WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+    /* Top user rosters */
+	SELECT CONCAT('http://ktdash.app/r/', rosterid) FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+    /* Top user roster galleries */
+	SELECT CONCAT('http://ktdash.app/r/', rosterid, '/g') FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+    /* Users with spotlighted rosters */
+	SELECT DISTINCT CONCAT('http://ktdash.app/u/', username) FROM Roster R INNER JOIN User U ON U.userid = R.userid WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+    /* Spotlighted rosters */
+	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+    /* Spotlighted roster galleries */
+	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;

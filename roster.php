@@ -21,7 +21,7 @@
 	if ($myRoster == null) {
 		// Roster not found
 		//	Send them to My Rosters I guess?
-		header("Location: /rosters.php");
+		header("Location: /u");
 		exit;
 	}
 	$myRoster->loadOperatives();
@@ -105,6 +105,7 @@
 			</div>
 			<div>
 				<a class="navloader" ng-href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>">
+					<span ng-if="myRoster.spotlight == 1"><i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></span>
 					<?php echo $myRoster->killteamname ?>
 					<?php if (!$ismine) { ?>
 					by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->username ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>

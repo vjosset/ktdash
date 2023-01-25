@@ -1201,7 +1201,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 					
 					// Reduce the M on the operative
-					op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
+					op.M = op.M.replace("2&#x2B24;", "2&#x2B24;*"); // Can't go below 2 [CIRCLE]
 					op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
 					op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
 					op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
@@ -1229,8 +1229,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
 					op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
 					op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
+					op.M = op.M.replace("2&#x2B24;*", "MAKEMETWO"); // Can't go below 2 [CIRCLE]
 					op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
-					op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
+					op.M = op.M.replace("MAKEMETWO", "2&#x2B24;");
 				}
 			}
 		

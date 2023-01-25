@@ -129,10 +129,10 @@
 				<h2>Recent Portraits</h2>
 				<?php
 					$sql = "
-						SELECT MAX(E.datestamp) AS datestamp, COUNT(*) AS Count, U.username, U.userid, R.rosterid, R.rostername
+						SELECT MAX(E.datestamp) AS datestamp, COUNT(*) AS Count, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
 						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1
 						WHERE E.action IN ('portrait', 'opportrait') AND E.userip != '68.80.166.102' AND E.label = 'custom'
-						GROUP BY U.username, U.userid, R.rosterid, R.rostername
+						GROUP BY U.username, U.userid, R.rosterid, R.rostername, R.spotlight
 						ORDER BY 1 DESC LIMIT 20";
 					$cmd = $dbcon->prepare($sql);
 						
@@ -146,6 +146,12 @@
 							// Got a result
 							?>
 							<li><strong><?php echo $row->datestamp ?><br/></strong>
+							<?php
+							if ($row->spotlight == 1) {
+								echo '<i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i>';
+							}
+							?>
+							
 							<a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a>
 							by
 							<a href="/u/<?php echo $row->userid ?>" target="_blank"><?php echo $row->username ?></a>
