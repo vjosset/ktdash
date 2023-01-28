@@ -2359,6 +2359,13 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.commitRosterOp(op);
 				}
 				
+				// Deactivate Strategic Ploys
+				for (let i = 0; i < $scope.dashboardroster.killteam.ploys.strat.length; i++) {
+					let p = $scope.dashboardroster.killteam.ploys.strat[i];
+					p.active = false;
+					$scope.toggleStratPloy($scope.dashboardroster, p, false);
+				}
+				
 				toast('Dashboard Reset');
 			}
 		
@@ -2404,12 +2411,18 @@ var app = angular.module("kt", ['ngSanitize'])
 						op.activated = 0;
 						$scope.commitRosterOp(op);
 					}
+					
+					// Deactivate previous TP's Strategic Ploys
+					for (let i = 0; i < $scope.dashboardroster.killteam.ploys.strat.length; i++) {
+						let p = $scope.dashboardroster.killteam.ploys.strat[i];
+						p.active = false;
+						$scope.toggleStratPloy($scope.dashboardroster, p, false);
+					}
 				}
 				
 				$scope.commitRoster(roster);
 			}
 		
-			
 			// Increment Resource Points (e.g. Faith Points for Novitiates)
 			$scope.updateRP = function(inc, roster)  {
 				te("dashboard", "RP", "inc", roster.rosterid, inc);
@@ -2418,6 +2431,38 @@ var app = angular.module("kt", ['ngSanitize'])
 					roster.RP = 0;
 				}
 				$scope.commitRoster(roster);
+			}
+			
+			// toggleStratPloy()
+			// Activates or deactivates the specified strategic ploy on the dashboardroster
+			$scope.toggleStratPloy = function(roster, ploy, active) {
+				ploy.active = active;
+				
+				console.log("toggleStratPloy()");
+				
+				if (active) {
+					// Add this ploy to each operative in the roster
+					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
+						let op = roster.operatives[opnum];
+						let ab = {
+							title: "[SP] " + ploy.ployname,
+							description: "<em>Strategic Ploy<br/></em>" + ploy.description
+						};
+						op.abilities.push(ab);
+					}
+				} else {
+					// Remove this ploy from each operative in the roster
+					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
+						let op = roster.operatives[opnum];
+						for (let abnum = op.abilities.length - 1; abnum >= 0; abnum--) {
+							let ab = op.abilities[abnum];
+							if (ab.title == "[SP] " + ploy.ployname) {
+								// This is the ploy to deactivate - Remove it from the operative's abilities
+								op.abilities.splice(abnum, 1);
+							}
+						}
+					}
+				}
 			}
 		}
 		

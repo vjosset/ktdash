@@ -334,12 +334,11 @@
 					</div -->
 					<div class="row">
 						<!-- Abilities -->
-						<div ng-if="operative.abilities != null && operative.abilities.length > 0" ng-class="{'col-12 w-100': operative.uniqueactions.length < 1, 'col-6 w-50': operative.uniqueactions.length > 0}">
+						<div ng-if="(operative.abilities != null && operative.abilities.length > 0)" ng-class="{'col-12 w-100': operative.uniqueactions.length < 1, 'col-6 w-50': operative.uniqueactions.length > 0}">
 							<h6>Abilities</h6>
 							<div class="row">
 								<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12 w-100': operative.uniqueactions.length > 0, 'col-6 w-50': operative.uniqueactions.length < 1}">
 									{{ ab.title }} 
-									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
 								</div>
 							</div>
 						</div>
