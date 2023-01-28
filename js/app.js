@@ -63,13 +63,17 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("autoinccp", "n", true);
 				}
 				
-				$scope.saveSettings();
+				$scope.saveSettings(false);
 			}
 			
-			$scope.saveSettings = function() {
+			$scope.saveSettings = function(dotoast = true) {
 				console.log("Saving settings: \r\n" + JSON.stringify($scope.settings).toLowerCase());
 				let settingsJson = JSON.stringify($scope.settings).toLowerCase();
 				localStorage.setItem("settings", settingsJson);
+				
+				if (dotoast) {
+					toast("Settings saved!");
+				}
 			}
 			
 			$scope.setSetting = function(key, value, skipte = false) {

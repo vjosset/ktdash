@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="/js/utils.js?cb=202212290000"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" src="/js/app.js?cb=202301180937"></script>
+		<script type="text/javascript" src="/js/app.js?cb=202301281021"></script>
 		
 		<!-- Fonts -->
 		<link rel="preload" href="https://fonts.googleapis.com">

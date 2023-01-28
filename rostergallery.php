@@ -62,10 +62,10 @@
 				</div>
 				<div class="col-1 m-0 p-0 align-text-top text-end">
 					<div class="btn-group">
-						<a class="h3" role="button" id="dashactions" data-bs-toggle="dropdown" aria-expanded="false">
+						<a class="h3" role="button" id="gallactions" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fas fa-ellipsis-h fa-fw"></i>
 						</a>
-						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="gallactions">
 							<li><a class="pointer dropdown-item p-1" ng-click="showShareRosterGallery(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</a></li>
 							<li><a class="pointer dropdown-item p-1 navloader" href="/r/<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 						</ul>
@@ -80,7 +80,13 @@
 			<?php }
 			?>
 		</div>
-		
+		<?php
+		if ($myRoster->notes != '') {
+			?>
+			<p><?php echo $myRoster->notes ?></p>
+			<?php
+		}
+		?>
 		<!-- loadWaiter -->
 		<h3 class="center" ng-show="loading">
 			<br/>

@@ -38,10 +38,14 @@ body {
 }
 
 /* Buttons */
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-primary {
     background-color: #c54c21 !important;
 	border-color: #262a2d !important;
 	color: #262a2d !important;
+}
+
+input {
+    accent-color: #c54c21;
 }
 
 /*

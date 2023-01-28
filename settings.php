@@ -93,7 +93,7 @@
 				
 				<div class="col-12 col-md-6">
 					<h6>Auto-Apply Equipment Modifiers</h6>
-					<em>EXPERIMENTAL</em> - Automatically applies modifiers to operative and weapon stats if enabled. This feature is <em>EXPERIMENTAL</em> and may not work as expected or break other functionality.
+					Automatically applies equipment modifiers to operatives and weapons if enabled.
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('applyeqmods', 'n');" ng-class="settings['applyeqmods'] == 'n' ? 'btn-primary': 'btn-secondary'">
 						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
@@ -105,6 +105,8 @@
 						<i class="pointer fas fa-magic fa-fw"></i><br/>
 						Enable
 					</button>
+					<br/>
+					This feature is <strong>EXPERIMENTAL</strong> and may not work as expected or break other functionality.
 					<br/><br/>
 				</div>
 			</div>
