@@ -67,6 +67,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			$scope.saveSettings = function() {
+				console.log("Saving settings: \r\n" + JSON.stringify($scope.settings).toLowerCase());
 				let settingsJson = JSON.stringify($scope.settings).toLowerCase();
 				localStorage.setItem("settings", settingsJson);
 			}
