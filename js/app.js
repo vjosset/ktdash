@@ -38,6 +38,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("applyeqmods", "n", true);
 					$scope.setSetting("shownarrative", "y", true);
 					$scope.setSetting("autoinccp", "n", true);
+					$scope.setSetting("defaultoporder", "engage", true);
 				}
 				
 				// Set default settings
@@ -61,6 +62,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["autoinccp"]) {
 					$scope.setSetting("autoinccp", "n", true);
+				}
+				if (!$scope.settings["defaultoporder"]) {
+					$scope.setSetting("defaultoporder", "engage", true);
 				}
 				
 				$scope.saveSettings(false);
@@ -1163,6 +1167,12 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Done
 				return total;
+			}
+		
+			$scope.deploy = function(roster) {
+				toast("Loading...");
+				$scope.setDashboardRosterId(roster.rosterid);
+				window.location.href = "/dashboard";
 			}
 		}
 		
@@ -2332,6 +2342,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Not activated - Must be an INT to save properly in DB
 					op.activated = 0;
+					
+					// Set their order to user's default
+					op.oporder = $scope.settings["defaultoporder"];
 					
 					// Reset their injury debuffs
 					if (op.isInjured) {

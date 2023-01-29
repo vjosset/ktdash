@@ -41,13 +41,17 @@
 		
 		<!-- Dashboard Card Title -->
 		<div ng-if="MODE == 'Dashboard'" class="card-title">
-			<h2 class="pointer" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">
-				<i class="pointer fas fa-chevron-down fa-fw"></i>
+			<h2 class="pointer">
+				<i class="pointer fas fa-chevron-down fa-fw" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}"></i>
 				
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
-				{{ operative.opname }}
+				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">{{ operative.opname }}</span>
 				
-				<i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i>
+				<img class="float-end" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" width="30" ng-if="operative.oporder == 'engage' && operative.activated" />
+				<img class="float-end" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" width="30" ng-if="operative.oporder == 'engage' && !operative.activated" />
+				<img class="float-end" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
+				<img class="float-end" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
+				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
 			</h2>

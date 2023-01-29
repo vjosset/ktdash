@@ -155,6 +155,21 @@
 					</button>
 					<br/><br/>
 				</div>
+				
+				<div class="col-12 col-md-6">
+					<h4>Default Operative Order</h4>
+					The default order to give your operatives when resetting the dashboard.
+					<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('defaultoporder', 'engage');" ng-class="settings['defaultoporder'] == 'engage' ? 'btn-primary': 'btn-secondary'">
+						<img src="/img/icons/EngageWhite.png" width="30" /><br/>
+						Engage
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('defaultoporder', 'conceal');" ng-class="settings['defaultoporder'] == 'conceal' ? 'btn-primary': 'btn-secondary'">
+						<img src="/img/icons/ConcealWhite.png" width="30" /><br/>
+						Conceal
+					</button>
+					<br/><br/>
+				</div>
 			</div>
 			
 			<!--
