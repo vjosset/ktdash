@@ -112,6 +112,7 @@
 				ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 				>
 				<h4 class="orange m-0 p-0">{{ operative.opname }}</h4>
+				<div class="orange">{{ operative.optype }}</div>
 				<img id="opportrait_{{operative.rosteropid}}"
 					src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
 					alt="{{ operative.opname }}"

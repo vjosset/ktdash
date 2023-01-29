@@ -40,7 +40,8 @@
 							</div>
 							<div>
 								<span ng-repeat="weapon in operative.weapons" class="d-inline">
-									{{ weapon.weptype == "R" ? "&#x2295;" : "&#x2694;" }} {{ weapon.wepname }}
+									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									{{ weapon.wepname }}
 									{{$last ? '' : ', '}}							
 								</span>
 							</div>
@@ -256,11 +257,7 @@
 								<td>
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 									<label for="chkwep_{{ weapon.wepid }}">
-										<ANY ng-switch="weapon.weptype" class="fas fa-fw">
-										  <ANY ng-switch-when="R">&#x2295;</ANY>
-										  <ANY ng-switch-when="M">&#x2694;</ANY>
-										  <ANY ng-switch-default>&#x26ED;</ANY>
-										</ANY>
+										<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 									<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
@@ -281,11 +278,7 @@
 								<td colspan="4">
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" />	
 									<label for="chkwep_{{ weapon.wepid }}">
-										<ANY ng-switch="weapon.weptype" class="fas fa-fw">
-										  <ANY ng-switch-when="R">&#x2295;</ANY>
-										  <ANY ng-switch-when="M">&#x2694;</ANY>
-										  <ANY ng-switch-default>&#x26ED;</ANY>
-										</ANY>
+										<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 								</td>
@@ -324,7 +317,7 @@
 
 <!-- Edit operative modal dialog -->
 <div class="modal fade" id="editopmodal" tabindex="-1" role="dialog" aria-labelledby="editopmodallabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
 				<div id="editopmodallabel" class="modal-title m-0 p-0" style="line-height: 1;">
@@ -364,11 +357,7 @@
 							<td>
 								<input type="checkbox" id="chkwep_{{ weapon.wepid}}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid}}">
-									<ANY ng-switch="weapon.weptype" class="fas fa-fw">
-									  <ANY ng-switch-when="R">&#x2295;</ANY>
-									  <ANY ng-switch-when="M">&#x2694;</ANY>
-									  <ANY ng-switch-default>&#x26ED;</ANY>
-									</ANY>
+									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 								<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
@@ -389,11 +378,7 @@
 							<td colspan="4">
 								<input type="checkbox" id="chkwep_{{ weapon.wepid }}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid }}">
-									<ANY ng-switch="weapon.weptype" class="fas fa-fw">
-									  <ANY ng-switch-when="R">&#x2295;</ANY>
-									  <ANY ng-switch-when="M">&#x2694;</ANY>
-									  <ANY ng-switch-default>&#x26ED;</ANY>
-									</ANY>
+									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 							</td>
