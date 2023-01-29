@@ -277,7 +277,7 @@
 				}
 				else {
 					// Submitted roster has an ID, check if this user owns it
-					$tempr = Roster::GetRoster($r->rosterid);
+					$tempr = Roster::GetRosterRow($r->rosterid);
 					
 					if ($tempr == null) {
 						// Roster not found or belongs to someone else		

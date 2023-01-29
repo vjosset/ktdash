@@ -47,10 +47,10 @@
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">{{ operative.opname }}</span>
 				
-				<img class="float-end" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" width="30" ng-if="operative.oporder == 'engage' && operative.activated" />
-				<img class="float-end" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" width="30" ng-if="operative.oporder == 'engage' && !operative.activated" />
-				<img class="float-end" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
-				<img class="float-end" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
+				<img class="float-end" title="Conceal - Activated" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" width="30" ng-if="operative.oporder == 'engage' && operative.activated" />
+				<img class="float-end" title="Conceal - Ready" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" width="30" ng-if="operative.oporder == 'engage' && !operative.activated" />
+				<img class="float-end" title="Engage - Activated" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
+				<img class="float-end" title="Engage - Ready" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" width="30" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>

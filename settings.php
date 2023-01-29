@@ -95,18 +95,18 @@
 					<h6>Auto-Apply Equipment Modifiers</h6>
 					Automatically applies equipment modifiers to operatives and weapons if enabled.
 					<br/>
-					<button class="btn h3" style="width: 120px;" ng-click="setSetting('applyeqmods', 'n');" ng-class="settings['applyeqmods'] == 'n' ? 'btn-primary': 'btn-secondary'">
-						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
-						<i class="pointer fas fa-bars fa-fw"></i><br/>
-						Disable
-					</button>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('applyeqmods', 'y');" ng-class="settings['applyeqmods'] == 'y' ? 'btn-primary': 'btn-secondary'">
 						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
 						<i class="pointer fas fa-magic fa-fw"></i><br/>
 						Enable
 					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('applyeqmods', 'n');" ng-class="settings['applyeqmods'] == 'n' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer fas fa-bars fa-fw"></i><br/>
+						Disable
+					</button>
 					<br/>
-					This feature is <strong>EXPERIMENTAL</strong> and may not work as expected or break other functionality.
+					<i class="fas fa-exclamation-triangle"></i> This feature is <strong>EXPERIMENTAL</strong> and may not work as expected or break other functionality.
 					<br/><br/>
 				</div>
 			</div>
@@ -161,7 +161,7 @@
 					The default order to give your operatives when resetting the dashboard.
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('defaultoporder', 'engage');" ng-class="settings['defaultoporder'] == 'engage' ? 'btn-primary': 'btn-secondary'">
-						<img src="/img/icons/EngageWhite.png" width="30" /><br/>
+						&nbsp;&nbsp;&nbsp;<img src="/img/icons/EngageWhite.png" width="30" /><br/>
 						Engage
 					</button>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('defaultoporder', 'conceal');" ng-class="settings['defaultoporder'] == 'conceal' ? 'btn-primary': 'btn-secondary'">
