@@ -6,12 +6,13 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
 		<!-- Icons -->
-		<link rel="apple-touch-icon" sizes="192x192" href="/img/icons/icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="48x48" href="/img/icons/icon-48x48.png">
-		<link rel="icon" type="image/png" sizes="72x72" href="/img/icons/icon-72x72.png">
-		<link rel="manifest" href="/site.webmanifest?cb=202212172349">
+		<link rel="apple-touch-icon" sizes="192x192" href="/img/icons/icon-192x192.png?cb=202302051114">
+		<link rel="icon" type="image/png" sizes="48x48" href="/img/icons/icon-48x48.png?cb=202302051114">
+		<link rel="icon" type="image/png" sizes="72x72" href="/img/icons/icon-72x72.png?cb=202302051114">
+		<link rel="manifest" href="/site.webmanifest?cb=202302051114">
 		<meta name="msapplication-TileColor" content="#444">
 		<meta name="theme-color" content="#444">
+		<link rel="icon" href="/favicon.ico?cb=202302051114" />
 		
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>

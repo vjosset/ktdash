@@ -2,7 +2,7 @@
     "name": "ktdash.app",
     "short_name": "KTDash",
     "icons": [
-       {
+        {
 			"src": "/img/icons/icon-48x48.png",
 			"sizes": "48x48",
 			"type": "image/png",
