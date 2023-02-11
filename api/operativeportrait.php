@@ -47,6 +47,20 @@
 				if (file_exists($custopportraitpath)) {
 					// File was found; read it and serve it
 					$filepath = $custopportraitpath;
+					
+					// Read the found file and serve it
+					if ($ro->hascustomportrait != 1) {
+						// Update the operative's "hascustomportrait" field
+						global $dbcon;
+						$sql = "UPDATE RosterOperative SET hascustomportrait = 1 WHERE rosteropid = ?";
+						$cmd = $dbcon->prepare($sql);
+						$paramtypes = "s";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $ro->rosteropid;
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						$cmd->execute();
+					}
 				} else {
 					// Custom file not found, serve the generic portrait for this operative
 					$filepath = "../img/portraits/{$ro->factionid}/{$ro->killteamid}/{$ro->fireteamid}/{$ro->opid}.jpg";
@@ -56,9 +70,21 @@
 						header('HTTP/1.0 404 Portrait not found');
 						die();
 					}
+						
+					// No custom portrait for this operative
+					if ($ro->hascustomportrait != 0) {
+						// Update the operative's "hascustomportrait" field
+						global $dbcon;
+						$sql = "UPDATE RosterOperative SET hascustomportrait = 0 WHERE rosteropid = ?";
+						$cmd = $dbcon->prepare($sql);
+						$paramtypes = "s";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $ro->rosteropid;
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						$cmd->execute();
+					}
 				}
-				
-				// Read the found file and serve it
 				header('Content-Type: image/jpeg');
 				header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $ro->opname) . '.jpg"');
 				echo file_get_contents($filepath);
@@ -104,6 +130,20 @@
 						if (file_exists($custopportraitpath)) {
 							unlink($custopportraitpath);
 						}
+						
+						// Success
+						// Update the operative's "hascustomportrait" field
+						global $dbcon;
+						$sql = "UPDATE RosterOperative SET hascustomportrait = 0 WHERE rosteropid = ?";
+						$cmd = $dbcon->prepare($sql);
+						$paramtypes = "s";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $ro->rosteropid;
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						$cmd->execute();
+						
+						// Done
 						echo "OK";
 					}
 				}
@@ -202,6 +242,18 @@
 								header("HTTP/1.0 500 Could not save portrait");
 								die();
 							} else {
+								// Success
+								// Update the operative's "hascustomportrait" field
+								global $dbcon;
+								$sql = "UPDATE RosterOperative SET hascustomportrait = 1 WHERE rosteropid = ?";
+								$cmd = $dbcon->prepare($sql);
+								$paramtypes = "s";
+								$params = array();
+								$params[] =& $paramtypes;
+								$params[] =& $ro->rosteropid;
+								call_user_func_array(array($cmd, "bind_param"), $params);
+								$cmd->execute();
+								
 								// Done
 								echo "OK";
 							}

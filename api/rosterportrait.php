@@ -50,6 +50,19 @@
 					$filepath = $custrosterportraitpath;
 					
 					header('Timings: ' . $log);
+					
+					if ($r->hascustomportrait != 1) {
+						// Update the operative's "hascustomportrait" field
+						global $dbcon;
+						$sql = "UPDATE Roster SET hascustomportrait = 1 WHERE rosterid = ?";
+						$cmd = $dbcon->prepare($sql);
+						$paramtypes = "s";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $r->rosterid;
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						$cmd->execute();
+					}
 				
 					// Read the found file and serve it
 					//$thumb = imagecreatefromstring(file_get_contents($filepath));
@@ -59,6 +72,20 @@
 				} else {
 					$log .= "-N" . microtime(true);
 					// File not found, serve the generic portrait for this roster
+					
+					if ($r->hascustomportrait != 0) {
+						// Update the roster's "hascustomportrait" field
+						global $dbcon;
+						$sql = "UPDATE Roster SET hascustomportrait = 0 WHERE rosterid = ?";
+						$cmd = $dbcon->prepare($sql);
+						$paramtypes = "s";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $r->rosterid;
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						$cmd->execute();
+					}
+					
 					$filepath = "../img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg";
 				
 					// Check if file exists
@@ -112,6 +139,21 @@
 						if (file_exists($custrosterportraitpath)) {
 							unlink($custrosterportraitpath);
 						}
+					
+						if ($r->hascustomportrait != 1) {
+							// Update the roster's "hascustomportrait" field
+							global $dbcon;
+							$sql = "UPDATE Roster SET hascustomportrait = 0 WHERE rosterid = ?";
+							$cmd = $dbcon->prepare($sql);
+							$paramtypes = "s";
+							$params = array();
+							$params[] =& $paramtypes;
+							$params[] =& $r->rosterid;
+							call_user_func_array(array($cmd, "bind_param"), $params);
+							$cmd->execute();
+						}
+						
+						// Done
 						echo "OK";
 					}
 				}
@@ -195,7 +237,6 @@
 							echo $thumb;
 							
 							// Save the file
-							
 							$custrosterportraitfolderpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}";
 							$custrosterportraitimgpath = $custrosterportraitfolderpath . "/roster_{$r->rosterid}.jpg";
 							if (!is_dir($custrosterportraitfolderpath)) {
@@ -207,6 +248,18 @@
 								header("HTTP/1.0 500 Could not save portrait");
 								die();
 							} else {
+								if ($r->hascustomportrait != 1) {
+									// Update the roster's "hascustomportrait" field
+									global $dbcon;
+									$sql = "UPDATE Roster SET hascustomportrait = 1 WHERE rosterid = ?";
+									$cmd = $dbcon->prepare($sql);
+									$paramtypes = "s";
+									$params = array();
+									$params[] =& $paramtypes;
+									$params[] =& $r->rosterid;
+									call_user_func_array(array($cmd, "bind_param"), $params);
+									$cmd->execute();
+								}
 								// Done
 								echo "OK";
 							}

@@ -2,6 +2,7 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     require_once $root . '/include.php';
     global $dbcon;
+	global $perf;
     
     switch ($_SERVER['REQUEST_METHOD']) {
 		case "GET":
@@ -74,7 +75,29 @@
 			echo json_encode($u->rosters);
 		} else {
 			// Return the requested roster
-			echo json_encode(Roster::GetRoster($rid));
+			global $perf;
+			$perf = floor(microtime(true) * 1000) . " - API::Roster::GetRoster()\r\n";
+			$r = Roster::GetRoster($rid);
+			
+			// Increment the view count
+			$u = Session::CurrentUser();
+			if (!Session::IsAuth() || $u->userid != $r->userid) {
+				// Anonymous or a user viewing another user's roster, increment the viewcount
+				global $dbcon;
+				$sql = "UPDATE Roster SET viewcount = viewcount + 1 WHERE rosterid = ?";
+				
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "s";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $rid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+			}
+			
+			$r->perf = $perf;
+			echo json_encode($r);
 		}
     }
 	
@@ -178,6 +201,21 @@
 				
 				// Now get a fresh copy from DB
 				$roster = Roster::GetRoster($roster->rosterid);
+				
+				// Increment the import count on this roster
+				if (!$selfclone) {
+					global $dbcon;
+					$sql = "UPDATE Roster SET importcount = importcount + 1 WHERE rosterid = ?";
+					
+					$cmd = $dbcon->prepare($sql);
+					$paramtypes = "s";
+					$params = array();
+					$params[] =& $paramtypes;
+					$params[] =& $origrosterid;
+
+					call_user_func_array(array($cmd, "bind_param"), $params);
+					$cmd->execute();
+				}
 				
 				// All done
 				echo json_encode($roster);

@@ -8,6 +8,7 @@
 		public $rosteropid = "";
 		public $seq = 0;
 		public $opname = "";
+		public $hascustomportrait = 0;
 		
 		public $factionid = "";
 		public $killteamid = "";

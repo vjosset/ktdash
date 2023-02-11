@@ -25,6 +25,9 @@
 		
 		public function GetRoster($rid) {
 			global $dbcon;
+			global $perf;
+			
+			$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::Start\r\n";
 			
 			// Get the operatives for this team
 			$sql = "SELECT * FROM RosterView WHERE rosterid = ? ORDER BY seq";
@@ -35,20 +38,25 @@
             $params[] =& $rid;
 
             call_user_func_array(array($cmd, "bind_param"), $params);
+			$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::RunSQL\r\n";
             $cmd->execute();
 
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 if ($row = $result->fetch_object()) {
+					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::FromRow\r\n";
                     $r = Roster::FromRow($row);
 					
 					// Reorder operatives so their seqs are always sequential
-					$r->reorderOperatives();
+					//$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::ReorderOperatives\r\n";
+					//$r->reorderOperatives();
 					
 					// Now load the operatives
+					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::LoadOperatives\r\n";
 					$r->loadOperatives();
 					
 					// Done
+					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::Done\r\n";
 					return $r;
                 }
             }

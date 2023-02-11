@@ -45,8 +45,9 @@
 						$cmd = $dbcon->prepare($sql);
 						
 						// Load the stats
+						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get UserCounts -->\r\n";
 						$cmd->execute();
-
+						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got UserCounts -->\r\n";
 						if ($result = $cmd->get_result()) {
 							while ($row = $result->fetch_object()) {
 								// Got a result
@@ -74,7 +75,9 @@
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Totals -->\r\n";
 					$cmd->execute();
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Totals -->\r\n";
 					
 					echo "<table style=\"width: 100%;\">";
 
@@ -100,7 +103,9 @@
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Stats -->\r\n";
 					$cmd->execute();
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Stats -->\r\n";
 					
 					echo "<table style=\"width: 100%;\">";
 					echo "<tr><th>Date</th><th style=\"text-align: right;\">S</th><th style=\"text-align: right;\">U</th><th style=\"text-align: right;\">P</th></tr>";
@@ -137,7 +142,9 @@
 					$cmd = $dbcon->prepare($sql);
 						
 					// Load the stats
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Portraits -->\r\n";
 					$cmd->execute();
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Portraits -->\r\n";
 					
 					echo "<ul>";
 
@@ -167,26 +174,32 @@
 			<br/>
 			
 			<!-- Event Log -->
-			<div class="line-top-light">
-				<h2>Event Log</h2>
-				<?php
-					$sql = "SELECT * FROM EventLogView WHERE ActionLog != '' AND userip != '68.80.166.102' ORDER BY 1 DESC LIMIT 200";
-					$cmd = $dbcon->prepare($sql);
-						
-					// Load the stats
-					$cmd->execute();
+			<?php if (false) {?>
+				<div class="line-top-light">
+					<h2>Event Log</h2>
+					<?php
+						$sql = "SELECT * FROM EventLogView WHERE ActionLog != '' AND userip != '68.80.166.102' ORDER BY 1 DESC LIMIT 200";
+						$cmd = $dbcon->prepare($sql);
+							
+						// Load the stats
+						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Events -->\r\n";
+						$cmd->execute();
+						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Events -->\r\n";
 
-					if ($result = $cmd->get_result()) {
-						while ($row = $result->fetch_object()) {
-							// Got a result
-							?>
-							<strong><?php echo explode(' ', $row->datestamp)[1] ?></strong><br/>
-							<?php echo $row->ActionLog ?><br/>
-							<?php
+						if ($result = $cmd->get_result()) {
+							while ($row = $result->fetch_object()) {
+								// Got a result
+								?>
+								<strong><?php echo explode(' ', $row->datestamp)[1] ?></strong><br/>
+								<?php echo $row->ActionLog ?><br/>
+								<?php
+							}
 						}
-					}
-				?>
-			</div>
+					?>
+				</div>
+			<?php
+			}
+			?>
 		</div>
 		
 		<?php include "footer.shtml" ?>
