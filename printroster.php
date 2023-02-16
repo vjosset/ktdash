@@ -40,6 +40,10 @@
 			$pageurl   = "https://ktdash.app/printroster.php?rid={$myRoster->rosterid}";
 			include "og.php";
 		?>
+		<link rel="stylesheet" href="/css/bootstrap-print.min.css">
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
 	<body>
 		<div class="orange container-fluid m-0 p-0">

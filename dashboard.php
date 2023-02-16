@@ -33,19 +33,27 @@
 			$pageurl   = "https://ktdash.app/dashboard";
 			include "og.php";
 		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initDashboard('<?php echo $rid ?>')"
-		style="
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initDashboard('<?php echo $rid ?>')">
+		<!-- style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
 			background-image: url(/api/rosterportrait.php?rid={{ dashboardroster.rosterid }});
 			background-position: top center;
 			background-size: cover;
-			background-blend-mode: multiply;">
+			background-blend-mode: multiply;"-->
 		<?php
 			include "topnav.shtml";
 			include "templates/dialogs.shtml";
 		?>
+		
+		<script type="text/javascript">
+			// Pre-load current user
+			document.body.setAttribute("currentuser", JSON.stringify(<?php echo json_encode($me) ?>));
+		</script>
 		
 		<!-- loadWaiter -->
 		<h3 class="center" ng-show="loading">

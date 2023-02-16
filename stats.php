@@ -27,6 +27,9 @@
 			$pageurl   = "https://ktdash.app/stats.php";
 			include "og.php";
 		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl">
 		<?php

@@ -40,7 +40,7 @@
 							</div>
 							<div>
 								<span ng-repeat="weapon in operative.weapons" class="d-inline">
-									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 									{{$last ? '' : ', '}}							
 								</span>
@@ -257,7 +257,7 @@
 								<td>
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 									<label for="chkwep_{{ weapon.wepid }}">
-										<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+										<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 									<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
@@ -278,7 +278,7 @@
 								<td colspan="4">
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" />	
 									<label for="chkwep_{{ weapon.wepid }}">
-										<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+										<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 								</td>
@@ -357,7 +357,7 @@
 							<td>
 								<input type="checkbox" id="chkwep_{{ weapon.wepid}}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid}}">
-									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 								<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
@@ -378,7 +378,7 @@
 							<td colspan="4">
 								<input type="checkbox" id="chkwep_{{ weapon.wepid }}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid }}">
-									<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 							</td>

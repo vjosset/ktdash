@@ -39,8 +39,19 @@
 			$pageurl   = "https://ktdash.app/r/{$myRoster->rosterid}/g";
 			include "og.php";
 		?>
+		<?php
+			if (count($myRoster->operatives) > 0)
+			{
+			?>
+			<link rel="preload" href="/api/operativeportrait.php?roid=<?php echo $myRoster->operatives[0]->rosteropid ?>" as="image">
+			<?php
+			}
+		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
-	<body ng-app="kt" class="ng-cloak" ng-controller="ktCtrl" ng-init="initRosterGallery('<?php echo $myRoster->rosterid ?>');"
+	<body ng-app="kt" class="ng-cloak" ng-controller="ktCtrl" ng-init="initRosterGallery();"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -52,6 +63,14 @@
 			include "topnav.shtml";
 			include "templates/dialogs.shtml";
 		?>
+		
+		<script type="text/javascript">
+			// Pre-load roster data straight on this page instead of XHR round-trip to the API
+			document.body.setAttribute("myRoster", JSON.stringify(<?php echo json_encode($myRoster) ?>));
+			
+			// Pre-load current user
+			document.body.setAttribute("currentuser", JSON.stringify(<?php echo json_encode($me) ?>));
+		</script>
 		
 		<div class="orange container-fluid">
 			<div class="row">

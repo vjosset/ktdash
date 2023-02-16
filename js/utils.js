@@ -8,6 +8,8 @@ function toast(msg) {
 
     // Add the "show" class to DIV
     x.className = "show";
+	
+	//console.log("Toast: " + msg);
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
@@ -145,10 +147,10 @@ function array_move(arr, old_index, new_index) {
 
 // Set the session type based on PWA or browser
 if (GetQS("source") == "pwa") {
-	console.log("Setting session type to pwa");
+	//console.log("Setting session type to pwa");
 	sessionStorage.setItem("sessiontype", "pwa");
 } else if (sessionStorage.getItem("sessiontype") != "pwa") {
-	console.log("Setting session type to browser");
+	//console.log("Setting session type to browser");
 	sessionStorage.setItem("sessiontype", "browser");
 }
 

@@ -25,41 +25,50 @@
 		
 		include "og.php"
 		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
+		<?php
+		foreach($factions as $faction) {
+		?>
+		<link rel="preload" href="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $faction->factionid ?>.jpg" as="image">
+		<?php
+		}
+		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initCompendium();">
+	<body ng-app="kt" ng-controller="ktCtrl">
 		<?php include "topnav.shtml" ?>
 		
 		<h1 class="cinzel orange">Compendium - Factions</h1>
 		
-		<!-- loadWaiter -->
-		<h3 class="center" ng-show="loading">
-			<div>
-				<i class="fas fa-undo-alt fa-fw rotate" ></i>
-				<br />
-				Loading Factions...
-			</div>
-		</h3>
-		
-		<div class="card-group" ng-hide="loading">
-			<div ng-repeat="faction in factions" class="col-12 col-md-6 col-xl-4 p-1">
-				<div class="card darkcard h-100">
-					<!-- Portrait -->
-					<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ faction.factionid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
-					
-					<h1 class="card-title orange text-center">
-						<a class="navloader" href="/fa/{{ faction.factionid }}">
-							{{ faction.factionname }}
-						</a>
-					</h1>
-					
-					<p class="card-text p-2 m-0 oswald" style="text-align:justify;" ng-bind-html="faction.description"></p>
-					
-					<!-- p class="card-text p-2 m-0 oswald">
-						<a href="faction.htm?factionid={{ faction.factionid }}" class="btn btn-primary">View KillTeams</a>
-					</p -->					
+		<div class="card-group">
+			<?php 
+			foreach($factions as $faction) {
+			?>
+				<div class="col-12 col-md-6 col-xl-4 p-1">
+					<div class="card darkcard h-100">
+						<!-- Portrait -->
+						<img class="card-img-top" src="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $faction->factionid ?>.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+						
+						<h1 class="card-title orange text-center">
+							<a class="navloader" href="/fa/<?php echo $faction->factionid ?>">
+								<?php echo $faction->factionname ?>
+							</a>
+						</h1>
+						
+						<p class="card-text p-2 m-0 oswald" style="text-align:justify;">
+						<?php echo $faction->description ?>
+						</p>
+						
+						<!-- p class="card-text p-2 m-0 oswald">
+							<a href="faction.htm?factionid={{ faction.factionid }}" class="btn btn-primary">View KillTeams</a>
+						</p -->					
+					</div>
+					<br/>
 				</div>
-				<br/>
-			</div>
+			<?php
+			}
+			?>
 		</div>
 		<?php include "footer.shtml" ?>
 	</body>

@@ -33,6 +33,8 @@
 		exit;
 	}
 	
+	$faction->loadKillTeams();
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,9 +50,18 @@
 		
 		include "og.php"
 		?>
-		
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
+		<?php
+		foreach($faction->killteams as $killteam) {
+		?>
+		<link rel="preload" href="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $killteam->killteamid ?>/<?php echo $killteam->killteamid ?>.jpg" as="image">
+		<?php
+		}
+		?>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initFaction('<?php echo $factionid ?>');"
+	<body ng-app="kt" ng-controller="ktCtrl"
 		style="
 			background-color: rgba(32, 32, 32, 0.9);
 			background-attachment:fixed;
@@ -82,36 +93,33 @@
 			
 		<h1>KillTeams</h1>
 		
-		<!-- loadWaiter -->
-		<h3 class="center" ng-show="loading">
-			<div>
-				<i class="fas fa-undo-alt fa-fw rotate" ></i>
-				<br />
-				Loading...
-			</div>
-		</h3>
-		
-		<div ng-hide="loading">
+		<div>
 			<div class="card-group">
-				<div ng-repeat="killteam in faction.killteams" class="col-12 col-md-6 col-xl-4 p-1">
+				<?php
+				$killteams = $faction->killteams;
+				foreach($killteams as $killteam)
+				{
+				?>
+				<div class="col-12 col-md-6 col-xl-4 p-1">
 					<div class="card darkcard h-100">
 						<!-- Portrait -->
-						<img class="card-img-top" ng-src="/img/portraits/{{ faction.factionid }}/{{ killteam.killteamid }}/{{ killteam.killteamid }}.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
+						<img class="card-img-top" src="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $killteam->killteamid ?>/<?php echo $killteam->killteamid ?>.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />
 						
 						<h2 class="card-title orange text-center">
-							<a class="navloader" href="/fa/{{ faction.factionid }}/kt/{{ killteam.killteamid }}">
-								{{ killteam.killteamname }}
+							<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>">
+								<?php echo $killteam->killteamname ?>
 							</a>
 						</h2>
 						
-						<p class="card-text p-2 m-0 oswald" style="text-align:justify;" ng-bind-html="killteam.description"></p>
-						
-						<p class="card-text p-2 m-0 oswald">
-							<!-- a href="killteam.htm?fa={{ faction.factionid }}&kt={{ killteam.killteamid }}" class="btn btn-primary">Read More</a -->
+						<p class="card-text p-2 m-0 oswald" style="text-align:justify;">
+						<?php echo $killteam->description ?>
 						</p>
 					</div>
 					<br/>
 				</div>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		

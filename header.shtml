@@ -15,40 +15,44 @@
 		<link rel="icon" href="/favicon.ico?cb=202302051114" />
 		
 		<!-- jQuery -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+		<!-- script src="/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script -->
+		<!-- script src="/js/popper.min.js" crossorigin="anonymous"></script -->
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="/css/bootstrap-print.min.css">
+		<!-- link rel="stylesheet" href="/css/bootstrap.min.css" -->
+		<!-- script src="/js/bootstrap.bundle.min.js"></script -->
 
 		<!-- Font Awesome -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
 		
 		<!-- AngularJS -->
+		<link rel="preload" href="//ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js" as="script">
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+		<link rel="preload" href="//ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-sanitize.min.js" as="script">
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-sanitize.min.js"></script>
 		
 		<!-- JS Utils -->
 		<script type="text/javascript" src="/js/utils.js?cb=202212290000"></script>
 		
 		<!-- App/Controller -->
-		<script type="text/javascript" src="/js/app.js?cb=202301291117"></script>
+		<link rel="preload" href="/js/app.js?cb=202302151251" as="script">
+		<script type="text/javascript" src="/js/app.js?cb=202302151251"></script>
 		
 		<!-- Fonts -->
-		<link rel="preload" href="https://fonts.googleapis.com">
-		<link rel="preload" href="https://fonts.gstatic.com" crossorigin>
 		<!-- Oswald Font -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet"> 
 		<!-- Other Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Anton&display=swap" rel="stylesheet"> 
 		<!-- Bespoke Styles -->
-		<link rel="stylesheet" href="/css/styles.css?cb=202301281040" />
+		<!-- link rel="stylesheet" href="/css/styles.css?cb=202301281040" / -->
 		
 		<!-- PWA stuff -->
-		<script src="/sw.js?cb=202212172340"></script>
-		<script src="/sw-register.js"></script>
+		<script src="/sw.js?cb=202212172340" async></script>
+		<script src="/sw-register.js" async></script>
 		
 		<!-- Google Analytics -->
 		<!-- Global site tag (gtag.js) - Google Analytics -->

@@ -70,15 +70,24 @@
 					$session->DBSave();
 					
 					// Set the cookie
-					setcookie(
-						'asid',
-						$session->sessionid . self::CookieSeparator . $session->userid,
-						time() + (self::CookieExpiration),
-						'/',
-						'ktdash.app',
-						true, // TLS-only
-						true  // http-only
+					//setcookie(
+					//	'asid',
+					//	$session->sessionid . self::CookieSeparator . $session->userid,
+					//	time() + (self::CookieExpiration),
+					//	'/',
+					//	'ktdash.app',
+					//	true, // TLS-only
+					//	true  // http-only
+					//);
+					$cookie_options = array (
+						'expires' => time() + (self::CookieExpiration), 
+						'path' => '/', 
+						'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
+						'secure' => true,     // or false
+						'httponly' => true,    // or false
+						'samesite' => 'Strict' // None || Lax  || Strict
 					);
+					setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 					
 					$_COOKIE['asid'] = $session->sessionid . self::CookieSeparator . $session->userid;
                 }
@@ -107,15 +116,25 @@
 				}
 				
 				// Delete the cookie
-				setcookie(
-					'asid',
-					'',
-					time() - (60 * 60),
-					'/',
-					'killteam.vjosset.comkillteam.vjosset.com',
-					true, // TLS-only
-					true  // http-only
+				//setcookie(
+				//	'asid',
+				//	'',
+				//	time() - (60 * 60),
+				//	'/',
+				//	'ktdash.app',
+				//	true, // TLS-only
+				//	true  // http-only
+				//);
+				
+				$cookie_options = array (
+					'expires' => 1, 
+					'path' => '/', 
+					'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
+					'secure' => true,     // or false
+					'httponly' => true,    // or false
+					'samesite' => 'Strict' // None || Lax  || Strict
 				);
+				setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 				$_COOKIE['asid'] = '';
 			}
         }
@@ -156,15 +175,25 @@
 			
 			// Update the cookie expiration
 			// Set the cookie
-			setcookie(
-				'asid',
-				$session->sessionid . self::CookieSeparator . $session->userid,
-				time() + (self::CookieExpiration),
-				'/',
-				'ktdash.app',
-				true, // TLS-only
-				true  // http-only
+			//setcookie(
+			//	'asid',
+			//	$session->sessionid . self::CookieSeparator . $session->userid,
+			//	time() + (self::CookieExpiration),
+			//	'/',
+			//	'ktdash.app',
+			//	true, // TLS-only
+			//	true  // http-only
+			//);
+			
+			$cookie_options = array (
+				'expires' => time() + (self::CookieExpiration), 
+				'path' => '/', 
+				'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
+				'secure' => true,     // or false
+				'httponly' => true,    // or false
+				'samesite' => 'Strict' // None || Lax  || Strict
 			);
+			setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 			
 			// Done
 			return $user;

@@ -27,6 +27,9 @@
 			$pageurl   = "https://ktdash.app/settings.php";
 			include "og.php";
 		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="init();">
 		<?php

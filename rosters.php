@@ -73,12 +73,33 @@
 			$pageurl   = "https://ktdash.app/u/{$myUser->username}";
 			include "og.php";
 		?>
+		
+		<?php
+			if (count($myRosters) > 0)
+			{
+			?>
+			<link rel="preload" href="/api/rosterportrait.php?rid=<?php echo $myRosters[0]->rosterid ?>" as="image">
+			<?php
+			}
+		?>
+		
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRosters('<?php echo $uid ?>');">
 		<?php
 			include "topnav.shtml";
 			include "templates/dialogs.shtml";
 		?>
+		
+		<script type="text/javascript">
+			// Pre-load rosters data straight on this page instead of XHR round-trip to the API
+			document.body.setAttribute("myRosters", JSON.stringify(<?php echo json_encode($myRosters) ?>));
+			
+			// Pre-load current user
+			document.body.setAttribute("currentuser", JSON.stringify(<?php echo json_encode($me) ?>));
+		</script>
 		
 		<div class="row m-0 p-1 orange container-fluid">
 			<h1 class="col-11 m-0 p-0">

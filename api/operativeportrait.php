@@ -87,6 +87,7 @@
 				}
 				header('Content-Type: image/jpeg');
 				header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $ro->opname) . '.jpg"');
+				//header('Cache-Control: max-age=604800');
 				echo file_get_contents($filepath);
 			} else {
 				// Operative not found - Serve nothing?

@@ -70,8 +70,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.saveSettings(false);
 			}
 			
-			$scope.saveSettings = function(dotoast = false) {
-				//console.log("Saving settings: \r\n" + JSON.stringify($scope.settings).toLowerCase());
+			$scope.saveSettings = function(dotoast = true) {
+				console.log("Saving settings: \r\n" + JSON.stringify($scope.settings).toLowerCase());
 				let settingsJson = JSON.stringify($scope.settings).toLowerCase();
 				localStorage.setItem("settings", settingsJson);
 				
@@ -165,14 +165,14 @@ var app = angular.module("kt", ['ngSanitize'])
 				let preload = document.body.getAttribute("currentuser");
 				if (preload) {
 					// Already pre-loaded this user, use that instead of a round-trip to the API
-					//console.log("Got pre-loaded user: " + preload);
+					console.log("Got pre-loaded user: " + preload);
 					$scope.currentuser = JSON.parse($scope.replacePlaceholders(preload));
 					$scope.loading = false;
 				}
 				else 
 				{
 					// Get the current user's session and set $scope.currentuser
-					//console.log("No pre-loaded user");
+					console.log("No pre-loaded user");
 					$.ajax({
 						type: "GET",
 						url: APIURL + "session.php",
@@ -184,13 +184,13 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Success
 						success: function(data) {
 							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-							//console.log("Setting currentuser to " + JSON.stringify(data));
+							console.log("Setting currentuser to " + JSON.stringify(data));
 							$scope.currentuser = data;
 						},
 						
 						// Failure
 						error: function() {
-							//console.log("Setting currentuser to null");
+							console.log("Setting currentuser to null");
 							$scope.currentuser = null;
 						}
 					});
@@ -203,7 +203,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initSession = function() {
 				// Get the current session for this user (session ID stored in cookie)
 				// Start at each page load
-				//console.log("initSession()");
+				console.log("initSession()");
 				
 				let preload = document.body.getAttribute("currentuser");
 				if (preload) {
@@ -219,20 +219,20 @@ var app = angular.module("kt", ['ngSanitize'])
 						{
 							if (response.status != "200" || !response.data) {
 								// There was an error
-								//console.log("Setting currentuser to null");
+								console.log("Setting currentuser to null");
 								$scope.currentuser = null;
 							} else {
 								// No error
-								//console.log("Got response: " + JSON.stringify(response));
-								//console.log("Got data: " + JSON.stringify(response.data));
+								console.log("Got response: " + JSON.stringify(response));
+								console.log("Got data: " + JSON.stringify(response.data));
 								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
-								//console.log("Setting currentuser to " + JSON.stringify(data));
+								console.log("Setting currentuser to " + JSON.stringify(data));
 								$scope.currentuser = data;
 							}
 						}
 					).catch(function(data) {
 						// There was an error
-						//console.log("initSession() error - Setting currentuser to null: \r\n" + data);
+						console.log("initSession() error - Setting currentuser to null: \r\n" + data);
 						$scope.currentuser = null;
 					});
 				}
@@ -592,7 +592,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					toast("Importing teams from v1...");
 					$scope.loading = true;
 					
-					//console.log(msg);
+					console.log(msg);
 					
 					// Prepare and send the request for each team from localStorage
 					for (let i = 0; i < oldTeams.length; i++) {
@@ -682,8 +682,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.loading = true;
 				
 				let isMe = ($scope.currentuser != null && uid == $scope.currentuser.userid);
-				//console.log("isMe: " + isMe);
-				//console.log("uid: " + uid);
+				console.log("isMe: " + isMe);
+				console.log("uid: " + uid);
 				
 				if (isMe) {
 					$scope.MODE = "MyRosters";
@@ -720,23 +720,28 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 					else {
 						// Get the user's rosters
-						$http.get(APIURL + "roster.php?uid=" + uid)
-						.then(function(response)
-							{
-								// Got user's rosters
+						$.ajax({
+							type: "GET",
+							url: APIURL + "roster.php?uid=" + uid,
+							timeout: APITimeout,
+							async: true,
+							dataType: 'json',
+							
+							// Success
+							success: function(data) { // Got user's rosters
 								// Load the rosters into "myRosters"
 								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 								$scope.myRosters = data;
 								
 								$scope.loading = false;
 								$scope.$apply();
-							}
-						).catch(function(data)
-						{
+							},
 							// Failure
-							toast("Could not get rosters: \r\n" + error);
-							$scope.loading = false;
-							$scope.$apply();
+							error: function(data, status, error) { // Failed to get rosters
+								toast("Could not get rosters: \r\n" + error);
+								$scope.loading = false;
+								$scope.$apply();
+							}
 						});
 					}
 				}
@@ -798,11 +803,16 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				else {
 					// RosterID passed in - Pull it from the API
-					$http.get(APIURL + "roster.php?rid=" + rid)
-					.then(function(response)
-						{
+					$.ajax({
+						type: "GET",
+						url: APIURL + "roster.php?rid=" + rid,
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						
+						// Success
+						success: function(data) { // Got the roster
 							// Load the roster into "myRoster"
-							let data = response.data;
 							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 							$scope.myRoster = data;
 					
@@ -835,21 +845,24 @@ var app = angular.module("kt", ['ngSanitize'])
 									error: function(error) {
 										// Failed to save roster
 										toast("Could not get killteam: " + error);
+										$scope.$apply();
 									}
 								});
 							}
 							
 							$scope.loading = false;
+							$scope.$apply();
 							
 							if (s) {
 								setTimeout(s, 200);
 							}
-						}
-					).catch(function(data) 
-						{
+						},
 						// Failure
-						toast("Could not get roster: \r\n" + data);
-						$scope.loading = false;
+						error: function(data, status, error) { // Failed to get roster
+							toast("Could not get roster: \r\n" + error);
+							$scope.loading = false;
+							$scope.$apply();
+						}
 					});
 				}
 			}
@@ -893,6 +906,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 							// Update roster list
 							$scope.initRosters();
+				
+							$scope.$apply();
 						} else {
 							// We're not on the "Rosters" page, so send them there
 							window.location.href = "/u";
@@ -921,10 +936,12 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) {
 						// Got factions
 						$scope.factions = data;
+						$scope.$apply();
 					},
 					error: function(error) {
 						// Failed to get factions
 						toast("Could not get factions: " + error);
+						$scope.$apply();
 					}
 				});
 				
@@ -985,6 +1002,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					error: function(error) {
 						// Failed to save roster
 						toast("Could not save roster: \r\n" + error);
+						$scope.$apply();
 					}
 				});
 				
@@ -1023,6 +1041,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Success
 						success: function(data) { // Saved
 							// Done
+							$scope.$apply();
 						},
 						// Failure
 						error: function(data, status, error) { // Failed to save operative
@@ -1078,6 +1097,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						roster = data;
 						
 						// Done
+						$scope.$apply();
 					},
 					// Failure
 					error: function(data, status, error) { // Failed to save operative
@@ -1130,7 +1150,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initEditRoster();
 			// Pops-up the roster edit modal
 			$scope.initEditRoster = function(roster) {
-				//console.log("initEditRoster(" + roster.rostername + ")");
+				console.log("initEditRoster(" + roster.rostername + ")");
 				$scope.rostertoedit = roster;
 				$scope.rostertoedit.newrostername =  roster.rostername;
 				$scope.rostertoedit.newnotes =  roster.notes;
@@ -1160,7 +1180,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initUploadRosterPortrait()
 			// Pops-up the portrait uploader for the specified roster
 			$scope.initUploadRosterPortrait = function(roster) {
-				//console.log("initUploadRosterPortrait(" + roster.rosterid + ")");
+				console.log("initUploadRosterPortrait(" + roster.rosterid + ")");
 				$scope.rostertoedit = roster;
 				$scope.rostertoedit.timestamp = (new Date()).getTime();
 				
@@ -1173,7 +1193,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.previewRosterPortrait = function(el) {
 				// Refresh the portrait preview box
-				//console.log("Previewing new portrait");
+				console.log("Previewing new portrait");
 				let file = $('#rosterportraitfile')[0].files[0];
 				if(file){
 					const reader = new FileReader();
@@ -1603,7 +1623,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initDeleteOp()
 			// Pops-up the "Delete Operative" modal
 			$scope.initDeleteOp = function(op, roster) {
-				//console.log("initDeleteOperative(" + op.opname + ", " + roster.rostername + ")");
+				console.log("initDeleteOperative(" + op.opname + ", " + roster.rostername + ")");
 				$scope.optodelete = {
 					"operative": op,
 					"roster": roster,
@@ -1621,22 +1641,28 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.optodelete.roster.operatives.splice(idx, 1);
 				}
 				
-				$http.delete(APIURL + "rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid)
-				.then(function(response)
-					{
+				$.ajax({
+					type: "DELETE",
+					url: APIURL + "rosteroperative.php?roid=" + $scope.optodelete.operative.rosteropid,
+					timeout: APITimeout,
+					async: true,
+					dataType: 'text',
+					success: function(data) {
 						// Close the modal
 						$('#deleteopmodal').modal("hide");
 						
 						te("roster", "delop", "", $scope.optodelete.operative.rosterid, $scope.optodelete.operative.rosteropid);
 						
+						// Reload this roster
+						$scope.initRoster($scope.optodelete.roster.rosterid);
+						
 						// Tell the user their operative has been deleted
 						toast("Operative " + $scope.optodelete.operative.opname + " deleted");
+					},
+					error: function(error) {
+						console.log("Could not commit op deletion: " + error);
 					}
-				).catch(function(response)
-					{
-						//console.log("Could not commit op deletion: " + response.statusText);
-					}
-				);
+				});
 				
 			}
 			
@@ -1659,31 +1685,33 @@ var app = angular.module("kt", ['ngSanitize'])
 				};
 				
 				// Commit this new operative to the API/DB
-				$http.post(APIURL + "rosteroperative.php",
-					JSON.stringify(newop)
-				).then(function(response)
-					{
-						let data = response.data;
-						// All good, add this operative to the team
-						$scope.myRoster.operatives.push(data);
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosteroperative.php",
+					timeout: APITimeout,
+					async: false,
+					datatype: 'json',
+					data: JSON.stringify(newop),
+					success: function(data) {
+						// All good, refresh this team
+						$scope.initRoster(newop.rosterid);
 						
 						te("roster", "cloneop", "", newop.rosterid, data.rosteropid);
 						
 						// Tell the user their operative has been added
 						toast("Operative " + newop.opname + " added to team!");
-					}
-				).catch(function(response)
-					{
+					},
+					error: function(error) {
 						// Failed to save roster
-						toast("Could not clone operative: " + response.statusText);
+						toast("Could not clone operative: " + error);
 					}
-				);
+				});
 			}
 			
 			// moveOpUp()
 			// Moves the specified operative up in the roster (decrease seq)
 			$scope.moveOpUp = function(roster, op, index) {
-				//console.log("moveOpUp(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
+				console.log("moveOpUp(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
 				// Decrement the seq for this operative
 				if (index > 0) {
 					// Operative is not the first one in the list - We will swap its seq with the one above/before it
@@ -1702,25 +1730,30 @@ var app = angular.module("kt", ['ngSanitize'])
 					[roster.operatives[index], roster.operatives[index - 1]] = [roster.operatives[index - 1], roster.operatives[index]];
 					
 					// Commit the changes to the API/DB
-					$http.post(APIURL + "rosteroperative.php?" + qs)
-					.then(function(response) 
-						{
+					$.ajax({
+						type: "POST",
+						url: APIURL + "rosteroperative.php?" + qs,
+						timeout: APITimeout,
+						async: true,
+						dataType: "text",
+						
+						// Success
+						success: function(data) { // Saved
 							// Done
 							$scope.$apply();
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not move operative: \r\n" + error);
 						}
-					).catch(function(response) 
-						{
-							// Failed to save operative
-							toast("Could not move operative: \r\n" + response.statusText);
-						}
-					);
+					});
 				}
 			}
 			
 			// moveOpDown()
 			// Moves the specified operative down in the roster (increase seq)
 			$scope.moveOpDown = function(roster, op, index) {
-				//console.log("moveOpDown(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
+				console.log("moveOpDown(" + roster.rostername + ", " + op.seq + "-" + op.opname + ", " + index + ")");
 				// Same as moving the next operative up
 				if (index >= roster.operatives.length) {
 					// Already at the end - nothing to do
@@ -1753,7 +1786,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
 					$scope.tempeditop.equipments.push(eq);
 					if (eq.eqtype == 'Weapon') {
-						//console.log("Found equipment weapon: " + eq.weapon.wepname);
+						console.log("Found equipment weapon: " + eq.weapon.wepname);
 					}
 				}
 				
@@ -1829,7 +1862,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.previewOpPortrait = function(el) {
 				// Refresh the portrait preview box
-				//console.log("Previewing new portrait");
+				console.log("Previewing new portrait");
 				let file = $('#opportraitfile')[0].files[0];
 				if(file){
 					const reader = new FileReader();
@@ -1857,21 +1890,25 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Use the default portrait - Clear this operative's saved portrait from the DB
 					imgData = "";
-					$http.delete(APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid)
-					.then(function(response)
-						{
-							let data = response.data;
+					$.ajax({
+						type: "DELETE",
+						url: APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
+						timeout: APITimeout,
+						async: true,
+						
+						// Success
+						success: function(data) { // Saved
 							// Hide the modal
 							$('#opportraitmodal').modal("hide");
 							
 							// Reload the operative's portrait
 							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not remove operative portrait: \r\n" + error);
 						}
-					).catch(function(response) 
-						{ // Failed to save operative
-							toast("Could not remove operative portrait: \r\n" + response.statusText);
-						}
-					);
+					});
 				} else {
 					// Use the specified file - Push to the API
 					// Send the update to the API
@@ -1900,33 +1937,6 @@ var app = angular.module("kt", ['ngSanitize'])
 							toast("Could not set operative portrait: \r\n" + error);
 						}
 					});
-					
-					/*
-					$http.post(
-						APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
-						JSON.stringify(formData),
-						{
-							'Content-Type': 'multipart/form-data',
-							'Accept': 'application/json'
-						}
-					).then(function(response) 
-						{
-							let data = response.data;
-							// Hide the modal
-							$('#opportraitmodal').modal("hide");
-							toast("Operative portrait set!");
-							te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
-
-							// Reload the operative's portrait
-							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
-					    }
-					).catch(function(response) 
-						{
-							// Failure
-							toast("Could not set operative portrait: \r\n" + response.statusText);
-						}
-					);
-					*/
 				}
 			}
 		
@@ -2086,7 +2096,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Remove baseop for clarity
 						delete($scope.operative.baseoperative);
 						
-						//console.log("Got Operative: \r\n" + JSON.stringify($scope.operative));
+						console.log("Got Operative: \r\n" + JSON.stringify($scope.operative));
 						
 						te("roster", "print", "op", $scope.operative.rosterid, $scope.operative.rosteropid);
 						
@@ -2123,38 +2133,25 @@ var app = angular.module("kt", ['ngSanitize'])
 				te("compendium", "allfactions");
 				$scope.loading = true;
 				$scope.MODE = "Compendium";
-				
-				let preload = document.body.getAttribute("factions");
-				if (preload && preload != "") {
-					// Already pre-loaded the factions
-					$scope.factions = JSON.parse($scope.replacePlaceholders(preload));
-					
-					// Now clear the preload so we don't show operatives more than once when edited
-					document.body.setAttribute("factions", "");
-					
-					$scope.loading = false;
-				}
-				else {
-					$.ajax({
-						type: "GET",
-						url: APIURL + "faction.php",
-						timeout: APITimeout,
-						async: true,
-						dataType: 'json',
-						success: function(data) {
-							// Got factions
-							$scope.factions = data;
-							$scope.loading = false;
-							$scope.$apply();
-						},
-						error: function(error) {
-							// Failed to get factions
-							toast("Could not get factions: " + error);
-							$scope.loading = false;
-							$scope.$apply();
-						}
-					});
-				}
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php",
+					timeout: APITimeout,
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						// Got factions
+						$scope.factions = data;
+						$scope.loading = false;
+						$scope.$apply();
+					},
+					error: function(error) {
+						// Failed to get factions
+						toast("Could not get factions: " + error);
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
 			}
 			
 			$scope.initFaction = function(fa) {
@@ -2315,7 +2312,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if ($scope.currentuser == null) {
 					// Not logged in - Send user to "Log In"
 					$scope.loading = false;
-					//console.log("Not logged in");
+					console.log("Not logged in");
 					toast("Not logged in!");
 					window.location.href = "/login.htm";
 				}
@@ -2487,7 +2484,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$("#opinfo_" + i).collapse('show');
 					
 					// Reset their Wounds
-					//console.log("Setting operative's curW to " + parseInt(op.W));
+					console.log("Setting operative's curW to " + parseInt(op.W));
 					op.curW = parseInt(op.W);
 					
 					// Not activated - Must be an INT to save properly in DB
@@ -2606,7 +2603,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.toggleStratPloy = function(roster, ploy, active) {
 				ploy.active = active;
 				
-				//console.log("toggleStratPloy()");
+				console.log("toggleStratPloy()");
 				
 				if (active) {
 					// Add this ploy to each operative in the roster
@@ -2674,7 +2671,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// showPopup()
 			// Shows a popup modal with the specified title and message
 			$scope.showpopup = function(title, message) {
-				//console.log("Showing popup " + title);
+				console.log("Showing popup " + title);
 				$scope.popup = {
 					"title": title,
 					"text": message

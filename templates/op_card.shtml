@@ -228,7 +228,7 @@
 						<!-- Single Profile -->
 						<tr ng-if="weapon.profiles.length < 2">
 							<td>
-								<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>
@@ -251,7 +251,7 @@
 						<!-- Multi-Profile -->
 						<tr ng-if="weapon.profiles.length > 1">
 							<td colspan="4">
-								<img src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />							
+								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />							
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>

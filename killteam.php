@@ -57,6 +57,9 @@
 		
 		include "og.php"
 		?>
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 		
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initKillteam('<?php echo $factionid ?>', '<?php echo $killteamid ?>');"

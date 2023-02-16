@@ -67,6 +67,7 @@
 					// Read the found file and serve it
 					//$thumb = imagecreatefromstring(file_get_contents($filepath));
 					header('Content-Type: image/jpeg');
+					//header('Cache-Control: max-age=604800');
 					header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $r->rostername) . '.jpg"');
 					echo file_get_contents($filepath);
 				} else {

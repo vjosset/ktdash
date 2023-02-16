@@ -41,6 +41,10 @@
 		
 		include "og.php"
 		?>
+		<link rel="stylesheet" href="/css/bootstrap-print.min.css">
+		<style>
+		<?php include "css/styles.css"; ?>
+		</style>
 	</head>
 	<body>
 		<!-- Front of Card -->
