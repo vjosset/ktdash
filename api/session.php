@@ -47,9 +47,8 @@
 	function GETSession() {
 		$myuser = null;
 		if (Session::IsAuth()) {
-			// User is authenticated, get their feed
+			// User is authenticated, get their user record
 			$myuser = Session::CurrentUser();
-			//$myuser->loadRosters();
 			echo $myuser->toJson();
 		} else {
 			// User is not authenticated

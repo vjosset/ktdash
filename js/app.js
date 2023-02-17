@@ -2195,51 +2195,64 @@ var app = angular.module("kt", ['ngSanitize'])
 					kt = GetQS("kt");
 				}
 				te("compendium", "killteam", "", fa, kt);
-				// First get the faction
-				//	On success, we'll get the killteam
+				
 				$scope.loading = true;
 				$scope.MODE = "Compendium";
 				
-				$.ajax({
-					type: "GET",
-					url: APIURL + "faction.php?factionid=" + fa,
-					timeout: APITimeout,
-					async: true,
-					dataType: 'json',
-					success: function(data) {
-						// Got faction
-						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-						$scope.faction = data;
-						
-						// Now get the faction
-						$.ajax({
-							type: "GET",
-							url: APIURL + "killteam.php?fa=" + fa + "&kt=" + kt,
-							timeout: APITimeout,
-							async: true,
-							dataType: 'json',
-							success: function(data) {
-								// Got faction
-								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
-								$scope.killteam = data;
-								$scope.loading = false;
-								$scope.$apply();
-							},
-							error: function(error) {
-								// Failed to get factions
-								toast("Could not get Killteam: " + error);
-								$scope.loading = false;
-								$scope.$apply();
-							}
-						});
-					},
-					error: function(error) {
-						// Failed to get faction
-						toast("Could not get faction: " + error);
-						$scope.loading = false;
-						$scope.$apply();
-					}
-				});
+				let preloadkt = document.body.getAttribute("killteam");
+				let preloadfa = document.body.getAttribute("faction");
+				if (preloadkt && preloadfa) {
+					// Already pre-loaded this killteam, use that instead of a round-trip to the API
+					$scope.killteam = JSON.parse($scope.replacePlaceholders(preloadkt));
+					$scope.faction = JSON.parse($scope.replacePlaceholders(preloadfa));
+					$scope.loading = false;
+				}
+				else 
+				{
+					// First get the faction
+					//	On success, we'll get the killteam
+					
+					$.ajax({
+						type: "GET",
+						url: APIURL + "faction.php?factionid=" + fa,
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						success: function(data) {
+							// Got faction
+							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+							$scope.faction = data;
+							
+							// Now get the faction
+							$.ajax({
+								type: "GET",
+								url: APIURL + "killteam.php?fa=" + fa + "&kt=" + kt,
+								timeout: APITimeout,
+								async: true,
+								dataType: 'json',
+								success: function(data) {
+									// Got faction
+									data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+									$scope.killteam = data;
+									$scope.loading = false;
+									$scope.$apply();
+								},
+								error: function(error) {
+									// Failed to get factions
+									toast("Could not get Killteam: " + error);
+									$scope.loading = false;
+									$scope.$apply();
+								}
+							});
+						},
+						error: function(error) {
+							// Failed to get faction
+							toast("Could not get faction: " + error);
+							$scope.loading = false;
+							$scope.$apply();
+						}
+					});
+				}
 			}
 		}
 		

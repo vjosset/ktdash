@@ -82,14 +82,14 @@
 					$cookie_options = array (
 						'expires' => time() + (self::CookieExpiration), 
 						'path' => '/', 
-						'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
-						'secure' => true,     // or false
-						'httponly' => true,    // or false
-						'samesite' => 'Strict' // None || Lax  || Strict
+						'domain' => 'ktdash.app',
+						'secure' => true,
+						'httponly' => true,
+						'samesite' => 'Lax'
 					);
-					setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
+					setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 					
-					$_COOKIE['asid'] = $session->sessionid . self::CookieSeparator . $session->userid;
+					$_COOKIE[self::CookieID] = $session->sessionid . self::CookieSeparator . $session->userid;
                 }
             }
 
@@ -129,13 +129,13 @@
 				$cookie_options = array (
 					'expires' => 1, 
 					'path' => '/', 
-					'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
-					'secure' => true,     // or false
-					'httponly' => true,    // or false
-					'samesite' => 'Strict' // None || Lax  || Strict
+					'domain' => 'ktdash.app',
+					'secure' => true,
+					'httponly' => true,
+					'samesite' => 'Lax'
 				);
-				setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
-				$_COOKIE['asid'] = '';
+				setcookie(self::CookieID, self::CookieSeparator, $cookie_options);
+				$_COOKIE[self::CookieID] = '';
 			}
         }
 
@@ -188,12 +188,12 @@
 			$cookie_options = array (
 				'expires' => time() + (self::CookieExpiration), 
 				'path' => '/', 
-				'domain' => 'ktdash.app', // leading dot for compatibility or use subdomain
-				'secure' => true,     // or false
-				'httponly' => true,    // or false
-				'samesite' => 'Strict' // None || Lax  || Strict
+				'domain' => 'ktdash.app',
+				'secure' => true,
+				'httponly' => true,
+				'samesite' => 'Lax'
 			);
-			setcookie('asid', $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
+			setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 			
 			// Done
 			return $user;

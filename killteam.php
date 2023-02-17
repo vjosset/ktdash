@@ -75,6 +75,12 @@
 		<!-- Dialogs -->
 		<?php include "templates/dialogs.shtml" ?>
 		
+		<script type="text/javascript">
+			// Pre-load killteam data straight on this page instead of XHR round-trip to the API
+			document.body.setAttribute("faction", JSON.stringify(<?php echo json_encode($faction) ?>));
+			document.body.setAttribute("killteam", JSON.stringify(<?php echo json_encode($killteam) ?>));
+		</script>
+		
 		<h1 class="orange">
 			<a href="/fa/<?php echo $factionid ?>"><?php echo $faction->factionname ?></a>
 			:
