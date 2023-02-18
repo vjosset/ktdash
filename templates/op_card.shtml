@@ -47,10 +47,10 @@
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">{{ operative.opname }}</span>
 				
-				<img style="height: 1em;" class="float-end" title="Conceal - Activated" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated" />
-				<img style="height: 1em;" class="float-end" title="Conceal - Ready" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated" />
-				<img style="height: 1em;" class="float-end" title="Engage - Activated" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
-				<img style="height: 1em;" class="float-end" title="Engage - Ready" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Conceal - Ready" title="Conceal - Ready" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Engage - Activated" title="Engage - Activated" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Engage - Ready" title="Engage - Ready" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
@@ -77,6 +77,8 @@
 					ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 					>
 					<img id="opportrait_{{operative.rosteropid}}"
+						title="{{ operative.opname }}"
+						alt="{{ operative.opname }}"
 						ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
 						style="height: 100%; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
 				</div>
@@ -86,6 +88,8 @@
 					ng-click="showPhoto(operative.opname, '/img/portraits/' + operative.factionid + '/' + operative.killteamid + '/' + operative.fireteamid + '/' + operative.opid + '.jpg');"
 					>
 					<img id="opportrait_{{operative.opid}}"
+						title="{{ operative.opname }}"
+						alt="{{ operative.opname }}"
 						ng-src="/img/portraits/{{operative.factionid}}/{{operative.killteamid}}/{{operative.fireteamid}}/{{operative.opid}}.jpg"
 						style="height: 100%; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
 				</div>
@@ -228,7 +232,7 @@
 						<!-- Single Profile -->
 						<tr ng-if="weapon.profiles.length < 2">
 							<td>
-								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>
@@ -251,7 +255,7 @@
 						<!-- Multi-Profile -->
 						<tr ng-if="weapon.profiles.length > 1">
 							<td colspan="4">
-								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />							
+								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />							
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>
@@ -283,7 +287,7 @@
 						<!-- Single Profile -->
 						<tr ng-if="eq.weapon.profiles.length < 2">
 							<td>
-								<img src="/img/icons/weptypeE.png" width="13" />
+								<img src="/img/icons/weptypeE.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
 								<div class="d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
 							</td>
@@ -301,7 +305,7 @@
 						<!-- Multi-Profile -->
 						<tr ng-if="eq.weapon.profiles.length > 1">
 							<td colspan="4">
-								<img src="/img/icons/weptypeE.png" width="13" />
+								<img src="/img/icons/weptypeE.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
 							</td>
 						</tr>

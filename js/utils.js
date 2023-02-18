@@ -83,33 +83,23 @@ function GetArrayRandom(arr) {
 
 function te(t = '', a = '', l = '', v1 = '', v2 = '', v3 = '', r = '') {
 	try {
-		$.ajax({
-			type: "POST",
-			url: apiurl + "event.php",
-			timeout: 5000,
-			async: true,
-			data: {
-				t: t,
-				a: a,
-				l: l,
-				v1: v1,
-				v2: v2,
-				v3: v3,
-				u: window.location.href,
-				s: sessionStorage.getItem("sessiontype"),
-				r: document.referrer
-			},
-			
-			// Success
-			success: function(data) {
-				// Do nothing
-			},
-			
-			// Failure
-			error: function(error) {
-				// Something went wrong
+		let data = new FormData();
+		data.append("t", t);
+		data.append("a", a);
+		data.append("l", l);
+		data.append("v1", v1);
+		data.append("v2", v2);
+		data.append("v3", v3);
+		data.append("u", window.location.href);
+		data.append("s", sessionStorage.getItem("sessiontype"));
+		data.append("r", document.referrer);
+		
+		fetch(apiurl + "event.php",
+			{
+				method: "post",
+				body: data
 			}
-		});
+		);
 	}
 	catch (ex) {
 		// Do nothing
