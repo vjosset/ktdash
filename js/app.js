@@ -1706,7 +1706,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					.then(function(response) 
 						{
 							// Done
-							$scope.$apply();
+							//$scope.$apply();
 						}
 					).catch(function(response) 
 						{
@@ -1800,6 +1800,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Make sure to track this locally too
 						$scope.optoedit.equipments.push($scope.tempeditop.equipments[i]);
+						console.log("Added equipment " + JSON.stringify($scope.tempeditop.equipments[i]));
 					}
 				}
 				
@@ -2005,30 +2006,32 @@ var app = angular.module("kt", ['ngSanitize'])
 			// initEditOpEq()
 			// Pop-up the operative equipment modal
 			$scope.initEditOpEq = function(roster, operative) {
-				$scope.opeq = {
-					"operative": operative,
-					"equipments": roster.killteam.equipments
-				};
-				
-				// Set the current selection
-				for (let eqnum = 0; eqnum < $scope.opeq.equipments.length; eqnum++) {
-					let eq = $scope.opeq.equipments[eqnum];
-					eq.isselected = false;
+				if (operative.userid == $scope.currentuser.userid) {
+					$scope.opeq = {
+						"operative": operative,
+						"equipments": roster.killteam.equipments
+					};
 					
-					if ($scope.opeq.operative.equipments == null) {
-						$scope.opeq.operative.equipments = [];
-					}
-					
-					for (let opeqnum = 0; opeqnum < $scope.opeq.operative.equipments.length; opeqnum++) {
-						if ($scope.opeq.operative.equipments[opeqnum].eqid == eq.eqid) {
-							// This operative has this equipment selected
-							eq.isselected = true;
+					// Set the current selection
+					for (let eqnum = 0; eqnum < $scope.opeq.equipments.length; eqnum++) {
+						let eq = $scope.opeq.equipments[eqnum];
+						eq.isselected = false;
+						
+						if ($scope.opeq.operative.equipments == null) {
+							$scope.opeq.operative.equipments = [];
+						}
+						
+						for (let opeqnum = 0; opeqnum < $scope.opeq.operative.equipments.length; opeqnum++) {
+							if ($scope.opeq.operative.equipments[opeqnum].eqid == eq.eqid) {
+								// This operative has this equipment selected
+								eq.isselected = true;
+							}
 						}
 					}
+					
+					// Show the modal
+					$('#editopeqmodal').modal("show");
 				}
-				
-				// Show the modal
-				$('#editopeqmodal').modal("show");
 			}
 			
 			// saveEditOpEq()
@@ -2297,6 +2300,45 @@ var app = angular.module("kt", ['ngSanitize'])
 						"Shortcut": "PT",
 						"Type": "int"
 					}
+				}
+			}
+			
+			$scope.dashboardopponentrosterid = localStorage.getItem("dashboardopponentrosterid");
+			
+			// selectDashOpponent()
+			// Sets dashboardopponentroster based on current dashboardopponentrosterid
+			$scope.selectDashOpponent = function() {
+				// Get the selected roster
+				te("dashboard", "selectopponentroster", $scope.getDashboardRosterId(), $scope.dashboardopponentrosterid);
+				localStorage.setItem("dashboardopponentrosterid", $scope.dashboardopponentrosterid);
+				$http.get(APIURL + "roster.php?rid=" + $scope.dashboardopponentrosterid + "&loadrosterdetail=1")
+				.then(function(response)
+					{
+						// Got the opposing roster
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
+						$scope.dashboardopponentroster = data;
+						toast("Opponent roster " + data.rostername + " set");
+						setInterval($scope.refreshDashOpponent, 3000);
+						$('#dashboardopponentmodal').modal('hide');
+					}
+				).catch(function(ex)
+				{
+					// Failure
+					toast("Could not get opponent roster: \r\n" + ex.statusText);
+				});
+			}
+			
+			$scope.refreshDashOpponent = function() {
+				// Only if "Opponent" is the currently-active tag
+				if ($("#opponentdash-tab").hasClass("active")) {
+					$http.get(APIURL + "roster.php?rid=" + $scope.dashboardopponentrosterid + "&loadrosterdetail=1&skipviewcount=1")
+					.then(function(response)
+						{
+							// Got the opposing roster
+							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
+							$scope.dashboardopponentroster = data;
+						}
+					);
 				}
 			}
 			
@@ -2643,6 +2685,16 @@ var app = angular.module("kt", ['ngSanitize'])
 							}
 						}
 					}
+				}
+			}
+		
+			// setOperativeOrder()
+			// Sets the specified operative's order and commits the operative.
+			// If the specified operative does not belong to the current user, this method does nothing.
+			$scope.setOperativeOrder = function(operative, order) {
+				if (operative.userid == $scope.currentuser.userid) {
+					operative.oporder = order;
+					$scope.commitRosterOp(operative);
 				}
 			}
 		}

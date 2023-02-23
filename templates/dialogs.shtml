@@ -40,7 +40,7 @@
 							</div>
 							<div>
 								<span ng-repeat="weapon in operative.weapons" class="d-inline">
-									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 									{{$last ? '' : ', '}}							
 								</span>
@@ -257,7 +257,7 @@
 								<td>
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 									<label for="chkwep_{{ weapon.wepid }}">
-										<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+										<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 									<div class="d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" style="font-style:italic;"></div>
@@ -278,7 +278,7 @@
 								<td colspan="4">
 									<input id="chkwep_{{ weapon.wepid }}" type="checkbox" value="{{ weapon.weaponid }}" ng-model="weapon.isselected" />	
 									<label for="chkwep_{{ weapon.wepid }}">
-										<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+										<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 										{{ weapon.wepname }}
 									</label>
 								</td>
@@ -357,7 +357,7 @@
 							<td>
 								<input type="checkbox" id="chkwep_{{ weapon.wepid}}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid}}">
-									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 								<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
@@ -378,7 +378,7 @@
 							<td colspan="4">
 								<input type="checkbox" id="chkwep_{{ weapon.wepid }}" value="{{ weapon.wepid }}" ng-model="weapon.isselected" />						
 								<label for="chkwep_{{ weapon.wepid }}">
-									<imgng- src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
 							</td>
@@ -474,6 +474,32 @@
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-primary" ng-click="deleteOp();">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Dashboard opponent selection modal dialog -->
+<div class="modal fade" id="dashboardopponentmodal" tabindex="-1" role="dialog" aria-labelledby="dashboardopponentmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="dashboardopponentmodallabel"><i class="fas fa-people-arrows fa-fw"></i> Select Opponent Roster</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				<div class="row">
+					<div class="col-6">Your RosterID:</div>
+					<div class="col=6"><h1 class="inline">{{ getDashboardRosterId() }}</h1></div>
+				</div>
+				<div class="row">
+					<div class="col-6">Opponent RosterID:</div>
+					<div class="col=6"><input type="text" class="form-control oswald" ng-model="dashboardopponentrosterid" /></div>
+				</div>
+			</div>
+			<div class="modal-footer dark p-1">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="selectDashOpponent();">Confirm</button>
 			</div>
 		</div>
 	</div>

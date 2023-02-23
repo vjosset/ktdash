@@ -132,7 +132,7 @@
                     $eq = Equipment::FromRow($row);
 					
 					// Get the sub-info if it's a weapon
-					if ($eq->eqtype == 'Weapon') {
+					if (strpos($eq->eqtype, 'Weapon') !== false) {
 						$eq->weapon = Weapon::FromDB($eq->factionid, $eq->killteamid, 'EQ', 'EQ', $eq->eqid);
 						if ($eq->weapon != null) {
 							$eq->weapon->loadWeaponProfiles();

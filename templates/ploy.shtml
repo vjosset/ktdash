@@ -1,5 +1,5 @@
 <div class="line-top-light">
-	<input type="checkbox" ng-if="MODE == 'Dashboard' && ploy.ploytype == 'S'" ng-model="ploy.active" ng-change="toggleStratPloy(dashboardroster, ploy, ploy.active)">
+	<input type="checkbox" ng-if="MODE == 'Dashboard' && ploy.ploytype == 'S' && ploy.factionid == dashboardroster.factionid && ploy.killteamid == dashboardroster.killteamid" ng-model="ploy.active" ng-change="toggleStratPloy(dashboardroster, ploy, ploy.active)">
 	<h5 class="d-inline">{{ ploy.ployname }}</h5>
 	<!-- em class="oswald">({{ ploy.ploytype == 'S' ? 'Strategic' : 'Tactical' }} Ploy)</em -->
 	<h5 class="d-inline float-end text-end">{{ ploy.CP }} CP&nbsp;&nbsp;</h5>

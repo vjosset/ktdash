@@ -47,10 +47,10 @@
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">{{ operative.opname }}</span>
 				
-				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated" />
-				<img style="height: 1em;" class="float-end" alt="Conceal - Ready" title="Conceal - Ready" ng-click="operative.oporder = 'conceal'; commitRosterOp(operative);" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated" />
-				<img style="height: 1em;" class="float-end" alt="Engage - Activated" title="Engage - Activated" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
-				<img style="height: 1em;" class="float-end" alt="Engage - Ready" title="Engage - Ready" ng-click="operative.oporder = 'engage'; commitRosterOp(operative);" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Engage - Activated" title="Engage - Activated" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Engage - Ready" title="Engage - Ready" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
+				<img style="height: 1em;" class="float-end" alt="Conceal - Ready" title="Conceal - Ready" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated" />
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
@@ -65,7 +65,7 @@
 					{{ operative.optype }}
 				</div>
 				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
-					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
+					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
 					<label for="chkactivated_{{ operative.rosteropid }}"> Activated</label>
 				</div>
 			</div>
@@ -147,11 +147,11 @@
 								</td>
 								<td ng-if="MODE == 'Dashboard'">
 									<ANY ng-if="operative.baseoperative.W != '-'">
-										<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+										<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
 										
 										{{ operative.curW }}
 										
-										<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+										<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
 									</ANY>
 									<ANY ng-if="operative.baseoperative.W == '-'">
 									- 
@@ -285,11 +285,11 @@
 					<!-- Equipment Weapons -->
 					<tbody ng-repeat="eq in operative.equipments">
 						<!-- Single Profile -->
-						<tr ng-if="eq.weapon.profiles.length < 2">
+						<tr ng-if="eq.weapon && eq.weapon.profiles.length < 2">
 							<td>
-								<img src="/img/icons/weptypeE.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
+								<img ng-src="/img/icons/weptype{{ eq.weapon.weptype }}.png" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
-								<div class="d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
+								<div class="pointer d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ eq.weapon.profiles[0].A }}&nbsp;&nbsp;
@@ -303,17 +303,17 @@
 						</tr>
 						
 						<!-- Multi-Profile -->
-						<tr ng-if="eq.weapon.profiles.length > 1">
+						<tr ng-if="eq.weapon && eq.weapon.profiles.length > 1">
 							<td colspan="4">
-								<img src="/img/icons/weptypeE.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
+								<img ng-src="/img/icons/weptype{{ eq.weapon.weptype }}.png" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
 							</td>
 						</tr>
-						<tr ng-if="eq.weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
+						<tr ng-if="eq.weapon && eq.weapon.profiles.length > 1" ng-repeat="profile in eq.weapon.profiles">
 							<td>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								- {{ profile.name }}
-								<div class="d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
+								<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
@@ -368,10 +368,10 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1" ng-if="MODE == 'Dashboard' || (MODE != 'Compendium' && operative.equipments.length > 0)">
+			<div class="p-1" ng-if="operative.userid == currentuser.userid || (MODE != 'Compendium' && operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="line-top-light">
-					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i class="pointer fas fa-edit fa-fw"></i></h6>
+					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i ng-if="operative.userid == currentuser.userid" class="pointer fas fa-edit fa-fw"></i></h6>
 					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
 					<div class="row">
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
@@ -404,7 +404,7 @@
 			
 			<!-- Notes -->
 			<!-- My roster -->
-			<div ng-if="MODE == 'Dashboard' || MODE == 'MyRoster'" class="line-top-light">
+			<div ng-if="operative.userid == currentuser.userid" class="line-top-light">
 				<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h6>
@@ -413,7 +413,7 @@
 				</div>
 			</div>
 			<!-- Not my roster -->
-			<div ng-if="MODE == 'Roster' && operative.notes != null && operative.notes != ''" class="m-1 line-top-light">
+			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="m-1 line-top-light">
 				<h6>Notes</h6>
 				{{ operative.notes }}
 			</div>

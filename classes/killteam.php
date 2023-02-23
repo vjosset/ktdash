@@ -195,17 +195,17 @@
 			//Parse the result
 			if ($result = $cmd->get_result()) {
 				while ($row = $result->fetch_object()) {
-					$e = Equipment::FromRow($row);
+					$eq = Equipment::FromRow($row);
 					
 					//If this is a weapon, add the weapon as a nested object
-					if ($row->eqtype == 'Weapon') {
+					if (strpos($eq->eqtype, 'Weapon') !== false) {
 						$wep = Weapon::FromDB($row->factionid, $row->killteamid, 'EQ', 'EQ', $row->eqid);
 						if ($wep != null) {
 							$wep->loadWeaponProfiles();
-							$e->weapon = $wep;
+							$eq->weapon = $wep;
 						}
 					}
-					$this->equipments[] = $e;
+					$this->equipments[] = $eq;
 				}
 			}
 		}

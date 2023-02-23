@@ -79,25 +79,34 @@
 			$perf = floor(microtime(true) * 1000) . " - API::Roster::GetRoster()\r\n";
 			$r = Roster::GetRoster($rid);
 			
-			// Increment the view count
-			$u = Session::CurrentUser();
-			if (!Session::IsAuth() || $u->userid != $r->userid) {
-				// Anonymous or a user viewing another user's roster, increment the viewcount
-				global $dbcon;
-				$sql = "UPDATE Roster SET viewcount = viewcount + 1 WHERE rosterid = ?";
-				
-				$cmd = $dbcon->prepare($sql);
-				$paramtypes = "s";
-				$params = array();
-				$params[] =& $paramtypes;
-				$params[] =& $rid;
+			if ($r != null) {
+				if ($loadrosterdetail > 0) {
+					$r->loadKillTeam();
+				}
+				// Increment the view count
+				$u = Session::CurrentUser();
+				$skipviewcount = getIfSet($_REQUEST['skipviewcount']);
+				if ($skipviewcount != '1' && (!Session::IsAuth() || $u->userid != $r->userid)) {
+					// Anonymous or a user viewing another user's roster, increment the viewcount
+					global $dbcon;
+					$sql = "UPDATE Roster SET viewcount = viewcount + 1 WHERE rosterid = ?";
+					
+					$cmd = $dbcon->prepare($sql);
+					$paramtypes = "s";
+					$params = array();
+					$params[] =& $paramtypes;
+					$params[] =& $rid;
 
-				call_user_func_array(array($cmd, "bind_param"), $params);
-				$cmd->execute();
+					call_user_func_array(array($cmd, "bind_param"), $params);
+					$cmd->execute();
+				}
+				
+				$r->perf = $perf;
+				echo json_encode($r);
+			} else {		
+				header("HTTP/1.0 404 Not found - Could not find roster with id \"$rid\"");
+				die();
 			}
-			
-			$r->perf = $perf;
-			echo json_encode($r);
 		}
     }
 	
