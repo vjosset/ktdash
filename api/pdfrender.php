@@ -31,7 +31,7 @@
 			// Render the operative card
 			// Get the operative
 			$roid = getIfSet($_REQUEST["roid"]);
-			if ($roid == "" || $roid == null || strlen($roid > 10)) {
+			if ($roid == "" || $roid == null || strlen($roid) > 10) {
 				header('HTTP/1.0 400 Invalid Roster Operative ID');
 				die();
 			}
@@ -63,8 +63,8 @@
 			// Render the full roster
 			// Get the roster
 			$rid = getIfSet($_REQUEST["rid"]);
-			if ($rid == "" || $rid == null || strlen($rid > 10)) {
-				header('HTTP/1.0 400 Invalid Roster ID');
+			if ($rid == "" || $rid == null || strlen($rid) > 10) {
+				header('HTTP/1.0 400 Invalid Roster ID [' . $rid . ']');
 				die();
 			}
 			
