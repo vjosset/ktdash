@@ -127,6 +127,16 @@
 			case "AEL|VDT|VDT|DJS": //Death Jester
 			case "AEL|VDT|VDT|SDS": //Shadowseer
 				return GetAeldariName();
+			case "AEL|HOTA|HOTA|KAG":
+			case "AEL|HOTA|HOTA|KAS":
+			case "AEL|HOTA|HOTA|KCD":
+			case "AEL|HOTA|HOTA|KDOY":
+			case "AEL|HOTA|HOTA|KELX":
+			case "AEL|HOTA|HOTA|KFLAY":
+			case "AEL|HOTA|HOTA|KGNR":
+			case "AEL|HOTA|HOTA|KHGNR":
+			case "AEL|HOTA|HOTA|KSA":
+				return GetAeldariName();
 			case "CHAOS|CSM|CC|CHA": //Chaos Cultist Champion
 			case "CHAOS|CSM|CC|FTR": //Chaos Cultist Fighter
 			case "CHAOS|CSM|CC|GNR": //Chaos Cultist Gunner

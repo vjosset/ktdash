@@ -714,7 +714,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.myRosters = JSON.parse($scope.replacePlaceholders(preload));
 					
 						// Now clear the preload so we show updated information everytime a change is made
-						document.body.setAttribute("myRoster", "");
+						document.body.setAttribute("myRosters", "");
 						
 						$scope.loading = false;
 					}

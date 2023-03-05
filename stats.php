@@ -141,7 +141,7 @@
 						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1
 						WHERE E.action IN ('portrait', 'opportrait') AND E.userip != '68.80.166.102' AND E.label = 'custom'
 						GROUP BY U.username, U.userid, R.rosterid, R.rostername, R.spotlight
-						ORDER BY 1 DESC LIMIT 20";
+						ORDER BY 1 DESC LIMIT 40";
 					$cmd = $dbcon->prepare($sql);
 						
 					// Load the stats
