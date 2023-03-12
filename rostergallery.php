@@ -26,6 +26,21 @@
 	}
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myRoster->userid;
+	
+	if (!$ismine) {
+		// Anonymous or a user viewing another user's roster, increment the viewcount
+		global $dbcon;
+		$sql = "UPDATE Roster SET viewcount = viewcount + 1 WHERE rosterid = ?";
+		
+		$cmd = $dbcon->prepare($sql);
+		$paramtypes = "s";
+		$params = array();
+		$params[] =& $paramtypes;
+		$params[] =& $rid;
+
+		call_user_func_array(array($cmd, "bind_param"), $params);
+		$cmd->execute();
+	}
 ?>
 <!DOCTYPE html>
 <html>
