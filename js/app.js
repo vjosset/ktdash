@@ -1339,6 +1339,20 @@ var app = angular.module("kt", ['ngSanitize'])
 								wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
 							}
 						}
+										
+						for (let i = 0; i < op.equipments.length; i++) {
+							let eq = op.equipments[i];
+							if (eq.eqtype == 'Weapon' && eq.weapon != null) {
+								let wep = eq.weapon;
+								for (let j = 0; j < wep.profiles.length; j++) {
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+								}
+							}
+						}
 					}
 					
 					// Reduce the M on the operative
@@ -1362,6 +1376,20 @@ var app = angular.module("kt", ['ngSanitize'])
 								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
 								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
 								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+							}
+						}
+										
+						for (let i = 0; i < op.equipments.length; i++) {
+							let eq = op.equipments[i];
+							if (eq.eqtype == 'Weapon' && eq.weapon != null) {
+								let wep = eq.weapon;
+								for (let j = 0; j < wep.profiles.length; j++) {
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+								}
 							}
 						}
 					}
@@ -2328,7 +2356,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
 						$scope.dashboardopponentroster = data;
 						toast("Opponent roster " + data.rostername + " set");
-						setInterval($scope.refreshDashOpponent, 3000);
+						setInterval($scope.refreshDashOpponent, 1000);
 						$('#dashboardopponentmodal').modal('hide');
 					}
 				).catch(function(ex)
@@ -2338,15 +2366,18 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 			
+			$scope.refreshingDashOpponent = false;
 			$scope.refreshDashOpponent = function() {
 				// Only if "Opponent" is the currently-active tag
-				if ($("#opponentdash-tab").hasClass("active")) {
+				if ($("#opponentdash-tab").hasClass("active") && !$scope.refreshingDashOpponent) {
+					$scope.refreshingDashOpponent = true;
 					$http.get(APIURL + "roster.php?rid=" + $scope.dashboardopponentrosterid + "&loadrosterdetail=1&skipviewcount=1")
 					.then(function(response)
 						{
 							// Got the opposing roster
 							data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
 							$scope.dashboardopponentroster = data;
+							$scope.refreshingDashOpponent = false;
 						}
 					);
 				}
@@ -2444,6 +2475,7 @@ var app = angular.module("kt", ['ngSanitize'])
 									// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
 									// This does NOT apply to Pathfinder Assault Grenadiers
 									if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
+										// Normal weapons
 										for (let i = 0; i < op.weapons.length; i++) {
 											let wep = op.weapons[i];
 											for (let j = 0; j < wep.profiles.length; j++) {
@@ -2452,6 +2484,22 @@ var app = angular.module("kt", ['ngSanitize'])
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+											}
+										}
+										
+										// Equipment Weapons
+										for (let i = 0; i < op.equipments.length; i++) {
+											let eq = op.equipments[i];
+											if (eq.eqtype == 'Weapon' && eq.weapon != null) {
+												let wep = eq.weapon;
+												console.log("Injuring weapon " + wep.wepid + ": " + wep.wepname);
+												for (let j = 0; j < wep.profiles.length; j++) {
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+												}
 											}
 										}
 									}
@@ -2477,6 +2525,20 @@ var app = angular.module("kt", ['ngSanitize'])
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
 												wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+											}
+										}
+										
+										for (let i = 0; i < op.equipments.length; i++) {
+											let eq = op.equipments[i];
+											if (eq.eqtype == 'Weapon' && eq.weapon != null) {
+												let wep = eq.weapon;
+												for (let j = 0; j < wep.profiles.length; j++) {
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+													wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+												}
 											}
 										}
 									}
@@ -2577,6 +2639,20 @@ var app = angular.module("kt", ['ngSanitize'])
 									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
 									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
 									wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+								}
+							}
+										
+							for (let i = 0; i < op.equipments.length; i++) {
+								let eq = op.equipments[i];
+								if (eq.eqtype == 'Weapon' && eq.weapon != null) {
+									let wep = eq.weapon;
+									for (let j = 0; j < wep.profiles.length; j++) {
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+									}
 								}
 							}
 						}
