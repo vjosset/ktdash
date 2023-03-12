@@ -22,7 +22,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				startcp: 3,
 				applyeqmods: 'n',
 				shownarrative: 'y',
-				autoinccp: 'n'
+				autoinccp: 'n',
+				defaultoporder: 'engage',
+				showopid: 'n'
 			};
 			
 			$scope.loadSettings = function() {
@@ -39,6 +41,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("shownarrative", "y", true);
 					$scope.setSetting("autoinccp", "n", true);
 					$scope.setSetting("defaultoporder", "engage", true);
+					$scope.setSetting("showopid", "n", true);
 				}
 				
 				// Set default settings
@@ -65,6 +68,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["defaultoporder"]) {
 					$scope.setSetting("defaultoporder", "engage", true);
+				}
+				if (!$scope.settings["showopid"]) {
+					$scope.setSetting("showopid", "n", true);
 				}
 				
 				$scope.saveSettings(false);
@@ -1664,6 +1670,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				).then(function(response)
 					{
 						let data = response.data;
+						
+						// Replace placeholders
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
+						
 						// All good, add this operative to the team
 						$scope.myRoster.operatives.push(data);
 						

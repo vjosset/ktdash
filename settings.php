@@ -80,6 +80,22 @@
 				</div>
 				
 				<div class="col-12 col-md-6">
+					<h6>Operative IDs</h6>
+					Displays operative IDs (e.g. "[HGNR]" for Heavy Gunner) in the roster and dashboard if enabled.<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showopid', 'y');" ng-class="settings['showopid'] == 'y' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['showopseq'] == 'y'"></i -->
+						<i class="pointer fas fa-list-ol fa-fw"></i><br/>
+						Show
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showopid', 'n');" ng-class="settings['showopid'] == 'n' || settings['showopid'] == null ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['showopseq'] == 'n' || settings['showopseq'] == null"></i -->
+						<i class="pointer fas fa-bars fa-fw"></i><br/>
+						Hide
+					</button>
+					<br/><br/>
+				</div>
+				
+				<div class="col-12 col-md-6">
 					<h6>Narrative Info</h6>
 					Shows or hides narrative play information (Battle Honours, Rare Equipment, XP)
 					<br/>
@@ -125,7 +141,7 @@
 							<option value="2">2</option>
 						</select>
 					</div>
-					<em>How many Victory Points your roster should start with when deployed or reset</em>
+					How many Victory Points your roster should start with when deployed or reset
 					<br/><br/>
 				</div>
 				
@@ -140,7 +156,7 @@
 							<option value="4">4</option>
 						</select>
 					</div>
-					<em>How many Command Points your roster should start with when deployed or reset</em>
+					How many Command Points your roster should start with when deployed or reset
 					<br/><br/>
 				</div>
 				

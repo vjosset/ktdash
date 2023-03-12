@@ -37,6 +37,10 @@ body {
 	color: #262a2d;
 }
 
+.orangetext {
+	color: #c54c21;
+}
+
 /* Buttons */
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-primary {
     background-color: #c54c21 !important;
