@@ -49,7 +49,6 @@
 				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">{{ operative.opname }}</span>
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
 				
-				
 				<img style="height: 1em;" class="float-end" alt="Engage - Activated" title="Engage - Activated" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated" />
 				<img style="height: 1em;" class="float-end" alt="Engage - Ready" title="Engage - Ready" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated" />
 				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated" />
@@ -57,6 +56,9 @@
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW == 0"></i>
 				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
+				<span class="float-end" ng-if="MODE == 'Dashboard'" ng-show="operative.curW > 0">
+					<input type="checkbox" class="m-2" style="vertical-align: middle; -ms-transform: scale(1.25); -moz-transform: scale(1.25); -webkit-transform: scale(1.25); -o-transform: scale(1.25);" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
+				</span>
 			</h2>
 		</div>
 		
@@ -67,9 +69,12 @@
 				<div class="col-6 small m-0 p-0">
 					{{ operative.optype }}
 				</div>
-				<div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
+				<!-- div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="operative.curW > 0">
 					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
 					<label for="chkactivated_{{ operative.rosteropid }}"> Activated</label>
+				</div -->
+				<div ng-if="MODE == 'Dashboard'" class="col-6 small p-0 text-end" ng-show="operative.curW > 0">
+					<span ng-if="operative.activated">Activated</span>
 				</div>
 			</div>
 			

@@ -22,6 +22,7 @@
 	require_once $root . '/classes/session.php';
 	require_once $root . '/classes/roster.php';
 	require_once $root . '/classes/rosteroperative.php';
+	require_once $root . '/classes/tacop.php';
 	
 	function replacedistance($input) {
 		$output = $input;

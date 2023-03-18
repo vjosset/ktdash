@@ -177,11 +177,19 @@
 								Equip
 							</a>
 						</li>
+						<li class="nav-item m-0 p-0 dark" role="presentation">
+							<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
+								TacOps
+							</a>
+						</li>
 					</ul>
 					<div class="tab-content p-0 m-0">
 						<div class="tab-pane show active" id="ops" role="tabpanel">
 							<!-- Archetype -->
 							<h6 class="d-inline">Archetype</h6>: <small ng-bind="getRosterArchetype(dashboardroster)"></small>
+							
+							<!-- Equipment Points -->
+							<small ng-show="totalEqPts(dashboardroster) > 0">({{ totalEqPts(dashboardroster) }} Eq Pts)</small>
 							
 							<!-- Operatives -->
 							<div class="row p-0 m-0">
@@ -221,6 +229,49 @@
 										<em class="d-inline float-end text-end" ng-if="eq.eqpts == '0'">{{ eq.eqcategory }}&nbsp;&nbsp;</em>
 									</div>
 									<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="tacops" role="tabpanel">
+							<!-- TacOps -->
+							<div class="row p-0 m-0">
+								<!-- Active TacOps -->
+								<h3 class="text-center line-top-light">
+									Active TacOps
+								</h3>
+								<div ng-repeat="tacop in dashboardroster.tacops track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="tacop.active">
+									<div class="line-top-light">
+										<h5 class="d-inline">
+											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" />
+											{{ tacop.title }}
+										</h5>
+										<div class="float-end">
+											<input type="checkbox" id="{{ tacop.tacopid }}-VP1" /> VP 1
+											&nbsp;&nbsp;
+											<input type="checkbox" id="{{ tacop.tacopid }}-VP2" /> VP 2
+										</div>
+									</div>
+									<em class="d-inline">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>
+									<p class="oswald p-1" style="text-align: justify;" ng-bind-html="tacop.description"></p>
+								</div>
+							</div>
+							<div class="row p-0 m-0">
+								<!-- Inactive TacOps -->
+								<h3 class="text-center line-top-light">
+									Inactive TacOps
+								</h3>
+								<div ng-repeat="tacop in dashboardroster.tacops track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="!tacop.active">
+									<!-- h4 class="text-center line-top-light" ng-if="$index == 0 || ($index > 0 && dashboardroster.tacops[$index].archetype != dashboardroster.tacops[$index - 1].archetype)">
+										{{ tacop.archetype }}
+									</h4 -->
+									<div class="line-top-light">
+										<h5 class="d-inline">
+											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" />
+											{{ tacop.title }}
+										</h5>
+										<em class="d-inline float-end text-end">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>
+									</div>
+									<p class="oswald p-1" style="text-align: justify;" ng-bind-html="tacop.description"></p>
 								</div>
 							</div>
 						</div>
@@ -300,6 +351,9 @@
 							<div class="tab-pane show active" id="opponentops" role="tabpanel">
 								<!-- Archetype -->
 								<h6 class="d-inline">Archetype</h6>: <small ng-bind="getRosterArchetype(dashboardopponentroster)"></small>
+							
+								<!-- Equipment Points -->
+								<small ng-show="totalEqPts(dashboardopponentroster) > 0">({{ totalEqPts(dashboardopponentroster) }} Eq Pts)</small>
 								
 								<!-- Operatives -->
 								<div class="row p-0 m-0">

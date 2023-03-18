@@ -102,6 +102,10 @@
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="gallactions">
 							<li><a class="pointer dropdown-item p-1" ng-click="showShareRosterGallery(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</a></li>
 							<li><a class="pointer dropdown-item p-1 navloader" href="/r/<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
+							<?php if ($me != null && $me->userid == 'vince') { ?>
+							<li><a class="pointer dropdown-item p-1" ng-if="myRoster.spotlight == 1" ng-click="toggleSpotlight(myRoster, 0);"><i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></i> Spotlight Off</a></li>
+							<li><a class="pointer dropdown-item p-1" ng-if="myRoster.spotlight == 0" ng-click="toggleSpotlight(myRoster, 1);"><i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></i> Spotlight On</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>

@@ -11,6 +11,7 @@
 		public $killteamid = "";
 		public $notes = "";
 		public $operatives = [];
+		public $tacops = [];
         
         function __construct() {
             $this->TableName = "Roster";
@@ -19,7 +20,8 @@
 				"operatives","username","factionname","killteamname",
 				"opList","oplist",
 				"killteamdescription","archetype",
-				"viewcount","importcount"
+				"viewcount","importcount",
+				"tacops"
 			];
         }
 		
@@ -115,6 +117,8 @@
 					$this->operatives[] = $op;
                 }
             }
+			
+			$this->loadTacOps();
 		}
 		
 		public function loadKillTeam() {
@@ -133,6 +137,49 @@
 			// Don't load the whole thing, takes too long (especially for users with many rosters when they open dashboard)
 			//	Only pull the base information about the kill team + its ploys and equipment
 			$this->faction = Faction::FromDB($this->factionid);
+		}
+		
+		public function loadTacOps() {
+			// Load the TacOps for this roster
+			// TBD: Bespoke TacOps
+			//		OR T.archetype = CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid)
+			global $dbcon;
+			$sql = "SELECT DISTINCT
+						T.*,
+						CASE WHEN CONCAT('/', R.tacopids, '/') LIKE CONCAT('%,', T.tacopid, ',%') THEN 1 ELSE 0 END AS active
+					FROM
+						TacOp T
+						INNER JOIN
+						(
+							SELECT DISTINCT F.archetype, F.factionid, F.killteamid, F.fireteamid
+							FROM RosterOperative RO
+							INNER JOIN Fireteam F
+								ON  F.fireteamid = RO.fireteamid
+							WHERE rosterid = ?
+						) A
+							ON  CONCAT('/', A.archetype, '/') LIKE CONCAT('%/', T.archetype, '/%')
+							OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
+						INNER JOIN Roster R
+							ON  R.rosterid = ?
+					ORDER BY T.archetype, T.tacopseq;
+					";
+			
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "ss";
+			$params = array();
+			$params[] =& $paramtypes;
+			$params[] =& $this->rosterid;
+			$params[] =& $this->rosterid;
+
+			call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->execute();
+			
+            if ($result = $cmd->get_result()) {
+                while ($row = $result->fetch_object()) {
+                    $t = TacOp::FromRow($row);
+					$this->tacops[] = $t;
+                }
+            }
 		}
 		
 		public function reorderOperatives() {

@@ -1285,8 +1285,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (roster) {
 					for (let i = 0; i < roster.operatives.length; i++) {
 						let op = roster.operatives[i];
-						for (let j = 0; j < op.equipments.length; j++) {
-							total += parseInt(op.equipments[j].eqpts);
+						if ($scope.MODE != 'Dashboard' || !op.hidden) {
+							for (let j = 0; j < op.equipments.length; j++) {
+								total += parseInt(op.equipments[j].eqpts);
+							}
 						}
 					}
 				}
@@ -1295,10 +1297,36 @@ var app = angular.module("kt", ['ngSanitize'])
 				return total;
 			}
 		
+			// deploy()
+			// Marks this roster to be deployed to the dashboard
 			$scope.deploy = function(roster) {
 				toast("Loading...");
 				$scope.setDashboardRosterId(roster.rosterid);
 				window.location.href = "/dashboard";
+			}
+		
+			$scope.toggleSpotlight = function(roster, on) {
+				console.log("toggleSpotlight(" + roster.rosterid + ", " + on + ");");
+				
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosterspotlight.php?rid=" + roster.rosterid + "&on=" + on,
+					timeout: APITimeout,
+					async: true,
+					
+					// Success
+					success: function(data) { // Saved
+						// All good
+						roster.spotlight = on;
+						
+						// Done
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not set spotlight: \r\n" + error);
+					}
+				});
 			}
 		}
 		
@@ -1974,9 +2002,11 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterArchetype = function(roster) {
 				let rosterArchetype = "";
 				if (roster) {
+					console.log("Getting archetype for " + roster.rostername);
 					for (var opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
 						let archetypes = op.archetype.split('/');
+						console.log("   Checking op #" + opnum + " (" + op.opname + "): " + archetypes);
 						
 						for (let archnum = 0; archnum < archetypes.length; archnum++) {
 							let arch = archetypes[archnum];
@@ -2308,7 +2338,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					},
 					"KAS": {
 						"Label": "Elite Points",
-						"Shortcut": "EP"
+						"Shortcut": "EP",
+						"StartValue": 10
 					}
 				},
 				"AEL": {
@@ -2602,6 +2633,12 @@ var app = angular.module("kt", ['ngSanitize'])
 				roster.VP = parseInt($scope.settings["startvp"]);
 				roster.TP = 1;
 				roster.RP = 0;
+				
+				console.log("Checking default RP for " + roster.factionid + "/" + roster.killteamid);
+				console.log(JSON.stringify($scope.RPLabels[roster.factionid][roster.killteamid]));
+				if ($scope.RPLabels[roster.factionid][roster.killteamid].StartValue > 0) {
+					roster.RP = $scope.RPLabels[roster.factionid][roster.killteamid].StartValue;
+				}
 				
 				// Push local roster to DB/API
 				$scope.commitRoster(roster);
