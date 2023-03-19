@@ -30,6 +30,7 @@
 		</style>
 		<?php
 		foreach($factions as $faction) {
+			$faction->loadKillTeams();
 		?>
 		<link rel="preload" href="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $faction->factionid ?>.jpg" as="image">
 		<?php
@@ -62,7 +63,21 @@
 						
 						<!-- p class="card-text p-2 m-0 oswald">
 							<a href="faction.htm?factionid={{ faction.factionid }}" class="btn btn-primary">View KillTeams</a>
-						</p -->					
+						</p -->	
+
+						<div class="card-footer m-0 p-1 line-top-light">
+							<h6>KillTeams</h6>
+							<!-- KillTeams -->
+							<div style="column-width: 150px;">
+							<?php 
+							foreach($faction->killteams as $killteam) {
+							?>
+								<a href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
+							<?php
+							}
+							?>
+							</div>
+						</div>				
 					</div>
 					<br/>
 				</div>

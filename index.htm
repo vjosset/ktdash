@@ -42,7 +42,7 @@
 				KTDash
 			</h1>
 			
-			<div class=" align-items-center m-0 p-0 mt-2 p-3 row">
+			<div class="align-items-center m-0 p-0 mt-2 p-3 row">
 				<div class="col-md-2 col-xl-3">&nbsp;</div>
 				<div class="col-12 col-md-8 col-xl-6">
 					KTDash is a web-based application for running your KillTeam 2021 games.
@@ -51,24 +51,34 @@
 							Browse the <a class="navloader" href="/allfactions">Factions</a>
 						</li>
 						<li>
-							<a class="navloader" href="/u">Build your rosters</a> or import a <a href="/u/KTDash">pre-built roster</a>
+							<a ng-if="currentuser != null" class="navloader" href="/u">Build your rosters</a>
+							<span ng-if="currentuser == null">Build your rosters</span>
+							or import a <a href="/u/KTDash">pre-built roster</a>
 						</li>
 						<li>
 							Generate <a class="navloader" href="/name.htm">names</a> for your operatives
 						</li>
 						<li>
-							Use the <a class="navloader" href="/dashboard">Dashboard</a> to play your games
+							Use the
+							<a ng-if="currentuser != null" class="navloader" href="/dashboard">Dashboard</a>
+							<span ng-if="currentuser == null">Dashboard</span>
+							to play your games
 							<span class="d-none d-lg-inline">
-								and track operative wounds, Turning Points, Command Points, and Victory Points
+								and track operative wounds, TacOps, Ploys, operative orders and activation, TP/CP/VP, and more
 							</span>
 						</li>
 					</ul>
 				</div>
 				<div class="col-md-2 col-xl-3">&nbsp;</div>
 			</div>
+			<div class="align-items-center m-0 p-0 mt-2 p-3 text-center" ng-if="currentuser == null">
+				<button class="btn btn-primary"><a href="/signup.htm">Sign Up</a></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-primary"><a href="/login.htm">Log In</a></button>
+			</div>
 		</div>
 		
-		<div class="m-0 p-0 row orange cinzel text-center h4">
+		<!-- div class="m-0 p-0 row orange cinzel text-center h4">
 			<div class="col-4">
 				<a class="nav-link navloader" href="/dashboard"><span class="fas fa-dice fa-fw"></span><span class="d-none d-md-inline">&nbsp;Dashboard</span></a>
 			</div>
@@ -78,7 +88,7 @@
 			<div class="col-4">
 				<a class="nav-link navloader" href="/allfactions"><span class="fas fa-book-dead fa-fw"></span><span class="d-none d-md-inline">&nbsp;Factions</span></a>
 			</div>
-		</div>
+		</div -->
 		
 		<br/><br/>
 		
