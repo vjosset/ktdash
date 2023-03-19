@@ -41,6 +41,10 @@ body {
 	color: #c54c21;
 }
 
+.greytext {
+	color: #888;
+}
+
 /* Buttons */
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-primary {
     background-color: #c54c21 !important;

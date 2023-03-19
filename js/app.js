@@ -729,20 +729,21 @@ var app = angular.module("kt", ['ngSanitize'])
 						$http.get(APIURL + "roster.php?uid=" + uid)
 						.then(function(response)
 							{
+								let data = response.data;
 								// Got user's rosters
 								// Load the rosters into "myRosters"
 								data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 								$scope.myRosters = data;
 								
 								$scope.loading = false;
-								$scope.$apply();
 							}
 						).catch(function(data)
 						{
 							// Failure
+							console.log("Failed to get rosters: \r\n" + data);
+							console.log(JSON.stringify(data));
 							toast("Could not get rosters: \r\n" + error);
 							$scope.loading = false;
-							$scope.$apply();
 						});
 					}
 				}
@@ -900,7 +901,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Update roster list
 							$scope.initRosters();
 						} else {
-							// We're not on the "Rosters" page, so send them there
+							// We're not on the "My Rosters" page, so send them there
 							window.location.href = "/u";
 						}
 					},
@@ -2002,11 +2003,11 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterArchetype = function(roster) {
 				let rosterArchetype = "";
 				if (roster) {
-					console.log("Getting archetype for " + roster.rostername);
+					//console.log("Getting archetype for " + roster.rostername);
 					for (var opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
 						let archetypes = op.archetype.split('/');
-						console.log("   Checking op #" + opnum + " (" + op.opname + "): " + archetypes);
+						//console.log("   Checking op #" + opnum + " (" + op.opname + "): " + archetypes);
 						
 						for (let archnum = 0; archnum < archetypes.length; archnum++) {
 							let arch = archetypes[archnum];
@@ -2634,9 +2635,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				roster.TP = 1;
 				roster.RP = 0;
 				
-				console.log("Checking default RP for " + roster.factionid + "/" + roster.killteamid);
-				console.log(JSON.stringify($scope.RPLabels[roster.factionid][roster.killteamid]));
-				if ($scope.RPLabels[roster.factionid][roster.killteamid].StartValue > 0) {
+				if ($scope.RPLabels[roster.factionid] && $scope.RPLabels[roster.factionid][roster.killteamid] && $scope.RPLabels[roster.factionid][roster.killteamid].StartValue > 0) {
 					roster.RP = $scope.RPLabels[roster.factionid][roster.killteamid].StartValue;
 				}
 				
