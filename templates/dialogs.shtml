@@ -77,9 +77,16 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
-				Roster Share Link:<br/>
+				Post to
+				<a href="https://twitter.com/intent/tweet?text=I built my KillTeam roster on KTDash! {{ shareroster.url }} ping @KTDash #ktdash #killteam" target="_blank">
+					Twitter
+				</a>
+				<br/><br/>
+				
+				Roster Share Link:
 				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
-				<hr/>
+				<pre>{{ shareroster.url }}</pre>
+				<br/><br/>
 				<!-- QR Code -->
 				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
 			</div>
@@ -96,9 +103,16 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
-				Gallery Share Link:<br/>
+				Post to
+				<a href="https://twitter.com/intent/tweet?text=I built my KillTeam roster on KTDash! {{ shareroster.url }} ping @KTDash #ktdash #killteam" target="_blank">
+					Twitter
+				</a>
+				<br/><br/>
+				
+				Gallery Share Link:
 				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
-				<hr/>
+				<pre>{{ shareroster.url }}</pre>
+				<br/><br/>
 				<!-- QR Code -->
 				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
 			</div>

@@ -6,7 +6,7 @@
 	
 	//print_r($bi);
 	
-	$p = 'dfgdfg';
+	$p = 'sdfsdf';
 	echo hash('sha256', $p)
 ?>
 <br/><br/>

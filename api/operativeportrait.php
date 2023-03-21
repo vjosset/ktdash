@@ -34,11 +34,22 @@
 		}
 		
 		if ($roid == null || $roid == '') {
-			// No rosteropid specified - fail
-			header('HTTP/1.0 404 Invalid rosteropid');
-			die();
+			// No rosteropid specified - Look for default roster to use
+			$fa = getIfSet($_REQUEST['fa'], '');
+			$kt = getIfSet($_REQUEST['kt'], '');
+			$ft = getIfSet($_REQUEST['ft'], '');
+			$op = getIfSet($_REQUEST['op'], '');
+			
+			if ($fa == '' || $kt == '' || $ft == '' || $op == '') {
+				// Missing at least one input
+				header('HTTP/1.0 404 Invalid rosteropid');
+				die();
+			} else {
+				// Got all inputs, find the appropriate custom portrait to use by defaut for this operative
+				
+			}
 		} else {
-			// Try to find this operative
+			// Try to find this roster operative
 			$ro = RosterOperative::GetRosterOperative($roid);
 			
 			if ($ro != null) {

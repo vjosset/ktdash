@@ -137,11 +137,11 @@
 				<h2>Recent Portraits</h2>
 				<?php
 					$sql = "
-						SELECT MAX(E.datestamp) AS datestamp, COUNT(*) AS Count, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
-						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1
+						SELECT MAX(E.datestamp) AS datestamp, R.factionid, R.killteamid, KT.killteamname, SUM(CASE E.action WHEN 'portrait' THEN 1 ELSE 0 END) AS rosterportrait, SUM(CASE E.action WHEN 'opportrait' THEN 1 ELSE 0 END) AS opportrait, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
+						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1 INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
 						WHERE E.action IN ('portrait', 'opportrait') AND E.userip != '68.80.166.102' AND E.label = 'custom'
-						GROUP BY U.username, U.userid, R.rosterid, R.rostername, R.spotlight
-						ORDER BY 1 DESC LIMIT 40";
+						GROUP BY U.username, U.userid, R.rosterid, R.rostername, R.spotlight, R.factionid, R.killteamid, KT.killteamname
+						ORDER BY 1 DESC LIMIT 40;";
 					$cmd = $dbcon->prepare($sql);
 						
 					// Load the stats
@@ -149,29 +149,30 @@
 					$cmd->execute();
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Portraits -->\r\n";
 					
-					echo "<ul>";
-
+					echo "<div>";
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
 							// Got a result
 							?>
-							<li><strong><?php echo $row->datestamp ?><br/></strong>
+							<strong><?php echo $row->datestamp ?></strong><br/>
+							<div class="ps-3">
 							<?php
 							if ($row->spotlight == 1) {
-								echo '<i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i>';
+							?>
+								<i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i>
+							<?php
 							}
 							?>
-							
-							<a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a>
-							by
-							<a href="/u/<?php echo $row->userid ?>" target="_blank"><?php echo $row->username ?></a>
-							(<?php echo number_format($row->Count) ?>)
-							</li>
+							<h6 class="d-inline"><a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a></h6>
+							(<?php echo number_format($row->rosterportrait) ?>/<?php echo number_format($row->opportrait) ?>)
+							<br/>
+							<a href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>" target="_blank"><?php echo $row->killteamname ?></a>
+							by&nbsp;<a class="navloader" href="/u/<?php echo $row->username ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
+							</div>
 							<?php
 						}
 					}
-					
-					echo "</ul>";
+					echo "</div>"
 				?>
 			</div>
 			<br/>
