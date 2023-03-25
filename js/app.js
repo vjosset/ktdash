@@ -531,37 +531,202 @@ var app = angular.module("kt", ['ngSanitize'])
 			// applyEqMods()
 			// Applies equipment mods to the operatives in the specified roster
 			$scope.applyEqMods = function (roster) {
+				if ($scope.currentuser.userid == 'vince') {
+					// Testing
+					$scope.applyEqMods2(roster);
+				} else {
+					if (roster != null) {
+						for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
+							let op = roster.operatives[opnum];
+							//console.log("Operative #" + opnum + ": " + op.opname + " (" + op.optype + ")");
+							
+							for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
+								let eq = op.equipments[eqnum];
+								//console.log("   Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", " + eq.eqvar1 + ", " + eq.eqvar2 + ", " + eq.eqvar3 + ", " + eq.eqvar4 + ")");
+								
+								switch (eq.eqtype.toLowerCase()) {
+									case "wepmod":
+										//console.log("      WepMod");
+										switch(eq.eqvar1) {
+										}
+										break;
+									case "opmod":
+										//console.log("      OpMod");
+										
+										// Pick the characteristic to mod
+										switch (eq.eqvar1) {
+											case "M":
+												//console.log("         M");
+												if (eq.eqvar2.startsWith("+")) {
+													//console.log("         Adding " + eq.eqvar2 + " to M");
+													op.M += eq.eqvar2;
+												}
+												break;
+											case "W":
+												//console.log("         W");
+												if (eq.eqvar2.startsWith("+")) {
+													//console.log("         Adding " + eq.eqvar2 + " to W");
+													op.W = parseInt(op.W) + parseInt(eq.eqvar2);
+												}
+												break;
+											case "APL":
+												break;
+											case "SV":
+												break;
+											case "DF":
+												break;
+											case "GA":
+												break;
+										}
+										break;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			// applyEqMods2()
+			// Applies equipment mods to the operatives in the specified roster
+			$scope.applyEqMods2 = function (roster) {
+				console.log("*** applyEqMods2 ***");
 				if (roster != null) {
 					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
-						//console.log("Operative #" + opnum + ": " + op.opname + " (" + op.optype + ")");
+						console.log("Looking at operative " + op.opname);
+						console.log("   Resetting to operative to base stats");
+						op.M   = op.baseoperative.M;
+						op.APL = op.baseoperative.APL;
+						op.GA  = op.baseoperative.GA;
+						op.DF  = op.baseoperative.DF;
+						op.SV  = op.baseoperative.SV;
+						op.W   = op.baseoperative.W;
 						
+						// Reset this operative's weapons to their base definitions
+						//console.log("   Resetting weapons");
+						let wepids = op.wepids.split(",");
+						for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+							let opwep = op.weapons[opwepnum];
+							//console.log("      Weapon " + opwep.wepid);
+							
+							// Find this weapon in the base operative's weapons
+							for (let baseopwepnum = 0; baseopwepnum < op.baseoperative.weapons.length; baseopwepnum++) {
+								let baseopwep = op.baseoperative.weapons[baseopwepnum];
+								if (baseopwep.wepid == opwep.wepid) {
+									// Found the weapon, reset its stats
+									//console.log("      Resetting weapon to base stats");
+									opwep = JSON.parse(JSON.stringify(baseopwep));
+								}
+							}
+						}
+						
+						// Operative is reset, along with its weapons
+						// Now apply equipment mods to the operative and its weapons
+						console.log("   Applying Equipment Mods");
 						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
 							let eq = op.equipments[eqnum];
-							//console.log("   Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", " + eq.eqvar1 + ", " + eq.eqvar2 + ", " + eq.eqvar3 + ", " + eq.eqvar4 + ")");
+							console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
 							switch (eq.eqtype.toLowerCase()) {
 								case "wepmod":
-									//console.log("      WepMod");
-									switch(eq.eqvar1) {
+									console.log("         WepMod");
+									let weptomod = null;
+									if (eq.eqvar1.startsWith("weptype:")) {
+										// Mod applies to a specific weapon type
+										let weptype = eq.eqvar1.replace("weptype:", "");
+										console.log("            Matching weptype " + weptype);
+										
+										// Find the weapon that has this type that this operative is equipped with
+										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+											let opwep = op.weapons[opwepnum];
+											if (opwep.weptype == weptype) {
+												// This is the one
+												weptomod = opwep;
+											}
+										}
+									} else if (eq.eqvar1.startsWith("wepid:")) {
+										// Mod applies to a specific weapon id
+										let wepid = eq.eqvar1.replace("wepid:", "");
+										console.log("            Matching wepid " + wepid);
+										
+										// Find the weapon that has this ID that this operative is equipped with
+										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+											let opwep = op.weapons[opwepnum];
+											if (("," + wepid + ",").includes("," + opwep.wepid + ",")) {
+												// This is the one
+												weptomod = opwep;
+											}
+										}
+									} else if (eq.eqvar1.startsWith("wepname:")) {
+										// Mod applies to a specific weapon name
+										let wepname = eq.eqvar1.replace("wepname:", "");
+										console.log("            Matching wepname " + wepname);
+										
+										// Find the weapons that has this name that this operative is equipped with
+										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+											let opwep = op.weapons[opwepnum];
+											console.log("Checking weapon name " + wepname.toLowerCase() + " against " + opwep.wepname.toLowerCase());
+											if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
+												// This is the one
+												weptomod = opwep;
+											}
+										}
+									}
+									
+									if (weptomod != null) {
+										// We found the weapon to modify, now apply the mod to that weapon
+										console.log("         Found applicable weapon " + weptomod.wepid + ": " + weptomod.wepname);
+										let mods = eq.eqvar2.split("|");
+										for (let modnum = 0; modnum < mods.length; modnum++) {
+											let mod = mods[modnum];
+											let modstat = mod.split(":")[0];
+											let modval = mod.split(":")[1];
+											switch(modstat) {
+												case "SR":
+													// New special rule - Loop through the weapon's profiles and add this special rule to them
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														console.log("         Applying Special Rule " + modval);
+														weptomod.profiles[pnum].SR += ", " + modval;
+													}
+													break;
+												case "D":
+													// Upgrade damage - Loop through the weapon's profiles and update their damage
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														console.log("         Applying Damage mod " + modval);
+														let origD = weptomod.profiles[pnum].D;
+														let orignormalD = parseInt(origD.split("/")[0]);
+														let origcriticalD = parseInt(origD.split("/")[1]);
+														
+														let modnormalD = parseInt(modval.split("/")[0]);
+														let modcriticalD = parseInt(modval.split("/")[1]);
+														
+														let newD = (orignormalD + modnormalD) + "/" + (origcriticalD + modcriticalD);
+														
+														weptomod.profiles[pnum].D = newD;
+													}
+													break;
+												default:
+													break;
+											}
+										}
 									}
 									break;
 								case "opmod":
-									//console.log("      OpMod");
+									console.log("         OpMod");
 									
 									// Pick the characteristic to mod
 									switch (eq.eqvar1) {
 										case "M":
-											//console.log("         M");
+											console.log("            M");
 											if (eq.eqvar2.startsWith("+")) {
-												//console.log("         Adding " + eq.eqvar2 + " to M");
+												console.log("         Adding " + eq.eqvar2 + " to M");
 												op.M += eq.eqvar2;
 											}
 											break;
 										case "W":
-											//console.log("         W");
+											console.log("            W");
 											if (eq.eqvar2.startsWith("+")) {
-												//console.log("         Adding " + eq.eqvar2 + " to W");
+												console.log("         Adding " + eq.eqvar2 + " to W");
 												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 											}
 											break;
@@ -789,6 +954,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (preload && preload != "") {
 					// Already pre-loaded this roster, use that instead of a round-trip to the API
 					$scope.myRoster = JSON.parse($scope.replacePlaceholders(preload));
+					
+					// Auto-apply equipment mods
+					if ($scope.settings.applyeqmods == 'y') {
+						$scope.applyEqMods($scope.myRoster);
+					}
 				
 					if ($scope.currentuser != null && $scope.myRoster.userid == $scope.currentuser.userid) {
 						// Logged-in user has the same ID as the requested roster, this is one of their rosters
@@ -1801,6 +1971,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initEditOp = function(op, roster) {
 				// Prepare the op to edit (will be used in saveEditOperative())
 				$scope.optoedit = op;
+				$scope.optoeditroster = roster;
 				
 				// Create a deep-copy clone of this op to be edited
 				$scope.tempeditop = JSON.parse(JSON.stringify(op));
@@ -1817,10 +1988,12 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.tempeditop.equipments = [];
 				for (let eqnum = 0; eqnum < roster.killteam.equipments.length; eqnum++) {
 					let eq = JSON.parse(JSON.stringify(roster.killteam.equipments[eqnum]));
-					eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
-					$scope.tempeditop.equipments.push(eq);
-					if (eq.eqtype == 'Weapon') {
-						//console.log("Found equipment weapon: " + eq.weapon.wepname);
+					if ((eq.fireteamid == op.fireteamid && eq.opid == op.opid) || (eq.fireteamid == '' && eq.opid == '')) {
+						eq.isselected = ("," + op.eqids + ",").indexOf("," + eq.eqid + ",") >= 0;
+						$scope.tempeditop.equipments.push(eq);
+						if (eq.eqtype == 'Weapon') {
+							//console.log("Found equipment weapon: " + eq.weapon.wepname);
+						}
 					}
 				}
 				
@@ -1874,6 +2047,11 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Save all changes
 				te("roster", "editop", "", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 				$scope.commitRosterOp($scope.optoedit);
+				
+				// Auto-apply equipment mods
+				if ($scope.settings.applyeqmods == 'y') {
+					$scope.applyEqMods($scope.optoeditroster);
+				}
 				
 				// Close the modal
 				$('#editopmodal').modal("hide");
@@ -2031,18 +2209,17 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterTextDescription = function(roster) {
 				te("roster", "gettext", "", roster.rosterid);
 				let out = "";
-				out = "<h6><a href=\"https://ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
-				out += "<a href=\"https://ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
+				out = "<h4 class=\"d-inline\"><a href=\"https://ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h4> ";
+				out += "(<a href=\"https://ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a>)<br/>";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {
 					out += "Total Equipment Points: " + totalEq + "<br/><br/>";
 				}
 				
-				// out += "<ul>";
 				for (let i = 0; i < roster.operatives.length; i++) {
 					let op = roster.operatives[i];
-					out += (op.seq + 1) + ". " + op.opname + " (" + op.optype + ")<br/>";
+					out += "<h5>" + (op.seq + 1) + ". " + op.opname + " (" + op.optype + ")</h5>";
 					
 					// Weapons
 					for (let j = 0; j < op.weapons.length; j++) {
@@ -2055,10 +2232,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					for (let j = 0; j < op.equipments.length; j++) {
 						let eq = op.equipments[j];
-						if (j == 0) {
-							out += "<br/>";
-						}
-						if (j > 0) {
+						if (j == 0 || (j > 0 && eq.eqcategory != op.equipments[j - 1].eqcategory)) {
+							out += "<br/>" + eq.eqcategory + ": ";
+						} else {
 							out += ", ";
 						}
 						out += eq.eqname + (eq.eqpts > 0 ? " (" + eq.eqpts + " EP)" : "");
@@ -2066,7 +2242,6 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					out += "<br/><br/>";
 				}
-				// out += "</ul>";
 				
 				// Done
 				return out;

@@ -29,14 +29,14 @@
 		
 		<div class="m-0 p-0"
 			style="
-				background: linear-gradient(rgba(32, 32, 32, 0.0), rgba(32, 32, 32, .75), rgba(32, 32, 32, 1)), url('/img/homesplash_5.jpg');
+				background: linear-gradient(rgba(32, 32, 32, 0.5), rgba(32, 32, 32, .75), rgba(32, 32, 32, 1)), url('/img/homesplash_5.jpg');
 				background-position: center center;
 				-webkit-background-size: cover;
 				-moz-background-size: cover;
 				-o-background-size: cover;
 				background-size: cover;">
 			
-			<br/><br/>
+			<br/>
 			
 			<h1 class="m-0 p-0 text-center" style="font-size: 64px;">
 				KTDash
@@ -72,9 +72,9 @@
 				<div class="col-md-2 col-xl-3">&nbsp;</div>
 			</div>
 			<div class="align-items-center m-0 p-0 mt-2 p-3 text-center" ng-if="currentuser == null">
-				<button class="btn btn-primary"><a href="/signup.htm">Sign Up</a></button>
+				<h4 class="orange btn btn-primary"><a href="/signup.htm">Sign Up</a></h4>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-primary"><a href="/login.htm">Log In</a></button>
+				<h4 class="orange btn btn-primary"><a href="/login.htm">Log In</a></h4>
 			</div>
 		</div>
 		
@@ -89,8 +89,6 @@
 				<a class="nav-link navloader" href="/allfactions"><span class="fas fa-book-dead fa-fw"></span><span class="d-none d-md-inline">&nbsp;Factions</span></a>
 			</div>
 		</div -->
-		
-		<br/><br/>
 		
 		<div class="m-0 p-0 row">
 			<!-- div class="m-0 p-0 col-12 col-md-6">
@@ -126,59 +124,73 @@
 					</a>
 				</h3>
 				<div style="column-width: 150px;">
-					<h6 class="line-top-light"><a class="navloader" href="/fa/AEL">Aeldari</a></h6>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/COM">Commorrites</a><br/>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/COR">Corsair Voidscarred</a><br/>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/CW">Craftworld</a><br/>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/HOTA">Hand Of The Archon</a><br/>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/TRP">Troupe (Outdated)</a><br/>
-					&nbsp;&nbsp;<a href="/fa/AEL/kt/VDT">Void-Dancer Troupe</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/AEL">Aeldari</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/COM">Commorrites</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/COR">Corsair Voidscarred</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/CW">Craftworld</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/HOTA">Hand Of The Archon</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/TRP">Troupe (Outdated)</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/AEL/kt/VDT">Void-Dancer Troupe</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/CHAOS">Chaos</a></h6>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/BLD">Blooded</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/CSM">Traitor Space Marines</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/DAEM">Chaos Daemons</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/DG">Death Guard</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/GPI">Gellerpox Infected</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/LEG">Legionaries</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/TS">Thousand Sons (Outdated)</a><br/>
-					&nbsp;&nbsp;<a href="/fa/CHAOS/kt/WC">Warp Coven</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/CHAOS">Chaos</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/BLD">Blooded</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/CSM">Traitor Space Marines</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/DAEM">Chaos Daemons</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/DG">Death Guard</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/GPI">Gellerpox Infected</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/LEG">Legionaries</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/TS">Thousand Sons (Outdated)</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/CHAOS/kt/WC">Warp Coven</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/IMP">Imperium</a></h6>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/AES">Exaction Squad</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/ECC">Ecclesiarchy</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/ESS">Elucidian Starstriders</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/FW">Forge World (Outdated)</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/GK">Grey Knights</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/HC">Hunter Clade</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/IG">Imperial Guard</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/INB">Imperial Navy Breachers</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/INTS">Intercession Squad</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/KAS">Kasrkin</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/NOV">Novitiates</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/PHO">Phobos Strike Team</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/SM">Space Marines</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/TOE">Talons of the Emperor</a><br/>
-					&nbsp;&nbsp;<a href="/fa/IMP/kt/VG">Veteran Guardsmen</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/IMP">Imperium</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/AES">Exaction Squad</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/ECC">Ecclesiarchy</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/ESS">Elucidian Starstriders</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/FW">Forge World (Outdated)</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/GK">Grey Knights</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/HC">Hunter Clade</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/IG">Imperial Guard</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/INB">Imperial Navy Breachers</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/INTS">Intercession Squad</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/KAS">Kasrkin</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/NOV">Novitiates</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/PHO">Phobos Strike Team</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/SM">Space Marines</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/TOE">Talons of the Emperor</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/IMP/kt/VG">Veteran Guardsmen</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/NEC">Necrons</a></h6>
-					&nbsp;&nbsp;<a href="/fa/NEC/kt/HIER">Hierotek Circle</a><br/>
-					&nbsp;&nbsp;<a href="/fa/NEC/kt/TW">Tomb World</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/NEC">Necrons</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/NEC/kt/HIER">Hierotek Circle</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/NEC/kt/TW">Tomb World</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/ORK">Orks</a></h6>
-					&nbsp;&nbsp;<a href="/fa/ORK/kt/GSK">Greenskins</a><br/>
-					&nbsp;&nbsp;<a href="/fa/ORK/kt/KOM">Kommandoz</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/ORK">Orks</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/ORK/kt/GSK">Greenskins</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/ORK/kt/KOM">Kommandoz</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/TAU">T'au Empire</a></h6>
-					&nbsp;&nbsp;<a href="/fa/TAU/kt/CM">Cadre Mercenaries</a><br/>
-					&nbsp;&nbsp;<a href="/fa/TAU/kt/FSKB">Farstalker Kinband</a><br/>
-					&nbsp;&nbsp;<a href="/fa/TAU/kt/HC">Hunter Cadre</a><br/>
-					&nbsp;&nbsp;<a href="/fa/TAU/kt/PF">Pathfinders</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/TAU">T'au Empire</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TAU/kt/CM">Cadre Mercenaries</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TAU/kt/FSKB">Farstalker Kinband</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TAU/kt/HC">Hunter Cadre</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TAU/kt/PF">Pathfinders</a><br/>
+					</div>
 					
-					&nbsp;<h6 class="line-top-light"><a class="navloader" href="/fa/TYR">Tyranids</a></h6>
-					&nbsp;&nbsp;<a href="/fa/TYR/kt/BC">Brood Coven</a><br/>
-					&nbsp;&nbsp;<a href="/fa/TYR/kt/HF">Hive Fleet</a><br/>
-					&nbsp;&nbsp;<a href="/fa/TYR/kt/WB">WyrmBlade</a><br/>
+					<div style="break-inside: avoid;" class="line-top-light">
+					<h6><a class="navloader" href="/fa/TYR">Tyranids</a></h6>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TYR/kt/BC">Brood Coven</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TYR/kt/HF">Hive Fleet</a><br/>
+					&nbsp;&nbsp;<a class="navloader" href="/fa/TYR/kt/WB">WyrmBlade</a><br/>
+					</div>
 				</div>
 			</div>
 			<div class="m-0 p-0 col-12">

@@ -61,17 +61,11 @@
 			<span ng-if="myRoster.importcount > 0"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}</span>
 		</div>
 		
-		<p ng-show="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify;">
-			{{ myRoster.notes }}
+		<p ng-if="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify; white-space:pre-wrap;" ng-bind="myRoster.notes">
 		</p>
-		<p class="p-1" style="text-align:justify;">
+		<p ng-if="myRoster.notes == null || myRoster.notes == ''" class="p-1" style="text-align:justify;">
 			<em ng-if="myRoster.oplist != ''">{{ myRoster.oplist }}</em>
 			<em ng-if="myRoster.oplist == '' || myRoster.oplist == null">(This roster does not have any operatives)</em>
 		</p>
-	</div>
-	<div class="card-footer p-1" ng-if="MODE == 'MyRosters'">
-		<div class="p-1">
-			<h1><button class="navloader btn btn-primary" ng-click="deploy(myRoster)">DEPLOY</button></h1>
-		</div>
 	</div>
 </div>

@@ -274,8 +274,7 @@
 							</td>
 						</tr>
 						<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
-							<td>
-								&nbsp;&nbsp;&nbsp;&nbsp;
+							<td class="ps-3">
 								- {{ profile.name }}
 								<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 							</td>
@@ -319,8 +318,7 @@
 							</td>
 						</tr>
 						<tr ng-if="eq.weapon && eq.weapon.profiles.length > 1" ng-repeat="profile in eq.weapon.profiles">
-							<td>
-								&nbsp;&nbsp;&nbsp;&nbsp;
+							<td class="ps-3">
 								- {{ profile.name }}
 								<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
 							</td>
@@ -380,7 +378,7 @@
 			<div class="p-1" ng-if="operative.userid == currentuser.userid || (MODE != 'Compendium' && operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="line-top-light">
-					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOpEq(dashboardroster, operative);">Equipment <i ng-if="operative.userid == currentuser.userid" class="pointer fas fa-edit fa-fw"></i></h6>
+					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOp(operative, dashboardroster);">Equipment <i ng-if="operative.userid == currentuser.userid" class="pointer fas fa-edit fa-fw"></i></h6>
 					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
 					<div class="row">
 						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">

@@ -424,7 +424,7 @@
 				<h6 class="line-top-light">Equipment</h6>
 				
 				<!-- Equipments List-->
-				<div ng-repeat="eq in tempeditop.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+				<div ng-repeat="eq in tempeditop.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')">
 					<h6 ng-if="$index > 0 && tempeditop.equipments[$index].eqcategory != tempeditop.equipments[$index - 1].eqcategory">
 						<br/>{{ eq.eqcategory }}
 					</h6>
@@ -454,7 +454,7 @@
 			</div>
 			<div class="modal-body dark p-1">				
 				<!-- Equipment List-->
-				<div ng-repeat="eq in opeq.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+				<div ng-repeat="eq in opeq.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')">
 					<h6 ng-if="$index == 0 || opeq.equipments[$index].eqcategory != opeq.equipments[$index - 1].eqcategory">
 						<br/>{{ eq.eqcategory }}
 					</h6>

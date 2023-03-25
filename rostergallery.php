@@ -121,7 +121,7 @@
 		<?php
 		if ($myRoster->notes != '') {
 			?>
-			<p><?php echo $myRoster->notes ?></p>
+			<p><?php echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes)) ?></p>
 			<?php
 		}
 		?>
