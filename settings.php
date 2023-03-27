@@ -124,8 +124,6 @@
 						<i class="pointer fas fa-bars fa-fw"></i><br/>
 						Disable
 					</button>
-					<br/>
-					<i class="fas fa-exclamation-triangle"></i> This feature is <strong>EXPERIMENTAL</strong> and may not work as expected or break other functionality.
 					<br/><br/>
 				</div>
 			</div>
