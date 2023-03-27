@@ -21,6 +21,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				startvp: 2,
 				startcp: 3,
 				applyeqmods: 'n',
+				hideappliedeqmods: 'n',
 				shownarrative: 'y',
 				autoinccp: 'n',
 				defaultoporder: 'engage',
@@ -38,6 +39,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("startvp", "2", true);
 					$scope.setSetting("startcp", "3", true);
 					$scope.setSetting("applyeqmods", "n", true);
+					$scope.setSetting("hideappliedeqmods", "n", true);
 					$scope.setSetting("shownarrative", "y", true);
 					$scope.setSetting("autoinccp", "n", true);
 					$scope.setSetting("defaultoporder", "engage", true);
@@ -59,6 +61,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["applyeqmods"]) {
 					$scope.setSetting("applyeqmods", "n", true);
+				}
+				if (!$scope.settings["hideappliedeqmods"]) {
+					$scope.setSetting("hideappliedeqmods", "n", true);
 				}
 				if (!$scope.settings["shownarrative"]) {
 					$scope.setSetting("shownarrative", "y", true);
@@ -544,8 +549,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						op.W   = op.baseoperative.W;
 						
 						// Reset this operative's Abilities and Unique Actions
-						op.abilities = op.baseoperative.abilities;
-						op.uniqueactions = op.baseoperative.uniqueactions;
+						op.abilities = JSON.parse(JSON.stringify(op.baseoperative.abilities));
+						op.uniqueactions = JSON.parse(JSON.stringify(op.baseoperative.uniqueactions));
 						
 						// Reset this operative's weapons to their base definitions
 						//console.log("   Resetting weapons");
@@ -1449,6 +1454,22 @@ var app = angular.module("kt", ['ngSanitize'])
 							for (let j = 0; j < op.equipments.length; j++) {
 								total += parseInt(op.equipments[j].eqpts);
 							}
+						}
+					}
+				}
+				
+				// Done
+				return total;
+			}
+			
+			// totalOpEqPts()
+			// Returns the total equipment points for all operatives in the specified roster
+			$scope.totalOpEqPts = function(op) {
+				let total = 0;
+				if (op) {
+					if ($scope.MODE != 'Dashboard' || !op.hidden) {
+						for (let j = 0; j < op.equipments.length; j++) {
+							total += parseInt(op.equipments[j].eqpts);
 						}
 					}
 				}

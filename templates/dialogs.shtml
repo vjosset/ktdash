@@ -431,7 +431,7 @@
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
 					<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">
 						{{ eq.eqname }}
-						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} Pts)</span>
+						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} EP)</span>
 						<i class="far fa-question-circle fa-fw"></i>
 					</span>
 				</div>
@@ -461,7 +461,7 @@
 					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
 					<span ng-click="showpopup(eq.eqname, eq.eqdescription);">
 						{{ eq.eqname }}
-						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} Pts)</span>
+						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} EP)</span>
 						<i class="far fa-question-circle fa-fw"></i></span>
 					</span>
 				</div>
@@ -585,13 +585,20 @@
 				</div>
 				<br/>
 				<h4>Upload New Portrait</h4>
-				Image will be resized to 900 x 600 px,
-				Max upload file size: 5 MB
-				<br/>
-				For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
-				<img src="/img/portraithelp.jpg" /><br/>
 				<input accept="image/*" id="opportraitfile" type="file" name="image" ng-model="optoedit.imagefile" onchange="angular.element(this).scope().previewOpPortrait(this);" />
 				<br/>
+				
+				<em>Image will be resized to 900 x 600 px - Max upload file size: 5 MB</em><br/>
+				Rosters that have a photo of a painted mini for each operative and a group photo as a roster portrait will be added to the Roster Spotlight.
+				<h4>Help</h4>
+				<div class="row">
+					<div class="col-4">
+						<img src="/img/portraithelp.jpg" width="100%" />
+					</div>
+					<div class="col-8">
+						For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -614,14 +621,20 @@
 				<div style="max-height: 250px; overflow: hidden;">
 					<img width="100%" id="rosterportraitpreview" ng-src="/api/rosterportrait.php?rid={{rostertoedit.rosterid}}&cb={{rostertoedit.timestamp}}">
 				</div>
-				<h4>Upload New Portrait</h4>
-				Image will be resized to 900 x 600 px,
-				Max upload file size: 5 MB
-				<br/>
-				For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
-				<img src="/img/portraithelp.jpg" /><br/>
 				<input accept="image/*" id="rosterportraitfile" type="file" name="image" ng-model="rostertoedit.imagefile" onchange="angular.element(this).scope().previewRosterPortrait(this);" />
 				<br/>
+				
+				<em>Image will be resized to 900 x 600 px - Max upload file size: 5 MB</em><br/>
+				Rosters that have a photo of a painted mini for each operative and a group photo as a roster portrait will be added to the Roster Spotlight.
+				<h4>Help</h4>
+				<div class="row">
+					<div class="col-4">
+						<img src="/img/portraithelp.jpg" width="100%" />
+					</div>
+					<div class="col-8">
+						For best results, make sure the "face" of your portrait is in the middle of the top half of the image. Portraits are displayed top-aligned.<br/>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

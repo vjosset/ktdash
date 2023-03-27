@@ -151,7 +151,7 @@
 					by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->username ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
 					<?php }
 					else {?>
-					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} Eq Pts)</span>
+					<span ng-show="totalEqPts(myRoster) > 0">({{ totalEqPts(myRoster) }} EP)</span>
 					<?php }?>
 				</a>
 			</div>

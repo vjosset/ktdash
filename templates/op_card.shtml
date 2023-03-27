@@ -222,7 +222,11 @@
 					<thead>
 						<tr>
 							<td>
-								<h6>Weapons</h6>
+								<h6>
+									Weapons
+									<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
+									<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
+								</h6>
 							</td>
 							<td class="text-center">
 								<h6>&nbsp;&nbsp;A&nbsp;&nbsp;</h6>
@@ -336,63 +340,51 @@
 				</table>
 			</div>
 			
-			<!-- Abilities and UniqueActions -->
-			<div class="p-1" ng-if="operative.abilities.length > 0 || operative.uniqueactions.length > 0">
-				<div class="line-top-light m-0 p-0">
-					<!-- div  style="columns: 200px 2;">
-						<h6 ng-if="operative.abilities != null && operative.abilities.length > 0">Abilities</h6>
-						<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12 w-100': operative.uniqueactions.length > 0, 'col-6 w-50': operative.uniqueactions.length < 1}">
-							{{ ab.title }} 
-						</div>
-						<h6 ng-if="operative.uniqueactions != null && operative.uniqueactions.length > 0">Unique Actions</h6>
-						<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12 w-100': operative.abilities.length > 0, 'col-6 w-50': operative.abilities.length < 1}">
-							{{ ua.title }} ({{ ua.AP }} AP)
-						</div>
-					</div -->
-					<div class="row">
-						<!-- Abilities -->
-						<div ng-if="operative.abilities.length > 0" ng-class="{'col-12 w-100': operative.uniqueactions.length < 1, 'col-6 w-50': operative.uniqueactions.length > 0}">
-							<h6>Abilities</h6>
-							<div class="row">
-								<div class="pointer" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities" ng-class="{'col-12 w-100': operative.uniqueactions.length > 0, 'col-6 w-50': operative.uniqueactions.length < 1}">
-									{{ ab.title }} 
-								</div>
-							</div>
-						</div>
-						
-						<!-- Unique Actions -->
-						<div ng-if="operative.uniqueactions.length > 0" ng-class="{'col-12 w-100': operative.abilities.length < 1, 'col-6 w-50': operative.abilities.length > 0}">
-							<h6>Unique Actions</h6>
-							<div class="row">
-								<div class="pointer" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions" ng-class="{'col-12 w-100': operative.abilities.length > 0, 'col-6 w-50': operative.abilities.length < 1}">
-									{{ ua.title }} ({{ ua.AP }} AP)
-									<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
-								</div>
-							</div>
-						</div>
+			<!-- Abilities -->
+			<div ng-if="operative.abilities.length > 0" class="p-1 line-top-light">
+				<div class="row p-0">
+					<!-- Unique Actions -->
+					<h6 class="col-6">Abilities</h6>
+					<div class="pointer col-6" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
+						{{ ab.title }} 
+					</div>
+				</div>
+			</div>
+			
+			<!-- Unique Actions -->
+			<div ng-if="operative.uniqueactions.length > 0" class="p-1 line-top-light">
+				<div class="row p-0">
+					<h6 class="col-6">Unique Actions</h6>
+					<div class="pointer col-6" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
+						{{ ua.title }} ({{ ua.AP }} AP)
+						<!-- sup class="small" style="font-size: 0.7em;"><i class="far fa-question-circle fa-fw"></i></sup -->
 					</div>
 				</div>
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1" ng-if="operative.userid == currentuser.userid || (MODE != 'Compendium' && operative.equipments.length > 0)">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (MODE != 'Roster' || operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
-				<div class="line-top-light">
-					<h6 ng-if="MODE == 'Dashboard'" class="pointer" ng-click="initEditOp(operative, dashboardroster);">Equipment <i ng-if="operative.userid == currentuser.userid" class="pointer fas fa-edit fa-fw"></i></h6>
-					<h6 ng-if="MODE == 'MyRoster' || MODE == 'Roster'">Equipment</h6>
-					<div class="row">
-						<div class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
-							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
-						</div>
+				<div class="row">
+					<h6 class="pointer col-6">
+						Equipment
+						<span class="oswald text-small" ng-if="totalOpEqPts(operative) > 0">({{ totalOpEqPts(operative) }} EP)</span>
+						<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
+						<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
+					</h6>
+					
+					<div ng-if="settings['hideappliedeqmods'] == 'n' || MODE == 'Roster'" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+						{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 					</div>
+					
 				</div>
 			</div>
 			
 			<!-- XP -->
-			<div class="p-1" ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Dashboard')">
-				<div class="row line-top-light m-0 p-0">
-					<div class="col-8">
-						<h6 class="d-inline">XP</h6>
+			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Dashboard')">
+				<div class="row line-top-light m-0 p-1">
+					<div class="col-8 p-0">
+						<h6 class="d-inline p-0">XP</h6>
 						<em ng-if="operative.xp <= 5">Adept</em>
 						<em ng-if="operative.xp >= 6 && operative.xp <= 15">Veteran</em>
 						<em ng-if="operative.xp >= 16 && operative.xp <= 30">Ace</em>

@@ -126,6 +126,23 @@
 					</button>
 					<br/><br/>
 				</div>
+				
+				<div ng-if="settings['applyeqmods'] == 'y'" class="col-12 col-md-6">
+					<h6>Hide Auto-Applied Equipments</h6>
+					Hides equipments from the "Equipment" list if they were auto-applied to Abilities, Actions, or Operative/Weapon stats
+					<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('hideappliedeqmods', 'y');" ng-class="settings['hideappliedeqmods'] == 'y' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
+						<i class="pointer fas fa-times fa-fw"></i><br/>
+						Hide
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('hideappliedeqmods', 'n');" ng-class="settings['hideappliedeqmods'] == 'n' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer fas fa-check fa-fw"></i><br/>
+						Show
+					</button>
+					<br/><br/>
+				</div>
 			</div>
 			
 			<h2 class="line-top-light">Dashboard Defaults</h2>

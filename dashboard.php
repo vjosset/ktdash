@@ -189,7 +189,7 @@
 							<h6 class="d-inline">Archetype</h6>: <small ng-bind="getRosterArchetype(dashboardroster)"></small>
 							
 							<!-- Equipment Points -->
-							<small ng-show="totalEqPts(dashboardroster) > 0">({{ totalEqPts(dashboardroster) }} Eq Pts)</small>
+							<small ng-show="totalEqPts(dashboardroster) > 0">({{ totalEqPts(dashboardroster) }} EP)</small>
 							
 							<!-- Operatives -->
 							<div class="row p-0 m-0">
