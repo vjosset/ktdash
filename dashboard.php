@@ -178,7 +178,7 @@
 							</a>
 						</li>
 						<li class="nav-item m-0 p-0 dark" role="presentation">
-							<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
+							<a class="nav-link dark" id="t-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
 								TacOps
 							</a>
 						</li>

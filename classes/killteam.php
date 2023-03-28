@@ -38,8 +38,12 @@
 				$log .= "eqs: " . microtime(true);
 				$killteam->loadEquipments();
 				
+				// Load its tacops
+				$log .= "tacops: " . microtime(true);
+				$killteam->loadTacOps();
+				
 				// Load its "spotlighted" rosters
-				$log .= "srs: " . microtime(true);
+				$log .= "spot: " . microtime(true);
 				$killteam->loadRosters();
 			}
 			
@@ -206,6 +210,60 @@
 						}
 					}
 					$this->equipments[] = $eq;
+				}
+			}
+		}
+
+		public function loadTacOps() {
+			global $dbcon;
+			
+			$this->tacops = [];
+			
+			// First, get all the archetypes for the fireteams in this killteam
+			$sql = "SELECT GROUP_CONCAT(DISTINCT archetype SEPARATOR '/') AS archetypes FROM Fireteam WHERE factionid = ? AND killteamid = ?;";
+			$cmd = $dbcon->prepare($sql);
+			if (!$cmd) {
+				//There was an error preparing the SQL statement
+				echo "Error preparing SQL: " . $dbcon->error;
+			}
+			
+			//Set the parameters
+			$cmd->bind_param('ss', $this->factionid, $this->killteamid);
+			
+			//Run the query
+			if (!$cmd->execute()) {
+				//There was an error running the SQL statement
+				echo "Error running SQL: " . $dbcon->error;
+			}
+			
+			//Parse the archetypes
+			$archetypes = "";
+			if ($result = $cmd->get_result()) {
+				$archetypes = '/' . $result->fetch_object()->archetypes . '/';
+			}
+						
+			$sql = "SELECT * FROM TacOp WHERE tacopid LIKE CONCAT(?, '-', ?, '%') OR ? LIKE CONCAT('%/', archetype, '/%') ORDER BY tacopid, tacopseq;";
+			
+			$cmd = $dbcon->prepare($sql);
+			if (!$cmd) {
+				//There was an error preparing the SQL statement
+				echo "Error preparing SQL1: " . $dbcon->error;
+			}
+			
+			//Set the parameters
+			$cmd->bind_param('sss', $this->factionid, $this->killteamid, $archetypes);
+			
+			//Run the query
+			if (!$cmd->execute()) {
+				//There was an error running the SQL statement
+				echo "Error running SQL2: " . $dbcon->error;
+			}
+			
+			//Parse the result
+			if ($result = $cmd->get_result()) {
+				while ($row = $result->fetch_object()) {
+					$t = TacOp::FromRow($row);
+					$this->tacops[] = $t;
 				}
 			}
 		}

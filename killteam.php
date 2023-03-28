@@ -131,6 +131,11 @@
 						Equip
 					</a>
 				</li>
+				<li class="nav-item m-0 p-0 dark" role="presentation">
+					<a class="nav-link dark" id="to-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
+						TacOps
+					</a>
+				</li>
 				<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="killteam.rosters.length > 0">
 					<a class="nav-link dark" id="rosters-tab" data-bs-toggle="tab" data-bs-target="#rosters" type="button" role="tab" aria-controls="rosters" aria-selected="false">
 						Rosters
@@ -138,9 +143,8 @@
 				</li>
 			</ul>
 			<div class="tab-content">
+				<!-- Operatives -->
 				<div class="tab-pane show active" id="ops" role="tabpanel">
-					<!-- Operatives -->
-			
 					<!-- Killteam Composition -->
 					<h1 class="pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(killteam));">
 						Kill Team Composition
@@ -163,6 +167,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- Ploys -->
 				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel">
 					<div class="row container-fluid m-0 p-0">
 						<div class="col-xs-12 col-md-6">
@@ -181,8 +187,9 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- Equipment -->
 				<div class="tab-pane" id="eqs" role="tabpanel">
-					<!-- Equipment -->
 					<div class="row p-0 m-0">
 						<div ng-repeat="eq in killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
 							<h4 class="text-center line-top-light" ng-if="$index > 0 && killteam.equipments[$index].eqcategory != killteam.equipments[$index - 1].eqcategory">
@@ -198,6 +205,24 @@
 					</div>
 				</div>
 			
+				<!-- TacOps -->
+				<div class="tab-pane" id="tacops" role="tabpanel">
+					<div class="m-0 p-0">
+						<div ng-if="killteam.tacops.length > 0" class="row p-0 m-0">
+							<div class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="tacop in killteam.tacops track by $index">
+								<div class="line-top-light">
+									<h5 class="d-inline">
+										{{ tacop.title }}
+									</h5>
+									<em class="d-inline float-end text-end">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>
+								</div>
+								<p class="oswald p-1" style="text-align: justify;" ng-bind-html="tacop.description"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<!-- Rosters -->
 				<div class="tab-pane" id="rosters" role="tabpanel">
 					<div class="m-0 p-0">
 						<div ng-if="killteam.rosters.length > 0" class="row p-0 m-0">

@@ -137,10 +137,18 @@
 				<h2>Recent Portraits</h2>
 				<?php
 					$sql = "
-						SELECT MAX(E.datestamp) AS datestamp, R.factionid, R.killteamid, KT.killteamname, SUM(CASE E.action WHEN 'portrait' THEN 1 ELSE 0 END) AS rosterportrait, SUM(CASE E.action WHEN 'opportrait' THEN 1 ELSE 0 END) AS opportrait, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
-						FROM Event E INNER JOIN User U ON U.userid = E.userid INNER JOIN Roster R ON R.rosterid = E.var1 INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
-						WHERE E.action IN ('portrait', 'opportrait') AND E.userip != '68.80.166.102' AND E.label = 'custom'
-						GROUP BY U.username, U.userid, R.rosterid, R.rostername, R.spotlight, R.factionid, R.killteamid, KT.killteamname
+						SELECT E.maxdatestamp AS datestamp, R.factionid, R.killteamid, KT.killteamname, R.hascustomportrait AS rosterportrait, COUNT(RO.opid) AS opcount, SUM(RO.hascustomportrait) AS opportraitcount, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
+						FROM 
+						(
+							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
+							GROUP BY userid, var1
+							ORDER BY 1 DESC LIMIT 40
+						) E
+						INNER JOIN User U ON U.userid = E.userid
+						INNER JOIN Roster R ON R.rosterid = E.var1
+						INNER JOIN RosterOperative RO ON RO.userid = R.userid AND RO.rosterid = R.rosterid
+						INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
+						GROUP BY E.maxdatestamp, U.username, U.userid, R.rosterid, R.hascustomportrait, R.rostername, R.spotlight, R.factionid, R.killteamid, KT.killteamname
 						ORDER BY 1 DESC LIMIT 40;";
 					$cmd = $dbcon->prepare($sql);
 						
@@ -164,7 +172,7 @@
 							}
 							?>
 							<h6 class="d-inline"><a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a></h6>
-							(<?php echo number_format($row->rosterportrait) ?>/<?php echo number_format($row->opportrait) ?>)
+							(<?php echo number_format($row->rosterportrait) ?> &nbsp;&nbsp;&nbsp; <?php echo number_format($row->opportraitcount) ?>/<?php echo number_format($row->opcount) ?>)
 							<br/>
 							<a href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>" target="_blank"><?php echo $row->killteamname ?></a>
 							by&nbsp;<a class="navloader" href="/u/<?php echo $row->username ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>

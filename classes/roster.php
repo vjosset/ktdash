@@ -161,7 +161,7 @@
 							OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
 						INNER JOIN Roster R
 							ON  R.rosterid = ?
-					ORDER BY T.archetype, T.tacopseq;
+					ORDER BY T.tacopid, T.tacopseq;
 					";
 			
 			$cmd = $dbcon->prepare($sql);
