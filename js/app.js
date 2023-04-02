@@ -1231,7 +1231,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					"CP": roster.CP,
 					"TP": roster.TP,
 					"VP": roster.VP,
-					"RP": roster.RP
+					"RP": roster.RP,
+					"ployids": roster.ployids
+					//,
+					//"tacopids": roster.tacopids
 				};
 				
 				// Send the update request to the API
@@ -2674,6 +2677,12 @@ var app = angular.module("kt", ['ngSanitize'])
 								$scope.dashboardroster = $scope.currentuser.rosters[0];
 								$scope.setDashboardRosterId($scope.dashboardrosterid);
 							}
+				
+							// Parse selected ploys for this roster
+							for (let ploynum = 0; ploynum < $scope.dashboardroster.killteam.ploys.strat.length; ploynum++) {
+								let ploy = $scope.dashboardroster.killteam.ploys.strat[ploynum];
+								$scope.toggleStratPloy($scope.dashboardroster, ploy, ("," + $scope.dashboardroster.ployids + ",").includes("," + ploy.ployid + ","));
+							}
 							
 							// Get the operatives and set their "Injured" flag where appropriate
 							for (let i = 0; i < $scope.dashboardroster.operatives.length; i++) {
@@ -2787,12 +2796,21 @@ var app = angular.module("kt", ['ngSanitize'])
 			// selectDashboardRoster()
 			// Sets the specified roster as the dashboard roster
 			$scope.selectDashboardRoster = function(roster) {
+				console.log("selectDashboardRoster(" + roster.rosterid + ")");
 				te("dashboard", "selectroster", "", roster.rosterid);
 				$scope.dashboardroster = roster;
 				$scope.setDashboardRosterId(roster.rosterid);
 				
 				// Apply eq mods
 				$scope.applyEqMods($scope.dashboardroster);
+				
+				// Parse selected ploys
+				console.log("Checking ploys: " + roster.killteam.ploys.strat.length);
+				for (let ploynum = 0; ploynum < roster.killteam.ploys.strat.length; ploynum++) {
+					let ploy = roster.killteam.ploys.strat[ploynum];
+					console.log("Checking ploy " + ploy.ployid + " against " + roster.ployids);
+					$scope.toggleStratPloy(roster, ploy, ("," + roster.ployids + ",").includes("," + ploy.ployid + ","));
+				}
 			}
 			
 			// Pop-up the roster operative selection modal
@@ -2962,9 +2980,24 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.toggleStratPloy = function(roster, ploy, active) {
 				ploy.active = active;
 				
-				//console.log("toggleStratPloy()");
+				let origployids = roster.ployids;
 				
+				console.log("toggleStratPloy(" + roster.rosterid + ", " + ploy.ployid + ", " + active + ")");
+				
+				// Make sure it's not null
+				if (roster.ployids == null) {
+					roster.ployids = "";
+				}
+					
 				if (active) {
+					// Add this ploy to the roster
+					if (!roster.ployids.includes(ploy.ployid)) {
+						if (roster.ployids.length > 0) {
+							roster.ployids += ",";
+						}
+						roster.ployids += ploy.ployid;
+					}
+					
 					// Add this ploy to each operative in the roster
 					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
@@ -2975,6 +3008,9 @@ var app = angular.module("kt", ['ngSanitize'])
 						op.abilities.push(ab);
 					}
 				} else {
+					// Remove this ploy from the roster
+					roster.ployids = roster.ployids.replace(ploy.ployid + ",", "").replace("," + ploy.ployid, "").replace(ploy.ployid, "");
+					
 					// Remove this ploy from each operative in the roster
 					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
@@ -2986,6 +3022,23 @@ var app = angular.module("kt", ['ngSanitize'])
 							}
 						}
 					}
+				}
+				
+				// Clean up the roster's ployids
+				// Remove double commas
+				roster.ployids = roster.ployids.replace(",,", ",");
+				if (roster.ployids[roster.ployids.length - 1] == ",") {
+					// Remove trailing comma
+					roster.ployids = roster.ployids.substring(0, roster.ployids.length - 2);
+				}
+				if (roster.ployids == ",") {
+					// Remove solo comma
+					roster.ployids = "";
+				}
+				
+				// Now push this change to the API to make it persistent
+				if (roster.ployids != origployids) {
+					$scope.commitRoster(roster);
 				}
 			}
 		

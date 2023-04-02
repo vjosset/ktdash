@@ -9,6 +9,8 @@
 		public $rostername = "";
 		public $factionid = "";
 		public $killteamid = "";
+		public $ployids = "";
+		public $tacopids = "";
 		public $notes = "";
 		public $operatives = [];
 		public $tacops = [];

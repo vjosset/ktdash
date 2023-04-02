@@ -43,6 +43,7 @@
 							$killteam->loadFireteams();
 							$killteam->loadPloys();
 							$killteam->loadEquipments();
+							$killteam->loadTacOps();
 						}
 					}
 				}
