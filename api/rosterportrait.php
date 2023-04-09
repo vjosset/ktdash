@@ -141,7 +141,7 @@
 							unlink($custrosterportraitpath);
 						}
 					
-						if ($r->hascustomportrait != 1) {
+						if ($r->hascustomportrait != 0) {
 							// Update the roster's "hascustomportrait" field
 							global $dbcon;
 							$sql = "UPDATE Roster SET hascustomportrait = 0 WHERE rosterid = ?";

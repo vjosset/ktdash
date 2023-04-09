@@ -170,7 +170,7 @@
 			
 			<div class="m-0 p-0">
 				<div ng-if="myRosters.length > 0" class="row p-0 m-0">
-					<div class="col-12 col-md-6 col-lg-4 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" ng-repeat="myRoster in myRosters | orderBy: 'seq'">
 						<?php
 						//if ($me->userid == 'vince') {
 						//	include "templates/roster_card2.shtml";

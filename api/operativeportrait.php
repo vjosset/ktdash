@@ -144,16 +144,18 @@
 						}
 						
 						// Success
-						// Update the operative's "hascustomportrait" field
-						global $dbcon;
-						$sql = "UPDATE RosterOperative SET hascustomportrait = 0 WHERE rosteropid = ?";
-						$cmd = $dbcon->prepare($sql);
-						$paramtypes = "s";
-						$params = array();
-						$params[] =& $paramtypes;
-						$params[] =& $ro->rosteropid;
-						call_user_func_array(array($cmd, "bind_param"), $params);
-						$cmd->execute();
+						if ($ro->hascustomportrait != 0) {
+							// Update the operative's "hascustomportrait" field
+							global $dbcon;
+							$sql = "UPDATE RosterOperative SET hascustomportrait = 0 WHERE rosteropid = ?";
+							$cmd = $dbcon->prepare($sql);
+							$paramtypes = "s";
+							$params = array();
+							$params[] =& $paramtypes;
+							$params[] =& $ro->rosteropid;
+							call_user_func_array(array($cmd, "bind_param"), $params);
+							$cmd->execute();
+						}
 						
 						// Done
 						echo "OK";
@@ -255,16 +257,18 @@
 								die();
 							} else {
 								// Success
-								// Update the operative's "hascustomportrait" field
-								global $dbcon;
-								$sql = "UPDATE RosterOperative SET hascustomportrait = 1 WHERE rosteropid = ?";
-								$cmd = $dbcon->prepare($sql);
-								$paramtypes = "s";
-								$params = array();
-								$params[] =& $paramtypes;
-								$params[] =& $ro->rosteropid;
-								call_user_func_array(array($cmd, "bind_param"), $params);
-								$cmd->execute();
+								if ($ro->hascustomportrait != 1) {
+									// Update the operative's "hascustomportrait" field
+									global $dbcon;
+									$sql = "UPDATE RosterOperative SET hascustomportrait = 1 WHERE rosteropid = ?";
+									$cmd = $dbcon->prepare($sql);
+									$paramtypes = "s";
+									$params = array();
+									$params[] =& $paramtypes;
+									$params[] =& $ro->rosteropid;
+									call_user_func_array(array($cmd, "bind_param"), $params);
+									$cmd->execute();
+								}
 								
 								// Done
 								echo "OK";

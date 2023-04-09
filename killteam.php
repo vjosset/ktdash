@@ -226,7 +226,7 @@
 				<div class="tab-pane" id="rosters" role="tabpanel">
 					<div class="m-0 p-0">
 						<div ng-if="killteam.rosters.length > 0" class="row p-0 m-0">
-							<div class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="myRoster in killteam.rosters track by $index">
+							<div class="col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" ng-repeat="myRoster in killteam.rosters track by $index">
 								<?php include "templates/roster_card.shtml" ?>
 							</div>
 						</div>

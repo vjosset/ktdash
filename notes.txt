@@ -25,7 +25,8 @@ SQL Queries:
 	SELECT * FROM Event WHERE userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 1000;
 	#SELECT * FROM Event WHERE eventtype = 'session' AND action = 'signup' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 	SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;
-	SELECT referrer, COUNT(*) AS ReferrerCount FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
+	SELECT CAST(datestamp AS Date) AS Date, COUNT(*) AS TotalEventCount, SUM(CASE sessiontype WHEN 'pwa' THEN 1 ELSE 0 END) AS PWAEventCount, SUM(CASE sessiontype WHEN 'pwa' THEN 0 ELSE 1 END) AS BrowserEventCount FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 day) AND userid != '[anon]' GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;
+	SELECT referrer, COUNT(*) AS ReferrerCount7Days FROM Event WHERE referrer != '' AND referrer NOT LIKE 'https://ktdash.app%' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) GROUP BY referrer ORDER BY COUNT(*) DESC LIMIT 100;
 	SELECT * FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom' ORDER BY eventid DESC LIMIT 100;
 	#SELECT * FROM Event WHERE action = 'gallery' AND userip != '68.80.166.102' ORDER BY eventid DESC LIMIT 100;
 	#SELECT * FROM Event WHERE action IN ('import', 'clone') AND userip != '68.80.166.102' ORDER BY eventid DESC;
@@ -45,16 +46,17 @@ SQL Queries:
 	SELECT ' 7 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) UNION
 	SELECT '14 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) UNION
 	SELECT '21 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -21 day) UNION
-	SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day);
+	SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day) UNION
+	SELECT '90 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -90 day);
 
-	# Killteams that don't have spotlighted or prebuilt roster
+# Killteams that don't have spotlighted or prebuilt roster
 	SELECT *
 	FROM Killteam K LEFT JOIN Roster R
 		ON  R.factionid = K.factionid AND R.killteamid = K.killteamid AND (R.spotlight = 1 OR R.userid = 'prebuilt')
 	WHERE R.rosterid IS NULL
 
 
-	# Action/Event Log
+# Action/Event Log
 	ALTER VIEW EventLogView
 	AS
 	SELECT

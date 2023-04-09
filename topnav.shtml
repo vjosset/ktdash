@@ -8,7 +8,7 @@
 					</h1>
 				</a>
 
-				<h3 class="text-small p-1 m-0 shadow-none border-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<h3 class="navbar-toggler p-1 m-0 shadow-none border-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="fas fa-bars fa-fw"></i>
 				</h3>
 				

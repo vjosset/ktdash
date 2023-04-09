@@ -554,18 +554,19 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Reset this operative's weapons to their base definitions
 						//console.log("   Resetting weapons");
+						op.weapons = [];
 						let wepids = op.wepids.split(",");
-						for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-							let opwep = op.weapons[opwepnum];
-							//console.log("      Weapon " + opwep.wepid);
+						for (let opwepidnum = 0; opwepidnum < wepids.length; opwepidnum++) {
+							let wepid = wepids[opwepidnum];
 							
 							// Find this weapon in the base operative's weapons
 							for (let baseopwepnum = 0; baseopwepnum < op.baseoperative.weapons.length; baseopwepnum++) {
 								let baseopwep = op.baseoperative.weapons[baseopwepnum];
-								if (baseopwep.wepid == opwep.wepid) {
+								if (baseopwep.wepid == wepid) {
 									// Found the weapon, reset its stats
 									//console.log("      Resetting weapon to base stats");
 									opwep = JSON.parse(JSON.stringify(baseopwep));
+									op.weapons.push(opwep);
 								}
 							}
 						}
