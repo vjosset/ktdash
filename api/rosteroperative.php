@@ -63,7 +63,7 @@
 				die();
 			} else {
 				// Try to find this operative
-				$ro = RosterOperative::GetRosterOperative($roid);
+				$ro = RosterOperative::GetRosterOperativeRow($roid);
 				if ($ro == null) {
 					header('HTTP/1.0 404 Operative not found');
 					die();
@@ -176,7 +176,7 @@
 				
 				if ($newop->rosteropid != null || $newop->rosteropid != '') {
 					// Try to find this operative
-					$ro = RosterOperative::GetRosterOperative($newop->rosteropid);
+					$ro = RosterOperative::GetRosterOperativeRow($newop->rosteropid);
 					
 					if ($ro == null) {
 						header('HTTP/1.0 404 Operative not found');

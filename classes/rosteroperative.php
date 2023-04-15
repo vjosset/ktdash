@@ -44,6 +44,21 @@
 		
 		public function GetRosterOperative($roid) {
 			//Get the requested RosterOperative
+			$op = RosterOperative::GetRosterOperativeRow($roid);
+			
+			// Load the base operative for this RosterOperative
+			$op->loadBaseOperative();
+			
+			// Load the operative's weapons and equipments
+			$op->loadWeapons();
+			$op->loadEquipments();
+			
+			// Done
+			return $op;
+		}
+		
+		public function GetRosterOperativeRow($roid) {
+			//Get the requested RosterOperative
 			global $dbcon;
 			$sql = "SELECT * FROM RosterOperativeView WHERE rosteropid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
@@ -59,13 +74,6 @@
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
                     $op = RosterOperative::FromRow($row);
-					
-					// Load the base operative for this RosterOperative
-					$op->loadBaseOperative();
-					
-					// Load the operative's weapons and equipments
-					$op->loadWeapons();
-					$op->loadEquipments();
                 }
             }
 			

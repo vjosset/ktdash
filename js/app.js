@@ -539,8 +539,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (roster != null && $scope.settings.applyeqmods == 'y') {
 					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
-						console.log("Looking at operative " + op.opname);
-						console.log("   Resetting to operative to base stats");
+						//console.log("Looking at operative " + op.opname);
+						//console.log("   Resetting to operative to base stats");
 						op.M   = op.baseoperative.M;
 						op.APL = op.baseoperative.APL;
 						op.GA  = op.baseoperative.GA;
@@ -564,7 +564,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								let baseopwep = op.baseoperative.weapons[baseopwepnum];
 								if (baseopwep.wepid == wepid) {
 									// Found the weapon, reset its stats
-									//console.log("      Resetting weapon to base stats");
+									////console.log("      Resetting weapon to base stats");
 									opwep = JSON.parse(JSON.stringify(baseopwep));
 									op.weapons.push(opwep);
 								}
@@ -573,10 +573,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Operative is reset, along with its weapons
 						// Now apply equipment mods to the operative and its weapons
-						console.log("   Applying Equipment Mods");
+						//console.log("   Applying Equipment Mods");
 						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
 							let eq = op.equipments[eqnum];
-							console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
+							//console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
 							switch (eq.eqtype.toLowerCase()) {
 								case "ability":
@@ -603,12 +603,12 @@ var app = angular.module("kt", ['ngSanitize'])
 									op.uniqueactions.push(ua);
 									break;
 								case "wepmod":
-									console.log("         WepMod");
+									//console.log("         WepMod");
 									let wepstomod = [];
 									if (eq.eqvar1.startsWith("weptype:")) {
 										// Mod applies to a specific weapon type
 										let weptype = eq.eqvar1.replace("weptype:", "");
-										console.log("            Matching weptype " + weptype);
+										//console.log("            Matching weptype " + weptype);
 										
 										// Find the weapon that has this type that this operative is equipped with
 										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
@@ -621,7 +621,7 @@ var app = angular.module("kt", ['ngSanitize'])
 									} else if (eq.eqvar1.startsWith("wepid:")) {
 										// Mod applies to a specific weapon id
 										let wepid = eq.eqvar1.replace("wepid:", "");
-										console.log("            Matching wepid " + wepid);
+										//console.log("            Matching wepid " + wepid);
 										
 										// Find the weapon that has this ID that this operative is equipped with
 										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
@@ -634,12 +634,12 @@ var app = angular.module("kt", ['ngSanitize'])
 									} else if (eq.eqvar1.startsWith("wepname:")) {
 										// Mod applies to a specific weapon name
 										let wepname = eq.eqvar1.replace("wepname:", "");
-										console.log("            Matching wepname " + wepname);
+										//console.log("            Matching wepname " + wepname);
 										
 										// Find the weapons that has this name that this operative is equipped with
 										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
 											let opwep = op.weapons[opwepnum];
-											console.log("Checking weapon name " + wepname.toLowerCase() + " against " + opwep.wepname.toLowerCase());
+											//console.log("Checking weapon name " + wepname.toLowerCase() + " against " + opwep.wepname.toLowerCase());
 											if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
 												// This is the one
 												wepstomod.push(opwep);
@@ -651,7 +651,7 @@ var app = angular.module("kt", ['ngSanitize'])
 										// We found the weapons to modify, now apply the mod to those weapons
 										for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
 											let weptomod = wepstomod[weptomodnum];
-											console.log("         Found applicable weapon " + weptomod.wepid + ": " + weptomod.wepname);
+											//console.log("         Found applicable weapon " + weptomod.wepid + ": " + weptomod.wepname);
 											let mods = eq.eqvar2.split("|");
 											for (let modnum = 0; modnum < mods.length; modnum++) {
 												let mod = mods[modnum];
@@ -661,14 +661,14 @@ var app = angular.module("kt", ['ngSanitize'])
 													case "SR":
 														// New special rule - Loop through the weapon's profiles and add this special rule to them
 														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															console.log("         Applying Special Rule " + modval);
+															//console.log("         Applying Special Rule " + modval);
 															weptomod.profiles[pnum].SR += ", " + modval;
 														}
 														break;
 													case "D":
 														// Upgrade damage - Loop through the weapon's profiles and update their damage
 														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															console.log("         Applying Damage mod " + modval);
+															//console.log("         Applying Damage mod " + modval);
 															let origD = weptomod.profiles[pnum].D;
 															let orignormalD = parseInt(origD.split("/")[0]);
 															let origcriticalD = parseInt(origD.split("/")[1]);
@@ -684,7 +684,7 @@ var app = angular.module("kt", ['ngSanitize'])
 													case "BS":
 														// Upgrade BS - Loop through the weapon's profiles and upgrade their BS
 														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															console.log("         Applying BS mod " + modval);
+															//console.log("         Applying BS mod " + modval);
 															let origBS = weptomod.profiles[pnum].BS;
 															if (modval.startsWith("-")) {
 																// Improve (reduce) BS for this weapon
@@ -703,33 +703,33 @@ var app = angular.module("kt", ['ngSanitize'])
 									}
 									break;
 								case "opmod":
-									console.log("         OpMod");
+									//console.log("         OpMod");
 									
 									// Pick the characteristic to mod
 									switch (eq.eqvar1) {
 										case "M":
-											console.log("            M");
+											//console.log("            M");
 											if (eq.eqvar2.startsWith("+")) {
-												console.log("         Adding " + eq.eqvar2 + " to M");
+												//console.log("         Adding " + eq.eqvar2 + " to M");
 												op.M += eq.eqvar2;
 											}
 											break;
 										case "W":
-											console.log("            W");
+											//console.log("            W");
 											if (eq.eqvar2.startsWith("+")) {
-												console.log("         Adding " + eq.eqvar2 + " to W");
+												//console.log("         Adding " + eq.eqvar2 + " to W");
 												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 											}
 											break;
 										case "APL":
 											break;
 										case "SV":
-											console.log("            SV");
+											//console.log("            SV");
 											if (eq.eqvar2.startsWith("+")) {
-												console.log("         Adding " + eq.eqvar2 + " to W");
+												//console.log("         Adding " + eq.eqvar2 + " to W");
 												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 											} else {
-												console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
+												//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
 												op.SV = eq.eqvar2;
 											}
 											break;
