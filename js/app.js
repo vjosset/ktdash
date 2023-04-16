@@ -1517,6 +1517,17 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// OPERATIVES
 		{
+			// opCanBeInjured()
+			// Returns a boolean indicating whether the specified operative can be injured (DeathGuard, Talons, Stalwart)
+			$scope.opCanBeInjured = function(op) {
+				return 
+					(op.factionid == 'CHAOS' && op.killteamid == 'DG') // Deathguard Disgustingly Resilient
+					||
+					(op.factionid == 'IMP' && op.killteamid == 'TOE' && op.fireteamid == 'CG') // Talons of the Emperor The Emperor's Chosen
+					||
+					((',' + op.eqids + ',').includes(',BH-STA-STA,')) // Battle Honour "Stalwart"
+			}
+			
 			// updateOpW()
 			// Increment or decrement the specified operative's wounds
 			$scope.updateOpW = function(op, inc) {
@@ -1535,7 +1546,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (wasInjured == null) {
 					wasInjured = false;
 				}
-				if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+				
+				let opcanbeinjured = $scope.opCanBeInjured(op);
+				
+				if (op.curW < parseInt(op.W) / 2 && !wasInjured && !opcanbeinjured) {
 					// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
 					op.isInjured = true;
 					
