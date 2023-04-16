@@ -31,7 +31,7 @@
 			global $dbcon;
 			global $perf;
 			
-			$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::Start\r\n";
+			header("GetRoster1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			
 			// Get the operatives for this team
 			$sql = "SELECT * FROM RosterView WHERE rosterid = ? ORDER BY seq";
@@ -45,10 +45,12 @@
 			$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::RunSQL\r\n";
             $cmd->execute();
 
+			header("GetRoster2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 if ($row = $result->fetch_object()) {
 					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::FromRow\r\n";
+					header("GetRoster3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
                     $r = Roster::FromRow($row);
 					
 					// Reorder operatives so their seqs are always sequential
@@ -57,10 +59,14 @@
 					
 					// Now load the operatives
 					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::LoadOperatives\r\n";
+					header("GetRoster4: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					$r->loadOperatives();
+			
+					header("GetRoster5: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+					$r->loadTacOps();
 					
 					// Done
-					$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::Done\r\n";
+					header("GetRoster6: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					return $r;
                 }
             }
@@ -94,6 +100,7 @@
 		public function loadOperatives() {
 			global $dbcon;
 			
+			header("LoadOps1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			// Get the operatives for this team
 			$sql = "SELECT * FROM RosterOperativeView WHERE rosterid = ? ORDER BY seq";
 			$cmd = $dbcon->prepare($sql);
@@ -105,6 +112,7 @@
             call_user_func_array(array($cmd, "bind_param"), $params);
             $cmd->execute();
 
+			header("LoadOps2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			$ops = [];
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
@@ -116,11 +124,12 @@
 					// Load the operative's weapons and equipments
 					$op->loadWeapons();
 					$op->loadEquipments();
+					
+					// Append the operative to this roster
 					$this->operatives[] = $op;
                 }
             }
-			
-			$this->loadTacOps();
+			header("LoadOps3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		}
 		
 		public function loadKillTeam() {

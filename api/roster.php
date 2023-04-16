@@ -4,6 +4,7 @@
     global $dbcon;
 	global $perf;
     
+	header("GlobalStart: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
     switch ($_SERVER['REQUEST_METHOD']) {
 		case "GET":
 			// Get the requested roster/user team
@@ -72,6 +73,7 @@
 			// Get the rosters for this user
 			$u = User::FromDB($uid);
 			$u->loadRosters($loadrosterdetail);
+			header("GlobalEnd: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			echo json_encode($u->rosters);
 		} else {
 			// Return the requested roster
@@ -102,6 +104,7 @@
 				}
 				
 				$r->perf = $perf;
+				header("GlobalEnd: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				echo json_encode($r);
 			} else {		
 				header("HTTP/1.0 404 Not found - Could not find roster with id \"$rid\"");

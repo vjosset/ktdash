@@ -103,6 +103,7 @@
 					if ($loadrosterdetail > 0) {
 						$r->loadOperatives();
 						$r->loadKillTeam();
+						$r->loadTacOps();
 					}
 					$this->rosters[] = $r;
                 }

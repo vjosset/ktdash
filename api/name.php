@@ -219,8 +219,10 @@
 			case "CHAOS|WC|WC|TZFTR": //Tzaangor Fighter
 			case "CHAOS|WC|WC|TZHB": //Tzaangor Horn Bearer
 			case "CHAOS|WC|WC|TZIB": //Tzaangor Icon Bearer
+				return GetDaemonName();
 				break;
 			case "IMP|ECC|AF|AF": //Arco-Flagellant
+				return "Servitor";
 				break;
 			case "IMP|ECC|BS|GNR": //Battle Sister Gunner
 			case "IMP|ECC|BS|HGNR": //Battle Sister Heavy Gunner
@@ -422,7 +424,7 @@
 			case "ORK|KOM|KOM|SNP": //Kommando Snipa Boy
 				return GetOrkName();
 			case "ORK|KOM|KOM|BOM": //Bomb Squig
-				return "Bomb Squig";
+				return "Skwiglz";
 			case "TAU|CM|CM|HND": //Kroot Hound
 			case "TAU|CM|CM|KTX": //Krootox
 			case "TAU|CM|CM|LDR": //Kroot Carnivore Leader
