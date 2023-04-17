@@ -46,6 +46,11 @@
 			//Get the requested RosterOperative
 			$op = RosterOperative::GetRosterOperativeRow($roid);
 			
+			if ($op == null) {
+				// Not found
+				return null;
+			}
+			
 			// Load the base operative for this RosterOperative
 			$op->loadBaseOperative();
 			

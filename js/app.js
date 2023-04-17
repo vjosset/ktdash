@@ -589,6 +589,9 @@ var app = angular.module("kt", ['ngSanitize'])
 								case "action":
 									// Parse the AP cost of this unique action
 									let ap = 1;
+									if (eq.eqdescription.includes("0 AP")) {
+										ap = 0;
+									}
 									if (eq.eqdescription.includes("1 AP")) {
 										ap = 1;
 									}
