@@ -137,6 +137,9 @@
 				<div ng-if="newroster.rostername.toLowerCase().includes('rouge')">
 					<em>Did you mean "Rogue"?</em>
 				</div>
+				<div ng-if="newroster.rostername.toLowerCase().includes('kinbrand')">
+					<em>Did you mean "Kinband"?</em>
+				</div>
 				
 				<h4 class="oswald">Faction</h4>
 				<select class="form-control oswald" ng-model="newroster.faction">

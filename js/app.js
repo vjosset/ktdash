@@ -578,170 +578,169 @@ var app = angular.module("kt", ['ngSanitize'])
 							let eq = op.equipments[eqnum];
 							//console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
-							switch (eq.eqtype.toLowerCase()) {
-								case "ability":
-									let ab = {
-										title: eq.eqname,
-										description: eq.eqdescription
-									};
-									op.abilities.push(ab);
-									break;
-								case "action":
-									// Parse the AP cost of this unique action
-									let ap = 1;
-									if (eq.eqdescription.includes("0 AP")) {
-										ap = 0;
-									}
-									if (eq.eqdescription.includes("1 AP")) {
-										ap = 1;
-									}
-									if (eq.eqdescription.includes("2 AP")) {
-										ap = 2;
-									}
-									let ua = {
-										title: eq.eqname,
-										description: eq.eqdescription,
-										AP: ap
-									};
-									op.uniqueactions.push(ua);
-									break;
-								case "wepmod":
-									//console.log("         WepMod");
-									let wepstomod = [];
-									if (eq.eqvar1.startsWith("weptype:")) {
-										// Mod applies to a specific weapon type
-										let weptype = eq.eqvar1.replace("weptype:", "");
-										//console.log("            Matching weptype " + weptype);
-										
-										// Find the weapon that has this type that this operative is equipped with
-										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-											let opwep = op.weapons[opwepnum];
-											if (opwep.weptype == weptype) {
-												// This is the one
-												wepstomod.push(opwep);
-											}
-										}
-									} else if (eq.eqvar1.startsWith("wepid:")) {
-										// Mod applies to a specific weapon id
-										let wepid = eq.eqvar1.replace("wepid:", "");
-										//console.log("            Matching wepid " + wepid);
-										
-										// Find the weapon that has this ID that this operative is equipped with
-										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-											let opwep = op.weapons[opwepnum];
-											if (("," + wepid + ",").includes("," + opwep.wepid + ",")) {
-												// This is the one
-												wepstomod.push(opwep);
-											}
-										}
-									} else if (eq.eqvar1.startsWith("wepname:")) {
-										// Mod applies to a specific weapon name
-										let wepname = eq.eqvar1.replace("wepname:", "");
-										//console.log("            Matching wepname " + wepname);
-										
-										// Find the weapons that has this name that this operative is equipped with
-										for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-											let opwep = op.weapons[opwepnum];
-											//console.log("Checking weapon name " + wepname.toLowerCase() + " against " + opwep.wepname.toLowerCase());
-											if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
-												// This is the one
-												wepstomod.push(opwep);
-											}
-										}
-									}
+							if (eq.eqtype.toLowerCase().includes("ability")) {
+								let ab = {
+									title: eq.eqname,
+									description: eq.eqdescription
+								};
+								op.abilities.push(ab);
+							}
+							
+							if (eq.eqtype.toLowerCase().includes("action")) {
+								// Parse the AP cost of this unique action
+								let ap = 1;
+								if (eq.eqdescription.includes("0 AP")) {
+									ap = 0;
+								}
+								if (eq.eqdescription.includes("1 AP")) {
+									ap = 1;
+								}
+								if (eq.eqdescription.includes("2 AP")) {
+									ap = 2;
+								}
+								let ua = {
+									title: eq.eqname,
+									description: eq.eqdescription,
+									AP: ap
+								};
+								op.uniqueactions.push(ua);
+							}
+							
+							if (eq.eqtype.toLowerCase().includes("wepmod")) {
+								let wepstomod = [];
+								if (eq.eqvar1.startsWith("weptype:")) {
+									// Mod applies to a specific weapon type
+									let weptype = eq.eqvar1.replace("weptype:", "");
+									//console.log("            Matching weptype " + weptype);
 									
-									if (wepstomod.length > 0) {
-										// We found the weapons to modify, now apply the mod to those weapons
-										for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
-											let weptomod = wepstomod[weptomodnum];
-											//console.log("         Found applicable weapon " + weptomod.wepid + ": " + weptomod.wepname);
-											let mods = eq.eqvar2.split("|");
-											for (let modnum = 0; modnum < mods.length; modnum++) {
-												let mod = mods[modnum];
-												let modstat = mod.split(":")[0];
-												let modval = mod.split(":")[1];
-												switch(modstat) {
-													case "SR":
-														// New special rule - Loop through the weapon's profiles and add this special rule to them
-														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															//console.log("         Applying Special Rule " + modval);
-															weptomod.profiles[pnum].SR += ", " + modval;
+									// Find the weapon that has this type that this operative is equipped with
+									for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+										let opwep = op.weapons[opwepnum];
+										if (opwep.weptype == weptype) {
+											// This is the one
+											wepstomod.push(opwep);
+										}
+									}
+								} else if (eq.eqvar1.startsWith("wepid:")) {
+									// Mod applies to a specific weapon id
+									let wepid = eq.eqvar1.replace("wepid:", "");
+									//console.log("            Matching wepid " + wepid);
+									
+									// Find the weapon that has this ID that this operative is equipped with
+									for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+										let opwep = op.weapons[opwepnum];
+										if (("," + wepid + ",").includes("," + opwep.wepid + ",")) {
+											// This is the one
+											wepstomod.push(opwep);
+										}
+									}
+								} else if (eq.eqvar1.startsWith("wepname:")) {
+									// Mod applies to a specific weapon name
+									let wepname = eq.eqvar1.replace("wepname:", "");
+									//console.log("            Matching wepname " + wepname);
+									
+									// Find the weapons that has this name that this operative is equipped with
+									for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+										let opwep = op.weapons[opwepnum];
+										//console.log("Checking weapon name " + wepname.toLowerCase() + " against " + opwep.wepname.toLowerCase());
+										if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
+											// This is the one
+											wepstomod.push(opwep);
+										}
+									}
+								}
+								
+								if (wepstomod.length > 0) {
+									// We found the weapons to modify, now apply the mod to those weapons
+									for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
+										let weptomod = wepstomod[weptomodnum];
+										//console.log("         Found applicable weapon " + weptomod.wepid + ": " + weptomod.wepname);
+										let mods = eq.eqvar2.split("|");
+										for (let modnum = 0; modnum < mods.length; modnum++) {
+											let mod = mods[modnum];
+											let modstat = mod.split(":")[0];
+											let modval = mod.split(":")[1];
+											switch(modstat) {
+												case "SR":
+													// New special rule - Loop through the weapon's profiles and add this special rule to them
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														//console.log("         Applying Special Rule " + modval);
+														weptomod.profiles[pnum].SR += ", " + modval;
+													}
+													break;
+												case "D":
+													// Upgrade damage - Loop through the weapon's profiles and update their damage
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														//console.log("         Applying Damage mod " + modval);
+														let origD = weptomod.profiles[pnum].D;
+														let orignormalD = parseInt(origD.split("/")[0]);
+														let origcriticalD = parseInt(origD.split("/")[1]);
+														
+														let modnormalD = parseInt(modval.split("/")[0]);
+														let modcriticalD = parseInt(modval.split("/")[1]);
+														
+														let newD = (orignormalD + modnormalD) + "/" + (origcriticalD + modcriticalD);
+														
+														weptomod.profiles[pnum].D = newD;
+													}
+													break;
+												case "BS":
+													// Upgrade BS - Loop through the weapon's profiles and upgrade their BS
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														//console.log("         Applying BS mod " + modval);
+														let origBS = weptomod.profiles[pnum].BS;
+														if (modval.startsWith("-")) {
+															// Improve (reduce) BS for this weapon
+															let newBS = (parseInt(origBS.replace("+", "")) - parseInt(modval.replace("-", ""))) + "+";
+															weptomod.profiles[pnum].BS = newBS;
+														} else {
+															// Replace BS for this weapon
+															weptomod.profiles[pnum].BS = modval;
 														}
-														break;
-													case "D":
-														// Upgrade damage - Loop through the weapon's profiles and update their damage
-														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															//console.log("         Applying Damage mod " + modval);
-															let origD = weptomod.profiles[pnum].D;
-															let orignormalD = parseInt(origD.split("/")[0]);
-															let origcriticalD = parseInt(origD.split("/")[1]);
-															
-															let modnormalD = parseInt(modval.split("/")[0]);
-															let modcriticalD = parseInt(modval.split("/")[1]);
-															
-															let newD = (orignormalD + modnormalD) + "/" + (origcriticalD + modcriticalD);
-															
-															weptomod.profiles[pnum].D = newD;
-														}
-														break;
-													case "BS":
-														// Upgrade BS - Loop through the weapon's profiles and upgrade their BS
-														for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-															//console.log("         Applying BS mod " + modval);
-															let origBS = weptomod.profiles[pnum].BS;
-															if (modval.startsWith("-")) {
-																// Improve (reduce) BS for this weapon
-																let newBS = (parseInt(origBS.replace("+", "")) - parseInt(modval.replace("-", ""))) + "+";
-																weptomod.profiles[pnum].BS = newBS;
-															} else {
-																// Replace BS for this weapon
-																weptomod.profiles[pnum].BS = modval;
-															}
-														}
-													default:
-														break;
-												}
+													}
+												default:
+													break;
 											}
 										}
 									}
-									break;
-								case "opmod":
-									//console.log("         OpMod");
-									
-									// Pick the characteristic to mod
-									switch (eq.eqvar1) {
-										case "M":
-											//console.log("            M");
-											if (eq.eqvar2.startsWith("+")) {
-												//console.log("         Adding " + eq.eqvar2 + " to M");
-												op.M += eq.eqvar2;
-											}
-											break;
-										case "W":
-											//console.log("            W");
-											if (eq.eqvar2.startsWith("+")) {
-												//console.log("         Adding " + eq.eqvar2 + " to W");
-												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-											}
-											break;
-										case "APL":
-											break;
-										case "SV":
-											//console.log("            SV");
-											if (eq.eqvar2.startsWith("+")) {
-												//console.log("         Adding " + eq.eqvar2 + " to W");
-												op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-											} else {
-												//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
-												op.SV = eq.eqvar2;
-											}
-											break;
-										case "DF":
-											break;
-										case "GA":
-											break;
-									}
-									break;
+								}
+							}
+							
+							if (eq.eqtype.toLowerCase().includes("opmod")) {
+								// Pick the characteristic to mod
+								switch (eq.eqvar1) {
+									case "M":
+										//console.log("            M");
+										if (eq.eqvar2.startsWith("+")) {
+											//console.log("         Adding " + eq.eqvar2 + " to M");
+											op.M += eq.eqvar2;
+										}
+										break;
+									case "W":
+										//console.log("            W");
+										if (eq.eqvar2.startsWith("+")) {
+											//console.log("         Adding " + eq.eqvar2 + " to W");
+											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
+										}
+										break;
+									case "APL":
+										break;
+									case "SV":
+										//console.log("            SV");
+										if (eq.eqvar2.startsWith("+")) {
+											//console.log("         Adding " + eq.eqvar2 + " to W");
+											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
+										} else {
+											//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
+											op.SV = eq.eqvar2;
+										}
+										break;
+									case "DF":
+										break;
+									case "GA":
+										break;
+								}
+								break;
 							}
 						}
 					}
@@ -3293,7 +3292,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							let range = rulename.replace("TORRENT", "");
 							range = rulename.replace("TOR", "");
 							rule.rulename = "Torrent " + range;
-							rule.ruletext = "Make additional attacks against enemy operatives within " + range + " of the previous target";
+							rule.ruletext = "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within " + range + " of the original target and each other";
 						}
 					}
 						
