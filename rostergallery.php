@@ -151,11 +151,13 @@
 				>
 				<h4 class="orange m-0 p-0">{{ operative.opname }}</h4>
 				<div class="orange">{{ operative.optype }}</div>
-				<img id="opportrait_{{operative.rosteropid}}"
-					ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
-					alt="{{ operative.opname }}"
-					title="{{ operative.opname }}"
-					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+				<div class="p-0 m-0">
+					<img id="opportrait_{{operative.rosteropid}}"
+						ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
+						alt="{{ operative.opname }}"
+						title="{{ operative.opname }}"
+						style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+				</div>
 			</div>
 		</div>
 		<?php include "footer.shtml" ?>

@@ -14,6 +14,14 @@ var app = angular.module("kt", ['ngSanitize'])
 				$(".navloader").on("click", function(){ toast("Loading..."); });
 			}, 500);
 			
+			// Shape/symbol mappings
+			$scope.symbolMap = {
+				"[CIRCLE]": "",
+				"[TRI]": "",
+				"[SQUARE]": "",
+				"[PENT]": ""
+			};
+			
 			// Settings - All always lowercase (key and value)
 			$scope.settings = {
 				display: 'card',
@@ -539,37 +547,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (roster != null && $scope.settings.applyeqmods == 'y') {
 					for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 						let op = roster.operatives[opnum];
-						//console.log("Looking at operative " + op.opname);
-						//console.log("   Resetting to operative to base stats");
-						op.M   = op.baseoperative.M;
-						op.APL = op.baseoperative.APL;
-						op.GA  = op.baseoperative.GA;
-						op.DF  = op.baseoperative.DF;
-						op.SV  = op.baseoperative.SV;
-						op.W   = op.baseoperative.W;
-						
-						// Reset this operative's Abilities and Unique Actions
-						op.abilities = JSON.parse(JSON.stringify(op.baseoperative.abilities));
-						op.uniqueactions = JSON.parse(JSON.stringify(op.baseoperative.uniqueactions));
-						
-						// Reset this operative's weapons to their base definitions
-						//console.log("   Resetting weapons");
-						op.weapons = [];
-						let wepids = op.wepids.split(",");
-						for (let opwepidnum = 0; opwepidnum < wepids.length; opwepidnum++) {
-							let wepid = wepids[opwepidnum];
-							
-							// Find this weapon in the base operative's weapons
-							for (let baseopwepnum = 0; baseopwepnum < op.baseoperative.weapons.length; baseopwepnum++) {
-								let baseopwep = op.baseoperative.weapons[baseopwepnum];
-								if (baseopwep.wepid == wepid) {
-									// Found the weapon, reset its stats
-									////console.log("      Resetting weapon to base stats");
-									opwep = JSON.parse(JSON.stringify(baseopwep));
-									op.weapons.push(opwep);
-								}
-							}
-						}
+						$scope.resetOperativeToBase(op);
 						
 						// Operative is reset, along with its weapons
 						// Now apply equipment mods to the operative and its weapons
@@ -1520,7 +1498,7 @@ var app = angular.module("kt", ['ngSanitize'])
 		// OPERATIVES
 		{
 			// opCanBeInjured()
-			// Returns a boolean indicating whether the specified operative can be injured (DeathGuard, Talons, Stalwart)
+			// Returns a boolean indicating whether the specified operative can be injured (DeathGuard, Talons/Custodes, Stalwart)
 			$scope.opCanBeInjured = function(op) {
 				return 
 					(op.factionid == 'CHAOS' && op.killteamid == 'DG') // Deathguard Disgustingly Resilient
@@ -1585,10 +1563,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 					
 					// Reduce the M on the operative
-					op.M = op.M.replace("2&#x2B24;", "2&#x2B24;*"); // Can't go below 2 [CIRCLE]
-					op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
-					op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
-					op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+					op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
+					op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
 					
 				} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
 					// Operative is no longer injured, was injured before
@@ -1624,12 +1602,12 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 					
 					// Increase the M on the operative
-					op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
-					op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
-					op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
-					op.M = op.M.replace("2&#x2B24;*", "MAKEMETWO"); // Can't go below 2 [CIRCLE]
-					op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
-					op.M = op.M.replace("MAKEMETWO", "2&#x2B24;");
+					op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "6" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "5" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"] + "*", "MAKEMETWO"); // Can't go below 2 [CIRCLE]
+					op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+					op.M = op.M.replace("MAKEMETWO", "2" + $scope.PlaceHolders["[CIRCLE]"]);
 				}
 			}
 		
@@ -2746,10 +2724,10 @@ var app = angular.module("kt", ['ngSanitize'])
 									}
 									
 									// Reduce the M on the operative
-									op.M = op.M.replace("2&#x2B24;", "1&#x2B24;");
-									op.M = op.M.replace("3&#x2B24;", "2&#x2B24;");
-									op.M = op.M.replace("4&#x2B24;", "3&#x2B24;");
-									op.M = op.M.replace("5&#x2B24;", "4&#x2B24;");
+									op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "1" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
 									
 								} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
 									// Operative is no longer injured, was injured before
@@ -2785,11 +2763,11 @@ var app = angular.module("kt", ['ngSanitize'])
 									}
 									
 									// Increase the M on the operative
-									op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
-									op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
-									op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
-									op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
-									op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
+									op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "6" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "5" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("1" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
 								}
 							}
 							
@@ -2821,6 +2799,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Apply eq mods
 				$scope.applyEqMods($scope.dashboardroster);
 				
+				// Check for injured
+				//[TBD]
+				
 				// Parse selected ploys
 				console.log("Checking ploys: " + roster.killteam.ploys.strat.length);
 				for (let ploynum = 0; ploynum < roster.killteam.ploys.strat.length; ploynum++) {
@@ -2838,6 +2819,38 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#selectrosteropsmodal').modal("show");
 			}
 			
+			$scope.resetOperativeToBase = function(op) {
+				op.M   = op.baseoperative.M;
+				op.APL = op.baseoperative.APL;
+				op.GA  = op.baseoperative.GA;
+				op.DF  = op.baseoperative.DF;
+				op.SV  = op.baseoperative.SV;
+				op.W   = op.baseoperative.W;
+				
+				// Reset this operative's Abilities and Unique Actions
+				op.abilities = JSON.parse(JSON.stringify(op.baseoperative.abilities));
+				op.uniqueactions = JSON.parse(JSON.stringify(op.baseoperative.uniqueactions));
+				
+				// Reset this operative's weapons to their base definitions
+				//console.log("   Resetting weapons");
+				op.weapons = [];
+				let wepids = op.wepids.split(",");
+				for (let opwepidnum = 0; opwepidnum < wepids.length; opwepidnum++) {
+					let wepid = wepids[opwepidnum];
+					
+					// Find this weapon in the base operative's weapons
+					for (let baseopwepnum = 0; baseopwepnum < op.baseoperative.weapons.length; baseopwepnum++) {
+						let baseopwep = op.baseoperative.weapons[baseopwepnum];
+						if (baseopwep.wepid == wepid) {
+							// Found the weapon, reset its stats
+							////console.log("      Resetting weapon to base stats");
+							opwep = JSON.parse(JSON.stringify(baseopwep));
+							op.weapons.push(opwep);
+						}
+					}
+				}
+			}
+			
 			// resetDash()
 			// Resets the dashboard, returning scores to their default values and resetting operative wounds/curw
 			$scope.resetDash = function(roster) {
@@ -2853,6 +2866,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					roster.RP = $scope.RPLabels[roster.factionid][roster.killteamid].StartValue;
 				}
 				
+				$scope.applyEqMods(roster);
+				
 				// Push local roster to DB/API
 				$scope.commitRoster(roster);
 				
@@ -2860,11 +2875,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				for (let i = 0; i < roster.operatives.length; i++) {
 					let op = roster.operatives[i];
 					
-					// No longer wounded - Show their details
-					$("#opinfo_" + i).collapse('show');
-					
 					// Reset their Wounds
-					//console.log("Setting operative's curW to " + parseInt(op.W));
 					op.curW = parseInt(op.W);
 					
 					// Not activated - Must be an INT to save properly in DB
@@ -2873,47 +2884,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Set their order to user's default
 					op.oporder = $scope.settings["defaultoporder"];
 					
-					// Reset their injury debuffs
-					if (op.isInjured) {
-						// Operative is no longer injured, was injured before
-						op.isInjured = false;
-						
-						// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
-						// This does NOT apply to Pathfinder Assault Grenadiers
-						if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
-							for (let i = 0; i < op.weapons.length; i++) {
-								let wep = op.weapons[i];
-								for (let j = 0; j < wep.profiles.length; j++) {
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
-								}
-							}
-										
-							for (let i = 0; i < op.equipments.length; i++) {
-								let eq = op.equipments[i];
-								if (eq.eqtype == 'Weapon' && eq.weapon != null) {
-									let wep = eq.weapon;
-									for (let j = 0; j < wep.profiles.length; j++) {
-										wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-										wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-										wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-										wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-										wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
-									}
-								}
-							}
-						}
-						
-						// Increase the M on the operative
-						op.M = op.M.replace("5&#x2B24;", "6&#x2B24;");
-						op.M = op.M.replace("4&#x2B24;", "5&#x2B24;");
-						op.M = op.M.replace("3&#x2B24;", "4&#x2B24;");
-						op.M = op.M.replace("2&#x2B24;", "3&#x2B24;");
-						op.M = op.M.replace("1&#x2B24;", "2&#x2B24;");
-					}
+					// Not injured
+					op.isInjured = false;
 					
 					$scope.commitRosterOp(op);
 				}
@@ -3072,12 +3044,42 @@ var app = angular.module("kt", ['ngSanitize'])
 		
 		// HELPERS
 		{
+			$scope.PlaceHolders = {
+				"[TRI]": "<span class='material-symbols-outlined'>change_history</span>",
+				"[CIRCLE]": "<span class='material-symbols-outlined'>radio_button_unchecked</span>",
+				"[SQUARE]": "<span class='material-symbols-outlined'>crop_square</span>",
+				"[PENT]": "<span class='material-symbols-outlined'>pentagon</span>"
+			}
+			
+			$scope.RevPlaceHolders = {
+				"<span class='material-symbols-outlined'>change_history</span>": "[TRI]",
+				"<span class='material-symbols-outlined'>radio_button_unchecked</span>": "[CIRCLE]",
+				"<span class='material-symbols-outlined'>crop_square</span>": "[SQUARE]",
+				"<span class='material-symbols-outlined'>pentagon</span>": "[PENT]"
+			}
+			
+			$scope.replacePlaceholders_Old = function(input) {
+				if ($scope.currentuser && $scope.currentuser.userid == 'vince') {
+					// Testing new approach for symbols
+					return $scope.replacePlaceholders2(input);
+				} else {
+					// Basic text/string replace for symbols
+					return input
+						.replace(/\[TRI\]/g, "&#x25B2;")
+						.replace(/\[CIRCLE\]/g, "&#x2B24;")
+						.replace(/\[SQUARE\]/g, "&#9632;")
+						.replace(/\[PENT\]/g, "&#x2B1F;");
+				}
+			}
+			
+			// Using Material fonts from Google
 			$scope.replacePlaceholders = function(input) {
-				return input
-					.replace(/\[TRI\]/g, "&#x25B2;")
-					.replace(/\[CIRCLE\]/g, "&#x2B24;")
-					.replace(/\[SQUARE\]/g, "&#9632;")
-					.replace(/\[PENT\]/g, "&#x2B1F;");
+				for (let key in $scope.PlaceHolders) {
+					let keyTemp = key;
+					keyTemp = "/" + keyTemp.replace("[", "\[").replace("]", "\]") + "/g";
+					input = input.replaceAll(key, $scope.PlaceHolders[key]);
+				}
+				return input;
 			}
 			
 			// getShortId()
@@ -3167,7 +3169,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Can re-roll one Attack die";
 								break;
 							case "BOMB SQUIG":
-								rule.ruletext = "This operative can perform a Shoot action with this weapon if it is within Engagement Range of an enemy operative. When this operative performs a Shoot action and selects this ranged weapon, make a shooting attack against each other operative Visible to and within &#x2B24; of it (even if it has friendly operatives within its Engagement Range) with this weapon - Each of them is a valid target and cannot be in Cover. After all of those shooting attacks have been made, this operative is incapacitated and do not roll for its BOOM! ability. This operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
+								rule.ruletext = "This operative can perform a Shoot action with this weapon if it is within Engagement Range of an enemy operative. When this operative performs a Shoot action and selects this ranged weapon, make a shooting attack against each other operative Visible to and within " + $scope.PlaceHolders["[CIRCLE]"] + " of it (even if it has friendly operatives within its Engagement Range) with this weapon - Each of them is a valid target and cannot be in Cover. After all of those shooting attacks have been made, this operative is incapacitated and do not roll for its BOOM! ability. This operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
 								break;
 							case "BRUTAL":
 								rule.ruletext = "Opponent can only parry with critical hits";
@@ -3185,7 +3187,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Each time this operative fights in combat, in the Roll Attack Dice step of that combat, each time you retain a critical hit, the target suffers 2 Mortal Wounds.";
 								break;
 							case "DETONATE":
-								rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within &#9632; of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within &#9632; is a valid target, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
+						rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within " + $scope.PlaceHolders["[SQUARE]"] + " of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within " + $scope.PlaceHolders["[SQUARE]"] + " is a valid target, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
 								break;
 							case "EXPERT RIPOSTE":
 								rule.ruletext = "Each time this operative fights in combat using its duelling blades, in the Resolve Successful Hits step of that combat, each time you parry with a critical hit, also inflict damage equal to the weapon's Critical Damage characteristic.";
@@ -3193,7 +3195,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "FUS":
 							case "FUSILLADE":
 								rule.rulename = "Fusillade";
-								rule.ruletext = "Distribute the Attack dice between valid targets within &#x2B24; of original target";
+								rule.ruletext = "Distribute the Attack dice between valid targets within " + $scope.PlaceHolders["[CIRCLE]"] + " of original target";
 								break;
 							case "GRAV":
 							case "GRAV*":
@@ -3249,7 +3251,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Shooting: For each critical hit, subtract 1 from APL of target (max 1 per operative)<br/>Fighting: First critical hit discard 1 normal hit of the enemy, Second critical hit subtract 1 from APL of target";
 								break;
 							case "UNLOAD SLUGS":
-								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within &#x2B1F; of it, you can re-roll any or all of your attack dice.";
+								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within " + $scope.PlaceHolders["[PENT]"] + " of it, you can re-roll any or all of your attack dice.";
 								break;
 							case "UNWIELDY":
 								rule.ruletext = "Shooting costs +1 AP, no Overwatch";
@@ -3264,8 +3266,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							let num = rulename.replace("AP", "");
 							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";
 						} else if (rulename.startsWith("BLAST")) {
-							let range = rulename.replace("BLAST", "");
+							let range = rulename.replace("BLAST", "").toLowerCase();
 							rule.ruletext = "After shooting perform shooting attacks against all operatives within " + range + ". No Overwatch.";
+							console.log("RuleText (Blast): " + rule.ruletext);
 						} else if (rulename.startsWith("INFERNO")) {
 							let num = rulename.replace("INFERNO", "");
 							rule.ruletext = "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, the target gains " + num + " Inferno tokens. At the end of each Turning Point, roll one D6 for each Inferno token an enemy operative has: on a 4+, that enemy operative suffers 1 mortal wound. After rolling, remove all Inferno tokens that operative has.";
@@ -3280,17 +3283,17 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Weapon gains AP" + num + " rule if you retain a critical hit";
 						} else if (rulename.startsWith("REAP")) {
 							let num = rulename.replace("REAP", "");
-							rule.ruletext = "For each successful critical strike, inflict MW" + num + " on each other enemy within &#x25B2; of target";
+							rule.ruletext = "For each successful critical strike, inflict MW" + num + " on each other enemy within " + $scope.PlaceHolders["[TRI]"] + " of target";
 						} else if (rulename.startsWith("RNG")) {
 							let range = rulename.replace("RNG", "");
 							rule.rulename = rule.rulename.replace("Rng", "Range");
 							rule.ruletext = "Range limit of the weapon";
 						} else if (rulename.startsWith("SPLASH")) {
 							let num = rulename.replace("SPLASH", "");
-							rule.ruletext = "For each critical hit, inflict MW" + num + " to the target and any other operative within &#x2B24; of the target";
+							rule.ruletext = "For each critical hit, inflict MW" + num + " to the target and any other operative within " + $scope.PlaceHolders["[CIRCLE]"] + " of the target";
 						} else if (rulename.startsWith("TOR")) {
 							let range = rulename.replace("TORRENT", "");
-							range = rulename.replace("TOR", "");
+							range = rulename.replace("TOR", "").toLowerCase();
 							rule.rulename = "Torrent " + range;
 							rule.ruletext = "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within " + range + " of the original target and each other";
 						}

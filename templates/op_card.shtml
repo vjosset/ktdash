@@ -54,8 +54,8 @@
 				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated && operative.curW > 0" />
 				<img style="height: 1em;" class="float-end" alt="Conceal - Ready" title="Conceal - Ready" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated && operative.curW > 0" />
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
-				<i class="fas fa-skull fa-fw float-end" ng-if="operative.curW <= 0"></i>
-				<i class="fas fa-heartbeat fa-fw float-end" ng-if="operative.isInjured && operative.curW > 0"></i>
+				<i class="fas fa-skull fa-fw float-end" alt="Incapacitated" title="Incapacitated" ng-if="operative.curW <= 0"></i>
+				<i class="fas fa-heartbeat fa-fw float-end" alt="Injured" title="Injured" ng-if="operative.isInjured && operative.curW > 0"></i>
 				<span class="float-end" ng-if="MODE == 'Dashboard'" ng-show="operative.curW > 0">
 					<input type="checkbox" class="m-2" style="vertical-align: middle; -ms-transform: scale(1.25); -moz-transform: scale(1.25); -webkit-transform: scale(1.25); -o-transform: scale(1.25);" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
 				</span>
@@ -110,16 +110,13 @@
 						<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
 							<tr class="orange">
 								<td width="16%">
-									M
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
+									M<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 								</td>
 								<td width="16%">
-									APL
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
+									APL<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 								</td>
 								<td width="16%">
-									GA
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
+									GA<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
 								</td>
 							</tr>
 							<tr>
@@ -135,16 +132,13 @@
 							</tr>
 							<tr class="orange">
 								<td width="16%">
-									DF
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
+									DF<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
 								</td>
 								<td width="16%">
-									SV
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
+									SV<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
 								</td>
 								<td width="16%">
-									W
-									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
+									W<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
 								</td>
 							</tr>
 							<tr>

@@ -30,7 +30,6 @@
 								<label for="chkshowop_{{ operative.rosteropid }}">
 									<h6 class="d-inline">&nbsp;{{ operative.opname }}</h6>
 								</label>
-								<br class="d-inline d-md-none" />
 								<em>
 									<span ng-if="selectrosterops.killteam.fireteams.length > 1">
 										{{ operative.fireteamname}} - 
@@ -38,12 +37,21 @@
 									{{ operative.optype }}
 								</em>
 							</div>
-							<div>
-								<span ng-repeat="weapon in operative.weapons" class="d-inline">
-									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
-									{{ weapon.wepname }}
-									{{$last ? '' : ', '}}							
-								</span>
+							<div class="row">
+								<div class="col-4" ng-if="settings['display'] == 'card'">
+									<img id="opportrait_select_{{operative.rosteropid}}"
+										title="{{ operative.opname }}"
+										alt="{{ operative.opname }}"
+										ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
+										style="max-height: 70px; object-fit:cover; object-position:50% 0%; display:block;" />							
+								</div>
+								<div class="col-8">
+									<span ng-repeat="weapon in operative.weapons" class="d-inline">
+										<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+										{{ weapon.wepname }}
+										{{$last ? '' : ', '}}							
+									</span>
+								</div>
 							</div>
 							<br/>
 						</div>

@@ -30,10 +30,14 @@
 				return GetAeldariMaleName() . " " . GetAeldariMaleName();
 			case "AELDARI-F":
 				return GetAeldariFemaleName() . " " . GetAeldariFemaleName();
+			case "BEASTMEN":
+				return GetBeastmenName();
 			case "DARKAELDARI-M":
 				return GetDarkAeldariMaleName() . " " . GetDarkAeldariMaleName();
 			case "DARKAELDARI-F":
 				return GetDarkAeldariFemaleName() . " " . GetDarkAeldariFemaleName();
+			case "HEARTHKYN":
+				return GetHearthkynName();
 			case "HUMAN-M":
 				return GetHumanMaleName();
 			case "HUMAN-F":
@@ -174,7 +178,7 @@
 			case "CHAOS|DAEM|PB|HB": //Plaguebearer Horn Bearer
 			case "CHAOS|DAEM|PB|IB": //Plaguebearer Icon Bearer
 			case "CHAOS|DAEM|PB|PR": //Plagueridden
-				break;
+				return GetDaemonName();
 			case "CHAOS|DAEM|PH|FTR": //Pink Horror Fighter
 			case "CHAOS|DAEM|PH|HB": //Pink Horror Horn Bearer
 			case "CHAOS|DAEM|PH|IB": //Pink Horror Icon Bearer
@@ -189,6 +193,18 @@
 				return GetChaosMarineName();
 			case "CHAOS|DG|PW|PW": //Poxwalker
 				return "Poxwalker";
+			case "CHAOS|FELL|FELL|IH": //Fellgor Ironhorn
+			case "CHAOS|FELL|FELL|DK": //Fellgor Deathknell
+			case "CHAOS|FELL|FELL|FB": //Fellgor Fluxbray
+			case "CHAOS|FELL|FELL|GS": //Fellgor Gnarlscar
+			case "CHAOS|FELL|FELL|GH": //Fellgor Gorehorn
+			case "CHAOS|FELL|FELL|HG": //Fellgor Herd-Goad
+			case "CHAOS|FELL|FELL|MNG": //Fellgor Mangler
+			case "CHAOS|FELL|FELL|VND": //Fellgor Vandal
+			case "CHAOS|FELL|FELL|TOX": //Fellgorn Toxhorn
+			case "CHAOS|FELL|FELL|SHA": //Fellgor Shaman
+			case "CHAOS|FELL|FELL|WAR": //Fellgor Warrior
+				return GetBeastmenName();
 			case "CHAOS|LEG|LEG|AC": //Legionary Aspiring Champion
 			case "CHAOS|LEG|LEG|ANO": //Legionary Anointed
 			case "CHAOS|LEG|LEG|BA": //Legionary Balefire Acolyte
@@ -209,7 +225,7 @@
 			case "CHAOS|TS|TZA|HB": //Tzaangor Horn Bearer
 			case "CHAOS|TS|TZA|IB": //Tzaangor Icon Bearer
 			case "CHAOS|TS|TZA|TB": //Twistbray
-				break;
+				return GetDaemonName();
 			case "CHAOS|WC|WC|GNR": //Rubric Marine Gunner
 			case "CHAOS|WC|WC|IB": //Rubric Marine Icon Bearer
 			case "CHAOS|WC|WC|SOR": //Sorcerer
@@ -220,10 +236,8 @@
 			case "CHAOS|WC|WC|TZHB": //Tzaangor Horn Bearer
 			case "CHAOS|WC|WC|TZIB": //Tzaangor Icon Bearer
 				return GetDaemonName();
-				break;
 			case "IMP|ECC|AF|AF": //Arco-Flagellant
 				return "Servitor";
-				break;
 			case "IMP|ECC|BS|GNR": //Battle Sister Gunner
 			case "IMP|ECC|BS|HGNR": //Battle Sister Heavy Gunner
 			case "IMP|ECC|BS|IB": //Battle Sister Icon Bearer
@@ -281,6 +295,18 @@
 			case "IMP|HC|HC|SKVS": //Skitarii Vanguard Surveyor
 			case "IMP|HC|HC|SKVST": //Skitarii Vanguard Shocktrooper
 				return GetAdMechName();
+			case "IMP|HKS|HKS|TH": //Hearthkyn Theyn
+			case "IMP|HKS|HKS|DO": //Hearthkyn Dozr
+			case "IMP|HKS|HKS|MDC": //Hearthkyn Field Medic
+			case "IMP|HKS|HKS|GRN": //Hearthkyn Grenadier
+			case "IMP|HKS|HKS|GNR": //Hearthkyn Gunner
+			case "IMP|HKS|HKS|JMP": //Hearthkyn Jump Pack Warrior
+			case "IMP|HKS|HKS|KL": //Hearthkyn Kinlynk
+			case "IMP|HKS|HKS|KOG": //Hearthkyn Kognitaar
+			case "IMP|HKS|HKS|LOK": //Hearthkyn Lokatr
+			case "IMP|HKS|HKS|LUG": //Hearthkyn Lugger
+			case "IMP|HKS|HKS|WAR": //Hearthkyn Warrior
+				return GetHearthkynName();
 			case "IMP|IG|GM|COMMS": //Guardsman Comms
 			case "IMP|IG|GM|GNR": //Guardsman Gunner
 			case "IMP|IG|GM|SGT": //Guardsman Sergeant
@@ -290,7 +316,7 @@
 			case "IMP|IG|TS|GNR": //Tempestus Scion Gunner
 			case "IMP|IG|TS|SGT": //Tempestor
 			case "IMP|IG|TS|TRP": //Tempestus Scion Trooper
-				break;
+				return GetHumanName();
 			case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
 			case "IMP|INTS|INTS|ISGT": //Intercession Squad Intercessor Sergeant
 			case "IMP|INTS|INTS|AIWAR": //Intercession Squad Assault Intercessor Warrior
@@ -451,7 +477,6 @@
 			case "TAU|HC|DRN|MV4": //MV4 Shield Drone
 			case "TAU|HC|DRN|MV7": //MV7 Marker Drone
 			case "TAU|PF|PF|MB3": //MB3 Recon Drone
-			case "TAU|PF|PF|MDC": //Medical Technician Pathfinder
 			case "TAU|PF|PF|MV1": //MV1 Gun Drone
 			case "TAU|PF|PF|MV31": //MV31 Pulse Accelerator Drone
 			case "TAU|PF|PF|MV33": //MV33 Grav-Inhibitor Drone
@@ -470,6 +495,7 @@
 			case "TAU|PF|PF|COMMS": //Communications Specialist Pathfinder
 			case "TAU|PF|PF|DC": //Drone Controller Pathfinder
 			case "TAU|PF|PF|MARKS": //Marksman Pathfinder
+			case "TAU|PF|PF|MDC": //Medical Technician Pathfinder
 			case "TAU|PF|PF|SL": //Shas'La Pathfinder
 			case "TAU|PF|PF|SU": //Shas'Ui Pathfinder
 			case "TAU|PF|PF|TSI": //Transpectral Interference Pathfinder
@@ -600,6 +626,33 @@
 		}
 	}
 	
+	function GetBeastmenName() {
+		// Get a Space Marine name
+		// From https://www.fantasynamegenerators.com/scripts/warhammerBeastmen.js
+		// Gibberish first
+		$gib1 = ["b","d","g","gh","k","kn","kh","m","n","t","th","v","z","zh"];
+		$gib2 = ["a","o","u","a","o","u","a","o","u","a","o","u","a","o","u","e","i","e","i","au","ao","aa","oo"];
+		$gib3 = ["cr","cn","cc","cv","cth","g","gh","gth","gd","gdh","k","kh","kz","kk","kr","kt","kth","l","lg","lgh","lgr","ltr","lc","n","ng","nk","nc","r","rr","rz","rg","rk","rkr","rgh","rth","zr","zg","zc","zk","zz"];
+		$gib4 = ["c","g","k","r","x","z"];
+		
+		// Descriptive second
+		$desc1 = ["amber","ashen","battle","bitter","black","blazing","bleeding","blood","bright","bristle","broad","brown","chaos","cinder","dark","dawn","dead","death","ember","fallen","fiery","fire","flame","frozen","giant","gloom","gore","grand","gray","great","grim","grizzly","heavy","hell","iron","keen","lightning","lone","metal","molten","moon","morning","moss","mountain","nether","night","onyx","plain","proud","pyre","rage","rapid","rough","rumble","serpent","shadow","sharp","shatter","silent","silver","slug","solid","spring","star","steel","stern","stone","storm","strong","swift","thunder","wild"];
+		$desc2 = ["arm","bane","belly","belt","braid","breath","brow","chest","chin","claw","coat","crest","eye","eyes","fang","fangs","feet","finger","fingers","fist","foot","gaze","grip","gut","hair","hand","hands","head","heart","hide","jaw","mane","manes","mantle","maw","mouth","paw","pelt","ridge","scar","shoulder","shoulders","snout","spine","tail","teeth","toe","toes","tongue","tooth","wound"];
+		
+		// Now pick a "language" and build the name
+		$language = rand(1, 2);
+		
+		switch ($language) {
+			case 1:
+				// Use a gibberish name
+				return ucwords($gib1[array_rand($gib1)] . $gib2[array_rand($gib2)] . $gib3[array_rand($gib3)] . $gib2[array_rand($gib2)] . $gib4[array_rand($gib4)]);
+				break;
+			case 2:
+				// Use a descriptive name
+				return ucwords($desc1[array_rand($desc1)] . $desc2[array_rand($desc2)]);
+				break;
+		}
+	}
 	function GetName_Old_20220203() {
 		// Return a name for the requested faction
 		$faid = $_REQUEST["factionid"];
@@ -755,6 +808,20 @@
 		$names2=["baehr","bran","braq","bros","bryn","dazar","dhar","diaq","dovur","dros","durin","gahn","gard","gran","grath","hiron","his","hyque","kei","kos","kras","kyth","mahr","maq","mar","mass","mien","moque","mor","naer","nahr","nazar","neque","nyr","qar","qir","ra","rad","raes","ras","rath","raz","riaq","rihz","rior","rizar","ruin","ryq","sar","sarith","saros","sath","shar","sque","stra","syr","tahr","taz","teque","thara","tharn","tiron","tyhr","tzar","vall","van","vhar","vor","vyn","zaen","zaq","zhan","zhar","zon","zyth"];
 
 		return $names1[array_rand($names1)] . $names2[array_rand($names2)];
+	}
+
+	function GetHearthkynName() {
+		//Last names first
+		$ln1 = ["amber","autumn","battle","bear","bitter","black","blunt","boulder","brane","bright","brittle","broad","broken","bronze","brown","cask","cinder","cliff","coal","cold","common","copper","crag","deep","distant","ember","far","fiery","fire","flame","flat","flint","forge","full","fuse","gold","golden","grand","granite","gray","great","grim","grudge","grumble","hammer","hill","ingot","iron","keen","keg","krag","lead","light","magma","merry","metal","mild","mirth","mithril","mountain","noble","onyx","plain","proud","regal","rich","rock","rough","rumble","shatter","silver","slender","solid","steel","stone","storm","stout","strong","thunder","true"];
+		$ln2 = ["arm","armor","armour","axe","back","basher","beam","beard","bearer","belly","belt","bender","bluff","bone","bough","brace","branch","brand","breaker","brew","brewer","bringer","brow","buckle","buster","chaser","chest","chin","cloak","crag","crest","digger","dreamer","feet","finger","fire","fist","fists","flame","foot","force","forge","forged","fury","grip","grog","guard","gut","hammer","hand","hank","head","heart","helm","keeper","maker","mantle","mark","master","might","more","punch","rage","seeker","shaper","shield","shoulder","shout","strength","strider","striker","surge","sworn","thane","walker","ward"];
+		
+		// First names second
+		$fn1 = ["","","","br","d","dr","g","gr","kh","kr","m","n","r","s","sr","str","th","tr","thr","v","z", "b","bh","c","d","dr","g","gh","h","m","n","s","sk","sc","t","th","v","z","zh"];
+		$fn2 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","au","ai","oa","ao", "e","i","u","e","i","u","e","i","u","e","i","u","a","a","o","o"];
+		$fn3 = ["d","g","k","l","r","th","d","g","k","l","r","th","br","d","dh","dr","g","gr","gh","gn","gm","gz","gd","k","kr","l","lb","ld","lg","lgr","ldr","nd","ng","nr","ndr","ngr","r","rd","rdr","rg","rt","rbr","rb","rgr","th","tr","thr", "br","dr","dg","dw","dd","ff","fr","gr","gw","gn","gm","gf","gv","kk","kh","kr","kv","lg","lgr","lv","ng","ngr","ngw","nd","ndw","ndr","rg","rgr","rgw","rw","rz","sg","sgr","sv","th","tr","tv","thr","vr"];
+		$fn4 = ["c","d","g","gg","k","m","mm","n","r","rd","t", "","","","","","d","h","m","n","t"];
+		
+		return ucwords($fn1[array_rand($fn1)] . $fn2[array_rand($fn2)] . $fn3[array_rand($fn3)] . $fn2[array_rand($fn2)] . $fn4[array_rand($fn4)] . " " . $ln1[array_rand($ln1)] . $ln2[array_rand($ln2)]);
 	}
 	
 	function GetHumanName() {

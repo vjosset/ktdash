@@ -40,7 +40,7 @@
 	<body ng-app="kt" ng-controller="ktCtrl">
 		<?php include "topnav.shtml" ?>
 		
-		<h1 class="cinzel orange">Compendium - Factions</h1>
+		<h1 class="cinzel orange">Factions</h1>
 		
 		<div class="card-group">
 			<?php 
