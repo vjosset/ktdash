@@ -22,6 +22,7 @@
 		public $activated = 0;
 		public $hidden = 0;
 		public $notes = "";
+		public $specialism = "";
 		
 		public $baseoperative = null;
 		public $weapons = [];
@@ -38,7 +39,7 @@
 				"archetype",
 				"isInjured","isinjured",
 				"keywords", "abilities", "uniqueactions",
-				"timestamp", "usedefaultportrait"
+				"timestamp", "usedefaultportrait", "specialisms"
 			];
         }
 		

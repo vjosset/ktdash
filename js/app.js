@@ -2052,6 +2052,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				}
 				
+				// Set the selected specialism
+				$scope.optoedit.specialism = $scope.tempeditop.specialism;
+				
 				// Save all changes
 				te("roster", "editop", "", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 				$scope.commitRosterOp($scope.optoedit);

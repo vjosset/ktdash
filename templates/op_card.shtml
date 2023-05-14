@@ -6,6 +6,11 @@
 				<h2 style="display: inline;">{{ operative.opname }}</h2>
 				<sup class="h6 small"><i class="far fa-question-circle fa-fw"></i></sup>
 			</div>
+			<!-- Specialisms -->
+			<div ng-if="settings['shownarrative'] == 'y' && operative.specialisms != ''">
+				<!-- All specialisms for this base operative -->
+				<em class="small">{{ operative.specialisms }}</em>
+			</div>
 		</div>
 		
 		<!-- Roster Card Title -->
@@ -38,6 +43,14 @@
 		</div>
 		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="p-1">
 			{{ operative.optype }}
+			
+			<!-- Specialisms -->
+			<span class="float-end" ng-if="settings['shownarrative'] == 'y' && operative.specialisms != ''">
+				<!-- All specialisms for this base operative -->
+				<em ng-if="operative.specialism == null || operative.specialism == ''" class="small">({{ operative.specialisms }})</em>
+				<!-- RosterOperative selected specialisms -->
+				<em ng-if="operative.specialism != ''" class="small">{{ operative.specialism }}</em>
+			</span>
 		</div>
 		
 		<!-- Dashboard Card Title -->
@@ -375,7 +388,7 @@
 			</div>
 			
 			<!-- XP -->
-			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Dashboard')">
+			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Dashboard')">
 				<div class="row line-top-light m-0 p-1">
 					<div class="col-8 p-0">
 						<h6 class="d-inline p-0">XP</h6>
@@ -386,11 +399,11 @@
 						<em ng-if="operative.xp >= 51">Revered</em>
 					</div>
 					<div class="col-4 text-end">
-						<span class="pointer small" ng-click="updateXP(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
+						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
 						
 						<h5 ng-bind="operative.xp" class="d-inline"></h5>
 						
-						<span class="pointer small" ng-click="updateXP(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
+						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 				</div>
 			</div>

@@ -438,19 +438,39 @@
 				</table>
 				<br/>
 				
+				<!-- Specialisms -->
+				<div ng-if="settings['shownarrative'] == 'y' && tempeditop.specialisms != ''">
+					<h6>Specialism</h6>
+					<span ng-repeat="spec in tempeditop.specialisms.split(',')">
+						<input type="radio" id="editopspec_{{ spec }}" ng-model="tempeditop.specialism" value="{{ spec }}">  <label for="editopspec_{{ spec }}">{{ spec }}</label>
+					</span>
+				</div>
+				
 				<h6 class="line-top-light">Equipment</h6>
 				
 				<!-- Equipments List-->
-				<div ng-repeat="eq in tempeditop.equipments track by $index" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')">
+				<div
+					ng-repeat="eq in tempeditop.equipments track by $index"
+					ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')">
+					
 					<h6 ng-if="$index > 0 && tempeditop.equipments[$index].eqcategory != tempeditop.equipments[$index - 1].eqcategory">
 						<br/>{{ eq.eqcategory }}
 					</h6>
-					<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
-					<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">
-						{{ eq.eqname }}
-						<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} EP)</span>
-						<i class="far fa-question-circle fa-fw"></i>
-					</span>
+					
+					<!-- Only show matching specialisms -->
+					<div ng-if="eq.eqcategory != 'Battle Honour' || eq.killteamid != 'ALL' || (
+							((tempeditop.specialism == '' || tempeditop.specialism == 'Combat') && (tempeditop.specialisms == '' || (tempeditop.specialisms.includes('Combat') && eq.eqid.includes('BH-COM')))) ||
+							((tempeditop.specialism == '' || tempeditop.specialism == 'Staunch') && (tempeditop.specialisms == '' || (tempeditop.specialisms.includes('Staunch') && eq.eqid.includes('BH-STA')))) ||
+							((tempeditop.specialism == '' || tempeditop.specialism == 'Marksman') && (tempeditop.specialisms == '' || (tempeditop.specialisms.includes('Marksman') && eq.eqid.includes('BH-MRK')))) ||
+							((tempeditop.specialism == '' || tempeditop.specialism == 'Scout') && (tempeditop.specialisms == '' || (tempeditop.specialisms.includes('Scout') && eq.eqid.includes('BH-SCT'))))
+						)">
+						<input type="checkbox" value="{{ eq.eqid }}" ng-model="eq.isselected" />
+						<span class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);">
+							{{ eq.eqname }}
+							<span ng-if="eq.eqpts > '0'"> ({{ eq.eqpts }} EP)</span>
+							<i class="far fa-question-circle fa-fw"></i>
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer dark p-1">
