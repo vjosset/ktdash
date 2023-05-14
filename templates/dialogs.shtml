@@ -441,8 +441,13 @@
 				<!-- Specialisms -->
 				<div ng-if="settings['shownarrative'] == 'y' && tempeditop.specialisms != ''">
 					<h6>Specialism</h6>
+					<span>
+						<input type="radio" id="editopspec_" ng-model="tempeditop.specialism" value="">  <label for="editopspec_">(None)</label>
+						&nbsp;&nbsp;
+					</span>
 					<span ng-repeat="spec in tempeditop.specialisms.split(',')">
 						<input type="radio" id="editopspec_{{ spec }}" ng-model="tempeditop.specialism" value="{{ spec }}">  <label for="editopspec_{{ spec }}">{{ spec }}</label>
+						&nbsp;&nbsp;
 					</span>
 				</div>
 				
