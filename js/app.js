@@ -3220,6 +3220,10 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.rulename = "Indirect";
 								rule.ruletext = "Ignores cover when selecting valid targets. Must still be Visible and not Obscured.";
 								break;
+							case "LASH WHIP":
+								rule.rulename = "Lash Whip";
+								rule.ruletext = "While an enemy operative is within Engagement Range of friendly operatives equipped with this weapon, subtract 1 from that enemy operative’s Attacks characteristics.";
+								break;
 							case "LIM":
 							case "LIMITED":
 								rule.rulename = "Limited";
