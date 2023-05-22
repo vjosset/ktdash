@@ -6,6 +6,7 @@
 		public $factionid = "";
         public $killteamid = "";
         public $fireteamid = "";
+		public $seq = 0;
 		public $fireteamname = "";
 		public $archetype = "";
 		public $description = "";

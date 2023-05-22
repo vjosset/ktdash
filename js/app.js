@@ -551,10 +551,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Operative is reset, along with its weapons
 						// Now apply equipment mods to the operative and its weapons
-						//console.log("   Applying Equipment Mods");
+						console.log("   Applying Equipment Mods");
 						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
 							let eq = op.equipments[eqnum];
-							//console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
+							console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
 							if (eq.eqtype.toLowerCase().includes("ability")) {
 								let ab = {
@@ -686,20 +686,23 @@ var app = angular.module("kt", ['ngSanitize'])
 							
 							if (eq.eqtype.toLowerCase().includes("opmod")) {
 								// Pick the characteristic to mod
+								console.log("OpMod");
 								switch (eq.eqvar1) {
 									case "M":
 										//console.log("            M");
 										if (eq.eqvar2.startsWith("+")) {
-											//console.log("         Adding " + eq.eqvar2 + " to M");
+											console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
 											op.M += eq.eqvar2;
+											console.log("op.M: " + op.M);
 										}
 										break;
 									case "W":
-										//console.log("            W");
+										console.log("            W");
 										if (eq.eqvar2.startsWith("+")) {
-											//console.log("         Adding " + eq.eqvar2 + " to W");
+											console.log("         Adding " + eq.eqvar2 + " to W");
 											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 										}
+										console.log("New W: " + op.W);
 										break;
 									case "APL":
 										break;
@@ -718,7 +721,6 @@ var app = angular.module("kt", ['ngSanitize'])
 									case "GA":
 										break;
 								}
-								break;
 							}
 						}
 					}

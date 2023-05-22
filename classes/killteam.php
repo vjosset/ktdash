@@ -105,7 +105,7 @@
 			
 			global $dbcon;
 			
-			$sql = "SELECT * FROM Fireteam WHERE factionid = ? AND killteamid = ? ORDER BY fireteamname;";
+			$sql = "SELECT * FROM Fireteam WHERE factionid = ? AND killteamid = ? ORDER BY seq, fireteamname;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {
