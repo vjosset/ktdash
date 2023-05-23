@@ -1513,7 +1513,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// updateOpW()
 			// Increment or decrement the specified operative's wounds
 			$scope.updateOpW = function(op, inc) {
-				te("dashboard", "W", "inc", op.rosterid, op.rosteropid, inc);
+				//te("dashboard", "W", "inc", op.rosterid, op.rosteropid, inc);
 				op.curW = op.curW + inc;
 				if (op.curW < 0) {
 					op.curW = 0;
