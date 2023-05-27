@@ -700,6 +700,10 @@ var app = angular.module("kt", ['ngSanitize'])
 										console.log("            W");
 										if (eq.eqvar2.startsWith("+")) {
 											console.log("         Adding " + eq.eqvar2 + " to W");
+											if (op.curW == parseInt(op.W)) {
+												// Also increase current Wounds
+												op.curW += parseInt(eq.eqvar2)
+											}
 											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 										}
 										console.log("New W: " + op.W);
@@ -1021,6 +1025,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Commits the roster deletion
 			$scope.saveDeleteRoster = function() {
 				te("roster", "delete", "", $scope.deleteRoster.rosterid);
+				toast("Deleting Roster \"" + $scope.deleteRoster.rostername + "\"...");
 				// Send the delete request to the API
 				$.ajax({
 					type: "DELETE",
@@ -1500,14 +1505,19 @@ var app = angular.module("kt", ['ngSanitize'])
 		// OPERATIVES
 		{
 			// opCanBeInjured()
-			// Returns a boolean indicating whether the specified operative can be injured (DeathGuard, Talons/Custodes, Stalwart)
+			// Returns a boolean indicating whether the specified operative can be injured (NOT DeathGuard, Talons/Custodes, Stalwart)
 			$scope.opCanBeInjured = function(op) {
-				return 
+				console.log("opCanBeInjured(" + op.factionid + "/" + op.killteamid + ")");
+				let canNotBeInjured = 
 					(op.factionid == 'CHAOS' && op.killteamid == 'DG') // Deathguard Disgustingly Resilient
 					||
 					(op.factionid == 'IMP' && op.killteamid == 'TOE' && op.fireteamid == 'CG') // Talons of the Emperor The Emperor's Chosen
 					||
 					((',' + op.eqids + ',').includes(',BH-STA-STA,')) // Battle Honour "Stalwart"
+					;
+				console.log("Cannot be injured: " + canNotBeInjured);
+				
+				return !canNotBeInjured;
 			}
 			
 			// updateOpW()
@@ -1531,7 +1541,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				let opcanbeinjured = $scope.opCanBeInjured(op);
 				
-				if (op.curW < parseInt(op.W) / 2 && !wasInjured && !opcanbeinjured) {
+				if (op.curW < parseInt(op.W) / 2 && !wasInjured && opcanbeinjured) {
 					// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
 					op.isInjured = true;
 					
@@ -1540,12 +1550,15 @@ var app = angular.module("kt", ['ngSanitize'])
 					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')					) {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
-							for (let j = 0; j < wep.profiles.length; j++) {
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+							if (wep.weptype == "M" || wep.weptype == "R") {
+								// Only ranged and melee weapons; psychic attacks are not affected
+								for (let j = 0; j < wep.profiles.length; j++) {
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+								}
 							}
 						}
 										
@@ -1553,12 +1566,15 @@ var app = angular.module("kt", ['ngSanitize'])
 							let eq = op.equipments[i];
 							if (eq.eqtype == 'Weapon' && eq.weapon != null) {
 								let wep = eq.weapon;
-								for (let j = 0; j < wep.profiles.length; j++) {
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
-									wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+								if (wep.weptype == "M" || wep.weptype == "R") {
+									// Only ranged and melee weapons; psychic attacks are not affected
+									for (let j = 0; j < wep.profiles.length; j++) {
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "4");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "3");
+										wep.profiles[j].BS = wep.profiles[j].BS.replace("1", "2");
+									}
 								}
 							}
 						}
@@ -1579,12 +1595,14 @@ var app = angular.module("kt", ['ngSanitize'])
 					if (!(op.factionid == 'TAU' && op.killteamid == 'PF' && op.fireteamid == 'PF' && op.opid == 'AG')) {
 						for (let i = 0; i < op.weapons.length; i++) {
 							let wep = op.weapons[i];
-							for (let j = 0; j < wep.profiles.length; j++) {
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+							if (wep.weptype == "M" || wep.weptype == "R") {
+								for (let j = 0; j < wep.profiles.length; j++) {
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+								}
 							}
 						}
 										
@@ -1592,12 +1610,14 @@ var app = angular.module("kt", ['ngSanitize'])
 							let eq = op.equipments[i];
 							if (eq.eqtype == 'Weapon' && eq.weapon != null) {
 								let wep = eq.weapon;
-								for (let j = 0; j < wep.profiles.length; j++) {
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
-								wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+								if (wep.weptype == "M" || wep.weptype == "R") {
+									for (let j = 0; j < wep.profiles.length; j++) {
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("2", "1");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("3", "2");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "3");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "4");
+									wep.profiles[j].BS = wep.profiles[j].BS.replace("6", "5");
+									}
 								}
 							}
 						}
