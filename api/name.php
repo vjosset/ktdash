@@ -141,6 +141,14 @@
 			case "AEL|HOTA|HOTA|KHGNR":
 			case "AEL|HOTA|HOTA|KSA":
 				return GetAeldariName();
+			case "CHAOS|CULT|CULT|BLBL": //Blessed Blade
+			case "CHAOS|CULT|CULT|DEMA": //Cult Demagogue
+			case "CHAOS|CULT|CULT|DEV": //Chaos Devotee
+			case "CHAOS|CULT|CULT|ICON": //Iconarch
+			case "CHAOS|CULT|CULT|MUT": //Chaos Mutant
+			case "CHAOS|CULT|CULT|MW": //Mindwitch
+			case "CHAOS|CULT|CULT|TOR": //Chaos Torment
+				return GetChaosCultistName();
 			case "CHAOS|CSM|CC|CHA": //Chaos Cultist Champion
 			case "CHAOS|CSM|CC|FTR": //Chaos Cultist Fighter
 			case "CHAOS|CSM|CC|GNR": //Chaos Cultist Gunner
@@ -317,6 +325,18 @@
 			case "IMP|IG|TS|SGT": //Tempestor
 			case "IMP|IG|TS|TRP": //Tempestus Scion Trooper
 				return GetHumanName();
+			case "IMP|INQ|INQ|AS": //Autosavant
+			case "IMP|INQ|INQ|ENL": //Enlightener
+			case "IMP|INQ|INQ|GUNS": //Gun Servitor
+			case "IMP|INQ|INQ|HEX": //Hexorcist
+			case "IMP|INQ|INQ|INT": //Interrogator
+			case "IMP|INQ|INQ|MYS": //Mystic
+			case "IMP|INQ|INQ|PEN": //Penal Legionnaire
+			case "IMP|INQ|INQ|PST": //Pistolier
+			case "IMP|INQ|INQ|QK": //Questkeeper
+			case "IMP|INQ|INQ|TS": //Tome-Skull
+			case "IMP|INQ|INQ|VET": //Deathworld Veteran
+				return GetInqName();
 			case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
 			case "IMP|INTS|INTS|ISGT": //Intercession Squad Intercessor Sergeant
 			case "IMP|INTS|INTS|AIWAR": //Intercession Squad Assault Intercessor Warrior
@@ -545,6 +565,20 @@
 		$name2 = ["Gota", "Krrah", "Ch'choh", "Tohrrok", "Ga'ah", "Kyrek", "Ghorka", "Drr'rr", "Yo'toh", "Rhekk", "Prok", "Teleb", "Talar", "Pre'lek", "Yrr'dk", "Goba", "Ta'bak", "Ga'toh", "Yabek", "Cho'yar", "Rhehor", "Kaa'he", "Rrok", "Kyr'am", "Mebekh", "Batam", "Dyr'yn", "Gabt", "Krarh", "Yr'be", "Drekh", "Orak", "Caroch", "Akchan", "Trosk", "Belet"];
 		
 		return $name0[array_rand($name0)] . $name1[array_rand($name1)] . " " . $name2[array_rand($name2)];
+	}
+	
+	function GetInqName() {
+		$name0 = ["Oarba", "Lucius", "Janus", "Hermes", "Elsine", "Delphan", "Lorphreen", "Logan", "Mirella", "Josef", "Hestia", "Konstantin", "Ketz", "Skordan", "Korvanna", "Damien", "Skyll", "Promeus", "Severina", "Markus", "Moriana", "Orten", "Shen Vey", "Voraddin", "Sevora", "Methuselah", "Ulena", "Jorgo", "Mhoraeth", "Mechsimus", "Yvesta", "Cornelius", "Edda", "Barreth", "Katja", "Gwillan"];
+		$name1 = ["Barbaretta", "de Wolfe", "", "Kommodus", "The Devout", "Threlk", "The Unseen", "Gath", "Agnazy", "Octavium", "Monska", "Devlan", "Pelt", "Cadavore", "of Cell 23b", "Gruss", "The Merc Of Garrantos", "Jeddeck", "Grydd", "Malican", "du Pre", "Nosia", "Savanum", "Stontel", "Spinst", "Storm", "Dalstom", "Quovandis", "Kreel", "Khoriv", "Eskander", "Fank", "Lynden", "Skydekkerix", "Vespazha", "Oilrelius"];
+		
+		return $name0[array_rand($name0)] . " " . $name1[array_rand($name1)];
+	}
+	
+	function GetChaosCultistName() {
+		$name0 = ["Borther", "Nhasc", "Dahlton", "Rafn", "Geffried", "Sahben", "Coyl", "Sister", "Morigan", "Kensha", "Ionys", "Zeytha", "Blessed", "Vorya", "Yacobe", "Neesh", "Korv", "Fuella", "Mikon", "Yuneth", "Nithani", "Sorena", "Corvinus", "Godsmarked", "Philo", "Oena", "Madrach", "Herjar", "Azimundas", "Nethfrid", "Norran", "Waldemar", "Scorl", "Yennick", "Xendenarius", "Deveen"];
+		$name1 = ["Selver", "", "Gemmerhal", "Iskrit", "Kanter", "Krorne", "Zuphren", "Stannas", "Farnos", "Wurn", "Cadmas", "Drillix", "Nethix", "Sanlar", "Thrikk", "Crenbek", "Reyga", "Morswain", "The Coreclaw", "Nunaveil", "The Putrescent", "Negrani", "of the Scaled Eye", "Hrancik", "Slickstone", "Brenner", "Lors'el", "Voorsk", "Carlinus", "Dherka", "Sylinus", "Kobden", "Daevos", "Dhomass", "Kalark"];
+		
+		return $name0[array_rand($name0)] . " " . $name1[array_rand($name1)];
 	}
 	
 	function GetAdMechName() {
