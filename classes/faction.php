@@ -27,7 +27,7 @@
 		public function GetFactions() {
 			global $dbcon;
 			
-			$sql = "SELECT * FROM Faction ORDER BY factionname;";
+			$sql = "SELECT * FROM Faction ORDER BY CASE WHEN factionid = 'SPEC' THEN 9999 ELSE 1 END, factionname;";
 			
 			$cmd = $dbcon->prepare($sql);
 			if (!$cmd) {

@@ -139,3 +139,33 @@ SITEMAP GENERATOR
 	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
     /* Spotlighted roster galleries */
 	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;
+
+# Missing Narrative Info (Battle Honours, Rare Equipment, TacOps)
+SELECT
+	KT.factionid, KT.killteamid, KT.killteamname,
+    SUM(CASE WHEN EQ.eqcategory = 'Battle Honour' THEN 1 ELSE 0 END) AS BattleHonours,
+    SUM(CASE WHEN EQ.eqcategory = 'Rare Equipment' THEN 1 ELSE 0 END) AS RareEquipments,
+    IFNULL(TAC.TacOpCount, 0) AS TacOps
+FROM
+	Killteam KT
+    INNER JOIN Equipment EQ
+		ON  EQ.factionid = KT.factionid
+        AND EQ.killteamid = KT.killteamid
+	LEFT JOIN
+	(
+		SELECT archetype, COUNT(*) AS TacOpCount
+        FROM TacOp
+        GROUP BY archetype
+    ) TAC
+		#ON  TAC.tacopid LIKE CONCAT(KT.factionid, '-', KT.killteamid, '-%')
+        ON  TAC.archetype = KT.killteamname
+WHERE CONCAT(KT.factionid, '-', KT.killteamid) NOT IN ('TAU-HC', 'TAU-CM', 'AEL-COM', 'AEL-CW', 'CHAOS-DG', 'CHAOS-CSM', 'IMP-IG', 'CHAOS-DAEM', 'IMP-ECC', 'IMP-GK', 'NEC-TW', 'IMP-FW', 'AEL-TRP', 'CHAOS-TS', 'IMP-SM', 'IMP-TOE', 'ORK-GSK', 'TYR-BC', 'TYR-HF')
+GROUP BY
+	KT.factionid, KT.killteamid, KT.killteamname,
+    TAC.tacopcount
+HAVING
+	SUM(CASE WHEN EQ.eqcategory = 'Battle Honour' THEN 1 ELSE 0 END) < 1
+    OR SUM(CASE WHEN EQ.eqcategory = 'Rare Equipment' THEN 1 ELSE 0 END) < 1
+    OR TAC.tacopcount < 1 OR TAC.tacopcount IS NULL
+ORDER BY
+	1, 2;
