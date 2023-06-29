@@ -102,7 +102,7 @@
 						title="{{ operative.opname }}"
 						alt="{{ operative.opname }}"
 						ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
-						style="height: 100%; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
+						style="border: 1px solid #EEE; height: 100%; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
 				</div>
 				
 				<!-- Compendium Portrait -->

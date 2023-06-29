@@ -121,7 +121,9 @@
 		<?php
 		if ($myRoster->notes != '') {
 			?>
-			<p><?php echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes)) ?></p>
+			<p style="max-height: 200px; overflow:auto;">
+				<?php echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes)) ?>
+			</p>
 			<?php
 		}
 		?>

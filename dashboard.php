@@ -172,14 +172,19 @@
 								Ploys
 							</a>
 						</li>
-						<li class="nav-item m-0 p-0 dark" role="presentation">
+						<!-- li class="nav-item m-0 p-0 dark" role="presentation">
 							<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#eqs" type="button" role="tab" aria-controls="eqs" aria-selected="false">
 								Equip
 							</a>
-						</li>
+						</li -->
 						<li class="nav-item m-0 p-0 dark" role="presentation">
 							<a class="nav-link dark" id="t-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
 								TacOps
+							</a>
+						</li>
+						<li class="nav-item m-0 p-0 dark" role="presentation">
+							<a class="nav-link dark" id="eq-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">
+								Notes
 							</a>
 						</li>
 					</ul>
@@ -216,8 +221,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane" id="eqs" role="tabpanel">
-							<!-- Equipment -->
+						<!-- div class="tab-pane" id="eqs" role="tabpanel">
 							<div class="row p-0 m-0">
 								<div ng-repeat="eq in dashboardroster.killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4">
 									<h4 class="text-center line-top-light" ng-if="$index > 0 && dashboardroster.killteam.equipments[$index].eqcategory != dashboardroster.killteam.equipments[$index - 1].eqcategory">
@@ -231,7 +235,7 @@
 									<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
 								</div>
 							</div>
-						</div>
+						</div -->
 						<div class="tab-pane" id="tacops" role="tabpanel">
 							<!-- TacOps -->
 							<div class="row p-0 m-0">
@@ -273,6 +277,11 @@
 									</div>
 									<p class="oswald p-1" style="text-align: justify;" ng-bind-html="tacop.description"></p>
 								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="notes" role="tabpanel">
+							<div class="row p-0 m-0">
+								<textarea style="border: 1px solid #CCC; width: 100%; color: #EEE;" rows="15" class="darkcard d-block" ng-model="dashboardroster.notes" ng-change="commitRoster(dashboardroster);"></textarea>
 							</div>
 						</div>
 					</div>
