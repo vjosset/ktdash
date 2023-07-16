@@ -147,13 +147,14 @@
 					<?php }?>
 				</h4>
 				<div class="orange p-1"><a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a></div>
-				<img id="rosterportrait_{{ myRoster.rosterid }}"
-					src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
-					alt="{{ myRoster.rostername }}"
-					title="{{ myRoster.rostername }}"
-					class="pointer"
-					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
-					ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);" />
+				<div class="p-0 m-0 pointer">
+					<img id="rosterportrait_{{ myRoster.rosterid }}"
+						src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
+						alt="{{ myRoster.rostername }}"
+						title="{{ myRoster.rostername }}"
+						style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
+						ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);" />
+				</div>
 			</div>
 			
 			<!-- Operative Portraits -->
