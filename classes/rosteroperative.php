@@ -20,6 +20,7 @@
 		
 		public $curW = 0;
 		public $activated = 0;
+		public $isinjured = 0;
 		public $hidden = 0;
 		public $notes = "";
 		public $specialism = "";
@@ -37,7 +38,6 @@
 				"username", "rostername", "factionname", "optype",
 				"killteamname", "fireteamname", "killteam", "fireteam",
 				"archetype",
-				"isInjured","isinjured",
 				"keywords", "abilities", "uniqueactions",
 				"timestamp", "usedefaultportrait", "specialisms"
 			];

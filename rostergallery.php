@@ -112,11 +112,7 @@
 			</div>
 			<span ng-if="myRoster.spotlight == 1"><i class="fas fa-star fa-fw text-small" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></span>
 			<a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a>
-			<?php
-				if (!$ismine) { ?>
 				by&nbsp;<a class="navloader" href="/u/<?php echo $myRoster->username ?>"><span class="badge bg-dark"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $myRoster->username ?></span></a>
-			<?php }
-			?>
 		</div>
 		<?php
 		if ($myRoster->notes != '') {
@@ -138,27 +134,48 @@
 		</h3>
 		
 		<div class="row p-0 m-0 ng-cloak" ng-hide="loading">
-			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer"
-				style="overflow: hidden;"
-				ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"
-				>
+			<!-- Roster Portrait -->
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" style="overflow: hidden;border: 1px solid #eee;">
+				<h4 class="orange m-0 p-1 row">
+					<div class="col-10 p-0 m-0 d-inline">
+						{{ myRoster.rostername }}
+					</div>
+					<?php if ($ismine) { ?>
+						<div class="col-2 p-0 m-0 text-end">
+							<a class="pointer p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i></a>
+						</div>
+					<?php }?>
+				</h4>
+				<div class="orange p-1"><a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a></div>
 				<img id="rosterportrait_{{ myRoster.rosterid }}"
 					src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
 					alt="{{ myRoster.rostername }}"
 					title="{{ myRoster.rostername }}"
-					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+					class="pointer"
+					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
+					ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);" />
 			</div>
-			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 pointer" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden;"
-				ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
-				>
-				<h4 class="orange m-0 p-0">{{ operative.opname }}</h4>
-				<div class="orange">{{ operative.optype }}</div>
-				<div class="p-0 m-0">
+			
+			<!-- Operative Portraits -->
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden; border: 1px solid #eee;">
+				<h4 class="orange m-0 p-1 row">
+					<div class="col-10 p-0 m-0 d-inline">
+						{{ operative.opname }}
+					</div>
+					<?php if ($ismine) { ?>
+						<div class="col-2 p-0 m-0 text-end">
+							<a class="pointer p-1" ng-click="initUploadOpPortrait(operative)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i></a>
+						</div>
+					<?php }?>
+				</h4>
+				<div class="orange p-1">{{ operative.optype }}</div>
+				<div class="p-0 m-0 pointer">
 					<img id="opportrait_{{operative.rosteropid}}"
 						ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
 						alt="{{ operative.opname }}"
 						title="{{ operative.opname }}"
-						style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;" />
+						style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
+						ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);" />
 				</div>
 			</div>
 		</div>

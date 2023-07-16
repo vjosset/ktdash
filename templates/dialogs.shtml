@@ -76,6 +76,52 @@
 	</div>
 </div>
 
+<!-- Reorder roster operatives dialog -->
+<div class="modal fade" id="reorderrosteropsmodal" tabindex="-1" role="dialog" aria-labelledby="reorderrosteropsmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="reorderrosteropsmodallabel">{{ reorderrosterops.rostername }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				<!-- Operative Selection -->
+				<div class="tab-pane show active" id="reorderrosteropslist" role="tabpanel">
+					<div ng-repeat="operative in reorderrosterops.operatives track by $index">
+						<div>
+							<h6 class="d-inline">&nbsp;{{ operative.opname }}</h6>
+							<em>
+								<span ng-if="reorderrosterops.killteam.fireteams.length > 1">
+									{{ operative.fireteamname}} - 
+								</span>
+								{{ operative.optype }}
+							</em>
+						</div>
+						<div class="row">
+							<div class="col-4" ng-if="settings['display'] == 'card'">
+								<img id="opportrait_reorder_{{operative.rosteropid}}"
+									title="{{ operative.opname }}"
+									alt="{{ operative.opname }}"
+									ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
+									style="max-height: 70px; object-fit:cover; object-position:50% 0%; display:block;" />							
+							</div>
+							<div class="col-8">
+								<span ng-repeat="weapon in operative.weapons" class="d-inline">
+									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
+									{{ weapon.wepname }}
+									{{$last ? '' : ', '}}							
+								</span>
+							</div>
+						</div>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <!-- Share roster modal dialog -->
 <div class="modal fade" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

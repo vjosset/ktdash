@@ -61,7 +61,7 @@
 			<span ng-if="myRoster.importcount > 0"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount }}</span>
 		</div>
 		
-		<p ng-if="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="text-align:justify; white-space:pre-wrap; max-height: 200px; overflow:auto;" ng-bind="myRoster.notes">
+		<p ng-if="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="white-space:pre-wrap; max-height: 250px; overflow: auto;" ng-bind="myRoster.notes">
 		</p>
 		<p ng-if="myRoster.notes == null || myRoster.notes == ''" class="p-1" style="text-align:justify;">
 			<em ng-if="myRoster.oplist != ''">{{ myRoster.oplist }}</em>

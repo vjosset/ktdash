@@ -71,7 +71,7 @@
 		<?php include "css/styles.css"; ?>
 		</style>
 	</head>
-	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRoster();">
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initRoster('<?php echo $myRoster->rosterid ?>');">
 		<!--
 			style="
 			background-color: rgba(32, 32, 32, 0.9);

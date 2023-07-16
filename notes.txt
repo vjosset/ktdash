@@ -122,7 +122,7 @@ SQL Queries:
 
 
 
-SITEMAP GENERATOR
+SITEMAP GENERATOR - Last updated 2023-06-28
 	/* All Factions */
     SELECT CONCAT('https://ktdash.app/fa/', factionid) FROM Faction UNION
     /* All Killteams */
@@ -169,3 +169,38 @@ HAVING
     OR TAC.tacopcount < 1 OR TAC.tacopcount IS NULL
 ORDER BY
 	1, 2;
+	
+#USER STATS
+	#MOST VIEWED ROSTERS
+	SELECT R.userid, U.username, rosterid, CONCAT('https://ktdash.app/r/', rosterid) AS Link, viewcount, importcount
+	FROM Roster R
+	INNER JOIN User U ON U.userid = R.userid
+	WHERE R.userid NOT IN ('prebuilt')
+	ORDER BY viewcount DESC
+	LIMIT 100;
+
+	#MOST VIEWED USERS
+	SELECT R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username) AS Link, SUM(viewcount) AS totalviews
+	FROM Roster R
+	INNER JOIN User U ON U.userid = R.userid
+	WHERE R.userid NOT IN ('prebuilt')
+	GROUP BY R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username)
+	ORDER BY SUM(viewcount) DESC
+	LIMIT 100;
+
+	#MOST IMPORTED ROSTERS
+	SELECT R.userid, U.username, rosterid, CONCAT('https://ktdash.app/r/', rosterid) AS Link, viewcount, importcount
+	FROM Roster R
+	INNER JOIN User U ON U.userid = R.userid
+	WHERE R.userid NOT IN ('prebuilt')
+	ORDER BY importcount DESC
+	LIMIT 100;
+
+	#MOST IMPORTED USERS
+	SELECT R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username) AS Link, SUM(importcount) AS totalimports
+	FROM Roster R
+	INNER JOIN User U ON U.userid = R.userid
+	WHERE R.userid NOT IN ('prebuilt')
+	GROUP BY R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username)
+	ORDER BY SUM(importcount) DESC
+	LIMIT 100;

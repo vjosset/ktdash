@@ -1532,18 +1532,16 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.curW = parseInt(op.W);
 				}
 				
-				$scope.commitRosterOp(op);
-				
-				let wasInjured = op.isInjured;
-				if (wasInjured == null) {
-					wasInjured = false;
+				let wasinjured = op.isinjured;
+				if (wasinjured == null) {
+					wasinjured = 0;
 				}
 				
 				let opcanbeinjured = $scope.opCanBeInjured(op);
 				
-				if (op.curW < parseInt(op.W) / 2 && !wasInjured && opcanbeinjured) {
+				if (op.curW < parseInt(op.W) / 2 && wasinjured == 0 && opcanbeinjured) {
 					// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
-					op.isInjured = true;
+					op.isinjured = 1;
 					
 					// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
 					// This does NOT apply to Pathfinder Assault Grenadiers
@@ -1586,9 +1584,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
 					op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
 					
-				} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
+				} else if (op.curW >= parseInt(op.W) / 2 && wasinjured == 1) {
 					// Operative is no longer injured, was injured before
-					op.isInjured = false;
+					op.isinjured = 0;
 					
 					// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
 					// This does NOT apply to Pathfinder Assault Grenadiers
@@ -1631,6 +1629,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
 					op.M = op.M.replace("MAKEMETWO", "2" + $scope.PlaceHolders["[CIRCLE]"]);
 				}
+				
+				// Commit to DB
+				$scope.commitRosterOp(op);
 			}
 		
 			// opHasEq()
@@ -2708,13 +2709,13 @@ var app = angular.module("kt", ['ngSanitize'])
 							for (let i = 0; i < $scope.dashboardroster.operatives.length; i++) {
 								let op = $scope.dashboardroster.operatives[i];
 								
-								let wasInjured = op.isInjured;
-								if (wasInjured == null) {
-									wasInjured = false;
+								let wasinjured = op.isinjured;
+								if (wasinjured == null) {
+									wasinjured = 0;
 								}
-								if (op.curW < parseInt(op.W) / 2 && !wasInjured && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
+								if (op.curW < parseInt(op.W) / 2 && wasinjured == 0 && !(op.factionid == 'CHAOS' && op.killteamid == 'DG')) {
 									// Operative is now injured, wasn't injured before (Excludes DeathGuard operatives - Disgustingly Resilient)
-									op.isInjured = true;
+									op.isinjured = 1;
 									
 									// Increase the BS/WS on the operative's weapons (lower BS/WS is better)
 									// This does NOT apply to Pathfinder Assault Grenadiers
@@ -2754,9 +2755,9 @@ var app = angular.module("kt", ['ngSanitize'])
 									op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
 									op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
 									
-								} else if (op.curW >= parseInt(op.W) / 2 && wasInjured) {
+								} else if (op.curW >= parseInt(op.W) / 2 && wasinjured == 1) {
 									// Operative is no longer injured, was injured before
-									op.isInjured = false;
+									op.isinjured = 0;
 									
 									// Reduce the BS/WS on the operative's weapons (lower BS/WS is better)
 									// This does NOT apply to Pathfinder Assault Grenadiers
@@ -2910,7 +2911,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.oporder = $scope.settings["defaultoporder"];
 					
 					// Not injured
-					op.isInjured = false;
+					op.isinjured = 0;
 					
 					$scope.commitRosterOp(op);
 				}

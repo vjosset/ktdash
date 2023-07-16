@@ -68,7 +68,7 @@
 				<img style="height: 1em;" class="float-end" alt="Conceal - Ready" title="Conceal - Ready" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealOrange.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && !operative.activated && operative.curW > 0" />
 				<!-- i class="fas fa-check fa-fw float-end" ng-if="operative.activated && operative.curW > 0"></i -->
 				<i class="fas fa-skull fa-fw float-end" alt="Incapacitated" title="Incapacitated" ng-if="operative.curW <= 0"></i>
-				<i class="fas fa-heartbeat fa-fw float-end" alt="Injured" title="Injured" ng-if="operative.isInjured && operative.curW > 0"></i>
+				<i class="fas fa-heartbeat fa-fw float-end" alt="Injured" title="Injured" ng-if="operative.isinjured && operative.curW > 0"></i>
 				<span class="float-end" ng-if="MODE == 'Dashboard'" ng-show="operative.curW > 0">
 					<input type="checkbox" class="m-2" style="vertical-align: middle; -ms-transform: scale(1.25); -moz-transform: scale(1.25); -webkit-transform: scale(1.25); -o-transform: scale(1.25);" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />
 				</span>
@@ -133,7 +133,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" nowrap="true">
+								<td ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }" nowrap="true">
 									<span ng-bind-html="operative.M"></span>
 								</td>
 								<td>
@@ -190,7 +190,7 @@
 								<td width="16%">W</td>
 							</tr>
 							<tr>
-								<td ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }" nowrap="true">
+								<td ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }" nowrap="true">
 									<span ng-bind-html="operative.M"></span>
 									<span ng-repeat="eq in getOpEq(operative, 'OpMod', 'M')[0]" ng-bind-html="eq.eqvar2"></span>
 									<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
@@ -264,7 +264,7 @@
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
 							</td>
-							<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+							<td class="text-center h5" ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }">
 								&nbsp;&nbsp;&nbsp;{{ weapon.profiles[0].BS }}&nbsp;&nbsp;
 							</td>
 							<td class="text-center h5">
@@ -292,7 +292,7 @@
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 							</td>
-							<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+							<td class="text-center h5" ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }">
 								&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 							</td>
 							<td class="text-center h5">
@@ -313,7 +313,7 @@
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ eq.weapon.profiles[0].A }}&nbsp;&nbsp;
 							</td>
-							<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+							<td class="text-center h5" ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }">
 								&nbsp;&nbsp;&nbsp;{{ eq.weapon.profiles[0].BS }}&nbsp;&nbsp;
 							</td>
 							<td class="text-center h5">
@@ -336,7 +336,7 @@
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;
 							</td>
-							<td class="text-center h5" ng-style="{ color: operative.isInjured ? 'gainsboro' : '' }">
+							<td class="text-center h5" ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }">
 								&nbsp;&nbsp;&nbsp;{{ profile.BS }}&nbsp;&nbsp;
 							</td>
 							<td class="text-center h5">

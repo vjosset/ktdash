@@ -228,6 +228,7 @@
 					} else {
 						// Save this operative to DB
 						header("Step5: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+						header("InjuredIn: " . $newop->isinjured);
 						$newop->DBSave();
 						
 						// Reorder operatives so their seqs are always sequential
