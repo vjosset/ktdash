@@ -283,7 +283,7 @@
 				</select>
 				
 				<h6 class="d-inline">Operative Name</h6>
-				<span class="oswald float-end">
+				<span class="oswald float-end" ng-if="settings['useoptypeasname'] == 'n'">
 					<a ng-click="generateOpName(addop.operative.factionid, addop.operative.killteamid, addop.operative.fireteamid, addop.operative.opid, addop, 'opname');" ng-if="addop.operative != null">Generate Name</a>
 				</span><br/>
 				<input type="text" id="newopname" class="form-control oswald" ng-model="addop.opname" />
@@ -405,7 +405,7 @@
 			</div>
 			<div class="modal-body dark p-1">
 				<h6 class="d-inline">Operative Name</h6>
-				<span class="float-end">
+				<span class="float-end" ng-if="settings['useoptypeasname'] == 'n'">
 					<a ng-click="generateOpName(tempeditop.factionid, tempeditop.killteamid, tempeditop.fireteamid, tempeditop.opid, tempeditop, 'opname');" ng-if="tempeditop != null">Generate Name</a>
 				</span><br/>
 				<input type="text" id="newopname" class="form-control" style="font-family: Anton;" ng-model="tempeditop.opname" />

@@ -33,7 +33,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				shownarrative: 'y',
 				autoinccp: 'n',
 				defaultoporder: 'engage',
-				showopid: 'n'
+				showopid: 'n',
+				useoptypeasname: 'n'
 			};
 			
 			$scope.loadSettings = function() {
@@ -52,6 +53,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("autoinccp", "n", true);
 					$scope.setSetting("defaultoporder", "engage", true);
 					$scope.setSetting("showopid", "n", true);
+					$scope.setSetting("useoptypeasname", "n", true);
 				}
 				
 				// Set default settings
@@ -84,6 +86,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["showopid"]) {
 					$scope.setSetting("showopid", "n", true);
+				}
+				if (!$scope.settings["useoptypeasname"]) {
+					$scope.setSetting("useoptypeasname", "n", true);
 				}
 				
 				$scope.saveSettings(false);
@@ -1849,19 +1854,26 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
-				var url = APIURL + "name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
-				$.ajax({
-					type: "GET",
-					url: url,
-					timeout: APITimeout,
-					async: true,
-					dataType: 'text',
-					success: function(data) {
-						op[namevar] = data.replace(/[\n\r]/g, '');;
-						
-						$scope.$apply();
-					}
-				});
+				console.log("Op: " + JSON.stringify(op));
+				if ($scope.settings["useoptypeasname"] != 'n') {
+					// Copy optype to name
+					op[namevar] = op.operative.opname;
+				} else {
+					// Auto-generate a new name
+					var url = APIURL + "name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
+					$.ajax({
+						type: "GET",
+						url: url,
+						timeout: APITimeout,
+						async: true,
+						dataType: 'text',
+						success: function(data) {
+							op[namevar] = data.replace(/[\n\r]/g, '');;
+							
+							$scope.$apply();
+						}
+					});
+				}
 			}
 			
 			// initDeleteOp()

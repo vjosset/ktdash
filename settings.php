@@ -64,6 +64,22 @@
 				</div>
 				
 				<div class="col-12 col-md-6">
+					<h6>Auto-Generate Operative Names</h6>
+					Auto-generates operative names if enabled. If disabled, uses the operative type as its name.<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('useoptypeasname', 'n');" ng-class="settings['useoptypeasname'] == 'n' || settings['useoptypeasname'] == null ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer fas fa-check fa-fw"></i><br/>
+						Auto-Generate
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('useoptypeasname', 'y');" ng-class="settings['useoptypeasname'] == 'y' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
+						<i class="pointer fas fa-times fa-fw"></i><br/>
+						Use OpType
+					</button>
+					<br/><br/>
+				</div>
+				
+				<div class="col-12 col-md-6">
 					<h6>Operative Numbers</h6>
 					Displays operative numbers in the roster and dashboard if enabled.<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showopseq', 'y');" ng-class="settings['showopseq'] == 'y' ? 'btn-primary': 'btn-secondary'">

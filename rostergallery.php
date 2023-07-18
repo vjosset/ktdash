@@ -100,6 +100,9 @@
 							<i class="fas fa-ellipsis-h fa-fw"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="gallactions">
+							<?php if ($ismine) { ?>
+							<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Roster Portrait</a></li>
+							<?php } ?>
 							<li><a class="pointer dropdown-item p-1" ng-click="showShareRosterGallery(myRoster);" data-bs-toggle="tooltip" data-bs-placement="top" title="Share Roster"><i class="fas fa-share-square fa-fw"></i> Share Roster Gallery</a></li>
 							<li><a class="pointer dropdown-item p-1 navloader" href="/r/<?php echo $myRoster->rosterid ?>"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 							<?php if ($me != null && $me->userid == 'vince') { ?>
@@ -136,25 +139,13 @@
 		<div class="row p-0 m-0 ng-cloak" ng-hide="loading">
 			<!-- Roster Portrait -->
 			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" style="overflow: hidden;border: 1px solid #eee;">
-				<h4 class="orange m-0 p-1 row">
-					<div class="col-10 p-0 m-0 d-inline">
-						{{ myRoster.rostername }}
-					</div>
-					<?php if ($ismine) { ?>
-						<div class="col-2 p-0 m-0 text-end">
-							<a class="pointer p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i></a>
-						</div>
-					<?php }?>
-				</h4>
-				<div class="orange p-1"><a href="/fa/<?php echo $myRoster->factionid ?>/kt/<?php echo $myRoster->killteamid ?>"><?php echo $myRoster->killteamname ?></a></div>
-				<div class="p-0 m-0 pointer">
-					<img id="rosterportrait_{{ myRoster.rosterid }}"
-						src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
-						alt="{{ myRoster.rostername }}"
-						title="{{ myRoster.rostername }}"
-						style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
-						ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);" />
-				</div>
+				<img id="rosterportrait_{{ myRoster.rosterid }}"
+					src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
+					alt="{{ myRoster.rostername }}"
+					title="{{ myRoster.rostername }}"
+					style="height: 100%; width: 100%; min-height: 150px; max-height: 400px; object-fit:cover; object-position:50% 0%; display:block;"
+					ng-click="showPhoto(myRoster.rostername, '/api/rosterportrait.php?rid=' + myRoster.rosterid);"
+					class="pointer" />
 			</div>
 			
 			<!-- Operative Portraits -->
