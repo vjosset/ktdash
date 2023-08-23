@@ -592,11 +592,11 @@
 			<div class="modal-body dark p-1">
 				<div class="row">
 					<div class="col-6">Your RosterID:</div>
-					<div class="col=6"><h1 class="inline">{{ getDashboardRosterId() }}</h1></div>
+					<div class="col=6"><h1 class="inline" style="font-family: monospace;">{{ getDashboardRosterId() }}</h1></div>
 				</div>
 				<div class="row">
 					<div class="col-6">Opponent RosterID:</div>
-					<div class="col=6"><input type="text" class="form-control oswald" ng-model="dashboardopponentrosterid" /></div>
+					<div class="col=6"><input type="text" class="form-control" style="font-family: monospace;" ng-model="dashboardopponentrosterid" /></div>
 				</div>
 			</div>
 			<div class="modal-footer dark p-1">

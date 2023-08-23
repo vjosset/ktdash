@@ -676,6 +676,10 @@ var app = angular.module("kt", ['ngSanitize'])
 															// Improve (reduce) BS for this weapon
 															let newBS = (parseInt(origBS.replace("+", "")) - parseInt(modval.replace("-", ""))) + "+";
 															weptomod.profiles[pnum].BS = newBS;
+														} else if (modval.startsWith("+")) {
+															// Impair (increase) BS for this weapon
+															let newBS = (parseInt(origBS.replace("+", "")) + parseInt(modval.replace("+", ""))) + "+";
+															weptomod.profiles[pnum].BS = newBS;
 														} else {
 															// Replace BS for this weapon
 															weptomod.profiles[pnum].BS = modval;

@@ -128,7 +128,7 @@
 				// Clone/import existing team
 				
 				// Prepare a new rosterid
-				$newrosterid = CommonUtils\shortId(5);
+				$newrosterid = CommonUtils\shortId(10);
 				
 				// Get the original roster
 				$origrosterid = getIfSet($_REQUEST['rid']);
@@ -188,7 +188,7 @@
 					$origopid = $op->rosteropid;
 					$origrosterid = $op->rosterid;
 					
-					$op->rosteropid = CommonUtils\shortId(5);
+					$op->rosteropid = CommonUtils\shortId(10);
 					$op->userid = $u->userid;
 					$op->rosterid = $newrosterid;
 					
@@ -304,7 +304,7 @@
 				// Check if this team exists
 				if ($r->rosterid == null || $r->rosterid == "") {
 					// No user team ID, create a new one
-					$r->rosterid = CommonUtils\shortId(5);
+					$r->rosterid = CommonUtils\shortId(10);
 					
 					// Make sure rosters are in seq order
 					$u->reorderRosters();

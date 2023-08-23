@@ -46,7 +46,7 @@
             }
 
             $instance = new self();
-            $instance->userid = CommonUtils\shortId(5);
+            $instance->userid = CommonUtils\shortId(10);
             $instance->username = $n;
             $instance->passhash = hash('sha256', $p);
 
