@@ -219,5 +219,35 @@
 			call_user_func_array(array($cmd, "bind_param"), $params);
 			$cmd->execute();
 		}
+		
+		function GetNewRosterId() {
+			global $dbcon;
+			$rosterid = CommonUtils\shortId(5);
+			$isdup = true;
+
+			// Check that this ID is unique and keep generating IDs until it is
+			while ($isdup) {
+				// Check for dups
+				$sql = "SELECT * FROM Roster WHERE rosterid = ?";
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "s";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $rosterid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+
+				if ($result = $cmd->get_result()) {
+					if ($row = $result->fetch_object()) {
+						$isdup = true;
+					} else {
+						$isdup = false;
+					}
+				}
+			}
+
+			return $rosterid;
+		}
 	}
 ?>

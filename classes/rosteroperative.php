@@ -157,5 +157,35 @@
                 }
             }
 		}
+		
+		function GetNewRosterOpId() {
+			global $dbcon;
+			$rosteropid = CommonUtils\shortId(5);
+			$isdup = true;
+
+			// Check that this ID is unique and keep generating IDs until it is
+			while ($isdup) {
+				// Check for dups
+				$sql = "SELECT * FROM RosterOperative WHERE rosteropid = ?";
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "s";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $rosteropid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+
+				if ($result = $cmd->get_result()) {
+					if ($row = $result->fetch_object()) {
+						$isdup = true;
+					} else {
+						$isdup = false;
+					}
+				}
+			}
+
+			return $rosteropid;
+		}
 	}
 ?>

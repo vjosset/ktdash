@@ -202,7 +202,7 @@
 					// All good
 					if ($newop->rosteropid == null || $newop->rosterid == "") {
 						// No roster operative ID, generate a new one
-						$newop->rosteropid = CommonUtils\shortId(10);
+						$newop->rosteropid = RosterOperative::GetNewRosterOpId();
 						
 						// This means this is a new operative that was added to the team; set its set to be last in the roster
 						$newop->seq = 10000;

@@ -46,7 +46,7 @@
             }
 
             $instance = new self();
-            $instance->userid = CommonUtils\shortId(10);
+            $instance->userid = User::GetNewUserId();
             $instance->username = $n;
             $instance->passhash = hash('sha256', $p);
 
@@ -137,6 +137,36 @@
 
 			call_user_func_array(array($cmd, "bind_param"), $params);
 			$cmd->execute();
+		}
+		
+		function GetNewUserId() {
+			global $dbcon;
+			$userid = CommonUtils\shortId(5);
+			$isdup = true;
+
+			// Check that this ID is unique and keep generating IDs until it is
+			while ($isdup) {
+				// Check for dups
+				$sql = "SELECT * FROM User WHERE userid = ?";
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "s";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $userid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+
+				if ($result = $cmd->get_result()) {
+					if ($row = $result->fetch_object()) {
+						$isdup = true;
+					} else {
+						$isdup = false;
+					}
+				}
+			}
+
+			return $userid;
 		}
 	}
 ?>
