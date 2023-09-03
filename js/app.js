@@ -560,10 +560,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Operative is reset, along with its weapons
 						// Now apply equipment mods to the operative and its weapons
-						console.log("   Applying Equipment Mods");
+						//console.log("   Applying Equipment Mods");
 						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
 							let eq = op.equipments[eqnum];
-							console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
+							//console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
 							if (eq.eqtype.toLowerCase().includes("ability")) {
 								let ab = {
@@ -704,22 +704,22 @@ var app = angular.module("kt", ['ngSanitize'])
 									case "M":
 										//console.log("            M");
 										if (eq.eqvar2.startsWith("+")) {
-											console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
+											//console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
 											op.M += eq.eqvar2;
-											console.log("op.M: " + op.M);
+											//console.log("op.M: " + op.M);
 										}
 										break;
 									case "W":
 										console.log("            W");
 										if (eq.eqvar2.startsWith("+")) {
-											console.log("         Adding " + eq.eqvar2 + " to W");
+											//console.log("         Adding " + eq.eqvar2 + " to W");
 											if (op.curW == parseInt(op.W)) {
 												// Also increase current Wounds
 												op.curW += parseInt(eq.eqvar2)
 											}
 											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
 										}
-										console.log("New W: " + op.W);
+										//console.log("New W: " + op.W);
 										break;
 									case "APL":
 										break;
@@ -753,10 +753,8 @@ var app = angular.module("kt", ['ngSanitize'])
 								let wep = op.weapons[wepnum];
 								for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
 									let SR = wep.profiles[pronum].SR.toLowerCase();
-									if (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1) {
-										console.log("  Adding Lethal 5+ to '" + SR + "' on " + op.opname + "/" + wep.wepname);
+									if (SR.indexOf("lethal") < 0  && (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1)) {
 										wep.profiles[pronum].SR += ", Lethal 5+";
-										console.log("    New SR: " + wep.profiles[pronum].SR);
 									}
 								}
 							}
