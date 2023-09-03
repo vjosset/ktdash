@@ -54,6 +54,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("defaultoporder", "engage", true);
 					$scope.setSetting("showopid", "n", true);
 					$scope.setSetting("useoptypeasname", "n", true);
+					$scope.setSetting("closequarters", "n", true);
 				}
 				
 				// Set default settings
@@ -89,6 +90,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["useoptypeasname"]) {
 					$scope.setSetting("useoptypeasname", "n", true);
+				}
+				if (!$scope.settings["closequarters"]) {
+					$scope.setSetting("closequarters", "n", true);
 				}
 				
 				$scope.saveSettings(false);
@@ -733,6 +737,27 @@ var app = angular.module("kt", ['ngSanitize'])
 										break;
 									case "GA":
 										break;
+								}
+							}
+						}
+					}
+				}
+				
+				// Close quarters special rules
+				if ($scope.settings["closequarters"] == "y") {
+					// Add the Lethal 5+ to Blast X, Splash X and/or Torrent X
+					if (roster != null) {
+						for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
+							let op = roster.operatives[opnum];
+							for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
+								let wep = op.weapons[wepnum];
+								for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
+									let SR = wep.profiles[pronum].SR.toLowerCase();
+									if (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1) {
+										console.log("  Adding Lethal 5+ to '" + SR + "' on " + op.opname + "/" + wep.wepname);
+										wep.profiles[pronum].SR += ", Lethal 5+";
+										console.log("    New SR: " + wep.profiles[pronum].SR);
+									}
 								}
 							}
 						}
@@ -3121,6 +3146,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					keyTemp = "/" + keyTemp.replace("[", "\[").replace("]", "\]") + "/g";
 					input = input.replaceAll(key, $scope.PlaceHolders[key]);
 				}
+				
 				return input;
 			}
 			
@@ -3229,7 +3255,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Each time this operative fights in combat, in the Roll Attack Dice step of that combat, each time you retain a critical hit, the target suffers 2 Mortal Wounds.";
 								break;
 							case "DETONATE":
-						rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within " + $scope.PlaceHolders["[SQUARE]"] + " of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within " + $scope.PlaceHolders["[SQUARE]"] + " is a valid target, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
+								rule.ruletext = "Each time this operative makes a Shoot action using its remote mine, make a shooting attack against each operative within " + $scope.PlaceHolders["[SQUARE]"] + " of the centre of its Mine token with that weapon. When making those shooting attacks, each operative (friendly and enemy) within " + $scope.PlaceHolders["[SQUARE]"] + " is a valid target, but when determining if it is in Cover, treat this operative’s Mine token as the active operative. Then remove this operative’s Mine token. An operative cannot make a shooting attack with this weapon by performing an Overwatch action, or if its Mine token is not in the killzone.";
 								break;
 							case "EXPERT RIPOSTE":
 								rule.ruletext = "Each time this operative fights in combat using its duelling blades, in the Resolve Successful Hits step of that combat, each time you parry with a critical hit, also inflict damage equal to the weapon's Critical Damage characteristic.";
@@ -3286,6 +3312,9 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "SIL":
 								rule.rulename = "Silent";
 								rule.ruletext = "Can Shoot this weapon while on a Conceal order";
+								break;
+							case "SIPHON LIFE FORCE":
+								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful Hits step of that shooting attack, if you resolve two or more attack dice, you can select one friendly LEGIONARY operative within [PENT] of the target to regain1 D3 lost wounds.";
 								break;
 							case "SMART TARGETING":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, you can use this special rule. If you do so, for that shooting attack:<br/><li>Enemy operatives with an Engage order that are not within Engagement Range of friendly operatives are valid targets and cannot be in Cover.</li><li>In the Roll Attack Dice step of that shooting attack, attack dice results of 6 are successful normal hits. All other attack dice results are failed hits.</li>";

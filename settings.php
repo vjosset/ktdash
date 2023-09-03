@@ -127,6 +127,23 @@
 				</div>
 				
 				<div class="col-12 col-md-6">
+					<h6>Close Quarters</h6>
+					Automatically adds Lethal 5+ to Weapons with the Blast x, Splash x and/or Torrent x rules.
+					<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('closequarters', 'y');" ng-class="settings['closequarters'] == 'y' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
+						<i class="pointer fas fa-magic fa-fw"></i><br/>
+						Enable
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('closequarters', 'n');" ng-class="settings['closequarters'] == 'n' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer fas fa-bars fa-fw"></i><br/>
+						Disable
+					</button>
+					<br/><br/>
+				</div>
+				
+				<div class="col-12 col-md-6">
 					<h6>Auto-Apply Equipment Modifiers</h6>
 					Automatically applies equipment modifiers to operatives and weapons if enabled.
 					<br/>
