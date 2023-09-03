@@ -8,12 +8,8 @@
 	
 	//print_r($bi);
 	
-	$p = 'sdgdfg';
+	$p = 'fsdfsd';
 	echo hash('sha256', $p);
-	
-	for ($i = 0; $i < 100; $i++) {
-		echo CommonUtils\shortId(7) . "<br/>";
-	}
 ?>
 <br/><br/>
 <?php
