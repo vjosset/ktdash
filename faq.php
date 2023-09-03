@@ -31,7 +31,7 @@
 		<h1 class="orange">FAQ</h1>
 		
 		<div class="p-1 m-1">
-			<h4>Is there an app I can install on my phone?</h4>
+			<h5>Is there an app I can install on my phone?</h5>
 			<p>
 				KTDash does not have a native app (like you would find in the App Store for example), but it can be installed as a
 				<a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app#progressive_web_apps" target="_blank">Progressive Web App (PWA)</a>.<br/>
@@ -41,33 +41,44 @@
 				<img src="/img/install_chrome.jpg" width="250" />
 			</p>
 			
-			<h4>I forgot my password!</h4>
+			<h5>I forgot my password!</h5>
 			<p>
 				If you forgot your password and can't log in, send me a DM in our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a> and we'll work on resetting it together.<br/>
 				Since we don't collect email addresses (and I really don't want them), this is currently the only way to reset your password.
 			</p>
 			
-			<h4>I have an idea for a cool new feature or improvement</h4>
+			<h5>What do the icons mean on my roster?</h5>
+			<p>
+				The icons on your roster indicate three things:
+				<ul>
+					<li>If your roster has a star icon <i class="fas fa-star fa-fw" title="Spotlight"></i>, that means your roster was selected for the spotlight and will be featured on the killteam's "Rosters" tab and randomly selected to be shown on the home page!</li>
+					<li>The eye icon <i class="fas fa-eye fa-fw" title="View Count"></i> indicates how many times your roster was viewed by another user</li>
+					<li>The "arrow file" icon <i class="fas fa-file-import fa-fw" title="Import Count"></i> indicates how many times your roster was imported by another user</li>
+				</ul>
+			</p>
+			
+			<h5>I have an idea for a cool new feature or improvement</h5>
 			<p>
 				If you want to suggest a new feature or improvement, first check the <a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">Trello Backlog</a> to see if it is already logged there. 
 				If it is already there, you can vote that feature up to help prioritize the next thing to work on.<br/>
 				If you don't find your suggestion already in the backlog, come to the "Feature Requests" channel on the <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a> and send it in!<br/>
-				Also note that the most commmonly-requested features have been implemented in the <a href="/settings.php">Settings</a>; check there first!
+				Also note that the most commmonly-requested features have already been implemented in the <a href="/settings.php">Settings</a>; check there first!
 			</p>
 			
-			<h4>I found a bug in the app!</h4>
+			<h5>I found a bug in the app!</h5>
 			<p>
-				Please report bugs in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>!
+				Please report bugs in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>.
 				Bugs and typos are typically fixed within a day, and often within an hour!
 			</p>
 			
-			<h4>I found a typo</h4>
+			<h5>I found a typo</h5>
 			<p>
-				I HATE typos. Since everything is lovingly loaded by hand, there is bound to be typos and spelling mistakes despite our best efforts. Please report these in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>!
+				I HATE typos. But since everything is lovingly loaded by hand, there is bound to be typos and spelling mistakes despite our best efforts.
+				Please report these in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>.
 				Bugs and typos are typically fixed within a day, and often within an hour!
 			</p>
 			
-			<h4>What is your privacy policy?</h4>
+			<h5>What is your privacy policy?</h5>
 			<p>
 				Our privacy policy is "We don't want your personal information, and whatever we collect will never be shared with anyone ever no-way no-how".<br/>
 				That being said, a few things to note:
@@ -83,10 +94,16 @@
 				</ul>
 			</p>
 			
-			<h4>I heard you have some 3d printing STL models available</h4>
+			<h5>I heard you have some 3d printing STL models available</h5>
 			<p>
 				You can find all the STL models we designed for terrain and utilities on
 				<a href="https://www.thingiverse.com/jodawznev/designs" target="_blank">Thingiverse</a> or <a href="https://cults3d.com/en/users/jodawznev/3d-models" target="_blank">Cults 3D</a>.
+			</p>
+			
+			<h5>Can I donate/give you money? Is there a Patreon, Ko-Fi or other option?</h5>
+			<p>
+				No thank you. This is a labor of love and I really don't need or want any money.<br/>
+				If you really want to give $5 to someone who needs it, look up your local wildlife rescue, women's shelter, or adult literacy program, and tell them I sent you!
 			</p>
 		</div>
 		
