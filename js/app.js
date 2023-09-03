@@ -745,16 +745,33 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Close quarters special rules
 				if ($scope.settings["closequarters"] == "y") {
+					console.log("CloseQuarters");
 					// Add the Lethal 5+ to Blast X, Splash X and/or Torrent X
 					if (roster != null) {
 						for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
 							let op = roster.operatives[opnum];
+							
+							// Do weapons first
 							for (let wepnum = 0; wepnum < op.weapons.length; wepnum++) {
 								let wep = op.weapons[wepnum];
 								for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
 									let SR = wep.profiles[pronum].SR.toLowerCase();
 									if (SR.indexOf("lethal") < 0  && (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1)) {
 										wep.profiles[pronum].SR += ", Lethal 5+";
+									}
+								}
+							}
+							
+							// Now do equipments
+							for (let eqnum = 0; eqnum < op.equipments.length; eqnum++) {
+								let eq = op.equipments[eqnum];
+								if (eq.weapon) {
+									let wep = eq.weapon;
+									for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
+										let SR = wep.profiles[pronum].SR.toLowerCase();
+										if (SR.indexOf("lethal") < 0  && (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1)) {
+											wep.profiles[pronum].SR += ", Lethal 5+";
+										}
 									}
 								}
 							}
