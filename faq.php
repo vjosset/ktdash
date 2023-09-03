@@ -51,9 +51,9 @@
 			<p>
 				The icons on your roster indicate three things:
 				<ul>
-					<li>If your roster has a star icon <i class="fas fa-star fa-fw" title="Spotlight"></i>, that means your roster was selected for the spotlight and will be featured on the killteam's "Rosters" tab and randomly selected to be shown on the home page!</li>
-					<li>The eye icon <i class="fas fa-eye fa-fw" title="View Count"></i> indicates how many times your roster was viewed by another user</li>
-					<li>The "arrow file" icon <i class="fas fa-file-import fa-fw" title="Import Count"></i> indicates how many times your roster was imported by another user</li>
+					<li><i class="fas fa-star fa-fw" title="Spotlight"></i>: If a roster has a star icon, it means that roster was selected for the spotlight and will be featured on the killteam's "Rosters" tab and randomly selected to be shown on the home page</li>
+					<li><i class="fas fa-eye fa-fw" title="View Count"></i>: The eye icon indicates how many times the roster was viewed by another user</li>
+					<li><i class="fas fa-file-import fa-fw" title="Import Count"></i>: The "arrow file" icon indicates how many times the roster was imported by another user</li>
 				</ul>
 			</p>
 			
@@ -65,16 +65,10 @@
 				Also note that the most commmonly-requested features have already been implemented in the <a href="/settings.php">Settings</a>; check there first!
 			</p>
 			
-			<h5>I found a bug in the app!</h5>
+			<h5>I found a bug or typo!</h5>
 			<p>
-				Please report bugs in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>.
-				Bugs and typos are typically fixed within a day, and often within an hour!
-			</p>
-			
-			<h5>I found a typo</h5>
-			<p>
-				I HATE typos. But since everything is lovingly loaded by hand, there is bound to be typos and spelling mistakes despite our best efforts.
-				Please report these in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>.
+				Please report bugs and typos (I HATE typos) in the "Report a Bug" channel of our <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a>.
+				Since everything is lovingly loaded by hand, there is bound to be typos and spelling mistakes despite our best efforts.<br/>
 				Bugs and typos are typically fixed within a day, and often within an hour!
 			</p>
 			
@@ -88,7 +82,7 @@
 					<li>We use Google Analytics to track site traffic and performance</li>
 					<li>The web server's logs include your IP address and are purged every 30 days</li>
 					<li>
-						All your rosters are publicly visible. That means that you can easily share your roster with other players,
+						All your rosters are publicly visible. That means that you can easily share your rosters with other people,
 						but it also means you want to be mindful of the content you load, especially the roster and operative portraits.
 					</li>
 				</ul>
