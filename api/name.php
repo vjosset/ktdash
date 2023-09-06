@@ -380,6 +380,20 @@
 			case "IMP|PHO|PHO|RVRSGT": //Phobos Strike Team Reiver Sergeant
 			case "IMP|PHO|PHO|RVRWAR": //Phobos Strike Team Reiver Warrior
 				return GetSpaceMarineName();
+			case "IMP|SFJ|SFJ|CAP":
+				return "Captain Justian";
+			case "IMP|SFJ|SFJ|SGT":
+				return "Sergeant Marius";
+			case "IMP|SFJ|SFJ|ACU":
+				return "Brother Acules";
+			case "IMP|SFJ|SFJ|DEC":
+				return "Brother Decian";
+			case "IMP|SFJ|SFJ|FLA":
+				return "Brother Flavian";
+			case "IMP|SFJ|SFJ|THY":
+				return "Brother Thysor";
+			case "IMP|SFJ|SFJ|VIG":
+				return "Brother Vignius";
 			case "IMP|SM|AINT|SGT": //Assault Intercessor Sergeant
 			case "IMP|SM|AINT|WAR": //Assault Intercessor Warrior
 			case "IMP|SM|DW|FTR": //DeathWatch Fighter

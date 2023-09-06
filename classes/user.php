@@ -48,7 +48,8 @@
             $instance = new self();
             $instance->userid = User::GetNewUserId();
             $instance->username = $n;
-            $instance->passhash = hash('sha256', $p);
+            //$instance->passhash = hash('sha256', $p);
+			$instance->passhash = password_hash($p, PASSWORD_DEFAULT);
 
             $instance->DBSave();
 

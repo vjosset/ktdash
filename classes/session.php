@@ -17,8 +17,6 @@
         }
 		
 		public function Login($username, $password) {
-            \CommonUtils\debug("    Session:LogIn()");
-			
             Session::Logout();
             global $dbcon;
 			
@@ -26,70 +24,75 @@
             $passhash = hash('sha256', $password);
 
             // Check for a match for email and password
-            $sql = "SELECT * FROM User WHERE username = ? AND passhash = ?;";
-            \CommonUtils\debug("    $sql");
-            \CommonUtils\debug("    $username");
-            \CommonUtils\debug("    $passhash");
+            $sql = "SELECT * FROM User WHERE username = ?;";
 
-            $paramtypes = "ss";
+            $paramtypes = "s";
             $params = array();
             $params[] =& $paramtypes;
             $params[] =& $username;
-            $params[] =& $passhash;
 
             $cmd = $dbcon->prepare($sql);
             call_user_func_array(array($cmd, "bind_param"), $params);
             if (!$cmd->execute()) {
-				// Log in failed
-				\CommonUtils\debug("    Login Failed");
+				// Log in failed - Do nothing (user will remain null)
 			}
 
             $user = null;
             if ($result = $cmd->get_result()) {
-				\CommonUtils\debug("    Got Result");
-				
-				\CommonUtils\debug("    Result: " . json_encode($result));
                 if ($row = $result->fetch_object()) {
-					\CommonUtils\debug("    Fetched object");
 					// Get the user object
                     $user = User::FromRow($row);
 					
-					\CommonUtils\debug("    Got user " . $user->username);
+					// Check the password
+					if ($user->passhash == $passhash) {
+						// Password is correct, but is using old sha256 (unsafe)
+						// We need to update the password to a properly salted and hashed value
+						$user->passhash = password_hash($password, PASSWORD_DEFAULT);
+						$sql = "UPDATE User SET passhash = ? WHERE userid = ?;";
+						$paramtypes = "ss";
+						$params = array();
+						$params[] =& $paramtypes;
+						$params[] =& $user->passhash;
+						$params[] =& $user->userid;
 
-                    // Clear the passhash from the user
-                    unset($user->passhash);
-                    
-                    // Set the session
-					$session = new Session();
-					$session->sessionid = CommonUtils\shortId();
-					$session->userid = $user->userid;
-					$session->lastactivity = CommonUtils\Now();
+						$cmd = $dbcon->prepare($sql);
+						call_user_func_array(array($cmd, "bind_param"), $params);
+						if (!$cmd->execute()) {
+							// Failed to update the password
+							echo "Could not rehash password";
+						}
+					}
 					
-					// Save to DB
-					\CommonUtils\debug("    Committing Session");
-					$session->DBSave();
-					
-					// Set the cookie
-					//setcookie(
-					//	'asid',
-					//	$session->sessionid . self::CookieSeparator . $session->userid,
-					//	time() + (self::CookieExpiration),
-					//	'/',
-					//	'ktdash.app',
-					//	true, // TLS-only
-					//	true  // http-only
-					//);
-					$cookie_options = array (
-						'expires' => time() + (self::CookieExpiration), 
-						'path' => '/', 
-						'domain' => 'ktdash.app',
-						'secure' => true,
-						'httponly' => true,
-						'samesite' => 'Lax'
-					);
-					setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
-					
-					$_COOKIE[self::CookieID] = $session->sessionid . self::CookieSeparator . $session->userid;
+					// Now validate the password
+					if (!password_verify($password, $user->passhash)) {
+						// Incorrect password
+						$user = null;
+					}
+					else {
+						// Clear the passhash from the user
+						unset($user->passhash);
+						
+						// Set the session
+						$session = new Session();
+						$session->sessionid = CommonUtils\shortId();
+						$session->userid = $user->userid;
+						$session->lastactivity = CommonUtils\Now();
+						
+						// Save to DB
+						$session->DBSave();
+						
+						$cookie_options = array (
+							'expires' => time() + (self::CookieExpiration), 
+							'path' => '/', 
+							'domain' => 'ktdash.app',
+							'secure' => true,
+							'httponly' => true,
+							'samesite' => 'Lax'
+						);
+						setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
+						
+						$_COOKIE[self::CookieID] = $session->sessionid . self::CookieSeparator . $session->userid;
+					}
                 }
             }
 

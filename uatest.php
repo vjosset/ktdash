@@ -8,7 +8,11 @@
 	
 	//print_r($bi);
 	
-	$p = 'fsdfsd';
+	$p = 'Kapu36Losi';
+	//echo hash('sha256', $p);
+	
+	echo password_hash($p, PASSWORD_DEFAULT);
+	echo "<br/><br/>";
 	echo hash('sha256', $p);
 ?>
 <br/><br/>
