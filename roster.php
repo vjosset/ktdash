@@ -209,7 +209,7 @@
 			
 			<!-- Show this roster's operatives -->
 			<div class="row p-0 m-0">
-				<div class="col-12 col-md-6 col-xl-4 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
+				<div class="col-12 col-md-6 col-xl-4 col-xxl-3 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index">
 					<?php include "templates/op_card.shtml" ?>
 				</div>
 			</div>
