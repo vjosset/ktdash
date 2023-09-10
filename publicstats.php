@@ -39,7 +39,7 @@
 						"SELECT 'Users' AS CountType, COUNT(*) AS Total FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
 						SELECT 'Rosters', COUNT(*) AS Total FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') UNION
 						SELECT 'RosterOps', COUNT(*) AS Total FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') UNION
-						SELECT 'SplotlightCount', COUNT(*) AS Total FROM Roster WHERE spotlight = 1";
+						SELECT 'SpotlightCount', COUNT(*) AS Total FROM Roster WHERE spotlight = 1";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
