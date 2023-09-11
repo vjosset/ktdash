@@ -648,6 +648,13 @@ var app = angular.module("kt", ['ngSanitize'])
 											let modstat = mod.split(":")[0];
 											let modval = mod.split(":")[1];
 											switch(modstat) {
+												case "A":
+													// Udpate Attacks
+													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+														//console.log("         Applying Special Rule " + modval);
+														weptomod.profiles[pnum].A = parseInt(weptomod.profiles[pnum].A) + parseInt(modval);
+													}
+													break;
 												case "SR":
 													// New special rule - Loop through the weapon's profiles and add this special rule to them
 													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
