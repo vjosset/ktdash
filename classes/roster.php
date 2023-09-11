@@ -222,7 +222,7 @@
 		
 		function GetNewRosterId() {
 			global $dbcon;
-			$rosterid = CommonUtils\shortId(5);
+			$rosterid = CommonUtils\shortId(8);
 			$isdup = true;
 
 			// Check that this ID is unique and keep generating IDs until it is

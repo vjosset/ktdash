@@ -160,7 +160,7 @@
 		
 		function GetNewRosterOpId() {
 			global $dbcon;
-			$rosteropid = CommonUtils\shortId(5);
+			$rosteropid = CommonUtils\shortId(10);
 			$isdup = true;
 
 			// Check that this ID is unique and keep generating IDs until it is
