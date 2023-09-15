@@ -191,7 +191,7 @@
 				<!-- Equipment -->
 				<div class="tab-pane" id="eqs" role="tabpanel">
 					<div class="row p-0 m-0">
-						<div ng-repeat="eq in killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Rare Equipment')">
+						<div ng-repeat="eq in killteam.equipments track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')">
 							<h4 class="text-center line-top-light" ng-if="$index > 0 && killteam.equipments[$index].eqcategory != killteam.equipments[$index - 1].eqcategory">
 								{{ eq.eqcategory }}
 							</h4>
