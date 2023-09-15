@@ -732,12 +732,16 @@ var app = angular.module("kt", ['ngSanitize'])
 										break;
 									case "SV":
 										//console.log("            SV");
-										if (eq.eqvar2.startsWith("+")) {
-											//console.log("         Adding " + eq.eqvar2 + " to W");
-											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-										} else {
-											//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
-											op.SV = eq.eqvar2;
+										if (eq.eqvar2 != "") {
+											if (eq.eqvar2.startsWith("+") || eq.eqvar2.startsWith("-")) {
+												//console.log("         Adding " + eq.eqvar2 + " to W");
+												let SV = parseInt(op.SV.replace("+", ""));
+												op.SV = SV + parseInt(eq.eqvar2) + "+";
+											}
+											else {
+												//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
+												op.SV = eq.eqvar2;
+											}
 										}
 										break;
 									case "DF":
