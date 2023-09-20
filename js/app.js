@@ -709,11 +709,20 @@ var app = angular.module("kt", ['ngSanitize'])
 								console.log("OpMod");
 								switch (eq.eqvar1) {
 									case "M":
-										//console.log("            M");
+										console.log("            M - var2: " + eq.eqvar2);
 										if (eq.eqvar2.startsWith("+")) {
 											//console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
 											op.M += eq.eqvar2;
 											//console.log("op.M: " + op.M);
+										}
+										else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
+											console.log("-[CIRCLE]");
+											console.log("Old M: " + op.M);
+											op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
+											op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
+											op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+											op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
+											console.log("New M: " + op.M);
 										}
 										break;
 									case "W":
