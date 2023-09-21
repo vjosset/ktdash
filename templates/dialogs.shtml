@@ -131,6 +131,11 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body dark p-1">
+				<div ng-if="canshare">
+					<a href="#" ng-click="shareRoster(shareroster);">Share Roster</a><br/>
+					<a href="#" ng-click="shareRosterGallery(shareroster);">Share Roster Gallery</a><br/>
+					<a href="#" ng-click="shareRosterDescription(shareroster);">Share Roster Description</a>
+				</div>
 				Post to
 				<a href="https://twitter.com/intent/tweet?text=I built my KillTeam roster on KTDash! {{ shareroster.url }} ping @KTDash #ktdash #killteam" target="_blank">
 					Twitter

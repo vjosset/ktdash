@@ -1502,6 +1502,42 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Show the modal
 				$('#sharerostergallerymodal').modal("show");
 			}
+
+			$scope.shareRoster = function(roster) {
+				// Prepare the share content/object
+				let shareData = {
+					title: roster.rostername,
+					text: "Check out my roster on KTDash!",
+					url: "https://ktdash.app/r/" + roster.rosterid,
+				};
+
+				// Trigger the native share dialog
+				navigator.share(shareData);
+			}
+			
+			$scope.shareRosterGallery = function(roster) {
+				// Prepare the share content/object
+				let shareData = {
+					title: roster.rostername,
+					text: "Check out my roster on KTDash!",
+					url: "https://ktdash.app/r/" + roster.rosterid + "/g",
+				};
+
+				// Trigger the native share dialog
+				navigator.share(shareData);
+			}
+			
+			$scope.shareRosterDescription = function(roster) {
+				// Prepare the share content/object
+				let shareData = {
+					title: roster.rostername,
+					text: $scope.getRosterTextDescription(roster),
+					url: "https://ktdash.app/r/" + roster.rosterid,
+				};
+
+				// Trigger the native share dialog
+				navigator.share(shareData);
+			}
 			
 			// totalEqPts()
 			// Returns the total equipment points for all operatives in the specified roster
@@ -3460,6 +3496,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				return out;
 			}
 		}
+
+		// Always check if the user's current browser supports native sharing
+		$scope.canshare = navigator.canShare();
 			
 		// Always initialize the session
 		$scope.initSession();
