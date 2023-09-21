@@ -1506,8 +1506,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.shareRoster = function(roster) {
 				// Prepare the share content/object
 				let shareData = {
-					title: roster.rostername,
-					text: "Check out my roster on KTDash!",
+					title: roster.rostername + " by " + roster.username,
+					text: "Check out this roster on KTDash!",
 					url: "https://ktdash.app/r/" + roster.rosterid,
 				};
 
@@ -1518,8 +1518,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.shareRosterGallery = function(roster) {
 				// Prepare the share content/object
 				let shareData = {
-					title: roster.rostername,
-					text: "Check out my roster on KTDash!",
+					title: roster.rostername + " by " + roster.username,
+					text: "Check out this roster on KTDash!",
 					url: "https://ktdash.app/r/" + roster.rosterid + "/g",
 				};
 
@@ -1530,9 +1530,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.shareRosterDescription = function(roster) {
 				// Prepare the share content/object
 				let shareData = {
-					title: roster.rostername,
-					text: $scope.getRosterTextDescription(roster),
-					url: "https://ktdash.app/r/" + roster.rosterid,
+					title: roster.rostername + " by " + roster.username,
+					text: $scope.getRosterPlainTextDescription(roster)
 				};
 
 				// Trigger the native share dialog
@@ -2385,6 +2384,47 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 					
 					out += "<br/><br/>";
+				}
+				
+				// Done
+				return out;
+			}
+			
+			$scope.getRosterPlainTextDescription = function(roster) {
+				te("roster", "getplaintext", "", roster.rosterid);
+				let out = "";
+				out = "https://ktdash.app/r/" + roster.rosterid + "\r\n" + roster.rostername + " by " + roster.username + "\r\n";
+				out += roster.killteam.killteamname + "\r\n";
+				
+				let totalEq = $scope.totalEqPts(roster);
+				if (totalEq > 0) {
+					out += "Total Equipment Points: " + totalEq + "\r\n\r\n";
+				}
+				
+				for (let i = 0; i < roster.operatives.length; i++) {
+					let op = roster.operatives[i];
+					out += (op.seq + 1) + ". " + op.opname + " (" + op.optype + "\r\n";
+					
+					// Weapons
+					for (let j = 0; j < op.weapons.length; j++) {
+						let wep = op.weapons[j];
+						if (j > 0) {
+							out += ", ";
+						}
+						out += wep.wepname;
+					}
+					
+					for (let j = 0; j < op.equipments.length; j++) {
+						let eq = op.equipments[j];
+						if (j == 0 || (j > 0 && eq.eqcategory != op.equipments[j - 1].eqcategory)) {
+							out += "\r\n" + eq.eqcategory + ": ";
+						} else {
+							out += ", ";
+						}
+						out += eq.eqname + (eq.eqpts > 0 ? " (" + eq.eqpts + " EP)" : "");
+					}
+					
+					out += "\r\n\r\n";
 				}
 				
 				// Done
@@ -3498,7 +3538,7 @@ var app = angular.module("kt", ['ngSanitize'])
 		}
 
 		// Always check if the user's current browser supports native sharing
-		$scope.canshare = navigator.canShare();
+		$scope.canshare = navigator.canShare;
 			
 		// Always initialize the session
 		$scope.initSession();
