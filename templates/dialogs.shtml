@@ -132,17 +132,18 @@
 			</div>
 			<div class="modal-body dark p-1">
 				<div ng-if="canshare">
-					<a href="#" ng-click="shareRoster(shareroster);">Share Roster</a><br/>
-					<a href="#" ng-click="shareRosterGallery(shareroster);">Share Roster Gallery</a><br/>
-					<a href="#" ng-click="shareRosterDescription(shareroster);">Share Roster Description</a>
-				</div>
+					<a href="#" ng-click="shareRoster(shareroster);"><i class="far fa-id-card fa-fw"></i> Share Roster</a><br/>
+					<a href="#" ng-click="shareRosterGallery(shareroster);"><i class="fas fa-images fa-fw"></i> Share Roster Gallery</a><br/>
+					<a href="#" ng-if="shareroster.operatives" ng-click="shareRosterDescription(shareroster);"><i class="pointer fas fa-list fa-fw"></i> Share Roster Description</a>
+				</div><br/>
+
 				Post to
 				<a href="https://twitter.com/intent/tweet?text=I built my KillTeam roster on KTDash! {{ shareroster.url }} ping @KTDash #ktdash #killteam" target="_blank">
 					Twitter
 				</a>
 				<br/><br/>
 				
-				Roster Share Link:
+				Roster Link:
 				<a ng-href="{{ shareroster.url }}" target="_blank">{{ shareroster.rostername }}</a><br/>
 				<pre>{{ shareroster.url }}</pre>
 				<br/><br/>

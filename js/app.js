@@ -706,27 +706,27 @@ var app = angular.module("kt", ['ngSanitize'])
 							
 							if (eq.eqtype.toLowerCase().includes("opmod")) {
 								// Pick the characteristic to mod
-								console.log("OpMod");
+								//console.log("OpMod");
 								switch (eq.eqvar1) {
 									case "M":
-										console.log("            M - var2: " + eq.eqvar2);
+										//console.log("            M - var2: " + eq.eqvar2);
 										if (eq.eqvar2.startsWith("+")) {
 											//console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
 											op.M += eq.eqvar2;
 											//console.log("op.M: " + op.M);
 										}
 										else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
-											console.log("-[CIRCLE]");
-											console.log("Old M: " + op.M);
+											//console.log("-[CIRCLE]");
+											//console.log("Old M: " + op.M);
 											op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
 											op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
 											op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
 											op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
-											console.log("New M: " + op.M);
+											//console.log("New M: " + op.M);
 										}
 										break;
 									case "W":
-										console.log("            W");
+										//console.log("            W");
 										if (eq.eqvar2.startsWith("+")) {
 											//console.log("         Adding " + eq.eqvar2 + " to W");
 											if (op.curW == parseInt(op.W)) {
@@ -1490,6 +1490,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");
+
+				console.log("Roster plaintext description: " + "\r\n" + $scope.getRosterPlainTextDescription(roster));
 			}
 		
 			// showShareRosterGallery()
@@ -1531,7 +1533,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Prepare the share content/object
 				let shareData = {
 					title: roster.rostername + " by " + roster.username,
-					text: $scope.getRosterPlainTextDescription(roster)
+					text: $scope.getRosterPlainTextDescription(roster),
+					url: "",
 				};
 
 				// Trigger the native share dialog
@@ -2182,7 +2185,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Make sure to track this locally too
 						$scope.optoedit.equipments.push($scope.tempeditop.equipments[i]);
-						console.log("Added equipment " + JSON.stringify($scope.tempeditop.equipments[i]));
+						//console.log("Added equipment " + JSON.stringify($scope.tempeditop.equipments[i]));
 					}
 				}
 				
@@ -2393,17 +2396,18 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterPlainTextDescription = function(roster) {
 				te("roster", "getplaintext", "", roster.rosterid);
 				let out = "";
-				out = "https://ktdash.app/r/" + roster.rosterid + "\r\n" + roster.rostername + " by " + roster.username + "\r\n";
-				out += roster.killteam.killteamname + "\r\n";
+				out = roster.rostername + "\r\n";
+				out += roster.killteamname + " by " + roster.username + "\r\n";
+				out += "https://ktdash.app/r/" + roster.rosterid + "\r\n\r\n";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {
 					out += "Total Equipment Points: " + totalEq + "\r\n\r\n";
 				}
-				
+
 				for (let i = 0; i < roster.operatives.length; i++) {
 					let op = roster.operatives[i];
-					out += (op.seq + 1) + ". " + op.opname + " (" + op.optype + "\r\n";
+					out += (op.seq + 1) + ". " + op.opname + " (" + op.optype + ")\r\n";
 					
 					// Weapons
 					for (let j = 0; j < op.weapons.length; j++) {
