@@ -2063,20 +2063,19 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 
 			$scope.opIsDead = function(operative) {
-				if (operative.curW <= 0) {
-					return true;
-				}
-				else {
-					// Check if this operative has the "Slain" battle scar
-					// Loop through this operative's equipment looking for this "Slain" battle scar
-					for (let eqnum = 0; eqnum < operative.equipments.length; eqnum++) {
-						let eq = operative.equipments[eqnum];
-						if (eq.eqcategory == 'Battle Scar' && eq.eqname == 'Slain') {
-							return true;
-						}
+				return operative.curW <= 0 || $scope.opIsSlain(operative);
+			}
+
+			$scope.opIsSlain = function(operative) {
+				// Check if this operative has the "Slain" battle scar
+				// Loop through this operative's equipment looking for this "Slain" battle scar
+				for (let eqnum = 0; eqnum < operative.equipments.length; eqnum++) {
+					let eq = operative.equipments[eqnum];
+					if (eq.eqcategory == 'Battle Scar' && eq.eqname == 'Slain') {
+						return true;
 					}
-					return false;
 				}
+				return false;
 			}
 			
 			// moveOpUp()

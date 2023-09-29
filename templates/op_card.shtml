@@ -16,10 +16,11 @@
 		<!-- Roster Card Title -->
 		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row m-0 p-1">
 			<!-- Operative Name -->
-			<h2 class="col-11 m-0 p-0">
+			<h2 class="col-11 m-0 p-0" ng-class="{orangetext: !operative.activated, greytext: opIsSlain(operative) }">
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				{{ operative.opname }}
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
+				<i class="fas fa-skull fa-fw float-end" alt="Slain" title="Slain" ng-if="opIsSlain(operative)"></i>
 			</h2>
 			
 			<!-- Actions -->
