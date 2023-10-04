@@ -12,6 +12,8 @@
 		public $ployids = "";
 		public $tacopids = "";
 		public $notes = "";
+		public $portraitcopyok = 0;
+		public $keyword = "";
 		public $operatives = [];
 		public $tacops = [];
         

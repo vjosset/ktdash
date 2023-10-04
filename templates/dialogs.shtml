@@ -121,7 +121,6 @@
 	</div>
 </div>
 
-
 <!-- Share roster modal dialog -->
 <div class="modal fade" id="sharerostermodal" tabindex="-1" role="dialog" aria-labelledby="sharerostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -237,6 +236,14 @@
 				<br/>
 				<h4 class="oswald">Notes</h4>
 				<textarea style="border: 0px solid; width: 100%;" rows="3" ng-model="rostertoedit.newnotes"></textarea>
+				<br/><br/>
+				<div ng-if="getRosterCustomkeyword(rostertoedit) != ''" class="m-0 p-0">
+					<h4 class="oswald d-inline">Keyword</h4>
+					<em>{{ getRosterCustomkeyword(rostertoedit) }}</em><br/>
+					<input type="text" id="newkeyword" class="form-control oswald" ng-model="rostertoedit.newkeyword" />
+					<br/>
+				</div>
+				<input type="checkbox" value="1" ng-model="rostertoedit.newportraitcopyok" ng-false-value="0" ng-true-value="1">&nbsp;&nbsp;Copy portraits when imported by other users
 			</div>
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

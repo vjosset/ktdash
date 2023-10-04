@@ -7,6 +7,7 @@
         public $killteamid = "";
         public $killteamname = "";
 		public $description = "";
+		public $customkeyword = "";
 		
 		public $ploys = null;
 		public $equipments = null;

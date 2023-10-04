@@ -1162,7 +1162,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					"killteamid": "",
 					"rostername": "",
 					"faction": null,
-					"killteam": null
+					"killteam": null,
+					"portraitcopyok": 0,
+					"keyword": ""
 				};
 				
 				// Show the modal
@@ -1289,7 +1291,9 @@ var app = angular.module("kt", ['ngSanitize'])
 					"TP": roster.TP,
 					"VP": roster.VP,
 					"RP": roster.RP,
-					"ployids": roster.ployids
+					"ployids": roster.ployids,
+					"portraitcopyok": roster.portraitcopyok,
+					"keyword": roster.keyword
 					//,
 					//"tacopids": roster.tacopids
 				};
@@ -1365,6 +1369,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.rostertoedit = roster;
 				$scope.rostertoedit.newrostername =  roster.rostername;
 				$scope.rostertoedit.newnotes =  roster.notes;
+				$scope.rostertoedit.newkeyword =  roster.keyword;
+				$scope.rostertoedit.newportraitcopyok =  roster.portraitcopyok;
 				
 				// Show the modal
 				$('#editrostermodal').modal("show");
@@ -1374,10 +1380,28 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Save roster edits
 			$scope.saveEditRoster = function() {
 				te("roster", "edit", "", $scope.rostertoedit.rosterid);
+
+				// Track the old and new custom keywords so we can update the operatives if it changes
+				let oldkeyword = $scope.rostertoedit.keyword == "" ? $scope.rostertoedit.killteamcustomkeyword : $scope.rostertoedit.keyword;
+				let newkeyword = $scope.rostertoedit.newkeyword == "" ? $scope.rostertoedit.killteamcustomkeyword : $scope.rostertoedit.newkeyword;
+				oldkeyword = oldkeyword.replace("<", "").replace(">", "");
+				newkeyword = newkeyword.replace("<", "").replace(">", "");
+
 				$scope.rostertoedit.rostername = $scope.rostertoedit.newrostername;
 				$scope.rostertoedit.notes = $scope.rostertoedit.newnotes;
+				$scope.rostertoedit.keyword = $scope.rostertoedit.newkeyword;
+				$scope.rostertoedit.portraitcopyok = $scope.rostertoedit.newportraitcopyok;
 				delete $scope.rostertoedit.newrostername;
 				delete $scope.rostertoedit.newnotes;
+
+				console.log("Old Keyword: " + oldkeyword + ", New Keyword: " + newkeyword);
+				if (oldkeyword != newkeyword) {
+					// Propagate the custom keyword to the operatives
+					for (let opnum = 0; opnum < $scope.rostertoedit.operatives.length; opnum++) {
+						let op = $scope.rostertoedit.operatives[opnum];
+						op.keywords = op.keywords.replace("<" + oldkeyword + ">", "<" + newkeyword + ">");
+					}
+				}
 				
 				// Commit to API/DB
 				$scope.commitRoster($scope.rostertoedit);
@@ -1386,6 +1410,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editrostermodal').modal("hide");
 				
 				$scope.$apply();
+			}
+
+			$scope.getRosterCustomkeyword = function(roster) {
+				return roster.killteamcustomkeyword;
 			}
 		
 			// initUploadRosterPortrait()
