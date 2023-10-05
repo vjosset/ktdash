@@ -25,7 +25,8 @@
 				"opList","oplist",
 				"killteamdescription","archetype",
 				"viewcount","importcount",
-				"tacops"
+				"tacops",
+				"killteamcustomkeyword"
 			];
         }
 		
