@@ -162,11 +162,11 @@
 				
 				// If self-clone or portrait copy is allowed, copy the roster's portrait if it exists
 				if ($selfclone || $origroster->portraitcopyok == 1) {
-					$origrosterfolderpath = "../img/customportraits/user_{$$origroster->userid}/roster_{$origrosterid}";
+					$origrosterfolderpath = "../img/customportraits/user_{$origroster->userid}/roster_{$origrosterid}";
 					$origrosterportraitfile = $origrosterfolderpath . "/roster_{$origrosterid}.jpg";
 					if (is_dir($origrosterfolderpath)) {
 						// Copy the roster directory
-						$newrosterfolderpath = "../img/customportraits/user_{$$origroster->userid}/roster_{$newrosterid}";
+						$newrosterfolderpath = "../img/customportraits/user_{$roster->userid}/roster_{$newrosterid}";
 						$newrosterportraitfile = $newrosterfolderpath . "/roster_{$newrosterid}.jpg";
 						mkdir($newrosterfolderpath, 0777, true);
 						
@@ -197,9 +197,9 @@
 					
 					if ($selfclone || $origroster->portraitcopyok == 1) {
 						// Copy this operative's portrait if it exists
-						$origrosterfolderpath = "../img/customportraits/user_{$$origroster->userid}/roster_{$origrosterid}";
+						$origrosterfolderpath = "../img/customportraits/user_{$origroster->userid}/roster_{$origrosterid}";
 						$origopfile = $origrosterfolderpath . "/op_{$origopid}.jpg";
-						$newrosterfolderpath = "../img/customportraits/user_{$$origroster->userid}/roster_{$newrosterid}";
+						$newrosterfolderpath = "../img/customportraits/user_{$op->userid}/roster_{$newrosterid}";
 						$newopfile = $newrosterfolderpath . "/op_{$op->rosteropid}.jpg";
 						if (file_exists($origopfile)) {
 							// Copy the roster portrait
