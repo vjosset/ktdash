@@ -171,6 +171,10 @@ th, td {
 	.noprint {
 		display: none;
 	}
+
+	hr {
+		color: #000;
+	}
 }
 
 

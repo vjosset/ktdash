@@ -88,7 +88,7 @@
 			
 			// Spit it out
 			header("Content-type: application/pdf");
-			header("Content-disposition: inline; filename=" . $r->rostername . ".pdf");
+			header("Content-disposition: inline; filename=roster.pdf");
 			echo $data;
 		}
     }

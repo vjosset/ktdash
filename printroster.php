@@ -27,6 +27,39 @@
 	$myRoster->loadKillTeam();
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myRoster->userid;
+
+	$abilities = [];
+
+	// Now move the abilities around to make it take less room and not repeat the obvious
+	for ($opnum = 0; $opnum < count($myRoster->operatives); $opnum++) {
+		$op = $myRoster->operatives[$opnum];
+		if ($op->abilities && count($op->abilities) > 0) {
+			// This operative has abilities
+			for ($opabnum = 0; $opabnum < count($op->abilities); $opabnum++) {
+				$ab = $op->abilities[$opabnum];
+
+				if (strlen($ab->description) > 700) {
+					// Find if this ability is already in the list of common long abilities
+					$found = false;
+					for ($abnum = 0; $abnum < count($abilities); $abnum++) {
+						if ($abilities[$abnum]->title == $ab->title) {
+							// Same ability, already in the list of common long abilities
+							$found = true;
+							break;
+						}
+					}
+
+					if (!$found) {
+						// This ability is not in the list of common long abilities, add it
+						$abilities[] = json_decode(json_encode($ab));
+					}
+
+					// Clear this operative's ability description to make room
+					$ab->description = "(See Abilities below)";
+				}
+			}
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -445,5 +478,28 @@
 		}
 		?>
 		</div>
+
+		<?php
+			if (count($abilities) > 0) {
+			?>
+			<!-- Common Abilities -->
+			<div class="p-0 m-0" style="page-break-inside: avoid; page-break-before:auto;">
+				<h2>Abilities</h2>
+				<div class="p-1" style="columns: 200px 2;">
+					<?php
+						for ($abnum = 0; $abnum < count($abilities); $abnum++) {
+							$ab = $abilities[$abnum];
+						?>
+						<h3><?php echo $ab->title ?>: </h3>
+						<?php echo $ab->description ?>
+						<hr/>
+						<?php
+						}
+					?>
+				</div>
+			</div>
+		<?php
+		}
+		?>
 	</body>
 </html>
