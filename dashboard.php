@@ -243,16 +243,16 @@
 								<h3 class="text-center line-top-light">
 									Active TacOps
 								</h3>
-								<div ng-repeat="tacop in dashboardroster.tacops track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="tacop.active">
+								<div ng-repeat="tacop in dashboardroster.tacops track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="tacop.active" ng-true-value="1" ng-false-value="0">
 									<div class="line-top-light">
 										<h5 class="d-inline">
-											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" ng-change="activateTacOp(dashboardroster, tacop, tacop.active)" />
+											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" ng-true-value="1" ng-false-value="0" ng-change="activateTacOp(dashboardroster, tacop, tacop.active)" />
 											{{ tacop.title }}
 										</h5>
 										<div class="float-end">
-											<input type="checkbox" id="{{ tacop.tacopid }}-VP1" /> VP 1
+											<input type="checkbox" id="{{ tacop.tacopid }}-VP1" ng-model="tacop.VP1" ng-true-value="1" ng-false-value="0" ng-change="setTacOpScore(dashboardroster, tacop, tacop.VP1, tacop.VP2);" /> VP 1
 											&nbsp;&nbsp;
-											<input type="checkbox" id="{{ tacop.tacopid }}-VP2" /> VP 2
+											<input type="checkbox" id="{{ tacop.tacopid }}-VP2" ng-model="tacop.VP2" ng-true-value="1" ng-false-value="0" ng-change="setTacOpScore(dashboardroster, tacop, tacop.VP1, tacop.VP2);" /> VP 2
 										</div>
 									</div>
 									<em class="d-inline">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>

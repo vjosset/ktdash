@@ -3269,12 +3269,8 @@ var app = angular.module("kt", ['ngSanitize'])
 
 			// activateTacOp()
 			$scope.activateTacOp = function(roster, tacop, activate) {
-				console.log("activateTacOp");
-				console.log(JSON.stringify(roster));
-
 				if (activate) {
 					// Activate this tacop for this roster
-					console.log("Activate (POST)");
 					let rto = {
 						userid: roster.userid,
 						rosterid: roster.rosterid,
@@ -3296,16 +3292,18 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Success
 						success: function(data) {
 							// Got it, all good
-							tacop.active = true;
+							tacop.active = 1;
+							tacop.revealed = 0;
+							tacop.VP1 = 0;
+							tacop.VP2 = 0;
 						},
-						error: function(error) {
+						error: function(data, status, error)  {
 							// Failed
 							toast("Error activating TacOp:\r\n" + error);
 						}
 					});
 				} else {
 					// Deactivate this tacop for this roster
-					console.log("Deactivate (DELETE)");
 					let rto = {
 						userid: roster.userid,
 						rosterid: roster.rosterid,
@@ -3318,17 +3316,21 @@ var app = angular.module("kt", ['ngSanitize'])
 						url: APIURL + "rostertacop.php",
 						timeout: APITimeout,
 						async: true,
-						dataType: 'json',
+						dataType: 'text',
 						data: JSON.stringify(rto),
 						
 						// Success
 						success: function(data) {
 							// Got it, all good
-							tacop.active = false;
+							tacop.active = 0;
+							tacop.revealed = 0;
+							tacop.VP1 = 0;
+							tacop.VP2 = 0;
 						},
-						error: function(error) {
+						error: function(data, status, error)  {
 							// Failed
-							toast("Error activating TacOp:\r\n" + error);
+							toast("Error deactivating TacOp:\r\n" + error);
+							console.log("Error deactivating TacOp: " + error);
 						}
 					});
 				}
@@ -3341,7 +3343,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					userid: roster.userid,
 					rosterid: roster.rosterid,
 					tacopid: tacop.tacopid,
-					revealed: reveal,
+					revealed: tacop.revealed ? 1 : 0,
 					VP1: tacop.VP1,
 					VP2: tacop.VP2
 				}
@@ -3353,7 +3355,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
-					data: rto,
+					data: JSON.stringify(rto),
 					
 					// Success
 					success: function(data) {
@@ -3369,12 +3371,14 @@ var app = angular.module("kt", ['ngSanitize'])
 
 			// setTacOpScore()
 			$scope.setTacOpScore = function(roster, tacop, vp1, vp2) {
+				console.log("setTacOpScore(" + vp1 + ", " + vp2 + ")");
+
 				// Set the score for this tacop
 				let rto = {
 					userid: roster.userid,
 					rosterid: roster.rosterid,
 					tacopid: tacop.tacopid,
-					revealed: reveal,
+					revealed: tacop.revealed ? 1 : 0,
 					VP1: vp1,
 					VP2: vp2
 				}
@@ -3385,8 +3389,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					url: APIURL + "rostertacop.php",
 					timeout: APITimeout,
 					async: true,
-					dataType: 'json',
-					data: rto,
+					dataType: 'text',
+					data: JSON.stringify(rto),
 					
 					// Success
 					success: function(data) {

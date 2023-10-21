@@ -96,6 +96,7 @@
                         die();
                     } else {
                         $rto->DBDelete();
+                        header('HTTP/1.0 202 OK');
                         echo "OK";
                     }
                 }
@@ -132,17 +133,12 @@
                 header('HTTP/1.0 404 Invalid tacopid');
                 die();
             } else {
-                // Prepare a new roster tacop
-                $rto = new RosterTacOp();
-                $rto->userid = $userid;
-                $rto->rosterid = $rosterid;
-                $rto->tacopid = $tacopid;
-                $rto->revealed = 0;
-                $rto->VP1 = 0;
-                $rto->VP2 = 0;
-
                 // Commit to DB
-                $rto->DBSave();
+                $tacop->DBSave();
+
+                // All done, return the RosterTacOp object
+				header('Content-Type: application/json');
+				echo json_encode($tacop);
             }
 		}
 	}

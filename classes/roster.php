@@ -160,7 +160,10 @@
 			global $dbcon;
 			$sql = "SELECT DISTINCT
 						T.*,
-						CASE WHEN CONCAT('/', R.tacopids, '/') LIKE CONCAT('%,', T.tacopid, ',%') THEN 1 ELSE 0 END AS active
+						CASE WHEN RTO.rosterid IS NULL THEN 0 ELSE 1 END AS active,
+						IFNULL(RTO.revealed, 0) AS revealed,
+						IFNULL(RTO.VP1, 0) AS VP1,
+						IFNULL(RTO.VP2, 0) AS VP2
 					FROM
 						TacOp T
 						INNER JOIN
@@ -175,6 +178,10 @@
 							OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
 						INNER JOIN Roster R
 							ON  R.rosterid = ?
+						LEFT JOIN RosterTacOp RTO
+							ON  RTO.userid = R.userid
+							AND RTO.rosterid = R.rosterid
+							AND RTO.tacopid = T.tacopid
 					ORDER BY T.tacopid, T.tacopseq;
 					";
 			
@@ -191,6 +198,7 @@
             if ($result = $cmd->get_result()) {
                 while ($row = $result->fetch_object()) {
                     $t = TacOp::FromRow($row);
+					//echo ('$t: ' . json_encode($t));
 					$this->tacops[] = $t;
                 }
             }
