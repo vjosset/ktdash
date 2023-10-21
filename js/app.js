@@ -3266,6 +3266,135 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.commitRosterOp(operative);
 				}
 			}
+
+			// activateTacOp()
+			$scope.activateTacOp = function(roster, tacop, activate) {
+				if (active) {
+					// Activate this tacop for this roster
+					let rto = {
+						userid: roster.userid,
+						rosterid: roster.rosterid,
+						tacopid: tacop.tacopid,
+						revealed: 0,
+						VP1: 0,
+						VP2: 0
+					}
+
+					// Send a POST request to the API
+					$.ajax({
+						type: "POST",
+						url: APIURL + "rostertacop.php",
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						data: rto,
+						
+						// Success
+						success: function(data) {
+							// Got it, all good
+							tacop.active = true;
+						},
+						error: function(error) {
+							// Failed
+							toast("Error activating TacOp:\r\n" + error);
+						}
+					});
+				} else {
+					// Deactivate this tacop for this roster
+					let rto = {
+						userid: roster.userid,
+						rosterid: roster.rosterid,
+						tacopid: tacopid
+					}
+
+					// Send a DELETE request to the API
+					$.ajax({
+						type: "DELETE",
+						url: APIURL + "rostertacop.php",
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						data: rto,
+						
+						// Success
+						success: function(data) {
+							// Got it, all good
+							tacop.active = false;
+						},
+						error: function(error) {
+							// Failed
+							toast("Error activating TacOp:\r\n" + error);
+						}
+					});
+				}
+			}
+
+			// revealTacOp()
+			$scope.revealTacOp = function(roster, tacop, reveal) {
+				// Reveal this tacop
+				let rto = {
+					userid: roster.userid,
+					rosterid: roster.rosterid,
+					tacopid: tacop.tacopid,
+					revealed: reveal,
+					VP1: tacop.VP1,
+					VP2: tacop.VP2
+				}
+
+				// Send a POST request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rostertacop.php",
+					timeout: APITimeout,
+					async: true,
+					dataType: 'json',
+					data: rto,
+					
+					// Success
+					success: function(data) {
+						// Got it, all good
+						tacop.revealed = reveal;
+					},
+					error: function(error) {
+						// Failed
+						toast("Error revealing TacOp:\r\n" + error);
+					}
+				});
+			}
+
+			// setTacOpScore()
+			$scope.setTacOpScore = function(roster, tacop, vp1, vp2) {
+				// Set the score for this tacop
+				let rto = {
+					userid: roster.userid,
+					rosterid: roster.rosterid,
+					tacopid: tacop.tacopid,
+					revealed: reveal,
+					VP1: vp1,
+					VP2: vp2
+				}
+
+				// Send a POST request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rostertacop.php",
+					timeout: APITimeout,
+					async: true,
+					dataType: 'json',
+					data: rto,
+					
+					// Success
+					success: function(data) {
+						// Got it, all good
+						tacop.VP1 = vp1;
+						tacop.VP2 = vp2;
+					},
+					error: function(error) {
+						// Failed
+						toast("Error scopring TacOp:\r\n" + error);
+					}
+				});
+			}
 		}
 		
 		// HELPERS

@@ -21,6 +21,7 @@
 	require_once $root . '/classes/user.php';
 	require_once $root . '/classes/session.php';
 	require_once $root . '/classes/roster.php';
+	require_once $root . '/classes/rostertacop.php';
 	require_once $root . '/classes/rosteroperative.php';
 	require_once $root . '/classes/tacop.php';
 	
