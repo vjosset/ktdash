@@ -1413,7 +1413,9 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 
 			$scope.getRosterCustomkeyword = function(roster) {
-				return roster.killteamcustomkeyword;
+				if (roster) {
+					return roster.killteamcustomkeyword;
+				}
 			}
 		
 			// initUploadRosterPortrait()
@@ -2902,7 +2904,6 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Parse selected ploys for this roster
 							for (let ploynum = 0; ploynum < $scope.dashboardroster.killteam.ploys.strat.length; ploynum++) {
 								let ploy = $scope.dashboardroster.killteam.ploys.strat[ploynum];
-								$scope.toggleStratPloy($scope.dashboardroster, ploy, ("," + $scope.dashboardroster.ployids + ",").includes("," + ploy.ployid + ","));
 							}
 							
 							// Get the operatives and set their "Injured" flag where appropriate
@@ -3296,6 +3297,8 @@ var app = angular.module("kt", ['ngSanitize'])
 							tacop.revealed = 0;
 							tacop.VP1 = 0;
 							tacop.VP2 = 0;
+
+							$scope.$apply();
 						},
 						error: function(data, status, error)  {
 							// Failed
