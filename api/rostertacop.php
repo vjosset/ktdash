@@ -64,19 +64,21 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 
-            $userid = getIfSet($_REQUEST['uid']);
-            $rosterid = getIfSet($_REQUEST['rid']);
-            $tacopid = getIfSet($_REQUEST['toid']);
+            $tacop = RosterTacOp::FromJSON(file_get_contents('php://input'));
+
+            $userid = $tacop->userid;
+            $rosterid = $tacop->rosterid;
+            $tacopid = $tacop->tacopid;
             
-            if ($userid == null || $userid == '' || strlen($userid) > 10) {
+            if ($userid == null || $userid == '' || strlen($userid) > 20 || $userid != $u->userid) {
                 // No userid specified - fail
                 header('HTTP/1.0 404 Invalid userid');
                 die();
-            } elseif ($rosterid == null || $rosterid == '' || strlen($rosterid) > 10) {
+            } elseif ($rosterid == null || $rosterid == '' || strlen($rosterid) > 20) {
                 // No rosterid specified - fail
                 header('HTTP/1.0 404 Invalid rosterid');
                 die();
-            } elseif ($tacopid == null || $tacopid == '' || strlen($tacopid) > 10) {
+            } elseif ($tacopid == null || $tacopid == '' || strlen($tacopid) > 20) {
                 // No tacopid specified - fail
                 header('HTTP/1.0 404 Invalid tacopid');
                 die();
@@ -111,19 +113,21 @@
 			// Get the current user
 			$u = Session::CurrentUser();
 
-            $userid = getIfSet($_REQUEST['uid']);
-            $rosterid = getIfSet($_REQUEST['rid']);
-            $tacopid = getIfSet($_REQUEST['toid']);
+            $tacop = RosterTacOp::FromJSON(file_get_contents('php://input'));
+
+            $userid = $tacop->userid;
+            $rosterid = $tacop->rosterid;
+            $tacopid = $tacop->tacopid;
             
-            if ($userid == null || $userid == '' || strlen($userid) > 10 || $userid != $u->userid) {
+            if ($userid == null || $userid == '' || strlen($userid) > 20 || $userid != $u->userid) {
                 // No userid specified - fail
                 header('HTTP/1.0 404 Invalid userid');
                 die();
-            } elseif ($rosterid == null || $rosterid == '' || strlen($rosterid) > 10) {
+            } elseif ($rosterid == null || $rosterid == '' || strlen($rosterid) > 20) {
                 // No rosterid specified - fail
                 header('HTTP/1.0 404 Invalid rosterid');
                 die();
-            } elseif ($tacopid == null || $tacopid == '' || strlen($tacopid) > 10) {
+            } elseif ($tacopid == null || $tacopid == '' || strlen($tacopid) > 20) {
                 // No tacopid specified - fail
                 header('HTTP/1.0 404 Invalid tacopid');
                 die();
@@ -133,7 +137,7 @@
                 $rto->userid = $userid;
                 $rto->rosterid = $rosterid;
                 $rto->tacopid = $tacopid;
-                $rto->isrevealed = 0;
+                $rto->revealed = 0;
                 $rto->VP1 = 0;
                 $rto->VP2 = 0;
 

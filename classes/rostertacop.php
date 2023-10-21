@@ -6,7 +6,7 @@
 		public $rosterid = "";
 		public $userid = "";
         public $tacopid = "";
-        public $isrevelead = 0;
+        public $revealed = 0;
         public $VP1 = 0;
         public $VP2 = 0;
         

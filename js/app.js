@@ -3269,8 +3269,12 @@ var app = angular.module("kt", ['ngSanitize'])
 
 			// activateTacOp()
 			$scope.activateTacOp = function(roster, tacop, activate) {
-				if (active) {
+				console.log("activateTacOp");
+				console.log(JSON.stringify(roster));
+
+				if (activate) {
 					// Activate this tacop for this roster
+					console.log("Activate (POST)");
 					let rto = {
 						userid: roster.userid,
 						rosterid: roster.rosterid,
@@ -3287,7 +3291,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
-						data: rto,
+						data: JSON.stringify(rto),
 						
 						// Success
 						success: function(data) {
@@ -3301,10 +3305,11 @@ var app = angular.module("kt", ['ngSanitize'])
 					});
 				} else {
 					// Deactivate this tacop for this roster
+					console.log("Deactivate (DELETE)");
 					let rto = {
 						userid: roster.userid,
 						rosterid: roster.rosterid,
-						tacopid: tacopid
+						tacopid: tacop.tacopid
 					}
 
 					// Send a DELETE request to the API
@@ -3314,7 +3319,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
-						data: rto,
+						data: JSON.stringify(rto),
 						
 						// Success
 						success: function(data) {

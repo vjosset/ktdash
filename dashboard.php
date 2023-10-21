@@ -246,7 +246,7 @@
 								<div ng-repeat="tacop in dashboardroster.tacops track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="tacop.active">
 									<div class="line-top-light">
 										<h5 class="d-inline">
-											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" />
+											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" ng-change="activateTacOp(dashboardroster, tacop, tacop.active)" />
 											{{ tacop.title }}
 										</h5>
 										<div class="float-end">
@@ -270,7 +270,7 @@
 									</h4 -->
 									<div class="line-top-light">
 										<h5 class="d-inline">
-											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" />
+											<input type="checkbox" id="{{ tacop.tacopid }}-active" ng-model="tacop.active" ng-change="activateTacOp(dashboardroster, tacop, tacop.active)" />
 											{{ tacop.title }}
 										</h5>
 										<em class="d-inline float-end text-end">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>
