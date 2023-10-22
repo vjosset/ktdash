@@ -42,12 +42,12 @@ SQL Queries:
 	SELECT 'RosterOpsWithNotes', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') AND notes != '';
 	#SELECT * FROM Event WHERE action = 'print' ORDER BY eventid DESC;
 	#SELECT useragent, COUNT(*) AS EventCount FROM Event WHERE userip != '68.80.166.102' GROUP BY useragent ORDER BY 2 DESC;
-	SELECT ' 3 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -3 day) UNION
-	SELECT ' 7 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) UNION
-	SELECT '14 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) UNION
-	SELECT '21 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -21 day) UNION
-	SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day) UNION
-	SELECT '90 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != 'anon' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -90 day);
+	SELECT ' 3 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -3 day) UNION
+	SELECT ' 7 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -7 day) UNION
+	SELECT '14 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) UNION
+	SELECT '21 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -21 day) UNION
+	SELECT '28 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -28 day) UNION
+	SELECT '90 Days' AS Period, COUNT(DISTINCT userid) AS DistinctActiveUsers FROM Event WHERE userid != '[anon]' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -90 day);
 
 # Killteams that don't have spotlighted or prebuilt roster
 	SELECT *
