@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#include virtual="/header.shtml" -->
+		<title>Log In | KTDash.app</title>
+		<meta name="description" content="Log in to view, edit, and manage your rosters and access the dashboard to run your games.">
+		<meta name="keywords" content="log in, killteam, Kill Team, kill team roster builder, Octarius, Warhammer, 40000, 40k, wh40k, Roster, Battle Scribe, Printable, Card, Datacard, KTDash, dashboard">
+		
+		<!-- OpenGraph Tags -->
+		<meta property="og:url" content="https://ktdash.app/login.htm">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Log In | KTDash.app">
+		<meta property="og:description" content="Log in to view, edit, and manage your rosters and access the dashboard to run your games.">
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="ktdash.app">
+		<meta property="twitter:url" content="https://ktdash.app/login.htm">
+		<meta name="twitter:title" content="Log In | KTDash.app">
+		<meta name="twitter:description" content="Log in to view, edit, and manage your rosters and access the dashboard to run your games.">
+        
+        <!-- Google OAuth/SSO -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="1107555855-q4horlk2se3nsesg77lk84loeo349k4n.apps.googleusercontent.com">
+
+		<style>
+		<!--#include virtual="/css/styles.css" -->
+		</style>
+	</head>
+	<body ng-app="kt" ng-controller="ktCtrl" ng-init="initSession();initLogin();">
+		<!--#include virtual="/topnav.shtml" -->
+		
+		<h1 class="orange"><i class="fas fa-lock fa-fw"></i>&nbsp;&nbsp;Log In</h1>
+		
+		<!-- Show the log in form -->
+		<div class="container">
+			<form class="frmlogin" ng-submit="logIn();">
+				<h5><label for="username">UserName</label></h5>
+				<input type="text" name="username" id="username" class="form-control" ng-model="loginForm.userName" placeholder="User Name" required autofocus>
+				<br/>
+				<h5><label for="password">Password</label></h5>
+				<input type="password" name="password" id="password" class="form-control" ng-model="loginForm.password" placeholder="Password" required>
+				
+				<br />
+				
+				<button class="btn btn-primary" type="submit">Log In</button>
+				
+				<br />
+				<br />
+
+				Don't have an account?
+				<a href="/signup.htm">Sign Up here!</a>
+                or
+                
+                <div class="g-signin2" data-onsuccess="onGoogleSignIn()"></div>
+                <script type="text/javascript">
+                    function onSignIn(googleUser) {
+                        var profile = googleUser.getBasicProfile();
+                        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                        console.log('Name: ' + profile.getName());
+                        console.log('Image URL: ' + profile.getImageUrl());
+                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                    }
+                </script>
+
+				<h3 class="center" ng-show="loading">
+					<i class="fas fa-undo-alt fa-fw rotate" ></i>
+					<br />
+					Logging In...
+				</h3>
+				
+				<div class="alert alert-danger" ng-show="loginForm.error != null">
+					{{loginForm.error}}
+				</div>
+			</form>
+		
+		</div>
+		<!--#include virtual="/footer.shtml" -->
+	</body>
+</html>

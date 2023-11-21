@@ -162,13 +162,13 @@
 								<td>
 									&nbsp;{{ operative.SV }}
 								</td>
-								<td ng-if="MODE == 'Dashboard'">
+								<td ng-if="MODE == 'Dashboard'" touch-action="manipulation">
 									<ANY ng-if="operative.baseoperative.W != '-'">
-										<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+										<span class="pointer float-start" style="width: 18px; font-size: 0.75em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
 										
 										{{ operative.curW }}
 										
-										<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+										<span class="pointer float-end" style="width: 18px; font-size: 0.75em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
 									</ANY>
 									<ANY ng-if="operative.baseoperative.W == '-'">
 									- 

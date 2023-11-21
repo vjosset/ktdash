@@ -123,21 +123,21 @@
 								</h3>
 							</div>
 							<div class="row">
-								<h3 class="col-4">
+								<h3 class="col-4" touch-action="manipulation">
 									<span class="pointer small" ng-click="updateCP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 									
 									<span ng-bind="dashboardroster.CP"></span>
 									
 									<span class="pointer small" ng-click="updateCP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 								</h3>
-								<h3 class="col-4">
+								<h3 class="col-4" touch-action="manipulation">
 									<span class="pointer small" ng-click="updateTP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 									
 									<span ng-bind="dashboardroster.TP"></span>
 									
 									<span class="pointer small" ng-click="updateTP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
 								</h3>
-								<h3 class="col-4">
+								<h3 class="col-4" touch-action="manipulation">
 									<span class="pointer small" ng-click="updateVP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
 									
 									<span ng-bind="dashboardroster.VP"></span>
