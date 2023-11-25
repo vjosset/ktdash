@@ -2039,6 +2039,9 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Tell the user their operative has been deleted
 						toast("Operative " + $scope.optodelete.operative.opname + " deleted");
+						
+						// Make sure changes are reflected
+						$scope.$apply();
 					}
 				).catch(function(response)
 					{
