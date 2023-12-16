@@ -83,12 +83,7 @@
 					<td>
 						{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
 					</td>
-					<td ng-if="MODE == 'Dashboard'">
-						<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
-						
-						<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
-					</td>
-					<td ng-if="MODE != 'Dashboard'">
+					<td>
 						{{ operative.DF }}
 					</td>
 					<td>

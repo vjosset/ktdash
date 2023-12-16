@@ -156,18 +156,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td ng-if="MODE == 'Dashboard'">
-									<ANY ng-if="operative.baseoperative.DF != '-'">
-										<span class="pointer float-start" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpDF(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
-										
-										
-										<span class="pointer float-end" style="width: 18px; font-size: 0.5em;" ng-if="operative.userid == currentuser.userid" ng-click="updateOpDF(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
-									</ANY>
-									<ANY ng-if="operative.baseoperative.DF == '-'">
-									- 
-									</ANY>
-								</td>
-								<td ng-if="MODE != 'Dashboard'">
+								<td>
 									{{ operative.DF }}
 								</td>
 								<td>
@@ -213,12 +202,7 @@
 								<td>
 									{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
 								</td>
-								<td ng-if="MODE == 'Dashboard'">
-									<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
-									
-									<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
-								</td>
-								<td ng-if="MODE != 'Dashboard'">
+								<td>
 									{{ operative.DF }}
 								</td>
 								<td>
