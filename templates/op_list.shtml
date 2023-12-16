@@ -83,8 +83,13 @@
 					<td>
 						{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
 					</td>
-					<td>
-						{{ operative.DF }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
+					<td ng-if="MODE == 'Dashboard'">
+						<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
+						
+						<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpDF(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
+					</td>
+					<td ng-if="MODE != 'Dashboard'">
+						{{ operative.DF }}
 					</td>
 					<td>
 						&nbsp;<span ng-show="!opHasEq(operative, 'OpMod', 'SV')">{{ operative.SV }}</span><span ng-repeat="eq in getOpEq(operative, 'OpMod', 'SV')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
