@@ -260,7 +260,7 @@
 								  <ANY ng-switch-default>&#x26ED;</ANY>
 								</ANY -->
 								{{ weapon.wepname }}
-								<div class="pointer d-inline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);" style="font-style:italic;"></div>
+								<em class="pointer dottedline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);"></em>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
@@ -288,7 +288,7 @@
 						<tr ng-if="weapon.profiles.length > 1" ng-repeat="profile in weapon.profiles">
 							<td class="ps-3">
 								- {{ profile.name }}
-								<div class="pointer d-inline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);" style="font-style:italic;"></div>
+								<em class="pointer dottedline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);"></em>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;

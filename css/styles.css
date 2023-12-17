@@ -45,6 +45,10 @@ body {
 	color: #888;
 }
 
+.dottedline {
+	text-decoration: underline dashed;
+}
+
 /* Buttons */
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-primary {
     background-color: #c54c21 !important;
