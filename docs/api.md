@@ -2,29 +2,49 @@
 
 The KTDash API allows developers to build custom front-ends leveraging the KTDash back-end and database.
 
-# Objects
-
-## Faction
-
-Endpoint `/api/faction.php`
-Access: Anonymous
+# Faction
 
 A Faction represents a game faction, and each faction contains its associated killteams.
 
-Fields:
+## Endpoint
+
+`/api/faction.php`
+
+## Access:
+
+Anonymous
+
+## Fields:
+
 - `factionid` - Unique identifier for this faction
 - `factionname` - Name of this faction
 - `description` - HTML-formatted paragraph describing this faction
 - `killteams` - Array of `KillTeam` objects belonging to this faction
 
-## KillTeam
+## API Methods
 
-`/api/killteam.php`
-Access: Anonymous
+`GET /api/faction.php`
+
+Returns an array of all factions
+
+`GET /api/faction.php?fa=[FactionID]`
+
+Returns the requested faction
+
+# KillTeam
 
 A KillTeam represents a unique KillTeam belonging to a faction, and each KillTeam contains its associated fireteams.
 
-Fields:
+## Endpoint
+
+`/api/killteam.php`
+
+## Access
+
+Anonymous
+
+## Fields
+
 - `factionid` - ID of the faction this KillTeam belongs to
 - `killteamid` - Unique identifier for this KillTeam
 - `killteamname` - Name of this KillTeam
@@ -38,6 +58,20 @@ Fields:
 - `fireteams` - Array of `FireTeam` objects belonging to this KillTeam
 - `tacops` - Array of `TacOp` objects belonging to this KillTeam
 - `rosters` - Array of `Roster` objects for all spotlighted rosters for this KillTeam
+
+## API Methods
+
+`GET /api/killteam.php`
+
+Returns an array of all KillTeams
+
+`GET /api/killteam.php?fa=[FactionID]&kt=[KillTeamID]`
+
+Returns the requested KillTeam
+
+
+
+-------------------------
 
 ## FireTeam
 
