@@ -22,6 +22,9 @@
 		if ($factionid == "" || $factionid == null) {
 			$factionid = getIfSet($_REQUEST['faid']);
 		}
+		if ($factionid == "" || $factionid == null) {
+			$factionid = getIfSet($_REQUEST['fa']);
+		}
 		
 		// Validate Input
 		if (strlen($factionid) > 10) {
@@ -29,11 +32,12 @@
 			die();
 		}
 		
-		$loadkillteams = (getIfSet($_REQUEST['loadkts']) == '1');
-		$loadops = (getIfSet($_REQUEST['loadops']) == '1');
-		
 		if ($factionid == null || $factionid == '') {
 			// No faction id passed in, return all factions
+			// Check the options for what to load/return
+			$loadkillteams = (getIfSet($_REQUEST['loadkts']) == '1');
+			$loadops = (getIfSet($_REQUEST['loadops']) == '1');
+
 			$factions = Faction::GetFactions();
 			if ($loadkillteams) {
 				foreach ($factions as $faction) {

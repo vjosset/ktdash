@@ -69,8 +69,6 @@ Returns an array of all KillTeams
 
 Returns the requested KillTeam
 
-
-
 -------------------------
 
 ## FireTeam
