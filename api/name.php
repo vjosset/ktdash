@@ -87,6 +87,13 @@
 		$key = $faid . "|" . $ktid . "|" . $ftid . "|" . $opid;
 		
 		switch ($key) {
+			case "AEL|BOK|BOK|DAX": //Dark Avenger Exarch
+			case "AEL|BOK|BOK|DAW": //Dark Avenger Warrior
+			case "AEL|BOK|BOK|SSX": //Striking Scorpion Exarch
+			case "AEL|BOK|BOK|SSW": //Striking Scorpion Warrior
+			case "AEL|BOK|BOK|HBX": //Howling Banshee Exarch
+			case "AEL|BOK|BOK|HBW": //Howling Banshee Warrior
+				return GetAeldariName();
 			case "AEL|COM|KBL|GNR": //Kabalite Gunner
 			case "AEL|COM|KBL|HGNR": //Kabalite Heavy Gunner
 			case "AEL|COM|KBL|SYB": //Sybarite
@@ -394,6 +401,16 @@
 				return "Brother Thysor";
 			case "IMP|SFJ|SFJ|VIG":
 				return "Brother Vignius";
+			
+			//Scouts
+			case "IMP|SCT|SCT|SGT": //Scout Sergeant
+			case "IMP|SCT|SCT|HGNR": //Scout Heavy Gunner
+			case "IMP|SCT|SCT|HNTR": //Scout Hunter
+			case "IMP|SCT|SCT|SNP": //Scout Sniper
+			case "IMP|SCT|SCT|TRK": //Scout Tracker
+			case "IMP|SCT|SCT|WaR": //Scout Warrior
+				return GetSpaceMarineName();
+				
 			case "IMP|SM|AINT|SGT": //Assault Intercessor Sergeant
 			case "IMP|SM|AINT|WAR": //Assault Intercessor Warrior
 			case "IMP|SM|DW|FTR": //DeathWatch Fighter
