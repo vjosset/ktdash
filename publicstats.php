@@ -36,9 +36,9 @@
 				<h2 class="text-center">Totals</h2>
 				<?php
 					$sql =
-						"SELECT 'Users' AS CountType, COUNT(*) AS Total FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
-						SELECT 'Rosters', COUNT(*) AS Total FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') UNION
-						SELECT 'RosterOps', COUNT(*) AS Total FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince') UNION
+						"SELECT 'Users' AS CountType, COUNT(*) AS Total FROM User WHERE userid NOT IN ('prebuilt') UNION
+						SELECT 'Rosters', COUNT(*) AS Total FROM Roster WHERE userid NOT IN ('prebuilt') UNION
+						SELECT 'RosterOps', COUNT(*) AS Total FROM RosterOperative WHERE userid NOT IN ('prebuilt') UNION
 						SELECT 'SpotlightCount', COUNT(*) AS Total FROM Roster WHERE spotlight = 1";
 					$cmd = $dbcon->prepare($sql);
 					
@@ -73,7 +73,7 @@
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
 							INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
-							WHERE R.userid NOT IN ('prebuilt', 'vince')
+							WHERE R.userid NOT IN ('prebuilt')
 							ORDER BY viewcount DESC
 							LIMIT 10;";
 						$cmd = $dbcon->prepare($sql);
@@ -117,7 +117,7 @@
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
 							INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
-							WHERE R.userid NOT IN ('prebuilt', 'vince')
+							WHERE R.userid NOT IN ('prebuilt')
 							ORDER BY importcount DESC
 							LIMIT 10;";
 						$cmd = $dbcon->prepare($sql);
@@ -167,7 +167,7 @@
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(viewcount) AS viewcount
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
-							WHERE R.userid NOT IN ('prebuilt', 'vince')
+							WHERE R.userid NOT IN ('prebuilt')
 							GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
 							ORDER BY SUM(viewcount) DESC
 							LIMIT 10;";
@@ -209,7 +209,7 @@
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(importcount) AS importcount
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
-							WHERE R.userid NOT IN ('prebuilt', 'vince')
+							WHERE R.userid NOT IN ('prebuilt')
 							GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
 							ORDER BY SUM(importcount) DESC
 							LIMIT 10;";
@@ -251,7 +251,7 @@
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, COUNT(DISTINCT R.rosterid) AS spotlightcount
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
-							WHERE R.userid NOT IN ('prebuilt', 'vince') AND R.spotlight = 1
+							WHERE R.userid NOT IN ('prebuilt') AND R.spotlight = 1
 							GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
 							ORDER BY COUNT(DISTINCT R.rosterid) DESC
 							LIMIT 10;";
