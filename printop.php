@@ -107,7 +107,7 @@
 										</tr>
 										<tr>
 											<td><?php echo $op->DF ?></td>
-											<td>&nbsp;<?php echo $op->DF ?></td>
+											<td>&nbsp;<?php echo $op->SV ?></td>
 											<td><?php echo $op->W ?></td>
 										</tr>
 									</table>
