@@ -3572,8 +3572,8 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "GRAV*":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack.";
 								break;
+								case "HVY":
 							case "HEAVY":
-							case "HVY":
 								rule.rulename = "Heavy";
 								rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
 								break;
@@ -3590,7 +3590,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								break;
 							case "LASH WHIP":
 								rule.rulename = "Lash Whip";
-								rule.ruletext = "While an enemy operative is within Engagement Range of friendly operatives equipped with this weapon, subtract 1 from that enemy operative’s Attacks characteristics.";
+								rule.ruletext = "While an enemy operative is within Engagement Range of friendly operatives equipped with this weapon, subtract 1 from that enemy operative's Attacks characteristics.";
 								break;
 							case "LIM":
 							case "LIMITED":
@@ -3606,13 +3606,13 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "RELENTLESS":
 								rule.ruletext = "Can re-roll any or all Attack dice";
 								break;
-							case "RENDING":
 							case "REND":
+							case "RENDING":
 								rule.rulename = "Rending";
 								rule.ruletext = "If you retain any critical hits, retain 1 normal hit as a critical hit too";
 								break;
-							case "SILENT":
 							case "SIL":
+							case "SILENT":
 								rule.rulename = "Silent";
 								rule.ruletext = "Can Shoot this weapon while on a Conceal order";
 								break;
