@@ -227,6 +227,36 @@
 						} else {
 							// Get the uploaded image
 							$img = imagecreatefromstring(file_get_contents($tempname));
+
+							// Get the image orientation so uploads don't go sideways
+							if (function_exists('exif_read_data')) {
+								$exif = exif_read_data($tempname);
+								if($exif && isset($exif['Orientation'])) {
+									$orientation = $exif['Orientation'];
+									if($orientation != 1){
+										$deg = 0;
+										switch ($orientation) {
+										case 3:
+											$deg = 180;
+											break;
+										case 6:
+											$deg = 270;
+											break;
+										case 8:
+											$deg = 90;
+											break;
+										}
+
+										if ($deg) {
+											// Rotate it back to proper orientation
+											$img = imagerotate($img, $deg, 0);        
+										}
+
+										// Rewrite the rotated image back to the disk as $filename 
+										imagejpeg($img, $tempname, 95);
+									}
+								}
+							}
 							
 							// Scale the image
 							$img = imagescale($img, 900);
