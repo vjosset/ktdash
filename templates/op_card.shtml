@@ -102,7 +102,7 @@
 			<!-- Operative Portrait and Stats Grid -->
 			<div class="row m-0 p-0">
 				<!-- Dashboard/Roster Portrait -->
-				<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster') && settings['display'] == 'card'" class="col-4 m-0 p-0 pointer h-100" style="overflow: hidden;"
+				<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster') && settings['display'] == 'card'" class="col-5 m-0 p-0 pointer h-100" style="overflow: hidden;"
 					ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
 					>
 					<img id="opportrait_{{operative.rosteropid}}"
@@ -113,7 +113,7 @@
 				</div>
 				
 				<!-- Compendium Portrait -->
-				<div ng-if="MODE == 'Compendium' && settings['display'] == 'card'" class="col-4 m-0 p-0 pointer h-100" style="overflow: hidden;"
+				<div ng-if="MODE == 'Compendium' && settings['display'] == 'card'" class="col-5 m-0 p-0 pointer h-100" style="overflow: hidden;"
 					ng-click="showPhoto(operative.opname, '/img/portraits/' + operative.factionid + '/' + operative.killteamid + '/' + operative.fireteamid + '/' + operative.opid + '.jpg');"
 					>
 					<img id="opportrait_{{operative.opid}}"
@@ -124,7 +124,7 @@
 				</div>
 				
 				<!-- Operative Stats -->
-				<div ng-class="{'col-8 p-0': settings['display'] == 'card', 'col-12 p-0': settings['display'] == 'list'}">
+				<div ng-class="{'col-7 p-0': settings['display'] == 'card', 'col-12 p-0': settings['display'] == 'list'}">
 					<h3 class="mb-0">
 						<!-- Card View -->
 						<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
