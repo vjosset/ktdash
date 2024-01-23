@@ -34,7 +34,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				autoinccp: 'n',
 				defaultoporder: 'engage',
 				showopid: 'n',
-				useoptypeasname: 'n'
+				useoptypeasname: 'n',
+				closequarters: 'n',
+				opnamefirst: 'y'
 			};
 			
 			$scope.loadSettings = function() {
@@ -55,6 +57,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("showopid", "n", true);
 					$scope.setSetting("useoptypeasname", "n", true);
 					$scope.setSetting("closequarters", "n", true);
+					$scope.setSetting("opnamefirst", "y", true);
 				}
 				
 				// Set default settings
@@ -93,6 +96,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				if (!$scope.settings["closequarters"]) {
 					$scope.setSetting("closequarters", "n", true);
+				}
+				if (!$scope.settings["opnamefirst"]) {
+					$scope.setSetting("opnamefirst", "y", true);
 				}
 				
 				$scope.saveSettings(false);

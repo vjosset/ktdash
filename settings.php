@@ -64,6 +64,22 @@
 				</div>
 				
 				<div class="col-12 col-md-6">
+					<h6>Operative Name/Type</h6>
+					Show Operative Name or Type first on cards.<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('opnamefirst', 'y');" ng-class="settings['opnamefirst'] == 'y' || settings['opnamefirst'] == null ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer far fa-id-card fa-fw"></i><br/>
+						Show Name First
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('opnamefirst', 'n');" ng-class="settings['opnamefirst'] == 'n' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
+						<i class="pointer fas fa-list fa-fw"></i><br/>
+						Show Type First
+					</button>
+					<br/><br/>
+				</div>
+				
+				<div class="col-12 col-md-6">
 					<h6>Auto-Generate Operative Names</h6>
 					Auto-generates operative names if enabled. If disabled, uses the operative type as its name.<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('useoptypeasname', 'n');" ng-class="settings['useoptypeasname'] == 'n' || settings['useoptypeasname'] == null ? 'btn-primary': 'btn-secondary'">
