@@ -434,62 +434,7 @@
 		
 		<!-- Collapsed Stats -->
 		<h5 ng-if="MODE == 'Dashboard'" class="opinfo collapsedopinfo opinfo_{{ operative.rosteropid }} collapse p-0">
-			<div class="row p-0 m-0" ng-if="settings['display'] == 'card'">
-				<div class="col-2 p-0 m-0">
-					<img id="opportrait_{{operative.rosteropid}}"
-						title="{{ operative.opname }}"
-						alt="{{ operative.opname }}"
-						ng-src="/api/operativeportrait.php?roid={{ operative.rosteropid }}"
-						style="border: 1px solid #EEE; width: 100%; height: 100%; object-fit:cover; object-position:50% 0%; display:block;" />
-				</div>
-				<div class="col-10 p-0 m-0">
-					<table width="100%" class="text-center">
-						<tr class="orange">
-							<td width="16%">M</td>
-							<td width="16%">APL</td>
-							<td width="16%">GA</td>
-						</tr>
-						<tr>
-							<td ng-style="{ color: operative.isinjured ? 'gainsboro' : '' }" nowrap="true">
-								<span ng-bind-html="operative.M"></span>
-								<span ng-repeat="eq in getOpEq(operative, 'OpMod', 'M')[0]" ng-bind-html="eq.eqvar2"></span>
-								<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
-							</td>
-							<td>
-								<span ng-show="!opHasEq(operative, 'OpMod', 'APL')">{{ operative.APL }}</span><span ng-repeat="eq in getOpEq(operaive, 'OpMod', 'APL')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'APL')[0].eqdescription);">*</sup>
-							</td>
-							<td>
-								{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
-							</td>
-						</tr>
-						<tr class="orange">
-							<td width="16%">DF</td>
-							<td width="16%">SV</td>
-							<td width="16%">W</td>
-						</tr>
-						<tr>
-							<td>
-								{{ operative.DF }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
-							</td>
-							<td>
-								&nbsp;<span ng-show="!opHasEq(operative, 'OpMod', 'SV')">{{ operative.SV }}</span><span ng-repeat="eq in getOpEq(operative, 'OpMod', 'SV')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
-							</td>
-							<td ng-if="MODE == 'Dashboard'" touch-action="manipulation">
-								<span class="float-start" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, -1);"><i class="far fa-minus-square fa-fw"></i></span>
-								
-								{{ operative.curW }}
-								
-								<span class="float-end" style="width: 18px; font-size: 0.5em;" ng-click="updateOpW(operative, 1);"><i class="far fa-plus-square fa-fw"></i></span>
-							</td>
-							<td ng-if="MODE != 'Dashboard'">
-								{{ operative.W }}
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		
-			<table ng-if="settings['display'] != 'card'" width="100%" class="text-center">
+			<table width="100%" class="text-center">
 				<tr class="orange">
 					<td width="16%">M</td>
 					<td width="16%">APL</td>
