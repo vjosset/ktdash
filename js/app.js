@@ -3661,7 +3661,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Close Quarters: Inflict critical hits on 5+ instead of 6+";
 						} else if (rulename.startsWith("LETHAL")) {
 							let num = rulename.replace("LETHAL", "");
-							rule.ruletext = "Inflict critical hits on " + num + "+ instead of 6+";
+							rule.ruletext = "Inflict critical hits on " + num + " instead of 6+";
 						} else if (rulename.startsWith("MW")) {
 							let num = rulename.replace("MW", "");
 							rule.ruletext = "For each critical hit retained, inflict " + num + " Mortal Wounds to target";
