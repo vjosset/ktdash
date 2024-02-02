@@ -783,7 +783,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
 									let SR = wep.profiles[pronum].SR.toLowerCase();
 									if (SR.indexOf("lethal") < 0  && (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1)) {
-										wep.profiles[pronum].SR += ", Lethal 5+";
+										wep.profiles[pronum].SR += ", Lethal 5+ (CQ)";
 									}
 								}
 							}
@@ -796,7 +796,7 @@ var app = angular.module("kt", ['ngSanitize'])
 									for (let pronum = 0; pronum < wep.profiles.length; pronum++) {
 										let SR = wep.profiles[pronum].SR.toLowerCase();
 										if (SR.indexOf("lethal") < 0  && (SR.indexOf("tor") > -1 || SR.indexOf("splash") > -1 || SR.indexOf("blast") > -1)) {
-											wep.profiles[pronum].SR += ", Lethal 5+";
+											wep.profiles[pronum].SR += ", Lethal 5+ (CQ)";
 										}
 									}
 								}
@@ -3656,9 +3656,12 @@ var app = angular.module("kt", ['ngSanitize'])
 						} else if (rulename.startsWith("INFERNO")) {
 							let num = rulename.replace("INFERNO", "");
 							rule.ruletext = "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, the target gains " + num + " Inferno tokens. At the end of each Turning Point, roll one D6 for each Inferno token an enemy operative has: on a 4+, that enemy operative suffers 1 mortal wound. After rolling, remove all Inferno tokens that operative has.";
+						} else if (rulename.startsWith("LETHAL") && rulename.endsWith("(CQ)")) {
+							let num = rulename.replace("LETHAL", "");
+							rule.ruletext = "Close Quarters: Inflict critical hits on 5+ instead of 6+";
 						} else if (rulename.startsWith("LETHAL")) {
 							let num = rulename.replace("LETHAL", "");
-							rule.ruletext = "Inflict critical hits on " + num + " instead of 6+";
+							rule.ruletext = "Inflict critical hits on " + num + "+ instead of 6+";
 						} else if (rulename.startsWith("MW")) {
 							let num = rulename.replace("MW", "");
 							rule.ruletext = "For each critical hit retained, inflict " + num + " Mortal Wounds to target";
