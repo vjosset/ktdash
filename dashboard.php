@@ -99,8 +99,8 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
 								<li><a class="pointer dropdown-item p-1" onclick="$('#dashboardopponentmodal').modal('show');"><i class="fas fa-people-arrows fa-fw"></i> Select Opponent</a></li>
-								<li><a class="pointer dropdown-item p-1" onclick="$('.expandedopinfo').removeClass('show');$('.collapsedopinfo').addClass('show');"><i class="fas fa-compress-arrows-alt fa-fw"></i> Collapse All</a></li>
-								<li><a class="pointer dropdown-item p-1" onclick="$('.expandedopinfo').addClass('show');$('.collapsedopinfo').removeClass('show');"><i class="fas fa-expand-arrows-alt fa-fw"></i> Expand All</a></li>
+								<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').removeClass('show');"><i class="fas fa-compress-arrows-alt fa-fw"></i> Collapse All</a></li>
+								<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').addClass('show');"><i class="fas fa-expand-arrows-alt fa-fw"></i> Expand All</a></li>
 								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
 								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
 								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}/g" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>

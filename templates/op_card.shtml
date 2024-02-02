@@ -82,9 +82,9 @@
 		</div>
 		
 		<!-- Operative Card Content -->
-		<div class="p-0">
+		<div class="p-0 opinfo opinfo opinfo_{{ operative.rosteropid }} collapse show">
 			<!-- Dashboard Info -->
-			<div class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show row m-0 p-1" ng-if="MODE == 'Dashboard'">
+			<div class="row m-0 p-1" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small m-0 p-0">
 					<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.opname }}</span>
 					<span ng-if="settings['opnamefirst'] == 'y'">{{ operative.optype }}</span>
@@ -231,7 +231,7 @@
 			</div>
 			
 			<!-- Operative Weapons List-->
-			<div class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show p-1">
+			<div class="p-1">
 				<table ng-if="operative.weapons.length > 0" width="100%" class="line-top-light">
 					<thead>
 						<tr>
@@ -355,7 +355,7 @@
 			</div>
 			
 			<!-- Abilities -->
-			<div ng-if="operative.abilities.length > 0" class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show p-1 line-top-light">
+			<div ng-if="operative.abilities.length > 0" class="p-1 line-top-light">
 				<div class="row p-0">
 					<!-- Unique Actions -->
 					<h6 class="col-6">Abilities</h6>
@@ -366,7 +366,7 @@
 			</div>
 			
 			<!-- Unique Actions -->
-			<div ng-if="operative.uniqueactions.length > 0" class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show p-1 line-top-light">
+			<div ng-if="operative.uniqueactions.length > 0" class="p-1 line-top-light">
 				<div class="row p-0">
 					<h6 class="col-6">Unique Actions</h6>
 					<div class="pointer col-6" ng-click="showpopup(ua.title + ' (' + ua.AP + ' AP)', ua.description);" ng-repeat="ua in operative.uniqueactions">
@@ -377,7 +377,7 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show p-1 line-top-light" ng-if="MODE != 'Compendium' && (MODE != 'Roster' || operative.equipments.length > 0)">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (MODE != 'Roster' || operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="row">
 					<h6 class="pointer col-6">
@@ -395,7 +395,7 @@
 			</div>
 			
 			<!-- XP -->
-			<div class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show" ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Dashboard')">
+			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Dashboard')">
 				<div class="row line-top-light m-0 p-1">
 					<div class="col-8 p-0">
 						<h6 class="d-inline p-0">XP</h6>
@@ -417,7 +417,7 @@
 			
 			<!-- Notes -->
 			<!-- My roster -->
-			<div ng-if="operative.userid == currentuser.userid" class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show line-top-light">
+			<div ng-if="operative.userid == currentuser.userid" class="line-top-light">
 				<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h6>
@@ -426,7 +426,7 @@
 				</div>
 			</div>
 			<!-- Not my roster -->
-			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show m-1 line-top-light">
+			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="line-top-light">
 				<h6>Notes</h6>
 				{{ operative.notes }}
 			</div>
@@ -434,7 +434,7 @@
 	</div>
 	
 	<!-- Operative Card Footer -->
-	<div class="opinfo expandedopinfo opinfo_{{ operative.rosteropid }} collapse show card-footer m-0 p-1">
+	<div class="opinfo opinfo opinfo_{{ operative.rosteropid }} collapse show card-footer m-0 p-1">
 		<!-- Operative Keywords -->
 		<div class="line-top-light align-bottom">
 			<em class="small" style="text-transform: uppercase;">{{ operative.keywords }}</em>
