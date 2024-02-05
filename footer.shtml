@@ -5,8 +5,8 @@
 			<hr/>
 			
 			<div class="container-fluid">
-				<a href="/faq.php">Help &amp; FAQ</a> |
-				<a href="https://ktdash.app/publicstats.php">Stats</a> |
+				<a href="/faq.php" class="navloader">Help &amp; FAQ</a> |
+				<a href="/publicstats.php" class="navloader">Stats</a> |
 				<a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a> |
 				<a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">Trello Backlog</a>
 			</div>

@@ -82,7 +82,7 @@
 		</script>
 		
 		<h1 class="orange">
-			<a href="/fa/<?php echo $factionid ?>"><?php echo $faction->factionname ?></a>
+			<a class="navloader" href="/fa/<?php echo $factionid ?>"><?php echo $faction->factionname ?></a>
 			:
 			<?php echo $killteam->killteamname ?>
 		</h1>
