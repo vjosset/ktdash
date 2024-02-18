@@ -3623,7 +3623,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Can Shoot this weapon while on a Conceal order";
 								break;
 							case "SIPHON LIFE FORCE":
-								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful Hits step of that shooting attack, if you resolve two or more attack dice, you can select one friendly LEGIONARY operative within [PENT] of the target to regain1 D3 lost wounds.";
+								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful Hits step of that shooting attack, if you resolve two or more attack dice, you can select one friendly LEGIONARY operative within " + $scope.PlaceHolders["[PENT]"] + " of the target to regain 1D3 lost wounds.";
 								break;
 							case "SMART TARGETING":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, you can use this special rule. If you do so, for that shooting attack:<br/><li>Enemy operatives with an Engage order that are not within Engagement Range of friendly operatives are valid targets and cannot be in Cover.</li><li>In the Roll Attack Dice step of that shooting attack, attack dice results of 6 are successful normal hits. All other attack dice results are failed hits.</li>";
