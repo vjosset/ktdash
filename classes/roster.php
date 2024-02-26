@@ -170,8 +170,11 @@
 						(
 							SELECT DISTINCT F.archetype, F.factionid, F.killteamid, F.fireteamid
 							FROM RosterOperative RO
+							INNER JOIN Killteam K
+								ON  K.killteamid = RO.killteamid
 							INNER JOIN Fireteam F
-								ON  F.fireteamid = RO.fireteamid
+								ON  F.killteamid = RO.killteamid
+								AND F.fireteamid = RO.fireteamid
 							WHERE rosterid = ?
 						) A
 							ON  CONCAT('/', A.archetype, '/') LIKE CONCAT('%/', T.archetype, '/%')
