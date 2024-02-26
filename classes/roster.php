@@ -175,7 +175,7 @@
 							INNER JOIN Fireteam F
 								ON  F.killteamid = RO.killteamid
 								AND F.fireteamid = RO.fireteamid
-							WHERE rosterid = ?
+							WHERE RO.rosterid = ?
 						) A
 							ON  CONCAT('/', A.archetype, '/') LIKE CONCAT('%/', T.archetype, '/%')
 							OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
