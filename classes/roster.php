@@ -30,7 +30,7 @@
 			];
         }
 		
-		public function GetRoster($rid) {
+		public static function GetRoster($rid) {
 			global $dbcon;
 			global $perf;
 			
@@ -75,7 +75,7 @@
             }
 		}
 		
-		public function GetRosterRow($rid) {
+		public static function GetRosterRow($rid) {
 			global $dbcon;
 			
 			// Get the operatives for this team
@@ -234,7 +234,7 @@
 			$cmd->execute();
 		}
 		
-		function GetNewRosterId() {
+		public static function GetNewRosterId() {
 			global $dbcon;
 			$rosterid = CommonUtils\shortId(8);
 			$isdup = true;
@@ -264,4 +264,3 @@
 			return $rosterid;
 		}
 	}
-?>

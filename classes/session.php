@@ -16,7 +16,7 @@
             $this->Keys = ["sessionid"];
         }
 		
-		public function Login($username, $password) {
+		public static function Login($username, $password) {
             Session::Logout();
             global $dbcon;
 			
@@ -100,7 +100,7 @@
             return $user;
         }
 
-        public function Logout() {
+        public static function Logout() {
 			if (empty($_COOKIE[self::CookieID])) {
 				// Session ID is not set - Not logged in
 			} else {
@@ -142,11 +142,11 @@
 			}
         }
 
-        public function IsAuth() {
+        public static function IsAuth() {
             return Session::CurrentUser() != null;
         }
 
-        public function CurrentUser() {
+        public static function CurrentUser() {
 			if (empty($_COOKIE[self::CookieID])) {
 				// Session ID is not set - Not logged in
 				Session::Logout();
@@ -202,4 +202,3 @@
 			return $user;
         }
 	}
-?>
