@@ -394,10 +394,11 @@
 				</div>
 			</div>
 			
-			<!-- XP -->
+			<!-- XP & Rested -->
 			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Dashboard')">
-				<div class="row line-top-light m-0 p-1">
-					<div class="col-8 p-0">
+				<!-- Headers -->
+				<div class="row line-top-light m-0 p-0">
+					<div class="col-6">
 						<h6 class="d-inline p-0">XP</h6>
 						<em ng-if="operative.xp <= 5">Adept</em>
 						<em ng-if="operative.xp >= 6 && operative.xp <= 15">Veteran</em>
@@ -405,12 +406,24 @@
 						<em ng-if="operative.xp >= 31 && operative.xp <= 50">Grizzled</em>
 						<em ng-if="operative.xp >= 51">Revered</em>
 					</div>
-					<div class="col-4 text-end">
+					<div class="col-6">
+						<h6 class="d-inline p-0">Rested</h6>
+					</div>
+				</div>
+
+				<!-- Values/Counters -->
+				<div class="row m-0 p-0">
+					<div class="col-6">
+						<!-- XP -->
 						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
-						
 						<h5 ng-bind="operative.xp" class="d-inline"></h5>
-						
 						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
+					</div>
+					<div class="col-6">
+						<!-- Rested -->
+						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateRested(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
+						<h5 ng-bind="operative.rested" class="d-inline"></h5>
+						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateRested(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
 				</div>
 			</div>

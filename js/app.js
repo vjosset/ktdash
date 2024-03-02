@@ -2603,6 +2603,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				$scope.commitRosterOp(op);
 			}
+			
+			// updateRested()
+			// Increments or decrements the specified RosterOperative's Rested counter
+			$scope.updateRested = function(inc, op) {
+				te("roster", "rested", "inc", op.rosterid, op.rosteropid, inc);
+				op.rested += inc;
+				if (op.rested < 0) {
+					op.rested = 0;
+				}
+				$scope.commitRosterOp(op);
+			}
 		}
 		
 		// COMPENDIUM
