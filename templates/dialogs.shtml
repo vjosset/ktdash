@@ -253,6 +253,37 @@
 	</div>
 </div>
 
+<!-- Edit roster narrative info dialog -->
+<div class="modal fade" id="editrosternarrmodal" tabindex="-1" role="dialog" aria-labelledby="editrosternarrmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="editrosternarrmodallabel"><i class="fas fa-edit fa-fw"></i> {{ rostertoedit.rostername }} - Narrative Info</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				<h4>Requisition Points</h4>
+				<span ng-if="rostertoedit.userid == currentuser.userid" class="pointer small" ng-click="rostertoedit.newreqpts = rostertoedit.newreqpts - 1;"><i class="far fa-minus-square fa-fw"></i></span>
+				<h5 ng-bind="rostertoedit.newreqpts" class="d-inline"></h5>
+				<span ng-if="rostertoedit.userid == currentuser.userid" class="pointer small" ng-click="rostertoedit.newreqpts = rostertoedit.newreqpts + 1;"><i class="far fa-plus-square fa-fw"></i></span>
+			
+				<h4>Strategic Assets</h4>
+				<textarea style="border: 0px solid; width: 100%;" rows="3" ng-model="rostertoedit.newstratnotes"></textarea>
+
+				<h4>Equipment Notes</h4>
+				<textarea style="border: 0px solid; width: 100%;" rows="3" ng-model="rostertoedit.neweqnotes"></textarea>
+
+				<h4>SpecOps Notes</h4>
+				<textarea style="border: 0px solid; width: 100%;" rows="3" ng-model="rostertoedit.newspecopnotes"></textarea>
+			</div>
+			<div class="modal-footer dark p-1">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="saveEditRoster()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Confirm delete team modal dialog -->
 <div class="modal fade" id="deleterostermodal" tabindex="-1" role="dialog" aria-labelledby="deleterostermodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

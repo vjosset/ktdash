@@ -1299,7 +1299,11 @@ var app = angular.module("kt", ['ngSanitize'])
 					"RP": roster.RP,
 					"ployids": roster.ployids,
 					"portraitcopyok": roster.portraitcopyok,
-					"keyword": roster.keyword
+					"keyword": roster.keyword,
+					"reqpts": roster.reqpts,
+					"stratnotes": roster.stratnotes,
+					"eqnotes": roster.eqnotes,
+					"specopnotes": roster.specopnotes
 					//,
 					//"tacopids": roster.tacopids
 				};
@@ -1382,6 +1386,24 @@ var app = angular.module("kt", ['ngSanitize'])
 				$('#editrostermodal').modal("show");
 			}
 			
+			// initEditRosterNarr();
+			// Pops-up the roster narrative info modal
+			$scope.initEditRosterNarr = function(roster) {
+				//console.log("initEditRosterNarr(" + roster.rostername + ")");
+				$scope.rostertoedit = roster;
+				$scope.rostertoedit.newrostername =  roster.rostername;
+				$scope.rostertoedit.newnotes =  roster.notes;
+				$scope.rostertoedit.newkeyword =  roster.keyword;
+				$scope.rostertoedit.newportraitcopyok =  roster.portraitcopyok;
+				$scope.rostertoedit.newreqpts =  roster.reqpts;
+				$scope.rostertoedit.newstratnotes =  roster.stratnotes;
+				$scope.rostertoedit.neweqnotes =  roster.eqnotes;
+				$scope.rostertoedit.newspecopnotes =  roster.specopnotes;
+				
+				// Show the modal
+				$('#editrosternarrmodal').modal("show");
+			}
+			
 			// saveEditRoster()
 			// Save roster edits
 			$scope.saveEditRoster = function() {
@@ -1397,6 +1419,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.rostertoedit.notes = $scope.rostertoedit.newnotes;
 				$scope.rostertoedit.keyword = $scope.rostertoedit.newkeyword;
 				$scope.rostertoedit.portraitcopyok = $scope.rostertoedit.newportraitcopyok;
+				$scope.rostertoedit.reqpts = $scope.rostertoedit.newreqpts;
+				$scope.rostertoedit.stratnotes = $scope.rostertoedit.newstratnotes;
+				$scope.rostertoedit.eqnotes = $scope.rostertoedit.neweqnotes;
+				$scope.rostertoedit.specopnotes = $scope.rostertoedit.newspecopnotes;
 				delete $scope.rostertoedit.newrostername;
 				delete $scope.rostertoedit.newnotes;
 
@@ -1412,8 +1438,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Commit to API/DB
 				$scope.commitRoster($scope.rostertoedit);
 				
-				// Close the modal
+				// Close the (s)
 				$('#editrostermodal').modal("hide");
+				$('#editrosternarrmodal').modal("hide");
 				
 				$scope.$apply();
 			}
