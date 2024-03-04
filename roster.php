@@ -126,7 +126,7 @@
 							?>
 										<li><a class="pointer dropdown-item p-1" ng-click="initAddOp(myRoster);"><i class="far fa-plus-square fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Operative"></i> Add Operative</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initEditRoster(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Name and Description"></i> Edit Name and Description</a></li>
-										<li><a class="pointer dropdown-item p-1" ng-click="initEditRosterNarr(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Narrative Info"></i> Narrative Info</a></li>
+										<li ng-if="settings['shownarrative'] == 'y'"><a class="pointer dropdown-item p-1" ng-click="initEditRosterNarr(myRoster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Narrative Info"></i> Narrative Info</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="deploy(myRoster);"><i class="fas fa-exclamation fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Deploy"></i> Deploy</a></li>
 										<li><a class="pointer dropdown-item p-1" ng-click="initUploadRosterPortrait(myRoster)" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Portrait"><i class="fas fa-camera fa-fw"></i> Edit Roster Portrait</a></li>
 										<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ myRoster.rosterid }}/g" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Photo Gallery</a></li>
