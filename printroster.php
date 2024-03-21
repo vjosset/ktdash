@@ -60,6 +60,37 @@
 			}
 		}
 	}
+	
+	// Now move the unique actions around to make it take less room and not repeat the obvious
+	for ($opnum = 0; $opnum < count($myRoster->operatives); $opnum++) {
+		$op = $myRoster->operatives[$opnum];
+		if ($op->uniqueactions && count($op->uniqueactions) > 0) {
+			// This operative has uniqueactions
+			for ($opuanum = 0; $opuanum < count($op->uniqueactions); $opuanum++) {
+				$ua = $op->uniqueactions[$opuanum];
+
+				if (strlen($ua->description) > 400) {
+					// Find if this ability is already in the list of common long uniqueactions
+					$found = false;
+					for ($uanum = 0; $uanum < count($uniqueactions); $uanum++) {
+						if ($uniqueactions[$uanum]->title == $ua->title) {
+							// Same unique action, already in the list of common long uniqueactions
+							$found = true;
+							break;
+						}
+					}
+
+					if (!$found) {
+						// This uniqueaction is not in the list of common long uniqueactions, add it
+						$uniqueactions[] = json_decode(json_encode($ua));
+					}
+
+					// Clear this operative's uniqueaction description to make room
+					$ua->description = "(See Unique Actions below)";
+				}
+			}
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -149,11 +180,11 @@
 			</div>
 			<div class="col-4 text-end">
 				<!-- Roster QR Code -->
-				<img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
+				<img src="https://chart.googleapis.com/chart?cht=qr&chs=400x400&chl=https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
 			</div>
 		</div>
 		
-		<div class="p-0 m-1 container-fluid">
+		<div class="p-0 m-1 container-fluid twocols">
 		<!-- Show this roster and its operatives -->
 		<?php
 		foreach($myRoster->operatives as $op)
@@ -182,22 +213,32 @@
 				<!-- Keywords -->
 				<em class="small"><?php echo htmlentities($op->keywords, ENT_HTML5  , 'UTF-8') ?></em>
 				
-				<!-- Operative Stats -->
 				<div class="row">
-					<h5 class="col-2 orange text-center">M</h5>
-					<h5 class="col-2 orange text-center">APL</h5>
-					<h5 class="col-2 orange text-center">GA</h5>
-					<h5 class="col-2 orange text-center">DF</h5>
-					<h5 class="col-2 orange text-center">SV</h5>
-					<h5 class="col-2 orange text-center">W</h5>
-				</div>
-				<div class="row">
-					<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
-					<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
-					<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
-					<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
-					<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
-					<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
+						<div class="col-3 m-0 p-0 pointer h-100" style="overflow: hidden;">
+							<!-- Operative Portrait -->
+							<img
+								src="/api/operativeportrait.php?roid=<?php echo $op->rosteropid ?>"
+								style="border: 1px solid #EEE; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
+						</div>
+						<div class="col-9">
+							<!-- Operative Stats -->
+							<div class="row">
+								<h5 class="col-2 orange text-center">M</h5>
+								<h5 class="col-2 orange text-center">APL</h5>
+								<h5 class="col-2 orange text-center">GA</h5>
+								<h5 class="col-2 orange text-center">DF</h5>
+								<h5 class="col-2 orange text-center">SV</h5>
+								<h5 class="col-2 orange text-center">W</h5>
+							</div>
+							<div class="row">
+								<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
+							</div>
+						</div>
 				</div>
 				
 				<!-- Weapons -->
@@ -485,7 +526,7 @@
 			<!-- Common Abilities -->
 			<div class="p-0 m-0" style="page-break-inside: avoid; page-break-before:auto;">
 				<h2>Abilities</h2>
-				<div class="p-1" style="columns: 200px 2;">
+				<div class="p-1 twocols">
 					<?php
 						for ($abnum = 0; $abnum < count($abilities); $abnum++) {
 							$ab = $abilities[$abnum];
@@ -493,6 +534,31 @@
 						<h3><?php echo $ab->title ?>: </h3>
 						<?php echo $ab->description ?>
 						<hr/>
+						<?php
+						}
+					?>
+				</div>
+			</div>
+		<?php
+		}
+		?>
+		<br/><br/>
+		<?php
+			if (count($uniqueactions) > 0) {
+			?>
+			<!-- Common uniqueactions -->
+			<div class="p-0 m-0" style="page-break-inside: avoid; page-break-before:auto;">
+				<h2>Unique Actions</h2>
+				<div class="p-1 twocols">
+					<?php
+						for ($uanum = 0; $uanum < count($uniqueactions); $uanum++) {
+							$ua = $uniqueactions[$uanum];
+						?>
+						<div  style="page-break-inside: avoid; page-break-before:auto;">
+							<h4><?php echo $ua->title ?> (<?php echo $ua->AP ?> AP): </h4>
+							<?php echo $ua->description ?>
+							<hr/>
+						</div>
 						<?php
 						}
 					?>

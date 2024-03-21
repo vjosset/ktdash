@@ -150,9 +150,14 @@ th, td {
 	border: 1px solid #eee;
 }
 
+.twocols {
+	columns: 2;
+}
+
 @media print {
 	body {
 		color: #000;
+		zoom: 70%;
 	}
 	
 	.fas, .far {
