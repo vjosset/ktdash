@@ -990,17 +990,54 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				$scope.initRoster(rid, true);
 			}
-			
-			$scope.initPrintRoster = function(rid) {
-				te("roster", "print", "roster", rid);
-				$scope.initRoster(rid, true, window.print);
+
+			$scope.initPrintRoster = function(roster) {
+				console.log("initPrintRoster(" + roster.rosterid + ")");
+				$scope.myRoster = roster;
+				
+				// Show the modal
+				console.log("Showing modal...");
+				$('#rosterprintmodal').modal("show");
 			}
 			
-			$scope.printroster = function(roster) {
+			$scope.printroster = function(roster, format) {
 				te("roster", "print", "roster", roster.rosterid);
-				window.open("/api/pdfrender.php?scope=roster&rid=" + roster.rosterid);
+				switch(format) {
+					case 'PV':
+					case 'BV':
+					case 'TH':
+					case 'TV':
+						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&rid=" + roster.rosterid);
+						break;
+					case 'plain':
+					case null:
+					case '':
+						window.open("/api/pdfrender.php?scope=roster&&rid=" + roster.rosterid);
+						break;
+				}
 			}
 			
+			$scope.initRosterForPrint = function(rid, skipte, s) {
+				// We're viewing this roster for printing/PDF render, pre-load the settings for the PDF renderer
+				//	TODO: Pull these from the URL; user will pass their current settings to the renderer
+				$scope.setSetting("display", "card", true);
+				$scope.setSetting("showopseq", "n", true);
+				$scope.setSetting("startvp", "2", true);
+				$scope.setSetting("startcp", "3", true);
+				$scope.setSetting("applyeqmods", "y", true);
+				$scope.setSetting("hideappliedeqmods", "y", true);
+				$scope.setSetting("shownarrative", "n", true);
+				$scope.setSetting("autoinccp", "n", true);
+				$scope.setSetting("defaultoporder", "engage", true);
+				$scope.setSetting("showopid", "n", true);
+				$scope.setSetting("useoptypeasname", "n", true);
+				$scope.setSetting("closequarters", "n", true);
+				$scope.setSetting("opnamefirst", "y", true);
+
+				// Now we can initRoster
+				$scope.initRoster(rid, skipte, s);
+			}
+
 			// initRoster()
 			// Initializes the "My Roster" page - Landing page for a single roster
 			$scope.initRoster = function(rid, skipte, s) {

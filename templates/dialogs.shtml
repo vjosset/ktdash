@@ -779,6 +779,31 @@
 	</div>
 </div>
 
+<!-- Roster Print Options -->
+<div class="modal fade" id="rosterprintmodal" tabindex="-1" role="dialog" aria-labelledby="rosterprintmodallabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="rosterprintmodallabel">Print Roster</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				<h2>Print Mode</h2>
+				<ul>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'plain');">Plain Text</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'PV');">Cards - Poker Vertical</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'BV');">Cards - Bridge Vertical</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'TV');">Cards - Tarot Vertical</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'TH');">Cards - Tarot Horizonal</a></li>
+				</ul>
+			</div>
+			<div class="modal-footer dark p-1">
+				<button type="button" class="btn btn-secondary prompt__close" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Install Prompt -->
 <div class="modal fade" id="installmodal" tabindex="-1" role="dialog" aria-labelledby="installmodallabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

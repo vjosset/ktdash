@@ -14,9 +14,9 @@
 		</div>
 		
 		<!-- Roster Card Title -->
-		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row m-0 p-1">
+		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="card-title row m-0 p-1" ng-class="{orangetext: !operative.activated, greytext: opIsSlain(operative) }">
 			<!-- Operative Name -->
-			<h2 class="col-11 m-0 p-0" ng-class="{orangetext: !operative.activated, greytext: opIsSlain(operative) }">
+			<h2 class="col-11 m-0 p-0">
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				<span ng-if="settings['opnamefirst'] == 'y'">{{ operative.opname }}</span>
 				<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.optype }}</span>
@@ -357,7 +357,7 @@
 			<!-- Abilities -->
 			<div ng-if="operative.abilities.length > 0" class="p-1 line-top-light">
 				<div class="row p-0">
-					<!-- Unique Actions -->
+					<!-- Abilities -->
 					<h6 class="col-6">Abilities</h6>
 					<div class="pointer col-6" ng-click="showpopup(ab.title, ab.description);" ng-repeat="ab in operative.abilities">
 						{{ ab.title }} 
@@ -449,7 +449,7 @@
 	<!-- Operative Card Footer -->
 	<div class="opinfo opinfo opinfo_{{ operative.rosteropid }} collapse show card-footer m-0 p-1">
 		<!-- Operative Keywords -->
-		<div class="line-top-light align-bottom">
+		<div class="align-bottom small">
 			<em class="small" style="text-transform: uppercase;">{{ operative.keywords }}</em>
 		</div>
 	</div>

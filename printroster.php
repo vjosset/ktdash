@@ -190,13 +190,13 @@
 		foreach($myRoster->operatives as $op)
 		{
 		?>
-			<div class="px-1" style="page-break-inside: avoid; page-break-before: auto;">
-				<div class="row">
-					<div class="col-7">
+			<div class="px-1" style="page-break-inside: avoid; page-break-before: auto; border: 1px solid #000;">
+				<div class="row p-0 m-0">
+					<div class="col-7 p-0 m-0">
 						<!-- Operative Name -->
 						<h2><?php echo $op->opname ?></h2>
 					</div>
-					<div class="col-5 text-end">
+					<div class="col-5 p-0 m-0 text-end">
 						<!-- Operative Type -->
 						<?php echo $op->optype ?><br/>
 						<!-- Wounds Tracker -->
@@ -213,7 +213,7 @@
 				<!-- Keywords -->
 				<em class="small"><?php echo htmlentities($op->keywords, ENT_HTML5  , 'UTF-8') ?></em>
 				
-				<div class="row">
+				<div class="row p-0 m-0">
 						<div class="col-3 m-0 p-0 pointer h-100" style="overflow: hidden;">
 							<!-- Operative Portrait -->
 							<img
@@ -523,6 +523,7 @@
 		<?php
 			if (count($abilities) > 0) {
 			?>
+			<br/><br/>
 			<!-- Common Abilities -->
 			<div class="p-0 m-0" style="page-break-inside: avoid; page-break-before:auto;">
 				<h2>Abilities</h2>
@@ -532,7 +533,7 @@
 							$ab = $abilities[$abnum];
 						?>
 						<h3><?php echo $ab->title ?>: </h3>
-						<?php echo $ab->description ?>
+						<?php echo replacedistance($ab->description) ?>
 						<hr/>
 						<?php
 						}
@@ -542,10 +543,10 @@
 		<?php
 		}
 		?>
-		<br/><br/>
 		<?php
 			if (count($uniqueactions) > 0) {
 			?>
+			<br/><br/>
 			<!-- Common uniqueactions -->
 			<div class="p-0 m-0" style="page-break-inside: avoid; page-break-before:auto;">
 				<h2>Unique Actions</h2>
@@ -556,7 +557,7 @@
 						?>
 						<div  style="page-break-inside: avoid; page-break-before:auto;">
 							<h4><?php echo $ua->title ?> (<?php echo $ua->AP ?> AP): </h4>
-							<?php echo $ua->description ?>
+							<?php echo replacedistance($ua->description) ?>
 							<hr/>
 						</div>
 						<?php

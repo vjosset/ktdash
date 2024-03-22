@@ -155,31 +155,37 @@ th, td {
 }
 
 @media print {
+	.page {
+    size: Letter;
+		margin: 0;
+  }
+
 	body {
 		color: #000;
-		zoom: 70%;
+		background-color: #FFF;
+		zoom: 50%;
 	}
 	
 	.fas, .far {
 		display: none;
 	}
 
-	/* Unordered Lists */
-	ul {
-		padding-left: 20px;
-		padding-right: 0px;
+	.nopagebreak {
+		page-break-inside: avoid;
 	}
 	
 	.card {
 		page-break-inside: avoid;
-		page-break-before:auto;
 		border: 1px solid #000;
 	}
-	
-	.opcard {
-		height: 100%;
-		width: 400px !important;
-		height: 600px !important;
+
+	.darkcard {
+		background-color: transparent;
+	}
+
+	.orangetext {
+		background-color: #c54c21;
+		color: #262a2d;
 	}
 	
 	.noprint {

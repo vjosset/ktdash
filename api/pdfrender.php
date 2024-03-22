@@ -19,9 +19,10 @@
 		// Get the requested input to render (operative card or full roster)
 		$scope = getIfSet($_REQUEST["scope"]);
 		$bg = getIfSet($_REQUEST["bg"], 'N');
+		$cardsize = getIfSet($_REQUEST['cardsize'], 'PV');
 		
-		if ($scope != "op" && $scope != "roster") {
-            header('HTTP/1.0 400 Invalid Scope');
+		if ($scope != "op" && $scope != "roster" && $scope != "rostercards") {
+			header('HTTP/1.0 400 Invalid Scope');
 			die();
 		}
 		
@@ -43,7 +44,7 @@
 			}
 			
 			// Input is validated, let's build the render URL
-			$url = "https://indocpdf.com/api/pdfrender.php?apikey=" . $indocAPIKey . "&showbackground=false&filename=" . urlencode($op->opname) . ".pdf&url=" . urlencode("https://ktdash.app/printop.php?roid=" . $op->rosteropid);
+			$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=false&filename=" . urlencode($op->opname) . ".pdf&url=" . urlencode("https://ktdash.app/printop.php?cardsize=$cardsize&roid=$op->rosteropid");
 			
 			// Get the file content
 			$data = file_get_contents($url);
@@ -91,5 +92,37 @@
 			header("Content-disposition: inline; filename=roster.pdf");
 			echo $data;
 		}
-    }
+		else if ($scope == "rostercards") {
+			// Render the full roster
+			// Get the roster
+			$rid = getIfSet($_REQUEST["rid"]);
+			if ($rid == "" || $rid == null || strlen($rid) > 10) {
+				header('HTTP/1.0 400 Invalid Roster ID [' . $rid . ']');
+				die();
+			}
+			
+			$r = Roster::GetRoster($rid);
+			if ($r == null) {
+				header('HTTP/1.0 404 Roster not found');
+				die();
+			}
+			
+			// Input is validated, let's build the render URL
+			$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=true&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printrostercards.php?cardsize=$cardsize&rid=$r->rosterid");
+			
+			// Get the file content
+			$data = file_get_contents($url);
+			
+			if ($data === false) {
+				// Render failed
+				header('HTTP/1.0 500 Could not render roster');
+				die();
+			}
+			
+			// Spit it out
+			header("Content-type: application/pdf");
+			header("Content-disposition: inline; filename=roster.pdf");
+			echo $data;
+		}
+	}
 ?>
