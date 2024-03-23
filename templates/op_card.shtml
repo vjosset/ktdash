@@ -1,4 +1,4 @@
-<div class="ng-cloak card darkcard m-0 opcard h-100" ng-if="!operative.hidden || MODE != 'Dashboard'">
+<div class="ng-cloak card darkcard m-0 opcard h-100" ng-if="!operative.hidden || MODE != 'Dashboard'" style="overflow: hidden;">
 	<div class="card-body m-0 p-1">
 		<!-- Compendium Card Title -->
 		<div ng-if="MODE == 'Compendium'" class="card-title pointer p-1">
@@ -83,7 +83,7 @@
 		</div>
 		
 		<!-- Operative Card Content -->
-		<div class="p-0 opinfo opinfo opinfo_{{ operative.rosteropid }} collapse show">
+		<div class="p-0 opinfo opinfo opinfo_{{ operative.rosteropid }} collapse show" style="overflow: hidden;">
 			<!-- Dashboard Info -->
 			<div class="row m-0 p-1" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small m-0 p-0">
@@ -260,7 +260,7 @@
 						<!-- Single Profile -->
 						<tr ng-if="weapon.profiles.length < 2">
 							<td>
-								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
+								<img ng-src="{{ MODE == 'Print' ? '/img/icons/weptype' + weapon.weptype + '_Black.png' : '/img/icons/weptype' + weapon.weptype + '.png'}}" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>
@@ -283,7 +283,7 @@
 						<!-- Multi-Profile -->
 						<tr ng-if="weapon.profiles.length > 1">
 							<td colspan="4">
-								<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />							
+								<img ng-src="{{ MODE == 'Print' ? '/img/icons/weptype' + weapon.weptype + '_Black.png' : '/img/icons/weptype' + weapon.weptype + '.png'}}" width="13" height="13" alt="{{ weapon.weptype }}" title="{{ weapon.weptype }}" />							
 								<!-- ANY ng-switch="weapon.weptype" class="fas fa-fw">
 								  <ANY ng-switch-when="R">&#x2295;</ANY>
 								  <ANY ng-switch-when="M">&#x2694;</ANY>
@@ -314,7 +314,7 @@
 						<!-- Single Profile -->
 						<tr ng-if="eq.weapon && eq.weapon.profiles.length < 2">
 							<td>
-								<img ng-src="/img/icons/weptype{{ eq.weapon.weptype }}.png" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
+								<img ng-src="{{ MODE == 'Print' ? '/img/icons/weptype' + eq.weapon.weptype + '_Black.png' : '/img/icons/weptype' + eq.weapon.weptype + '.png'}}" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
 								<div class="pointer d-inline" ng-if="eq.weapon.profiles[0].SR != ''" ng-bind-html=" '(' + eq.weapon.profiles[0].SR + ')'" ng-click="initwepsr(eq.weapon, eq.weapon.profiles[0]);" style="font-style:italic;"></div>
 							</td>
@@ -332,7 +332,7 @@
 						<!-- Multi-Profile -->
 						<tr ng-if="eq.weapon && eq.weapon.profiles.length > 1">
 							<td colspan="4">
-								<img ng-src="/img/icons/weptype{{ eq.weapon.weptype }}.png" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
+								<img ng-src="{{ MODE == 'Print' ? '/img/icons/weptype' + eq.weapon.weptype + '_Black.png' : '/img/icons/weptype' + eq.weapon.weptype + '.png'}}" width="13" height="13" alt="{{ eq.weapon.weptype }}" title="{{ eq.weapon.weptype }}" />
 								{{ eq.weapon.wepname }}
 							</td>
 						</tr>
@@ -378,7 +378,7 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (MODE != 'Roster' || operative.equipments.length > 0)">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && ((MODE != 'Roster' && MODE != 'Print') || (operative.equipments.length > 0 && totalOpEqPts(operative) > 0))">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="row">
 					<h5 class="pointer col-6">
@@ -388,7 +388,7 @@
 						<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
 					</h5>
 					
-					<div ng-if="settings['hideappliedeqmods'] == 'n' || MODE == 'Roster'" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+					<div ng-if="settings['hideappliedeqmods'] == 'n' || MODE == 'Roster' || eq.eqtype == 'WepMod' || eq.eqtype == 'OpMod' || eq.eqpts > 0" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 						{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 					</div>
 					
@@ -431,7 +431,7 @@
 			
 			<!-- Notes -->
 			<!-- My roster -->
-			<div ng-if="operative.userid == currentuser.userid" class="line-top-light">
+			<div ng-if="operative.userid == currentuser.userid" class="p-1 line-top-light" style="overflow: hidden;">
 				<h5 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h5>
@@ -440,7 +440,7 @@
 				</div>
 			</div>
 			<!-- Not my roster -->
-			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="line-top-light">
+			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="p-1 line-top-light">
 				<h5>Notes</h5>
 				<p style="white-space:pre-wrap;"">{{ operative.notes }}</p>
 			</div>

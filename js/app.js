@@ -1027,7 +1027,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.setSetting("startvp", "2", true);
 				$scope.setSetting("startcp", "3", true);
 				$scope.setSetting("applyeqmods", "y", true);
-				$scope.setSetting("hideappliedeqmods", "n", true);
+				$scope.setSetting("hideappliedeqmods", "y", true);
 				$scope.setSetting("shownarrative", "n", true);
 				$scope.setSetting("autoinccp", "n", true);
 				$scope.setSetting("defaultoporder", "engage", true);
