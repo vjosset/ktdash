@@ -791,10 +791,10 @@
 				<h2>Print Mode</h2>
 				<ul>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'plain');">Plain Text</a></li>
-					<li><a class="pointer" ng-click="printroster(myRoster, 'PV');">Cards - Poker Vertical</a></li>
-					<li><a class="pointer" ng-click="printroster(myRoster, 'BV');">Cards - Bridge Vertical</a></li>
-					<li><a class="pointer" ng-click="printroster(myRoster, 'TV');">Cards - Tarot Vertical</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'TV');">Cards - Tarot Vertical</a> (best fit)</li>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'TH');">Cards - Tarot Horizonal</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'PV');">Cards - Poker Vertical</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'PH');">Cards - Poker Horizonal</a></li>
 				</ul>
 			</div>
 			<div class="modal-footer dark p-1">

@@ -1004,7 +1004,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				te("roster", "print", "roster", roster.rosterid);
 				switch(format) {
 					case 'PV':
+					case 'PH':
 					case 'BV':
+					case 'BH':
 					case 'TH':
 					case 'TV':
 						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&rid=" + roster.rosterid);
@@ -1025,7 +1027,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.setSetting("startvp", "2", true);
 				$scope.setSetting("startcp", "3", true);
 				$scope.setSetting("applyeqmods", "y", true);
-				$scope.setSetting("hideappliedeqmods", "y", true);
+				$scope.setSetting("hideappliedeqmods", "n", true);
 				$scope.setSetting("shownarrative", "n", true);
 				$scope.setSetting("autoinccp", "n", true);
 				$scope.setSetting("defaultoporder", "engage", true);
@@ -1036,6 +1038,8 @@ var app = angular.module("kt", ['ngSanitize'])
 
 				// Now we can initRoster
 				$scope.initRoster(rid, skipte, s);
+
+				$scope.MODE = 'Print';
 			}
 
 			// initRoster()

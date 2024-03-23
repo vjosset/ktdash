@@ -155,15 +155,16 @@ th, td {
 }
 
 @media print {
-	.page {
-    size: Letter;
-		margin: 0;
+	@page {
+    size: 8.5in 11in;
+		margin: 0.1in;
   }
 
 	body {
+		font-family: Arial Narrow, Roboto, sans-serif;
 		color: #000;
 		background-color: #FFF;
-		zoom: 50%;
+		zoom: 77%
 	}
 	
 	.fas, .far {
@@ -201,19 +202,19 @@ th, td {
 /* TOAST */
 /* The toast - position it at the bottom and in the middle of the screen */
 #toast {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
+	visibility: hidden; /* Hidden by default. Visible on click */
+	min-width: 250px; /* Set a default minimum width */
+	margin-left: -125px; /* Divide value of min-width by 2 */
 	background-color: #c54c21; /* Orange background */
 	color: #262a2d; /* Dark dark grey font */
-    text-align: center; /* Centered text */
+	text-align: center; /* Centered text */
 	border: 2px solid #000;
-    border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 10000; /* Add a z-index if needed */
-    left: 50%; /* Center the toast */
-    bottom: 30px; /* 30px from the bottom */
+	border-radius: 2px; /* Rounded borders */
+	padding: 16px; /* Padding */
+	position: fixed; /* Sit on top of the screen */
+	z-index: 10000; /* Add a z-index if needed */
+	left: 50%; /* Center the toast */
+	bottom: 30px; /* 30px from the bottom */
 	font-family: oswald;
 	font-size: 1.10em;
 }
