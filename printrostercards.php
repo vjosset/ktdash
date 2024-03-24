@@ -146,7 +146,7 @@
 									<h4 class="line-bottom-light">Abilities</h4>
 									<div class="m-0 p-1" ng-repeat="ab in operative.abilities">
 										<h6 class="d-inline">{{ ab.title }}:</h6>
-										<span ng-bind-html="ab.description"></span>
+										<span ng-bind-html="ab.description" class="small"></span>
 									</div>
 								</div>
 
@@ -156,7 +156,7 @@
 									<h4 class="line-bottom-light">Unique Actions</h4>
 									<div class="m-0 p-1" ng-repeat="ua in operative.uniqueactions">
 										<h6 class="d-inline">{{ ua.title }} ({{ ua.AP }} AP):</h6>
-										<span ng-bind-html="ua.description"></span>
+										<span ng-bind-html="ua.description" class="small"></span>
 									</div>
 								</div>
 							</div>

@@ -157,14 +157,19 @@ th, td {
 @media print {
 	@page {
     size: 8.5in 11in;
-		margin: 0.1in;
+		margin: .5in;
   }
 
 	body {
-		font-family: Arial Narrow, Roboto, sans-serif;
-		color: #000;
 		background-color: #FFF;
-		zoom: 77%
+		font-family: oswald, Arial Narrow, Roboto, sans-serif;
+		color: #000;
+		/*
+			ZOOM - With opcards at double size in inches (i.e. Tarot at 5.5in x 9.5in instead of real life size 2.75in x 4.75in)
+				- Zoom 67% when sending PDF to be printed
+				- Zoom 77% when I'm printing at home for some reason
+		*/
+		zoom: 67%;
 	}
 	
 	.fas, .far {
@@ -184,9 +189,13 @@ th, td {
 		background-color: transparent;
 	}
 
-	.orangetext {
+	.orangetext, .orange {
 		background-color: #c54c21;
-		color: #262a2d;
+		color: #000;
+	}
+
+	.dottedline {
+		text-decoration: none;
 	}
 	
 	.noprint {
