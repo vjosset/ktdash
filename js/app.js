@@ -1128,6 +1128,32 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// showrosterkillteaminfo()
+			// Pops-up the killteam info for the specified roster
+			$scope.showrosterkillteaminfo = function(roster) {
+				// Get all info for this roster's killteam
+				$.ajax({
+					type: "GET",
+					url: APIURL + "killteam.php?fa=" + roster.factionid + "&kt=" + roster.killteamid,
+					timeout: APITimeout,
+					async: true,
+					
+					// Success
+					success: function(data) { // Got info
+						// All good
+						roster.killteam = data;
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to save operative
+						toast("Could not get killteam info for this roster: \r\n" + error);
+					}
+				});
+				
+				// Show the modal
+				$('#rosterkillteaminfomodal').modal("show");
+			}
+			
 			// initDeleteRoster()
 			// Pops-up the roster deletion modal
 			$scope.initDeleteRoster = function(roster) {

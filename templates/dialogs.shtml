@@ -1,6 +1,6 @@
 <!-- Select roster operatives dialog -->
 <div class="modal fade" id="selectrosteropsmodal" tabindex="-1" role="dialog" aria-labelledby="selectrosteropsmodallabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content dark">
 			<div class="modal-header orange">
 				<h5 class="modal-title" id="selectrosteropsmodallabel">{{ selectrosterops.rostername }}</h5>
@@ -774,6 +774,80 @@
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-secondary" role="button" ng-click="rostertoedit.usedefaultportrait = true; saveUploadRosterPortrait()" data-bs-dismiss="modal">Delete Custom Portrait</button>
 				<button type="button" class="btn btn-primary" role="button" ng-click="rostertoedit.usedefaultportrait = false; saveUploadRosterPortrait()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Roster KillTeam Info -->
+<div class="modal fade" id="rosterkillteaminfomodal" tabindex="-1" role="dialog" aria-labelledby="rosterkillteaminfomodallabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal-content dark">
+			<div class="modal-header orange">
+				<h5 class="modal-title" id="rosterkillteaminfomodallabel">{{ myRoster.killteam.killteamname }}  <sup><i class="h5 fas fa-info-circle fa-fw"></i></sup></h2></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body dark p-1">
+				<!-- Tab Control -->
+				<ul class="m-0 nav nav-tabs oswald dark" id="rosterktinfotabs" role="tablist">
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link active dark" id="ktcomp-tab" data-bs-toggle="tab" data-bs-target="#rosterktinfokillteamcomp" type="button" role="tab" aria-controls="ops" aria-selected="true">
+							KillTeam
+						</a>
+					</li>
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#rosterktinfoploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
+							Ploys
+						</a>
+					</li>
+					<li class="nav-item m-0 p-0" role="presentation">
+						<a class="nav-link dark" id="tacops-tab" data-bs-toggle="tab" data-bs-target="#rosterktinfotacops" type="button" role="tab" aria-controls="ploys" aria-selected="false">
+							TacOps
+						</a>
+					</li>
+				</ul>
+				
+				<div class="m-0 tab-content">
+					<!-- KillTeam Composition Rules -->
+					<div class="tab-pane show active" id="rosterktinfokillteamcomp" role="tabpanel">
+						<h2>{{ myRoster.killteam.killteamname }}</h2>
+						<div ng-bind-html="myRoster.killteam.killteamcomp"></div>
+						<div ng-if="myRoster.killteam.fireteams.length > 1">
+							<hr/>
+							<div ng-repeat="ft in myRoster.killteam.fireteams">
+								<h5>Fireteam: {{ ft.fireteamname }}</h5>
+								<div ng-bind-html="ft.fireteamcomp"></div>
+								<hr ng-if="!$last" />
+							</div>
+						</div>
+					</div>
+					
+					<!-- Ploys -->
+					<div class="tab-pane" id="rosterktinfoploys" role="tabpanel">
+						<h2>Strategic Ploys</h2>
+						<ANY ng-repeat="ploy in myRoster.killteam.ploys.strat">
+							<?php include "templates/ploy.shtml" ?>
+						</ANY>
+						<hr/>
+						<h2>Tactical Ploys</h2>
+						<ANY ng-repeat="ploy in myRoster.killteam.ploys.tac">
+							<?php include "templates/ploy.shtml" ?>
+						</ANY>
+					</div>
+					
+					<!-- TacOps -->
+					<div class="tab-pane" id="rosterktinfotacops" role="tabpanel">
+						<ANY ng-repeat="tacop in myRoster.killteam.tacops">
+							<div class="line-top-light">
+								<h5 class="d-inline">
+									{{ tacop.title }}
+								</h5>
+								<em class="d-inline float-end text-end">{{ tacop.archetype }} {{ tacop.tacopseq }}&nbsp;&nbsp;</em>
+							</div>
+							<p class="oswald p-1" style="text-align: justify;" ng-bind-html="tacop.description"></p>
+						</ANY>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

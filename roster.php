@@ -95,7 +95,7 @@
 		
 		<div class="orange container-fluid">
 			<div class="row">
-				<h1 class="pointer col-11 m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showpopup('Kill Team Composition', getKillTeamComp(myRoster.killteam));te('roster', 'killteamcomp', '', myRoster.rosterid);">
+				<h1 class="pointer col-11 m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Killteam Composition" ng-click="showrosterkillteaminfo(myRoster);">
 					<span ng-bind="myRoster.rostername"><?php echo $myRoster->rostername ?></span>
 					<sup><i class="h5 fas fa-info-circle fa-fw"></i></sup>
 				</h1>
