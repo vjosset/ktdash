@@ -1140,8 +1140,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					// Success
 					success: function(data) { // Got info
-						// All good
-						roster.killteam = data;
+						// All good - Replace distance placeholders and assign to the roster
+						roster.killteam = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 						$scope.$apply();
 					},
 					// Failure
