@@ -2,8 +2,8 @@ https://ktdash.app
 https://ktdash.app/news.htm
 https://ktdash.app/login.htm
 https://ktdash.app/signup.htm
-https://ktdash.app/allfaction
-shttps://ktdash.app/fa/AEL
+https://ktdash.app/allfactions
+https://ktdash.app/fa/AEL
 https://ktdash.app/fa/CHAOS
 https://ktdash.app/fa/HBR
 https://ktdash.app/fa/IMP
@@ -17,6 +17,7 @@ https://ktdash.app/fa/AEL/kt/COM
 https://ktdash.app/fa/AEL/kt/COR
 https://ktdash.app/fa/AEL/kt/CW
 https://ktdash.app/fa/AEL/kt/HOTA
+https://ktdash.app/fa/AEL/kt/MND
 https://ktdash.app/fa/AEL/kt/TRP
 https://ktdash.app/fa/AEL/kt/VDT
 https://ktdash.app/fa/CHAOS/kt/BLD
@@ -27,6 +28,7 @@ https://ktdash.app/fa/CHAOS/kt/DG
 https://ktdash.app/fa/CHAOS/kt/FELL
 https://ktdash.app/fa/CHAOS/kt/GPI
 https://ktdash.app/fa/CHAOS/kt/LEG
+https://ktdash.app/fa/CHAOS/kt/NC
 https://ktdash.app/fa/CHAOS/kt/TS
 https://ktdash.app/fa/CHAOS/kt/WC
 https://ktdash.app/fa/HBR/kt/AEF
@@ -146,6 +148,7 @@ http://ktdash.app/u/Elephantbat
 http://ktdash.app/u/SemperVictus
 http://ktdash.app/u/BobbyFlay
 http://ktdash.app/u/Terricloth
+http://ktdash.app/u/ScourgeTXD
 http://ktdash.app/u/Papapoil
 http://ktdash.app/u/Obsidian_Veil
 http://ktdash.app/u/PatrickW
@@ -175,6 +178,7 @@ http://ktdash.app/u/Rasiu
 http://ktdash.app/u/BravoGear
 http://ktdash.app/u/FightNightLive
 http://ktdash.app/u/Talhoffer
+http://ktdash.app/u/Jimpbm
 http://ktdash.app/u/AndersZahl
 http://ktdash.app/u/Jargonaut89
 http://ktdash.app/u/Tech_Mechanic
@@ -207,6 +211,7 @@ http://ktdash.app/u/DoombeaR
 http://ktdash.app/u/Gay_Debord
 http://ktdash.app/u/Sh3ldoon
 http://ktdash.app/u/TheLion
+http://ktdash.app/u/Exhalted_Flambe
 http://ktdash.app/u/Jamcannon
 http://ktdash.app/u/JaceAceKT
 http://ktdash.app/u/JWXIII
@@ -402,6 +407,7 @@ http://ktdash.app/u/doom_in
 http://ktdash.app/u/Stank_Zappa
 http://ktdash.app/u/Pilsner
 http://ktdash.app/u/MooseMaster
+http://ktdash.app/u/Freshmint
 http://ktdash.app/u/smilesLiesGunfire
 http://ktdash.app/u/przyczolekgraczy
 http://ktdash.app/u/Olex_B
@@ -519,6 +525,7 @@ http://ktdash.app/u/slwx2123
 http://ktdash.app/u/BurningIce81
 http://ktdash.app/u/Magnus
 http://ktdash.app/u/SneakyGoblin
+http://ktdash.app/u/Mark10759
 http://ktdash.app/u/Instantbees
 http://ktdash.app/u/trungquang1999
 http://ktdash.app/u/Hubris959
@@ -763,6 +770,7 @@ http://ktdash.app/u/Kharne
 http://ktdash.app/u/JStabwound
 http://ktdash.app/u/Cree52
 http://ktdash.app/u/Ocular_Sealion
+http://ktdash.app/u/Elran
 http://ktdash.app/u/JonDrake93
 http://ktdash.app/u/kodorkaal
 http://ktdash.app/u/TheRedbourne
@@ -790,6 +798,7 @@ http://ktdash.app/u/Exarch
 http://ktdash.app/u/Warhammered
 http://ktdash.app/u/Terpster
 http://ktdash.app/u/DrRedla
+http://ktdash.app/u/Aladinnsane
 http://ktdash.app/u/Lerek
 http://ktdash.app/u/Draconis
 http://ktdash.app/u/BlackBox
@@ -853,11 +862,13 @@ http://ktdash.app/u/ChaseCrossing
 http://ktdash.app/u/aes_omnissiah
 http://ktdash.app/u/sumfoolish
 http://ktdash.app/u/Malavalant
+http://ktdash.app/u/BuhoNocturno222
 http://ktdash.app/u/Folkisen123
 http://ktdash.app/u/Stembo
 http://ktdash.app/u/Jesse89
 http://ktdash.app/u/splashcola
 http://ktdash.app/u/Cenotaph
+http://ktdash.app/u/askavian
 http://ktdash.app/u/fourwayflashers
 http://ktdash.app/u/Kyuzo
 http://ktdash.app/u/Merkur
@@ -941,6 +952,7 @@ http://ktdash.app/u/Cullenanderson
 http://ktdash.app/u/rdg3po
 http://ktdash.app/u/Mykee
 http://ktdash.app/u/danvers_rfw
+http://ktdash.app/u/MissionEternal
 http://ktdash.app/u/Miniature_Therapist
 http://ktdash.app/u/Ihmisapina
 http://ktdash.app/u/Tomarrooooo
@@ -951,6 +963,7 @@ http://ktdash.app/u/Traviemsa13
 http://ktdash.app/u/cazathorn
 http://ktdash.app/u/paddyh_paints
 http://ktdash.app/u/Zeldone
+http://ktdash.app/u/Sergeant_Grey
 http://ktdash.app/u/Optimaximal
 http://ktdash.app/u/Grayamaha
 http://ktdash.app/u/Zallocc
@@ -1077,6 +1090,8 @@ http://ktdash.app/u/Damian_P_P
 http://ktdash.app/u/Batato_127
 http://ktdash.app/u/JellyGuy
 http://ktdash.app/u/ragoboi
+http://ktdash.app/u/Hardcover
+http://ktdash.app/u/xxrefreshexx
 http://ktdash.app/u/Doomas
 http://ktdash.app/u/Forgivinglyric
 http://ktdash.app/u/fabre8
@@ -1179,6 +1194,7 @@ http://ktdash.app/r/GDhTzbLK
 http://ktdash.app/r/DrEKZ
 http://ktdash.app/r/ZKIKY
 http://ktdash.app/r/1Sgpt
+http://ktdash.app/r/y4SKlHhc
 http://ktdash.app/r/7NW80ESE
 http://ktdash.app/r/IqVcjYs0
 http://ktdash.app/r/r17yOGtC
@@ -1222,6 +1238,7 @@ http://ktdash.app/r/RRCb7DT4
 http://ktdash.app/r/UsBx3QAq
 http://ktdash.app/r/bpU63Aon
 http://ktdash.app/r/2pRnJ
+http://ktdash.app/r/rIufGMgg
 http://ktdash.app/r/ORWE3
 http://ktdash.app/r/sTo4wg2F
 http://ktdash.app/r/2tJQJ13K
@@ -1259,6 +1276,7 @@ http://ktdash.app/r/KsdALdws
 http://ktdash.app/r/lLbVs5V6
 http://ktdash.app/r/MceFZMiX
 http://ktdash.app/r/MELlp8Uw
+http://ktdash.app/r/NbVmyGow
 http://ktdash.app/r/QD2vP7K2
 http://ktdash.app/r/QGLzQKpa
 http://ktdash.app/r/s9Qm9ha5
@@ -1274,13 +1292,13 @@ http://ktdash.app/r/vW6HiKQc
 http://ktdash.app/r/w8D30FDO
 http://ktdash.app/r/We5K2Qcn
 http://ktdash.app/r/wz1nwqij
+http://ktdash.app/r/WZ6xmD9n
 http://ktdash.app/r/X4RzpEFY
 http://ktdash.app/r/xqhBkINK
 http://ktdash.app/r/XXgp3pIj
 http://ktdash.app/r/Y1YGkNuK
 http://ktdash.app/r/ycbrmbpf
 http://ktdash.app/r/YEdxAcM7
-http://ktdash.app/r/yUdxut8T
 http://ktdash.app/r/zrUufMzG
 http://ktdash.app/r/gWBWQ
 http://ktdash.app/r/NfZoq
@@ -1331,6 +1349,7 @@ http://ktdash.app/r/oowlzTwc
 http://ktdash.app/r/sXdaZOTe
 http://ktdash.app/r/yAM4IPup
 http://ktdash.app/r/z5YwUcs0
+http://ktdash.app/r/NhswFyVo
 http://ktdash.app/r/eTFp6VCv
 http://ktdash.app/r/LFjyjpAD
 http://ktdash.app/r/swxBu
@@ -1395,7 +1414,9 @@ http://ktdash.app/r/daCBEVoT
 http://ktdash.app/r/DH6Us2ab
 http://ktdash.app/r/5FvAO7Vr
 http://ktdash.app/r/cE28kNGr
+http://ktdash.app/r/nGp5miTq
 http://ktdash.app/r/r1KyeMCq
+http://ktdash.app/r/rgQAsXo3
 http://ktdash.app/r/rnQQ9
 http://ktdash.app/r/gePwq
 http://ktdash.app/r/KLkF4
@@ -1517,6 +1538,7 @@ http://ktdash.app/r/euPNXvTO
 http://ktdash.app/r/ffBwdpvj
 http://ktdash.app/r/hutPp9vB
 http://ktdash.app/r/LQD67hiO
+http://ktdash.app/r/mVjyh93g
 http://ktdash.app/r/SraBl
 http://ktdash.app/r/KtPTg
 http://ktdash.app/r/pnjyTjid
@@ -1693,6 +1715,7 @@ http://ktdash.app/r/FTdttw5w
 http://ktdash.app/r/kV0d86Ef
 http://ktdash.app/r/KV99NeUm
 http://ktdash.app/r/rYNaPFZk
+http://ktdash.app/r/SCqzHuuB
 http://ktdash.app/r/udJazu7m
 http://ktdash.app/r/Z9NWvuFZ
 http://ktdash.app/r/4AUJd
@@ -1740,6 +1763,7 @@ http://ktdash.app/r/qqXsY
 http://ktdash.app/r/eiUuT
 http://ktdash.app/r/NLh5Czuk
 http://ktdash.app/r/tCCXUfl4
+http://ktdash.app/r/TbN59tww
 http://ktdash.app/r/rGpVmE8B
 http://ktdash.app/r/4KhYZ
 http://ktdash.app/r/Gtck0
@@ -1758,6 +1782,7 @@ http://ktdash.app/r/gyua3
 http://ktdash.app/r/AB0De
 http://ktdash.app/r/2A80V
 http://ktdash.app/r/5d0am9Fy
+http://ktdash.app/r/5K89RspM
 http://ktdash.app/r/bo6jJQXQ
 http://ktdash.app/r/plYVf
 http://ktdash.app/r/M75u3a8f
@@ -1899,6 +1924,7 @@ http://ktdash.app/r/imffc
 http://ktdash.app/r/Wgbj6
 http://ktdash.app/r/kQkLn
 http://ktdash.app/r/HANZfCEY
+http://ktdash.app/r/IiD9uNWw
 http://ktdash.app/r/Lzifua6W
 http://ktdash.app/r/47S1kAIZ
 http://ktdash.app/r/FLmVuZKD
@@ -1964,6 +1990,7 @@ http://ktdash.app/r/EquI6
 http://ktdash.app/r/eIeeW
 http://ktdash.app/r/oj4TL
 http://ktdash.app/r/v02j3
+http://ktdash.app/r/sZN3xamP
 http://ktdash.app/r/KKCg4mgu
 http://ktdash.app/r/bLzpf
 http://ktdash.app/r/CB1jeXsQ
@@ -1982,6 +2009,7 @@ http://ktdash.app/r/JBhHR
 http://ktdash.app/r/NM8XY
 http://ktdash.app/r/hUvKu
 http://ktdash.app/r/y2R2x
+http://ktdash.app/r/IAMg6lHc
 http://ktdash.app/r/KuvJpAdX
 http://ktdash.app/r/jdO29EWX
 http://ktdash.app/r/oYUg4ASw
@@ -2492,6 +2520,7 @@ http://ktdash.app/r/mHrw0
 http://ktdash.app/r/b81OL
 http://ktdash.app/r/SAxw0IgR
 http://ktdash.app/r/tcaro
+http://ktdash.app/r/cN3GiTRa
 http://ktdash.app/r/5NMrrGuQ
 http://ktdash.app/r/8LQ1Oy1v
 http://ktdash.app/r/KoYa9e4t
@@ -2540,6 +2569,7 @@ http://ktdash.app/r/tlWq8nar
 http://ktdash.app/r/1WnlF
 http://ktdash.app/r/b3wd6
 http://ktdash.app/r/U9a7m
+http://ktdash.app/r/xlztrSPC
 http://ktdash.app/r/ETSgJK4F
 http://ktdash.app/r/v9TIQ
 http://ktdash.app/r/ez3NfBMU
@@ -2661,6 +2691,7 @@ http://ktdash.app/r/wqMtg
 http://ktdash.app/r/xjOt8
 http://ktdash.app/r/ZR7Ej
 http://ktdash.app/r/9AudK
+http://ktdash.app/r/bcX5Rf3Y
 http://ktdash.app/r/zKwwX
 http://ktdash.app/r/195mBQWg
 http://ktdash.app/r/74K2WXI2
@@ -2676,6 +2707,8 @@ http://ktdash.app/r/9wRdNGlB
 http://ktdash.app/r/IgK3CJyI
 http://ktdash.app/r/IOniWvv6
 http://ktdash.app/r/LXNRKHpa
+http://ktdash.app/r/0dk0ZXA6
+http://ktdash.app/r/O2fhPac7
 http://ktdash.app/r/c1VKcEkz
 http://ktdash.app/r/oyvKw75c
 http://ktdash.app/r/OWeFYWRn
@@ -2851,6 +2884,7 @@ http://ktdash.app/r/M0GEv
 http://ktdash.app/r/T6o2KFAw
 http://ktdash.app/r/LrCAN
 http://ktdash.app/r/Rl4ECya8
+http://ktdash.app/r/W0WRFwzu
 http://ktdash.app/r/uJoYw
 http://ktdash.app/r/mYF85uFI
 http://ktdash.app/r/FeVZisrb
@@ -2866,6 +2900,7 @@ http://ktdash.app/r/Cvea4BJX
 http://ktdash.app/r/uXBEV
 http://ktdash.app/r/vmSje
 http://ktdash.app/r/zT8WpWmt
+http://ktdash.app/r/6yqXUwKm
 http://ktdash.app/r/Mj8dH
 http://ktdash.app/r/wwSpj
 http://ktdash.app/r/ivVr0gwJ
@@ -3098,6 +3133,8 @@ http://ktdash.app/r/illbVv5U
 http://ktdash.app/r/plUO2lU3
 http://ktdash.app/r/Vw7PxK85
 http://ktdash.app/r/mTaf4
+http://ktdash.app/r/ye7vIsis
+http://ktdash.app/r/S3zwuY1t
 http://ktdash.app/r/AXysa
 http://ktdash.app/r/eXIeAxkC
 http://ktdash.app/r/07IaEHiH
@@ -3232,6 +3269,7 @@ http://ktdash.app/r/GDhTzbLK/g
 http://ktdash.app/r/DrEKZ/g
 http://ktdash.app/r/ZKIKY/g
 http://ktdash.app/r/1Sgpt/g
+http://ktdash.app/r/y4SKlHhc/g
 http://ktdash.app/r/7NW80ESE/g
 http://ktdash.app/r/IqVcjYs0/g
 http://ktdash.app/r/r17yOGtC/g
@@ -3275,6 +3313,7 @@ http://ktdash.app/r/RRCb7DT4/g
 http://ktdash.app/r/UsBx3QAq/g
 http://ktdash.app/r/bpU63Aon/g
 http://ktdash.app/r/2pRnJ/g
+http://ktdash.app/r/rIufGMgg/g
 http://ktdash.app/r/ORWE3/g
 http://ktdash.app/r/sTo4wg2F/g
 http://ktdash.app/r/2tJQJ13K/g
@@ -3312,6 +3351,7 @@ http://ktdash.app/r/KsdALdws/g
 http://ktdash.app/r/lLbVs5V6/g
 http://ktdash.app/r/MceFZMiX/g
 http://ktdash.app/r/MELlp8Uw/g
+http://ktdash.app/r/NbVmyGow/g
 http://ktdash.app/r/QD2vP7K2/g
 http://ktdash.app/r/QGLzQKpa/g
 http://ktdash.app/r/s9Qm9ha5/g
@@ -3327,13 +3367,13 @@ http://ktdash.app/r/vW6HiKQc/g
 http://ktdash.app/r/w8D30FDO/g
 http://ktdash.app/r/We5K2Qcn/g
 http://ktdash.app/r/wz1nwqij/g
+http://ktdash.app/r/WZ6xmD9n/g
 http://ktdash.app/r/X4RzpEFY/g
 http://ktdash.app/r/xqhBkINK/g
 http://ktdash.app/r/XXgp3pIj/g
 http://ktdash.app/r/Y1YGkNuK/g
 http://ktdash.app/r/ycbrmbpf/g
 http://ktdash.app/r/YEdxAcM7/g
-http://ktdash.app/r/yUdxut8T/g
 http://ktdash.app/r/zrUufMzG/g
 http://ktdash.app/r/gWBWQ/g
 http://ktdash.app/r/NfZoq/g
@@ -3384,6 +3424,7 @@ http://ktdash.app/r/oowlzTwc/g
 http://ktdash.app/r/sXdaZOTe/g
 http://ktdash.app/r/yAM4IPup/g
 http://ktdash.app/r/z5YwUcs0/g
+http://ktdash.app/r/NhswFyVo/g
 http://ktdash.app/r/eTFp6VCv/g
 http://ktdash.app/r/LFjyjpAD/g
 http://ktdash.app/r/swxBu/g
@@ -3448,7 +3489,9 @@ http://ktdash.app/r/daCBEVoT/g
 http://ktdash.app/r/DH6Us2ab/g
 http://ktdash.app/r/5FvAO7Vr/g
 http://ktdash.app/r/cE28kNGr/g
+http://ktdash.app/r/nGp5miTq/g
 http://ktdash.app/r/r1KyeMCq/g
+http://ktdash.app/r/rgQAsXo3/g
 http://ktdash.app/r/rnQQ9/g
 http://ktdash.app/r/gePwq/g
 http://ktdash.app/r/KLkF4/g
@@ -3570,6 +3613,7 @@ http://ktdash.app/r/euPNXvTO/g
 http://ktdash.app/r/ffBwdpvj/g
 http://ktdash.app/r/hutPp9vB/g
 http://ktdash.app/r/LQD67hiO/g
+http://ktdash.app/r/mVjyh93g/g
 http://ktdash.app/r/SraBl/g
 http://ktdash.app/r/KtPTg/g
 http://ktdash.app/r/pnjyTjid/g
@@ -3746,6 +3790,7 @@ http://ktdash.app/r/FTdttw5w/g
 http://ktdash.app/r/kV0d86Ef/g
 http://ktdash.app/r/KV99NeUm/g
 http://ktdash.app/r/rYNaPFZk/g
+http://ktdash.app/r/SCqzHuuB/g
 http://ktdash.app/r/udJazu7m/g
 http://ktdash.app/r/Z9NWvuFZ/g
 http://ktdash.app/r/4AUJd/g
@@ -3793,6 +3838,7 @@ http://ktdash.app/r/qqXsY/g
 http://ktdash.app/r/eiUuT/g
 http://ktdash.app/r/NLh5Czuk/g
 http://ktdash.app/r/tCCXUfl4/g
+http://ktdash.app/r/TbN59tww/g
 http://ktdash.app/r/rGpVmE8B/g
 http://ktdash.app/r/4KhYZ/g
 http://ktdash.app/r/Gtck0/g
@@ -3811,6 +3857,7 @@ http://ktdash.app/r/gyua3/g
 http://ktdash.app/r/AB0De/g
 http://ktdash.app/r/2A80V/g
 http://ktdash.app/r/5d0am9Fy/g
+http://ktdash.app/r/5K89RspM/g
 http://ktdash.app/r/bo6jJQXQ/g
 http://ktdash.app/r/plYVf/g
 http://ktdash.app/r/M75u3a8f/g
@@ -3952,6 +3999,7 @@ http://ktdash.app/r/imffc/g
 http://ktdash.app/r/Wgbj6/g
 http://ktdash.app/r/kQkLn/g
 http://ktdash.app/r/HANZfCEY/g
+http://ktdash.app/r/IiD9uNWw/g
 http://ktdash.app/r/Lzifua6W/g
 http://ktdash.app/r/47S1kAIZ/g
 http://ktdash.app/r/FLmVuZKD/g
@@ -4017,6 +4065,7 @@ http://ktdash.app/r/EquI6/g
 http://ktdash.app/r/eIeeW/g
 http://ktdash.app/r/oj4TL/g
 http://ktdash.app/r/v02j3/g
+http://ktdash.app/r/sZN3xamP/g
 http://ktdash.app/r/KKCg4mgu/g
 http://ktdash.app/r/bLzpf/g
 http://ktdash.app/r/CB1jeXsQ/g
@@ -4035,6 +4084,7 @@ http://ktdash.app/r/JBhHR/g
 http://ktdash.app/r/NM8XY/g
 http://ktdash.app/r/hUvKu/g
 http://ktdash.app/r/y2R2x/g
+http://ktdash.app/r/IAMg6lHc/g
 http://ktdash.app/r/KuvJpAdX/g
 http://ktdash.app/r/jdO29EWX/g
 http://ktdash.app/r/oYUg4ASw/g
@@ -4545,6 +4595,7 @@ http://ktdash.app/r/mHrw0/g
 http://ktdash.app/r/b81OL/g
 http://ktdash.app/r/SAxw0IgR/g
 http://ktdash.app/r/tcaro/g
+http://ktdash.app/r/cN3GiTRa/g
 http://ktdash.app/r/5NMrrGuQ/g
 http://ktdash.app/r/8LQ1Oy1v/g
 http://ktdash.app/r/KoYa9e4t/g
@@ -4593,6 +4644,7 @@ http://ktdash.app/r/tlWq8nar/g
 http://ktdash.app/r/1WnlF/g
 http://ktdash.app/r/b3wd6/g
 http://ktdash.app/r/U9a7m/g
+http://ktdash.app/r/xlztrSPC/g
 http://ktdash.app/r/ETSgJK4F/g
 http://ktdash.app/r/v9TIQ/g
 http://ktdash.app/r/ez3NfBMU/g
@@ -4714,6 +4766,7 @@ http://ktdash.app/r/wqMtg/g
 http://ktdash.app/r/xjOt8/g
 http://ktdash.app/r/ZR7Ej/g
 http://ktdash.app/r/9AudK/g
+http://ktdash.app/r/bcX5Rf3Y/g
 http://ktdash.app/r/zKwwX/g
 http://ktdash.app/r/195mBQWg/g
 http://ktdash.app/r/74K2WXI2/g
@@ -4729,6 +4782,8 @@ http://ktdash.app/r/9wRdNGlB/g
 http://ktdash.app/r/IgK3CJyI/g
 http://ktdash.app/r/IOniWvv6/g
 http://ktdash.app/r/LXNRKHpa/g
+http://ktdash.app/r/0dk0ZXA6/g
+http://ktdash.app/r/O2fhPac7/g
 http://ktdash.app/r/c1VKcEkz/g
 http://ktdash.app/r/oyvKw75c/g
 http://ktdash.app/r/OWeFYWRn/g
@@ -4904,6 +4959,7 @@ http://ktdash.app/r/M0GEv/g
 http://ktdash.app/r/T6o2KFAw/g
 http://ktdash.app/r/LrCAN/g
 http://ktdash.app/r/Rl4ECya8/g
+http://ktdash.app/r/W0WRFwzu/g
 http://ktdash.app/r/uJoYw/g
 http://ktdash.app/r/mYF85uFI/g
 http://ktdash.app/r/FeVZisrb/g
@@ -4919,6 +4975,7 @@ http://ktdash.app/r/Cvea4BJX/g
 http://ktdash.app/r/uXBEV/g
 http://ktdash.app/r/vmSje/g
 http://ktdash.app/r/zT8WpWmt/g
+http://ktdash.app/r/6yqXUwKm/g
 http://ktdash.app/r/Mj8dH/g
 http://ktdash.app/r/wwSpj/g
 http://ktdash.app/r/ivVr0gwJ/g
@@ -5151,6 +5208,8 @@ http://ktdash.app/r/illbVv5U/g
 http://ktdash.app/r/plUO2lU3/g
 http://ktdash.app/r/Vw7PxK85/g
 http://ktdash.app/r/mTaf4/g
+http://ktdash.app/r/ye7vIsis/g
+http://ktdash.app/r/S3zwuY1t/g
 http://ktdash.app/r/AXysa/g
 http://ktdash.app/r/eXIeAxkC/g
 http://ktdash.app/r/07IaEHiH/g
