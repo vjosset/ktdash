@@ -148,6 +148,13 @@ function GetName()
 		case "AEL|HOTA|HOTA|KHGNR":
 		case "AEL|HOTA|HOTA|KSA":
 			return GetAeldariName();
+		case "AEL|MND|MND|AB": //Mandrake Abyssal
+		case "AEL|MND|MND|COTF": //Mandrake Chooser Of The Flesh
+		case "AEL|MND|MND|DM": //Mandrake Dirgemaw
+		case "AEL|MND|MND|NF": //Mandrake Nightfiend
+		case "AEL|MND|MND|SW": //Mandrake Shadeweaver
+		case "AEL|MND|MND|WAR": //Mandrake Warrior
+			return GetDarkAeldariName();
 		case "CHAOS|CULT|CULT|BLBL": //Blessed Blade
 		case "CHAOS|CULT|CULT|DEMA": //Cult Demagogue
 		case "CHAOS|CULT|CULT|DEV": //Chaos Devotee
@@ -230,6 +237,15 @@ function GetName()
 		case "CHAOS|LEG|LEG|IB": //Legionary Icon Bearer
 		case "CHAOS|LEG|LEG|STL": //Legionary ShriveTalon
 		case "CHAOS|LEG|LEG|WAR": //Legionary Warrior
+			return GetChaosMarineName();
+		case "CHAOS|NC|NC|FRM": //Night Lord Fearmonger
+		case "CHAOS|NC|NC|GNR": //Night Lord Gunner
+		case "CHAOS|NC|NC|HGNR": //Night Lord Heavy Gunner
+		case "CHAOS|NC|NC|SCR": //Night Lord Screecher
+		case "CHAOS|NC|NC|SKT": //Night Lord Skinthief
+		case "CHAOS|NC|NC|VEN": //Night Lord Ventrilokar
+		case "CHAOS|NC|NC|VIS": //Night Lord Visionary
+		case "CHAOS|NC|NC|WAR": //Night Lord Warrior
 			return GetChaosMarineName();
 		case "CHAOS|TS|RUB|GNR": //Rubric Marine Gunner
 		case "CHAOS|TS|RUB|IB": //Rubric Marine Icon Bearer

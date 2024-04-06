@@ -2870,12 +2870,20 @@ var app = angular.module("kt", ['ngSanitize'])
 					"VDT": {
 						"Label": "Performance Tally",
 						"Shortcut": "PT"
+					},
+					"MND": {
+						"Label": "Soul Harvest Tokens",
+						"Shortcut": "SH"
 					}
 				},
 				"CHAOS": {
 					"BLD": {
 						"Label": "Blooded Tokens",
 						"Shortcut": "BT"
+					},
+					"NC": {
+						"Label": "Prescience Tokens",
+						"Shortcut": "PT"
 					}
 				}
 			};
