@@ -21,7 +21,7 @@
 			$this->skipfields = ["profiles"];
         }
 		
-		public function GetWeapon($weaponid) {
+		public static function GetWeapon($weaponid) {
 			global $dbcon;
 			
 			//Get the current user id
@@ -31,7 +31,7 @@
 			return $weapon;
 		}
 		
-		public function GetWeapons() {
+		public static function GetWeapons() {
 			global $dbcon;
 			
 			$sql = "SELECT * FROM Weapon;";
