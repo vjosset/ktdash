@@ -3783,7 +3783,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Weapon gains AP" + num + " rule if you retain a critical hit";
 						} else if (rulename.startsWith("REAP")) {
 							let num = rulename.replace("REAP", "");
-							rule.ruletext = "For each successful critical strike, inflict MW" + num + " on each other enemy within " + $scope.PlaceHolders["[TRI]"] + " of the operative using this weapon";
+							rule.ruletext = "For each successful critical strike, inflict MW" + num + " on each other enemy within " + $scope.PlaceHolders["[TRI]"] + " of the operative using this weapon or the original target.";
 						} else if (rulename.startsWith("RNG")) {
 							let range = rulename.replace("RNG", "");
 							rule.rulename = rule.rulename.replace("Rng", "Range");
