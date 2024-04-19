@@ -3764,7 +3764,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";
 						} else if (rulename.startsWith("BLAST")) {
 							let range = rulename.replace("BLAST", "").toLowerCase();
-							rule.ruletext = "After shooting perform shooting attacks against all operatives within " + range + ". No Overwatch.";
+							rule.ruletext = "After shooting perform shooting attacks against the target and each other operative visible to and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover. No Overwatch.";
 							console.log("RuleText (Blast): " + rule.ruletext);
 						} else if (rulename.startsWith("INFERNO")) {
 							let num = rulename.replace("INFERNO", "");
