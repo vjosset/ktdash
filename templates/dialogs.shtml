@@ -147,7 +147,7 @@
 				<pre>{{ shareroster.url }}</pre>
 				<br/><br/>
 				<!-- QR Code -->
-				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
+				<img ng-src="https://image-charts.com/chart?cht=qr&chs=150x150&chl={{ shareroster.url }}" />
 			</div>
 		</div>
 	</div>
@@ -173,7 +173,7 @@
 				<pre>{{ shareroster.url }}</pre>
 				<br/><br/>
 				<!-- QR Code -->
-				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ shareroster.url }}" />
+				<img ng-src="https://image-charts.com/chart?cht=qr&chs=150x150&chl={{ shareroster.url }}" />
 			</div>
 		</div>
 	</div>
@@ -865,6 +865,7 @@
 				<h2>Print Mode</h2>
 				<ul>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'plain');">Plain Text</a></li>
+					<li><a class="pointer" ng-click="printroster(myRoster, 'plainbig');">Plain Text (big)</a></li>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'TV');">Cards - Tarot Vertical</a> (best fit)</li>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'TH');">Cards - Tarot Horizonal</a></li>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'PV');">Cards - Poker Vertical</a></li>

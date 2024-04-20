@@ -90,7 +90,7 @@
 			</div>
 			<div class="col-4 text-end">
 				<!-- Roster QR Code -->
-				<img ng-src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https://ktdash.app/roster.php?rid={{ myRoster.rosterid }}" />
+				<img ng-src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://ktdash.app/roster.php?rid={{ myRoster.rosterid }}" />
 			</div>
 		</div>
 		

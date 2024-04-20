@@ -107,6 +107,13 @@
 		<link rel="stylesheet" href="/css/bootstrap-print.min.css">
 		<style>
 		<?php include "css/styles.css"; ?>
+		<?php if(getIfSet($_REQUEST['cols']) == "1") { ?>
+		@media print {
+			body {
+				zoom: 100% !important;
+			}
+		}
+		<?php } ?>
 		</style>
 	</head>
 	<body>
@@ -122,69 +129,67 @@
 		<div class="row" style="page-break-after: always;">
 			<div class="col-8">
 				<!-- Roster Summary -->
-				<div>
-					<?php
-					foreach ($myRoster->operatives as $op)
-					{
-					?>
-						<div class="px-1">
-							<h6 class="d-inline"><?php echo $op->opname ?></h6> <?php echo $op->optype ?>
-							<br/>
+				<?php
+				foreach ($myRoster->operatives as $op)
+				{
+				?>
+					<div class="px-1">
+						<h6 class="d-inline"><?php echo $op->opname ?></h6> <?php echo $op->optype ?>
+						<br/>
+						
+						<?php
+						$firstwep = true;
+						foreach ($op->weapons as $wep)
+						{
+							if (!$firstwep) {
+								echo ", ";
+							}
+							$firstwep = false;
 							
-							<?php
-							$firstwep = true;
-							foreach ($op->weapons as $wep)
+							switch ($wep->weptype) {
+								case "R":
+									echo "&#x2295;";
+									break;
+								case "M":
+									echo "&#x2694;";
+									break;
+								default:
+									echo "&#x26ED;";
+									break;
+							}
+							echo $wep->wepname;
+						}
+						
+						if (count($op->equipments) > 0)
+						{
+							echo "<br/>";
+							$firsteq = true;
+							foreach ($op->equipments as $eq)
 							{
-								if (!$firstwep) {
+								if (!$firsteq) {
 									echo ", ";
 								}
-								$firstwep = false;
-								
-								switch ($wep->weptype) {
-									case "R":
-										echo "&#x2295;";
-										break;
-									case "M":
-										echo "&#x2694;";
-										break;
-									default:
-										echo "&#x26ED;";
-										break;
-								}
-								echo $wep->wepname;
-							}
-							
-							if (count($op->equipments) > 0)
-							{
-								echo "<br/>";
-								$firsteq = true;
-								foreach ($op->equipments as $eq)
-								{
-									if (!$firsteq) {
-										echo ", ";
-									}
-									$firsteq = false;
-									echo $eq->eqname;
-									if ($eq->eqpts > 0) {
-										echo " (" . $eq->eqpts . " EP)";
-									}
+								$firsteq = false;
+								echo $eq->eqname;
+								if ($eq->eqpts > 0) {
+									echo " (" . $eq->eqpts . " EP)";
 								}
 							}
-							echo "<br/><br/>";
-							?>
-						</div>
-					<?php
-					}
-					?>
-				</div>
+						}
+						echo "<br/><br/>";
+						?>
+					</div>
+				<?php
+				}
+				?>
 			</div>
-			<div class="col-4 text-end">
+			<div class="col-4">
 				<!-- Roster QR Code -->
-				<img src="https://chart.googleapis.com/chart?cht=qr&chs=400x400&chl=https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
+				<img src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
 			</div>
 		</div>
 		
-		<div class="p-0 m-1 container-fluid twocols">
+		<div class="p-0 m-1 container-fluid<?php if (getIfSet($_REQUEST['cols']) == "2") echo " twocols"; ?>">
 		<!-- Show this roster and its operatives -->
 		<?php
 		foreach($myRoster->operatives as $op)

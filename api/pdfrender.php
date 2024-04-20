@@ -8,11 +8,11 @@
 			//Get the requested PDF render
 			GETRender();
 			break;
-        default:
-            //Invalid verb
-            header('HTTP/1.0 500 Server Error - Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
+		default:
+			//Invalid verb
+			header('HTTP/1.0 500 Server Error - Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
 			die();
-            break;
+			break;
     }
 
     function GETRender() {
@@ -76,7 +76,7 @@
 			}
 			
 			// Input is validated, let's build the render URL
-			$url = "https://indocpdf.com/api/pdfrender.php?apikey=" . $indocAPIKey . "&showbackground=false&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printroster.php?rid=" . $r->rosterid);
+			$url = "https://indocpdf.com/api/pdfrender.php?apikey=" . $indocAPIKey . "&showbackground=false&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printroster.php?cols=" . getIfSet($_REQUEST["cols"], 2) . "&rid=" . $r->rosterid);
 			
 			// Get the file content
 			$data = file_get_contents($url);

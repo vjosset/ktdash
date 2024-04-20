@@ -1011,10 +1011,13 @@ var app = angular.module("kt", ['ngSanitize'])
 					case 'TV':
 						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&rid=" + roster.rosterid);
 						break;
+					case 'plainbig':
+						window.open("/api/pdfrender.php?scope=roster&cols=1&rid=" + roster.rosterid);
+						break;
 					case 'plain':
 					case null:
 					case '':
-						window.open("/api/pdfrender.php?scope=roster&&rid=" + roster.rosterid);
+						window.open("/api/pdfrender.php?scope=roster&cols=2&rid=" + roster.rosterid);
 						break;
 				}
 			}
