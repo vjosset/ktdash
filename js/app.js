@@ -1002,6 +1002,9 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			$scope.printroster = function(roster, format) {
 				te("roster", "print", "roster", roster.rosterid);
+
+				let printploys = document.getElementById('chkprintploys').checked ? "1" : "0";
+
 				switch(format) {
 					case 'PV':
 					case 'PH':
@@ -1009,15 +1012,15 @@ var app = angular.module("kt", ['ngSanitize'])
 					case 'BH':
 					case 'TH':
 					case 'TV':
-						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&rid=" + roster.rosterid);
+						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid);
 						break;
 					case 'plainbig':
-						window.open("/api/pdfrender.php?scope=roster&cols=1&rid=" + roster.rosterid);
+						window.open("/api/pdfrender.php?scope=roster&cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
 						break;
 					case 'plain':
 					case null:
 					case '':
-						window.open("/api/pdfrender.php?scope=roster&cols=2&rid=" + roster.rosterid);
+						window.open("/api/pdfrender.php?scope=roster&cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
 						break;
 				}
 			}

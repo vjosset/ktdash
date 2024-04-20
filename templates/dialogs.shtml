@@ -871,6 +871,10 @@
 					<li><a class="pointer" ng-click="printroster(myRoster, 'PV');">Cards - Poker Vertical</a></li>
 					<li><a class="pointer" ng-click="printroster(myRoster, 'PH');">Cards - Poker Horizonal</a></li>
 				</ul>
+				<input id="chkprintploys" type="checkbox" value="1" />
+				<label for="chkprintploys">
+					Print Ploys
+				</label>
 			</div>
 			<div class="modal-footer dark p-1">
 				<button type="button" class="btn btn-secondary prompt__close" data-bs-dismiss="modal">Close</button>

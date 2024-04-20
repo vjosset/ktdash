@@ -165,6 +165,50 @@
 				</ANY>
 			</div>
 		</div>
+
+		<!-- Ploys -->
+		<?php
+		if(getIfSet($_REQUEST['printploys']) == "1") {
+			// User requested ploys
+			?>
+			<br/><br/>
+			<div class="twocols" style="page-break-inside: avoid; page-break-before:auto;">
+				<!-- Strategic Ploys -->
+				<div class="p-0 m-0" style="page-break-inside: avoid;">
+					<h2>Strategic Ploys</h2>
+					<?php
+						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->strat); $pnum++) {
+							$ploy = $myRoster->killteam->ploys->strat[$pnum];
+						?>
+						<div>
+							<h4><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h4>
+							<?php echo replacedistance($ploy->description) ?>
+							<hr/>
+						</div>
+						<?php
+						}
+					?>
+				</div>
+				<!-- Tactical Ploys -->
+				<div class="p-0 m-0" style="page-break-inside: avoid;">
+					<h2>Tactical Ploys</h2>
+					<?php
+						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->tac); $pnum++) {
+							$ploy = $myRoster->killteam->ploys->tac[$pnum];
+						?>
+						<div>
+							<h4><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h4>
+							<?php echo replacedistance($ploy->description) ?>
+							<hr/>
+						</div>
+						<?php
+						}
+					?>
+				</div>
+			</div>
+			<?php
+		}
+		?>
 		<?php include "footer.shtml" ?>
 	</body>
 </html>
