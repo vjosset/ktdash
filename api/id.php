@@ -4,15 +4,15 @@
     global $dbcon;
     
     switch ($_SERVER['REQUEST_METHOD']) {
-		case "GET":
-			//Get the requested thing
-			GETID();
-			break;
-        default:
-            //Invalid verb
-            header('HTTP/1.0 500 Server Error - Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
-			die();
-            break;
+			case "GET":
+				//Get the requested thing
+				GETID();
+				break;
+			default:
+				//Invalid verb
+				header('HTTP/1.0 500 Server Error - Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
+				die();
+				break;
     }
 
 	function GETID() {
@@ -21,6 +21,3 @@
 		
 		echo $out;
 	}
-
-?>
-
