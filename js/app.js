@@ -3751,7 +3751,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "If this operative is equipped with a storm shield:<ul><li>It has a 4+ Invulnerable Save</li><li>Each time it fights in combat, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one).</li></ul>";
 								break;
 							case "STUN":
-								rule.ruletext = "Shooting: For each critical hit, subtract 1 from APL of target (max 1 per operative)<br/>Fighting: First critical hit discard 1 normal hit of the enemy, Second critical hit subtract 1 from APL of target";
+								rule.ruletext = "Shooting: If you retain any critical hits, subtract 1 from APL of target<br/>Fighting: First critical strike discard 1 normal hit of the target, Second critical strike subtract 1 from APL of target";
 								break;
 							case "UNLOAD SLUGS":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within " + $scope.PlaceHolders["[PENT]"] + " of it, you can re-roll any or all of your attack dice.";
