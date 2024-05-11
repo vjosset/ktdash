@@ -1,6 +1,6 @@
 <?php
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    require_once $root . '/include.php';
+	$root = $_SERVER['DOCUMENT_ROOT'];
+	require_once $root . '/include.php';
 	echo "User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "<br/><br/>";
 	//$bi = get_browser(null, true);
 	//echo "Browser: " . $bi->browser . "<br/>";
@@ -16,6 +16,3 @@
 	echo hash('sha256', $p);
 ?>
 <br/><br/>
-<?php
-
-?>
