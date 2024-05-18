@@ -166,6 +166,33 @@
 			</div>
 		</div>
 
+		<!-- Long abilities and actions -->
+		<div class="d-block" ng-if="myRoster.longabilities && myRoster.longabilities.length > 0 || myRoster.longuniqueactions && myRoster.longuniqueactions.length > 0">
+			<br/><br/>
+			<div class="twocols nopagebreak">
+				<!-- Long Abilities -->
+				<div ng-if="myRoster.longabilities && myRoster.longabilities.length > 0">
+					<h2>Abilities</h2>
+					<!-- Loop through the roster's long abilities. -->
+					<div ng-repeat="ab in myRoster.longabilities" class="line-top-light pt-1">
+						<h6 class="d-inline">{{ ab.title }}:</h6>
+						<span ng-bind-html="ab.description"></span>
+					</div>
+				</div>
+
+				<!-- Long UniqueActions -->
+				<div ng-if="myRoster.longuniqueactions && myRoster.longuniqueactions.length > 0">
+					<br/>
+					<h2>Unique Actions</h2>
+					<!-- Loop through the roster's long uniqueactions. -->
+					<div ng-repeat="ua in myRoster.longuniqueactions" class="line-top-light pt-1">
+						<h6 class="d-inline">{{ ua.title }} ({{ ua.AP }} AP):</h6>
+						<span ng-bind-html="ua.description"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Ploys -->
 		<?php
 		if(getIfSet($_REQUEST['printploys']) == "1") {
@@ -174,32 +201,32 @@
 			<br/><br/>
 			<div class="twocols" style="page-break-inside: avoid; page-break-before:auto;">
 				<!-- Strategic Ploys -->
-				<div class="p-0 m-0" style="page-break-inside: avoid;">
+				<div class="p-1 m-1" style="page-break-inside: avoid;">
 					<h2>Strategic Ploys</h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->strat); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->strat[$pnum];
 						?>
 						<div>
-							<h4><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h4>
+							<h5 class="line-top-light pt-1"><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h5>
 							<?php echo replacedistance($ploy->description) ?>
-							<hr/>
+							<br/><br/>
 						</div>
 						<?php
 						}
 					?>
 				</div>
 				<!-- Tactical Ploys -->
-				<div class="p-0 m-0" style="page-break-inside: avoid;">
+				<div class="p-1 m-1" style="page-break-inside: avoid;">
 					<h2>Tactical Ploys</h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->tac); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->tac[$pnum];
 						?>
 						<div>
-							<h4><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h4>
+							<h5 class="line-top-light pt-1"><?php echo $ploy->ployname ?> (<?php echo $ploy->CP ?> CP): </h5>
 							<?php echo replacedistance($ploy->description) ?>
-							<hr/>
+							<br/><br/>
 						</div>
 						<?php
 						}

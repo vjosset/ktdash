@@ -205,6 +205,16 @@ th, td {
 	hr {
 		color: #000;
 	}
+
+	.line-top-light
+	{
+		border-top: 1px solid #000;
+	}
+
+	.line-bottom-light
+	{
+		border-bottom: 1px solid #000;
+	}
 }
 
 

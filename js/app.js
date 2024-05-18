@@ -1045,6 +1045,60 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Now we can initRoster
 				$scope.initRoster(rid, skipte, s);
 
+				// Now summarize long abilities and unique actions
+				$scope.myRoster.longabilities = [];
+				$scope.myRoster.longuniqueactions = [];
+
+				for (let opnum = 0; opnum < $scope.myRoster.operatives.length; opnum++) {
+					let op = $scope.myRoster.operatives[opnum];
+					for (let abnum = 0; abnum < op.abilities.length; abnum++) {
+						let ab = op.abilities[abnum];
+						if (ab.description.length > 550) {
+							// Check if we already logged this ability in longabilities
+							let alreadylogged = false;
+							for (let longabnum = 0; longabnum < $scope.myRoster.longabilities.length; longabnum++) {
+								let longab = $scope.myRoster.longabilities[longabnum];
+								if (longab.description == ab.description) {
+									// Already logged, nothing to do here
+									alreadylogged = true;
+								}
+							}
+
+							if (!alreadylogged) {
+								$scope.myRoster.longabilities.push(JSON.parse(JSON.stringify(ab)));
+							}
+
+							// Truncate this ability on the operative itself
+							ab.description = '<em>(See Below)</em>';
+						}
+					}
+				}
+				
+				for (let opnum = 0; opnum < $scope.myRoster.operatives.length; opnum++) {
+					let op = $scope.myRoster.operatives[opnum];
+					for (let uanum = 0; uanum < op.uniqueactions.length; uanum++) {
+						let ua = op.uniqueactions[uanum];
+						if (ua.description.length > 550) {
+							// Check if we already logged this ability in longuniqueactions
+							let alreadylogged = false;
+							for (let longuanum = 0; longuanum < $scope.myRoster.longuniqueactions.length; longuanum++) {
+								let longua = $scope.myRoster.longuniqueactions[longua];
+								if (longua.description == ua.description) {
+									// Already logged, nothing to do here
+									alreadylogged = true;
+								}
+							}
+
+							if (!alreadylogged) {
+								$scope.myRoster.longuniqueactions.push(JSON.parse(JSON.stringify(ua)));
+							}
+
+							// Truncate this uniqueaction on the operative itself
+							ua.description = '<em>(See Below)</em>';
+						}
+					}
+				}
+
 				$scope.MODE = 'Print';
 			}
 
