@@ -15,11 +15,11 @@
 			<div class="row m-0 p-0 orange">
 				<!--- Roster Name -->
 				<div class="col-11 m-0 p-0">
-					<h2 class="m-0 p-1">
+					<h4 class="m-0 p-1">
 						<a class="navloader" href="/r/{{ myRoster.rosterid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View Roster">
 							{{ myRoster.rostername }}
 						</a>
-					</h2>
+					</h4>
 				</div>
 				
 				<!--- Roster Actions -->
