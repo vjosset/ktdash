@@ -374,20 +374,6 @@ function GetName()
 		case "IMP|HC|HC|SKVST": //Skitarii Vanguard Shocktrooper
 			return GetAdMechName();
 		
-		// Hearthkyn Salvagers
-		case "IMP|HKS|HKS|TH": //Hearthkyn Theyn
-		case "IMP|HKS|HKS|DO": //Hearthkyn Dozr
-		case "IMP|HKS|HKS|MDC": //Hearthkyn Field Medic
-		case "IMP|HKS|HKS|GRN": //Hearthkyn Grenadier
-		case "IMP|HKS|HKS|GNR": //Hearthkyn Gunner
-		case "IMP|HKS|HKS|JMP": //Hearthkyn Jump Pack Warrior
-		case "IMP|HKS|HKS|KL": //Hearthkyn Kinlynk
-		case "IMP|HKS|HKS|KOG": //Hearthkyn Kognitaar
-		case "IMP|HKS|HKS|LOK": //Hearthkyn Lokatr
-		case "IMP|HKS|HKS|LUG": //Hearthkyn Lugger
-		case "IMP|HKS|HKS|WAR": //Hearthkyn Warrior
-			return GetHearthkynName();
-		
 		// Imperial Guard
 		case "IMP|IG|GM|COMMS": //Guardsman Comms
 		case "IMP|IG|GM|GNR": //Guardsman Gunner
@@ -677,6 +663,51 @@ function GetName()
 		case "TYR|HF|TW|HGNR": //Tyranid Warrior Heavy Gunner
 		case "TYR|HF|TW|LDR": //Tyranid Warrior Leader
 			return GetTyranidName();
+		case "TYR|BBRO|BBRO|CMDR": //Brood Brother Commander
+		case "TYR|BBRO|BBRO|AGIT": //Brood Brother Agitator
+		case "TYR|BBRO|BBRO|GNR": //Brood Brother Gunner
+		case "TYR|BBRO|BBRO|ICNW": //Brood Brother Iconward
+		case "TYR|BBRO|BBRO|KF": //Brood Brother Knife Fighter
+		case "TYR|BBRO|BBRO|MDC": //Brood Brother Medic
+		case "TYR|BBRO|BBRO|SAP": //Brood Brother Sapper
+		case "TYR|BBRO|BBRO|SNP": //Brood Brother Sniper
+		case "TYR|BBRO|BBRO|TRP": //Brood Brother Trooper
+		case "TYR|BBRO|BBRO|VET": //Brood Brother Veteran
+		case "TYR|BBRO|BBRO|VOX": //Brood Brother Vox Operator
+		case "TYR|BBRO|BBRO|PF": //Psychic Familiar
+			return GetTyranidName();
+		case "TYR|BBRO|BBRO|MAG": //Magus
+			return GetTyranidName();
+		case "TYR|BBRO|BBRO|PRIM": //Primus
+			return GetTyranidName();
+		case "TYR|BBRO|BBRO|PAT": //Patriarch
+			return GetTyranidName();
+		case "TYR|BBRO|BBRO|TAC": //Tactical Assets
+			return "Tactical Assets";
+		
+		// Hearthkyn Salvagers
+		case "VOT|HKS|HKS|TH": //Hearthkyn Theyn
+		case "VOT|HKS|HKS|DO": //Hearthkyn Dozr
+		case "VOT|HKS|HKS|MDC": //Hearthkyn Field Medic
+		case "VOT|HKS|HKS|GRN": //Hearthkyn Grenadier
+		case "VOT|HKS|HKS|GNR": //Hearthkyn Gunner
+		case "VOT|HKS|HKS|JMP": //Hearthkyn Jump Pack Warrior
+		case "VOT|HKS|HKS|KL": //Hearthkyn Kinlynk
+		case "VOT|HKS|HKS|KOG": //Hearthkyn Kognitaar
+		case "VOT|HKS|HKS|LOK": //Hearthkyn Lokatr
+		case "VOT|HKS|HKS|LUG": //Hearthkyn Lugger
+		case "VOT|HKS|HKS|WAR": //Hearthkyn Warrior
+			return GetHearthkynName();
+		// Hernkyn Yaegir
+		case "VOT|HKY|HKY|THEYN": //Yeagir Theyn
+		case "VOT|HKY|HKY|BLD": //Yaegir Bladekyn
+		case "VOT|HKY|HKY|BOMB": //Yaegir Bombast
+		case "VOT|HKY|HKY|GNR": //Yaegir Gunner
+		case "VOT|HKY|HKY|IRN": //Yaegir Ironbraek
+		case "VOT|HKY|HKY|RFL": //Yaegir Riflekyn
+		case "VOT|HKY|HKY|TRK": //Yaegir Tracker
+		case "VOT|HKY|HKY|WAR": //Yaegir Warrior
+			return GetHearthkynName();
 	}
 
 	// If we haven't returned yet, return a generic name
