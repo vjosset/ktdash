@@ -232,6 +232,39 @@
 				// All done
 				echo json_encode($roster);
 			}
+			else if (getIfSet($_REQUEST["setseq"]) == "1") {
+				// Update the seq for this roster
+				// Get the user id
+				$uid = $u->userid;
+				
+				// Get the new seq for this roster
+				$newseq = getIfSet($_REQUEST["seq"]);
+				$rid = getIfSet($_REQUEST["rid"]);
+				
+				global $dbcon;
+				$sql = "UPDATE Roster SET seq = ? WHERE userid = ? AND rosterid = ?;";
+				
+				// Roster 1
+				$cmd = $dbcon->prepare($sql);
+				$paramtypes = "sss";
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $newseq;
+				$params[] =& $uid;
+				$params[] =& $rid;
+
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+					
+				// Finally re-sort the rosters
+				$u->reorderRosters();
+
+				// Get the new seq for this roster
+				$r = Roster::GetRosterRow($rid);
+				
+				header('Content-Type: text/plain');
+				echo $r->seq;
+			}
 			else if (getIfSet($_REQUEST["swapseq"]) == "1") {
 				// Swap the Seqs for two rosters (moveup/movedown)
 				

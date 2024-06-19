@@ -8,7 +8,7 @@
 	
 	//print_r($bi);
 	
-	$p = 'asfdjhasdf';
+	$p = 'kanibalkt2021';
 	//echo hash('sha256', $p);
 	
 	echo password_hash($p, PASSWORD_DEFAULT);

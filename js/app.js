@@ -1395,6 +1395,40 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 			
+			// moveRosterTop()
+			// Moves the specified roster to the top
+			$scope.moveRosterTop = function(roster, index) {
+				if (index > 0) {
+					// Now prepare the request to push it first
+					let qs = "setseq=1&rid=" + roster.rosterid + "&seq=-100";
+					
+					// Update local seqs
+					roster.seq = -100;
+					
+					// Now make sure the array indexes match the seqs
+					$scope.myRosters.unshift($scope.myRosters.splice(index, 1)[0]);
+					
+					// Commit the changes to the API/DB
+					$.ajax({
+						type: "POST",
+						url: APIURL + "roster.php?" + qs,
+						timeout: APITimeout,
+						async: true,
+						dataType: "text",
+						
+						// Success
+						success: function(data) { // Saved
+							// Done - Reload rosters in the right order
+							$scope.initRosters(roster.userid);
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not move roster: \r\n" + error);
+						}
+					});
+				}
+			}
+			
 			// moveRosterDown()
 			// Moves the specified roster down in the list (increase seq)
 			$scope.moveRosterDown = function(roster, index) {
@@ -1403,6 +1437,42 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Already at the end - nothing to do
 				} else {
 					$scope.moveRosterUp($scope.myRosters[index + 1], index + 1);
+				}
+			}
+			
+			// moveRosterBottom()
+			// Moves the specified roster to the bottom
+			$scope.moveRosterBottom = function(roster, index) {
+				if (!(index >= $scope.myRosters.length)) {
+					// Roster is not the last one in the list
+					
+					// Now prepare the request to push it first
+					let qs = "setseq=1&rid=" + roster.rosterid + "&seq=1000";
+					
+					// Update local seqs
+					roster.seq = 1000;
+					
+					// Now make sure the array indexes match the seqs
+					$scope.myRosters.splice($scope.myRosters.length - 1, 0, $scope.myRosters.splice(index, 1)[0]);
+					
+					// Commit the changes to the API/DB
+					$.ajax({
+						type: "POST",
+						url: APIURL + "roster.php?" + qs,
+						timeout: APITimeout,
+						async: true,
+						dataType: "text",
+						
+						// Success
+						success: function(data) { // Saved
+							// Done - Reload rosters in the right order
+							$scope.initRosters(roster.userid);
+						},
+						// Failure
+						error: function(data, status, error) { // Failed to save operative
+							toast("Could not move roster: \r\n" + error);
+						}
+					});
 				}
 			}
 			
