@@ -1277,7 +1277,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					type: "GET",
 					url: APIURL + "faction.php?loadkts=1",
 					timeout: APITimeout,
-					async: true,
+					async: false,
 					dataType: 'json',
 					success: function(data) {
 						// Got factions
