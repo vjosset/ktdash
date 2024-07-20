@@ -2,7 +2,7 @@
 
 //Install stage sets up the offline page in the cache and opens a new cache
 self.addEventListener('install', function(event) {
-	te("pwa", "install", "installed");
+	//te("pwa", "install", "installed");
 	var offlinePage = new Request('offline.htm');
 	event.waitUntil(
 		fetch(offlinePage).then(function(response) {

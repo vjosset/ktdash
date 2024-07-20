@@ -27,7 +27,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 	} else {
 		// Never showed the prompt before, ask the user if they want to install
 		$("#installmodal").modal("show");
-		te("pwa", "install", "prompt");
+		//te("pwa", "install", "prompt");
 	}
 
 	// Store the event for later use
@@ -49,9 +49,9 @@ installButton.addEventListener('click', () => {
 		// set localStorage to true
 		if (choice.outcome !== 'accepted') {
 			setInstalled();
-			te("pwa", "install", "declined");
+			//te("pwa", "install", "declined");
 		} else {
-			te("pwa", "install", "installed");
+			//te("pwa", "install", "installed");
 		}
 
 		installEvent = null;
@@ -64,7 +64,7 @@ closeButton.addEventListener('click', () => {
 
 	// hide the prompt banner
 	$("#installmodal").modal("hide");
-	te("pwa", "install", "declined");
+	//te("pwa", "install", "declined");
 
 	installEvent = null;
 });

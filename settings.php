@@ -38,7 +38,7 @@
 		?>
 		
 		<script type="text/javascript">
-			te("settings", "view");
+			//te("settings", "view");
 		</script>
 		
 		<h1 class="orange cinzel">Settings</h1>
