@@ -44,6 +44,7 @@
 				<h1 class="col-6 m-0 p-1 text-end h2">
 					<!-- Activity -->
 					<?php
+						/*
 						$sql = "SELECT COUNT(DISTINCT userid, userip) AS UserCount30Minute, COUNT(*) AS EventCount30Minute FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -30 minute);";
 						$cmd = $dbcon->prepare($sql);
 						
@@ -60,6 +61,7 @@
 								<?php
 							}
 						}
+						*/
 					?>
 				</h1>
 			</div>
@@ -82,7 +84,7 @@
 					$cmd->execute();
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Totals -->\r\n";
 					
-					echo "<table style=\"width: 100%;\">";
+					echo "<table>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
@@ -102,7 +104,8 @@
 			<div class="line-top-light">
 				<h2>Stats</h2>
 				<?php
-					$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
+					//$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
+					$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE (eventtype = 'page' OR eventtype = 'session') AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -8 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
@@ -111,7 +114,7 @@
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Stats -->\r\n";
 					
 					echo "<table style=\"width: 100%;\">";
-					echo "<tr><th>Date</th><th style=\"text-align: right;\">S</th><th style=\"text-align: right;\">U</th><th style=\"text-align: right;\">P</th></tr>";
+					echo "<tr><th>Date</th><th style=\"text-align: right;\">Signups</th><th style=\"text-align: right;\">Pageviews</th></tr>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
@@ -120,7 +123,6 @@
 							<tr>
 								<th><?php echo $row->Date ?></th>
 								<td style="text-align: right;"><?php echo number_format($row->SignupCount) ?></td>
-								<td style="text-align: right;"><?php echo number_format($row->UserCount) ?></td>
 								<td style="text-align: right;"><?php echo number_format($row->PageViews) ?></td>
 							</tr>
 							<?php
@@ -140,7 +142,7 @@
 						SELECT E.maxdatestamp AS datestamp, R.factionid, R.killteamid, KT.killteamname, R.hascustomportrait AS rosterportrait, COUNT(RO.opid) AS opcount, SUM(RO.hascustomportrait) AS opportraitcount, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
 						FROM 
 						(
-							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
+							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -2 day) AND eventtype = 'roster' AND action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
 							GROUP BY userid, var1
 							ORDER BY 1 DESC LIMIT 40
 						) E
@@ -183,35 +185,6 @@
 					echo "</div>"
 				?>
 			</div>
-			<br/>
-			
-			<!-- Event Log -->
-			<?php if (false) {?>
-				<div class="line-top-light">
-					<h2>Event Log</h2>
-					<?php
-						$sql = "SELECT * FROM EventLogView WHERE ActionLog != '' AND userip != '68.80.166.102' ORDER BY 1 DESC LIMIT 200";
-						$cmd = $dbcon->prepare($sql);
-							
-						// Load the stats
-						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Events -->\r\n";
-						$cmd->execute();
-						echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Events -->\r\n";
-
-						if ($result = $cmd->get_result()) {
-							while ($row = $result->fetch_object()) {
-								// Got a result
-								?>
-								<strong><?php echo explode(' ', $row->datestamp)[1] ?></strong><br/>
-								<?php echo $row->ActionLog ?><br/>
-								<?php
-							}
-						}
-					?>
-				</div>
-			<?php
-			}
-			?>
 		</div>
 		
 		<?php include "footer.shtml" ?>

@@ -47,9 +47,10 @@
 		// Skip some events to let the table breathe
 		$run = true;
 		switch (substr(getIfSet($_REQUEST['t']), 0, 50) . '|' . substr(getIfSet($_REQUEST['a']), 0, 45)) {
-			case 'session|signup':
-			case 'roster|opportrait':
-			case 'roster|portrait':
+			case 'session|signup': // User sign up
+			case 'roster|opportrait': // New operative portrait
+			case 'roster|portrait': // New roster portrait
+			case 'page|view': // Page views
 				$run = true;
 				break;
 			default:
