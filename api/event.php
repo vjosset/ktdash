@@ -44,10 +44,25 @@
 		
 		$params[] = substr(getIfSet($_REQUEST['r']), 0, 500); // referrer
 
-		$cmd = $dbcon->prepare($sql);
-		//call_user_func_array(array($cmd, "bind_param"), $params);
-		$cmd->bind_param($paramtypes, ...$params);
-		$cmd->execute();
+		// Skip some events to let the table breathe
+		$run = true;
+		switch (substr(getIfSet($_REQUEST['t']), 0, 50) . '|' . substr(getIfSet($_REQUEST['a']), 0, 45)) {
+			case 'session|signup':
+			case 'roster|opportrait':
+			case 'roster|portrait':
+				$run = true;
+				break;
+			default:
+				$run = false;
+				break;
+		}
+
+		if ($run) {
+			$cmd = $dbcon->prepare($sql);
+			//call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->bind_param($paramtypes, ...$params);
+			$cmd->execute();
+		}
 
 		echo "OK";
 	}
