@@ -84,7 +84,7 @@
 					$cmd->execute();
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Totals -->\r\n";
 					
-					echo "<table>";
+					echo "<table style=\"width: 100%;\">";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
