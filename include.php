@@ -1,4 +1,11 @@
 <?php
+	if(!empty($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') != false) {
+		// Get the fuck out of here
+		header('HTTP/1.0 403 Forbidden');
+		echo 'FBGFY';
+		die;
+	}
+
 	session_start();
 	
     //Put all includes here, so that actual pages only need to include this include.php file
