@@ -23,6 +23,10 @@
 		?>
 		<style>
 		<?php include "css/styles.css"; ?>
+		th, td {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
 		</style>
 	</head>
 	<body ng-app="kt" ng-controller="ktCtrl">
@@ -36,27 +40,29 @@
 				<h2 class="text-center">Totals</h2>
 				<?php
 					$sql =
-						"SELECT 'Users' AS CountType, COUNT(*) AS Total FROM User WHERE userid NOT IN ('prebuilt') UNION
-						SELECT 'Rosters', COUNT(*) AS Total FROM Roster WHERE userid NOT IN ('prebuilt') UNION
-						SELECT 'RosterOps', COUNT(*) AS Total FROM RosterOperative WHERE userid NOT IN ('prebuilt') UNION
-						SELECT 'SpotlightCount', COUNT(*) AS Total FROM Roster WHERE spotlight = 1";
+						"SELECT 'Users' AS CountType, COUNT(*) AS Count FROM User WHERE userid NOT IN ('prebuilt', 'vince') UNION
+						SELECT 'Rosters', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') UNION
+						SELECT 'RosterOps', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince')";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Get Totals -->\r\n";
 					$cmd->execute();
+					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Totals -->\r\n";
 					
-					echo "<table style=\"width: 100%;\">";
+					echo "<table class=\"center\" style=\"width: 100%;\">";
+					echo "<tr class=\"line-bottom-light\"><th class=\"center\" width=\"33%\">Users</th><th class=\"center\" width=\"33%\">Rosters</th><th class=\"center\" width=\"33%\">RosterOps</th></tr><tr>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
 							// Got a result
 							?>
-							<tr><th><?php echo $row->CountType ?></th><td style="text-align: right;"><?php echo number_format($row->Total) ?></td></tr>
+							<td class="center"><?php echo number_format($row->Count) ?></td>
 							<?php
 						}
 					}
 					
-					echo "</table>";
+					echo "</tr></table>";
 				?>
 			</div>
 			<hr/>
@@ -66,7 +72,7 @@
 				<h2 class="col-12 m-0 p-0 text-center">Roster Stats</h2>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Viewed Rosters</h3>
+					<h5>Most Viewed Rosters</h5>
 					<?php
 						$sql =
 							"SELECT U.username, R.rostername, KT.killteamname, CONCAT('https://ktdash.app/r/', rosterid, '/g') AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, viewcount
@@ -81,7 +87,7 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
+						echo "<table>
 								<tr>
 									<th>Roster</th>
 									<th style=\"text-align: center;\">Total&nbsp;Views</th>
@@ -110,7 +116,7 @@
 				</div>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Imported Rosters</h3>
+					<h5>Most Imported Rosters</h5>
 					<?php
 						$sql =
 							"SELECT U.username, R.rostername, KT.killteamname, CONCAT('https://ktdash.app/r/', rosterid) AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, importcount
@@ -125,7 +131,7 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
+						echo "<table>
 								<tr>
 									<th>Roster</th>
 									<th style=\"text-align: center;\">Total&nbsp;Imports</th>
@@ -161,7 +167,7 @@
 				<h2 class="col-12 m-0 p-0 text-center">User Stats</h2>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Viewed Users</h3>
+					<h5>Most Viewed Users</h5>
 					<?php
 						$sql =
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(viewcount) AS viewcount
@@ -176,8 +182,8 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
-								<tr>
+						echo "<table>
+								<tr class=\"line-bottom-light\">
 									<th>User</th>
 									<th style=\"text-align: center;\">Total&nbsp;Views</th>
 								</tr>";
@@ -203,7 +209,7 @@
 				</div>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Imported Users</h3>
+					<h5>Most Imported Users</h5>
 					<?php
 						$sql =
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(importcount) AS importcount
@@ -218,8 +224,8 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
-								<tr>
+						echo "<table>
+								<tr class=\"line-bottom-light\">
 									<th>User</th>
 									<th style=\"text-align: center;\">Total&nbsp;Imports</th>
 								</tr>";
@@ -245,7 +251,7 @@
 				</div>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Spotlighted Users</h3>
+					<h5>Most Spotlighted Users</h5>
 					<?php
 						$sql =
 							"SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, COUNT(DISTINCT R.rosterid) AS spotlightcount
@@ -260,10 +266,10 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
-								<tr>
+						echo "<table>
+								<tr class=\"line-bottom-light\">
 									<th>User</th>
-									<th style=\"text-align: center;\">Spotlight&nbsp;Count</th>
+									<th style=\"text-align: center;\">Spotlights</th>
 								</tr>";
 
 						if ($result = $cmd->get_result()) {
@@ -294,7 +300,6 @@
 				<h2 class="col-12 m-0 p-0 text-center">KillTeam Stats</h2>
 				
 				<div class="col-12 col-md-6 m-0 p-0">
-					<h3>Most Rosters</h3>
 					<?php
 						$sql =
 							"SELECT KT.killteamname, CONCAT('https://ktdash.app/fa/', KT.factionid, '/kt/', KT.killteamid) AS killteamlink, SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) AS rostercount, SUM(R.spotlight) AS spotlightcount
@@ -308,11 +313,11 @@
 						// Load the stats
 						$cmd->execute();
 						
-						echo "<table style=\"width: 100%;\">
-								<tr>
+						echo "<table>
+								<tr class=\"line-bottom-light\">
 									<th>KillTeam</th>
-									<th style=\"text-align: center;\">Total&nbsp;Rosters</th>
-									<th style=\"text-align: center;\">Spotlight&nbsp;Count</th>
+									<th style=\"text-align: center;\">Rosters</th>
+									<th style=\"text-align: center;\">Spotlights</th>
 								</tr>";
 
 						if ($result = $cmd->get_result()) {

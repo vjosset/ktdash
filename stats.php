@@ -82,24 +82,26 @@
 					$cmd->execute();
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Totals -->\r\n";
 					
-					echo "<table style=\"width: 100%;\">";
+					echo "<table class=\"center\" style=\"width: 100%;\">";
+					echo "<tr class=\"line-bottom-light\"><th class=\"center\" width=\"33%\">Users</th><th class=\"center\" width=\"33%\">Rosters</th><th class=\"center\" width=\"33%\">RosterOps</th></tr><tr>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
 							// Got a result
 							?>
-							<tr><th><?php echo $row->CountType ?></th><td style="text-align: right;"><?php echo number_format($row->Count) ?></td></tr>
+							<td class="center"><?php echo number_format($row->Count) ?></td>
 							<?php
 						}
 					}
 					
-					echo "</table>";
+					echo "</tr></table>";
 				?>
 			</div>
-			<br/>
 			
-			<!-- Signups -->
-			<div class="line-top-light">
+			<hr/>
+			
+			<!-- Stats -->
+			<div>
 				<h2>Stats</h2>
 				<?php
 					//$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
@@ -112,7 +114,7 @@
 					echo "\r\n<!-- " . floor(microtime(true) * 1000) . " - Got Stats -->\r\n";
 					
 					echo "<table style=\"width: 100%;\">";
-					echo "<tr><th>Date</th><th style=\"text-align: right;\">Signups</th><th style=\"text-align: right;\">Pageviews</th></tr>";
+					echo "<tr class=\"line-bottom-light\"><th>Date</th><th style=\"text-align: right;\">Signups</th><th style=\"text-align: right;\">Pageviews</th></tr>";
 
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
@@ -132,8 +134,10 @@
 			</div>
 			<br/>
 			
+			<hr/>
+			
 			<!-- Recent Portraits (Data) -->
-			<div class="line-top-light">
+			<div>
 				<h2>Recent Portraits</h2>
 				<?php
 					$sql = "
