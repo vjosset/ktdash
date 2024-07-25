@@ -44,7 +44,6 @@
 				<h1 class="col-6 m-0 p-1 text-end h2">
 					<!-- Activity -->
 					<?php
-						/*
 						$sql = "SELECT COUNT(DISTINCT userid, userip) AS UserCount30Minute, COUNT(*) AS EventCount30Minute FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -30 minute);";
 						$cmd = $dbcon->prepare($sql);
 						
@@ -61,7 +60,6 @@
 								<?php
 							}
 						}
-						*/
 					?>
 				</h1>
 			</div>
@@ -173,11 +171,11 @@
 							<?php
 							}
 							?>
-							<h6 class="d-inline"><a href="/r/<?php echo $row->rosterid ?>/g" target="_blank"><?php echo $row->rostername ?></a></h6>
+							<h6 class="d-inline"><a class="navloader" target="_blank" href="/r/<?php echo $row->rosterid ?>/g"><?php echo $row->rostername ?></a></h6>
 							(<?php echo number_format($row->rosterportrait) ?> &nbsp;&nbsp;&nbsp; <?php echo number_format($row->opportraitcount) ?>/<?php echo number_format($row->opcount) ?>)
 							<br/>
-							<a href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>" target="_blank"><?php echo $row->killteamname ?></a>
-							by&nbsp;<a class="navloader" href="/u/<?php echo $row->username ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
+							<a class="navloader" target="_blank" href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>"><?php echo $row->killteamname ?></a>
+							by&nbsp;<a class="navloader" target="_blank" href="/u/<?php echo $row->username ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
 							</div>
 							<?php
 						}
