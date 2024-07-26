@@ -46,16 +46,23 @@
 			</div>
 			
 			<!--- Roster Details -->
-			<div class="m-0 p-1">
-				<a class="navloader" href="/fa/{{ myRoster.factionid }}/kt/{{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">{{ myRoster.killteamname }}</a>
-				<span ng-if="MODE == 'Compendium' || MODE == 'Home'">
-					by&nbsp;<a class="navloader" href="/u/{{ myRoster.username }}"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;{{ myRoster.username }}</span></a>
-				</span>
+			<div class="m-0 p-0 row">
+				<div class="col-9 m-0 p-1">
+					<a class="navloader" href="/fa/{{ myRoster.factionid }}/kt/{{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">{{ myRoster.killteamname }}</a>
+					<span ng-if="MODE == 'Compendium' || MODE == 'Home'">
+						by&nbsp;<a class="navloader" href="/u/{{ myRoster.username }}"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;{{ myRoster.username }}</span></a>
+					</span>
+				</div>
+				<div class="col-3 text-end m-0 p-1">
+					<a href="/r/{{myRoster.rosterid}}" class="small navloader pointer" title="View Roster"><i class="fas fa-users fa-fw"></i></a>
+					<a href="/r/{{myRoster.rosterid}}/g" class="small navloader pointer" title="Photo Gallery"><i class="fas fa-images fa-fw"></i></a>
+					<a ng-click="cloneRoster(myRoster, $index);" class="small navloader pointer" title="Clone Roster"><i class="far fa-copy fa-fw"></i></a>
+				</div>
 			</div>
 		</div>
 
 		<!-- Roster Stats -->
-		<div ng-if="(myRoster.viewcount + myRoster.importcount) > 0 || myRoster.spotlight == 1">
+		<div class="m-0 p-1" ng-if="(myRoster.viewcount + myRoster.importcount) > 0 || myRoster.spotlight == 1">
 			<span ng-if="myRoster.spotlight == 1"><i class="fas fa-star fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Spotlight"></i></span>
 			<span ng-if="myRoster.viewcount > 0"><i class="fas fa-eye fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="View Count"></i> {{ myRoster.viewcount | number:0 }}</span>
 			<span ng-if="myRoster.importcount > 0"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Count"></i> {{ myRoster.importcount | number:0 }}</span>
