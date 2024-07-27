@@ -3,6 +3,7 @@
 		header('HTTP/1.0 400 Invalid Request');
 		die();
 	}
+	header("000PageStart: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	
 	$root = $_SERVER['DOCUMENT_ROOT'];
 	require_once $root . '/include.php';
@@ -17,17 +18,24 @@
 		$rid = getIfSet($_REQUEST['rosterid']);
 	}
 	
+	header("105GetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$myRoster = Roster::GetRoster($rid);
+	header("110GotRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	if ($myRoster == null) {
 		// Roster not found
 		//	Send them to My Rosters I guess?
 		header("Location: /u");
 		exit;
 	}
+	header("115LoadFaction: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$myRoster->loadFaction();
+	header("120LoadKillTeam: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$myRoster->loadKillTeam();
+	header("125LoadFireTeams: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$myRoster->killteam->loadFireteams();
+	header("130GetSessionUser: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$me = Session::CurrentUser();
+	header("135GotSessionUser: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$ismine = $me != null && $me->userid == $myRoster->userid;
 	
 	if (!$ismine) {
@@ -215,6 +223,8 @@
 				</div>
 			</div>
 		</div>
-		<?php include "footer.shtml" ?>
+		<?php
+			include "footer.shtml";
+		?>
 	</body>
 </html>

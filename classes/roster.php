@@ -43,7 +43,7 @@ class Roster extends \OFW\OFWObject
 		global $dbcon;
 		global $perf;
 
-		header("01StartGetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		header("001StartGetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 
 		// Get the operatives for this team
 		$sql = "SELECT * FROM RosterView WHERE rosterid = ? ORDER BY seq";
@@ -53,15 +53,15 @@ class Roster extends \OFW\OFWObject
 		$params[] =& $paramtypes;
 		$params[] =& $rid;
 
-		header("05PrepSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		header("005PrepSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		call_user_func_array(array($cmd, "bind_param"), $params);
-		header("10RunSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		header("010RunSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$cmd->execute();
-		header("15SQLDone: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		header("015SQLDone: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$ops = [];
 		if ($result = $cmd->get_result()) {
 			if ($row = $result->fetch_object()) {
-				header("20LoadRosterRow: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				header("020LoadRosterRow: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r = Roster::FromRow($row);
 
 				// Reorder operatives so their seqs are always sequential
@@ -69,14 +69,14 @@ class Roster extends \OFW\OFWObject
 				//$r->reorderOperatives();
 
 				// Now load the operatives
-				header("25LoadOperatives: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				header("025LoadOperatives: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadOperatives();
 
-				header("30LoadTacOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				header("030LoadTacOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadTacOps();
 
 				// Done
-				header("35Done: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				header("035Done: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				return $r;
 			}
 		}
