@@ -62,6 +62,7 @@
 	}
 	
 	// Now move the unique actions around to make it take less room and not repeat the obvious
+	$uniqueactions = [];
 	for ($opnum = 0; $opnum < count($myRoster->operatives); $opnum++) {
 		$op = $myRoster->operatives[$opnum];
 		if ($op->uniqueactions && count($op->uniqueactions) > 0) {
@@ -549,7 +550,7 @@
 		}
 		?>
 		<?php
-			if (count($uniqueactions) > 0) {
+			if ($uniqueactions && count($uniqueactions) > 0) {
 			?>
 			<br/><br/>
 			<!-- Common uniqueactions -->

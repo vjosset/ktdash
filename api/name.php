@@ -95,7 +95,7 @@ function GetName()
 		case "AEL|BOK|BOK|HBX": //Howling Banshee Exarch
 		case "AEL|BOK|BOK|HBW": //Howling Banshee Warrior
 			return GetAeldariName();
-		
+
 		// Commorites
 		case "AEL|COM|KBL|GNR": //Kabalite Gunner
 		case "AEL|COM|KBL|HGNR": //Kabalite Heavy Gunner
@@ -106,7 +106,7 @@ function GetName()
 		case "AEL|COM|WYCH|HEK": //Hekatrix
 		case "AEL|COM|WYCH|WAR": //Wych Warrior
 			return GetAeldariFemaleName() . " " . GetAeldariFemaleName();
-		
+
 		// Corsair Voidscarred
 		case "AEL|COR|COR|FA": //Voidscarred Felarch
 		case "AEL|COR|COR|FD": //Voidscarred Fate Dealer
@@ -120,7 +120,7 @@ function GetName()
 		case "AEL|COR|COR|WAR": //Voidscarred Warrior
 		case "AEL|COR|COR|WS": //Voidscarred Way Seeker
 			return GetAeldariName();
-		
+
 		// Craftworld
 		case "AEL|CW|DA|EXA": //Dire Avenger Exarch
 		case "AEL|CW|DA|WAR": //Dire Avenger Warrior
@@ -144,7 +144,7 @@ function GetName()
 		case "AEL|VDT|VDT|DJS": //Death Jester
 		case "AEL|VDT|VDT|SDS": //Shadowseer
 			return GetAeldariName();
-		
+
 		// Hand of the Archon
 		case "AEL|HOTA|HOTA|KAG":
 		case "AEL|HOTA|HOTA|KAS":
@@ -156,7 +156,7 @@ function GetName()
 		case "AEL|HOTA|HOTA|KHGNR":
 		case "AEL|HOTA|HOTA|KSA":
 			return GetAeldariName();
-		
+
 		// Aeldari Mandrakes
 		case "AEL|MND|MND|AB": //Mandrake Abyssal
 		case "AEL|MND|MND|COTF": //Mandrake Chooser Of The Flesh
@@ -165,7 +165,7 @@ function GetName()
 		case "AEL|MND|MND|SW": //Mandrake Shadeweaver
 		case "AEL|MND|MND|WAR": //Mandrake Warrior
 			return GetDarkAeldariName();
-		
+
 		// Chaos Cult
 		case "CHAOS|CULT|CULT|BLBL": //Blessed Blade
 		case "CHAOS|CULT|CULT|DEMA": //Cult Demagogue
@@ -179,7 +179,7 @@ function GetName()
 		case "CHAOS|CSM|CC|FTR": //Chaos Cultist Fighter
 		case "CHAOS|CSM|CC|GNR": //Chaos Cultist Gunner
 			return GetHumanName();
-		
+
 		// Chaos Space Marines
 		case "CHAOS|CSM|CSM|AC": //Chaos Space Marine Aspiring Champion
 		case "CHAOS|CSM|CSM|GNR": //Chaos Space Marine Gunner
@@ -196,7 +196,7 @@ function GetName()
 		case "CHAOS|DAEM|BL|HB": //Bloodletter Horn Bearer
 		case "CHAOS|DAEM|BL|IB": //Bloodletter Icon Bearer
 			return GetDaemonName();
-		
+
 		// Gellerpox Infected
 		case "CHAOS|GPI|GPI|BS": // Bloatspawn
 		case "CHAOS|GPI|GPI|FS": // Fleshscreamer
@@ -208,14 +208,14 @@ function GetName()
 		case "CHAOS|GPI|MV|ESS": // Eyestinger Swarm
 		case "CHAOS|GPI|MV|SG": // Sludge-Grub
 			return GetDaemonName();
-		
+
 		// Chaos Daemonettes
 		case "CHAOS|DAEM|DETTE|AL": //Alluress
 		case "CHAOS|DAEM|DETTE|FTR": //Daemonette Fighter
 		case "CHAOS|DAEM|DETTE|HB": //Daemonette Horn Bearer
 		case "CHAOS|DAEM|DETTE|IB": //Daemonette Icon Bearer
 			return GetDaemonetteName();
-			
+
 		// Chaos Plaguebearers
 		case "CHAOS|DAEM|PB|FTR": //Plaguebearer Fighter
 		case "CHAOS|DAEM|PB|HB": //Plaguebearer Horn Bearer
@@ -238,7 +238,7 @@ function GetName()
 			return GetChaosMarineName();
 		case "CHAOS|DG|PW|PW": //Poxwalker
 			return "Poxwalker";
-		
+
 		// Fellgor Ravagers
 		case "CHAOS|FELL|FELL|IH": //Fellgor Ironhorn
 		case "CHAOS|FELL|FELL|DK": //Fellgor Deathknell
@@ -252,7 +252,7 @@ function GetName()
 		case "CHAOS|FELL|FELL|SHA": //Fellgor Shaman
 		case "CHAOS|FELL|FELL|WAR": //Fellgor Warrior
 			return GetBeastmenName();
-		
+
 		// Chaos Legionaries
 		case "CHAOS|LEG|LEG|AC": //Legionary Aspiring Champion
 		case "CHAOS|LEG|LEG|ANO": //Legionary Anointed
@@ -265,7 +265,7 @@ function GetName()
 		case "CHAOS|LEG|LEG|STL": //Legionary ShriveTalon
 		case "CHAOS|LEG|LEG|WAR": //Legionary Warrior
 			return GetChaosMarineName();
-		
+
 		// Nemesis Claw
 		case "CHAOS|NC|NC|FRM": //Night Lord Fearmonger
 		case "CHAOS|NC|NC|GNR": //Night Lord Gunner
@@ -276,7 +276,7 @@ function GetName()
 		case "CHAOS|NC|NC|VIS": //Night Lord Visionary
 		case "CHAOS|NC|NC|WAR": //Night Lord Warrior
 			return GetChaosMarineName();
-		
+
 		// Thousand Sons
 		case "CHAOS|TS|RUB|GNR": //Rubric Marine Gunner
 		case "CHAOS|TS|RUB|IB": //Rubric Marine Icon Bearer
@@ -288,7 +288,7 @@ function GetName()
 		case "CHAOS|TS|TZA|IB": //Tzaangor Icon Bearer
 		case "CHAOS|TS|TZA|TB": //Twistbray
 			return GetDaemonName();
-		
+
 		// Warp Coven
 		case "CHAOS|WC|WC|GNR": //Rubric Marine Gunner
 		case "CHAOS|WC|WC|IB": //Rubric Marine Icon Bearer
@@ -300,14 +300,14 @@ function GetName()
 		case "CHAOS|WC|WC|TZHB": //Tzaangor Horn Bearer
 		case "CHAOS|WC|WC|TZIB": //Tzaangor Icon Bearer
 			return GetDaemonName();
-		
+
 		// Space Hulk Veterans
 		case "HBR|SHV|SHV|FTR":
 		case "HBR|SHV|SHV|GNR":
 		case "HBR|SHV|SHV|SGT":
 		case "HBR|SHV|SHV|WAR":
 			return GetSpaceMarineName();
-		
+
 		// Ecclesiarchy
 		case "IMP|ECC|AF|AF": //Arco-Flagellant
 			return "Servitor";
@@ -350,13 +350,13 @@ function GetName()
 		case "IMP|FW|SKV|GNR": //Skitarii Vanguard Gunner
 		case "IMP|FW|SKV|TRP": //Skitarii Vanguard Trooper
 			return GetAdMechName();
-		
+
 		// Grey Knights
 		case "IMP|GK|GK|GNR": //Grey Knight Gunner
 		case "IMP|GK|GK|JST": //Grey Knight Justicar
 		case "IMP|GK|GK|WAR": //Grey Knight Warrior
 			return GetSpaceMarineName();
-		
+
 		// Hunter Clade
 		case "IMP|HC|HC|SIIP": //Sicarian Infiltrator Princeps
 		case "IMP|HC|HC|SIIT": //Sicarian Infiltrator Tracker
@@ -373,7 +373,7 @@ function GetName()
 		case "IMP|HC|HC|SKVS": //Skitarii Vanguard Surveyor
 		case "IMP|HC|HC|SKVST": //Skitarii Vanguard Shocktrooper
 			return GetAdMechName();
-		
+
 		// Imperial Guard
 		case "IMP|IG|GM|COMMS": //Guardsman Comms
 		case "IMP|IG|GM|GNR": //Guardsman Gunner
@@ -385,7 +385,7 @@ function GetName()
 		case "IMP|IG|TS|SGT": //Tempestor
 		case "IMP|IG|TS|TRP": //Tempestus Scion Trooper
 			return GetHumanName();
-		
+
 		// Inquisitorial Agents
 		case "IMP|INQ|INQ|AS": //Autosavant
 		case "IMP|INQ|INQ|ENL": //Enlightener
@@ -399,7 +399,7 @@ function GetName()
 		case "IMP|INQ|INQ|TS": //Tome-Skull
 		case "IMP|INQ|INQ|VET": //Deathworld Veteran
 			return GetInqName();
-		
+
 		// Intercessors
 		case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
 		case "IMP|INTS|INTS|ISGT": //Intercession Squad Intercessor Sergeant
@@ -408,7 +408,7 @@ function GetName()
 		case "IMP|INTS|INTS|IWAR": //Intercession Squad Intercessor Warrior
 		case "IMP|INTS|INTS|IGNR": //Intercession Squad Intercessor Gunner
 			return GetSpaceMarineName();
-		
+
 		// Kasrkin
 		case "IMP|KAS|KAS|SGT":
 		case "IMP|KAS|KAS|MED":
@@ -419,7 +419,7 @@ function GetName()
 		case "IMP|KAS|KAS|TRP":
 		case "IMP|KAS|KAS|VOX":
 			return GetKasrkinName();
-		
+
 		// Novitiates
 		case "IMP|NOV|NOV|CON": //Novitiate Condemnor
 		case "IMP|NOV|NOV|DIA": //Novitiate Dialogus
@@ -434,7 +434,7 @@ function GetName()
 		case "IMP|NOV|NOV|REL": //Novitiate Reliquarius
 		case "IMP|NOV|NOV|SUP": //Novitiate Superior
 			return GetSistersOfBattleName();
-		
+
 		// Phobos
 		case "IMP|PHO|PHO|INCML":  //Phobos Strike Team Incursor Minelayer
 		case "IMP|PHO|PHO|INCMRK": //Phobos Strike Team Incursor Marksman
@@ -450,7 +450,7 @@ function GetName()
 		case "IMP|PHO|PHO|RVRSGT": //Phobos Strike Team Reiver Sergeant
 		case "IMP|PHO|PHO|RVRWAR": //Phobos Strike Team Reiver Warrior
 			return GetSpaceMarineName();
-		
+
 		// Strike Force Justian
 		case "IMP|SFJ|SFJ|CAP":
 			return "Captain Justian";
@@ -505,7 +505,7 @@ function GetName()
 		case "IMP|SM|TAC|SGT": //Tactical Marine Sergeant
 		case "IMP|SM|TAC|WAR": //Tactical Marine Warrior
 			return GetSpaceMarineName();
-		
+
 		// Talons of the Emperor
 		case "IMP|TOE|CG|LDR": //Custodian Guard Leader
 		case "IMP|TOE|CG|WAR": //Custodian Guard Warrior
@@ -515,7 +515,7 @@ function GetName()
 		case "IMP|TOE|SOS|VIG": //Sister Of Silence Vigilator
 		case "IMP|TOE|SOS|WSK": //Sister Of Silence Witchseeker
 			return GetSistersOfBattleName();
-		
+
 		// Veteran Guardsmen
 		case "IMP|VG|VG|BRS": //Bruiser Veteran
 		case "IMP|VG|VG|CNF": //Confidant Veteran
@@ -530,7 +530,7 @@ function GetName()
 		case "IMP|VG|VG|TRP": //Trooper Veteran
 		case "IMP|VG|VG|ZLT": //Zealot Veteran
 			return GetHumanName();
-		
+
 		// Necron Tombworld
 		case "NEC|TW|DM|LDR": //Deathmark Leader
 		case "NEC|TW|DM|WAR": //Deathmark Warrior
@@ -540,7 +540,7 @@ function GetName()
 		case "NEC|TW|IMM|WAR": //Immortal Warrior
 		case "NEC|TW|NC|NEC": //Necron Warrior
 			return GetNecronName();
-		
+
 		// Necron Hierotek
 		case "NEC|HIER|HIER|CHRON": // Chronomancer
 		case "NEC|HIER|HIER|PSYCH": // Psychomancer
@@ -554,7 +554,7 @@ function GetName()
 			return "Plasmacyte Accelerator";
 		case "NEC|HIER|HIER|PR": // Plasmacyte Reanimator
 			return "Plasmacyte Reanimator";
-		
+
 		// Ork Greenskins
 		case "ORK|GSK|BOY|BN": //Boss Nob
 		case "ORK|GSK|BOY|FTR": //Boy Fighter
@@ -565,7 +565,7 @@ function GetName()
 		case "ORK|GSK|SPE|BUR": //Burna Boy
 		case "ORK|GSK|SPE|LOO": //Loota
 		case "ORK|GSK|SPE|SPN": //Spanner
-		
+
 		// Ork Kommandoz
 		case "ORK|KOM|KOM|BOY": //Kommando Boy
 		case "ORK|KOM|KOM|BRE": //Kommando Breacha Boy
@@ -580,14 +580,14 @@ function GetName()
 			return GetOrkName();
 		case "ORK|KOM|KOM|BOM": //Bomb Squig
 			return "Skwiglz";
-		
+
 		// Tau - Cadre Mercenaries
 		case "TAU|CM|CM|HND": //Kroot Hound
 		case "TAU|CM|CM|KTX": //Krootox
 		case "TAU|CM|CM|LDR": //Kroot Carnivore Leader
 		case "TAU|CM|CM|WAR": //Kroot Carnivore Warrior
 			return GetKrootName();
-		
+
 		// Farstalker Kinband
 		case "TAU|FSKB|FSKB|BH": // FSKB - Kroot Bow-Hunter
 		case "TAU|FSKB|FSKB|CB": // FSKB - Kroot Cold-Blood
@@ -601,7 +601,7 @@ function GetName()
 		case "TAU|FSKB|FSKB|TRK": // FSKB - Kroot Tracker
 		case "TAU|FSKB|FSKB|WAR": // FSKB - Kroot Warrior
 			return GetKrootName();
-		
+
 		// Tau - Hunter Cadre
 		case "TAU|HC|DRN|DS8": //DS8 Tactical Support Turret
 		case "TAU|HC|DRN|MB3": //MB3 Recon Drone
@@ -638,7 +638,7 @@ function GetName()
 		case "TAU|PF|PF|TSI": //Transpectral Interference Pathfinder
 		case "TAU|PF|PF|WE": //Weapons Expert Pathfinder
 			return GetTauFireName();
-		
+
 		// Tyranids - Brood Coven
 		case "TYR|BC|AH|FTR": //Acolyte Hybrid Fighter
 		case "TYR|BC|AH|GNR": //Acolyte Hybrid Gunner
@@ -684,7 +684,7 @@ function GetName()
 			return GetTyranidName();
 		case "TYR|BBRO|BBRO|TAC": //Tactical Assets
 			return "Tactical Assets";
-		
+
 		// Hearthkyn Salvagers
 		case "VOT|HKS|HKS|TH": //Hearthkyn Theyn
 		case "VOT|HKS|HKS|DO": //Hearthkyn Dozr

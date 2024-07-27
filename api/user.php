@@ -1,107 +1,109 @@
 <?php
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    require_once $root . '/include.php';
-    global $dbcon;
-    
-    header('Content-Type: application/json');
-    switch ($_SERVER['REQUEST_METHOD']) {
-		case "GET":
-			// Get the requested user
-			GETUser();
-			break;
-		case "POST":
-			// Create a new user
-			POSTUser();
-			break;
-        default:
-            // Invalid verb
-            header('HTTP/1.0 400 Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
-            break;
-    }
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root . '/include.php';
+global $dbcon;
 
-	function GETUser() {
-		$myuser = null;
-		
-		if (Session::IsAuth()) {
-			// User is authenticated
-			$myuser = Session::CurrentUser();
-		}
-		
-		// Get the requested user id
-		$username = urldecode($_REQUEST['username']);
-		
-		if ($username == null) {
-			header("HTTP/1.0 404 Not Found - The user you requested was not found");
-		}
-		
-		$user = User::FromName($username);
-		if ($user == null) {
-			header("HTTP/1.0 404 Not Found - The user you requested was not found");
-		}
-		
-		// Get the userid for the specified username
-		$userid = $user->userid;
-		$myuserid = $myuser->userid;
-		
-		// If no user id was passed in, assume my user id
-		if ($userid == null) {
-			header("HTTP/1.0 404 Not Found - The user you requested was not found");
-		}
-		
-		// Validate the user ID
-		if (!CommonUtils\isValidId($userid)) {
-			// User doesn't exist, return 404
-			header("HTTP/1.0 404 Not Found - The user you requested was not found");
-		} else {
-			// Get the user
-			if ($userid != $myuserid) {
-				$u = User::FromDB($userid);
-			} else {
-				$u = $myuser;
-			}
-			
-			// Check if this user actually exists
-			if ($u == null) {
-				// User doesn't exist, return 404
-				header("HTTP/1.0 404  Not Found - The user you requested was not found");
-			} else {
-				// User exists, clean up the output and spit it out
-				// Remove the passhash from the output
-				unset($u->passhash);
-				
-				// Output the user
-				echo $u->toJson();
-			}
-		}
-	}
-
-	function POSTUser() {
-		$username = getIfSet($_REQUEST['username'], '');
-		$password = getIfSet($_REQUEST['password'], '');
-		$confirmpassword = getIfSet($_REQUEST['confirmpassword'], '');
-
-		if ($confirmpassword != $password) {
-            header('HTTP/1.0 400 Passwords do not match');
-            die();
-		}
-		
-		if (strpos($username, "@")) {
-            header('HTTP/1.0 400 Please do not use an email address as your user name');
-            die();
-		}
-		
-		if (strlen($username) > 50 || strlen($password) > 50) {
-            header('HTTP/1.0 400 Invalid Input');
-            die();
-		}
-
+header('Content-Type: application/json');
+switch ($_SERVER['REQUEST_METHOD']) {
+	case "GET":
+		// Get the requested user
+		GETUser();
+		break;
+	case "POST":
 		// Create a new user
-		User::NewUser($username, $password);
+		POSTUser();
+		break;
+	default:
+		// Invalid verb
+		header('HTTP/1.0 400 Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
+		break;
+}
 
-		// Sign this user in
-		$u = Session::Login($_REQUEST['username'], $_REQUEST['password']);
+function GETUser()
+{
+	$myuser = null;
 
-		// Done
-		echo $u->toJson();
+	if (Session::IsAuth()) {
+		// User is authenticated
+		$myuser = Session::CurrentUser();
 	}
+
+	// Get the requested user id
+	$username = urldecode($_REQUEST['username']);
+
+	if ($username == null) {
+		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+	}
+
+	$user = User::FromName($username);
+	if ($user == null) {
+		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+	}
+
+	// Get the userid for the specified username
+	$userid = $user->userid;
+	$myuserid = $myuser->userid;
+
+	// If no user id was passed in, assume my user id
+	if ($userid == null) {
+		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+	}
+
+	// Validate the user ID
+	if (!CommonUtils\isValidId($userid)) {
+		// User doesn't exist, return 404
+		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+	} else {
+		// Get the user
+		if ($userid != $myuserid) {
+			$u = User::FromDB($userid);
+		} else {
+			$u = $myuser;
+		}
+
+		// Check if this user actually exists
+		if ($u == null) {
+			// User doesn't exist, return 404
+			header("HTTP/1.0 404  Not Found - The user you requested was not found");
+		} else {
+			// User exists, clean up the output and spit it out
+			// Remove the passhash from the output
+			unset($u->passhash);
+
+			// Output the user
+			echo $u->toJson();
+		}
+	}
+}
+
+function POSTUser()
+{
+	$username = getIfSet($_REQUEST['username'], '');
+	$password = getIfSet($_REQUEST['password'], '');
+	$confirmpassword = getIfSet($_REQUEST['confirmpassword'], '');
+
+	if ($confirmpassword != $password) {
+		header('HTTP/1.0 400 Passwords do not match');
+		die();
+	}
+
+	if (strpos($username, "@")) {
+		header('HTTP/1.0 400 Please do not use an email address as your user name');
+		die();
+	}
+
+	if (strlen($username) > 50 || strlen($password) > 50) {
+		header('HTTP/1.0 400 Invalid Input');
+		die();
+	}
+
+	// Create a new user
+	User::NewUser($username, $password);
+
+	// Sign this user in
+	$u = Session::Login($_REQUEST['username'], $_REQUEST['password']);
+
+	// Done
+	echo $u->toJson();
+}
 ?>

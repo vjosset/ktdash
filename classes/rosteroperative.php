@@ -62,7 +62,7 @@ class RosterOperative extends \OFW\OFWObject
 		];
 	}
 
-	public function GetRosterOperative($roid)
+	public static function GetRosterOperative($roid)
 	{
 		//Get the requested RosterOperative
 		$op = RosterOperative::GetRosterOperativeRow($roid);
@@ -83,7 +83,7 @@ class RosterOperative extends \OFW\OFWObject
 		return $op;
 	}
 
-	public function GetRosterOperativeRow($roid)
+	public static function GetRosterOperativeRow($roid)
 	{
 		//Get the requested RosterOperative
 		global $dbcon;
@@ -182,7 +182,7 @@ class RosterOperative extends \OFW\OFWObject
 		}
 	}
 
-	function GetNewRosterOpId()
+	public static function GetNewRosterOpId()
 	{
 		global $dbcon;
 		$rosteropid = CommonUtils\shortId(10);
@@ -213,4 +213,3 @@ class RosterOperative extends \OFW\OFWObject
 		return $rosteropid;
 	}
 }
-?>

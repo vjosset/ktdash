@@ -30,7 +30,7 @@ class Operative extends \OFW\OFWObject
 		$this->skipfields = ["weapons", "uniqueactions", "abilities"];
 	}
 
-	static function GetOperative($faid, $ktid, $ftid, $opid)
+	public static function GetOperative($faid, $ktid, $ftid, $opid)
 	{
 		$op = Operative::FromDB($faid, $ktid, $ftid, $opid);
 		$op->loadAbilities();
