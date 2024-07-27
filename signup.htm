@@ -31,16 +31,19 @@
 		<div class="container">
 			<form class="frmregister" ng-submit="signUp();">
 				<h5><label for="username">UserName</label></h5>
-				<input type="text" name="username" id="username" class="form-control" ng-model="signUpForm.userName" placeholder="User Name" required autofocus><br/>
+				<input type="text" name="username" id="username" class="form-control" ng-model="signUpForm.userName" placeholder="User Name" required autofocus>
 				<em>The name you will be known by, this will be shown on your rosters page. Please don't use an email address as your user name.</em>
-				
+				<br/>
+				<br/>
 				<h5><label for="password">Password</label></h5>
 				<input type="password" name="password" id="password" class="form-control" ng-model="signUpForm.password" placeholder="Password" required>
 				
 				<h5><label for="confirmpassword">Confirm Password</label></h5>
-				<input type="password" name="confirmpassword" id="confirmpassword" class="form-control" ng-model="signUpForm.confirmPassword" placeholder="Password" required>
+				<input type="password" name="confirmpassword" id="confirmpassword" class="form-control" ng-model="signUpForm.confirmPassword" placeholder="Confirm Password" required>
 				
-				<br />
+				<em>There is no password reset process, so make sure to choose a password you will remember!</em>
+				<br/>
+				<br/>
 				
 				<button class="btn btn-primary" type="submit">Sign Up</button>
 				
