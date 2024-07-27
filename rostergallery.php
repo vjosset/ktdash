@@ -3,12 +3,15 @@
 		header('HTTP/1.0 400 Invalid Request');
 		die();
 	}
+
+	$perflog = "\r\n" . date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Page\r\n";
 	
 	$root = $_SERVER['DOCUMENT_ROOT'];
 	require_once $root . '/include.php';
 	global $dbcon;
 	
 	// Get the requested roster id
+	$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Inputs\r\n";
 	$rid = getIfSet($_REQUEST['r'], '');
 	if ($rid == null || $rid == '') {
 		$rid = getIfSet($_REQUEST['rid']);
@@ -17,6 +20,7 @@
 		$rid = getIfSet($_REQUEST['rosterid']);
 	}
 	
+	$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Get Roster\r\n";
 	$myRoster = Roster::GetRoster($rid);
 	if ($myRoster == null) {
 		// Roster not found
@@ -24,10 +28,12 @@
 		header("Location: /u");
 		exit;
 	}
+	$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Session\r\n";
 	$me = Session::CurrentUser();
 	$ismine = $me != null && $me->userid == $myRoster->userid;
 	
 	if (!$ismine) {
+		$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Update ViewCount\r\n";
 		// Anonymous or a user viewing another user's roster, increment the viewcount
 		global $dbcon;
 		$sql = "UPDATE Roster SET viewcount = viewcount + 1 WHERE rosterid = ?";
@@ -46,6 +52,7 @@
 <html>
 	<head>
 		<?php
+			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Headers\r\n";
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " " . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . " - Gallery";
 			$pagedesc  = $myRoster->killteamname . " KillTeam" . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . ":\r\n" . $myRoster->notes;
@@ -58,12 +65,18 @@
 			if (count($myRoster->operatives) > 0)
 			{
 			?>
+			<link rel="preload" href="/img/noimg.jpg" as="image">
+			<link rel="preload" href="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>" as="image">
 			<link rel="preload" href="/api/operativeportrait.php?roid=<?php echo $myRoster->operatives[0]->rosteropid ?>" as="image">
 			<?php
 			}
 		?>
 		<style>
-		<?php include "css/styles.css"; ?>
+		<?php
+			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start CSS\r\n";
+			include "css/styles.css";
+			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End CSS\r\n";
+		?>
 		</style>
 	</head>
 	<body ng-app="kt" class="ng-cloak" ng-controller="ktCtrl" ng-init="initRosterGallery();"
@@ -81,10 +94,13 @@
 		
 		<script type="text/javascript">
 			// Pre-load roster data straight on this page instead of XHR round-trip to the API
+			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set roster preload\r\n"; ?>
 			document.body.setAttribute("myRoster", JSON.stringify(<?php echo json_encode($myRoster) ?>));
 			
 			// Pre-load current user
+			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set user preload\r\n"; ?>
 			document.body.setAttribute("currentuser", JSON.stringify(<?php echo json_encode($me) ?>));
+			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End data preloads\r\n"; ?>
 		</script>
 		
 		<div class="orange container-fluid">
@@ -121,7 +137,10 @@
 		if ($myRoster->notes != '') {
 			?>
 			<p style="max-height: 200px; overflow:auto;">
-				<?php echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes)) ?>
+				<?php
+					$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Roster notes\r\n";
+					echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes));
+				?>
 			</p>
 			<?php
 		}
@@ -171,6 +190,11 @@
 				</div>
 			</div>
 		</div>
-		<?php include "footer.shtml" ?>
+		<?php
+			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Footer\r\n";
+			include "footer.shtml";
+			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End Page\r\n";
+			echo "<!-- $perflog -->";
+		?>
 	</body>
 </html>
