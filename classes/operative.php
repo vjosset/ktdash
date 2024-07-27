@@ -177,4 +177,3 @@ class Operative extends \OFW\OFWObject
 		}
 	}
 }
-?>

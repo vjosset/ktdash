@@ -94,4 +94,3 @@ class Faction extends \OFW\OFWObject
 		}
 	}
 }
-?>

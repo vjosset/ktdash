@@ -71,4 +71,3 @@ class Fireteam extends \OFW\OFWObject
 		}
 	}
 }
-?>

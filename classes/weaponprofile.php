@@ -23,4 +23,3 @@ class WeaponProfile extends \OFW\OFWObject
 		$this->skipfields = [];
 	}
 }
-?>

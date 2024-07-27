@@ -106,4 +106,3 @@ function POSTUser()
 	// Done
 	echo $u->toJson();
 }
-?>

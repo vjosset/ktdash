@@ -20,7 +20,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		//Invalid verb
 		header('HTTP/1.0 400 Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
 		die();
-		break;
 }
 
 function GETRosterOperativePortrait()
@@ -316,4 +315,3 @@ function POSTRosterOperativePortrait()
 		}
 	}
 }
-?>

@@ -62,4 +62,3 @@ class Ability extends \OFW\OFWObject
 		return $abs;
 	}
 }
-?>

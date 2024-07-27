@@ -62,4 +62,3 @@ class Ploy extends \OFW\OFWObject
 		return $ploys;
 	}
 }
-?>

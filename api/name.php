@@ -3508,25 +3508,21 @@ function GetSpaceMarineName()
 			$firstname = $anFN[array_rand($anFN)];
 			$lastname = $anLN1[array_rand($anLN1)] . $anLN2[array_rand($anLN2)];
 			return $firstname . " " . $lastname;
-			break;
 		case 2:
 			// Use a latin name
 			$firstname = $latFN1[array_rand($latFN1)] . $latFN2[array_rand($latFN2)];
 			$lastname = $latLN1[array_rand($latLN1)] . $latLN2[array_rand($latLN2)];
 			return $firstname . " " . $lastname;
-			break;
 		case 3:
 			// Use a composite name
 			$firstname = $compFN1[array_rand($compFN1)] . $compFN2[array_rand($compFN2)];
 			$lastname = $compLN1[array_rand($compLN1)] . $compLN2[array_rand($compLN2)];
 			return $firstname . " " . $lastname;
-			break;
 		case 4:
 			// Use an other name
 			$firstname = $othFN1[array_rand($othFN1)] . $othFN2[array_rand($othFN2)];
 			$lastname = $othLN1[array_rand($othLN1)] . $othLN2[array_rand($othLN2)];
 			return $firstname . " " . $lastname;
-			break;
 	}
 }
 

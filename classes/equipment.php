@@ -33,4 +33,3 @@ class Equipment extends \OFW\OFWObject
 		return $e;
 	}
 }
-?>

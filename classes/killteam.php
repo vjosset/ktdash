@@ -313,4 +313,3 @@ class Killteam extends \OFW\OFWObject
 		}
 	}
 }
-?>

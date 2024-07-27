@@ -26,4 +26,3 @@ class TacOp extends \OFW\OFWObject
 		return $t;
 	}
 }
-?>

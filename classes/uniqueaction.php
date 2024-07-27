@@ -62,4 +62,3 @@ class UniqueAction extends \OFW\OFWObject
 		return $uas;
 	}
 }
-?>

@@ -178,4 +178,3 @@ class User extends \OFW\OFWObject
 		return $userid;
 	}
 }
-?>

@@ -98,4 +98,3 @@ class Weapon extends \OFW\OFWObject
 		}
 	}
 }
-?>

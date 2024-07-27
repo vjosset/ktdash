@@ -18,4 +18,3 @@ class RosterTacOp extends \OFW\OFWObject
         $this->skipfields = [];
     }
 }
-?>
