@@ -112,19 +112,20 @@ class Roster extends \OFW\OFWObject
 	{
 		global $dbcon;
 
-		header("LoadOps1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		//header("LoadOps1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		// Get the operatives for this team
-		$sql = "SELECT * FROM RosterOperativeView WHERE rosterid = ? ORDER BY seq";
+		$sql = "SELECT * FROM RosterOperativeView WHERE userid = ? AND rosterid = ? ORDER BY seq";
 		$cmd = $dbcon->prepare($sql);
-		$paramtypes = "s";
+		$paramtypes = "ss";
 		$params = array();
 		$params[] =& $paramtypes;
+		$params[] =& $this->userid;
 		$params[] =& $this->rosterid;
 
 		call_user_func_array(array($cmd, "bind_param"), $params);
 		$cmd->execute();
 
-		header("LoadOps2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		//header("LoadOps2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$ops = [];
 		if ($result = $cmd->get_result()) {
 			while ($row = $result->fetch_object()) {
@@ -141,7 +142,7 @@ class Roster extends \OFW\OFWObject
 				$this->operatives[] = $op;
 			}
 		}
-		header("LoadOps3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		//header("LoadOps3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	}
 
 	public function loadKillTeam()
