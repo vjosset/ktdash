@@ -49,6 +49,7 @@ class RosterOperative extends \OFW\OFWObject
 			"factionname",
 			"optype",
 			"killteamname",
+			"edition",
 			"fireteamname",
 			"killteam",
 			"fireteam",
