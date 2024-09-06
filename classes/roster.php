@@ -10,6 +10,7 @@ class Roster extends \OFW\OFWObject
 	public $rostername = "";
 	public $factionid = "";
 	public $killteamid = "";
+	public $edition = "";
 	public $ployids = "";
 	public $tacopids = "";
 	public $notes = "";
@@ -27,6 +28,7 @@ class Roster extends \OFW\OFWObject
 			"username",
 			"factionname",
 			"killteamname",
+			"edition",
 			"opList",
 			"oplist",
 			"killteamdescription",

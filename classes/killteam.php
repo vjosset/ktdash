@@ -6,6 +6,7 @@ class Killteam extends \OFW\OFWObject
 {
 	public $factionid = "";
 	public $killteamid = "";
+	public $edition = "";
 	public $killteamname = "";
 	public $description = "";
 	public $customkeyword = "";
