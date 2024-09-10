@@ -236,7 +236,7 @@
 										APL<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 									</td>
 									<td width="50%">
-										MOVE<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
+										MOV<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 									</td>
 								</tr>
 								<tr>
@@ -249,10 +249,10 @@
 								</tr>
 								<tr class="orange">
 									<td width="50%">
-										SAVE<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
+										SAV<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
 									</td>
 									<td width="50%">
-										WOUNDS<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
+										WND<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
 									</td>
 								</tr>
 								<tr>

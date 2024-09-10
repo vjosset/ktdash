@@ -335,7 +335,7 @@
 				
 				<!-- Characteristics/Stats -->
 				<div ng-if="addop.operative != null">
-					<h3>
+					<h3 ng-if="addop.operative.edition == '2021'">
 						<table width="100%" class="text-center">
 							<tr class="orange">
 								<th width="16%">M</th>
@@ -350,6 +350,22 @@
 								<td>{{ addop.operative.APL }}</td>
 								<td>{{ addop.operative.GA }}</td>
 								<td>{{ addop.operative.DF }}</td>
+								<td>&nbsp;{{ addop.operative.SV }}</td>
+								<td>{{ addop.operative.W }}</td>
+							</tr>
+						</table>
+					</h3>
+					<h3 ng-if="addop.operative.edition == '2024'">
+						<table width="100%" class="text-center">
+							<tr class="orange">
+								<th width="25%">APL</th>
+								<th width="25%">MOV</th>
+								<th width="25%">SAV</th>
+								<th width="25%">WND</th>
+							</tr>
+							<tr>
+								<td>{{ addop.operative.APL }}</td>
+								<td ng-bind-html="addop.operative.M"></td>
 								<td>&nbsp;{{ addop.operative.SV }}</td>
 								<td>{{ addop.operative.W }}</td>
 							</tr>
