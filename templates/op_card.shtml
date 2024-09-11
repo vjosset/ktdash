@@ -127,7 +127,7 @@
 				<!-- Operative Stats -->
 				<div ng-class="{'col-7 p-0': settings['display'] == 'card', 'col-12 p-0': settings['display'] == 'list'}">
 					<h3 class="mb-0">
-						<div ng-if="operative.edition == '2021'" class="p-0 m-0">
+						<div ng-if="operative.edition == 'kt21'" class="p-0 m-0">
 							<!-- Card View -->
 							<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
 								<tr class="orange">
@@ -228,7 +228,7 @@
 							</table>
 						</div>
 
-						<div ng-if="operative.edition == '2024'" class="p-0 m-0">
+						<div ng-if="operative.edition == 'kt24'" class="p-0 m-0">
 							<!-- Card View -->
 							<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
 								<tr class="orange">
@@ -244,7 +244,7 @@
 										{{ operative.APL }}
 									</td>
 									<td>
-										{{ operative.M }}
+										&nbsp;{{ operative.M }}
 									</td>
 								</tr>
 								<tr class="orange">
@@ -280,25 +280,17 @@
 							<!-- List View -->
 							<table ng-if="settings['display'] == 'list'" width="100%" class="text-center">
 								<tr class="orange">
-									<td width="16%">M</td>
-									<td width="16%">APL</td>
-									<td width="16%">GA</td>
-									<td width="16%">DF</td>
-									<td width="16%">SV</td>
-									<td width="16%">W</td>
+									<td width="25%">APL</td>
+									<td width="25%">MOV</td>
+									<td width="25%">SAV</td>
+									<td width="25%">WND</td>
 								</tr>
 								<tr>
-									<td ng-style="{ color: operative.isinjured && MODE == 'Dashboard' ? 'gainsboro' : '' }" nowrap="true">
-										<span ng-bind-html="operative.M"></span>
-									</td>
 									<td>
 										<span ng-show="!opHasEq(operative, 'OpMod', 'APL')">{{ operative.APL }}</span><span ng-repeat="eq in getOpEq(operaive, 'OpMod', 'APL')">{{ eq.eqvar2 }}</span><sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'APL')[0].eqdescription);">*</sup>
 									</td>
-									<td>
-										{{ operative.GA }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
-									</td>
-									<td>
-										{{ operative.DF }}<sup class="text-tiny" ng-if="opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
+									<td ng-style="{ color: operative.isinjured && MODE == 'Dashboard' ? 'gainsboro' : '' }" nowrap="true">
+										&nbsp;{{ operative.M }}
 									</td>
 									<td>
 										&nbsp;{{ operative.SV }}
@@ -333,13 +325,13 @@
 								</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;A&nbsp;&nbsp;</h5>
+								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;BS&nbsp;&nbsp;</h5>
+								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;D&nbsp;&nbsp;</h5>
+								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 					</thead>

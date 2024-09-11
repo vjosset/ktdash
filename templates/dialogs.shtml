@@ -335,7 +335,7 @@
 				
 				<!-- Characteristics/Stats -->
 				<div ng-if="addop.operative != null">
-					<h3 ng-if="addop.operative.edition == '2021'">
+					<h3 ng-if="addop.operative.edition == 'kt21'">
 						<table width="100%" class="text-center">
 							<tr class="orange">
 								<th width="16%">M</th>
@@ -355,7 +355,7 @@
 							</tr>
 						</table>
 					</h3>
-					<h3 ng-if="addop.operative.edition == '2024'">
+					<h3 ng-if="addop.operative.edition == 'kt24'">
 						<table width="100%" class="text-center">
 							<tr class="orange">
 								<th width="25%">APL</th>
@@ -379,13 +379,13 @@
 								Weapons
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;A&nbsp;&nbsp;
+								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;BS&nbsp;&nbsp;
+								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;D&nbsp;&nbsp;
+								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;
 							</th>
 						</tr>
 						<tbody ng-repeat="weapon in addop.operative.weapons" class="oswald">
@@ -479,13 +479,13 @@
 							<h6>Weapon</h6>
 						</th>
 						<th class="text-center">
-							<h6>&nbsp;&nbsp;A&nbsp;&nbsp;</h6>
+							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;
 						</th>
 						<th class="text-center">
-							<h6>&nbsp;&nbsp;BS&nbsp;&nbsp;</h6>
+							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;
 						</th>
 						<th class="text-center">
-							<h6>&nbsp;&nbsp;D&nbsp;&nbsp;</h6>
+							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;
 						</th>
 					</tr>
 					<tbody ng-repeat="weapon in tempeditop.weapons" class="oswald">

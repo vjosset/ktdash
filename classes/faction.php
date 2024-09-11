@@ -67,7 +67,7 @@ class Faction extends \OFW\OFWObject
 		$this->killteams = [];
 
 		global $dbcon;
-		$sql = "SELECT * FROM Killteam WHERE factionid = ? AND killteamid NOT LIKE '%_OLD' ORDER BY killteamname;";
+		$sql = "SELECT * FROM Killteam WHERE factionid = ? AND killteamid NOT LIKE '%_OLD' ORDER BY edition DESC, killteamname;";
 
 
 		$cmd = $dbcon->prepare($sql);

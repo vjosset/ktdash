@@ -72,7 +72,7 @@
 							<?php 
 							foreach($faction->killteams as $killteam) {
 							?>
-								<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
+								<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?> <sup><?php echo $killteam->edition ?></sup></a><br/>
 							<?php
 							}
 							?>

@@ -115,6 +115,7 @@ class RosterOperative extends \OFW\OFWObject
 		$this->baseoperative = Operative::GetOperative($this->factionid, $this->killteamid, $this->fireteamid, $this->opid);
 		$this->abilities = $this->baseoperative->abilities;
 		$this->uniqueactions = $this->baseoperative->uniqueactions;
+		$this->edition = $this->baseoperative->edition;
 	}
 
 	public function loadWeapons()

@@ -107,7 +107,7 @@
 						
 						<h2 class="card-title orange text-center">
 							<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>">
-								<?php echo $killteam->killteamname ?>
+								<?php echo $killteam->killteamname ?> <sup><?php echo $killteam->edition ?></sup>
 							</a>
 						</h2>
 						
