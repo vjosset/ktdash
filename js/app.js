@@ -3794,7 +3794,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "BRUTAL":
 								rule.ruletext = "Opponent can only parry with critical hits";
 								break;
-							case "CEASELESS":
+							case "CEASELESS": /* TODO: DIFFERENT FOR 24!! */
 								rule.ruletext = "Can re-roll any or all results of 1";
 								break;
 							case "COMBI-DWBG":
@@ -3821,7 +3821,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "GRAV*":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack.";
 								break;
-								case "HVY":
+							case "HVY": /* TODO: DIFFERENT FOR 24!! */
 							case "HEAVY":
 								rule.rulename = "Heavy";
 								rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
@@ -3829,7 +3829,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "HUMBLING CRUELTY":
 								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point";
 								break;
-							case "HOT":
+							case "HOT": /* TODO: DIFFERENT FOR 24!! */
 								rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
 								break;
 							case "IND":
@@ -3841,16 +3841,15 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.rulename = "Lash Whip";
 								rule.ruletext = "While an enemy operative is within Engagement Range of friendly operatives equipped with this weapon, subtract 1 from that enemy operative's Attacks characteristics.";
 								break;
-							case "LIM":
-							case "LIMITED":
-								rule.rulename = "Limited";
-								rule.ruletext = "Can only be used once per battle";
-								break;
 							case "NO COVER":
 								rule.ruletext = "Target can't retain autosuccess for cover, must roll all Defence dice";
 								break;
 							case "PARRY HOOK":
 								rule.ruletext = "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time you parry with a normal hit, you can select one of your opponent''s critical hits to be discarded instead.";
+								break;
+							case "PUN":
+							case "PUNISHING":
+								rule.ruletext = "If you retain any critical successes, you can retain one of your fails as a normal success instead of discarding it.";
 								break;
 							case "RELENTLESS":
 								rule.ruletext = "Can re-roll any or all Attack dice";
@@ -3858,7 +3857,30 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "REND":
 							case "RENDING":
 								rule.rulename = "Rending";
-								rule.ruletext = "If you retain any critical hits, retain 1 normal hit as a critical hit too";
+								rule.ruletext = "If you retain any critical hits, retain 1 normal hit as a critical hit instead.";
+								break;
+							case "SAT":
+							case "SATURATE":
+								rule.rulename = "Saturate";
+								rule.ruletext = "The defender cannot retain Cover saves."
+								break;
+							case "SEEK":
+								rule.rulename = "Seek";
+								rule.ruletext = "When selecting a valid target, operatives cannot use terrain for cover."
+								break;
+							case "SEEKLT":
+							case "SEEKLIGHT":
+								rule.rulename = "Seek Light";
+								rule.ruletext = "When selecting a valid target, operatives cannot use light terrain for cover. While this can allow such operatives to be targeted (assuming they are Visible), it does not remove their Cover save (if any)."
+								break;
+							case "SEV":
+							case "SEVERE":
+								rule.rulename = "Severe";
+								rule.ruletext = "If you do not retain any critical successes, you can change one of your normal successes to a critical success. Any rules that take effect as a result of retaining a critical success (e.g. Devastating, Piercing Crits, etc.) still do."
+								break;
+							case "SHOCK":
+								rule.rulename = "Shock";
+								rule.ruletext = "The first time you strike with a critical success in each sequence, also discard one of your opponent's unresolved normal successes (or a critical sucess if there are none)."
 								break;
 							case "SIL":
 							case "SILENT":
@@ -3889,6 +3911,42 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 						
 						// Other cases
+						// KT2024
+						if (rulename.startsWith("ACC")) {
+							let num = rulename.replace("ACC", "");
+							rule.rulename = "Accurate " + num;
+							rule.ruletext = "You can retain up to " + num + " Attack Dice as normal successes without rolling them.";
+						} else if (rulename.startsWith("HVY") && rulename.length > 3) {
+							let sp = rulename.replace("HVY", "");
+							rule.rulename = "Heavy " + sp;
+							rule.ruletext = "An operative cannot use this weapon in an activation in which it moved, and it cannot move in an activation in which it used this weapon. This rule has no effect on preventing the Guard action.";
+							if (sp != "") {
+								sp = sp.replace("(REPONLY)", "Reposition");
+								sp = sp.replace("(DASHONLY)", "Dash");
+								rule.ruletext += "<br/>Only the " + sp + " action is allowed."
+							}
+						} else if (rulename.startsWith("PRCCRIT")) {
+							let num = rulename.replace("PRCCRIT", "");
+							rule.rulename = "Piercing Crits " + num;
+							rule.ruletext = "If you retain any critical successes, the defender collects " + num + " less Defence dice.";
+						} else if (rulename.startsWith("PRC")) {
+							let num = rulename.replace("PRC", "");
+							rule.rulename = "Piercing " + num;
+							rule.ruletext = "The defender collects " + num + " less Defence dice.";
+						} else if (rulename.startsWith("DEV")) {
+							let num = rulename.replace("DEV", "");
+							rule.rulename = "Devastating " + num;
+							 /* TODO: HANDLE DISTANCE!! */
+							rule.ruletext = "Each retained critical success immediately inflicts " + num + " damage on the operative this weapon is being used against.<br/>If the rule starts with a distance (e.g. '1\" Devastating 3'), inflict " + num + " damage on that operative and each other operative Visible To and within that distance of it. Note that success isn't discarded after doing so - it can still be resolved later in the sequence.";
+						} else if (rulename.startsWith("LIM")) {
+							let num = rulename.replace("LIMITED", "").replace("LIM", "");
+							if (num == "") {
+								num = 1;
+							}
+							rule.rulename = "Limited " + num;
+							rule.ruletext = "After an operative uses this weapon " + num + " times, they no longer have it. If it is used multiple times in one action (e.g. Blast) treat this as one use.";
+						}
+						// KT2021
 						if (rulename.startsWith("AP")) {
 							let num = rulename.replace("AP", "");
 							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";

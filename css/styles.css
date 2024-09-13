@@ -68,6 +68,7 @@ input {
 
 .eqtable {
 	border: 1px solid #888;
+	width: 100%;
 }
 
 table, tr, th, td {
