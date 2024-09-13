@@ -48,7 +48,7 @@
 			<!--- Roster Details -->
 			<div class="m-0 p-0 row">
 				<div class="col-9 m-0 p-1">
-					<a class="navloader" href="/fa/{{ myRoster.factionid }}/kt/{{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">{{ myRoster.killteamname }}</a>
+					<a class="navloader" href="/fa/{{ myRoster.factionid }}/kt/{{ myRoster.killteamid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View KillTeam in Compendium">{{ myRoster.killteamname }} <sup>{{ myRoster.edition }}</sup></a>
 					<span ng-if="MODE == 'Compendium' || MODE == 'Home'">
 						by&nbsp;<a class="navloader" href="/u/{{ myRoster.username }}"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;{{ myRoster.username }}</span></a>
 					</span>

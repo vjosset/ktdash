@@ -379,13 +379,13 @@
 								Weapons
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;
+								{{ addop.operative.edition == 'kt21' ? '&nbsp;&nbsp;A&nbsp;&nbsp;' : 'ATK' }}
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;
+								{{ addop.operative.edition == 'kt21' ? '&nbsp;&nbsp;BS&nbsp;&nbsp;' : 'HIT' }}
 							</th>
 							<th class="text-center">
-								&nbsp;&nbsp;{{ addop.operative.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;
+								{{ addop.operative.edition == 'kt21' ? '&nbsp;&nbsp;D&nbsp;&nbsp;' : 'DMG' }}
 							</th>
 						</tr>
 						<tbody ng-repeat="weapon in addop.operative.weapons" class="oswald">
@@ -479,13 +479,13 @@
 							<h6>Weapon</h6>
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;
+							{{ tempeditop.edition == '&nbsp;&nbsp;kt21&nbsp;&nbsp;' ? 'A' : 'ATK' }}
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;
+							{{ tempeditop.edition == '&nbsp;&nbsp;kt21&nbsp;&nbsp;' ? 'BS' : 'HIT' }}
 						</th>
 						<th class="text-center">
-							&nbsp;&nbsp;{{ tempeditop.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;
+							{{ tempeditop.edition == '&nbsp;&nbsp;kt21&nbsp;&nbsp;' ? 'D' : 'DMG' }}
 						</th>
 					</tr>
 					<tbody ng-repeat="weapon in tempeditop.weapons" class="oswald">

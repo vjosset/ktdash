@@ -325,13 +325,13 @@
 								</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'A' : 'ATK' }}&nbsp;&nbsp;</h5>
+								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;A&nbsp;&nbsp;' : 'ATK' }}</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'BS' : 'HIT' }}&nbsp;&nbsp;</h5>
+								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;BS&nbsp;&nbsp;' : 'HIT' }}</h5>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>&nbsp;&nbsp;{{ operative.edition == 'kt21' ? 'D' : 'DMG' }}&nbsp;&nbsp;</h5>
+								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;D&nbsp;&nbsp;' : 'DMG' }}</h5>
 							</td>
 						</tr>
 					</thead>
