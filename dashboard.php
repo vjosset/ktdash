@@ -215,7 +215,7 @@
 								</div>
 								<div class="col-xs-12 col-md-6">
 									<!-- Tactical Ploys -->
-									<h3>Tactical Ploys</h3>
+									<h3>{{ killteam.edition == 'kt21' ? 'Tactical Ploys' : 'Firefight Ploys' }}</h3>
 									<ANY ng-repeat="ploy in dashboardroster.killteam.ploys.tac track by $index">
 										<?php include "templates/ploy.shtml" ?>
 									</ANY>
