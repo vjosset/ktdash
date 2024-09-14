@@ -173,7 +173,7 @@
 					<div class="row container-fluid m-0 p-0">
 						<div class="col-xs-12 col-md-6">
 							<!-- Strategic Ploys -->
-							<h3>Strategic Ploys</h3>
+							<h3>{{ killteam.edition == 'kt21' ? 'Strategic Ploys' : 'Strategy Ploys' }}</h3>
 							<ANY ng-repeat="ploy in killteam.ploys.strat">
 								<?php include "templates/ploy.shtml" ?>
 							</ANY>
