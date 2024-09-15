@@ -10,7 +10,7 @@
 		<!-- General Meta Tags -->
 		<title><?php echo $pagetitle ?></title>
 		<meta name="description" content="<?php echo $pagedesc ?>">
-		<meta name="keywords" content="<?php echo $pagekeywords ?> killteam, list builder, kill team list builder, Kill Team, kill team app, kill team roster, Octarius, Warhammer, 40000, 40k, wh40k, Roster, BattleScribe, Datacard, KTDash, dashboard">
+		<meta name="keywords" content="<?php echo $pagekeywords ?> killteam, list builder, kill team list builder, Kill Team, kill team app, kill team roster, 2024, 2021, new edition, Warhammer, 40000, 40k, wh40k, Roster, BattleScribe, Datacard, KTDash, dashboard">
 		<link rel="canonical" href="<?php echo $pageurl ?>" />
 		
 		<!-- OpenGraph Tags -->
