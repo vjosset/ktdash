@@ -18,7 +18,7 @@
 		
 		<?php
 		$pagetitle = "Factions";
-		$pagedesc  = "All KillTeam 2021 factions";
+		$pagedesc  = "All KillTeam factions";
 		$pagekeywords = "All Factions";
 		$pageimg   = "https://ktdash.app/img/og/Compendium.png";
 		$pageurl   = "https://ktdash.app/allfactions";

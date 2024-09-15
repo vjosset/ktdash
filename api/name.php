@@ -505,6 +505,17 @@ function GetName()
 		case "IMP|SM|TAC|SGT": //Tactical Marine Sergeant
 		case "IMP|SM|TAC|WAR": //Tactical Marine Warrior
 			return GetSpaceMarineName();
+		
+		case "IMP|TEMPAQ|TEMPAQ|GF": //Aquilon Gunfighter
+		case "IMP|TEMPAQ|TEMPAQ|GNR": //Aquilon Gunner
+		case "IMP|TEMPAQ|TEMPAQ|GRN": //Aquilon Grenadier
+		case "IMP|TEMPAQ|TEMPAQ|MRK": //Aquilon Marksman
+		case "IMP|TEMPAQ|TEMPAQ|PRE": //Aquilon Precursor
+		case "IMP|TEMPAQ|TEMPAQ|TEMP": //Aquilon Tempestor
+		case "IMP|TEMPAQ|TEMPAQ|TRP": //Aquilon Trooper
+			return GetHumanName();
+		case "IMP|TEMPAQ|TEMPAQ|SS": //Aquilon Servo-Sentry
+			return "Sentry";
 
 		// Talons of the Emperor
 		case "IMP|TOE|CG|LDR": //Custodian Guard Leader
@@ -638,6 +649,16 @@ function GetName()
 		case "TAU|PF|PF|TSI": //Transpectral Interference Pathfinder
 		case "TAU|PF|PF|WE": //Weapons Expert Pathfinder
 			return GetTauFireName();
+		
+		case "TAU|VESP|VESP|OSD": //Oversight Drone
+			return "Drone";
+		case "TAU|VESP|VESP|VLS": //Vespid Longsting
+		case "TAU|VESP|VESP|VSB": //Vespid Skyblast
+		case "TAU|VESP|VESP|VSG": //Vespid Swarmguard
+		case "TAU|VESP|VESP|VSL": //Vespid Strain Leader
+		case "TAU|VESP|VESP|VSS": //Vespid Shadestrain
+		case "TAU|VESP|VESP|WAR": //Vespid Warrior
+			return GetTyranidName();
 
 		// Tyranids - Brood Coven
 		case "TYR|BC|AH|FTR": //Acolyte Hybrid Fighter
