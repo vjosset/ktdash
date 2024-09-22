@@ -281,6 +281,14 @@ function GetName()
 		case "CHAOS|NC|NC|VEN": //Night Lord Ventrilokar
 		case "CHAOS|NC|NC|VIS": //Night Lord Visionary
 		case "CHAOS|NC|NC|WAR": //Night Lord Warrior
+		case "CHAOS|NC24|NC24|FRM": //Night Lord Fearmonger
+		case "CHAOS|NC24|NC24|GNR": //Night Lord Gunner
+		case "CHAOS|NC24|NC24|HGNR": //Night Lord Heavy Gunner
+		case "CHAOS|NC24|NC24|SCR": //Night Lord Screecher
+		case "CHAOS|NC24|NC24|SKT": //Night Lord Skinthief
+		case "CHAOS|NC24|NC24|VEN": //Night Lord Ventrilokar
+		case "CHAOS|NC24|NC24|VIS": //Night Lord Visionary
+		case "CHAOS|NC24|NC24|WAR": //Night Lord Warrior
 			return GetChaosMarineName();
 
 		// Thousand Sons
@@ -600,8 +608,19 @@ function GetName()
 		case "ORK|KOM|KOM|RKT": //Kommando Rokkit Boy
 		case "ORK|KOM|KOM|SLA": //Kommando Slasha Boy
 		case "ORK|KOM|KOM|SNP": //Kommando Snipa Boy
+		case "ORK|KOM24|KOM24|BOY": //Kommando Boy
+		case "ORK|KOM24|KOM24|BRC": //Kommando Breacha Boy
+		case "ORK|KOM24|KOM24|BRN": //Kommando Burna Boy
+		case "ORK|KOM24|KOM24|COMMS": //Kommando Comms Boy
+		case "ORK|KOM24|KOM24|DAK": //Kommando Dakka Boy
+		case "ORK|KOM24|KOM24|GROT": //Kommando Grot
+		case "ORK|KOM24|KOM24|NOB": //Kommando Nob
+		case "ORK|KOM24|KOM24|RKT": //Kommando Rokkit Boy
+		case "ORK|KOM24|KOM24|SLS": //Kommando Slasha Boy
+		case "ORK|KOM24|KOM24|SNP": //Kommando Snipa Boy
 			return GetOrkName();
 		case "ORK|KOM|KOM|BOM": //Bomb Squig
+		case "ORK|KOM24|KOM24|SQUIG": //Bomb Squig
 			return "Skwiglz";
 
 		// Tau - Cadre Mercenaries
