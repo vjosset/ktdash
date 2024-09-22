@@ -155,6 +155,10 @@ th, td {
 	columns: 2;
 }
 
+.span {
+	column-span: all;
+}
+
 @media print {
 	@page {
     size: 8.5in 11in;

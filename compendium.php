@@ -66,13 +66,19 @@
 						</p -->	
 
 						<div class="card-footer m-0 p-1 line-top-light">
-							<h6>KillTeams</h6>
 							<!-- KillTeams -->
 							<div style="column-width: 150px;">
 							<?php 
+							$preved = '';
 							foreach($faction->killteams as $killteam) {
+								if ($killteam->edition != $preved) {
+									?>
+										<h6 class="span"><?php echo $killteam->edition ?></h6>
+									<?php
+								}
+								$preved = $killteam->edition;
 							?>
-								<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?> <sup><?php echo $killteam->edition ?></sup></a><br/>
+								<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
 							<?php
 							}
 							?>
