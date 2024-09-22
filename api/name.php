@@ -164,6 +164,12 @@ function GetName()
 		case "AEL|MND|MND|NF": //Mandrake Nightfiend
 		case "AEL|MND|MND|SW": //Mandrake Shadeweaver
 		case "AEL|MND|MND|WAR": //Mandrake Warrior
+		case "AEL|MND24|MND24|ABS": //Mandrake Abyssal
+		case "AEL|MND24|MND24|COTF": //Mandrake Chooser Of The Flesh
+		case "AEL|MND24|MND24|DM": //Mandrake Dirgemaw
+		case "AEL|MND24|MND24|NF": //Mandrake Nightfiend
+		case "AEL|MND24|MND24|SW": //Mandrake Shadeweaver
+		case "AEL|MND24|MND24|WAR": //Mandrake Warrior
 			return GetDarkAeldariName();
 
 		// Chaos Cult
@@ -473,7 +479,13 @@ function GetName()
 		case "IMP|SCT|SCT|HNTR": //Scout Hunter
 		case "IMP|SCT|SCT|SNP": //Scout Sniper
 		case "IMP|SCT|SCT|TRK": //Scout Tracker
-		case "IMP|SCT|SCT|WaR": //Scout Warrior
+		case "IMP|SCT|SCT|WAR": //Scout Warrior
+		case "IMP|SCT24|SCT24|SGT": //Scout Sergeant
+		case "IMP|SCT24|SCT24|HGNR": //Scout Heavy Gunner
+		case "IMP|SCT24|SCT24|HNT": //Scout Hunter
+		case "IMP|SCT24|SCT24|SNP": //Scout Sniper
+		case "IMP|SCT24|SCT24|TRK": //Scout Tracker
+		case "IMP|SCT24|SCT24|WAR": //Scout Warrior
 			return GetSpaceMarineName();
 
 		// Space Marines
