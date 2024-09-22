@@ -302,11 +302,11 @@
 				<div class="col-12 col-md-6 m-0 p-0">
 					<?php
 						$sql =
-							"SELECT KT.killteamname, CONCAT('https://ktdash.app/fa/', KT.factionid, '/kt/', KT.killteamid) AS killteamlink, SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) AS rostercount, SUM(R.spotlight) AS spotlightcount
+							"SELECT KT.killteamname, KT.edition, CONCAT('https://ktdash.app/fa/', KT.factionid, '/kt/', KT.killteamid) AS killteamlink, SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) AS rostercount, SUM(R.spotlight) AS spotlightcount
 							FROM Killteam KT
 							LEFT JOIN Roster R
 							ON  R.factionid = KT.factionid AND R.killteamid = KT.killteamid AND R.rostername != 'Sample Team: Intercessors'
-							GROUP BY KT.killteamname, KT.factionid, KT.killteamid
+							GROUP BY KT.killteamname, KT.factionid, KT.killteamid, KT.edition
 							ORDER BY SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) DESC;";
 						$cmd = $dbcon->prepare($sql);
 						
@@ -326,7 +326,7 @@
 								?>
 								<tr>
 									<td>
-										<a class="navloader" href="<?php echo $row->killteamlink ?>"><?php echo $row->killteamname ?></a>
+										<a class="navloader" href="<?php echo $row->killteamlink ?>"><?php echo $row->killteamname ?><sup><?php echo $row->edition ?></sup></a>
 									</td>
 									<td style="text-align: center;">
 										<?php echo number_format($row->rostercount) ?>

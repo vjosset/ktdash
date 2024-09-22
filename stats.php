@@ -141,7 +141,7 @@
 				<h2>Recent Portraits</h2>
 				<?php
 					$sql = "
-						SELECT E.maxdatestamp AS datestamp, R.factionid, R.killteamid, KT.killteamname, R.hascustomportrait AS rosterportrait, COUNT(RO.opid) AS opcount, SUM(RO.hascustomportrait) AS opportraitcount, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
+						SELECT E.maxdatestamp AS datestamp, R.factionid, R.killteamid, KT.killteamname, KT.edition, R.hascustomportrait AS rosterportrait, COUNT(RO.opid) AS opcount, SUM(RO.hascustomportrait) AS opportraitcount, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
 						FROM 
 						(
 							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -2 day) AND eventtype = 'roster' AND action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
@@ -152,7 +152,7 @@
 						INNER JOIN Roster R ON R.rosterid = E.var1
 						INNER JOIN RosterOperative RO ON RO.userid = R.userid AND RO.rosterid = R.rosterid
 						INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
-						GROUP BY E.maxdatestamp, U.username, U.userid, R.rosterid, R.hascustomportrait, R.rostername, R.spotlight, R.factionid, R.killteamid, KT.killteamname
+						GROUP BY E.maxdatestamp, U.username, U.userid, R.rosterid, R.hascustomportrait, R.rostername, R.spotlight, R.factionid, R.killteamid, KT.killteamname, KT.edition
 						ORDER BY 1 DESC LIMIT 40;";
 					$cmd = $dbcon->prepare($sql);
 						
@@ -178,7 +178,7 @@
 							<h6 class="d-inline"><a class="navloader" target="_blank" href="/r/<?php echo $row->rosterid ?>/g"><?php echo $row->rostername ?></a></h6>
 							(<?php echo number_format($row->rosterportrait) ?> &nbsp;&nbsp;&nbsp; <?php echo number_format($row->opportraitcount) ?>/<?php echo number_format($row->opcount) ?>)
 							<br/>
-							<a class="navloader" target="_blank" href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>"><?php echo $row->killteamname ?></a>
+							<a class="navloader" target="_blank" href="/fa/<?php echo $row->factionid ?>/kt/<?php echo $row->killteamid ?>"><?php echo $row->killteamname ?> <sup><?php echo $row->edition ?></sup></a>
 							by&nbsp;<a class="navloader" target="_blank" href="/u/<?php echo $row->username ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
 							</div>
 							<?php
