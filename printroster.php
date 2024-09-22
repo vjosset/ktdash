@@ -227,22 +227,44 @@
 								style="border: 1px solid #EEE; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
 						</div>
 						<div class="col-9">
-							<!-- Operative Stats -->
-							<div class="row">
-								<h5 class="col-2 orange text-center">M</h5>
-								<h5 class="col-2 orange text-center">APL</h5>
-								<h5 class="col-2 orange text-center">GA</h5>
-								<h5 class="col-2 orange text-center">DF</h5>
-								<h5 class="col-2 orange text-center">SV</h5>
-								<h5 class="col-2 orange text-center">W</h5>
-							</div>
-							<div class="row">
-								<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
-								<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
-								<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
-								<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
-								<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
-								<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
+						<!-- Operative Stats -->
+							<?php 
+							if ($op->edition == 'kt21') {
+							?>
+								<div class="row">
+									<h5 class="col-2 orange text-center">M</h5>
+									<h5 class="col-2 orange text-center">APL</h5>
+									<h5 class="col-2 orange text-center">GA</h5>
+									<h5 class="col-2 orange text-center">DF</h5>
+									<h5 class="col-2 orange text-center">SV</h5>
+									<h5 class="col-2 orange text-center">W</h5>
+								</div>
+								<div class="row">
+									<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
+									<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
+									<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
+									<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
+									<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
+									<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
+								</div>
+							<?php
+							} else {
+								?>
+								<div class="row">
+									<h5 class="col-3 orange text-center">MOV</h5>
+									<h5 class="col-3 orange text-center">APL</h5>
+									<h5 class="col-3 orange text-center">SAV</h5>
+									<h5 class="col-3 orange text-center">WND</h5>
+								</div>
+								<div class="row">
+									<h5 class="col-3 text-center"><?php echo $op->M ?></h5>
+									<h5 class="col-3 text-center"><?php echo $op->APL ?></h5>
+									<h5 class="col-3 text-center"><?php echo $op->SV  ?></h5>
+									<h5 class="col-3 text-center"><?php echo $op->W   ?></h5>
+								</div>
+								<?php
+							}
+							?>
 							</div>
 						</div>
 				</div>
@@ -256,13 +278,13 @@
 									<h6>Weapons</h6>
 								</td>
 								<td class="text-center">
-									<h6>&nbsp;&nbsp;A&nbsp;&nbsp;</h6>
+									<h6><?php echo $op->edition == 'kt21' ? '&nbsp;&nbsp;A&nbsp;&nbsp;' : 'ATK' ?></h6>
 								</td>
 								<td class="text-center">
-									<h6>&nbsp;&nbsp;BS&nbsp;&nbsp;</h6>
+									<h6><?php echo $op->edition == 'kt21' ? '&nbsp;&nbsp;BS&nbsp;&nbsp;' : 'HIT' ?></h6>
 								</td>
 								<td class="text-center">
-									<h6>&nbsp;&nbsp;D&nbsp;&nbsp;</h6>
+									<h6><?php echo $op->edition == 'kt21' ? '&nbsp;&nbsp;D&nbsp;&nbsp;' : 'DMG' ?></h6>
 								</td>
 							</tr>
 						</thead>
@@ -584,7 +606,7 @@
 			<div class="twocols" style="page-break-inside: avoid; page-break-before:auto;">
 				<!-- Strategic Ploys -->
 				<div class="p-0 m-0" style="page-break-inside: avoid;">
-					<h2>Strategic Ploys</h2>
+					<h2><?php echo $myRoster->killteam->edition == 'kt21' ? 'Strategic Ploys' : 'Strategy Ploys' ?></h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->strat); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->strat[$pnum];
@@ -600,7 +622,7 @@
 				</div>
 				<!-- Tactical Ploys -->
 				<div class="p-0 m-0" style="page-break-inside: avoid;">
-					<h2>Tactical Ploys</h2>
+					<h2><?php echo $myRoster->killteam->edition == 'kt21' ? 'Tactical Ploys' : 'Firefight Ploys' ?></h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->tac); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->tac[$pnum];

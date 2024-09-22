@@ -202,7 +202,7 @@
 			<div class="twocols" style="page-break-inside: avoid; page-break-before:auto;">
 				<!-- Strategic Ploys -->
 				<div class="p-1 m-1" style="page-break-inside: avoid;">
-					<h2>Strategic Ploys</h2>
+					<h2><?php echo $myRoster->killteam->edition == 'kt21' ? 'Strategic Ploys' : 'Strategy Ploys' ?></h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->strat); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->strat[$pnum];
@@ -218,7 +218,7 @@
 				</div>
 				<!-- Tactical Ploys -->
 				<div class="p-1 m-1" style="page-break-inside: avoid;">
-					<h2>Tactical Ploys</h2>
+					<h2><?php echo $myRoster->killteam->edition == 'kt21' ? 'Tactical Ploys' : 'Firefight Ploys' ?></h2>
 					<?php
 						for ($pnum = 0; $pnum < count($myRoster->killteam->ploys->tac); $pnum++) {
 							$ploy = $myRoster->killteam->ploys->tac[$pnum];
