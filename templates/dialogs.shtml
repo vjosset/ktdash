@@ -497,7 +497,7 @@
 									<img ng-src="/img/icons/weptype{{ weapon.weptype }}.png" width="13" />
 									{{ weapon.wepname }}
 								</label>
-								<em class="pointer dottedline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(weapon, weapon.profiles[0]);"></em>
+								<em class="pointer dottedline" ng-if="weapon.profiles[0].SR != ''" ng-bind-html=" '(' + weapon.profiles[0].SR + ')'" ng-click="initwepsr(tempeditop.edition, weapon, weapon.profiles[0]);"></em>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ weapon.profiles[0].A }}&nbsp;&nbsp;
@@ -524,7 +524,7 @@
 							<td>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								- {{ profile.name }}
-								<em class="pointer dottedline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(weapon, profile);"></em>
+								<em class="pointer dottedline" ng-if="profile.SR != ''" ng-bind-html=" '(' + profile.SR + ')'" ng-click="initwepsr(tempeditop.edition, weapon, profile);"></em>
 							</td>
 							<td class="text-center h5">
 								&nbsp;&nbsp;{{ profile.A }}&nbsp;&nbsp;

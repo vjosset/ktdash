@@ -3760,7 +3760,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// initwepsr()
 			// Shows a popup modal for the specified weapon and profile
-			$scope.initwepsr = function(weapon, profile) {
+			$scope.initwepsr = function(edition, weapon, profile) {
 				$scope.wepsr = weapon;
 				$scope.wepsr.profile = profile;
 				
@@ -3796,8 +3796,15 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "BRUTAL":
 								rule.ruletext = "Opponent can only parry with critical hits";
 								break;
-							case "CEASELESS": /* TODO: DIFFERENT FOR 24!! */
-								rule.ruletext = "Can re-roll any or all results of 1";
+							case "CEASELESS":
+								switch (edition) {
+									case 'kt21':
+										rule.ruletext = "Can re-roll any or all results of 1";
+										break;
+									case 'kt24':
+										rule.ruletext = "Can re-roll any or all results of one value (e.g. all results of 2)";
+										break;
+								}
 								break;
 							case "COMBI-DWBG":
 								rule.ruletext = "Can be combined with a DeathWatch Boltgun";
@@ -3831,8 +3838,15 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "HUMBLING CRUELTY":
 								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point";
 								break;
-							case "HOT": /* TODO: DIFFERENT FOR 24!! */
-								rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
+							case "HOT":
+								switch (edition) {
+									case 'kt21':
+										rule.ruletext = "For each discarded Attack die result of 1 inflict 3 Mortal Wounds to the bearer";
+										break;
+									case 'kt24':
+										rule.ruletext = "After using this weapon, roll 1D6. If the result is less than the weapon's HIT stat, inflict Damage on that operative equal to the result multiplied by 2. If it is used multiple times in one action (e.g. Blast), roll only 1D6.";
+										break;
+								}
 								break;
 							case "IND":
 							case "INDIRECT":
