@@ -252,7 +252,7 @@ class Killteam extends \OFW\OFWObject
 			$archetypes = '/' . $result->fetch_object()->archetypes . '/';
 		}
 
-		$sql = "SELECT * FROM TacOp WHERE tacopid LIKE CONCAT(?, '-', ?, '%') OR ? LIKE CONCAT('%/', archetype, '/%') ORDER BY tacopid, tacopseq;";
+		$sql = "SELECT * FROM TacOp WHERE edition = ? AND (tacopid LIKE CONCAT(?, '-', ?, '%') OR ? LIKE CONCAT('%/', archetype, '/%')) ORDER BY tacopid, tacopseq;";
 
 		$cmd = $dbcon->prepare($sql);
 		if (!$cmd) {
@@ -261,7 +261,7 @@ class Killteam extends \OFW\OFWObject
 		}
 
 		//Set the parameters
-		$cmd->bind_param('sss', $this->factionid, $this->killteamid, $archetypes);
+		$cmd->bind_param('ssss', $this->edition, $this->factionid, $this->killteamid, $archetypes);
 
 		//Run the query
 		if (!$cmd->execute()) {

@@ -183,7 +183,7 @@ class Roster extends \OFW\OFWObject
 						TacOp T
 						INNER JOIN
 						(
-							SELECT DISTINCT F.archetype, F.factionid, F.killteamid, F.fireteamid
+							SELECT DISTINCT F.archetype, F.factionid, F.killteamid, F.fireteamid, K.edition
 							FROM RosterOperative RO
 							INNER JOIN Killteam K
 								ON  K.killteamid = RO.killteamid
@@ -192,8 +192,12 @@ class Roster extends \OFW\OFWObject
 								AND F.fireteamid = RO.fireteamid
 							WHERE RO.userid = ? AND RO.rosterid = ?
 						) A
-							ON  CONCAT('/', A.archetype, '/') LIKE CONCAT('%/', T.archetype, '/%')
-							OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
+							ON  A.edition = T.edition
+							AND (
+								CONCAT('/', A.archetype, '/') LIKE CONCAT('%/', T.archetype, '/%')
+								OR T.tacopid LIKE CONCAT(A.factionid, '-', A.killteamid, '-', A.fireteamid, '-%')
+							)
+
 						INNER JOIN Roster R
 							ON  R.userid = ? AND R.rosterid = ?
 						LEFT JOIN RosterTacOp RTO
