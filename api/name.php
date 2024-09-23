@@ -738,6 +738,18 @@ function GetName()
 		case "TYR|BBRO|BBRO|VET": //Brood Brother Veteran
 		case "TYR|BBRO|BBRO|VOX": //Brood Brother Vox Operator
 		case "TYR|BBRO|BBRO|PF": //Psychic Familiar
+		case "TYR|BBRO24|BBRO24|CMDR": //Brood Brother Commander
+		case "TYR|BBRO24|BBRO24|AGIT": //Brood Brother Agitator
+		case "TYR|BBRO24|BBRO24|GNR": //Brood Brother Gunner
+		case "TYR|BBRO24|BBRO24|IW": //Brood Brother Iconward
+		case "TYR|BBRO24|BBRO24|KF": //Brood Brother Knife Fighter
+		case "TYR|BBRO24|BBRO24|MED": //Brood Brother Medic
+		case "TYR|BBRO24|BBRO24|SAP": //Brood Brother Sapper
+		case "TYR|BBRO24|BBRO24|SNP": //Brood Brother Sniper
+		case "TYR|BBRO24|BBRO24|TRP": //Brood Brother Trooper
+		case "TYR|BBRO24|BBRO24|VET": //Brood Brother Veteran
+		case "TYR|BBRO24|BBRO24|VOX": //Brood Brother Vox Operator
+		case "TYR|BBRO24|BBRO24|FAM": //Psychic Familiar
 			return GetTyranidName();
 		case "TYR|BBRO|BBRO|MAG": //Magus
 			return GetTyranidName();
