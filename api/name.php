@@ -119,14 +119,14 @@ function GetName()
 		case "AEL|COR|COR|SW": //Voidscarred Soul Weaver
 		case "AEL|COR|COR|WAR": //Voidscarred Warrior
 		case "AEL|COR|COR|WS": //Voidscarred Way Seeker
-		case "AEL|COR24|COR24|FA": //Voidscarred Felarch
+		case "AEL|COR24|COR24|FEL": //Voidscarred Felarch
 		case "AEL|COR24|COR24|FD": //Voidscarred Fate Dealer
 		case "AEL|COR24|COR24|GNR": //Voidscarred Gunner
 		case "AEL|COR24|COR24|HGNR": //Voidscarred Heavy Gunner
-		case "AEL|COR24|COR24|KH": //Voidscarred Kurnite Hunter
-		case "AEL|COR24|COR24|KU": //Voidscarred Kurnathi
+		case "AEL|COR24|COR24|HNT": //Voidscarred Kurnite Hunter
+		case "AEL|COR24|COR24|KUR": //Voidscarred Kurnathi
 		case "AEL|COR24|COR24|SR": //Voidscarred Shade Runner
-		case "AEL|COR24|COR24|SSD": //Voidscarred Starstorm Duellist
+		case "AEL|COR24|COR24|SD": //Voidscarred Starstorm Duellist
 		case "AEL|COR24|COR24|SW": //Voidscarred Soul Weaver
 		case "AEL|COR24|COR24|WAR": //Voidscarred Warrior
 		case "AEL|COR24|COR24|WS": //Voidscarred Way Seeker
