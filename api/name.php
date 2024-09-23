@@ -759,6 +759,14 @@ function GetName()
 		case "VOT|HKY|HKY|RFL": //Yaegir Riflekyn
 		case "VOT|HKY|HKY|TRK": //Yaegir Tracker
 		case "VOT|HKY|HKY|WAR": //Yaegir Warrior
+		case "VOT|HKY24|HKY24|THEYN": //Yeagir Theyn
+		case "VOT|HKY24|HKY24|BLD": //Yaegir Bladekyn
+		case "VOT|HKY24|HKY24|BOMB": //Yaegir Bombast
+		case "VOT|HKY24|HKY24|GNR": //Yaegir Gunner
+		case "VOT|HKY24|HKY24|IRN": //Yaegir Ironbraek
+		case "VOT|HKY24|HKY24|RFL": //Yaegir Riflekyn
+		case "VOT|HKY24|HKY24|TRK": //Yaegir Tracker
+		case "VOT|HKY24|HKY24|WAR": //Yaegir Warrior
 			return GetHearthkynName();
 	}
 
