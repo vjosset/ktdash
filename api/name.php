@@ -738,6 +738,9 @@ function GetName()
 		case "TYR|BBRO|BBRO|VET": //Brood Brother Veteran
 		case "TYR|BBRO|BBRO|VOX": //Brood Brother Vox Operator
 		case "TYR|BBRO|BBRO|PF": //Psychic Familiar
+		case "TYR|BBRO|BBRO|MAG": //Magus
+		case "TYR|BBRO|BBRO|PRIM": //Primus
+		case "TYR|BBRO|BBRO|PAT": //Patriarch
 		case "TYR|BBRO24|BBRO24|CMDR": //Brood Brother Commander
 		case "TYR|BBRO24|BBRO24|AGIT": //Brood Brother Agitator
 		case "TYR|BBRO24|BBRO24|GNR": //Brood Brother Gunner
@@ -750,12 +753,9 @@ function GetName()
 		case "TYR|BBRO24|BBRO24|VET": //Brood Brother Veteran
 		case "TYR|BBRO24|BBRO24|VOX": //Brood Brother Vox Operator
 		case "TYR|BBRO24|BBRO24|FAM": //Psychic Familiar
-			return GetTyranidName();
-		case "TYR|BBRO|BBRO|MAG": //Magus
-			return GetTyranidName();
-		case "TYR|BBRO|BBRO|PRIM": //Primus
-			return GetTyranidName();
-		case "TYR|BBRO|BBRO|PAT": //Patriarch
+		case "TYR|BBRO24|BBRO24|MAG": //Magus
+		case "TYR|BBRO24|BBRO24|PRIM": //Primus
+		case "TYR|BBRO24|BBRO24|PAT": //Patriarch
 			return GetTyranidName();
 		case "TYR|BBRO|BBRO|TAC": //Tactical Assets
 			return "Tactical Assets";

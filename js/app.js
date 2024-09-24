@@ -4000,7 +4000,14 @@ var app = angular.module("kt", ['ngSanitize'])
 							let range = rulename.replace("TORRENT", "");
 							range = rulename.replace("TOR", "").toLowerCase();
 							rule.rulename = "Torrent " + range;
-							rule.ruletext = "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within " + range + " of the original target and each other.";
+							switch (edition) {
+								case 'kt21':
+									rule.ruletext = "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within " + range + " of the original target and each other.";
+									break;
+								case 'kt24':
+									rule.ruletext = "Each time a friendly operative performs a Shoot action or Overwatch action and selects this weapon, after making the shooting attack against the target, it can make a shooting attack with this weapon against each other valid target within " + range + " of the original target.";
+									break;
+							}
 						}
 					}
 						
