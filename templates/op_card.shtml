@@ -311,7 +311,7 @@
 			
 			<!-- Operative Weapons List-->
 			<div class="p-1">
-				<table ng-if="operative.weapons.length > 0" width="100%" class="line-top-light">
+				<table ng-if="operative.weapons.length > 0" width="100%" class="line-top-light m-0">
 					<thead>
 						<tr>
 							<td width="55%">
@@ -322,13 +322,13 @@
 								</h6>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;A&nbsp;&nbsp;' : 'ATK' }}</h5>
+								<h6>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;A&nbsp;&nbsp;' : 'ATK' }}</h6>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;BS&nbsp;&nbsp;' : 'HIT' }}</h5>
+								<h6>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;BS&nbsp;&nbsp;' : 'HIT' }}</h6>
 							</td>
 							<td class="text-center" width="10%">
-								<h5>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;D&nbsp;&nbsp;' : 'DMG' }}</h5>
+								<h6>{{ operative.edition == 'kt21' ? '&nbsp;&nbsp;D&nbsp;&nbsp;' : 'DMG' }}</h6>
 							</td>
 						</tr>
 					</thead>
