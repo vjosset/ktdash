@@ -456,7 +456,7 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && ((MODE != 'Roster' && MODE != 'Print') || (operative.equipments.length > 0 && totalOpEqPts(operative) > 0))">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (operative.equipments.length > 0 && totalOpEqPts(operative) > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="row">
 					<h6 class="pointer col-6">
@@ -477,7 +477,7 @@
 			<div ng-if="settings['shownarrative'] == 'y' && (MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Dashboard')">
 				<!-- Headers -->
 				<div class="row line-top-light m-0 p-0">
-					<div class="col-6">
+					<div class="col-3">
 						<h6 class="d-inline p-0">XP</h6>
 						<em ng-if="operative.xp <= 5">Adept</em>
 						<em ng-if="operative.xp >= 6 && operative.xp <= 15">Veteran</em>
@@ -485,20 +485,16 @@
 						<em ng-if="operative.xp >= 31 && operative.xp <= 50">Grizzled</em>
 						<em ng-if="operative.xp >= 51">Revered</em>
 					</div>
-					<div class="col-6">
-						<h6 class="d-inline p-0">Rested</h6>
-					</div>
-				</div>
-
-				<!-- Values/Counters -->
-				<div class="row m-0 p-0">
-					<div class="col-6">
+					<div class="col-3">
 						<!-- XP -->
 						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
 						<h6 ng-bind="operative.xp" class="d-inline"></h6>
 						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateXP(1, operative);"><i class="far fa-plus-square fa-fw"></i></span>
 					</div>
-					<div class="col-6">
+					<div class="col-3">
+						<h6 class="d-inline p-0">Rested</h6>
+					</div>
+					<div class="col-3">
 						<!-- Rested -->
 						<span ng-if="operative.userid == currentuser.userid" class="pointer small" ng-click="updateRested(-1, operative);"><i class="far fa-minus-square fa-fw"></i></span>
 						<h6 ng-bind="operative.rested" class="d-inline"></h6>
