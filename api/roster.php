@@ -244,7 +244,6 @@ function POSTRoster()
 			global $dbcon;
 			$sql = "UPDATE Roster SET seq = ? WHERE userid = ? AND rosterid = ?;";
 
-			// Roster 1
 			$cmd = $dbcon->prepare($sql);
 			$paramtypes = "sss";
 			$params = array();

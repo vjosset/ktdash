@@ -1388,7 +1388,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							// Done
 						},
 						// Failure
-						error: function(data, status, error) { // Failed to save operative
+						error: function(data, status, error) { // Failed to save roster
 							toast("Could not move roster: \r\n" + error);
 						}
 					});
@@ -1427,7 +1427,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				}
-			}
+			}			
 			
 			// moveRosterDown()
 			// Moves the specified roster down in the list (increase seq)
@@ -1446,7 +1446,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (!(index >= $scope.myRosters.length)) {
 					// Roster is not the last one in the list
 					
-					// Now prepare the request to push it first
+					// Now prepare the request to push it last
 					let qs = "setseq=1&rid=" + roster.rosterid + "&seq=1000";
 					
 					// Update local seqs
@@ -1469,7 +1469,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.initRosters(roster.userid);
 						},
 						// Failure
-						error: function(data, status, error) { // Failed to save operative
+						error: function(data, status, error) { // Failed to save roster
 							toast("Could not move roster: \r\n" + error);
 						}
 					});
@@ -3896,7 +3896,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								break;
 							case "SHOCK":
 								rule.rulename = "Shock";
-								rule.ruletext = "The first time you strike with a critical success in each sequence, also discard one of your opponent's unresolved normal successes (or a critical sucess if there are none)."
+								rule.ruletext = "The first time you strike with a critical success in each sequence, also discard one of your opponent's unresolved normal successes (or a critical success if there are none)."
 								break;
 							case "SIL":
 							case "SILENT":
@@ -3913,8 +3913,14 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "If this operative is equipped with a storm shield:<ul><li>It has a 4+ Invulnerable Save</li><li>Each time it fights in combat, in the Resolve Successful Hits step of that combat, each time it parries, two of your opponent's successful hits are discarded (instead of one).</li></ul>";
 								break;
 							case "STUN":
-								rule.ruletext = "Shooting: If you retain any critical hits, subtract 1 from APL of target<br/>Fighting: First critical strike discard 1 normal hit of the target, Second critical strike subtract 1 from APL of target";
-								break;
+								switch (edition) {
+									case 'kt21':
+										rule.ruletext = "Shooting: If you retain any critical hits, subtract 1 from APL of target<br/>Fighting: First critical strike discard 1 normal hit of the target, Second critical strike subtract 1 from APL of target";
+										break;
+									case 'kt24':
+										rule.ruletext = "If you retain any critical hits, subtract 1 from APL of target";
+										break;
+								}
 							case "UNLOAD SLUGS":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within " + $scope.PlaceHolders["[PENT]"] + " of it, you can re-roll any or all of your attack dice.";
 								break;
