@@ -486,6 +486,22 @@ function GetName()
 		case "IMP|PHO|PHO|RVRSGT": //Phobos Strike Team Reiver Sergeant
 		case "IMP|PHO|PHO|RVRWAR": //Phobos Strike Team Reiver Warrior
 			return GetSpaceMarineName();
+		
+		// Phobos
+		case "IMP|PHO24|PHO24|INCML":  //Phobos Strike Team Incursor Minelayer
+		case "IMP|PHO24|PHO24|INCMARK": //Phobos Strike Team Incursor Marksman
+		case "IMP|PHO24|PHO24|INCSGT": //Phobos Strike Team Incursor Sergeant
+		case "IMP|PHO24|PHO24|INCWAR": //Phobos Strike Team Incursor Warrior
+		case "IMP|PHO24|PHO24|INFCOM": //Phobos Strike Team Infiltrator Commsman
+		case "IMP|PHO24|PHO24|INFHEL": //Phobos Strike Team Infiltrator Helix Adept
+		case "IMP|PHO24|PHO24|INFSAB": //Phobos Strike Team Infiltrator Saboteur
+		case "IMP|PHO24|PHO24|INFSGT": //Phobos Strike Team Infiltrator Sergeant
+		case "IMP|PHO24|PHO24|INFVET": //Phobos Strike Team Infiltrator Veteran
+		case "IMP|PHO24|PHO24|INFVOX": //Phobos Strike Team Infiltrator Voxbreaker
+		case "IMP|PHO24|PHO24|INFWAR": //Phobos Strike Team Infiltrator Warrior
+		case "IMP|PHO24|PHO24|RVRSGT": //Phobos Strike Team Reiver Sergeant
+		case "IMP|PHO24|PHO24|RVRWAR": //Phobos Strike Team Reiver Warrior
+			return GetSpaceMarineName();
 
 		// Strike Force Justian
 		case "IMP|SFJ|SFJ|CAP":
