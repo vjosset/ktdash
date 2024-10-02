@@ -623,6 +623,20 @@ function GetName()
 			return "Plasmacyte Accelerator";
 		case "NEC|HIER|HIER|PR": // Plasmacyte Reanimator
 			return "Plasmacyte Reanimator";
+		
+		// Necron Hierotek
+		case "NEC|HIER24|HIER24|CHRON": // Chronomancer
+		case "NEC|HIER24|HIER24|PSYCH": // Psychomancer
+		case "NEC|HIER24|HIER24|TECH": // Technomancer
+		case "NEC|HIER24|HIER24|APP": // Apprentek
+		case "NEC|HIER24|HIER24|DM": // Deathmark
+		case "NEC|HIER24|HIER24|ID": // Immortal Despotek
+		case "NEC|HIER24|HIER24|IG": // Immortal Guardian
+			return GetHierotekName();
+		case "NEC|HIER24|HIER24|PA": // Plasmacyte Accelerator
+			return "Plasmacyte Accelerator";
+		case "NEC|HIER24|HIER24|PR": // Plasmacyte Reanimator
+			return "Plasmacyte Reanimator";
 
 		// Ork Greenskins
 		case "ORK|GSK|BOY|BN": //Boss Nob
