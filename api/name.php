@@ -467,6 +467,16 @@ function GetName()
 		case "IMP|KAS|KAS|TRP":
 		case "IMP|KAS|KAS|VOX":
 			return GetKasrkinName();
+		// Kasrkin
+		case "IMP|KAS24|KAS24|SGT":
+		case "IMP|KAS24|KAS24|MED":
+		case "IMP|KAS24|KAS24|DEMO":
+		case "IMP|KAS24|KAS24|GNR":
+		case "IMP|KAS24|KAS24|REC":
+		case "IMP|KAS24|KAS24|SS":
+		case "IMP|KAS24|KAS24|TRP":
+		case "IMP|KAS24|KAS24|VOX":
+			return GetKasrkinName();
 
 		// Novitiates
 		case "IMP|NOV|NOV|CON": //Novitiate Condemnor
