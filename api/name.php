@@ -282,6 +282,18 @@ function GetName()
 		case "CHAOS|LEG|LEG|STL": //Legionary ShriveTalon
 		case "CHAOS|LEG|LEG|WAR": //Legionary Warrior
 			return GetChaosMarineName();
+		// Chaos Legionaries
+		case "CHAOS|LEG24|LEG24|AC": //Legionary Aspiring Champion
+		case "CHAOS|LEG24|LEG24|ANO": //Legionary Anointed
+		case "CHAOS|LEG24|LEG24|BA": //Legionary Balefire Acolyte
+		case "CHAOS|LEG24|LEG24|BUT": //Legionary Butcher
+		case "CHAOS|LEG24|LEG24|CHO": //Legionary Chosen
+		case "CHAOS|LEG24|LEG24|GNR": //Legionary Gunner
+		case "CHAOS|LEG24|LEG24|HGNR": //Legionary Heavy Gunner
+		case "CHAOS|LEG24|LEG24|IB": //Legionary Icon Bearer
+		case "CHAOS|LEG24|LEG24|STL": //Legionary ShriveTalon
+		case "CHAOS|LEG24|LEG24|WAR": //Legionary Warrior
+			return GetChaosMarineName();
 
 		// Nemesis Claw
 		case "CHAOS|NC|NC|FRM": //Night Lord Fearmonger
