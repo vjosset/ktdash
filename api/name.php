@@ -337,6 +337,18 @@ function GetName()
 		case "CHAOS|WC|WC|TZHB": //Tzaangor Horn Bearer
 		case "CHAOS|WC|WC|TZIB": //Tzaangor Icon Bearer
 			return GetDaemonName();
+		case "CHAOS|WC24|WC24|GNR": //Rubric Marine Gunner
+		case "CHAOS|WC24|WC24|IB": //Rubric Marine Icon Bearer
+		case "CHAOS|WC24|WC24|SOS": //Sorcerer
+		case "CHAOS|WC24|WC24|SOT": //Sorcerer
+		case "CHAOS|WC24|WC24|SOW": //Sorcerer
+		case "CHAOS|WC24|WC24|WAR": //Rubric Marine Warrior
+			return GetChaosMarineName();
+		case "CHAOS|WC24|WC24|TZC": //Tzaangor Champion
+		case "CHAOS|WC24|WC24|TZWAR": //Tzaangor Fighter
+		case "CHAOS|WC24|WC24|TZHB": //Tzaangor Horn Bearer
+		case "CHAOS|WC24|WC24|TZIB": //Tzaangor Icon Bearer
+			return GetDaemonName();
 
 		// Space Hulk Veterans
 		case "HBR|SHV|SHV|FTR":
