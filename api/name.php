@@ -621,6 +621,20 @@ function GetName()
 		case "IMP|VG|VG|TRP": //Trooper Veteran
 		case "IMP|VG|VG|ZLT": //Zealot Veteran
 			return GetHumanName();
+			
+		// Death Korps
+		case "IMP|DKK24|DKK24|BRU":
+		case "IMP|DKK24|DKK24|CON":
+		case "IMP|DKK24|DKK24|GNR":
+		case "IMP|DKK24|DKK24|MDC":
+		case "IMP|DKK24|DKK24|SAP":
+		case "IMP|DKK24|DKK24|SPT":
+		case "IMP|DKK24|DKK24|TRP":
+		case "IMP|DKK24|DKK24|VET":
+		case "IMP|DKK24|DKK24|VOX":
+		case "IMP|DKK24|DKK24|WM":
+		case "IMP|DKK24|DKK24|ZLT":
+			return GetHumanName();
 
 		// Necron Tombworld
 		case "NEC|TW|DM|LDR": //Deathmark Leader
