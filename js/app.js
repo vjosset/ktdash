@@ -3923,9 +3923,10 @@ var app = angular.module("kt", ['ngSanitize'])
 										rule.ruletext = "Shooting: If you retain any critical hits, subtract 1 from APL of target<br/>Fighting: First critical strike discard 1 normal hit of the target, Second critical strike subtract 1 from APL of target";
 										break;
 									case 'kt24':
-										rule.ruletext = "If you retain any critical hits, subtract 1 from APL of target";
+										rule.ruletext = "If you retain any critical hits, subtract 1 from APL of target until the end of its next activation";
 										break;
 								}
+								break;
 							case "UNLOAD SLUGS":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, in the Roll Attack Dice step of that shooting attack, if the target is within " + $scope.PlaceHolders["[PENT]"] + " of it, you can re-roll any or all of your attack dice.";
 								break;
@@ -3965,7 +3966,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							let dam = rulename.split("V")[1];
 							rule.rulename = rng + "Devastating " + dam;
 							if (rng != "") {
-								rule.ruletext = "Inflict " + dam + " damage on the operative this weapon is being used against and each other operative Visible To and within " + rng + " of it. Note that success isn't discarded after doing so - it can still be resolved later in the sequence.";
+								rule.ruletext = "Each retained critical success immediately inflicts " + dam + " damage on the operative this weapon is being used against and each other operative Visible To and within " + rng + " of it. Note that success isn't discarded after doing so - it can still be resolved later in the sequence.";
 							} else {
 								rule.ruletext = "Each retained critical success immediately inflicts " + dam + " damage on the operative this weapon is being used against.";
 							}
