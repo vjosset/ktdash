@@ -49,8 +49,8 @@
 		<script type="text/javascript" src="/js/utils.js?cb=202302181302"></script>
 		
 		<!-- App/Controller -->
-		<link rel="preload" href="/js/app.js?cb=202410011637" as="script">
-		<script type="text/javascript" src="/js/app.js?cb=202410011637"></script>
+		<link rel="preload" href="/js/app.js?cb=202410041058" as="script">
+		<script type="text/javascript" src="/js/app.js?cb=202410041058"></script>
 		
 		<!-- Fonts -->
 		<!-- Oswald Font -->

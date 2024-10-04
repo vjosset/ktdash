@@ -339,7 +339,7 @@ function GetName()
 			return GetDaemonName();
 		case "CHAOS|WC24|WC24|GNR": //Rubric Marine Gunner
 		case "CHAOS|WC24|WC24|IB": //Rubric Marine Icon Bearer
-		case "CHAOS|WC24|WC24|SOS": //Sorcerer
+		case "CHAOS|WC24|WC24|SOD": //Sorcerer
 		case "CHAOS|WC24|WC24|SOT": //Sorcerer
 		case "CHAOS|WC24|WC24|SOW": //Sorcerer
 		case "CHAOS|WC24|WC24|WAR": //Rubric Marine Warrior

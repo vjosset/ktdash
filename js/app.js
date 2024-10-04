@@ -3860,6 +3860,11 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "NO COVER":
 								rule.ruletext = "Target can't retain autosuccess for cover, must roll all Defence dice";
 								break;
+							case "NOOBS":
+							case "NOOBSCURE":
+								rule.rulename = "No Obscure";
+								rule.ruletext = "Enemy operatives cannot be Obscured.";
+								break;
 							case "PARRY HOOK":
 								rule.ruletext = "Each time a friendly operative fights in combat with this weapon, in the Resolve Successful Hits step of that combat, each time you parry with a normal hit, you can select one of your opponent''s critical hits to be discarded instead.";
 								break;
@@ -3955,11 +3960,15 @@ var app = angular.module("kt", ['ngSanitize'])
 							let num = rulename.replace("PRC", "");
 							rule.rulename = "Piercing " + num;
 							rule.ruletext = "The defender collects " + num + " less Defence dice.";
-						} else if (rulename.startsWith("DEV")) {
-							let num = rulename.replace("DEV", "");
-							rule.rulename = "Devastating " + num;
-							 /* TODO: HANDLE DISTANCE!! */
-							rule.ruletext = "Each retained critical success immediately inflicts " + num + " damage on the operative this weapon is being used against.<br/>If the rule starts with a distance (e.g. '1\" Devastating 3'), inflict " + num + " damage on that operative and each other operative Visible To and within that distance of it. Note that success isn't discarded after doing so - it can still be resolved later in the sequence.";
+						} else if (rulename.indexOf("DEV") > -1) {
+							let rng = rulename.split("D")[0];
+							let dam = rulename.split("V")[1];
+							rule.rulename = rng + "Devastating " + dam;
+							if (rng != "") {
+								rule.ruletext = "Inflict " + dam + " damage on the operative this weapon is being used against and each other operative Visible To and within " + rng + " of it. Note that success isn't discarded after doing so - it can still be resolved later in the sequence.";
+							} else {
+								rule.ruletext = "Each retained critical success immediately inflicts " + dam + " damage on the operative this weapon is being used against.";
+							}
 						} else if (rulename.startsWith("LIM")) {
 							let num = rulename.replace("LIMITED", "").replace("LIM", "");
 							if (num == "") {
