@@ -167,6 +167,18 @@ function GetName()
 		case "AEL|HOTA|HOTA|KHGNR":
 		case "AEL|HOTA|HOTA|KSA":
 			return GetAeldariName();
+			
+		// Hand of the Archon
+		case "AEL|HOTA24|HOTA24|KAG":
+		case "AEL|HOTA24|HOTA24|KAS":
+		case "AEL|HOTA24|HOTA24|KCD":
+		case "AEL|HOTA24|HOTA24|KDOY":
+		case "AEL|HOTA24|HOTA24|KELX":
+		case "AEL|HOTA24|HOTA24|KFLAY":
+		case "AEL|HOTA24|HOTA24|KGNR":
+		case "AEL|HOTA24|HOTA24|KHGNR":
+		case "AEL|HOTA24|HOTA24|KSA":
+			return GetAeldariName();
 
 		// Aeldari Mandrakes
 		case "AEL|MND|MND|AB": //Mandrake Abyssal

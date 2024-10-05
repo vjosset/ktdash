@@ -133,6 +133,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Home page load
 			$scope.initHome = function() {
 				$scope.MODE = 'Home';
+				/*
 				if ($scope.currentuser != null) {
 					// Get the user's rosters
 					$.ajax({
@@ -159,6 +160,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				}
+				*/
 				
 				// Get a random spolighted roster
 				$.ajax({
@@ -169,8 +171,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					dataType: 'json',
 					
 					// Success
-					success: function(data) { // Got user's rosters
-						// Load the rosters into "myRosters"
+					success: function(data) { // Got random spotlighted rosters
+						// Load the random spotlighted roster into "myRoster"
 						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 						$scope.myRoster = data;
 						$scope.$apply();
@@ -181,6 +183,27 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 				
+				// Get all killteams
+				$.ajax({
+					type: "GET",
+					url: APIURL + "faction.php?loadkts=1",
+					timeout: APITimeout,
+					async: true,
+					dataType: 'json',
+					
+					// Success
+					success: function(data) { // Got all killteams
+						// Load the results into "factions"
+						$scope.factions = data;
+						
+						// Sort the factions by edition, then faction, then killteam
+						$scope.$apply();
+					},
+					// Failure
+					error: function(data, status, error) { // Failed to get roster
+						$scope.$apply();
+					}
+				});
 			}
 		}
 		
