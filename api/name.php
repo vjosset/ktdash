@@ -913,6 +913,18 @@ function GetName()
 		case "VOT|HKY24|HKY24|TRK": //Yaegir Tracker
 		case "VOT|HKY24|HKY24|WAR": //Yaegir Warrior
 			return GetHearthkynName();
+		case "SPEC|NPO|NPO|BR-TRP": 
+			return "Brawler Trooper"; 
+		case "SPEC|NPO|NPO|BR-TGH": 
+			return "Brawler Tough"; 
+		case "SPEC|NPO|NPO|BR-HVY": 
+			return "Brawler Heavy"; 
+		case "SPEC|NPO|NPO|MM-TRP": 
+			return "Marksman Trooper"; 
+		case "SPEC|NPO|NPO|MM-WAR": 
+			return "Marksman Warrior"; 
+		case "SPEC|NPO|NPO|MM-HVY": 
+			return "Marksman Heavy";
 	}
 
 	// If we haven't returned yet, return a generic name
