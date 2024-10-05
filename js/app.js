@@ -195,7 +195,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) { // Got all killteams
 						// Load the results into "factions"
 						$scope.factions = data;
-						
+
 						// Sort the factions by edition, then faction, then killteam
 						$scope.$apply();
 					},
@@ -4013,9 +4013,10 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";
 						} else if (rulename.startsWith("BLAST")) {
 							let range = rulename.replace("BLAST", "").toLowerCase();
-							//rule.ruletext = "After shooting perform shooting attacks against the target and each other operative visible to and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover. No Overwatch.";
-							rule.ruletext = "Each time this weapon is fired, after making the attack against the target, make a shooting attack against each other operative Visible To and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover. An operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
-							console.log("RuleText (Blast): " + rule.ruletext);
+							rule.ruletext = "Each time this weapon is fired, after making the attack against the target, make a shooting attack against each other operative Visible To and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover.";
+							if (edition != 'kt24') {
+								rule.ruletext += "<br/>An operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
+							} 
 						} else if (rulename.startsWith("INFERNO")) {
 							let num = rulename.replace("INFERNO", "");
 							rule.ruletext = "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, the target gains " + num + " Inferno tokens. At the end of each Turning Point, roll one D6 for each Inferno token an enemy operative has: on a 4+, that enemy operative suffers 1 mortal wound. After rolling, remove all Inferno tokens that operative has.";
