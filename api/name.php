@@ -913,6 +913,8 @@ function GetName()
 		case "VOT|HKY24|HKY24|TRK": //Yaegir Tracker
 		case "VOT|HKY24|HKY24|WAR": //Yaegir Warrior
 			return GetHearthkynName();
+		
+		// NPOs (KT2024 Joint Operationes/PvE/Solo mode)
 		case "SPEC|NPO|NPO|BR-TRP": 
 			return "Brawler Trooper"; 
 		case "SPEC|NPO|NPO|BR-TGH": 
