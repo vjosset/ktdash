@@ -286,7 +286,12 @@ class Killteam extends \OFW\OFWObject
 
 		$this->rosters = [];
 
-		$sql = "SELECT DISTINCT CASE R.userid WHEN ? THEN 10 WHEN 'prebuilt' THEN 9 WHEN 'vince' THEN 8 WHEN 'tim' THEN 7 WHEN 'BLWaM' THEN 6 WHEN 'vpnts' THEN 5 ELSE CASE WHEN notes = '' THEN 1 ELSE 2 END END AS seq, R.rosterid, U.username, R.rostername, R.userid, R.oplist, R.notes, R.killteamid, R.factionid, K.killteamname, R.spotlight, R.viewcount, R.importcount, R.hascustomportrait FROM RosterView R INNER JOIN User U ON U.userid = R.userid INNER JOIN Killteam K ON K.factionid = R.factionid AND K.killteamid = R.killteamid WHERE R.factionid = ? AND R.killteamid = ? AND (R.userid IN (?, 'prebuilt') OR spotlight = 1) ORDER BY 1 DESC, R.hascustomportrait DESC LIMIT 100;";
+		/*
+			vpnts - DW_Dagon (Dino squad)
+			i8oGH - Smoerkniven (pro)
+			BLWaM - Mendejo (pro)
+		*/
+		$sql = "SELECT DISTINCT CASE R.userid WHEN ? THEN 10 WHEN 'prebuilt' THEN 9 WHEN 'vince' THEN 8 WHEN 'tim' THEN 7 WHEN 'BLWaM' THEN 6 WHEN 'i8oGH' THEN 6 WHEN 'vpnts' THEN 5 ELSE CASE WHEN notes = '' THEN 1 ELSE 2 END END AS seq, R.rosterid, U.username, R.rostername, R.userid, R.oplist, R.notes, R.killteamid, R.factionid, K.killteamname, R.spotlight, R.viewcount, R.importcount, R.hascustomportrait FROM RosterView R INNER JOIN User U ON U.userid = R.userid INNER JOIN Killteam K ON K.factionid = R.factionid AND K.killteamid = R.killteamid WHERE R.factionid = ? AND R.killteamid = ? AND (R.userid IN (?, 'prebuilt') OR spotlight = 1) ORDER BY 1 DESC, R.hascustomportrait DESC LIMIT 100;";
 
 		$cmd = $dbcon->prepare($sql);
 		if (!$cmd) {
