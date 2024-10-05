@@ -465,8 +465,17 @@
 						<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
 						<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
 					</h6>
+
+					<!--
+					Show equipment if:
+						hideautoappliedmods != n
+						OR
+						!eq.autoapplied
+						OR
+						eqpts > 0
+					-->
 					
-					<div ng-if="settings['hideappliedeqmods'] == 'n' || MODE == 'Roster' || eq.eqtype == 'WepMod' || eq.eqtype == 'OpMod' || eq.eqpts > 0" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+					<div ng-if="settings['hideappliedeqmods'] == 'n' || !eq.autoapplied || eq.eqpts > 0" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
 						<!-- h6 class="pt-1 p-0 m-0 span" ng-if="eq.eqcategory != '' && ($index == 0 || ($index > 0 && eq.eqcategory != operative.equipments[$index -1].eqcategory))">{{ eq.eqcategory }}</h6 -->
 						{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 					</div>
