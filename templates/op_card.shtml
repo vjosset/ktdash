@@ -456,7 +456,7 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (operative.equipments.length > 0 && totalOpEqPts(operative) > 0)">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (operative.equipments.length > 0)">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
 				<div class="row">
 					<h6 class="pointer col-6">
@@ -467,6 +467,7 @@
 					</h6>
 					
 					<div ng-if="settings['hideappliedeqmods'] == 'n' || MODE == 'Roster' || eq.eqtype == 'WepMod' || eq.eqtype == 'OpMod' || eq.eqpts > 0" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
+						<!-- h6 class="pt-1 p-0 m-0 span" ng-if="eq.eqcategory != '' && ($index == 0 || ($index > 0 && eq.eqcategory != operative.equipments[$index -1].eqcategory))">{{ eq.eqcategory }}</h6 -->
 						{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 					</div>
 					
