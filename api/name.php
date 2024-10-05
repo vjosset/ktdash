@@ -793,6 +793,27 @@ function GetName()
 		case "TAU|PF|PF|WE": //Weapons Expert Pathfinder
 			return GetTauFireName();
 		
+		
+		// Tau - Pathfinders
+		case "TAU|PF24|PF24|MB3": //MB3 Recon Drone
+		case "TAU|PF24|PF24|MV1": //MV1 Gun Drone
+		case "TAU|PF24|PF24|MV31": //MV31 Pulse Accelerator Drone
+		case "TAU|PF24|PF24|MV33": //MV33 Grav-Inhibitor Drone
+		case "TAU|PF24|PF24|MV4": //MV4 Shield Drone
+		case "TAU|PF24|PF24|MV7": //MV7 Marker Drone
+			return $opid;
+		case "TAU|PF24|PF24|AG": //Assault Grenadier Pathfinder
+		case "TAU|PF24|PF24|BL": //Blooded Pathfinder
+		case "TAU|PF24|PF24|COMMS": //Communications Specialist Pathfinder
+		case "TAU|PF24|PF24|DC": //Drone Controller Pathfinder
+		case "TAU|PF24|PF24|MARKS": //Marksman Pathfinder
+		case "TAU|PF24|PF24|MDC": //Medical Technician Pathfinder
+		case "TAU|PF24|PF24|SL": //Shas'La Pathfinder
+		case "TAU|PF24|PF24|SU": //Shas'Ui Pathfinder
+		case "TAU|PF24|PF24|TSI": //Transpectral Interference Pathfinder
+		case "TAU|PF24|PF24|WE": //Weapons Expert Pathfinder
+			return GetTauFireName();
+		
 		case "TAU|VESP|VESP|OSD": //Oversight Drone
 			return "Drone";
 		case "TAU|VESP|VESP|VLS": //Vespid Longsting
