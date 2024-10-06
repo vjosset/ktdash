@@ -68,6 +68,10 @@ input {
 	border-color: var(--white) !important;
 }
 
+.darkcard .card-footer {
+	border-color: var(--grey);
+}
+
 .eqtable {
 	border: 1px solid var(--grey);
 	width: 100%;
