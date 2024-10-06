@@ -1,3 +1,12 @@
+:root {
+	--maincolor: #c54c21; /* Orig Orange: var(--maincolor) */
+	/*--maincolor: #4c5c22;*/
+	--blacktext: #202020;
+	--blackbg: #202020;
+	--white: #EEE;
+	--grey: #888;
+}
+
 /* Rotation for TopNav icon */
 .rotate {
   animation: rotation 2s infinite linear;
@@ -16,33 +25,28 @@ body {
 	font-family: Oswald, Arial Narrow, Roboto, sans-serif;
 	font-size: 1em;
 	/*background-color: #343a40;*/
-	background-color: #202020;
-	color: #EEE;
+	background-color: var(--blackbg);
+	color: var(--white);
 }
 
-.dark, .dropdown-menu-dark {
-	background-color: #202020;
-	color: #EEE;
-}
-
-.darkcard {
-	background-color: #242424;
-	border-color: #EEE;
+.dark, .dropdown-menu-dark, .darkcard {
+	background-color: var(--blackbg);
+	color: var(--white);
 }
 
 .orange {
 	/*background-color: #dd7d00;*/
 	/*color: #343a40;*/
-	background-color: #c54c21;
-	color: #262a2d;
+	background-color: var(--maincolor);
+	color: var(--blacktext);
 }
 
 .orangetext {
-	color: #c54c21;
+	color: var(--maincolor);
 }
 
 .greytext {
-	color: #888;
+	color: var(--grey);
 }
 
 .dottedline {
@@ -51,23 +55,23 @@ body {
 
 /* Buttons */
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-primary {
-    background-color: #c54c21 !important;
-	border-color: #262a2d !important;
-	color: #262a2d !important;
+	background-color: var(--maincolor) !important;
+	border-color: var(--blacktext) !important;
+	color: var(--blacktext) !important;
 }
 
 input {
-    accent-color: #c54c21;
+	accent-color: var(--maincolor);
 }
 
 /*
 .card {
-	border-color: #c54c21 !important;
+	border-color: var(--maincolor) !important;
 }
 */
 
 .eqtable {
-	border: 1px solid #888;
+	border: 1px solid var(--grey);
 	width: 100%;
 }
 
@@ -90,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 .orange a, .orange a:link, .orange a:visited, .orange a:hover, .orange a:active 
 {
 	cursor: pointer;
-	color: #262a2d;
+	color: var(--blacktext);
 	text-decoration: none;
 }
 
@@ -98,7 +102,7 @@ a, a:link, a:visited, a:hover, a:active,
 .dropdown-menu-dark a, .dropdown-menu-dark a:link, .dropdown-menu-dark a:visited, .dropdown-menu-dark a:hover, .dropdown-menu-dark a:active
 {
 	cursor: pointer;
-	color: #EEE;
+	color: var(--white);
 	/*text-decoration: none;*/
 }
 
@@ -119,27 +123,22 @@ th, td {
 
 .line-top
 {
-	border-top: 1px solid #000;
+	border-top: 1px solid var(--blacktext);
 }
 
 .line-top-light
 {
-	border-top: 1px solid #CCC;
+	border-top: 1px solid var(--white);
 }
 
 .line-bottom
 {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid var(--blacktext);
 }
 
 .line-bottom-light
 {
-	border-bottom: 1px solid #CCC;
-}
-
-.shadow
-{
-	box-shadow: 20px 20px 20px 20px #aaaaaa;
+	border-bottom: 1px solid var(--white);
 }
 
 .pointer
@@ -148,7 +147,7 @@ th, td {
 }
 
 .dropdown-menu-dark {
-	border: 1px solid #eee;
+	border: 1px solid var(--white);
 }
 
 .twocols {
@@ -195,7 +194,7 @@ th, td {
 	}
 
 	.orangetext, .orange {
-		background-color: #c54c21;
+		background-color: var(--maincolor);
 		color: #000;
 	}
 
@@ -229,7 +228,7 @@ th, td {
 	visibility: hidden; /* Hidden by default. Visible on click */
 	min-width: 250px; /* Set a default minimum width */
 	margin-left: -125px; /* Divide value of min-width by 2 */
-	background-color: #c54c21; /* Orange background */
+	background-color: var(--maincolor); /* Orange background */
 	color: #262a2d; /* Dark dark grey font */
 	text-align: center; /* Centered text */
 	border: 2px solid #000;
