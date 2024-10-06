@@ -895,6 +895,21 @@ function GetName()
 		case "VOT|HKS|HKS|LUG": //Hearthkyn Lugger
 		case "VOT|HKS|HKS|WAR": //Hearthkyn Warrior
 			return GetHearthkynName();
+		
+		// Hearthkyn Salvagers
+		case "VOT|HKS24|HKS24|TH": //Hearthkyn Theyn
+		case "VOT|HKS24|HKS24|DO": //Hearthkyn Dozr
+		case "VOT|HKS24|HKS24|MDC": //Hearthkyn Field Medic
+		case "VOT|HKS24|HKS24|GRN": //Hearthkyn Grenadier
+		case "VOT|HKS24|HKS24|GNR": //Hearthkyn Gunner
+		case "VOT|HKS24|HKS24|JMP": //Hearthkyn Jump Pack Warrior
+		case "VOT|HKS24|HKS24|KL": //Hearthkyn Kinlynk
+		case "VOT|HKS24|HKS24|KOG": //Hearthkyn Kognitaar
+		case "VOT|HKS24|HKS24|LOK": //Hearthkyn Lokatr
+		case "VOT|HKS24|HKS24|LUG": //Hearthkyn Lugger
+		case "VOT|HKS24|HKS24|WAR": //Hearthkyn Warrior
+			return GetHearthkynName();
+		
 		// Hernkyn Yaegir
 		case "VOT|HKY|HKY|THEYN": //Yeagir Theyn
 		case "VOT|HKY|HKY|BLD": //Yaegir Bladekyn
