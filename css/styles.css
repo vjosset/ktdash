@@ -4,7 +4,7 @@
 	--blacktext: #202020;
 	--blackbg: #202020;
 	--white: #EEE;
-	--grey: #888;
+	--grey: #666;
 }
 
 /* Rotation for TopNav icon */
@@ -64,11 +64,9 @@ input {
 	accent-color: var(--maincolor);
 }
 
-/*
 .card {
-	border-color: var(--maincolor) !important;
+	border-color: var(--white) !important;
 }
-*/
 
 .eqtable {
 	border: 1px solid var(--grey);
@@ -128,7 +126,7 @@ th, td {
 
 .line-top-light
 {
-	border-top: 1px solid var(--white);
+	border-top: 1px solid var(--grey);
 }
 
 .line-bottom
@@ -138,7 +136,7 @@ th, td {
 
 .line-bottom-light
 {
-	border-bottom: 1px solid var(--white);
+	border-bottom: 1px solid var(--grey);
 }
 
 .pointer

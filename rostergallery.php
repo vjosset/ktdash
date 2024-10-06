@@ -157,7 +157,7 @@
 		
 		<div class="row p-0 m-0 ng-cloak" ng-hide="loading">
 			<!-- Roster Portrait -->
-			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" style="overflow: hidden;border: 1px solid #eee;">
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 card" style="overflow: hidden;">
 				<img id="rosterportrait_{{ myRoster.rosterid }}"
 					src="/api/rosterportrait.php?rid=<?php echo $myRoster->rosterid ?>"
 					alt="{{ myRoster.rostername }}"
@@ -168,7 +168,7 @@
 			</div>
 			
 			<!-- Operative Portraits -->
-			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden; border: 1px solid #eee;">
+			<div class="ng-cloak col-12 col-md-6 col-lg-4 col-xl-3 m-0 p-0 card" ng-repeat="operative in myRoster.operatives | orderBy: 'seq' track by $index" style="overflow: hidden;">
 				<h4 class="orange m-0 p-1 row">
 					<div class="col-10 p-0 m-0 d-inline">
 						{{ operative.opname }}
