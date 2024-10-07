@@ -49,9 +49,9 @@
 		<?php include "header.shtml" ?>
 		
 		<?php
-		$pagetitle = $killteam->killteamname . " Kill Team";
+		$pagetitle = $killteam->killteamname . " Kill Team (" . $killteam->edition . ")";
 		$pagedesc  = str_replace("\n", " ", str_replace("\r", " ", $killteam->description));
-		$pagekeywords = "Compendium," . $faction->factionname . "," . $killteam->killteamname;
+		$pagekeywords = $faction->factionname . "," . $killteam->killteamname . "," . $killteam->edition;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg";
 		$pageurl   = "https://ktdash.app/fa/" . $factionid . "/kt/" . $killteamid;
 		

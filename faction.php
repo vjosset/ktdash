@@ -44,7 +44,7 @@
 		<?php
 		$pagetitle = $faction->factionname;
 		$pagedesc  = $faction->description;
-		$pagekeywords = "Compendium," . $faction->factionname;
+		$pagekeywords = $faction->factionname;
 		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $factionid . ".jpg";
 		$pageurl   = "https://ktdash.app/fa/" . $factionid;
 		
