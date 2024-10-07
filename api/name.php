@@ -281,6 +281,20 @@ function GetName()
 		case "CHAOS|FELL|FELL|SHA": //Fellgor Shaman
 		case "CHAOS|FELL|FELL|WAR": //Fellgor Warrior
 			return GetBeastmenName();
+		
+		// Fellgor Ravagers
+		case "CHAOS|FELL24|FELL24|IH": //Fellgor Ironhorn
+		case "CHAOS|FELL24|FELL24|DK": //Fellgor Deathknell
+		case "CHAOS|FELL24|FELL24|FB": //Fellgor Fluxbray
+		case "CHAOS|FELL24|FELL24|GS": //Fellgor Gnarlscar
+		case "CHAOS|FELL24|FELL24|GH": //Fellgor Gorehorn
+		case "CHAOS|FELL24|FELL24|HG": //Fellgor Herd-Goad
+		case "CHAOS|FELL24|FELL24|MNG": //Fellgor Mangler
+		case "CHAOS|FELL24|FELL24|VND": //Fellgor Vandal
+		case "CHAOS|FELL24|FELL24|TOX": //Fellgorn Toxhorn
+		case "CHAOS|FELL24|FELL24|SHA": //Fellgor Shaman
+		case "CHAOS|FELL24|FELL24|WAR": //Fellgor Warrior
+			return GetBeastmenName();
 
 		// Chaos Legionaries
 		case "CHAOS|LEG|LEG|AC": //Legionary Aspiring Champion
