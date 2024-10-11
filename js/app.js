@@ -3030,6 +3030,10 @@ var app = angular.module("kt", ['ngSanitize'])
 						"Label": "Faith Points",
 						"Shortcut": "FP"
 					},
+					"NOV24": {
+						"Label": "Faith Points",
+						"Shortcut": "FP"
+					},
 					"KAS": {
 						"Label": "Elite Points",
 						"Shortcut": "EP",
