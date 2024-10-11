@@ -530,6 +530,20 @@ function GetName()
 		case "IMP|NOV|NOV|REL": //Novitiate Reliquarius
 		case "IMP|NOV|NOV|SUP": //Novitiate Superior
 			return GetSistersOfBattleName();
+		
+		case "IMP|NOV24|NOV24|CON": //Novitiate Condemnor
+		case "IMP|NOV24|NOV24|DIA": //Novitiate Dialogus
+		case "IMP|NOV24|NOV24|DUE": //Novitiate Duellist
+		case "IMP|NOV24|NOV24|EXA": //Novitiate Exactor
+		case "IMP|NOV24|NOV24|HOS": //Novitiate Hospitaller
+		case "IMP|NOV24|NOV24|MIL": //Novitiate Militant
+		case "IMP|NOV24|NOV24|PEN": //Novitiate Penitent
+		case "IMP|NOV24|NOV24|PRE": //Novitiate Preceptor
+		case "IMP|NOV24|NOV24|PRO": //Novitiate Pronatus
+		case "IMP|NOV24|NOV24|PUR": //Novitiate Purgatus
+		case "IMP|NOV24|NOV24|REL": //Novitiate Reliquarius
+		case "IMP|NOV24|NOV24|SUP": //Novitiate Superior
+			return GetSistersOfBattleName();
 
 		// Phobos
 		case "IMP|PHO|PHO|INCML":  //Phobos Strike Team Incursor Minelayer
