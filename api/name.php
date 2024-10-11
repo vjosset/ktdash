@@ -448,6 +448,22 @@ function GetName()
 		case "IMP|HC|HC|SKVS": //Skitarii Vanguard Surveyor
 		case "IMP|HC|HC|SKVST": //Skitarii Vanguard Shocktrooper
 			return GetAdMechName();
+		
+		case "IMP|HC24|HC24|SIP": // Sicarian Infiltrator Princeps
+		case "IMP|HC24|HC24|SIW": // Sicarian Infiltrator Warrior
+		case "IMP|HC24|HC24|SRGA": // Skitarii Ranger Alpha
+		case "IMP|HC24|HC24|SRGD": // Skitarii Ranger Diktat
+		case "IMP|HC24|HC24|SRGG": // Skitarii Ranger Gunner
+		case "IMP|HC24|HC24|SRGS": // Skitarii Ranger Surveyor
+		case "IMP|HC24|HC24|SRGW": // Skitarii Ranger Warrior
+		case "IMP|HC24|HC24|SRSP": // Sicarian Ruststalker Princeps
+		case "IMP|HC24|HC24|SRSW": // Sicarian Ruststalker Warrior
+		case "IMP|HC24|HC24|SVA": // Skitarii Vanguard Alpha
+		case "IMP|HC24|HC24|SVD": // Skitarii Vanguard Diktat
+		case "IMP|HC24|HC24|SVG": // Skitarii Vanguard Gunner
+		case "IMP|HC24|HC24|SVS": // Skitarii Vanguard Surveyor
+		case "IMP|HC24|HC24|SVW": // Skitarii Vanguard Warrior
+			return GetAdMechName();
 
 		// Imperial Guard
 		case "IMP|IG|GM|COMMS": //Guardsman Comms
