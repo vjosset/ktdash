@@ -690,7 +690,10 @@ var app = angular.module("kt", ['ngSanitize'])
 													// New special rule - Loop through the weapon's profiles and add this special rule to them
 													for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
 														//console.log("         Applying Special Rule " + modval);
-														weptomod.profiles[pnum].SR += ", " + modval;
+														if (weptomod.profiles[pnum].SR != '') {
+															weptomod.profiles[pnum].SR += ", "
+														}
+														weptomod.profiles[pnum].SR += modval;
 													}
 													break;
 												case "D":
