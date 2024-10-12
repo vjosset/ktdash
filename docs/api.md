@@ -27,9 +27,19 @@ Anonymous
 
 Returns an array of all factions
 
-`GET /api/faction.php?fa=[FactionID]`
+### Parameters
 
-Returns the requested faction
+- `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set
+  - Values: `kt21` or `kt24`
+- `loadkts` - Set to `1` to include KillTeams for each Faction. Defaults to `0`.
+- `loadops` - Set to `1` to include Operatives in each KillTeam. Defaults to `0`.
+- `fa` - FactionID of the faction to return. Returns all Factions if not set.
+
+### Examples
+
+`GET /api/faction.php?fa=IMP&loadkts=1&edition=kt24`
+
+Returns all KT2024 KillTeams for the "Imperium" faction
 
 # KillTeam
 
@@ -47,6 +57,7 @@ Anonymous
 
 - `factionid` - ID of the faction this KillTeam belongs to
 - `killteamid` - Unique identifier for this KillTeam
+- `edition` - The Killteam edition for this KillTeam (`kt21` or `kt24`)
 - `killteamname` - Name of this KillTeam
 - `description` - HTML-formatted paragraph describing this KillTeam
 - `customkeyword` - USed in Roster building to override special KillTeam keywords (e.g. `<CHAPTER>` for Space Marines)
