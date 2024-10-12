@@ -29,7 +29,7 @@ Returns an array of all factions
 
 ### Parameters
 
-- `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set
+- `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
   - Values: `kt21` or `kt24`
 - `loadkts` - Set to `1` to include KillTeams for each Faction. Defaults to `0`.
 - `loadops` - Set to `1` to include Operatives in each KillTeam. Defaults to `0`.
@@ -60,7 +60,7 @@ Anonymous
 - `edition` - The Killteam edition for this KillTeam (`kt21` or `kt24`)
 - `killteamname` - Name of this KillTeam
 - `description` - HTML-formatted paragraph describing this KillTeam
-- `customkeyword` - USed in Roster building to override special KillTeam keywords (e.g. `<CHAPTER>` for Space Marines)
+- `customkeyword` - Used in Roster building to override special KillTeam keywords (e.g. `<CHAPTER>` for Space Marines)
 - `ploys` - Container object/wrapper for this KillTeam's ploys
   - `strat` - Array of strategic `Ploy` objects 
   - `strtabat` - Array of tactical `Ploy` objects 
