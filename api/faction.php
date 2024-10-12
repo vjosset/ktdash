@@ -37,11 +37,12 @@ function GETFaction()
 		// Check the options for what to load/return
 		$loadkillteams = (getIfSet($_REQUEST['loadkts']) == '1');
 		$loadops = (getIfSet($_REQUEST['loadops']) == '1');
+		$edition = getIfSet($_REQUEST['edition']);
 
 		$factions = Faction::GetFactions();
 		if ($loadkillteams) {
 			foreach ($factions as $faction) {
-				$faction->loadKillTeams();
+				$faction->loadKillTeams($edition);
 				if ($loadops) {
 					foreach ($faction->killteams as $killteam) {
 						$killteam->loadFireteams();
