@@ -45,6 +45,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.settings = JSON.parse(settingsJson.toLowerCase());
 				} else {
 					// No settings yet, fill in defaults
+					$scope.setSetting("edition", "", true);
 					$scope.setSetting("display", "card", true);
 					$scope.setSetting("showopseq", "n", true);
 					$scope.setSetting("startvp", "2", true);
@@ -61,6 +62,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				
 				// Set default settings
+				if (!$scope.settings["edition"]) {
+					$scope.setSetting("edition", "", true);
+				}
 				if (!$scope.settings["display"]) {
 					$scope.setSetting("display", "card", true);
 				}
@@ -1060,6 +1064,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initRosterForPrint = function(rid, skipte, s) {
 				// We're viewing this roster for printing/PDF render, pre-load the settings for the PDF renderer
 				//	TODO: Pull these from the URL; user will pass their current settings to the renderer
+				$scope.setSetting("edition", "", true);
 				$scope.setSetting("display", "card", true);
 				$scope.setSetting("showopseq", "n", true);
 				$scope.setSetting("startvp", "2", true);
