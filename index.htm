@@ -127,8 +127,10 @@
 					<div style="break-inside: avoid;" class="line-top-light mt-2" ng-repeat="faction in factions">
 						<h6><a class="navloader" style="text-decoration: none;" href="/fa/{{ faction.factionid }}">{{ faction.factionname }}</a></h6>
 						<div class="m-0 p-0" ng-repeat="killteam in faction.killteams track by $index">
-							<strong ng-if="$index == 0 || killteam.edition != faction.killteams[$index - 1].edition">{{ killteam.edition }}<br/></strong>
-							&nbsp;&nbsp;<a class="navloader" href="/fa/{{ faction.factionid }}/kt/{{ killteam.killteamid }}">{{ killteam.killteamname }}</a><br/>
+							<ANY ng-if="settings['edition'] == '' || settings['edition'] == killteam.edition">
+								<strong ng-if="settings['edition'] == '' && ($index == 0 || killteam.edition != faction.killteams[$index - 1].edition)">{{ killteam.edition }}<br/></strong>
+								&nbsp;&nbsp;<a class="navloader" href="/fa/{{ faction.factionid }}/kt/{{ killteam.killteamid }}">{{ killteam.killteamname }}</a><br/>
+							</ANY>
 						</div>
 					</div>
 				</div>
@@ -140,6 +142,13 @@
 					</a>
 				</h3>
 				<ul style="columns: 300px;">
+					<li>
+						<strong>12 Oct 2024</strong><br/>
+						Loaded more KT2024 teams:
+						<ul>
+							<li><a href="/fa/CHAOS/kt/GPI24">Gellerpox Infected</a></li>
+						</ul>
+					</li>
 					<li>
 						<strong>11 Oct 2024</strong><br/>
 						Loaded more KT2024 teams:

@@ -47,6 +47,22 @@
 		<div class="container">
 			<h2>Display</h2>
 			<div class="m-2 row">
+				
+				<div class="col-12 col-md-6">
+					<h6>Editions</h6>
+					Select which editions to show.<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('edition', '');" ng-class="settings['edition'] == '' || settings['edition'] == null ? 'btn-primary': 'btn-secondary'">
+						<h6>Both</h6>
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('edition', 'kt24');" ng-class="settings['edition'] == 'kt24' ? 'btn-primary': 'btn-secondary'">
+						<h6>KT24</h6>
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('edition', 'kt21');" ng-class="settings['edition'] == 'kt21' ? 'btn-primary': 'btn-secondary'">
+						<h6>KT21</h6>
+					</button>
+					<br/><br/>
+				</div>
+
 				<div class="col-12 col-md-6">
 					<h6>Portraits</h6>
 					Displays the portraits for operatives and rosters if enabled.<br/>

@@ -237,6 +237,18 @@ function GetName()
 		case "CHAOS|GPI|MV|ESS": // Eyestinger Swarm
 		case "CHAOS|GPI|MV|SG": // Sludge-Grub
 			return GetDaemonName();
+		
+		// Gellerpox Infected
+		case "CHAOS|GPI24|GPI24|BS": // Bloatspawn
+		case "CHAOS|GPI24|GPI24|FS": // Fleshscreamer
+		case "CHAOS|GPI24|GPI24|GL": // Glitchling
+		case "CHAOS|GPI24|GPI24|GM": // Gellerpox Mutant
+		case "CHAOS|GPI24|GPI24|LG": // Lumberghast
+		case "CHAOS|GPI24|GPI24|VTC": // Vulgrar Thrice-Cursed
+		case "CHAOS|GPI24|GPI24|CM": // Cursemite
+		case "CHAOS|GPI24|GPI24|ESS": // Eyestinger Swarm
+		case "CHAOS|GPI24|GPI24|SG": // Sludge-Grub
+			return GetDaemonName();
 
 		// Chaos Daemonettes
 		case "CHAOS|DAEM|DETTE|AL": //Alluress

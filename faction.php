@@ -100,7 +100,7 @@
 				foreach($killteams as $killteam)
 				{
 				?>
-				<div class="col-12 col-md-6 col-xl-4 p-1">
+				<div class="col-12 col-md-6 col-xl-4 p-1" ng-if="settings['edition'] == '' || settings['edition'] == '<?php echo $killteam->edition ?>'">
 					<div class="card darkcard h-100">
 						<!-- Portrait -->
 						<img class="card-img-top" src="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $killteam->killteamid ?>/<?php echo $killteam->killteamid ?>.jpg" style="max-height: 270px; min-height: 270px; object-position: center top; object-fit: cover;" />

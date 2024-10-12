@@ -73,12 +73,12 @@
 							foreach($faction->killteams as $killteam) {
 								if ($killteam->edition != $preved) {
 									?>
-										<h6 class="span"><?php echo $killteam->edition ?></h6>
+										<h6 ng-if="settings['edition'] == '' || settings['edition'] == '<?php echo $killteam->edition ?>'" class="span"><?php echo $killteam->edition ?></h6>
 									<?php
 								}
 								$preved = $killteam->edition;
 							?>
-								<a class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
+								<a ng-if="settings['edition'] == '' || settings['edition'] == '<?php echo $killteam->edition ?>'" class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
 							<?php
 							}
 							?>

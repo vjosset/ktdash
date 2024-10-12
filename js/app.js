@@ -186,7 +186,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Get all killteams
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?loadkts=1",
+					url: APIURL + "faction.php?loadkts=1&edition=" + $scope.settings["edition"],
 					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
@@ -1307,7 +1307,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Load the factions and killteams
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?loadkts=1",
+					url: APIURL + "faction.php?loadkts=1&edition=" + $scope.settings["edition"],
 					timeout: APITimeout,
 					async: false,
 					dataType: 'json',
@@ -2902,7 +2902,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				else {
 					$.ajax({
 						type: "GET",
-						url: APIURL + "faction.php",
+						url: APIURL + "faction.php?edition=" + $scope.settings["edition"],
 						timeout: APITimeout,
 						async: true,
 						dataType: 'json',
@@ -2932,7 +2932,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.MODE = "Compendium";
 				$.ajax({
 					type: "GET",
-					url: APIURL + "faction.php?factionid=" + fa + "&loadkts=1",
+					url: APIURL + "faction.php?factionid=" + fa + "&loadkts=1&edition=" + $scope.settings["edition"],
 					timeout: APITimeout,
 					async: true,
 					dataType: 'json',
