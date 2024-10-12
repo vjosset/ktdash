@@ -70,7 +70,7 @@ class Faction extends \OFW\OFWObject
 		}
 
 		global $dbcon;
-		$sql = "SELECT * FROM Killteam WHERE factionid = ? AND killteamid NOT LIKE '%_OLD' AND (edition = ? OR ? = '') ORDER BY edition DESC, killteamname;";
+		$sql = "SELECT * FROM Killteam WHERE factionid = ? AND killteamid NOT LIKE '%_OLD' AND ? IN ('', edition) ORDER BY edition DESC, killteamname;";
 
 
 		$cmd = $dbcon->prepare($sql);
@@ -80,7 +80,7 @@ class Faction extends \OFW\OFWObject
 		}
 
 		//Set the parameters
-		$cmd->bind_param('sss', $this->factionid, $edition, $edition);
+		$cmd->bind_param('ss', $this->factionid, $edition);
 
 		//Run the query
 		if (!$cmd->execute()) {

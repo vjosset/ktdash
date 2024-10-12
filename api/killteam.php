@@ -20,6 +20,7 @@ function GETKillteam()
 	// Get the requested killteam id
 	$factionid = getIfSet($_REQUEST['fa']);
 	$killteamid = getIfSet($_REQUEST['kt']);
+	$edition = getIfSet($_REQUEST['edition']);
 
 	// Validate Input
 	if (strlen($factionid) > 10 || strlen($killteamid) > 10) {
@@ -29,7 +30,7 @@ function GETKillteam()
 
 	if ($killteamid == null || $killteamid == '') {
 		// No killteam id passed in, return all killteams
-		$killteams = Killteam::GetKillteams();
+		$killteams = Killteam::GetKillteams($edition);
 		echo json_encode($killteams);
 	} else {
 		// Return the requested killteam

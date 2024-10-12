@@ -59,17 +59,23 @@ class Killteam extends \OFW\OFWObject
 		return $killteam;
 	}
 
-	public static function GetKillteams()
+	public static function GetKillteams($edition)
 	{
 		global $dbcon;
 
-		$sql = "SELECT * FROM Killteam ORDER BY killteamname;";
+		if (!$edition) {
+			$edition = '';
+		}
+
+		$sql = "SELECT * FROM Killteam WHERE ? IN ('', edition) ORDER BY killteamname;";
 
 		$cmd = $dbcon->prepare($sql);
 		if (!$cmd) {
 			//There was an error preparing the SQL statement
 			echo "Error preparing SQL: " . $dbcon->error;
 		}
+		
+		$cmd->bind_param('s', $edition);
 
 		//Run the query
 		if (!$cmd->execute()) {

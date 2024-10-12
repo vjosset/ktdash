@@ -10,11 +10,11 @@ A Faction represents a game faction, and each faction contains its associated ki
 
 `/api/faction.php`
 
-## Access:
+## Access
 
 Anonymous
 
-## Fields:
+## Fields
 
 - `factionid` - Unique identifier for this faction
 - `factionname` - Name of this faction
@@ -76,11 +76,23 @@ Anonymous
 
 Returns an array of all KillTeams
 
+### Parameters
+
+- `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
+  - Values: `kt21` or `kt24`
+- `loadkts` - Set to `1` to include KillTeams for each Faction. Defaults to `0`.
+- `loadops` - Set to `1` to include Operatives in each KillTeam. Defaults to `0`.
+- `fa` - FactionID of the faction to return. Returns all Factions if not set.
+
+### Examples
+
+`GET /api/faction.php?fa=IMP&loadkts=1&edition=kt24`
+
+Returns all KT2024 KillTeams for the "Imperium" faction
+
 `GET /api/killteam.php?fa=[FactionID]&kt=[KillTeamID]`
 
 Returns the requested KillTeam
-
--------------------------
 
 ## FireTeam
 
@@ -90,6 +102,7 @@ Access: Anonymous
 A FireTeam represents a unique FireTeam belonging to a KillTeam, and each FireTeam contains its associated Operatives.
 
 Fields
+
 - `factionid` - ID of the faction this FireTeam belongs to
 - `killteamid` - ID of the KillTeam this FireTeam belongs to
 - `fireteamid` - Unique identifier for this FireTeam
