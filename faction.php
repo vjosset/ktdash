@@ -33,7 +33,7 @@
 		exit;
 	}
 	
-	$faction->loadKillTeams();
+	$faction->loadKillTeams('');
 	
 ?>
 <!DOCTYPE html>

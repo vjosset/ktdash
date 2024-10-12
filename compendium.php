@@ -30,7 +30,7 @@
 		</style>
 		<?php
 		foreach($factions as $faction) {
-			$faction->loadKillTeams();
+			$faction->loadKillTeams('');
 		?>
 		<link rel="preload" href="/img/portraits/<?php echo $faction->factionid ?>/<?php echo $faction->factionid ?>.jpg" as="image">
 		<?php

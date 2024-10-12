@@ -60,7 +60,7 @@ function GETFaction()
 
 		if ($faction != null) {
 			// Load the faction's killteams
-			$faction->loadKillTeams();
+			$faction->loadKillTeams('');
 			echo json_encode($faction);
 		} else {
 			// Something went wrong
