@@ -441,6 +441,24 @@ function GetName()
 		case "IMP|ESS|ESS|VMST": // Voidmaster
 			return "Voidmaster Nitsch";
 
+		// Elucidian Starstriders
+		case "IMP|ESS24|ESS24|CAN": // Canid
+			return "Aximillion";
+		case "IMP|ESS24|ESS24|DCE": // Death Cult Executioner
+			return "Knosso Prond";
+		case "IMP|ESS24|ESS24|EV": // Elucia Vhane
+			return "Elucia Vhane";
+		case "IMP|ESS24|ESS24|LM": // Lectro-Maester
+			return "Larsen van der Gauss";
+		case "IMP|ESS24|ESS24|PSA": // Privateer Support Assets
+			return "Privateer Support Assets";
+		case "IMP|ESS24|ESS24|REJAD": // Rejuvenat Adept
+			return "Sanistasia Minst";
+		case "IMP|ESS24|ESS24|VM": // Voidsman
+			return "Stromian Grell";
+		case "IMP|ESS24|ESS24|VMST": // Voidmaster
+			return "Voidmaster Nitsch";
+
 		// Forge World
 		case "IMP|FW|SIC|INF": //Sicarian Infiltrator Trooper
 		case "IMP|FW|SIC|INFPRI": //Sicarian Infiltrator Princeps
