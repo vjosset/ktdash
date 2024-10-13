@@ -87,13 +87,22 @@ function GetName()
 	$key = $faid . "|" . $ktid . "|" . $ftid . "|" . $opid;
 
 	switch ($key) {
-		// Blade of Khaine
+		// Blades of Khaine
 		case "AEL|BOK|BOK|DAX": //Dark Avenger Exarch
 		case "AEL|BOK|BOK|DAW": //Dark Avenger Warrior
 		case "AEL|BOK|BOK|SSX": //Striking Scorpion Exarch
 		case "AEL|BOK|BOK|SSW": //Striking Scorpion Warrior
 		case "AEL|BOK|BOK|HBX": //Howling Banshee Exarch
 		case "AEL|BOK|BOK|HBW": //Howling Banshee Warrior
+			return GetAeldariName();
+		
+		// Blades of Khaine
+		case "AEL|BOK24|BOK24|DAX": //Dark Avenger Exarch
+		case "AEL|BOK24|BOK24|DAW": //Dark Avenger Warrior
+		case "AEL|BOK24|BOK24|SSX": //Striking Scorpion Exarch
+		case "AEL|BOK24|BOK24|SSW": //Striking Scorpion Warrior
+		case "AEL|BOK24|BOK24|HBX": //Howling Banshee Exarch
+		case "AEL|BOK24|BOK24|HBW": //Howling Banshee Warrior
 			return GetAeldariName();
 
 		// Commorites
