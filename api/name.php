@@ -557,12 +557,13 @@ function GetName()
 		// Angels oF Death
 		case "IMP|AOD|AOD|CPT": //Captain
 		case "IMP|AOD|AOD|ASGT": //Intercession Squad Assault Intercessor Sergeant
-		case "IMP|AOD|AOD|SGT": //Intercession Squad Intercessor Sergeant
+		case "IMP|AOD|AOD|ISGT": //Intercession Squad Intercessor Sergeant
 		case "IMP|AOD|AOD|SNP": //Sniper
 		case "IMP|AOD|AOD|AWAR": //Intercession Squad Assault Intercessor Warrior
 		case "IMP|AOD|AOD|GRN": //Intercession Squad Assault Intercessor Grenadier
 		case "IMP|AOD|AOD|WAR": //Intercession Squad Intercessor Warrior
 		case "IMP|AOD|AOD|GNR": //Intercession Squad Intercessor Gunner
+		case "IMP|AOD|AOD|HGNR": //Intercession Squad Intercessor Gunner
 			return GetSpaceMarineName();
 
 		// Kasrkin
