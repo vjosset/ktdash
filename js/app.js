@@ -3938,6 +3938,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								break;
 							case "SEEKLT":
 							case "SEEKLIGHT":
+							case "SEEK LIGHT":
 								rule.rulename = "Seek Light";
 								rule.ruletext = "When selecting a valid target, operatives cannot use light terrain for cover. While this can allow such operatives to be targeted (assuming they are Visible), it does not remove their Cover save (if any)."
 								break;
