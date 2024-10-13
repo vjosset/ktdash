@@ -845,6 +845,20 @@ function GetName()
 		case "TAU|FSKB|FSKB|TRK": // FSKB - Kroot Tracker
 		case "TAU|FSKB|FSKB|WAR": // FSKB - Kroot Warrior
 			return GetKrootName();
+			
+		// Farstalker Kinband
+		case "TAU|FSKB24|FSKB24|BH": // FSKB - Kroot Bow-Hunter
+		case "TAU|FSKB24|FSKB24|CB": // FSKB - Kroot Cold-Blood
+		case "TAU|FSKB24|FSKB24|CS": // FSKB - Kroot Cut-Skin
+		case "TAU|FSKB24|FSKB24|HGNR": // FSKB - Kroot Heavy Gunner
+		case "TAU|FSKB24|FSKB24|HND": // FSKB - Kroot Hound
+		case "TAU|FSKB24|FSKB24|KB": // FSKB - Kroot Kill-Broker
+		case "TAU|FSKB24|FSKB24|LS": // FSKB - Kroot Long-Sight
+		case "TAU|FSKB24|FSKB24|PST": // FSKB - Kroot Pistolier
+		case "TAU|FSKB24|FSKB24|STK": // FSKB - Kroot Stalker
+		case "TAU|FSKB24|FSKB24|TRK": // FSKB - Kroot Tracker
+		case "TAU|FSKB24|FSKB24|WAR": // FSKB - Kroot Warrior
+			return GetKrootName();
 
 		// Tau - Hunter Cadre
 		case "TAU|HC|DRN|DS8": //DS8 Tactical Support Turret
