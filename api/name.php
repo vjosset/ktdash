@@ -220,6 +220,14 @@ function GetName()
 		case "CHAOS|CULT|CULT|MW": //Mindwitch
 		case "CHAOS|CULT|CULT|TOR": //Chaos Torment
 			return GetChaosCultistName();
+		case "CHAOS|CULT24|CULT24|BLBL": //Blessed Blade
+		case "CHAOS|CULT24|CULT24|DEMA": //Cult Demagogue
+		case "CHAOS|CULT24|CULT24|DEV": //Chaos Devotee
+		case "CHAOS|CULT24|CULT24|ICON": //Iconarch
+		case "CHAOS|CULT24|CULT24|MUT": //Chaos Mutant
+		case "CHAOS|CULT24|CULT24|MW": //Mindwitch
+		case "CHAOS|CULT24|CULT24|TOR": //Chaos Torment
+			return GetChaosCultistName();
 		case "CHAOS|CSM|CC|CHA": //Chaos Cultist Champion
 		case "CHAOS|CSM|CC|FTR": //Chaos Cultist Fighter
 		case "CHAOS|CSM|CC|GNR": //Chaos Cultist Gunner
