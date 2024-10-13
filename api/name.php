@@ -155,6 +155,13 @@ function GetName()
 		case "AEL|VDT|VDT|DJS": //Death Jester
 		case "AEL|VDT|VDT|SDS": //Shadowseer
 			return GetAeldariName();
+		
+		// Void-Dancer Troupe
+		case "AEL|VDT24|VDT24|LPL": //Lead Player
+		case "AEL|VDT24|VDT24|PLAY": //Player
+		case "AEL|VDT24|VDT24|DJS": //Death Jester
+		case "AEL|VDT24|VDT24|SDS": //Shadowseer
+			return GetAeldariName();
 
 		// Hand of the Archon
 		case "AEL|HOTA|HOTA|KAG":
