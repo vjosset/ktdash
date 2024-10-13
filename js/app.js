@@ -470,7 +470,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						// Load a default roster for this user to get them started
 						$.ajax({
 							type: "POST",
-							url: APIURL + "roster.php?rid=PB-INTS&clone=1&rostername=Sample Team: Intercessors",
+							url: APIURL + "roster.php?rid=aNLcdHAr&clone=1&rostername=Sample Team: Intercessors",
 							timeout: APITimeout,
 							async: true,
 							
