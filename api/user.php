@@ -70,6 +70,9 @@ function GETUser()
 			// Remove the passhash from the output
 			unset($u->passhash);
 
+			// Get the user's rosters
+			$u->loadRosters(0);
+
 			// Output the user
 			echo $u->toJson();
 		}

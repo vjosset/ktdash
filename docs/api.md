@@ -244,7 +244,22 @@ Anonymous/authenticated
 
 ## Fields
 
-- [TBD]
+- `userid` - ID of the user
+- `username` - Name of the user
+- `rosters` - Array of Roster objects belonging to this user
+- `createddate` - Date and time (GMT-4) when this user signed up/was created
+
+## API Methods
+
+`GET /api/user.php?username=[username]`
+
+### Parameters
+
+- `username` - The name of the user whose information to return
+
+### Examples
+
+`GET /api/user.php?username=jodawznev`
 
 # Session
 
@@ -261,7 +276,34 @@ Access: Anonymous/authenticated
 
 ## Fields
 
-- [TBD]
+- `userid` - ID of the current session's user
+- `username` - Name of the current session's user
+- `rosters` - Array of Roster objects belonging to this current session's user
+- `createddate` - Date and time (GMT-4) when this current session's user signed up/was created
+
+## API Methods
+
+### Get current session
+
+`GET /api/session.php`
+
+Returns the current user if they are signed in (based on the session cookie).
+Returns `HTTP 401` if not signed in.
+
+### Log in
+
+`POST /api/session.php?`
+
+Signs the user in
+
+#### Input
+
+- `username` - The name of the user signing in
+- `password` - The password of the user signing in
+
+#### Output
+
+The signed-in user's User object
 
 # Roster
 
@@ -274,6 +316,60 @@ A Roster represents one roster built by a given user and contains that roster's 
 ## Access
 
 Access: Anonymous/authenticated
+
+## Fields
+
+- `rosterid` - ID of the roster
+- `userid` - ID of the roster's owner/user
+- `seq` - Sequencing number of this roster
+- `rostername` - Name of this roster
+- `factionid` - ID of the faction this roster belongs to
+- `killteamid` - ID of the killteam this roster belongs to
+- `edition` - Edition of the killteam for this roster (`kt21` or `kt24`)
+- `ployids` - Comma-separated list of PloyIDs currently in effect for this roster
+- `tacopids` - Comma-separated list of TacOpIDs currently in effect for this roster
+- `notes` - Free text paragraph describing this roster
+- `portraitcopyok` - `1` indicates that roster and operative portraits will be copied when this roster is imported by another user. `0` indicates that portraits will not be copied when imported by another user.
+- `keyword` - For killteams that have a keyword placeholder (e.g. `<CHAPTER>` for Space Marines), indicates the value to use
+- `operatives` - Array of RosterOperative objects representing the members of this roster
+- `tacops` - Array of TacOp objects currently in effect for this roster
+- `username` - Name of the user this roster belongs to
+- `hascustomportrait` - `1` indicates this roster has a custom portrait. `0` indicates it does not.
+- `TP` - Current Turning Point for this roster
+- `CP` - Current Command Points for this roster
+- `VP` - Current Victory Points for this roster
+- `RP` - Current Resource Points (e.g. Faith Points for Novitiates) for this roster
+- `spotlight` - `1` indicates this roster was selected for the spotlight
+- `factionname` - Name of the faction this roster belongs to
+- `killteamname` - Name of the killteam this roster belongs to
+- `killteamcustomkeyword` - Placeholder in operatives' keywords to replace with this roster's `keyword`
+- `killteamdescription` - Description of this roster's killteam
+- `oplist` - Comma-separated list of distinct operative types in this roster
+- `viewcount` - Number of times this roster was viewed by a user other than its owner/user
+- `importcount` - Number of times this roster was imported by a user other than its owner/user
+- `reqpts` - Requisition points (narrative play) for this roster
+- `stratnotes` - Strategy notes for this roster
+- `eqnotes` - Equipment notes for this roster
+- `specopnotes` - SpecOps notes for this roster
+
+## API Methods
+
+### Get current user's rosters
+
+`GET /api/roster.php`
+
+Returns all rosters for the currently signed-in user.
+Returns `HTTP 401` if not signed in.
+
+### Get a roster/Get a user's rosters
+
+`GET /api/roster.php?rid=[rosterid]&uid=[userid]&loadrosterdetail=[loadrosterdetail]`
+
+#### Input
+
+- `rid` - The RosterID of the roster whose information to return. Returns all the specified user's rosters if not set.
+- `uid` - The UserID of the user whose rosters to return. Returns the currently signed-in user's rosters if not set.
+- `loadrosterdetail` - `1` returns operative details in the `operatives` field
 
 # RosterOperative
 
