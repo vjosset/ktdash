@@ -62,8 +62,8 @@ Anonymous
 - `description` - HTML-formatted paragraph describing this KillTeam
 - `customkeyword` - Used in Roster building to override special KillTeam keywords (e.g. `<CHAPTER>` for Space Marines)
 - `ploys` - Container object/wrapper for this KillTeam's ploys
-  - `strat` - Array of strategic `Ploy` objects 
-  - `strtabat` - Array of tactical `Ploy` objects 
+  - `strat` - Array of strategic `Ploy` objects
+  - `tac` - Array of tactical `Ploy` objects
 - `equipments` - Array of Equipment objects for this KillTeam
 - `killteamcomp` - HTML-formatted paragraph describing this KillTeam's composition
 - `fireteams` - Array of `FireTeam` objects belonging to this KillTeam
@@ -80,28 +80,31 @@ Returns an array of all KillTeams
 
 - `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
   - Values: `kt21` or `kt24`
-- `loadkts` - Set to `1` to include KillTeams for each Faction. Defaults to `0`.
-- `loadops` - Set to `1` to include Operatives in each KillTeam. Defaults to `0`.
 - `fa` - FactionID of the faction to return. Returns all Factions if not set.
 
 ### Examples
 
-`GET /api/faction.php?fa=IMP&loadkts=1&edition=kt24`
+`GET /api/faction.php?fa=IMP&edition=kt24`
 
 Returns all KT2024 KillTeams for the "Imperium" faction
 
-`GET /api/killteam.php?fa=[FactionID]&kt=[KillTeamID]`
+`GET /api/killteam.php?fa=IMP&kt=AOD`
 
-Returns the requested KillTeam
+Returns the requested "Angels Of Death" KillTeam
 
-## FireTeam
-
-`/api/fireteam.php`
-Access: Anonymous
+# FireTeam
 
 A FireTeam represents a unique FireTeam belonging to a KillTeam, and each FireTeam contains its associated Operatives.
 
-Fields
+## Endpoint
+
+[No endpoint]
+
+## Access
+
+Anonymous
+
+## Fields
 
 - `factionid` - ID of the faction this FireTeam belongs to
 - `killteamid` - ID of the KillTeam this FireTeam belongs to
@@ -112,16 +115,18 @@ Fields
 - `description` - HTML-formatted paragraph describing this FireTeam
 - `killteammax` - (unused)
 - `operatives` - Array of `Operative` objects belonging to this FireTeam
-- `fireteamcomp` - HTML-formatted paragraph describing this FireTeam's composition
+- `fireteamcomp` - HTML-formatted paragraph describing this FireTeam's composition. Note that if a KillTeam only has one FireTeam, this content will be empty and can be ignored.
 
-## Operative
-
-`/api/operative.php`
-Access: Anonymous
+# Operative
 
 An Operative represents a unique operative belonging to a FireTeam.
 
-Fields
+## Endpoint
+
+[No endpoint]
+
+## Fields
+
 - `factionid` - ID of the faction this FireTeam belongs to
 - `killteamid` - ID of the KillTeam this FireTeam belongs to
 - `fireteamid` - ID of the FireTeam this FireTeam belongs to
@@ -134,16 +139,21 @@ Fields
 - `weapons` - Array of `Weapon` objects that can be selected for this Operative
 - `uniqueactions` - Array of `UniqueAction` objects that this Operative can perform
 - `abilities` - Array of `Ability` objects assigned to this Operative
+- `abilities` - Array of `Ability` objects assigned to this Operative
+- `edition` - The Killteam edition for this KillTeam (`kt21` or `kt24`)
 - `fireteammax` - (unused)
-- `specialisms` - Comma-separated list of specialisms assigned to this Operative (e.g. "Staunch, Combat, Marksman, Scout)
+- `specialisms` - Comma-separated list of specialisms assigned to this Operative (e.g. "Staunch, Combat, Marksman, Scout")
 
-## Weapon
-
-[No endpoint]
+# Weapon
 
 A Weapon represents a weapon that can be equipped by an Operative.
 
-Fields:
+## Endpoint
+
+[No endpoint]
+
+## Fields
+
 - `factionid` - ID of the faction this Weapon belongs to
 - `killteamid` - ID of the KillTeam this Weapon belongs to
 - `fireteamid` - ID of the FireTeam this Weapon belongs to
@@ -156,13 +166,16 @@ Fields:
 - `profiles` - Array of `WeaponProfile` objects belonging to this Weapon
 - `isselected` - Used for creating new Operatives or editing existing Operatives
 
-## WeaponProfile
-
-[No endpoint]
+# WeaponProfile
 
 A WeaponProfile represents a unique profile for a given Weapon.
 
-Fields:
+## Endpoint
+
+[No endpoint]
+
+## Fields
+
 - `factionid` - ID of the faction this WeaponProfile belongs to
 - `killteamid` - ID of the KillTeam this WeaponProfile belongs to
 - `fireteamid` - ID of the FireTeam this WeaponProfile belongs to
@@ -179,13 +192,16 @@ Fields:
 - `profiles` - Array of `WeaponProfile` objects belonging to this Weapon
 - `isselected` - Used for creating new Operatives or editing existing Operatives
 
-## UniqueAction
-
-[No endpoint]
+# UniqueAction
 
 A UniqueAction represents a unique action that an Operative can perform.
 
-Fields:
+## Endpoint
+
+[No endpoint]
+
+## Fields
+
 - `factionid` - ID of the faction this UniqueAction belongs to
 - `killteamid` - ID of the KillTeam this UniqueAction belongs to
 - `fireteamid` - ID of the FireTeam this UniqueAction belongs to
@@ -195,13 +211,16 @@ Fields:
 - `description` - HTML-formatted paragraph describing this UniqueAction
 - `AP` - Cost in Action Points to perform this UniqueAction
 
-## Ability
-
-[No endpoint]
+# Ability
 
 An Ability represents a special ability assigned to an Operative.
 
-Fields:
+## Endpoint
+
+[No endpoint]
+
+## Fields
+
 - `factionid` - ID of the faction this Ability belongs to
 - `killteamid` - ID of the KillTeam this Ability belongs to
 - `fireteamid` - ID of the FireTeam this Ability belongs to
@@ -210,35 +229,63 @@ Fields:
 - `title` - Title of this Ability
 - `description` - HTML-formatted paragraph describing this UniqueAction
 
-## User
-
-`/api/user.php`
-Access: Anonymous/authenticated
+# User
 
 A User represents a unique user of the application and contains their user name and rosters. All user rosters are public.  
 This endpoint is used to get user information, sign up a new user, and update existing user records (with proper authentication).
 
-## Session
+## Endpoint
 
-`/api/session.php`
-Access: Anonymous/authenticated
+`/api/user.php`
+
+## Access
+
+Anonymous/authenticated
+
+## Fields
+
+- [TBD]
+
+# Session
 
 A Session represents a logged-in user's session.  
 This endpoint is used for user session validation, log in, and log out.
 
-## Roster
+## Endpoint
 
-`/api/roster.php`
+`/api/session.php`
+
+## Access
+
 Access: Anonymous/authenticated
+
+## Fields
+
+- [TBD]
+
+# Roster
 
 A Roster represents one roster built by a given user and contains that roster's operatives.
 
-## RosterOperative
+## Endpoint
 
-`/api/rosteroperative.php`
+`/api/roster.php`
+
+## Access
+
 Access: Anonymous/authenticated
 
+# RosterOperative
+
 A RosterOperative represents a single Operative assigned to a Roster, tying that Roster to the matching Operative object.
+
+## Endpoint
+
+`/api/rosteroperative.php`
+
+## Access
+
+Anonymous/authenticated
 
 # Authentication
 
@@ -250,30 +297,26 @@ Authentication is handled with a cookie tied to the `ktdash.app` domain.
 
 Validates a user's session (check if they are logged in)
 
-**Input:**
-- No input other than the current user's session cookie (See Log In below)
-
-**Output:**
-
-
 ## Log In
 
 `POST /api/session.php`
 
 Creates a new session for the specified user.
 
-**Input:**
+### Input
+
 - `login` - The user's username
 - `password` - The user's password
 
-**Output:**
-- User object
-  - `userid` - The user's unique user ID
-  - `username` - The user's username (also unique)
-  - `rosters` - An array of rosters associated with the user record (empty in this response)
-  - `createddate` - DateTime of user creation/signup
+### Output
 
-**Response Cookie:**
+- `userid` - The user's unique user ID
+- `username` - The user's username (also unique)
+- `rosters` - An array of rosters associated with the user record (empty in this response)
+- `createddate` - DateTime of user creation/signup
+
+### Response Cookie
+
 The response of this API method includes a cookie holding the logged-in user's session. This cookie should be included in all subsequent API requests to ensure the user has the necessary access and permissions for each API method.
 
 ## Log Out
@@ -282,8 +325,10 @@ The response of this API method includes a cookie holding the logged-in user's s
 
 Logs the user out by deleting their session.
 
-**Input:**
-- No input other than the current user's session cookie (See Log In above)
+### Input
 
-**Output:**
-- String `OK`
+No input other than the current user's session cookie (See Log In above)
+
+### Output
+
+String `OK`
