@@ -62,7 +62,8 @@
 				If you want to suggest a new feature or improvement, first check the <a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">Trello Backlog</a> to see if it is already logged there. 
 				If it is already there, you can vote that feature up to help prioritize the next thing to work on.<br/>
 				If you don't find your suggestion already in the backlog, come to the "Feature Requests" channel on the <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a> and send it in!<br/>
-				Also note that the most commmonly-requested features have already been implemented in the <a href="/settings.php">Settings</a>; check there first!
+				Also note that the most commmonly-requested features have already been implemented in the <a href="/settings.php">Settings</a>; check there first!<br/>
+				If you want to contribute to the application, check out the code <a href="https://github.com/vjosset/ktdash" target="_blank">repo</a>.
 			</p>
 			
 			<h5>I found a bug or typo!</h5>
@@ -98,6 +99,11 @@
 			<p>
 				No thank you. This is a labor of love and I really don't need or want any money.<br/>
 				If you really want to give $5 to someone who needs it, look up your local wildlife rescue, women's shelter, or adult literacy program, and tell them I sent you!
+			</p>
+			
+			<h5>Is there a way for me to get the data that KTDash uses?</h5>
+			<p>
+				Right <a href="https://github.com/vjosset/killteamjson" target="_blank">here</a>.
 			</p>
 		</div>
 		
