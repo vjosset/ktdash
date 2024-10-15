@@ -30,7 +30,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				startcp: 3,
 				applyeqmods: 'n',
 				hideappliedeqmods: 'n',
-				shownarrative: 'y',
+				shownarrative: 'n',
 				autoinccp: 'n',
 				defaultoporder: 'engage',
 				showopid: 'n',
@@ -52,7 +52,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("startcp", "3", true);
 					$scope.setSetting("applyeqmods", "n", true);
 					$scope.setSetting("hideappliedeqmods", "n", true);
-					$scope.setSetting("shownarrative", "y", true);
+					$scope.setSetting("shownarrative", "n", true);
 					$scope.setSetting("autoinccp", "n", true);
 					$scope.setSetting("defaultoporder", "engage", true);
 					$scope.setSetting("showopid", "n", true);
@@ -84,7 +84,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("hideappliedeqmods", "n", true);
 				}
 				if (!$scope.settings["shownarrative"]) {
-					$scope.setSetting("shownarrative", "y", true);
+					$scope.setSetting("shownarrative", "n", true);
 				}
 				if (!$scope.settings["autoinccp"]) {
 					$scope.setSetting("autoinccp", "n", true);
