@@ -89,7 +89,7 @@ class Session extends \OFW\OFWObject
 						'domain' => 'ktdash.app',
 						'secure' => true,
 						'httponly' => true,
-						'samesite' => 'Lax'
+						'samesite' => 'None'
 					);
 					setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 
@@ -138,7 +138,7 @@ class Session extends \OFW\OFWObject
 				'domain' => 'ktdash.app',
 				'secure' => true,
 				'httponly' => true,
-				'samesite' => 'Lax'
+				'samesite' => 'None'
 			);
 			setcookie(self::CookieID, self::CookieSeparator, $cookie_options);
 			$_COOKIE[self::CookieID] = '';
@@ -199,7 +199,7 @@ class Session extends \OFW\OFWObject
 			'domain' => 'ktdash.app',
 			'secure' => true,
 			'httponly' => true,
-			'samesite' => 'Lax'
+			'samesite' => 'None'
 		);
 		setcookie(self::CookieID, $session->sessionid . self::CookieSeparator . $session->userid, $cookie_options);
 
