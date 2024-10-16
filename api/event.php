@@ -3,6 +3,8 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root . '/include.php';
 global $dbcon;
 
+header('Access-Control-Allow-Origin: *');
+
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "POST":
 		// Save the specified event
