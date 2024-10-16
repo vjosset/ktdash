@@ -81,6 +81,7 @@ Returns an array of all KillTeams
 - `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
   - Values: `kt21` or `kt24`
 - `fa` - FactionID of the faction to return. Returns all Factions if not set.
+- `kt` - KillteamID of the killteam to return. Returns all killteams if not set.
 
 ### Examples
 
