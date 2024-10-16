@@ -544,6 +544,19 @@ function GetName()
 		case "IMP|INQ|INQ|TS": //Tome-Skull
 		case "IMP|INQ|INQ|VET": //Deathworld Veteran
 			return GetInqName();
+		// Inquisitorial Agents
+		case "IMP|INQ24|INQ24|AS": //Autosavant
+		case "IMP|INQ24|INQ24|ENL": //Enlightener
+		case "IMP|INQ24|INQ24|GUNS": //Gun Servitor
+		case "IMP|INQ24|INQ24|HEX": //Hexorcist
+		case "IMP|INQ24|INQ24|INT": //Interrogator
+		case "IMP|INQ24|INQ24|MYS": //Mystic
+		case "IMP|INQ24|INQ24|PEN": //Penal Legionnaire
+		case "IMP|INQ24|INQ24|PST": //Pistolier
+		case "IMP|INQ24|INQ24|QK": //Questkeeper
+		case "IMP|INQ24|INQ24|TS": //Tome-Skull
+		case "IMP|INQ24|INQ24|VET": //Deathworld Veteran
+			return GetInqName();
 
 		// Intercessors
 		case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
