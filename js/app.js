@@ -598,13 +598,14 @@ var app = angular.module("kt", ['ngSanitize'])
 							let eq = op.equipments[eqnum];
 							//console.log("      Eq #" + eqnum + ": " + eq.eqname + " (" + eq.eqtype + ", '" + eq.eqvar1 + "', '" + eq.eqvar2 + "', '" + eq.eqvar3 + "', '" + eq.eqvar4 + "')");
 							
+							/*
 							if (eq.eqtype.toLowerCase().includes("ability")) {
 								let ab = {
 									title: eq.eqname,
 									description: eq.eqdescription
 								};
 								op.abilities.push(ab);
-								eq.autoapplied = true;
+								//eq.autoapplied = true;
 							}
 							
 							if (eq.eqtype.toLowerCase().includes("action")) {
@@ -625,8 +626,9 @@ var app = angular.module("kt", ['ngSanitize'])
 									AP: ap
 								};
 								op.uniqueactions.push(ua);
-								eq.autoapplied = true;
+								//eq.autoapplied = true;
 							}
+							*/
 							
 							if (eq.eqtype.toLowerCase().includes("wepmod")) {
 								let wepstomod = [];
@@ -676,7 +678,7 @@ var app = angular.module("kt", ['ngSanitize'])
 									// We found the weapons to modify, now apply the mod to those weapons
 									for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
 										let weptomod = wepstomod[weptomodnum];
-										eq.autoapplied = true;
+										//eq.autoapplied = true;
 										let mods = eq.eqvar2.split("|");
 										for (let modnum = 0; modnum < mods.length; modnum++) {
 											let mod = mods[modnum];
@@ -757,7 +759,7 @@ var app = angular.module("kt", ['ngSanitize'])
 												// M is in symbols (Kt21), we can't do math
 												op.M += eq.eqvar2;
 											}
-											eq.autoapplied = true;
+											//eq.autoapplied = true;
 											//console.log("op.M: " + op.M);
 										}
 										else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
@@ -767,7 +769,7 @@ var app = angular.module("kt", ['ngSanitize'])
 											op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
 											op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
 											op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
-											eq.autoapplied = true;
+											//eq.autoapplied = true;
 											//console.log("New M: " + op.M);
 										}
 										break;
@@ -780,7 +782,7 @@ var app = angular.module("kt", ['ngSanitize'])
 												op.curW += parseInt(eq.eqvar2)
 											}
 											op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-											eq.autoapplied = true;
+											//eq.autoapplied = true;
 										}
 										//console.log("New W: " + op.W);
 										break;
@@ -798,7 +800,7 @@ var app = angular.module("kt", ['ngSanitize'])
 												//console.log("         Setting " + eq.eqvar1 + " to " + eq.eqvar2);
 												op.SV = eq.eqvar2;
 											}
-											eq.autoapplied = true;
+											//eq.autoapplied = true;
 										}
 										break;
 									case "DF":
