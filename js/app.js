@@ -750,7 +750,13 @@ var app = angular.module("kt", ['ngSanitize'])
 										//console.log("            M - var2: " + eq.eqvar2);
 										if (eq.eqvar2.startsWith("+")) {
 											//console.log("         Adding " + eq.eqvar2 + " to M (" + op.M + ")");
-											op.M += eq.eqvar2;
+											if (!isNaN(op.M.replace('"', ''))) {
+												// M is in inches (kt24), we can do math
+												op.M = (parseInt(op.M.replace('"', '')) + parseInt(eq.eqvar2)) + '"';
+											} else {
+												// M is in symbols (Kt21), we can't do math
+												op.M += eq.eqvar2;
+											}
 											eq.autoapplied = true;
 											//console.log("op.M: " + op.M);
 										}
