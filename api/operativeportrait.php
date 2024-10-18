@@ -277,8 +277,6 @@ function POSTRosterOperativePortrait()
 						// Resize the image
 						$thumb = Utils::ResizeImage($img, 900, 600);
 
-						echo $thumb;
-
 						// Save the file
 						$custopportraitfolderpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}";
 						$customopportraitimgpath = $custopportraitfolderpath . "/op_{$ro->rosteropid}.jpg";

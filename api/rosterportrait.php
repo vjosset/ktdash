@@ -269,9 +269,6 @@ function POSTRosterPortrait()
 						// Resize the image
 						$thumb = Utils::ResizeImage($img, 900, 600);
 
-						// Output the image
-						echo $thumb;
-
 						// Save the file
 						$custrosterportraitfolderpath = "../img/customportraits/user_{$r->userid}/roster_{$r->rosterid}";
 						$custrosterportraitimgpath = $custrosterportraitfolderpath . "/roster_{$r->rosterid}.jpg";
@@ -296,8 +293,9 @@ function POSTRosterPortrait()
 								call_user_func_array(array($cmd, "bind_param"), $params);
 								$cmd->execute();
 							}
+
 							// Done
-					echo '{"success": "OK"}';
+							echo '{"success": "OK"}';
 						}
 
 						// Free up memory
