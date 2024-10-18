@@ -5,7 +5,10 @@ require_once $root . '/include.php';
 class Utils
 {
 	static function SetApiHeaders($json = true) {
+		// Allow cross-origin credentials (cookie)
 		header('Access-Control-Allow-Credentials: true');
+		
+		// Check allowed origins
 		$allowedOrigins = ['https://localhost:3000', 'https://ktdash.app'];
 		$origin = "";
 		if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
@@ -21,6 +24,7 @@ class Utils
 				header('Access-Control-Allow-Origin: '. $origin);
 		}
 		
+		// Response content is JSON
 		if ($json) {
 			header('Content-Type: application/json');
 		}

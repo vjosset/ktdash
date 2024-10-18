@@ -4,6 +4,7 @@ require_once $root . '/include.php';
 global $dbcon;
 
 Utils::SetApiHeaders();
+header("Access-Control-Allow-Methods: OPTIONS, GET, POST, DELETE");
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":
@@ -37,6 +38,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		// Log the user out
 		Session::Logout();
 		echo "{ \"success\": \"OK\" }";
+		break;
+	case "OPTIONS":
+		echo "";
 		break;
 	default:
 		// Invalid verb

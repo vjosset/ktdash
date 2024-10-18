@@ -4,6 +4,7 @@ require_once $root . '/include.php';
 global $dbcon;
 
 Utils::SetApiHeaders(false);
+header("Access-Control-Allow-Methods: OPTIONS");
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":

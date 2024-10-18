@@ -4,6 +4,8 @@ require_once $root . '/include.php';
 global $dbcon;
 global $perf;
 
+header("Access-Control-Allow-Methods: OPTIONS, POST");
+
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "POST":
 		// Create or update a roster

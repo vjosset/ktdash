@@ -5,6 +5,7 @@ global $dbcon;
 global $perf;
 
 Utils::SetApiHeaders();
+header("Access-Control-Allow-Methods: OPTIONS, GET, POST, DELETE");
 
 header("GlobalStart: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 

@@ -4,6 +4,7 @@ require_once $root . '/include.php';
 global $dbcon;
 
 header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: OPTIONS, POST");
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "POST":
