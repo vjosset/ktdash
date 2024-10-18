@@ -100,7 +100,7 @@ function DELETERosterTacOp()
                 } else {
                     $rto->DBDelete();
                     header('HTTP/1.0 202 OK');
-                    echo "OK";
+					echo '{"success": "OK"}';
                 }
             }
         }

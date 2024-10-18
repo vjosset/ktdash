@@ -87,8 +87,7 @@ function DELETERosterOperative()
 					// Now re-order operatives so their seqs are always sequential
 					$r = Roster::GetRoster($ro->rosterid);
 					$r->reorderOperatives();
-					header('Content-Type: text/plain');
-					echo "OK";
+					echo '{"success": "OK"}';
 				}
 			}
 		}
@@ -170,8 +169,7 @@ function POSTRosterOperative()
 			// Finally, reorder operatives
 			$r->reorderOperatives();
 
-			header('Content-Type: text/plain');
-			echo "OK";
+			echo '{"success": "OK"}';
 		} else {
 			// Get the new operative from the input JSON
 			header("Step1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));

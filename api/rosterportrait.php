@@ -158,7 +158,7 @@ function DELETERosterPortrait()
 					}
 
 					// Done
-					echo "OK";
+					echo '{"success": "OK"}';
 				}
 			}
 		}
@@ -297,7 +297,7 @@ function POSTRosterPortrait()
 								$cmd->execute();
 							}
 							// Done
-							echo "OK";
+					echo '{"success": "OK"}';
 						}
 
 						// Free up memory

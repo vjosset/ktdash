@@ -316,8 +316,7 @@ function POSTRoster()
 			// Finally re-sort the rosters
 			$u->reorderRosters();
 
-			header('Content-Type: text/plain');
-			echo "OK";
+			echo '{"success": "OK"}';
 		} else {
 			// Get the submitted roster
 			$r = Roster::FromJSON(file_get_contents('php://input'));
@@ -443,7 +442,7 @@ function DELETERoster()
 			$u->reorderRosters();
 
 			// Done
-			echo "OK";
+			echo '{"success": "OK"}';
 		} else {
 			// Roster belongs to someone else
 			header('HTTP/1.0 404 Roster not found');

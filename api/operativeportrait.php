@@ -161,7 +161,7 @@ function DELETERosterOperativePortrait()
 					}
 
 					// Done
-					echo "OK";
+					echo '{"success": "OK"}';
 				}
 			}
 		}
@@ -306,7 +306,7 @@ function POSTRosterOperativePortrait()
 							}
 
 							// Done
-							echo "OK";
+							echo '{"success": "OK"}';
 						}
 
 						// Free up memory
