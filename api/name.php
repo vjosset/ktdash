@@ -547,18 +547,23 @@ function GetName()
 		case "IMP|INQ|INQ|VET": //Deathworld Veteran
 			return GetInqName();
 		// Inquisitorial Agents
-		case "IMP|INQ24|INQ24|AS": //Autosavant
-		case "IMP|INQ24|INQ24|ENL": //Enlightener
-		case "IMP|INQ24|INQ24|GUNS": //Gun Servitor
-		case "IMP|INQ24|INQ24|HEX": //Hexorcist
-		case "IMP|INQ24|INQ24|INT": //Interrogator
-		case "IMP|INQ24|INQ24|MYS": //Mystic
-		case "IMP|INQ24|INQ24|PEN": //Penal Legionnaire
-		case "IMP|INQ24|INQ24|PST": //Pistolier
-		case "IMP|INQ24|INQ24|QK": //Questkeeper
-		case "IMP|INQ24|INQ24|TS": //Tome-Skull
-		case "IMP|INQ24|INQ24|VET": //Deathworld Veteran
+		case "IMP|INQ24|INQ24|INT": // Interrogator
+		case "IMP|INQ24|INQ24|TS": // Tome-Skull
+		case "IMP|INQ24|INQ24|AS": // Autosavant
+		case "IMP|INQ24|INQ24|QK": // Questkeeper
+		case "IMP|INQ24|INQ24|VET": // Deathworld Veteran
+		case "IMP|INQ24|INQ24|ENL": // Enlightener
+		case "IMP|INQ24|INQ24|GUNS": // Gun Servitor
+		case "IMP|INQ24|INQ24|HEX": // Hexorcist
+		case "IMP|INQ24|INQ24|MYS": // Mystic
+		case "IMP|INQ24|INQ24|PEN": // Penal Legionnaire
+		case "IMP|INQ24|INQ24|PST": // Pistolier
 			return GetInqName();
+
+		case "IMP|INQ24|INQ-SOS24|SOSPRO": // Sister Of Silence Prosecutor
+		case "IMP|INQ24|INQ-SOS24|SOSVIG": // Sister Of Silence Vigilator
+		case "IMP|INQ24|INQ-SOS24|SOSWSK": // Sister Of Silence WitchSeeker
+			return GetSistersOfBattleName();
 
 		// Intercessors
 		case "IMP|INTS|INTS|AISGT": //Intercession Squad Assault Intercessor Sergeant
