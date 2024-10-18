@@ -144,7 +144,7 @@
 						SELECT E.maxdatestamp AS datestamp, R.factionid, R.killteamid, KT.killteamname, KT.edition, R.hascustomportrait AS rosterportrait, COUNT(RO.opid) AS opcount, SUM(RO.hascustomportrait) AS opportraitcount, U.username, U.userid, R.rosterid, R.rostername, R.spotlight
 						FROM 
 						(
-							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -2 day) AND eventtype = 'roster' AND action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
+							SELECT MAX(datestamp) AS maxdatestamp, userid, var1 FROM Event WHERE datestamp > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -14 day) AND eventtype = 'roster' AND action IN ('portrait', 'opportrait') AND userip != '68.80.166.102' AND label = 'custom'
 							GROUP BY userid, var1
 							ORDER BY 1 DESC LIMIT 40
 						) E
