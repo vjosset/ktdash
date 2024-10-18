@@ -4,8 +4,8 @@ require_once $root . '/include.php';
 global $dbcon;
 global $perf;
 
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+Utils::SetApiHeaders();
+
 header("GlobalStart: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 
 switch ($_SERVER['REQUEST_METHOD']) {

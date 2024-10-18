@@ -3,8 +3,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root . '/include.php';
 global $dbcon;
 
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: text/plain');
+Utils::SetApiHeaders(false);
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":

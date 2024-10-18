@@ -3,6 +3,8 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root . '/include.php';
 global $dbcon;
 
+Utils::SetApiHeaders(false);
+
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":
 		//Get the requested PDF render

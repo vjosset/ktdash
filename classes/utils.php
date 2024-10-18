@@ -4,6 +4,28 @@ require_once $root . '/include.php';
 
 class Utils
 {
+	static function SetApiHeaders($json = true) {
+		header('Access-Control-Allow-Credentials: true');
+		$allowedOrigins = ['https://localhost:3000', 'https://ktdash.app'];
+		$origin = "";
+		if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+			$origin = $_SERVER['HTTP_ORIGIN'];
+		}
+		else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+			$origin = $_SERVER['HTTP_REFERER'];
+		} else {
+			$origin = $_SERVER['REMOTE_ADDR'];
+		}
+
+		if (in_array($origin, $allowedOrigins)) {
+				header('Access-Control-Allow-Origin: '. $origin);
+		}
+		
+		if ($json) {
+			header('Content-Type: application/json');
+		}
+	}
+	
 	static function ResizeImage($source, $tw, $th)
 	{
 		if ($tw == null || $tw == "") {

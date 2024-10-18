@@ -8,22 +8,22 @@
 
 	session_start();
 	
-    //Put all includes here, so that actual pages only need to include this include.php file
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    require_once $root . '/db.php';
-    
-    require_once $root . '/../common/include.php';
-    
-    require_once $root . '/classes/utils.php';
-    require_once $root . '/classes/weaponprofile.php';
-    require_once $root . '/classes/weapon.php';
+	//Put all includes here, so that actual pages only need to include this include.php file
+	$root = $_SERVER['DOCUMENT_ROOT'];
+	require_once $root . '/db.php';
+
+	require_once $root . '/../common/include.php';
+
+	require_once $root . '/classes/utils.php';
+	require_once $root . '/classes/weaponprofile.php';
+	require_once $root . '/classes/weapon.php';
 	require_once $root . '/classes/ploy.php';
 	require_once $root . '/classes/equipment.php';
 	require_once $root . '/classes/ability.php';
 	require_once $root . '/classes/uniqueaction.php';
-    require_once $root . '/classes/operative.php';
-    require_once $root . '/classes/fireteam.php';
-    require_once $root . '/classes/killteam.php';
+	require_once $root . '/classes/operative.php';
+	require_once $root . '/classes/fireteam.php';
+	require_once $root . '/classes/killteam.php';
 	require_once $root . '/classes/faction.php';
 	require_once $root . '/classes/user.php';
 	require_once $root . '/classes/session.php';
