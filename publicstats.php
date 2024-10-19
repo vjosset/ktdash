@@ -62,7 +62,9 @@
 						}
 					}
 					
-					echo "</tr></table>";
+					echo "</tr>";
+					
+					echo "</table>";
 				?>
 			</div>
 			<hr/>
@@ -75,7 +77,7 @@
 					<h5>Most Viewed Rosters</h5>
 					<?php
 						$sql =
-							"SELECT U.username, R.rostername, KT.killteamname, CONCAT('https://ktdash.app/r/', rosterid, '/g') AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, viewcount
+							"SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://ktdash.app/r/', rosterid, '/g') AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, viewcount
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
 							INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
@@ -100,7 +102,7 @@
 								<tr class="line-top-light">
 									<td>
 										<a href="<?php echo $row->rosterlink ?>"><?php echo $row->rostername ?></a><br/>
-										<?php echo $row->killteamname ?>
+										<?php echo $row->killteamname ?><sup><?php echo $row->edition ?></sup>
 										by&nbsp;<a class="navloader" href="<?php echo $row->userlink ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
 									</td>
 									<td style="text-align: center;">
@@ -119,7 +121,7 @@
 					<h5>Most Imported Rosters</h5>
 					<?php
 						$sql =
-							"SELECT U.username, R.rostername, KT.killteamname, CONCAT('https://ktdash.app/r/', rosterid) AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, importcount
+							"SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://ktdash.app/r/', rosterid) AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, importcount
 							FROM Roster R
 							INNER JOIN User U ON U.userid = R.userid
 							INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
@@ -144,7 +146,7 @@
 								<tr class="line-top-light">
 									<td>
 										<a href="<?php echo $row->rosterlink ?>"><?php echo $row->rostername ?></a><br/>
-										<?php echo $row->killteamname ?>
+										<?php echo $row->killteamname ?><sup><?php echo $row->edition ?></sup>
 										by&nbsp;<a class="navloader" href="<?php echo $row->userlink ?>"><span class="badge bg-secondary"><i class="fas fa-user fa-fw"></i>&nbsp;<?php echo $row->username ?></span></a>
 									</td>
 									<td style="text-align: center;">

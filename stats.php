@@ -94,7 +94,9 @@
 						}
 					}
 					
-					echo "</tr></table>";
+					echo "</tr>";
+					
+					echo"</table>";
 				?>
 			</div>
 			

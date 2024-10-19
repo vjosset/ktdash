@@ -55,6 +55,34 @@ SQL Queries:
 		ON  R.factionid = K.factionid AND R.killteamid = K.killteamid AND (R.spotlight = 1 OR R.userid = 'prebuilt')
 	WHERE R.rosterid IS NULL
 
+# Roster/RosterOp stats per edition (~3s)
+SELECT
+	R.edition,
+	R.Rosters,
+	RO.RosterOperatives
+FROM
+(
+SELECT edition, COUNT(*) AS Rosters
+FROM
+	Killteam KT
+	INNER JOIN Roster R
+		ON  KT.factionid = R.factionid
+		AND KT.killteamid = R.killteamid
+GROUP BY
+	edition
+) R
+INNER JOIN 
+(
+SELECT edition, COUNT(*) AS RosterOperatives
+FROM
+	RosterOperative RO
+	INNER JOIN Killteam KT
+		ON  KT.factionid = RO.factionid
+		AND KT.killteamid = RO.killteamid
+GROUP BY
+	edition
+) RO
+ON  RO.edition = R.edition
 
 # Action/Event Log
 	ALTER VIEW EventLogView
