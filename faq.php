@@ -103,7 +103,13 @@
 			
 			<h5>Is there a way for me to get the data that KTDash uses?</h5>
 			<p>
-				Right <a href="https://github.com/vjosset/killteamjson" target="_blank">here</a>.
+				Right <a href="https://github.com/vjosset/killteamjson" target="_blank">here</a> or use the <a href="https://github.com/vjosset/ktdash/blob/v2/docs/api.md" target="_blank">API</a>.
+			</p>
+
+			<h5>How do i make my own homebrew teams?</h5>
+			<p>
+				There is no self-service way to load a homebrew team, it's something you'd have to send me to get loaded and it takes a long time.
+				There is an item on the <a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">backlog</a> to add that functionality but it's a ton of work.
 			</p>
 		</div>
 		
