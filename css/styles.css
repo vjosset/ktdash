@@ -154,6 +154,11 @@ th, td {
 
 .twocols {
 	columns: 2;
+	column-width: 400px;
+}
+
+.twocols .section {
+	page-break-inside: avoid;
 }
 
 .span {
