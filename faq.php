@@ -42,6 +42,8 @@
 					<img src="/img/install_chrome.jpg" width="250" />
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>I forgot my password!</h5>
@@ -50,6 +52,8 @@
 					Since we don't collect email addresses (and I really don't want them), this is currently the only way to reset your password.
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>What do the icons mean on my roster?</h5>
@@ -63,16 +67,20 @@
 				</p>
 			</div>
 
+			<hr/>
+
 			<div class="section">
 				<h5>I have an idea for a cool new feature or improvement</h5>
 				<p>
-					If you want to suggest a new feature or improvement, first check the <a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">Trello Backlog</a> to see if it is already logged there. 
+					If you want to suggest a new feature or improvement, first check the <a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank">Backlog</a> to see if it is already logged there. 
 					If it is already there, you can vote that feature up to help prioritize the next thing to work on.<br/>
 					If you don't find your suggestion already in the backlog, come to the "Feature Requests" channel on the <a href="https://discord.gg/zyuVDgYNeY" target="_blank">Discord</a> and send it in!<br/>
 					Also note that the most commmonly-requested features have already been implemented in the <a href="/settings.php">Settings</a>; check there first!<br/>
 					If you want to contribute to the application, check out the code <a href="https://github.com/vjosset/ktdash" target="_blank">repo</a>.
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>I found a bug or typo!</h5>
@@ -82,6 +90,8 @@
 					Bugs and typos are typically fixed within a day, and often within an hour!
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>What is your privacy policy?</h5>
@@ -100,6 +110,8 @@
 					</ul>
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>I heard you have some 3d printing STL models available</h5>
@@ -108,6 +120,8 @@
 					<a href="https://www.thingiverse.com/jodawznev/designs" target="_blank">Thingiverse</a> or <a href="https://cults3d.com/en/users/jodawznev/3d-models" target="_blank">Cults 3D</a>.
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>Can I donate/give you money? Is there a Patreon, Ko-Fi or other option?</h5>
@@ -116,6 +130,8 @@
 					If you really want to give $5 to someone who needs it, look up your local wildlife rescue, women's shelter, or adult literacy program, and tell them I sent you!
 				</p>
 			</div>
+
+			<hr/>
 			
 			<div class="section">
 				<h5>Is there a way for me to get the data that KTDash uses?</h5>
@@ -123,6 +139,8 @@
 					Right <a href="https://github.com/vjosset/killteamjson" target="_blank">here</a> or use the <a href="https://github.com/vjosset/ktdash/blob/v2/docs/api.md" target="_blank">API</a>.
 				</p>
 			</div>
+
+			<hr/>
 
 			<div class="section">
 				<h5>How do i make my own homebrew teams?</h5>

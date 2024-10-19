@@ -241,7 +241,7 @@
 										{{ operative.APL }}
 									</td>
 									<td>
-										&nbsp;{{ operative.M }}
+										&nbsp;&nbsp;{{ operative.M }}
 									</td>
 								</tr>
 								<tr class="orange">
