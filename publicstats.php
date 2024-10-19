@@ -33,6 +33,9 @@
 		<?php
 			include "topnav.shtml";
 		?>
+		<h1 class="m-0 p-1 orange">
+			<span class="fas fa-chart-line fa-fw"></span> Stats
+		</h1>
 		
 		<div class="p-2">
 			<!-- Totals -->

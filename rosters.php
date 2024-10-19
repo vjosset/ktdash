@@ -103,6 +103,7 @@
 		
 		<div class="row m-0 p-1 orange container-fluid">
 			<h1 class="col-11 m-0 p-0">
+				<span class="fas fa-users fa-fw"></span>
 				<?php echo ($ismine ? "My" : ($uid == 'prebuilt' ? 'Pre-Built ' : (ucwords($myUser->username) . "'s "))) ?> Rosters
 			</h1>
 			<div class="col-1 h3 m-0 p-0 align-text-top text-end" ng-if="MODE == 'MyRosters'">

@@ -28,7 +28,7 @@
 	<body ng-app="kt" ng-controller="ktCtrl">
 		<?php include "topnav.shtml" ?>
 		
-		<h1 class="orange">FAQ</h1>
+		<h1 class="orange"><i class="far fa-question-circle fa-fw"></i> FAQ</h1>
 		
 		<div class="p-1 m-1 twocols">
 			<div class="section">

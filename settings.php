@@ -41,7 +41,7 @@
 			//te("settings", "view");
 		</script>
 		
-		<h1 class="orange cinzel">Settings</h1>
+		<h1 class="orange cinzel"><span class="fas fa-cogs fa-fw"></span> Settings</h1>
 		
 		<!-- Settings -->
 		<div class="container">

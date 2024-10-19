@@ -39,7 +39,7 @@
 		<div class="orange container-fluid">
 			<div class="row">
 				<h1 class="col-6 m-0 p-1">
-					<a class="navloader" onclick="window.location.reload();">Stats</a>
+					<a class="navloader" onclick="window.location.reload();"><span class="fas fa-chart-line fa-fw"></span> Stats</a>
 				</h1>
 				<h1 class="col-6 m-0 p-1 text-end h2">
 					<!-- Activity -->
