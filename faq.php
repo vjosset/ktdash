@@ -32,6 +32,12 @@
 		
 		<div class="p-1 m-1 twocols">
 			<div class="section">
+				<h5>Is there a User Guide for new users?</h5>
+				<p>
+					Thanks to user <a href="/u/skrdla">Skrdla</a>, there is!<br/>
+					<a href="/img/UserGuide_v0.1.pdf" target="_blank">User Guide v0.1</a>
+				</p>
+
 				<h5>Is there an app I can install on my phone?</h5>
 				<p>
 					KTDash does not have a native app (like you would find in the App Store for example), but it can be installed as a
