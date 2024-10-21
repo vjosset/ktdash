@@ -34,8 +34,7 @@
 			<div class="section">
 				<h5>Is there a User Guide for new users?</h5>
 				<p>
-					Thanks to user <a href="/u/skrdla">Skrdla</a>, there is!<br/>
-					<a href="/img/UserGuide_v0.1.pdf" target="_blank">User Guide v0.1</a>
+					You can look at the official <a href="/userguide.php">User Guide</a> or the <a href="https://ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a>.
 				</p>
 
 				<h5>Is there an app I can install on my phone?</h5>
