@@ -19,7 +19,7 @@
 						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/login.htm"><span class="fas fa-lock fa-fw"></span>&nbsp;Log In</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/dashboard"><span class="fas fa-dice fa-fw"></span>&nbsp;Dashboard</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/u/{{ currentuser.username }}"><span class="fas fa-users fa-fw"></span>&nbsp;My Rosters</a></li>
-						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="/settings.php"><span class="fas fa-cogs fa-fw"></span>&nbsp;Settings</a></li>
+						<li class="nav-item" ><a class="nav-link navloader" href="/settings.php"><span class="fas fa-cogs fa-fw"></span>&nbsp;Settings</a></li>
 						<li class="nav-item" ng-show="currentuser.userid == 'vince'"><a class="nav-link navloader" href="/stats.php"><span class="fas fa-chart-line fa-fw"></span>&nbsp;Stats</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="#" ng-click="logOut();"><span class="fas fa-lock fa-fw"></span>&nbsp;Log Out</a></li>
 					</ul>

@@ -36,7 +36,11 @@
 				<p>
 					You can look at the official <a href="/userguide.php">User Guide</a> or the <a href="https://ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a>.
 				</p>
+			</div>
 
+			<hr/>
+
+			<div class="section">
 				<h5>Is there an app I can install on my phone?</h5>
 				<p>
 					KTDash does not have a native app (like you would find in the App Store for example), but it can be installed as a

@@ -7,14 +7,6 @@
 	$root = $_SERVER['DOCUMENT_ROOT'];
 	require_once $root . '/include.php';
 	global $dbcon;
-	
-	$me = Session::CurrentUser();
-	
-	if ($me == null) {
-		// Not logged in
-		header("Location: /login.htm");
-		exit;
-	}
 ?>
 <!DOCTYPE html>
 <html>

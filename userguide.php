@@ -28,12 +28,12 @@
 	<body ng-app="kt" ng-controller="ktCtrl">
 		<?php include "topnav.shtml" ?>
 		
-		<h1 class="orange"><i class="far fa-question-circle fa-fw"></i> User Guide</h1>
+		<h1 class="orange"><i class="fas fa-info-circle fa-fw"></i> User Guide</h1>
 
 		<div class="container">
 			<em>See also the <a href="https://ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a> and the <a href="/faq.php">FAQ</a>.</em>
 			<br/><br/>
-			<h4 id="how-it-works">How It Works</h4>
+			<h4 id="how-it-works"><i class="fas fa-info-circle fa-fw"></i> How It Works</h4>
 			<div class="ms-2">
 				<ol>
 					<li><a href="/signup.html">Sign Up</a> or <a href="login.htm">Log In</a></li>
@@ -44,7 +44,7 @@
 			
 			<hr/>
 
-			<h4 id="quick-tips">Quick Tips</h4>
+			<h4 id="quick-tips"><i class="fas fa-info-circle fa-fw"></i> Quick Tips</h4>
 			<div class="ms-2">
 				<ul>
 					<li>Consult the <a href="https://ktdash.app/faq.php">FAQ</a> for the most common questions and solutions.</li>
@@ -58,49 +58,54 @@
 
 			<hr/>
 
-			<h4 id="my-rosters">My Rosters</h4>
+			<h4 id="my-rosters"><i class="fas fa-info-circle fa-fw"></i> My Rosters</h4>
 			<div class="ms-2">
-				<div class="twocols">
-					<img src="/img/guide/myrosters.jpg" class="img-fluid m-4" />
-					<p>
+				<div class="row">
+					<div class="col-12 col-md-6"><img src="/img/guide/myrosters.jpg" class="img-fluid ms-2" /></div>
+					<div class="col-12 col-md-6">
 						The <a href="/u">My Rosters</a> screen is where you can manage your teams/rosters.
 						From here, you can create, edit, or delete your rosters or import an existing one.
-						If you are viewing another user&#39;s page, you can import their rosters into your own as well!<br/>
-					</p>
-				</div>
-				
-				<h6 id="creating-a-new-roster">Creating A New Roster</h6>
-				<div class="twocols">
-					<img src="/img/guide/newroster.jpg" class="img-fluid m-4" />
-					<p>
-						From <a href="/u">My Rosters</a>, use the three-dots menu to &quot;Add New Roster&quot;.<br>Then enter a name for your roster and select the faction and killteam for your new roster.
-						Once the roster is created, it is empty and has no operatives. Use the three-dots menu to &quot;Add Operative&quot;.<br>Use the dialog to select the operative type, and enter a name for that operative or use the name generator. Then, select the weapons for that operative. Finally, click &quot;Add to Team&quot; to save your selection.
-						Then repeat for each operative you want to add to your roster.
-					</p>
-					<p>
-						If that sounds too tedious, you can also import a pre-built roster or another user&#39;s roster and then tweak it to your liking.
-					</p>
-				</div>
-				
-				<h6 id="importing-a-roster">Importing A Roster</h6>
-				<div class="twocols">
-					<img src="/img/guide/importroster.jpg" class="img-fluid m-4" />
-					<p>
-						When looking at any user&#39;s profile, you can see all their rosters. Click on any of them to view their details, and use the three-dots menu to add a copy of that roster to your own rosters. 
-						You can also select from a set of pre-built rosters in the &quot;My Rosters&quot; three-dots menu &quot;Pre-Built Rosters&quot;, then select the three-dots menu on any of these to view their details or import them.
-					</p>
-					<p>
-						Another place to see &quot;spotlighted&quot; rosters is on the killteam&#39;s &quot;Rosters&quot; tab. Same as other roster views, you can use the three-dots menu to import any of these rosters into your own.
-					</p>
+						If you are viewing another user&#39;s page, you can import their rosters into your own as well!
+					</div>
 				</div>
 			</div>
 			
 			<hr/>
 
-			<h4 id="managing-roster-operatives">Managing Roster Operatives</h4>
-			<div class="twocols">
-				<img src="/img/guide/opcard.jpg" class="img-fluid m-4" />
-				<div class="ms-2">
+			<h4 id="creating-a-new-roster"><i class="fas fa-info-circle fa-fw"></i> Creating A New Roster</h4>
+			<div class="ms-2">
+				<div class="row">
+					<div class="col-12 col-md-6"><img src="/img/guide/newroster.jpg" class="img-fluid ms-2" /></div>
+					<div class="col-12 col-md-6">
+						From <a href="/u">My Rosters</a>, use the three-dots menu to &quot;Add New Roster&quot;.<br>Then enter a name for your roster and select the faction and killteam for your new roster.
+						Once the roster is created, it is empty and has no operatives. Use the three-dots menu to &quot;Add Operative&quot;.<br>Use the dialog to select the operative type, and enter a name for that operative or use the name generator. Then, select the weapons for that operative. Finally, click &quot;Add to Team&quot; to save your selection.
+						Then repeat for each operative you want to add to your roster.<br/><br/>
+						If that sounds too tedious, you can also import a pre-built roster or another user&#39;s roster and then tweak it to your liking.
+					</div>
+				</div>
+			</div>
+			
+			<hr/>
+			
+			<h4 id="importing-a-roster"><i class="fas fa-info-circle fa-fw"></i> Importing A Roster</h4>
+			<div class="ms-2">
+				<div class="row">
+					<div class="col-12 col-md-6"><img src="/img/guide/importroster.jpg" class="img-fluid ms-2" /></div>
+					<div class="col-12 col-md-6">
+						When looking at any user&#39;s profile, you can see all their rosters. Click on any of them to view their details, and use the three-dots menu to add a copy of that roster to your own rosters. 
+						You can also select from a set of pre-built rosters in the &quot;My Rosters&quot; three-dots menu &quot;Pre-Built Rosters&quot;, then select the three-dots menu on any of these to view their details or import them.
+						<br/><br/>
+						Another place to see &quot;spotlighted&quot; rosters is on the killteam&#39;s &quot;Rosters&quot; tab. Same as other roster views, you can use the three-dots menu to import any of these rosters into your own.
+					</div>
+				</div>
+			</div>
+			
+			<hr/>
+
+			<h4 id="managing-roster-operatives"><i class="fas fa-info-circle fa-fw"></i> Managing Roster Operatives</h4>
+			<div class="row">
+				<div class="col-12 col-md-6"><img src="/img/guide/opcard.jpg" class="img-fluid ms-2" /></div>
+				<div class="col-12 col-md-6">
 					<h6 id="operative-cards">Operative Cards</h6>
 					<p>The operative cards show all their stats, weapons, abilities, and unique actions. Click or tap of any Weapon rule, Equipment, Ability, or Unique Action to view its details.</p>
 					
@@ -110,12 +115,13 @@
 					<p>On each operative card, you can also upload a photo of your mini to make sure you can find them quickly while playing your games. In addition, rosters that have a photo of each operative and a group photo for the roster itself will be put on the spotlight. Spotlighted rosters are shown on each killteam&#39;s &quot;Rosters&quot; tab and are randomly selected for display on the homepage.</p>
 				</div>
 			</div>
+
 			<hr/>
 
-			<h4 id="dashboard">Dashboard</h4>
-			<div class="twocols">
-				<img src="/img/guide/dashboard.jpg" class="img-fluid m-4" />
-				<div class="ms-2">
+			<h4 id="dashboard"><i class="fas fa-info-circle fa-fw"></i> Dashboard</h4>
+			<div class="row">
+				<div class="col-12 col-md-6"><img src="/img/guide/dashboard.jpg" class="img-fluid ms-2" /></div>
+				<div class="col-12 col-md-6">
 					<p>The <a href="/dashboard">Dashboard</a> is where you can play your games. This screen looks very similar to the Roster view, but you will see some differences.</p>
 					<h6 id="operatives">Operatives</h6>
 					<ul>
@@ -143,7 +149,7 @@
 			
 			<hr/>
 
-			<h4 id="settings">Settings</h4>
+			<h4 id="settings"><i class="fas fa-info-circle fa-fw"></i> Settings</h4>
 			<div class="ms-2">
 				<p>The <a href="/settings.php">Settings</a> screen is where you can customize the appearance and behavior of the app. Most of these settings are self-explanatory; feel free to play around with them to find what best fits your needs.</p>
 			</div>
