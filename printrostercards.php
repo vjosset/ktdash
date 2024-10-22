@@ -236,6 +236,8 @@
 			<?php
 		}
 		?>
-		<?php include "footer.shtml" ?>
+		<script type="text/javascript">
+			window.print();
+		</script>
 	</body>
 </html>

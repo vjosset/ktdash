@@ -9,7 +9,13 @@ class Utils
 		header('Access-Control-Allow-Credentials: true');
 		
 		// Check allowed origins
-		$allowedOrigins = ['https://localhost:3000', 'https://ktdash.app', 'https://192.168.1.103:3000', 'https://beta.ktdash.app'];
+		$allowedOrigins = [
+			'https://localhost:3000',
+			'https://ktdash.app',
+			'https://192.168.1.103:3000',
+			'https://beta.ktdash.app',
+			'https://indocpdf.com'
+		];
 		$origin = "";
 		if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 			$origin = $_SERVER['HTTP_ORIGIN'];

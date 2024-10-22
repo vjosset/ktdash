@@ -23,7 +23,7 @@
 
 body {
 	font-family: Oswald, Arial Narrow, Roboto, sans-serif;
-	font-size: 1em;
+	/*font-size: 1em;*/
 	/*background-color: #343a40;*/
 	background-color: var(--blackbg);
 	color: var(--white);
@@ -175,12 +175,14 @@ th, td {
 		background-color: #FFF;
 		font-family: oswald, Arial Narrow, Roboto, sans-serif;
 		color: #000;
+		min-font-size: 12px;
+  	max-font-size: 20px;
 		/*
 			ZOOM - With opcards at double size in inches (i.e. Tarot at 5.5in x 9.5in instead of real life size 2.75in x 4.75in)
 				- Zoom 67% when sending PDF to be printed
 				- Zoom 77% when I'm printing at home for some reason
 		*/
-		zoom: 67%;
+		zoom: 50%;
 	}
 	
 	.fas, .far {

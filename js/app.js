@@ -1056,15 +1056,18 @@ var app = angular.module("kt", ['ngSanitize'])
 					case 'BH':
 					case 'TH':
 					case 'TV':
-						window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid);
+						//window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid);
+						window.open("https://ktdash.app/printrostercards.php?cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid)
 						break;
 					case 'plainbig':
-						window.open("/api/pdfrender.php?scope=roster&cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
+						//window.open("/api/pdfrender.php?scope=roster&cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
+						window.open("/printroster.php?cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
 						break;
 					case 'plain':
 					case null:
 					case '':
-						window.open("/api/pdfrender.php?scope=roster&cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
+						//window.open("/api/pdfrender.php?scope=roster&cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
+						window.open("/printroster.php?cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
 						break;
 				}
 			}

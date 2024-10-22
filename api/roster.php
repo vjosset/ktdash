@@ -24,6 +24,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		// Delete an existing roster/user team
 		DELETERoster();
 		break;
+	case "OPTIONS":
+		echo "";
+		break;
 	default:
 		// Invalid verb
 		header('HTTP/1.0 400 Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');
