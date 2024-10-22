@@ -122,7 +122,7 @@
 									if ($me != null) {
 										// User is logged in
 										?>
-										<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Add to My Rosters</a></li>
+										<li><a class="pointer dropdown-item p-1" ng-click="cloneRoster(myRoster);"><i class="fas fa-file-import fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Roster"></i> Import Roster</a></li>
 										<?php
 									} else {
 										// User is not logged in
