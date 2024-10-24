@@ -250,22 +250,21 @@ class Roster extends \OFW\OFWObject
 						R.rosterid = ?
 					ORDER BY E.eqcategory, E.eqseq;";
 
-		if ($this->userid == 'vince') {
-			$cmd = $dbcon->prepare($sql);
-			$paramtypes = "s";
-			$params = array();
-			$params[] =& $paramtypes;
-			$params[] =& $this->rosterid;
+		
+		$cmd = $dbcon->prepare($sql);
+		$paramtypes = "s";
+		$params = array();
+		$params[] =& $paramtypes;
+		$params[] =& $this->rosterid;
 
-			call_user_func_array(array($cmd, "bind_param"), $params);
-			$cmd->execute();
+		call_user_func_array(array($cmd, "bind_param"), $params);
+		$cmd->execute();
 
-			if ($result = $cmd->get_result()) {
-				while ($row = $result->fetch_object()) {
-					$eq = Equipment::FromRow($row);
-					//echo ('$t: ' . json_encode($t));
-					$this->rostereqs[] = $eq;
-				}
+		if ($result = $cmd->get_result()) {
+			while ($row = $result->fetch_object()) {
+				$eq = Equipment::FromRow($row);
+				//echo ('$t: ' . json_encode($t));
+				$this->rostereqs[] = $eq;
 			}
 		}
 	}
