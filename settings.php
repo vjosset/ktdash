@@ -175,7 +175,7 @@
 
 				<div class="col-12 col-md-6 m-0 p-0">
 					<h5>Narrative Info</h5>
-					Shows or hides narrative play information (Battle Honours, Rare Equipment, XP)
+					Shows or hides narrative play information (Battle Honours, Rare Equipment, XP) -  KT21 Only
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('shownarrative', 'y');" ng-class="settings['shownarrative'] == 'y' ? 'btn-primary': 'btn-secondary'">
 						<i class="pointer fas fa-check fa-fw"></i><br/>

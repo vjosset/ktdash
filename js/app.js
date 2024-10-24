@@ -598,14 +598,13 @@ var app = angular.module("kt", ['ngSanitize'])
 							$scope.applyEqToOp(op, eq);
 						}
 
-						// Apply roster-level equipments (kt24) to this operative too
-						console.log("Applying roster eqs to op " + op.opname);
-						for (eqnum = 0; eqnum < roster.rostereqs.length; eqnum++) {
-							let eq = roster.rostereqs[eqnum];
-							console.log("   Got roster eq " + eq.eqid);
-							if (eq.selected) {
-								console.log("     eq is selected");
-								$scope.applyEqToOp(op, eq);
+						// Apply roster-level equipments (kt24) to this operative too if this is the dashboard
+						if (roster.edition == 'kt24' && $scope.MODE == "Dashboard") {
+							for (eqnum = 0; eqnum < roster.rostereqs.length; eqnum++) {
+								let eq = roster.rostereqs[eqnum];
+								if (eq.selected) {
+									$scope.applyEqToOp(op, eq);
+								}
 							}
 						}
 					}
