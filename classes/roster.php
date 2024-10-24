@@ -264,6 +264,14 @@ class Roster extends \OFW\OFWObject
 			while ($row = $result->fetch_object()) {
 				$eq = Equipment::FromRow($row);
 				//echo ('$t: ' . json_encode($t));
+				//If this is a weapon, add the weapon as a nested object
+				if (strpos($eq->eqtype, 'Weapon') !== false) {
+					$wep = Weapon::FromDB($row->factionid, $row->killteamid, 'EQ', 'EQ', $row->eqid);
+					if ($wep != null) {
+						$wep->loadWeaponProfiles();
+						$eq->weapon = $wep;
+					}
+				}
 				$this->rostereqs[] = $eq;
 			}
 		}
