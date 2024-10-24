@@ -2507,17 +2507,18 @@ var app = angular.module("kt", ['ngSanitize'])
 				$scope.optoedit.eqids = "";
 				$scope.optoedit.equipments = [];
 				for (let i = 0; i < $scope.tempeditop.equipments.length; i++) {
-					if ($scope.tempeditop.equipments[i].isselected) {
+					let eq = $scope.tempeditop.equipments[i];
+					if (eq.isselected && ($scope.tempeditop.edition != 'kt24' || (eq.eqcategory != 'Equipment' && eq.eqcategory != 'Universal Equipment'))) {
 						if ($scope.optoedit.eqids.length > 0) {
 							// Put a comma between equipment IDs
 							$scope.optoedit.eqids += ",";
 						}
 						
 						// Add this equipment to the operative
-						$scope.optoedit.eqids += $scope.tempeditop.equipments[i].eqid;
+						$scope.optoedit.eqids += eq.eqid;
 						
 						// Make sure to track this locally too
-						$scope.optoedit.equipments.push($scope.tempeditop.equipments[i]);
+						$scope.optoedit.equipments.push(eq);
 						//console.log("Added equipment " + JSON.stringify($scope.tempeditop.equipments[i]));
 					}
 				}
@@ -3614,7 +3615,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						}
 					});
 				} else {
-					// Deelect this equipment for this roster
+					// Deselect this equipment for this roster
 					let rto = {
 						userid: roster.userid,
 						rosterid: roster.rosterid,
