@@ -18,6 +18,7 @@ class Roster extends \OFW\OFWObject
 	public $keyword = "";
 	public $operatives = [];
 	public $tacops = [];
+	public $rostereqs = [];
 
 	function __construct()
 	{
@@ -36,6 +37,7 @@ class Roster extends \OFW\OFWObject
 			"viewcount",
 			"importcount",
 			"tacops",
+			"rostereqs",
 			"killteamcustomkeyword"
 		];
 	}
@@ -45,8 +47,6 @@ class Roster extends \OFW\OFWObject
 		global $dbcon;
 		global $perf;
 
-		header("001StartGetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-
 		// Get the operatives for this team
 		$sql = "SELECT * FROM RosterView WHERE rosterid = ? ORDER BY seq";
 		$cmd = $dbcon->prepare($sql);
@@ -55,15 +55,11 @@ class Roster extends \OFW\OFWObject
 		$params[] =& $paramtypes;
 		$params[] =& $rid;
 
-		header("005PrepSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		call_user_func_array(array($cmd, "bind_param"), $params);
-		header("010RunSQL: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$cmd->execute();
-		header("015SQLDone: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$ops = [];
 		if ($result = $cmd->get_result()) {
 			if ($row = $result->fetch_object()) {
-				header("020LoadRosterRow: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r = Roster::FromRow($row);
 
 				// Reorder operatives so their seqs are always sequential
@@ -71,14 +67,13 @@ class Roster extends \OFW\OFWObject
 				//$r->reorderOperatives();
 
 				// Now load the operatives
-				header("025LoadOperatives: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadOperatives();
 
-				header("030LoadTacOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadTacOps();
 
+				$r->loadRosterEquipments();
+
 				// Done
-				header("035Done: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				return $r;
 			}
 		}
@@ -228,6 +223,53 @@ class Roster extends \OFW\OFWObject
 		}
 	}
 
+	public function loadRosterEquipments() {
+		// Load the Equipments for this roster
+		if ($this->edition != 'kt24') {
+			// This only applies to kt24 equipments
+			return;
+		}
+		global $dbcon;
+		$sql = "SELECT DISTINCT
+						E.*,
+						CASE WHEN RE.rosterid IS NULL THEN 0 ELSE 1 END AS selected
+					FROM
+						Roster R
+						INNER JOIN Equipment E
+							ON  E.eqcategory IN ('Equipment', 'Universal Equipment')
+							AND (
+								(E.factionid = R.factionid AND E.killteamid = R.killteamid)
+								OR  (E.factionid = 'kt24' AND E.killteamid = 'ALL')
+							) 
+						LEFT JOIN RosterEquipment RE
+							ON  RE.rosterid = R.rosterid
+							AND RE.eqfactionid = E.factionid
+							AND RE.eqkillteamid = E.killteamid
+							AND RE.eqid = E.eqid
+					WHERE
+						R.rosterid = ?
+					ORDER BY E.eqcategory, E.eqseq;";
+
+		if ($this->userid == 'vince') {
+			$cmd = $dbcon->prepare($sql);
+			$paramtypes = "s";
+			$params = array();
+			$params[] =& $paramtypes;
+			$params[] =& $this->rosterid;
+
+			call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->execute();
+
+			if ($result = $cmd->get_result()) {
+				while ($row = $result->fetch_object()) {
+					$eq = Equipment::FromRow($row);
+					//echo ('$t: ' . json_encode($t));
+					$this->rostereqs[] = $eq;
+				}
+			}
+		}
+	}
+	
 	public function reorderOperatives()
 	{
 		global $dbcon;

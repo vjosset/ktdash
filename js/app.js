@@ -3580,6 +3580,73 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 			}
 
+			// selectRosterEq()
+			$scope.selectRosterEq = function(roster, eq, selected) {
+				if (selected) {
+					// Select this equipment for this roster
+					let rto = {
+						userid: roster.userid,
+						rosterid: roster.rosterid,
+						eqfactionid: eq.factionid,
+						eqkillteamid: eq.killteamid,
+						eqid: eq.eqid
+					}
+
+					// Send a POST request to the API
+					$.ajax({
+						type: "POST",
+						url: APIURL + "rostereq.php",
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						data: JSON.stringify(rto),
+						
+						// Success
+						success: function(data) {
+							// Got it, all good
+							eq.selected = 1;
+
+							$scope.$apply();
+						},
+						error: function(data, status, error)  {
+							// Failed
+							toast("Error selecting equipment:\r\n" + error);
+						}
+					});
+				} else {
+					// Deelect this equipment for this roster
+					let rto = {
+						userid: roster.userid,
+						rosterid: roster.rosterid,
+						eqfactionid: eq.factionid,
+						eqkillteamid: eq.killteamid,
+						eqid: eq.eqid
+					}
+
+					// Send a POST request to the API
+					$.ajax({
+						type: "DELETE",
+						url: APIURL + "rostereq.php",
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						data: JSON.stringify(rto),
+						
+						// Success
+						success: function(data) {
+							// Got it, all good
+							eq.selected = 0;
+
+							$scope.$apply();
+						},
+						error: function(data, status, error)  {
+							// Failed
+							toast("Error selecting equipment:\r\n" + error);
+						}
+					});
+				}
+			}
+
 			// activateTacOp()
 			$scope.activateTacOp = function(roster, tacop, activate) {
 				if (activate) {

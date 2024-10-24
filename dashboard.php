@@ -168,6 +168,11 @@
 								Operatives
 							</a>
 						</li>
+						<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="dashboardroster.killteam.edition == 'kt24'">
+							<a class="nav-link dark" id="equip-tab" data-bs-toggle="tab" data-bs-target="#equip" type="button" role="tab" aria-controls="equip" aria-selected="false">
+								Equip
+							</a>
+						</li>
 						<li class="nav-item m-0 p-0 dark" role="presentation">
 							<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#ploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
 								Ploys
@@ -201,6 +206,41 @@
 							<div class="row p-0 m-0">
 								<div ng-if="!operative.hidden" class="col-12 col-md-6 col-xl-4 col-xxl-3 m-0 p-0" ng-repeat="operative in dashboardroster.operatives track by $index">
 									<?php include "templates/op_card.shtml" ?>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane m-0 p-0" id="equip" role="tabpanel">
+							<!-- Equipment -->
+							<h5><em>Work in progress - Please check later</em></h5>
+							<h3 class="text-center line-top-light">
+								Active Equipment
+							</h3>
+							<div class="row p-0 m-0">
+								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
+									<div class="line-top-light">
+										<h5>
+											<input type="checkbox" id="{{ eq.factionid }}-{{ eq.killteamid }}-{{ eq.eqid }}-active" ng-model="eq.selected" ng-true-value="1" ng-false-value="0" ng-change="selectRosterEq(dashboardroster, eq, eq.selected)" />
+											{{ eq.eqname }}
+										</h5>
+										<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
+									</div>
+								</div>
+							</div>
+							<h3 class="text-center line-top-light">
+								Inactive Equipment
+							</h3>
+							<div class="row p-0 m-0">
+								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="!eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
+									<h4 class="text-center line-top-light" ng-if="$index > 0 && dashboardroster.killteam.equipments[$index].eqcategory != dashboardroster.killteam.equipments[$index - 1].eqcategory">
+										{{ eq.eqcategory }}
+									</h4>
+									<div class="line-top-light">
+										<h5>
+											<input type="checkbox" id="{{ eq.factionid }}-{{ eq.killteamid }}-{{ eq.eqid }}-active" ng-model="eq.selected" ng-true-value="1" ng-false-value="0" ng-change="selectRosterEq(dashboardroster, eq, eq.selected)" />
+											{{ eq.eqname }}
+										</h5>
+										<p class="oswald p-1" style="text-align: justify;" ng-bind-html="eq.eqdescription"></p>
+									</div>
 								</div>
 							</div>
 						</div>

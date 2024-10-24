@@ -111,6 +111,7 @@ class User extends \OFW\OFWObject
 					$r->loadOperatives();
 					$r->loadKillTeam();
 					$r->loadTacOps();
+					$r->loadRosterEquipments();
 				}
 				$this->rosters[] = $r;
 			}

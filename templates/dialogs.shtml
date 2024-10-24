@@ -561,11 +561,13 @@
 				<!-- Equipments List-->
 				<div
 					ng-repeat="eq in tempeditop.equipments track by $index"
-					ng-if="(settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')) && (tempeditop.edition == 'kt24' || eq.eqcategory != 'Universal Equipment')">
+					ng-if="(settings['shownarrative'] == 'y' || (eq.eqcategory != 'Battle Honour' && eq.eqcategory != 'Battle Scar' && eq.eqcategory != 'Rare Equipment')) && (tempeditop.edition == 'kt24' || (eq.eqcategory != 'Universal Equipment' && eq.eqcategory != 'Equipment'))">
 					
 					<h6 ng-if="$index > 0 && tempeditop.equipments[$index].eqcategory != tempeditop.equipments[$index - 1].eqcategory">
 						<br/>{{ eq.eqcategory }}
 					</h6>
+
+					<!-- Ed {{ tempeditop.edition }} -->
 					
 					<!-- Only show matching specialisms -->
 					<div ng-if="eq.eqcategory != 'Battle Honour' || eq.killteamid != 'ALL' || (

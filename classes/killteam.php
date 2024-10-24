@@ -194,7 +194,7 @@ class Killteam extends \OFW\OFWObject
 
 		$this->equipments = [];
 
-		$sql = "SELECT * FROM Equipment WHERE (factionid = ? AND killteamid = ?) OR (factionid = 'ALL' AND killteamid = 'ALL') ORDER BY eqseq, eqname;";
+		$sql = "SELECT * FROM Equipment WHERE (factionid = ? AND killteamid = ?) OR (factionid = ? AND killteamid = 'ALL') ORDER BY eqseq, eqname;";
 
 		$cmd = $dbcon->prepare($sql);
 		if (!$cmd) {
@@ -203,7 +203,7 @@ class Killteam extends \OFW\OFWObject
 		}
 
 		//Set the parameters
-		$cmd->bind_param('ss', $this->factionid, $this->killteamid);
+		$cmd->bind_param('sss', $this->factionid, $this->killteamid, $this->edition);
 
 		//Run the query
 		if (!$cmd->execute()) {
