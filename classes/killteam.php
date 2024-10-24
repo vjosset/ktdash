@@ -32,29 +32,20 @@ class Killteam extends \OFW\OFWObject
 
 		if ($killteam != null) {
 			// Load its fireteams
-			$log .= "fts: " . microtime(true);
 			$killteam->loadFireteams();
 
 			// Load its ploys
-			$log .= "pls: " . microtime(true);
 			$killteam->loadPloys();
 
 			// Load its equipments
-			$log .= "eqs: " . microtime(true);
 			$killteam->loadEquipments();
 
 			// Load its tacops
-			$log .= "tacops: " . microtime(true);
 			$killteam->loadTacOps();
 
 			// Load its "spotlighted" rosters
-			$log .= "spot: " . microtime(true);
 			$killteam->loadRosters();
 		}
-
-		$log .= "done:" . microtime(true);
-
-		header('KTTimings: ' . $log);
 
 		return $killteam;
 	}

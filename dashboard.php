@@ -211,12 +211,11 @@
 						</div>
 						<div class="tab-pane m-0 p-0" id="equip" role="tabpanel">
 							<!-- Equipment -->
-							<h5><em>Work in progress - Please check later</em></h5>
 							<h3 class="text-center line-top-light">
 								Active Equipment
 							</h3>
 							<div class="row p-0 m-0">
-								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
+								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-md-6 col-xl-3" ng-if="eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
 									<div class="line-top-light">
 										<h5>
 											<input type="checkbox" id="{{ eq.factionid }}-{{ eq.killteamid }}-{{ eq.eqid }}-active" ng-model="eq.selected" ng-true-value="1" ng-false-value="0" ng-change="selectRosterEq(dashboardroster, eq, eq.selected)" />
@@ -230,7 +229,7 @@
 								Inactive Equipment
 							</h3>
 							<div class="row p-0 m-0">
-								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-lg-6 col-xl-4" ng-if="!eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
+								<div ng-repeat="eq in dashboardroster.rostereqs track by $index" class="col-12 col-md-6 col-xl-3" ng-if="!eq.selected && (eq.eqcategory == 'Equipment' || eq.eqcategory == 'Universal Equipment')">
 									<h4 class="text-center line-top-light" ng-if="$index > 0 && dashboardroster.killteam.equipments[$index].eqcategory != dashboardroster.killteam.equipments[$index - 1].eqcategory">
 										{{ eq.eqcategory }}
 									</h4>
