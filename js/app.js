@@ -682,10 +682,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				*/
 
-				console.log("        EQ: " + JSON.stringify(eq));
-
-				if (eq.eqtype.toLowerCase().includes("weapon")) {
-					// Give this op their weapon!
+				if (op.edition == 'kt24' && eq.eqtype.toLowerCase().includes("weapon")) {
+					console.log("Giving eq wep " +  eq.eqname + " to op " + op.opname);
 					op.weapons.push(eq.weapon);
 				}
 				if (eq.eqtype.toLowerCase().includes("ability")) {
