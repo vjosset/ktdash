@@ -1075,6 +1075,79 @@ function GetName()
 			return "Marksman Warrior"; 
 		case "SPEC|NPO|NPO|MM-HVY": 
 			return "Marksman Heavy";
+		
+		case "HBR|MALNPO|DEMO|HVY": 
+			return "Demolition Heavy";
+		case "HBR|MALNPO|DEMO|TGH": 
+			return "Demolition Tough";
+		case "HBR|MALNPO|DEMO|TRP": 
+			return "Demolition Trooper";
+		case "HBR|MALNPO|DEMO|WAR": 
+			return "Demolition Warrior";
+		case "HBR|MALNPO|DIM|HVY": 
+			return "Diminutive Heavy";
+		case "HBR|MALNPO|DIM|TGH": 
+			return "Diminutive Tough";
+		case "HBR|MALNPO|DIM|TRP": 
+			return "Diminutive Trooper";
+		case "HBR|MALNPO|DIM|WAR": 
+			return "Diminutive Warrior";
+		case "HBR|MALNPO|FRZ|HVY": 
+			return "Frenzied Heavy";
+		case "HBR|MALNPO|FRZ|TGH": 
+			return "Frenzied Tough";
+		case "HBR|MALNPO|FRZ|TRP": 
+			return "Frenzied Trooper";
+		case "HBR|MALNPO|FRZ|WAR": 
+			return "Frenzied Warrior";
+		case "HBR|MALNPO|FTR|HVY": 
+			return "Fighter Heavy";
+		case "HBR|MALNPO|FTR|TGH": 
+			return "Fighter Tough";
+		case "HBR|MALNPO|FTR|TRP": 
+			return "Fighter Trooper";
+		case "HBR|MALNPO|FTR|WAR": 
+			return "Fighter Warrior";
+		case "HBR|MALNPO|INF|HVY": 
+			return "Infiltrator Heavy";
+		case "HBR|MALNPO|INF|TGH": 
+			return "Infiltrator Tough";
+		case "HBR|MALNPO|INF|TRP": 
+			return "Infiltrator Trooper";
+		case "HBR|MALNPO|INF|WAR": 
+			return "Infiltrator Warrior";
+		case "HBR|MALNPO|SHT|HVY": 
+			return "Shooter Heavy";
+		case "HBR|MALNPO|SHT|TGH": 
+			return "Shooter Tough";
+		case "HBR|MALNPO|SHT|TRP": 
+			return "Shooter Trooper";
+		case "HBR|MALNPO|SHT|WAR": 
+			return "Shooter Warrior";
+		case "HBR|MALNPO|SLD|HVY": 
+			return "Soldier Heavy";
+		case "HBR|MALNPO|SLD|TGH": 
+			return "Soldier Tough";
+		case "HBR|MALNPO|SLD|TRP": 
+			return "Soldier Trooper";
+		case "HBR|MALNPO|SLD|WAR": 
+			return "Soldier Warrior";
+		case "HBR|MALNPO|SPEC|HVY": 
+			return "Specialist Heavy";
+		case "HBR|MALNPO|SPEC|TGH": 
+			return "Specialist Tough";
+		case "HBR|MALNPO|SPEC|TRP": 
+			return "Specialist Trooper";
+		case "HBR|MALNPO|SPEC|WAR": 
+			return "Specialist Warrior";
+		case "HBR|MALNPO|TAC|HVY": 
+			return "Tactical Heavy";
+		case "HBR|MALNPO|TAC|TGH": 
+			return "Tactical Tough";
+		case "HBR|MALNPO|TAC|TRP": 
+			return "Tactical Trooper";
+		case "HBR|MALNPO|TAC|WAR": 
+			return "Tactical Warrior";
 	}
 
 	// If we haven't returned yet, return a generic name
