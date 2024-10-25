@@ -1860,16 +1860,17 @@ var app = angular.module("kt", ['ngSanitize'])
 				if (roster) {
 					for (let i = 0; i < roster.operatives.length; i++) {
 						let op = roster.operatives[i];
-						if (roster.killteamid != 'NPO')
+						if (roster.killteamid.endsWith('NPO'))
 						{
+							// Use the total Wounds instead of equipment points
+							total += parseInt(op.W);
+						} else {
+							// Use EQ points
 							if($scope.MODE != 'Dashboard' || !op.hidden) {
 								for (let j = 0; j < op.equipments.length; j++) {
 									total += parseInt(op.equipments[j].eqpts);
 								}
 							}
-						} else {
-							// Use the total Wounds instead of equipment points
-							total += parseInt(op.W);
 						}
 					}
 				}
