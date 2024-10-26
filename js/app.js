@@ -28,7 +28,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				showopseq: 'n',
 				startvp: 2,
 				startcp: 3,
-				applyeqmods: 'n',
+				applyeqmods: 'y',
+				showrostereqsonops: 'n',
 				hideappliedeqmods: 'n',
 				shownarrative: 'n',
 				autoinccp: 'n',
@@ -50,7 +51,8 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("showopseq", "n", true);
 					$scope.setSetting("startvp", "2", true);
 					$scope.setSetting("startcp", "3", true);
-					$scope.setSetting("applyeqmods", "n", true);
+					$scope.setSetting("applyeqmods", "y", true);
+					$scope.setSetting("showrostereqsonops", "n", true);
 					$scope.setSetting("hideappliedeqmods", "n", true);
 					$scope.setSetting("shownarrative", "n", true);
 					$scope.setSetting("autoinccp", "n", true);
@@ -78,7 +80,10 @@ var app = angular.module("kt", ['ngSanitize'])
 					$scope.setSetting("startcp", "3", true);
 				}
 				if (!$scope.settings["applyeqmods"]) {
-					$scope.setSetting("applyeqmods", "n", true);
+					$scope.setSetting("applyeqmods", "y", true);
+				}
+				if (!$scope.settings["showrostereqsonops"]) {
+					$scope.setSetting("showrostereqsonops", "n", true);
 				}
 				if (!$scope.settings["hideappliedeqmods"]) {
 					$scope.setSetting("hideappliedeqmods", "n", true);
@@ -612,7 +617,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				// Close quarters special rules
 				if ($scope.settings["closequarters"] == "y") {
-					console.log("CloseQuarters");
+					//console.log("CloseQuarters");
 					// Add the Lethal 5+ to Blast X, Splash X and/or Torrent X
 					if (roster != null) {
 						for (let opnum = 0; opnum < roster.operatives.length; opnum++) {
@@ -648,7 +653,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 
 			$scope.applyEqToOp = function(op, eq) {
-				console.log("      Applying equipment " + eq.eqid + " to " + op.opname);
+				//console.log("      Applying equipment " + eq.eqid + " to " + op.opname);
 				/*
 				if (eq.eqtype.toLowerCase().includes("ability")) {
 					let ab = {
@@ -682,17 +687,8 @@ var app = angular.module("kt", ['ngSanitize'])
 				*/
 
 				if (op.edition == 'kt24' && eq.eqtype.toLowerCase().includes("weapon")) {
-					console.log("Giving eq wep " +  eq.eqname + " to op " + op.opname);
+					//console.log("Giving eq wep " +  eq.eqname + " to op " + op.opname);
 					op.weapons.push(eq.weapon);
-				}
-				if (eq.eqtype.toLowerCase().includes("ability")) {
-					// Give this op their ability!
-					let ab = {
-						abilityid: eq.eqid,
-						title: eq.eqname,
-						description: eq.eqdescription
-					};
-					op.abilities.push(ab);
 				}
 				
 				if (eq.eqtype.toLowerCase().includes("wepmod")) {
@@ -1013,8 +1009,8 @@ var app = angular.module("kt", ['ngSanitize'])
 						).catch(function(data)
 						{
 							// Failure
-							console.log("Failed to get rosters: \r\n" + data);
-							console.log(JSON.stringify(data));
+							//console.log("Failed to get rosters: \r\n" + data);
+							//console.log(JSON.stringify(data));
 							toast("Could not get rosters: \r\n" + error);
 							$scope.loading = false;
 						});
@@ -1040,11 +1036,11 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 
 			$scope.initPrintRoster = function(roster) {
-				console.log("initPrintRoster(" + roster.rosterid + ")");
+				//console.log("initPrintRoster(" + roster.rosterid + ")");
 				$scope.myRoster = roster;
 				
 				// Show the modal
-				console.log("Showing modal...");
+				//console.log("Showing modal...");
 				$('#rosterprintmodal').modal("show");
 			}
 			
@@ -1675,7 +1671,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				delete $scope.rostertoedit.newrostername;
 				delete $scope.rostertoedit.newnotes;
 
-				console.log("Old Keyword: " + oldkeyword + ", New Keyword: " + newkeyword);
+				//console.log("Old Keyword: " + oldkeyword + ", New Keyword: " + newkeyword);
 				if (oldkeyword != newkeyword) {
 					// Propagate the custom keyword to the operatives
 					for (let opnum = 0; opnum < $scope.rostertoedit.operatives.length; opnum++) {
@@ -1803,7 +1799,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Show the modal
 				$('#sharerostermodal').modal("show");
 
-				console.log("Roster plaintext description: " + "\r\n" + $scope.getRosterPlainTextDescription(roster));
+				//console.log("Roster plaintext description: " + "\r\n" + $scope.getRosterPlainTextDescription(roster));
 			}
 		
 			// showShareRosterGallery()
@@ -1904,7 +1900,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 		
 			$scope.toggleSpotlight = function(roster, on) {
-				console.log("toggleSpotlight(" + roster.rosterid + ", " + on + ");");
+				//console.log("toggleSpotlight(" + roster.rosterid + ", " + on + ");");
 				
 				$.ajax({
 					type: "POST",
@@ -1933,7 +1929,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// opCanBeInjured()
 			// Returns a boolean indicating whether the specified operative can be injured (NOT DeathGuard, Talons/Custodes, Stalwart)
 			$scope.opCanBeInjured = function(op) {
-				console.log("opCanBeInjured(" + op.factionid + "/" + op.killteamid + ")");
+				//console.log("opCanBeInjured(" + op.factionid + "/" + op.killteamid + ")");
 				let canNotBeInjured = 
 					(op.factionid == 'CHAOS' && op.killteamid == 'DG') // Deathguard Disgustingly Resilient
 					||
@@ -1941,7 +1937,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					||
 					((',' + op.eqids + ',').includes(',BH-STA-STA,')) // Battle Honour "Stalwart"
 					;
-				console.log("Cannot be injured: " + canNotBeInjured);
+				//console.log("Cannot be injured: " + canNotBeInjured);
 				
 				return !canNotBeInjured;
 			}
@@ -2275,7 +2271,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			
 			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
-				console.log("Op: " + JSON.stringify(op));
+				//console.log("Op: " + JSON.stringify(op));
 				if ($scope.settings["useoptypeasname"] != 'n') {
 					// Copy optype to name
 					op[namevar] = op.operative.opname;
@@ -3256,7 +3252,7 @@ var app = angular.module("kt", ['ngSanitize'])
 											let eq = op.equipments[i];
 											if (eq.eqtype == 'Weapon' && eq.weapon != null) {
 												let wep = eq.weapon;
-												console.log("Injuring weapon " + wep.wepid + ": " + wep.wepname);
+												//console.log("Injuring weapon " + wep.wepid + ": " + wep.wepname);
 												for (let j = 0; j < wep.profiles.length; j++) {
 													wep.profiles[j].BS = wep.profiles[j].BS.replace("5", "6");
 													wep.profiles[j].BS = wep.profiles[j].BS.replace("4", "5");
@@ -3336,7 +3332,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			// selectDashboardRoster()
 			// Sets the specified roster as the dashboard roster
 			$scope.selectDashboardRoster = function(roster) {
-				console.log("selectDashboardRoster(" + roster.rosterid + ")");
+				//console.log("selectDashboardRoster(" + roster.rosterid + ")");
 				//te("dashboard", "selectroster", "", roster.rosterid);
 				$scope.dashboardroster = roster;
 				$scope.setDashboardRosterId(roster.rosterid);
@@ -3348,10 +3344,10 @@ var app = angular.module("kt", ['ngSanitize'])
 				//[TBD]
 				
 				// Parse selected ploys
-				console.log("Checking ploys: " + roster.killteam.ploys.strat.length);
+				//console.log("Checking ploys: " + roster.killteam.ploys.strat.length);
 				for (let ploynum = 0; ploynum < roster.killteam.ploys.strat.length; ploynum++) {
 					let ploy = roster.killteam.ploys.strat[ploynum];
-					console.log("Checking ploy " + ploy.ployid + " against " + roster.ployids);
+					//console.log("Checking ploy " + ploy.ployid + " against " + roster.ployids);
 					$scope.toggleStratPloy(roster, ploy, ("," + roster.ployids + ",").includes("," + ploy.ployid + ","));
 				}
 			}
@@ -3516,7 +3512,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				
 				let origployids = roster.ployids;
 				
-				console.log("toggleStratPloy(" + roster.rosterid + ", " + ploy.ployid + ", " + active + ")");
+				//console.log("toggleStratPloy(" + roster.rosterid + ", " + ploy.ployid + ", " + active + ")");
 				
 				// Make sure it's not null
 				if (roster.ployids == null) {
@@ -3722,7 +3718,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						error: function(data, status, error)  {
 							// Failed
 							toast("Error deactivating TacOp:\r\n" + error);
-							console.log("Error deactivating TacOp: " + error);
+							//console.log("Error deactivating TacOp: " + error);
 						}
 					});
 				}
@@ -3763,7 +3759,7 @@ var app = angular.module("kt", ['ngSanitize'])
 
 			// setTacOpScore()
 			$scope.setTacOpScore = function(roster, tacop, vp1, vp2) {
-				console.log("setTacOpScore(" + vp1 + ", " + vp2 + ")");
+				//console.log("setTacOpScore(" + vp1 + ", " + vp2 + ")");
 
 				// Set the score for this tacop
 				let rto = {

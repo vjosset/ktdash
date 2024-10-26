@@ -154,7 +154,6 @@ th, td {
 
 .twocols {
 	columns: 2;
-	column-width: 400px;
 }
 
 .twocols .section {

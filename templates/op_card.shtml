@@ -17,6 +17,10 @@
 				<h2 class="d-inline" ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</h2>
 				<h2 class="d-inline" ng-if="settings['opnamefirst'] == 'y'">{{ operative.opname }}</h2>
 				<h2 class="d-inline" ng-if="settings['opnamefirst'] == 'n'">{{ operative.optype }}</h2>
+				<sup class="d-inline h6">
+					<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
+					<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
+				</sup>
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
 				<h6 ng-if="MODE == 'Print'" class="float-end text-end">{{ operative.optype }}</h6>
 				<i class="fas fa-skull fa-fw float-end" alt="Slain" title="Slain" ng-if="MODE != 'Print' && opIsSlain(operative)"></i>
@@ -24,7 +28,7 @@
 			
 			<!-- Actions -->
 			<div class="col-1 m-0 p-0 align-text-top text-end" ng-if="MODE == 'MyRoster'">
-				<div class="btn-group dropstart">
+				<div class="btn-group dropstart d-inline">
 					<a role="button" id="opactions_{{ operative.rosteropid }}" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<i class="fas fa-ellipsis-h fa-fw"></i>
 					</a>
@@ -56,7 +60,7 @@
 		
 		<!-- Dashboard Card Title -->
 		<div ng-if="MODE == 'Dashboard'" class="card-title m-0 p-1">
-			<h2 class="pointer mb-0" ng-class="{orangetext: !operative.activated, greytext: opIsDead(operative) }">
+			<h2 class="pointer mb-0 d-inline" ng-class="{orangetext: !operative.activated, greytext: opIsDead(operative) }">
 				<i class="h6 pointer fas fa-chevron-down" aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}"></i>
 				
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
@@ -65,7 +69,12 @@
 					<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.optype }}</span>
 				</span>
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
-				
+			</h2>
+			<sup class="d-inline h6" ng-class="{orangetext: !operative.activated, greytext: opIsDead(operative) }">
+				<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
+				<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
+			</sup>
+			<h2 class="pointer mb-0 d-inline" ng-class="{orangetext: !operative.activated, greytext: opIsDead(operative) }">
 				<img style="height: 1em;" class="float-end" alt="Engage - Activated" title="Engage - Activated" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageWhite.png" ng-if="operative.oporder == 'engage' && operative.activated && !opIsDead(operative)" />
 				<img style="height: 1em;" class="float-end" alt="Engage - Ready" title="Engage - Ready" ng-click="setOperativeOrder(operative, 'conceal');" src="/img/icons/EngageOrange.png" ng-if="operative.oporder == 'engage' && !operative.activated && !opIsDead(operative)" />
 				<img style="height: 1em;" class="float-end" alt="Conceal - Activated" title="Conceal - Activated" ng-click="setOperativeOrder(operative, 'engage');" src="/img/icons/ConcealWhite.png" ng-if="(operative.oporder == 'conceal' || !operative.oporder) && operative.activated && !opIsDead(operative)" />
@@ -101,8 +110,7 @@
 			<div class="row m-0 p-0">
 				<!-- Dashboard/Roster Portrait -->
 				<div ng-if="(MODE == 'Dashboard' || MODE == 'MyRoster' || MODE == 'Roster' || MODE == 'Print') && settings['display'] == 'card'" class="col-5 m-0 p-0 pointer h-100" style="overflow: hidden;"
-					ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);"
-					>
+					ng-click="showPhoto(operative.opname, '/api/operativeportrait.php?roid=' + operative.rosteropid);">
 					<img id="opportrait_{{operative.rosteropid}}"
 						title="{{ operative.opname }}"
 						alt="{{ operative.opname }}"
@@ -317,8 +325,6 @@
 							<td width="55%">
 								<h6>
 									Weapons
-									<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
-									<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
 								</h6>
 							</td>
 							<td class="text-center" width="10%">
@@ -456,30 +462,21 @@
 			</div>
 			
 			<!-- Operative Equipment -->
-			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium' && (operative.equipments.length > 0)">
+			<div class="p-1 line-top-light" ng-if="MODE != 'Compendium'">
 				<!-- div class="line-top-light" ng-if="MODE == 'MyRoster' && operative.equipments.length > 0 && (operative.equipments.length > (operative.equipments.filter(eqIsWeapon).length + operative.equipments.filter(eqIsAbility).length + operative.equipments.filter(eqIsAction).length))" -->
-				<div class="row">
-					<h6 class="pointer col-6">
-						Equipment
-						<span class="oswald text-small" ng-if="totalOpEqPts(operative) > 0">({{ totalOpEqPts(operative) }} EP)</span>
-						<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
-						<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
-					</h6>
-
-					<!--
-					Show equipment if:
-						hideautoappliedmods != n
-						OR
-						!eq.autoapplied
-						OR
-						eqpts > 0
-					-->
-					
-					<div ng-if="settings['hideappliedeqmods'] == 'n' || !eq.autoapplied || eq.eqpts > 0" class="pointer col-6" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments">
-						<!-- h6 class="pt-1 p-0 m-0 span" ng-if="eq.eqcategory != '' && ($index == 0 || ($index > 0 && eq.eqcategory != operative.equipments[$index -1].eqcategory))">{{ eq.eqcategory }}</h6 -->
-						{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
+				<div class="twocols">
+					<div class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in operative.equipments track by $index">
+						<h6 style="column-span: all;" class="pt-1 p-0 m-0" ng-if="eq.eqcategory != '' && ($index == 0 || ($index > 0 && eq.eqcategory != operative.equipments[$index -1].eqcategory))">{{ eq.eqcategory }}</h6>
+						<span style="white-space: nowrap;">
+							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
+						</span>
 					</div>
-					
+					<div ng-if="MODE == 'Dashboard' && settings['showrostereqsonops'] == 'y' && eq.selected" class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in dashboardroster.rostereqs track by $index">
+						<h6 style="column-span: all;" class="pt-1 p-0 m-0" ng-if="eq.eqcategory != '' && ($index == 0 || ($index > 0 && eq.eqcategory != dashboardroster.rostereqs[$index -1].eqcategory))">{{ eq.eqcategory }}</h6>
+						<span style="white-space: nowrap;">
+							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
+						</span>
+					</div>
 				</div>
 			</div>
 			

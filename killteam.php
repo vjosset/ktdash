@@ -121,7 +121,7 @@
 						Operatives
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0 dark" role="presentation">
+				<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="killteam.ploys.length > 0">
 					<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#ploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
 						Ploys
 					</a>
@@ -131,7 +131,7 @@
 						Equip
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0 dark" role="presentation">
+				<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="killteam.tacops.length > 0">
 					<a class="nav-link dark" id="to-tab" data-bs-toggle="tab" data-bs-target="#tacops" type="button" role="tab" aria-controls="tacops" aria-selected="false">
 						TacOps
 					</a>
@@ -169,7 +169,7 @@
 				</div>
 				
 				<!-- Ploys -->
-				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel">
+				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel" ng-if="killteam.ploys.length > 0">
 					<div class="row container-fluid m-0 p-0">
 						<div class="col-xs-12 col-md-6">
 							<!-- Strategic Ploys -->
@@ -206,7 +206,7 @@
 				</div>
 			
 				<!-- TacOps -->
-				<div class="tab-pane" id="tacops" role="tabpanel">
+				<div class="tab-pane" id="tacops" role="tabpanel" ng-if="killteam.tacops.length > 0">
 					<div class="m-0 p-0">
 						<div ng-if="killteam.tacops.length > 0" class="row p-0 m-0">
 							<div class="col-12 col-md-6 col-xl-4 m-0 p-0" ng-repeat="tacop in killteam.tacops track by $index">

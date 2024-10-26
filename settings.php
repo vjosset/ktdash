@@ -140,6 +140,23 @@
 			<h2 class="line-top-light">Game Options</h2>
 			<div class="m-2 row">
 				<div class="col-12 col-md-6 m-0 p-0">
+					<h5>Show Roster equipment on Operatives</h5>
+					Shows all roster equipment selections on operative cards (KT24 only)
+					<br/>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showrostereqsonops', 'y');" ng-class="settings['showrostereqsonops'] == 'y' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
+						<i class="pointer fas fa-magic fa-fw"></i><br/>
+						Show
+					</button>
+					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showrostereqsonops', 'n');" ng-class="settings['showrostereqsonops'] == 'n' ? 'btn-primary': 'btn-secondary'">
+						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
+						<i class="pointer fas fa-bars fa-fw"></i><br/>
+						Hide
+					</button>
+					<br/><br/>
+				</div>
+
+				<div class="col-12 col-md-6 m-0 p-0">
 					<h5>Auto-Apply Equipment Modifiers</h5>
 					Automatically applies equipment modifiers to operatives and weapons if enabled.
 					<br/>
@@ -156,22 +173,20 @@
 					<br/><br/>
 				</div>
 				
-				<div class="col-12 col-md-6 m-0 p-0" ng-if="settings['applyeqmods'] == 'y'">
+				<!-- div class="col-12 col-md-6 m-0 p-0" ng-if="settings['applyeqmods'] == 'y'">
 					<h5>Hide Auto-Applied Equipments</h5>
 					Hides equipments from the "Equipment" list if they were auto-applied to Abilities, Actions, or Operative/Weapon stats
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('hideappliedeqmods', 'y');" ng-class="settings['hideappliedeqmods'] == 'y' ? 'btn-primary': 'btn-secondary'">
-						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
 						<i class="pointer fas fa-times fa-fw"></i><br/>
 						Hide
 					</button>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('hideappliedeqmods', 'n');" ng-class="settings['hideappliedeqmods'] == 'n' ? 'btn-primary': 'btn-secondary'">
-						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
 						<i class="pointer fas fa-check fa-fw"></i><br/>
 						Show
 					</button>
 					<br/><br/>
-				</div>
+				</div -->
 
 				<div class="col-12 col-md-6 m-0 p-0">
 					<h5>Narrative Info</h5>
