@@ -194,7 +194,7 @@ th, td {
 	
 	.card {
 		page-break-inside: avoid;
-		border: 1px solid #000;
+		border: 1px solid #000 !important;
 	}
 
 	.darkcard {
