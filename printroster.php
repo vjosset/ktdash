@@ -196,7 +196,8 @@
 		foreach($myRoster->operatives as $op)
 		{
 		?>
-			<div class="px-1" style="page-break-inside: avoid; page-break-before: auto; border: 1px solid #000;">
+		<div class="mx-1 p-0" style="page-break-inside: avoid; page-break-before: auto; border: 1px solid #000;">
+			<div class="m-0 p-0">
 				<div class="row p-0 m-0">
 					<div class="col-7 p-0 m-0">
 						<!-- Operative Name -->
@@ -204,70 +205,72 @@
 					</div>
 					<div class="col-5 p-0 m-0 text-end">
 						<!-- Operative Type -->
-						<?php echo $op->optype ?><br/>
-						<!-- Wounds Tracker -->
-						<h6 class="d-inline">W:</h6>
-						<?php
-						for ($i = 0; $i < $op->W; $i++)
-						{
-							?><input type="checkbox" /><?php
-						}
-						?>
+						<?php echo $op->optype ?>
 					</div>
+				</div>
+				<div class="m-0 p-0 text-end">
+					<!-- Wounds Tracker -->
+					<h6 class="d-inline">W:</h6>
+					<?php
+					for ($i = 0; $i < $op->W; $i++)
+					{
+						?><input type="checkbox" /><?php
+					}
+					?>
 				</div>
 				
 				<!-- Keywords -->
 				<em class="small"><?php echo htmlentities($op->keywords, ENT_HTML5  , 'UTF-8') ?></em>
 				
 				<div class="row p-0 m-0">
-						<div class="col-3 m-0 p-0 pointer h-100" style="overflow: hidden;">
-							<!-- Operative Portrait -->
-							<img
-								src="/api/operativeportrait.php?roid=<?php echo $op->rosteropid ?>"
-								style="border: 1px solid #EEE; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
-						</div>
-						<div class="col-9">
+					<div class="col-3 m-0 p-0 pointer h-100" style="overflow: hidden;">
+						<!-- Operative Portrait -->
+						<img
+							src="/api/operativeportrait.php?roid=<?php echo $op->rosteropid ?>"
+							style="border: 1px solid #EEE; width: 100%; min-height: 140px; max-height: 140px; object-fit:cover; object-position:50% 0%; display:block;" />
+					</div>
+					<div class="col-9">
 						<!-- Operative Stats -->
-							<?php 
-							if ($op->edition == 'kt21') {
-							?>
-								<div class="row">
-									<h5 class="col-2 orange text-center">M</h5>
-									<h5 class="col-2 orange text-center">APL</h5>
-									<h5 class="col-2 orange text-center">GA</h5>
-									<h5 class="col-2 orange text-center">DF</h5>
-									<h5 class="col-2 orange text-center">SV</h5>
-									<h5 class="col-2 orange text-center">W</h5>
-								</div>
-								<div class="row">
-									<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
-									<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
-									<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
-									<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
-									<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
-									<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
-								</div>
-							<?php
-							} else {
-								?>
-								<div class="row">
-									<h5 class="col-3 orange text-center">MOV</h5>
-									<h5 class="col-3 orange text-center">APL</h5>
-									<h5 class="col-3 orange text-center">SAV</h5>
-									<h5 class="col-3 orange text-center">WND</h5>
-								</div>
-								<div class="row">
-									<h5 class="col-3 text-center"><?php echo $op->M ?></h5>
-									<h5 class="col-3 text-center"><?php echo $op->APL ?></h5>
-									<h5 class="col-3 text-center"><?php echo $op->SV  ?></h5>
-									<h5 class="col-3 text-center"><?php echo $op->W   ?></h5>
-								</div>
-								<?php
-							}
-							?>
+						<?php 
+						if ($op->edition == 'kt21') {
+						?>
+							<div class="row">
+								<h5 class="col-2 orange text-center">M</h5>
+								<h5 class="col-2 orange text-center">APL</h5>
+								<h5 class="col-2 orange text-center">GA</h5>
+								<h5 class="col-2 orange text-center">DF</h5>
+								<h5 class="col-2 orange text-center">SV</h5>
+								<h5 class="col-2 orange text-center">W</h5>
 							</div>
-						</div>
+							<div class="row">
+								<h5 class="col-2 text-center"><?php echo replacedistance($op->M)   ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->APL ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->GA  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->DF  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->SV  ?></h5>
+								<h5 class="col-2 text-center"><?php echo $op->W   ?></h5>
+							</div>
+						<?php
+						} else {
+							?>
+							<div class="row">
+								<h5 class="col-3 orange text-center">MOV</h5>
+								<h5 class="col-3 orange text-center">APL</h5>
+								<h5 class="col-3 orange text-center">SAV</h5>
+								<h5 class="col-3 orange text-center">WND</h5>
+							</div>
+							<div class="row">
+								<h5 class="col-3 text-center"><?php echo $op->M ?></h5>
+								<h5 class="col-3 text-center"><?php echo $op->APL ?></h5>
+								<h5 class="col-3 text-center"><?php echo $op->SV  ?></h5>
+								<h5 class="col-3 text-center"><?php echo $op->W   ?></h5>
+							</div>
+							<?php
+						}
+						?>
+					</div>
 				</div>
+			</div>
 				
 				<!-- Weapons -->
 				<div class="px-1">
@@ -546,6 +549,7 @@
 			<?php
 		}
 		?>
+		</div>
 		</div>
 
 		<?php

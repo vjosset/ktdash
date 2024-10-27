@@ -1075,20 +1075,20 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initRosterForPrint = function(rid, skipte, s) {
 				// We're viewing this roster for printing/PDF render, pre-load the settings for the PDF renderer
 				//	TODO: Pull these from the URL; user will pass their current settings to the renderer
-				$scope.setSetting("edition", "", true);
-				$scope.setSetting("display", "card", true);
-				$scope.setSetting("showopseq", "n", true);
-				$scope.setSetting("startvp", "2", true);
-				$scope.setSetting("startcp", "3", true);
-				$scope.setSetting("applyeqmods", "y", true);
-				$scope.setSetting("hideappliedeqmods", "y", true);
-				$scope.setSetting("shownarrative", "n", true);
-				$scope.setSetting("autoinccp", "n", true);
-				$scope.setSetting("defaultoporder", "engage", true);
-				$scope.setSetting("showopid", "n", true);
-				$scope.setSetting("useoptypeasname", "n", true);
-				$scope.setSetting("closequarters", "n", true);
-				$scope.setSetting("opnamefirst", "y", true);
+				//$scope.setSetting("edition", "", true);
+				//$scope.setSetting("display", "card", true);
+				//$scope.setSetting("showopseq", "n", true);
+				//$scope.setSetting("startvp", "2", true);
+				//$scope.setSetting("startcp", "3", true);
+				//$scope.setSetting("applyeqmods", "y", true);
+				//$scope.setSetting("hideappliedeqmods", "y", true);
+				//$scope.setSetting("shownarrative", "n", true);
+				//$scope.setSetting("autoinccp", "n", true);
+				//$scope.setSetting("defaultoporder", "engage", true);
+				//$scope.setSetting("showopid", "n", true);
+				//$scope.setSetting("useoptypeasname", "n", true);
+				//$scope.setSetting("closequarters", "n", true);
+				//$scope.setSetting("opnamefirst", "y", true);
 
 				// Now we can initRoster
 				$scope.initRoster(rid, skipte, s);
