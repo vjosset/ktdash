@@ -3958,7 +3958,6 @@ var app = angular.module("kt", ['ngSanitize'])
 								rule.ruletext = "Distribute the Attack dice between valid targets within " + $scope.PlaceHolders["[CIRCLE]"] + " of original target";
 								break;
 							case "GRAV":
-							case "GRAV*":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack.";
 								break;
 							case "HVY": /* TODO: DIFFERENT FOR 24!! */
