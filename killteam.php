@@ -121,7 +121,7 @@
 						Operatives
 					</a>
 				</li>
-				<li class="nav-item m-0 p-0 dark" role="presentation" ng-if="killteam.ploys.length > 0">
+				<li class="nav-item m-0 p-0 dark" role="presentation">
 					<a class="nav-link dark" id="ploy-tab" data-bs-toggle="tab" data-bs-target="#ploys" type="button" role="tab" aria-controls="ploys" aria-selected="false">
 						Ploys
 					</a>
@@ -169,7 +169,7 @@
 				</div>
 				
 				<!-- Ploys -->
-				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel" ng-if="killteam.ploys.length > 0">
+				<div class="tab-pane m-0 p-0" id="ploys" role="tabpanel">
 					<div class="row container-fluid m-0 p-0">
 						<div class="col-xs-12 col-md-6">
 							<!-- Strategic Ploys -->

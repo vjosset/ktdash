@@ -145,12 +145,12 @@
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showrostereqsonops', 'y');" ng-class="settings['showrostereqsonops'] == 'y' ? 'btn-primary': 'btn-secondary'">
 						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
-						<i class="pointer fas fa-magic fa-fw"></i><br/>
+						<i class="pointer fas fa-check fa-fw"></i><br/>
 						Show
 					</button>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('showrostereqsonops', 'n');" ng-class="settings['showrostereqsonops'] == 'n' ? 'btn-primary': 'btn-secondary'">
 						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'card' || settings['display'] == null"></i -->
-						<i class="pointer fas fa-bars fa-fw"></i><br/>
+						<i class="pointer fas fa-times fa-fw"></i><br/>
 						Hide
 					</button>
 					<br/><br/>
@@ -158,7 +158,7 @@
 
 				<div class="col-12 col-md-6 m-0 p-0">
 					<h5>Auto-Apply Equipment Modifiers</h5>
-					Automatically applies equipment modifiers to operatives and weapons if enabled.
+					Automatically applies equipment and option modifiers to operatives and weapons if enabled (e.g. Chapter Tactics, Marks of Chaos, etc.).
 					<br/>
 					<button class="btn h3" style="width: 120px;" ng-click="setSetting('applyeqmods', 'y');" ng-class="settings['applyeqmods'] == 'y' ? 'btn-primary': 'btn-secondary'">
 						<!-- i class="fas fa-check fa-fw" style="top: 2px; left: 2px;" ng-if="settings['display'] == 'list'"></i -->
