@@ -557,7 +557,7 @@
 				</div>
 				
 				<h6 class="line-top-light">
-					<span ng-if="operative.edition == 'kt21'">Equipment</span><span ng-if="operative.edition != 'kt21'">Options</span>
+					<span ng-if="tempeditop.edition == 'kt21'">Equipment</span><span ng-if="tempeditop.edition != 'kt21'">Options</span>
 				</h6>
 				
 				<!-- Equipments List-->

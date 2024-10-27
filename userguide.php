@@ -53,6 +53,7 @@
 					<li>Use the <a href="https://ktdash.app/dashboard">Dashboard</a> to track your game turns, tacops, ploys, operative orders and activations and wounds, etc. Everything you need to play your games without trackers and tokens and wound markers!</li>
 					<li>If your opponent also has their roster in KTDash, use the &quot;Select Opponent&quot; option on the <a href="https://ktdash.app/dashboard">Dashboard</a> to keep track of their roster&#39;s TacOps, ploys, and operative wounds.</li>
 					<li>Use the <a href="https://ktdash.app/settings.php">Settings</a> to customize the site and application to your liking.</li>
+					<li>If you have different loadouts for your team, use "Select Operatives" on the <a href="https://ktdash.app/dashboard">Dashboard</a> to choose who is and isn't deployed. For example, rather than building two rosters as "Shooty" and "Fighty" variations, build it as a single roster and select which operatives are actually in the battle.</li>
 				</ul>
 			</div>
 
