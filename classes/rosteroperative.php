@@ -152,14 +152,15 @@ class RosterOperative extends \OFW\OFWObject
 		global $dbcon;
 
 		// Get the equipments for this operative
-		$sql = "SELECT * FROM Equipment WHERE ((factionid = ? AND killteamid = ?) OR (factionid = 'ALL' AND killteamid = 'ALL')) AND CONCAT(',', ?, ',') LIKE CONCAT('%,', eqid, ',%') ORDER BY eqseq";
+		$sql = "SELECT * FROM Equipment WHERE ((factionid = ? AND killteamid = ?) OR (factionid = ? AND killteamid = 'ALL')) AND CONCAT(',', ?, ',') LIKE CONCAT('%,', eqid, ',%') ORDER BY eqseq";
 
 		$cmd = $dbcon->prepare($sql);
-		$paramtypes = "sss";
+		$paramtypes = "ssss";
 		$params = array();
 		$params[] =& $paramtypes;
 		$params[] =& $this->factionid;
 		$params[] =& $this->killteamid;
+		$params[] =& $this->baseoperative->edition;
 		$params[] =& $this->eqids;
 
 		call_user_func_array(array($cmd, "bind_param"), $params);
