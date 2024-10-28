@@ -262,50 +262,6 @@ Anonymous/authenticated
 
 `GET /api/user.php?username=jodawznev`
 
-# Session
-
-A Session represents a logged-in user's session.  
-This endpoint is used for user session validation, log in, and log out.
-
-## Endpoint
-
-`/api/session.php`
-
-## Access
-
-Access: Anonymous/authenticated
-
-## Fields
-
-- `userid` - ID of the current session's user
-- `username` - Name of the current session's user
-- `rosters` - Array of Roster objects belonging to this current session's user
-- `createddate` - Date and time (GMT-4) when this current session's user signed up/was created
-
-## API Methods
-
-### Get current session
-
-`GET /api/session.php`
-
-Returns the current user if they are signed in (based on the session cookie).
-Returns `HTTP 401` if not signed in.
-
-### Log in
-
-`POST /api/session.php?`
-
-Signs the user in
-
-#### Input
-
-- `username` - The name of the user signing in
-- `password` - The password of the user signing in
-
-#### Output
-
-The signed-in user's User object
-
 # Roster
 
 A Roster represents one roster built by a given user and contains that roster's operatives.
@@ -362,13 +318,13 @@ Access: Anonymous/authenticated
 Returns all rosters for the currently signed-in user.
 Returns `HTTP 401` if not signed in.
 
-### Get a roster/Get a user's rosters
+### Get a roster
 
 `GET /api/roster.php?rid=[rosterid]&loadrosterdetail=[loadrosterdetail]`
 
 #### Input
 
-- `rid` - The RosterID of the roster whose information to return. Returns all the specified user's rosters if not set.
+- `rid` - The RosterID of the roster whose information to return.
 - `loadrosterdetail` - `1` returns operative details in the `operatives` field. Defaults to `0`.
 
 # RosterOperative
@@ -386,6 +342,50 @@ Anonymous/authenticated
 ## Fields
 
 - [TBD]
+
+# Session
+
+A Session represents a logged-in user's session.  
+This endpoint is used for user session validation, log in, and log out.
+
+## Endpoint
+
+`/api/session.php`
+
+## Access
+
+Access: Anonymous/authenticated
+
+## Fields
+
+- `userid` - ID of the current session's user
+- `username` - Name of the current session's user
+- `rosters` - Array of Roster objects belonging to this current session's user
+- `createddate` - Date and time (GMT-4) when this current session's user signed up/was created
+
+## API Methods
+
+### Get current session
+
+`GET /api/session.php`
+
+Returns the current user if they are signed in (based on the session cookie).
+Returns `HTTP 401` if not signed in.
+
+### Log in
+
+`POST /api/session.php?`
+
+Signs the user in
+
+#### Input
+
+- `username` - The name of the user signing in
+- `password` - The password of the user signing in
+
+#### Output
+
+The signed-in user's User object
 
 # Authentication
 
