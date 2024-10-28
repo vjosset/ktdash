@@ -364,12 +364,11 @@ Returns `HTTP 401` if not signed in.
 
 ### Get a roster/Get a user's rosters
 
-`GET /api/roster.php?rid=[rosterid]&uid=[userid]&loadrosterdetail=[loadrosterdetail]`
+`GET /api/roster.php?rid=[rosterid]&loadrosterdetail=[loadrosterdetail]`
 
 #### Input
 
 - `rid` - The RosterID of the roster whose information to return. Returns all the specified user's rosters if not set.
-- `uid` - The UserID of the user whose rosters to return. Returns the currently signed-in user's rosters if not set.
 - `loadrosterdetail` - `1` returns operative details in the `operatives` field. Defaults to `0`.
 
 # RosterOperative
