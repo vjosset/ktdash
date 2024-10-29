@@ -11,6 +11,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		//Get the requested killteam
 		GETKillteam();
 		break;
+	case "OPTIONS":
+		echo "";
+		break;
 	default:
 		//Invalid verb
 		header('HTTP/1.0 400 Invalid verb "' . $_SERVER['REQUEST_METHOD'] . '"');

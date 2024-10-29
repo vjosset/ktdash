@@ -4,12 +4,15 @@ require_once $root . '/include.php';
 global $dbcon;
 
 Utils::SetApiHeaders(false);
-header("Access-Control-Allow-Methods: OPTIONS");
+header("Access-Control-Allow-Methods: OPTIONS, GET");
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":
 		//Get the requested thing
 		echo GetName();
+		break;
+	case "OPTIONS":
+		echo "";
 		break;
 	default:
 		//Invalid verb
