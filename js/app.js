@@ -3395,50 +3395,78 @@ var app = angular.module("kt", ['ngSanitize'])
 			// resetDash()
 			// Resets the dashboard, returning scores to their default values and resetting operative wounds/curw
 			$scope.resetDash = function(roster) {
-				//te("dashboard", "reset", "", roster.rosterid);
-				
-				// Update local roster
-				roster.CP = parseInt($scope.settings["startcp"]);
-				roster.VP = parseInt($scope.settings["startvp"]);
-				roster.TP = 1;
-				roster.RP = 0;
-				
-				if ($scope.RPLabels[roster.factionid] && $scope.RPLabels[roster.factionid][roster.killteamid] && $scope.RPLabels[roster.factionid][roster.killteamid].StartValue > 0) {
-					roster.RP = $scope.RPLabels[roster.factionid][roster.killteamid].StartValue;
-				}
-				
-				$scope.applyEqMods(roster);
-				
-				// Push local roster to DB/API
-				$scope.commitRoster(roster);
-				
-				// Reset operatives (not injured)
-				for (let i = 0; i < roster.operatives.length; i++) {
-					let op = roster.operatives[i];
+				let CP = parseInt($scope.settings["startcp"]);
+				let VP = parseInt($scope.settings["startvp"]);
+				let oporder = $scope.settings["defaultoporder"];
+
+				// Send a POST request to the API
+				$.ajax({
+					type: "POST",
+					url: APIURL + "rosterreset.php?rid=" + roster.rosterid + "&CP=" + CP + "&VP=" + VP + "&order=" + oporder,
+					timeout: APITimeout,
+					async: true,
 					
-					// Reset their Wounds
-					op.curW = parseInt(op.W);
-					
-					// Not activated - Must be an INT to save properly in DB
-					op.activated = 0;
-					
-					// Set their order to user's default
-					op.oporder = $scope.settings["defaultoporder"];
-					
-					// Not injured
-					op.isinjured = 0;
-					
-					$scope.commitRosterOp(op);
-				}
-				
-				// Deactivate Strategic Ploys
-				for (let i = 0; i < $scope.dashboardroster.killteam.ploys.strat.length; i++) {
-					let p = $scope.dashboardroster.killteam.ploys.strat[i];
-					p.active = false;
-					$scope.toggleStratPloy($scope.dashboardroster, p, false);
-				}
-				
-				toast('Dashboard Reset');
+					// Success
+					success: function(data) {
+
+						// Make sure to re-apply Eq mods
+						$scope.dashboardroster = data;
+						$scope.applyEqMods($scope.dashboardroster);
+						$scope.$apply();
+						
+						toast('Dashboard Reset');
+					},
+					error: function(data, status, error)  {
+						// Failed
+						toast("Error resetting dashboard:\r\n" + error);
+					}
+				});
+
+
+				////te("dashboard", "reset", "", roster.rosterid);
+				//
+				//// Update local roster
+				//roster.CP = parseInt($scope.settings["startcp"]);
+				//roster.VP = parseInt($scope.settings["startvp"]);
+				//roster.TP = 1;
+				//roster.RP = 0;
+				//
+				//if ($scope.RPLabels[roster.factionid] && $scope.RPLabels[roster.factionid][roster.killteamid] && $scope.RPLabels[roster.factionid][roster.killteamid].StartValue > 0) {
+				//	roster.RP = $scope.RPLabels[roster.factionid][roster.killteamid].StartValue;
+				//}
+				//
+				//$scope.applyEqMods(roster);
+				//
+				//// Push local roster to DB/API
+				//$scope.commitRoster(roster);
+				//
+				//// Reset operatives (not injured)
+				//for (let i = 0; i < roster.operatives.length; i++) {
+				//	let op = roster.operatives[i];
+				//	
+				//	// Reset their Wounds
+				//	op.curW = parseInt(op.W);
+				//	
+				//	// Not activated - Must be an INT to save properly in DB
+				//	op.activated = 0;
+				//	
+				//	// Set their order to user's default
+				//	op.oporder = $scope.settings["defaultoporder"];
+				//	
+				//	// Not injured
+				//	op.isinjured = 0;
+				//	
+				//	$scope.commitRosterOp(op);
+				//}
+				//
+				//// Deactivate Strategic Ploys
+				//for (let i = 0; i < $scope.dashboardroster.killteam.ploys.strat.length; i++) {
+				//	let p = $scope.dashboardroster.killteam.ploys.strat[i];
+				//	p.active = false;
+				//	$scope.toggleStratPloy($scope.dashboardroster, p, false);
+				//}
+				//
+				//toast('Dashboard Reset');
 			}
 		
 			$scope.updateCP = function(inc, roster) {

@@ -55,6 +55,7 @@ class RosterOperative extends \OFW\OFWObject
 			"fireteam",
 			"archetype",
 			"keywords",
+			"basesize",
 			"abilities",
 			"uniqueactions",
 			"timestamp",
