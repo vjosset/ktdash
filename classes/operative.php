@@ -18,6 +18,7 @@ class Operative extends \OFW\OFWObject
 	public $SV = "";
 	public $W = "";
 	public $keywords = "";
+	public $basesize = 32;
 
 	public $weapons = [];
 	public $uniqueactions = [];
