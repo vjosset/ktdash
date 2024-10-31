@@ -67,6 +67,23 @@ function RESETRoster()
 			call_user_func_array(array($cmd, "bind_param"), $params);
 			$cmd->execute();
 
+			// Reset roster equipment?
+			$reseteq = getIfSet($_REQUEST['reseteq'], 0);
+			if ($reseteq == 1) {
+				$sql = "DELETE FROM RosterEquipment WHERE rosterid = ?;";
+							
+				$cmd = $dbcon->prepare($sql);
+	
+				$paramtypes = "s";
+	
+				$params = array();
+				$params[] =& $paramtypes;
+				$params[] =& $rid;
+	
+				call_user_func_array(array($cmd, "bind_param"), $params);
+				$cmd->execute();
+			}
+
 			// Reset the operatives' wounds to full health
 			$order = getIfSet($_REQUEST['order'], 'engage');
 
@@ -88,6 +105,7 @@ function RESETRoster()
 
 			// Get the latest version of this roster
 			$roster = Roster::GetRoster($rid);
+			$roster->loadKillTeam();
 
 			// Done
 			echo json_encode($roster);
