@@ -29,17 +29,21 @@ Returns an array of all factions
 
 ### Parameters
 
+- `fa` - FactionID of the faction to return. Returns all Factions if not set.
 - `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
   - Values: `kt21` or `kt24`
-- `loadkts` - Set to `1` to include KillTeams for each Faction. Defaults to `0`.
-- `loadops` - Set to `1` to include Operatives in each KillTeam. Defaults to `0`.
-- `fa` - FactionID of the faction to return. Returns all Factions if not set.
+- `loadkts` - Set to `1` to include KillTeams for each Faction. If no factionid is specified, defaults to `0`. If pulling a specific faction, defaults to `1`.
 
 ### Examples
 
-`GET /api/faction.php?fa=IMP&loadkts=1&edition=kt24`
-
-Returns all KT2024 KillTeams for the "Imperium" faction
+- `GET /api/faction.php?fa=IMP&edition=kt24`
+  - Returns all KT2024 KillTeams for the "Imperium" faction, including all operatives in each killteam
+- `GET /api/faction.php`
+  - Returns all factions (without killteams)
+- `GET /api/faction.php?loadkts=1`
+  - Returns all factions with killteams
+- `GET /api/faction.php?loadkts=1&edition=kt24`
+  - Returns all factions with their kt24 killteams
 
 # KillTeam
 
@@ -80,18 +84,13 @@ Returns an array of all KillTeams
 
 - `edition` - Filter to return only KillTeams that match the edition. Returns both editions if not set. Returns Factions with empty KillTeams if they don't have any KillTeams for the requested edition.
   - Values: `kt21` or `kt24`
-- `fa` - FactionID of the faction to return. Returns all Factions if not set.
-- `kt` - KillteamID of the killteam to return. Returns all killteams if not set.
+- `fa` - FactionID of the killteam to return.
+- `kt` - KillteamID of the killteam to return.
 
 ### Examples
 
-`GET /api/faction.php?fa=IMP&edition=kt24`
-
-Returns all KT2024 KillTeams for the "Imperium" faction
-
-`GET /api/killteam.php?fa=IMP&kt=AOD`
-
-Returns the requested "Angels Of Death" KillTeam
+- `GET /api/killteam.php?fa=IMP&kt=AOD`
+  - Returns the requested "Angels Of Death" KillTeam
 
 # FireTeam
 
