@@ -16,13 +16,13 @@
 			<div ng-class="MODE == 'Print' ? 'col-12' : 'col-11'" class="m-0 p-0">
 				<h2 class="d-inline" ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</h2>
 				<h2 class="d-inline" ng-if="settings['opnamefirst'] == 'y'">{{ operative.opname }}</h2>
-				<h2 class="d-inline" ng-if="settings['opnamefirst'] == 'n'">{{ operative.optype }}</h2>
+				<h2 class="d-inline" ng-if="settings['opnamefirst'] == 'n'">{{ getShortOpTypeName(operative.optype) }}</h2>
 				<sup class="d-inline h6">
 					<i ng-if="MODE == 'Dashboard' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, dashboardroster);" class="pointer fas fa-edit fa-fw"></i>
 					<i ng-if="MODE == 'MyRoster' && operative.userid == currentuser.userid" ng-click="initEditOp(operative, myRoster);" class="pointer fas fa-edit fa-fw"></i>
 				</sup>
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
-				<h6 ng-if="MODE == 'Print'" class="float-end text-end">{{ operative.optype }}</h6>
+				<h6 ng-if="MODE == 'Print'" class="float-end text-end">{{ getShortOpTypeName(operative.optype) }}</h6>
 				<i class="fas fa-skull fa-fw float-end" alt="Slain" title="Slain" ng-if="MODE != 'Print' && opIsSlain(operative)"></i>
 			</div>
 			
@@ -47,7 +47,7 @@
 		</div>
 		<div ng-if="MODE == 'MyRoster' || MODE == 'Roster'" class="m-0 p-1">
 			<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.opname }}</span>
-			<span ng-if="settings['opnamefirst'] == 'y'">{{ operative.optype }}</span>
+			<span ng-if="settings['opnamefirst'] == 'y'">{{ getShortOpTypeName(operative.optype) }}</span>
 			
 			<!-- Specialisms -->
 			<span class="float-end" ng-if="settings['shownarrative'] == 'y' && operative.specialisms != ''">
@@ -66,7 +66,7 @@
 				<span ng-if="settings['showopseq'] == 'y'">{{ operative.seq + 1 }}.</span>
 				<span aria-expanded="false" data-bs-toggle="collapse" data-bs-target=".opinfo_{{ operative.rosteropid }}">
 					<span ng-if="settings['opnamefirst'] == 'y'">{{ operative.opname }}</span>
-					<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.optype }}</span>
+					<span ng-if="settings['opnamefirst'] == 'n'">{{ getShortOpTypeName(operative.optype) }}</span>
 				</span>
 				<span class="h6" ng-if="settings['showopid'] == 'y'">[{{ operative.opid }}]</span>
 			</h2>
@@ -94,7 +94,7 @@
 			<div class="row m-0 p-1" ng-if="MODE == 'Dashboard'">
 				<div class="col-6 small m-0 p-0">
 					<span ng-if="settings['opnamefirst'] == 'n'">{{ operative.opname }}</span>
-					<span ng-if="settings['opnamefirst'] == 'y'">{{ operative.optype }}</span>
+					<span ng-if="settings['opnamefirst'] == 'y'">{{ getShortOpTypeName(operative.optype) }}</span>
 				</div>
 				<!-- div ng-if="MODE == 'Dashboard'" class="col-6 text-end" ng-show="!opIsDead(operative)">
 					<input type="checkbox" id="chkactivated_{{ operative.rosteropid }}" ng-disabled="currentuser.userid != operative.userid" parse-int ng-true-value="1" ng-false-value="0" ng-model="operative.activated" ng-change="commitRosterOp(operative)" />

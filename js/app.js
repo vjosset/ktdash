@@ -2270,9 +2270,9 @@ var app = angular.module("kt", ['ngSanitize'])
 				});
 			}
 
-			// getOpTypeName()
+			// getShortOpTypeName()
 			// Returns a short version of the specified operative type name, removing redundant information (e.g. "Voidscarred")
-			$scope.getOpTypeName = function(optypename) {
+			$scope.getShortOpTypeName = function(optypename) {
 				return optypename
 					.replace("Voidscarred ", "")
 					.replace("Legionary ")
@@ -2305,7 +2305,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				//console.log("Op: " + JSON.stringify(op));
 				if ($scope.settings["useoptypeasname"] != 'n') {
 					// Copy optype to name
-					op[namevar] = $scope.getOpTypeName(op.operative.opname);
+					op[namevar] = $scope.getShortOpTypeName(op.operative.opname);
 				} else {
 					// Auto-generate a new name
 					var url = APIURL + "name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
