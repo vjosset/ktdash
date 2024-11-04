@@ -2269,13 +2269,43 @@ var app = angular.module("kt", ['ngSanitize'])
 					}
 				});
 			}
+
+			// getOpTypeName()
+			// Returns a short version of the specified operative type name, removing redundant information (e.g. "Voidscarred")
+			$scope.getOpTypeName = function(optypename) {
+				return optypename
+					.replace("Voidscarred ", "")
+					.replace("Legionary ")
+					.replace("Mandrake ")
+					.replace("Kabalite ")
+					.replace("Traitor ")
+					.replace("Fellgor ")
+					.replace("Legionary ")
+					.replace("Night Lord ")
+					.replace("Space Hulk Veteran ")
+					.replace("Warpdiver ")
+					.replace("Arbites ")
+					.replace("Death Korps ")
+					.replace("Navis ")
+					.replace("Kasrkin ")
+					.replace("Novitiate ")
+					.replace("Yaegir ")
+					.replace("Hearthkyn ")
+					.replace("Brood Brother ")
+					.replace("Vespid ")
+					.replace("Kroot ")
+					.replace("Kommando ")
+					.replace("Plasmacyte ")
+					.replace("Aquilon ")
+					;
+			}
 			
 			// Generate a name for an operative
 			$scope.generateOpName = function(faid, ktid, ftid, opid, op, namevar) {
 				//console.log("Op: " + JSON.stringify(op));
 				if ($scope.settings["useoptypeasname"] != 'n') {
 					// Copy optype to name
-					op[namevar] = op.operative.opname;
+					op[namevar] = $scope.getOpTypeName(op.operative.opname);
 				} else {
 					// Auto-generate a new name
 					var url = APIURL + "name.php?factionid=" + faid + "&killteamid=" + ktid + "&fireteamid=" + ftid + "&opid=" + opid;
