@@ -22,6 +22,7 @@
 						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/signup.htm"><span class="fas fa-user fa-fw"></span>&nbsp;Sign Up</a></li>
 						<li class="nav-item" ng-show="currentuser == null"><a class="nav-link navloader" href="/login.htm"><span class="fas fa-lock fa-fw"></span>&nbsp;Log In</a></li>
 						<li class="nav-item" ng-show="currentuser != null"><a class="nav-link navloader" href="#" ng-click="logOut();"><span class="fas fa-lock fa-fw"></span>&nbsp;Log Out</a></li>
+						<li class="nav-item"><a class="nav-link navloader" href="https://beta.ktdash.app"><span class="fas fa-vial fa-fw"></span>&nbsp;Try The Beta!</a></li>
 					</ul>
 				</div>
 			</nav>

@@ -688,7 +688,8 @@ var app = angular.module("kt", ['ngSanitize'])
 
 				if (op.edition == 'kt24' && eq.eqtype.toLowerCase().includes("weapon")) {
 					//console.log("Giving eq wep " +  eq.eqname + " to op " + op.opname);
-					op.weapons.push(eq.weapon);
+					// Make a deep-copy clone of the equipment weapon - This ensures that modifications to the weapon only apply to a single op (e.g. injured)
+					op.weapons.push(JSON.parse(JSON.stringify(eq.weapon)));
 				}
 				
 				if (eq.eqtype.toLowerCase().includes("wepmod")) {
