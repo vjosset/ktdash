@@ -3441,7 +3441,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					success: function(data) {
 
 						// Make sure to re-apply Eq mods
-						$scope.dashboardroster = data;
+						$scope.dashboardroster = JSON.parse($scope.replacePlaceholders(JSON.stringify(data)));
 						$scope.applyEqMods($scope.dashboardroster);
 						$scope.$apply();
 						
