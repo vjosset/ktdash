@@ -523,7 +523,7 @@
 			<!-- Not my roster -->
 			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="p-1 line-top-light">
 				<h6>Notes</h6>
-				<p style="white-space:pre-wrap;"">{{ operative.notes }}</p>
+				<p style="white-space:pre-wrap;">{{ operative.notes }}</p>
 			</div>
 		</div>
 	</div>

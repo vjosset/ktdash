@@ -159,6 +159,14 @@
 										<span ng-bind-html="ua.description" class="small"></span>
 									</div>
 								</div>
+								
+
+								<br ng-if="operative.notes != ''" />
+
+								<div class="m-0 p-0" ng-if="operative.notes != ''">
+									<h4 class="line-bottom-light">Notes</h4>
+									<p style="white-space:pre-wrap;">{{ operative.notes }}</p>
+								</div>
 							</div>
 						</div>
 					</div>
