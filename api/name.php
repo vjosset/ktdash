@@ -311,6 +311,7 @@ function GetName()
 		
 		// Plague Marines
 		case "CHAOS|PM24|PM24|CHAMP": //Plague Marine Champion
+		case "CHAOS|PM24|PM24|BOMB": //Plague Marine Bombardier
 		case "CHAOS|PM24|PM24|FTR": //Plague Marine Fighter
 		case "CHAOS|PM24|PM24|MAL": //Malignant Plaguecaster
 		case "CHAOS|PM24|PM24|HGNR": //Plague Marine Heavy Gunner
