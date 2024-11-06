@@ -308,6 +308,15 @@ function GetName()
 			return GetChaosMarineName();
 		case "CHAOS|DG|PW|PW": //Poxwalker
 			return "Poxwalker";
+		
+		// Plague Marines
+		case "CHAOS|PM24|PM24|CHAMP": //Plague Marine Champion
+		case "CHAOS|PM24|PM24|FTR": //Plague Marine Fighter
+		case "CHAOS|PM24|PM24|MAL": //Malignant Plaguecaster
+		case "CHAOS|PM24|PM24|HGNR": //Plague Marine Heavy Gunner
+		case "CHAOS|PM24|PM24|IB": //Plague Marine Icon Bearer
+		case "CHAOS|PM24|PM24|WAR": //Plague Marine Warrior
+			return GetChaosMarineName();
 
 		// Fellgor Ravagers
 		case "CHAOS|FELL|FELL|IH": //Fellgor Ironhorn
