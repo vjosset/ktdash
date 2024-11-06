@@ -37,6 +37,58 @@ class Utils
 			header('Content-Type: application/json');
 		}
 	}
+
+	static function TrackEvent($eventtype, $action, $label, $var1, $var2, $var3, $url, $sessiontype, $referrer)
+	{
+		global $dbcon;
+
+		$sql = "INSERT INTO Event (userid, eventtype, action, label, var1, var2, var3, url, userip, sessiontype, useragent, referrer) ";
+		$sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		$user = Session::CurrentUser();
+		$paramtypes = "ssssssssssss";
+		$params = array();
+		$userid = ($user == null ? '[anon]' : $user->userid);
+		$params[] = $userid; // userid
+
+		$params[] = $eventtype;
+		$params[] = $action;
+		$params[] = $label;
+
+		$params[] = $var1;
+		$params[] = $var2;
+		$params[] = $var3;
+
+		$params[] = $url;
+
+		$params[] = $_SERVER['REMOTE_ADDR']; // userip
+
+		$params[] = $sessiontype;
+		$params[] = substr(getIfSet($_SERVER['HTTP_USER_AGENT']), 0, 500); // sessiontype
+
+		$params[] = $referrer;
+
+		//// Skip some events to let the table breathe
+		//$run = true;
+		//switch (substr(getIfSet($_REQUEST['t']), 0, 50) . '|' . substr(getIfSet($_REQUEST['a']), 0, 45)) {
+		//	case 'session|signup': // User sign up
+		//	case 'roster|opportrait': // New operative portrait
+		//	case 'roster|portrait': // New roster portrait
+		//	case 'page|view': // Page views
+		//		$run = true;
+		//		break;
+		//	default:
+		//		$run = false;
+		//		break;
+		//}
+
+		//if ($run) {
+			$cmd = $dbcon->prepare($sql);
+			//call_user_func_array(array($cmd, "bind_param"), $params);
+			$cmd->bind_param($paramtypes, ...$params);
+			$cmd->execute();
+		//}
+	}
 	
 	static function ResizeImage($source, $tw, $th)
 	{

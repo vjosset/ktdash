@@ -311,6 +311,18 @@ function POSTRosterOperativePortrait()
 							echo '{"success": "OK"}';
 						}
 
+						Utils::TrackEvent(
+							'roster',
+							'opportrait',
+							'custom',
+							$ro->rosterid,
+							$ro->rosteropid,
+							'',
+							$_SERVER['HTTP_REFERER'],
+							'',
+							$_SERVER['HTTP_REFERER']
+						);
+
 						// Free up memory
 						imagedestroy($thumb);
 					}

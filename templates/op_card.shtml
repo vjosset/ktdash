@@ -136,13 +136,13 @@
 							<!-- Card View -->
 							<table ng-if="settings['display'] == 'card'" width="100%" class="text-center">
 								<tr class="orange">
-									<td width="16%">
+									<td width="30%">
 										M<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'M')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'M')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 									</td>
-									<td width="16%">
+									<td width="30%">
 										APL<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'APL')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'APL')[0].eqname, getOpEq(operative, 'OpMod', 'M')[0].eqdescription);">*</sup>
 									</td>
-									<td width="16%">
+									<td width="40%">
 										GA<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'GA')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'GA')[0].eqname, getOpEq(operative, 'OpMod', 'GA')[0][0].eqdescription);">*</sup>
 									</td>
 								</tr>
@@ -158,13 +158,13 @@
 									</td>
 								</tr>
 								<tr class="orange">
-									<td width="16%">
+									<td width="30%">
 										DF<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'DF')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'DF')[0].eqname, getOpEq(operative, 'OpMod', 'DF')[0].eqdescription);">*</sup>
 									</td>
-									<td width="16%">
+									<td width="30%">
 										SV<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'SV')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'SV')[0].eqname, getOpEq(operative, 'OpMod', 'SV')[0].eqdescription);">*</sup>
 									</td>
-									<td width="16%">
+									<td width="40%">
 										W<sup class="text-tiny" ng-if="settings['applyeqmods'] != 'y' && opHasEq(operative, 'OpMod', 'W')" ng-click="showpopup('Equipment: ' + getOpEq(operative, 'OpMod', 'W')[0].eqname, getOpEq(operative, 'OpMod', 'W')[0].eqdescription);">*</sup>
 									</td>
 								</tr>
@@ -197,11 +197,11 @@
 							<table ng-if="settings['display'] == 'list'" width="100%" class="text-center">
 								<tr class="orange">
 									<td width="16%">M</td>
-									<td width="16%">APL</td>
-									<td width="16%">GA</td>
-									<td width="16%">DF</td>
-									<td width="16%">SV</td>
-									<td width="16%">W</td>
+									<td width="15%">APL</td>
+									<td width="15%">GA</td>
+									<td width="15%">DF</td>
+									<td width="15%">SV</td>
+									<td width="20%">W</td>
 								</tr>
 								<tr>
 									<td ng-style="{ color: operative.isinjured && MODE == 'Dashboard' ? 'gainsboro' : '' }" nowrap="true">

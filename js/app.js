@@ -2650,7 +2650,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							$('#opportraitmodal').modal("hide");
 							toast("Operative portrait set!");
 							$scope.optoedit.hascustomportrait = 1;
-							te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
+							//te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
 
 							// Reload the operative's portrait
 							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
@@ -2660,33 +2660,6 @@ var app = angular.module("kt", ['ngSanitize'])
 							toast("Could not set operative portrait: \r\n" + error);
 						}
 					});
-					
-					/*
-					$http.post(
-						APIURL + "operativeportrait.php?roid=" + $scope.optoedit.rosteropid,
-						JSON.stringify(formData),
-						{
-							'Content-Type': 'multipart/form-data',
-							'Accept': 'application/json'
-						}
-					).then(function(response) 
-						{
-							let data = response.data;
-							// Hide the modal
-							$('#opportraitmodal').modal("hide");
-							toast("Operative portrait set!");
-							te("roster", "opportrait", "custom", $scope.optoedit.rosterid, $scope.optoedit.rosteropid);
-
-							// Reload the operative's portrait
-							$scope.refreshOpPortrait($scope.optoedit.rosteropid);
-					    }
-					).catch(function(response) 
-						{
-							// Failure
-							toast("Could not set operative portrait: \r\n" + response.statusText);
-						}
-					);
-					*/
 				}
 			}
 		
