@@ -2297,6 +2297,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					.replace("Kommando ", "")
 					.replace("Plasmacyte ", "")
 					.replace("Aquilon ", "")
+					.replace("Plague Marine ", "")
 					;
 			}
 			
@@ -3992,10 +3993,16 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "GRAV":
 								rule.ruletext = "Each time this operative makes a shooting attack with this weapon, if the target has an unmodified Save characteristic of 3+ or better, this weapon has the Lethal 4+ special rule for that attack.";
 								break;
-							case "HVY": /* TODO: DIFFERENT FOR 24!! */
+							case "HVY":
 							case "HEAVY":
 								rule.rulename = "Heavy";
-								rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
+								switch (edition) {
+									case 'kt21':
+										rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
+										break;
+									case 'kt24':rule.ruletext = "An operative cannot use this weapon in an activation in which it moved, and it cannot move in an activation in which it used this weapon.";
+										break;
+								}
 								break;
 							case "HUMBLING CRUELTY":
 								rule.ruletext = "Each time a friendly operative makes a shooting attack with this weapon, in the Resolve Successful hits step of that shooting attack, if the target loses any wounds, the target is injured until the end of the Turning Point";
