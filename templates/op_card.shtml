@@ -512,7 +512,7 @@
 			
 			<!-- Notes -->
 			<!-- My roster -->
-			<div ng-if="operative.userid == currentuser.userid" class="p-1 line-top-light" style="overflow: hidden;">
+			<div ng-if="operative.userid == currentuser.userid" class="p-1 line-top-light noprint" style="overflow: hidden;">
 				<h6 class="pointer" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#opnotes_{{ operative.rosteropid }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Expand Notes">
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h6>
@@ -521,8 +521,15 @@
 				</div>
 			</div>
 			<!-- Not my roster -->
-			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="p-1 line-top-light">
+			<div ng-if="operative.userid != currentuser.userid && operative.notes != null && operative.notes != ''" class="p-1 line-top-light noprint">
 				<h6>Notes</h6>
+				<p style="white-space:pre-wrap;">{{ operative.notes }}</p>
+			</div>
+
+			<br ng-if="operative.notes != ''" class="printonly" />
+
+			<div class="m-0 p-0 printonly" ng-if="operative.notes != ''">
+				<h6 class="line-bottom-light">Notes</h6>
 				<p style="white-space:pre-wrap;">{{ operative.notes }}</p>
 			</div>
 		</div>

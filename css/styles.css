@@ -163,6 +163,10 @@ th, td {
 .span {
 	column-span: all;
 }
+	
+.printonly {
+	display: none;
+}
 
 @media print {
 	@page {
@@ -213,6 +217,10 @@ th, td {
 	
 	.noprint {
 		display: none;
+	}
+	
+	.printonly {
+		display: block;
 	}
 
 	hr {
