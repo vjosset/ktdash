@@ -1928,9 +1928,12 @@ var app = angular.module("kt", ['ngSanitize'])
 		// OPERATIVES
 		{
 			// opCanBeInjured()
-			// Returns a boolean indicating whether the specified operative can be injured (NOT DeathGuard, Talons/Custodes, Stalwart)
-			$scope.opCanBeInjured = function(op) {
-				//console.log("opCanBeInjured(" + op.factionid + "/" + op.killteamid + ")");
+			// Returns a boolean indicating whether the specified operative can be injured (NOT DeathGuard, Talons/Custodes, Stalwart, etc.)
+			$scope.opCanBeInjured = function(op, roster) {
+				if (!roster) {
+					roster = $scope.dashboardroster;
+				}
+
 				let canNotBeInjured = 
 					(op.factionid == 'CHAOS' && op.killteamid == 'DG') // Deathguard Disgustingly Resilient
 					||
@@ -1938,7 +1941,13 @@ var app = angular.module("kt", ['ngSanitize'])
 					||
 					((',' + op.eqids + ',').includes(',BH-STA-STA,')) // Battle Honour "Stalwart"
 					;
-				//console.log("Cannot be injured: " + canNotBeInjured);
+				
+				// Check roster equipments (kt24)
+				if (roster && roster.killteamid == 'PM24' && roster.rostereqs.filter((eq) => eq.selected == 1 && eq.eqid == 'PB').length > 0) {
+					// This is a plague marine roster with the "Plague Bells" equipment, they cannot be injured
+					console.log("PM PB");
+					canNotBeInjured = true;
+				}
 				
 				return !canNotBeInjured;
 			}
