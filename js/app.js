@@ -1945,7 +1945,6 @@ var app = angular.module("kt", ['ngSanitize'])
 				// Check roster equipments (kt24)
 				if (roster && roster.rosterid == op.rosterid && roster.killteamid == 'PM24' && roster.rostereqs.filter((eq) => eq.selected == 1 && eq.eqid == 'PB').length > 0) {
 					// This is a plague marine roster with the "Plague Bells" equipment, they cannot be injured
-					console.log("PM PB");
 					canNotBeInjured = true;
 				}
 				
