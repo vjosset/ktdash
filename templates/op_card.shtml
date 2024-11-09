@@ -477,14 +477,6 @@
 							{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
 						</div>
 					</div>
-					<!--div ng-if="dashboardroster.rostereqs.length > 0">
-						<h6 class="">Equipment</h6>
-						<div class="twocols">
-							<div style="white-space: nowrap;"  class="pointer" ng-click="showpopup(eq.eqname, eq.eqdescription);" ng-repeat="eq in dashboardroster.rostereqs | filter: {selected: 1} track by $index">
-								{{ eq.eqname }}<span ng-if="eq.eqpts != '0'"> ({{ eq.eqpts }} EP)</span>
-							</div>
-						</div>
-					</div-->
 				</div>
 			</div>
 			
