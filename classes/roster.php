@@ -148,11 +148,13 @@ class Roster extends \OFW\OFWObject
 		//	Only pull the base information about the kill team + its ploys and equipment
 		$this->killteam = Killteam::FromDB($this->factionid, $this->killteamid);
 
-		// Load the ploys
-		$this->killteam->loadPloys();
-
-		// Load the equipments
-		$this->killteam->loadEquipments();
+		if ($this->killteam) {
+			// Load the ploys
+			$this->killteam->loadPloys();
+	
+			// Load the equipments
+			$this->killteam->loadEquipments();
+		}
 	}
 
 	public function loadFaction()
