@@ -34,9 +34,11 @@ class Operative extends \OFW\OFWObject
 	public static function GetOperative($faid, $ktid, $ftid, $opid)
 	{
 		$op = Operative::FromDB($faid, $ktid, $ftid, $opid);
-		$op->loadAbilities();
-		$op->loadUniqueActions();
-		$op->loadWeapons();
+		if ($op) {
+			$op->loadAbilities();
+			$op->loadUniqueActions();
+			$op->loadWeapons();
+		}
 
 		// Done
 		return $op;
