@@ -137,11 +137,13 @@ class User extends \OFW\OFWObject
 		if ($result = $cmd->get_result()) {
 			while ($row = $result->fetch_object()) {
 				$kt = $row;
+				$jsoncontent = $kt->content;
 				
 				$kt->content = json_decode($kt->content);
 				if ($kt->content == null) {
 					// Invalid JSON for this killteam, build an error object
 					$kt = $row;
+					$kt->content = $jsoncontent;
 					$kt->error = json_last_error_msg();
 				}
 
