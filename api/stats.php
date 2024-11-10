@@ -21,7 +21,6 @@ function GETStats()
 {
   $output = null;
 	global $dbcon;
-  
 
   // Totals
   $sql =
@@ -29,6 +28,8 @@ function GETStats()
   SELECT 'Rosters', COUNT(*) AS RosterCount FROM Roster WHERE userid NOT IN ('prebuilt', 'vince') UNION
   SELECT 'RosterOps', COUNT(*) AS RosterOpCount FROM RosterOperative WHERE userid NOT IN ('prebuilt', 'vince')";
   $cmd = $dbcon->prepare($sql);
+
+  $cmd->execute();
 
   $output->totals = [];
   if ($result = $cmd->get_result()) {
