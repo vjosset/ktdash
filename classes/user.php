@@ -6,13 +6,14 @@ class User extends \OFW\OFWObject
 {
 	public $userid = "";
 	public $username = "";
+	public $killteams = [];
 	public $rosters = [];
 
 	function __construct()
 	{
 		$this->TableName = "User";
 		$this->Keys = ["userid"];
-		$this->skipfields = ["rosters"];
+		$this->skipfields = ["rosters", "killteams"];
 	}
 
 	public function __get($field)
@@ -114,6 +115,37 @@ class User extends \OFW\OFWObject
 					$r->loadRosterEquipments();
 				}
 				$this->rosters[] = $r;
+			}
+		}
+	}
+
+	public function loadKillteams()
+	{
+		global $dbcon;
+
+		// Get the teams for this user
+		$sql = "SELECT * FROM HomebrewKillteam WHERE userid = ?";
+		$cmd = $dbcon->prepare($sql);
+		$paramtypes = "s";
+		$params = array();
+		$params[] =& $paramtypes;
+		$params[] =& $this->userid;
+
+		call_user_func_array(array($cmd, "bind_param"), $params);
+		$cmd->execute();
+
+		if ($result = $cmd->get_result()) {
+			while ($row = $result->fetch_object()) {
+				$kt = $row;
+				
+				$kt->content = json_decode($kt->content);
+				if ($kt->content == null) {
+					// Invalid JSON for this killteam, build an error object
+					$kt = $row;
+					$kt->error = json_last_error_msg();
+				}
+
+				$this->killteams[] = $kt;
 			}
 		}
 	}

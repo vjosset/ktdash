@@ -44,7 +44,7 @@ function GETUser()
 
 	// Get the userid for the specified username
 	$userid = $user->userid;
-	$myuserid = $myuser->userid;
+	$myuserid = $myuser ? $myuser->userid : null;
 
 	// If no user id was passed in, assume my user id
 	if ($userid == null) {
@@ -74,6 +74,9 @@ function GETUser()
 
 			// Get the user's rosters
 			$u->loadRosters(0);
+
+			// Get the user's homebrew killteams
+			$u->loadKillteams();
 
 			// Output the user
 			echo $u->toJson();

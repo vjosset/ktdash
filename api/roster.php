@@ -331,11 +331,13 @@ function POSTRoster()
 			// Validate the roster's faction and killteam
 			$kt = KillTeam::FromDB($r->factionid, $r->killteamid);
 
+			/*
 			if ($kt == null) {
 				// Faction or killteam don't exist
 				header('HTTP/1.0 404 Faction or Killteam not found');
 				die();
 			}
+			*/
 
 			// Check if this team exists
 			if ($r->rosterid == null || $r->rosterid == "") {
