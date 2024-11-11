@@ -97,12 +97,14 @@ function GETRosterPortrait()
 
 				// Check if file exists
 				if (!file_exists($filepath)) {
-					header('HTTP/1.0 404 Portrait not found');
-					die();
+					// Serve the default "no portrait" image
+					header('Content-Type: image/jpeg');
+					header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $r->rostername) . '.jpg"');
+					echo file_get_contents("../img/noimg.jpg");
+				} else {
+					header('HTTP/1.0 302 Default Roster Portrait');
+					header("Location: /img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg");
 				}
-
-				header('HTTP/1.0 302 Default Roster Portrait');
-				header("Location: /img/portraits/{$r->factionid}/{$r->killteamid}/{$r->killteamid}.jpg");
 			}
 		} else {
 			// Roster not found - Serve nothing?

@@ -215,10 +215,12 @@ function POSTRosterOperative()
 					// Set its curW based on the the base operative's W
 					header("Step4: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					$baseop = Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid);
-					if (is_numeric($baseop->W)) {
-						$newop->curW = $baseop->W;
-					} else {
-						$newop->curW = 0;
+					if ($baseop) {
+						if (is_numeric($baseop->W)) {
+							$newop->curW = $baseop->W;
+						} else {
+							$newop->curW = 0;
+						}
 					}
 				}
 

@@ -61,8 +61,10 @@ function GETRosterOperativePortrait()
 		if ($ro != null) {
 			// Check if this operative has a custom portrait
 			$custopportraitpath = "../img/customportraits/user_{$ro->userid}/roster_{$ro->rosterid}/op_{$ro->rosteropid}.jpg";
+			
 			if (file_exists($custopportraitpath)) {
 				// File was found; read it and serve it
+				header('X-OpPortrait: FoundCustom');
 				$filepath = $custopportraitpath;
 
 				// Read the found file and serve it
@@ -80,13 +82,8 @@ function GETRosterOperativePortrait()
 				}
 			} else {
 				// Custom file not found, serve the generic portrait for this operative
+				header('X-OpPortrait: NoCustom');
 				$filepath = "../img/portraits/{$ro->factionid}/{$ro->killteamid}/{$ro->fireteamid}/{$ro->opid}.jpg";
-
-				// Check if file exists
-				if (!file_exists($filepath)) {
-					header('HTTP/1.0 404 Portrait not found');
-					die();
-				}
 
 				// No custom portrait for this operative
 				if ($ro->hascustomportrait != 0) {
@@ -101,7 +98,15 @@ function GETRosterOperativePortrait()
 					call_user_func_array(array($cmd, "bind_param"), $params);
 					$cmd->execute();
 				}
+
+				// Check if file exists
+				if (!file_exists($filepath)) {
+					// Serve the default "no portrait" image
+					header('X-OpPortrait2: NoDefault');
+					$filepath = "../img/noimg.jpg";
+				}
 			}
+				
 			header('Content-Type: image/jpeg');
 			header('Content-Disposition: inline; filename="' . str_replace("\r\n", " ", $ro->opname) . '.jpg"');
 			//header('Cache-Control: max-age=604800');
