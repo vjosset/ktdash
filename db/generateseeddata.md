@@ -10,7 +10,7 @@ sudo mysqldump --no-create-info --compact --skip-triggers killteam WeaponProfile
 sudo mysqldump --no-create-info --compact --skip-triggers killteam Equipment      > ktdash_seeding_09_Equipment.sql    
 sudo mysqldump --no-create-info --compact --skip-triggers killteam Ploy           > ktdash_seeding_10_Ploy.sql         
 sudo mysqldump --no-create-info --compact --skip-triggers killteam TacOp          > ktdash_seeding_11_TacOp.sql        
-sudo mysqldump --no-create-info --compact --skip-triggers killteam User             --where="userid IN ('vince', 'prebuilt', 'AYHNm')" > ktdash_seeding_12_User.sql
-sudo mysqldump --no-create-info --compact --skip-triggers killteam Roster           --where="userid IN ('vince', 'prebuilt', 'AYHNm')" > ktdash_seeding_13_Roster.sql
-sudo mysqldump --no-create-info --compact --skip-triggers killteam RosterOperative  --where="userid IN ('vince', 'prebuilt', 'AYHNm')" > ktdash_seeding_14_RosterOperative.sql
+sudo mysqldump --no-create-info --compact --skip-triggers killteam User             --where="userid IN ('vince', 'prebuilt', 'AYHNm', 'ElJ61')" > ktdash_seeding_12_User.sql
+sudo mysqldump --no-create-info --compact --skip-triggers killteam Roster           --where="userid IN ('vince', 'prebuilt', 'AYHNm', 'ElJ61')" > ktdash_seeding_13_Roster.sql
+sudo mysqldump --no-create-info --compact --skip-triggers killteam RosterOperative  --where="userid IN ('vince', 'prebuilt', 'AYHNm', 'ElJ61')" > ktdash_seeding_14_RosterOperative.sql
 ```
