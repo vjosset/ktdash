@@ -236,6 +236,33 @@
 			<?php
 		}
 		?>
+		
+		<!-- Equipments -->
+		<?php
+		if(getIfSet($_REQUEST['printeqs']) == "1") {
+			// User requested equipments
+			?>
+			<br/><br/>
+			<div class="twocols" style="page-break-inside: avoid; page-break-before:auto;">
+				<h2>Equipment</h2>
+				<?php
+					for ($eqnum = 0; $eqnum < count($myRoster->killteam->equipments); $eqnum++) {
+						$eq = $myRoster->killteam->equipments[$eqnum];
+						if ($eq->eqcategory == 'Equipment' || $eq->eqcategory == 'Universal Equipment') {
+						?>
+						<div>
+							<h5 class="line-top-light pt-1"><?php echo $eq->eqname ?></h5>
+							<?php echo replacedistance($eq->eqdescription) ?>
+							<br/><br/>
+						</div>
+						<?php
+						}
+					}
+				?>
+			</div>
+			<?php
+		}
+		?>
 		<script type="text/javascript">
 			window.print();
 		</script>

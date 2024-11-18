@@ -893,6 +893,10 @@
 				<input id="chkprintploys" type="checkbox" value="1" />
 				<label for="chkprintploys">
 					Print Ploys
+				</label><br/>
+				<input id="chkprinteqs" type="checkbox" value="1" />
+				<label for="chkprinteqs">
+					Print Equipments
 				</label>
 			</div>
 			<div class="modal-footer dark p-1">

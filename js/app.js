@@ -1049,6 +1049,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				//te("roster", "print", "roster", roster.rosterid);
 
 				let printploys = document.getElementById('chkprintploys').checked ? "1" : "0";
+				let printeqs = document.getElementById('chkprinteqs').checked ? "1" : "0";
 
 				switch(format) {
 					case 'PV':
@@ -1058,17 +1059,17 @@ var app = angular.module("kt", ['ngSanitize'])
 					case 'TH':
 					case 'TV':
 						//window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid);
-						window.open("https://ktdash.app/printrostercards.php?cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid)
+						window.open("https://ktdash.app/printrostercards.php?cardsize=" + format + "&printploys=" + printploys + "&printeqs=" + printeqs + "&rid=" + roster.rosterid)
 						break;
 					case 'plainbig':
 						//window.open("/api/pdfrender.php?scope=roster&cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
-						window.open("/printroster.php?cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
+						window.open("/printroster.php?cols=1&printploys=" + printploys + "&printeqs=" + printeqs + "&rid=" + roster.rosterid);
 						break;
 					case 'plain':
 					case null:
 					case '':
 						//window.open("/api/pdfrender.php?scope=roster&cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
-						window.open("/printroster.php?cols=2&printploys=" + printploys + "&rid=" + roster.rosterid);
+						window.open("/printroster.php?cols=2&printploys=" + printploys + "&printeqs=" + printeqs + "&rid=" + roster.rosterid);
 						break;
 				}
 			}
