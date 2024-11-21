@@ -38,6 +38,7 @@ function GETRoster()
 	// Get the requested roster
 	$rid = getIfSet($_REQUEST['rid']);
 	$uid = getIfSet($_REQUEST['uid']);
+	$term = getIfSet($_REQUEST['term']);
 	$loadrosterdetail = getIfSet($_REQUEST['loadrosterdetail']);
 
 	$randomspotlight = getIfSet($_REQUEST['randomspotlight']);
@@ -48,9 +49,37 @@ function GETRoster()
 		die();
 	}
 
-	if ($randomspotlight == "1") {
+	global $dbcon;
+
+	if ($term != '') {
+		// This is a roster search, look for roster ID, roster name, or user name
+		$sql = "SELECT * FROM RosterView WHERE rosterid = ? OR username LIKE CONCAT('%', ?, '%') OR rostername LIKE CONCAT('%', ?, '%') LIMIT 10;";
+          
+		$cmd = $dbcon->prepare($sql);
+	
+		$paramtypes = "sss";
+	
+		$params = array();
+		$params[] =& $paramtypes;
+		$params[] =& $term;
+		$params[] =& $term;
+		$params[] =& $term;
+	
+		call_user_func_array(array($cmd, "bind_param"), $params);
+		$cmd->execute();
+	
+		$rosters = [];
+	
+		if ($result = $cmd->get_result()) {
+			while ($row = $result->fetch_object()) {
+				$rosters[] = $row;
+			}
+		}
+	
+		// Done
+		echo json_encode($rosters);
+	} else if ($randomspotlight == "1") {
 		// Select a random spotlighted roster
-		global $dbcon;
 		$sql = "SELECT rosterid FROM Roster WHERE spotlight = 1 ORDER BY RAND() LIMIT 1";
 		$cmd = $dbcon->prepare($sql);
 		// Load the stats
@@ -61,9 +90,7 @@ function GETRoster()
 				$rid = $row->rosterid;
 			}
 		}
-	}
-
-	if ($rid == null || $rid == '') {
+	} else if ($rid == null || $rid == '') {
 		// No roster id passed in, return the specified user's roster
 
 		if ($uid == null || $uid == '') {
