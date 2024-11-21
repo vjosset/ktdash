@@ -314,14 +314,17 @@ Access: Anonymous/authenticated
 
 `GET /api/roster.php?rid=[rosterid]&loadrosterdetail=[loadrosterdetail]`
 
+#### Input
+
+- `rid` - The RosterID of the roster whose information to return.
+- `loadrosterdetail` - `1` returns operative details in the `operatives` field. Defaults to `0`.
+
 ### Search rosters
 
 `GET /api/roster.php?term=[searchterm]`
 
 #### Input
 
-- `rid` - The RosterID of the roster whose information to return.
-- `loadrosterdetail` - `1` returns operative details in the `operatives` field. Defaults to `0`.
 - `term` - Search term. Roster search will match on roster ID, roster name, or user name. This must be at least 3 characters in length to run the search.
 
 # RosterOperative
