@@ -310,21 +310,19 @@ Access: Anonymous/authenticated
 
 ## API Methods
 
-### Get current user's rosters
-
-`GET /api/roster.php`
-
-Returns all rosters for the currently signed-in user.
-Returns `HTTP 401` if not signed in.
-
 ### Get a roster
 
 `GET /api/roster.php?rid=[rosterid]&loadrosterdetail=[loadrosterdetail]`
+
+### Search rosters
+
+`GET /api/roster.php?term=[searchterm]`
 
 #### Input
 
 - `rid` - The RosterID of the roster whose information to return.
 - `loadrosterdetail` - `1` returns operative details in the `operatives` field. Defaults to `0`.
+- `term` - Search term. Roster search will match on roster ID, roster name, or user name
 
 # RosterOperative
 
