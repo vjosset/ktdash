@@ -691,162 +691,164 @@ var app = angular.module("kt", ['ngSanitize'])
 					// Make a deep-copy clone of the equipment weapon - This ensures that modifications to the weapon only apply to a single op (e.g. injured)
 					op.weapons.push(JSON.parse(JSON.stringify(eq.weapon)));
 				}
-				
-				if (eq.eqtype.toLowerCase().includes("wepmod")) {
-					let wepstomod = [];
-					if (eq.eqvar1.startsWith("weptype:")) {
-						// Mod applies to a specific weapon type
-						let weptype = eq.eqvar1.replace("weptype:", "");
-						
-						// Find the weapon that has this type that this operative is equipped with
-						for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-							let opwep = op.weapons[opwepnum];
-							if (opwep.weptype == weptype) {
-								// This is the one
-								wepstomod.push(opwep);
+
+				if (eq.opid == op.opid || eq.opid == '' || ("," + eq.opid + ",").includes(op.opid)) {
+					if (eq.eqtype.toLowerCase().includes("wepmod")) {
+						let wepstomod = [];
+						if (eq.eqvar1.startsWith("weptype:")) {
+							// Mod applies to a specific weapon type
+							let weptype = eq.eqvar1.replace("weptype:", "");
+							
+							// Find the weapon that has this type that this operative is equipped with
+							for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+								let opwep = op.weapons[opwepnum];
+								if (opwep.weptype == weptype) {
+									// This is the one
+									wepstomod.push(opwep);
+								}
+							}
+						} else if (eq.eqvar1.startsWith("wepid:")) {
+							// Mod applies to a specific weapon id
+							let wepid = eq.eqvar1.replace("wepid:", "");
+							
+							// Find the weapon that has this ID that this operative is equipped with
+							for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+								let opwep = op.weapons[opwepnum];
+								if (("," + wepid + ",").includes("," + opwep.wepid + ",")) {
+									// This is the one
+									wepstomod.push(opwep);
+								}
+							}
+						} else if (eq.eqvar1.startsWith("wepname:")) {
+							// Mod applies to a specific weapon name
+							let wepname = eq.eqvar1.replace("wepname:", "");
+							
+							// Find the weapons that has this name that this operative is equipped with
+							for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
+								let opwep = op.weapons[opwepnum];
+								if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
+									// This is the one
+									wepstomod.push(opwep);
+								}
 							}
 						}
-					} else if (eq.eqvar1.startsWith("wepid:")) {
-						// Mod applies to a specific weapon id
-						let wepid = eq.eqvar1.replace("wepid:", "");
 						
-						// Find the weapon that has this ID that this operative is equipped with
-						for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-							let opwep = op.weapons[opwepnum];
-							if (("," + wepid + ",").includes("," + opwep.wepid + ",")) {
-								// This is the one
-								wepstomod.push(opwep);
-							}
-						}
-					} else if (eq.eqvar1.startsWith("wepname:")) {
-						// Mod applies to a specific weapon name
-						let wepname = eq.eqvar1.replace("wepname:", "");
-						
-						// Find the weapons that has this name that this operative is equipped with
-						for (let opwepnum = 0; opwepnum < op.weapons.length; opwepnum++) {
-							let opwep = op.weapons[opwepnum];
-							if (opwep.wepname.toLowerCase().includes(wepname.toLowerCase())) {
-								// This is the one
-								wepstomod.push(opwep);
+						if (wepstomod.length > 0) {
+							// We found the weapons to modify, now apply the mod to those weapons
+							for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
+								let weptomod = wepstomod[weptomodnum];
+								//eq.autoapplied = true;
+								let mods = eq.eqvar2.split("|");
+								for (let modnum = 0; modnum < mods.length; modnum++) {
+									let mod = mods[modnum];
+									let modstat = mod.split(":")[0];
+									let modval = mod.split(":")[1];
+									switch(modstat) {
+										case "A":
+											// Udpate Attacks
+											for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+												weptomod.profiles[pnum].A = parseInt(weptomod.profiles[pnum].A) + parseInt(modval);
+											}
+											break;
+										case "SR":
+											// New special rule - Loop through the weapon's profiles and add this special rule to them
+											for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+												if (weptomod.profiles[pnum].SR != '') {
+													weptomod.profiles[pnum].SR += ", "
+												}
+												weptomod.profiles[pnum].SR += modval;
+											}
+											break;
+										case "D":
+											// Upgrade damage - Loop through the weapon's profiles and update their damage
+											for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+												let origD = weptomod.profiles[pnum].D;
+												let orignormalD = parseInt(origD.split("/")[0]);
+												let origcriticalD = parseInt(origD.split("/")[1]);
+												
+												let modnormalD = parseInt(modval.split("/")[0]);
+												let modcriticalD = parseInt(modval.split("/")[1]);
+												
+												let newD = (orignormalD + modnormalD) + "/" + (origcriticalD + modcriticalD);
+												
+												weptomod.profiles[pnum].D = newD;
+											}
+											break;
+										case "BS":
+											// Upgrade BS - Loop through the weapon's profiles and upgrade their BS
+											for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
+												let origBS = weptomod.profiles[pnum].BS;
+												if (modval.startsWith("-")) {
+													// Improve (reduce) BS for this weapon
+													let newBS = (parseInt(origBS.replace("+", "")) - parseInt(modval.replace("-", ""))) + "+";
+													weptomod.profiles[pnum].BS = newBS;
+												} else if (modval.startsWith("+")) {
+													// Impair (increase) BS for this weapon
+													let newBS = (parseInt(origBS.replace("+", "")) + parseInt(modval.replace("+", ""))) + "+";
+													weptomod.profiles[pnum].BS = newBS;
+												} else {
+													// Replace BS for this weapon
+													weptomod.profiles[pnum].BS = modval;
+												}
+											}
+										default:
+											break;
+									}
+								}
 							}
 						}
 					}
 					
-					if (wepstomod.length > 0) {
-						// We found the weapons to modify, now apply the mod to those weapons
-						for (let weptomodnum = 0; weptomodnum < wepstomod.length; weptomodnum++) {
-							let weptomod = wepstomod[weptomodnum];
-							//eq.autoapplied = true;
-							let mods = eq.eqvar2.split("|");
-							for (let modnum = 0; modnum < mods.length; modnum++) {
-								let mod = mods[modnum];
-								let modstat = mod.split(":")[0];
-								let modval = mod.split(":")[1];
-								switch(modstat) {
-									case "A":
-										// Udpate Attacks
-										for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-											weptomod.profiles[pnum].A = parseInt(weptomod.profiles[pnum].A) + parseInt(modval);
-										}
-										break;
-									case "SR":
-										// New special rule - Loop through the weapon's profiles and add this special rule to them
-										for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-											if (weptomod.profiles[pnum].SR != '') {
-												weptomod.profiles[pnum].SR += ", "
-											}
-											weptomod.profiles[pnum].SR += modval;
-										}
-										break;
-									case "D":
-										// Upgrade damage - Loop through the weapon's profiles and update their damage
-										for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-											let origD = weptomod.profiles[pnum].D;
-											let orignormalD = parseInt(origD.split("/")[0]);
-											let origcriticalD = parseInt(origD.split("/")[1]);
-											
-											let modnormalD = parseInt(modval.split("/")[0]);
-											let modcriticalD = parseInt(modval.split("/")[1]);
-											
-											let newD = (orignormalD + modnormalD) + "/" + (origcriticalD + modcriticalD);
-											
-											weptomod.profiles[pnum].D = newD;
-										}
-										break;
-									case "BS":
-										// Upgrade BS - Loop through the weapon's profiles and upgrade their BS
-										for (let pnum = 0; pnum < weptomod.profiles.length; pnum++) {
-											let origBS = weptomod.profiles[pnum].BS;
-											if (modval.startsWith("-")) {
-												// Improve (reduce) BS for this weapon
-												let newBS = (parseInt(origBS.replace("+", "")) - parseInt(modval.replace("-", ""))) + "+";
-												weptomod.profiles[pnum].BS = newBS;
-											} else if (modval.startsWith("+")) {
-												// Impair (increase) BS for this weapon
-												let newBS = (parseInt(origBS.replace("+", "")) + parseInt(modval.replace("+", ""))) + "+";
-												weptomod.profiles[pnum].BS = newBS;
-											} else {
-												// Replace BS for this weapon
-												weptomod.profiles[pnum].BS = modval;
-											}
-										}
-									default:
-										break;
+					if (eq.eqtype.toLowerCase().includes("opmod")) {
+						// Pick the characteristic to mod
+						switch (eq.eqvar1) {
+							case "M":
+								if (eq.eqvar2.startsWith("+")) {
+									if (!isNaN(op.M.replace('"', ''))) {
+										// M is in inches (kt24), we can do math
+										op.M = (parseInt(op.M.replace('"', '')) + parseInt(eq.eqvar2)) + '"';
+									} else {
+										// M is in symbols (Kt21), we can't do math
+										op.M += eq.eqvar2;
+									}
+									//eq.autoapplied = true;
 								}
-							}
+								else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
+									op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
+									op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+									op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
+								}
+								break;
+							case "W":
+								if (eq.eqvar2.startsWith("+")) {
+									if (op.curW == parseInt(op.W)) {
+										// Also increase current Wounds
+										op.curW += parseInt(eq.eqvar2)
+									}
+									op.W = parseInt(op.W) + parseInt(eq.eqvar2);
+									//eq.autoapplied = true;
+								}
+								break;
+							case "APL":
+								break;
+							case "SV":
+								//console.log("            SV");
+								if (eq.eqvar2 != "") {
+									if (eq.eqvar2.startsWith("+") || eq.eqvar2.startsWith("-")) {
+										let SV = parseInt(op.SV.replace("+", ""));
+										op.SV = SV + parseInt(eq.eqvar2) + "+";
+									}
+									else {
+										op.SV = eq.eqvar2;
+									}
+								}
+								break;
+							case "DF":
+								break;
+							case "GA":
+								break;
 						}
-					}
-				}
-				
-				if (eq.eqtype.toLowerCase().includes("opmod")) {
-					// Pick the characteristic to mod
-					switch (eq.eqvar1) {
-						case "M":
-							if (eq.eqvar2.startsWith("+")) {
-								if (!isNaN(op.M.replace('"', ''))) {
-									// M is in inches (kt24), we can do math
-									op.M = (parseInt(op.M.replace('"', '')) + parseInt(eq.eqvar2)) + '"';
-								} else {
-									// M is in symbols (Kt21), we can't do math
-									op.M += eq.eqvar2;
-								}
-								//eq.autoapplied = true;
-							}
-							else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
-								op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
-								op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
-								op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
-								op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
-							}
-							break;
-						case "W":
-							if (eq.eqvar2.startsWith("+")) {
-								if (op.curW == parseInt(op.W)) {
-									// Also increase current Wounds
-									op.curW += parseInt(eq.eqvar2)
-								}
-								op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-								//eq.autoapplied = true;
-							}
-							break;
-						case "APL":
-							break;
-						case "SV":
-							//console.log("            SV");
-							if (eq.eqvar2 != "") {
-								if (eq.eqvar2.startsWith("+") || eq.eqvar2.startsWith("-")) {
-									let SV = parseInt(op.SV.replace("+", ""));
-									op.SV = SV + parseInt(eq.eqvar2) + "+";
-								}
-								else {
-									op.SV = eq.eqvar2;
-								}
-							}
-							break;
-						case "DF":
-							break;
-						case "GA":
-							break;
 					}
 				}
 			}
