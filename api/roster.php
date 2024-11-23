@@ -90,6 +90,9 @@ function GETRoster()
 				$rid = $row->rosterid;
 			}
 		}
+
+		$roster = Roster::GetRoster($rid);
+		echo json_encode($roster);
 	} else if ($rid == null || $rid == '') {
 		// No roster id passed in, return the specified user's roster
 
