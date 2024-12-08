@@ -31,8 +31,10 @@
 	$myRoster->loadFaction();
 	header("120LoadKillTeam: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$myRoster->loadKillTeam();
-	header("125LoadFireTeams: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-	$myRoster->killteam->loadFireteams();
+	if ($myRoster->killteam) {
+		header("125LoadFireTeams: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+		$myRoster->killteam->loadFireteams();
+	}
 	header("130GetSessionUser: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	$me = Session::CurrentUser();
 	header("135GotSessionUser: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));

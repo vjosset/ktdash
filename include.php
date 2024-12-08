@@ -2,7 +2,8 @@
 	if(!empty($_SERVER['HTTP_USER_AGENT']) && 
 		(
 			strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') != false ||
-			strpos($_SERVER['HTTP_USER_AGENT'], 'externalagent') != false
+			strpos($_SERVER['HTTP_USER_AGENT'], 'externalagent') != false ||
+			strpos($_SERVER['HTTP_USER_AGENT'], 'gptbot') != false
 		)
 	) {
 		// Get the fuck out of here
