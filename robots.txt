@@ -32,3 +32,20 @@ Disallow: /
 User-agent: *
 Crawl-delay: 10
 Allow: /
+
+# Block Claude (LLM Scraper)
+User-agent: ClaudeBot
+Disallow: /
+# Block Common Crawl (LLM Scraper)
+User-agent: CCBot
+Disallow: /
+# Block GPT bot (OpenAI Scraper)
+User-agent: GPTBot
+Disallow: /
+# Block OAI-SearchBot (OpenAI Search Bot)
+User-agent: OAI-SearchBot
+Disallow: /
+# Block Facebook
+User-agent: facebookexternalhit
+Crawl-delay: 10
+Disallow: /
