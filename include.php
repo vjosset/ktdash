@@ -1,5 +1,10 @@
 <?php
-	if(!empty($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') != false) {
+	if(!empty($_SERVER['HTTP_USER_AGENT']) && 
+		(
+			strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') != false ||
+			strpos($_SERVER['HTTP_USER_AGENT'], 'externalagent') != false
+		)
+	) {
 		// Get the fuck out of here
 		header('HTTP/1.0 403 Forbidden');
 		echo 'FBGFY';
