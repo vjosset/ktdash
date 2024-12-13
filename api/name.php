@@ -862,9 +862,19 @@ function GetName()
 		case "ORK|KOM24|KOM24|RKT": //Kommando Rokkit Boy
 		case "ORK|KOM24|KOM24|SLS": //Kommando Slasha Boy
 		case "ORK|KOM24|KOM24|SNP": //Kommando Snipa Boy
+		
+		
+		// Wrecka Krew
+		case "ORK|WK24|WK24|NOB": //Boss Nob
+		case "ORK|WK24|WK24|BBFTR": //Breaka Boy Fighter
+		case "ORK|WK24|WK24|BBDEMO": //Breaka Boy Demolisha
+		case "ORK|WK24|WK24|BBKRU": //Breaka Boy Krusha
+		case "ORK|WK24|WK24|TBGNR": //Tankbusta Gunner
+		case "ORK|WK24|WK24|TBROK": //Tankbusta Rokkiteer
 			return GetOrkName();
 		case "ORK|KOM|KOM|BOM": //Bomb Squig
 		case "ORK|KOM24|KOM24|SQUIG": //Bomb Squig
+		case "ORK|WK24|WK24|SQUIG": //Bomb Squig
 			return "Skwiglz";
 
 		// Tau - Cadre Mercenaries
