@@ -35,11 +35,13 @@ function GETUser()
 
 	if ($username == null) {
 		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+		die();
 	}
 
 	$user = User::FromName($username);
 	if ($user == null) {
 		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+		die();
 	}
 
 	// Get the userid for the specified username
@@ -49,12 +51,14 @@ function GETUser()
 	// If no user id was passed in, assume my user id
 	if ($userid == null) {
 		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+		die();
 	}
 
 	// Validate the user ID
 	if (!CommonUtils\isValidId($userid)) {
 		// User doesn't exist, return 404
 		header("HTTP/1.0 404 Not Found - The user you requested was not found");
+		die();
 	} else {
 		// Get the user
 		if ($userid != $myuserid) {
@@ -67,6 +71,7 @@ function GETUser()
 		if ($u == null) {
 			// User doesn't exist, return 404
 			header("HTTP/1.0 404  Not Found - The user you requested was not found");
+			die();
 		} else {
 			// User exists, clean up the output and spit it out
 			// Remove the passhash from the output
