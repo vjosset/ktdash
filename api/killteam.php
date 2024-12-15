@@ -39,13 +39,11 @@ function GETKillteam()
 		$killteams = Killteam::GetKillteams($edition);
 		header("Step2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		echo json_encode($killteams);
-		header("Step3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	} else {
 		// Return the requested killteam
 		header("Step1: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$killteam = Killteam::GetKillteam($factionid, $killteamid);
 		header("Step2: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		echo json_encode($killteam);
-		header("Step3: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	}
 }

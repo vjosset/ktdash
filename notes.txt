@@ -163,17 +163,17 @@ SITEMAP GENERATOR - Last updated 2023-06-28
     /* All Killteams */
 	SELECT CONCAT('https://ktdash.app/fa/', factionid, '/kt/', killteamid) FROM Killteam UNION
     /* Top users */
-	SELECT CONCAT('http://ktdash.app/u/', username) FROM User WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://ktdash.app/u/', username) FROM User WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Top user rosters */
-	SELECT CONCAT('http://ktdash.app/r/', rosterid) FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://ktdash.app/r/', rosterid) FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Top user roster galleries */
-	SELECT CONCAT('http://ktdash.app/r/', rosterid, '/g') FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://ktdash.app/r/', rosterid, '/g') FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Users with spotlighted rosters */
-	SELECT DISTINCT CONCAT('http://ktdash.app/u/', username) FROM Roster R INNER JOIN User U ON U.userid = R.userid WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+	SELECT DISTINCT CONCAT('https://ktdash.app/u/', username) FROM Roster R INNER JOIN User U ON U.userid = R.userid WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
     /* Spotlighted rosters */
-	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+	SELECT DISTINCT CONCAT('https://ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
     /* Spotlighted roster galleries */
-	SELECT DISTINCT CONCAT('http://ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;
+	SELECT DISTINCT CONCAT('https://ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;
 
 # Missing Narrative Info (Battle Honours, Rare Equipment, TacOps)
 SELECT

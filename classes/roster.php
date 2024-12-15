@@ -62,15 +62,14 @@ class Roster extends \OFW\OFWObject
 			if ($row = $result->fetch_object()) {
 				$r = Roster::FromRow($row);
 
-				// Reorder operatives so their seqs are always sequential
-				//$perf .= floor(microtime(true) * 1000) . " - Roster::GetRoster()::ReorderOperatives\r\n";
-				//$r->reorderOperatives();
-
-				// Now load the operatives
+				// Now load the Operatives, TacOps and Equipments
+				header("106LoadOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadOperatives();
 
+				header("107LoadTacOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadTacOps();
 
+				header("108LoadEqs: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadRosterEquipments();
 
 				// Done
