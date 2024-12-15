@@ -153,12 +153,14 @@ function GETRoster()
 function POSTRoster()
 {
 	// Check that the user is currently logged in
+	header("000Start: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 	if (!Session::IsAuth()) {
 		// Not logged in - Return error				
 		header('HTTP/1.0 401 Unauthorized - You are not logged in');
 		die();
 	} else {
 		// Get the current user
+			header("010GetUserSession: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 		$u = Session::CurrentUser();
 
 		// If this is a copy/clone/import
@@ -353,12 +355,14 @@ function POSTRoster()
 			echo '{"success": "OK"}';
 		} else {
 			// Get the submitted roster
+			header("080ParsePayload: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			$r = Roster::FromJSON(file_get_contents('php://input'));
 
 			// Force the user id on the roster to be the current user
 			$r->userid = $u->userid;
 
 			// Validate the roster's faction and killteam
+			header("090GetKillteam: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			$kt = KillTeam::FromDB($r->factionid, $r->killteamid);
 
 			if ($kt == null) {
@@ -392,6 +396,7 @@ function POSTRoster()
 				echo json_encode($r);
 			} else {
 				// Submitted roster has an ID, check if this user owns it
+				header("100GetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$tempr = Roster::GetRosterRow($r->rosterid);
 
 				if ($tempr == null) {
@@ -405,12 +410,15 @@ function POSTRoster()
 					$r->killteamid = $tempr->killteamid;
 
 					// Commit to DB
+					header("110DBUpdateStart: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					$r->DBUpdate();
 
 					// Now get a fresh copy from DB
+					header("120GetRoster: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					$r = Roster::GetRoster($r->rosterid);
 
 					// Done
+					header("200Output: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 					echo json_encode($r);
 				}
 			}

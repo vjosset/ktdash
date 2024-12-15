@@ -63,13 +63,8 @@ class Roster extends \OFW\OFWObject
 				$r = Roster::FromRow($row);
 
 				// Now load the Operatives, TacOps and Equipments
-				header("106LoadOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadOperatives();
-
-				header("107LoadTacOps: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadTacOps();
-
-				header("108LoadEqs: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 				$r->loadRosterEquipments();
 
 				// Done
