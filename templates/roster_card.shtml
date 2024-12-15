@@ -71,8 +71,7 @@
 		<p ng-if="myRoster.notes != null && myRoster.notes != ''" class="card-text p-1 oswald" style="white-space:pre-wrap; max-height: 250px; overflow: auto;" ng-bind="myRoster.notes">
 		</p>
 		<p ng-if="myRoster.notes == null || myRoster.notes == ''" class="p-1" style="text-align:justify;">
-			<em ng-if="myRoster.oplist != ''">{{ myRoster.oplist }}</em>
-			<em ng-if="myRoster.oplist == '' || myRoster.oplist == null">(This roster does not have any operatives)</em>
+			<em>{{ myRoster.oplist }}</em>
 		</p>
 	</div>
 </div>
