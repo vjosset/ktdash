@@ -31,7 +31,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 function GETRosterOperativePortrait()
 {
 	// Get the requested operative
-	$roid = $_REQUEST['roid'];
+	$roid = getIfSet($_REQUEST['roid'], '');
 
 	// Validate Input
 	if (strlen($roid) > 10) {
