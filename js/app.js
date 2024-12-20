@@ -597,17 +597,37 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.resetOperativeToBase(op);
 						
 						// Operative is reset, along with its weapons
-						// Now apply equipment mods to the operative and its weapons
+						// Apply all "weapon" mods first - Doing this in this order ensures that WepMods get applied to Weapon equipments
 						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
 							let eq = op.equipments[eqnum];
-							$scope.applyEqToOp(op, eq);
+							if (eq.eqtype == "Weapon") {
+								$scope.applyEqToOp(op, eq);
+							}
 						}
 
-						// Apply roster-level equipments (kt24) to this operative too if this is the dashboard
+						// Apply roster-level weapon equipments (kt24) to this operative too if this is the dashboard
 						if (roster.edition == 'kt24' && $scope.MODE == "Dashboard") {
 							for (eqnum = 0; eqnum < roster.rostereqs.length; eqnum++) {
 								let eq = roster.rostereqs[eqnum];
-								if (eq.selected) {
+								if (eq.eqtype == "Weapon" && eq.selected) {
+									$scope.applyEqToOp(op, eq);
+								}
+							}
+						}
+
+						// Apply all other equipments now
+						for (eqnum = 0; eqnum < op.equipments.length; eqnum++) {
+							let eq = op.equipments[eqnum];
+							if (eq.eqtype != "Weapon") {
+								$scope.applyEqToOp(op, eq);
+							}
+						}
+
+						// Apply roster-level non-weapon equipments (kt24) to this operative too if this is the dashboard
+						if (roster.edition == 'kt24' && $scope.MODE == "Dashboard") {
+							for (eqnum = 0; eqnum < roster.rostereqs.length; eqnum++) {
+								let eq = roster.rostereqs[eqnum];
+								if (eq.eqtype != "Weapon" && eq.selected) {
 									$scope.applyEqToOp(op, eq);
 								}
 							}
