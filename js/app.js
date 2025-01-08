@@ -673,7 +673,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 
 			$scope.applyEqToOp = function(op, eq) {
-				//console.log("      Applying equipment " + eq.eqid + " to " + op.opname);
+				//console.log("      Applying equipment " + eq.eqid + " to " + op.opname + ":\r\n " + JSON.stringify(eq));
 				/*
 				if (eq.eqtype.toLowerCase().includes("ability")) {
 					let ab = {
@@ -712,7 +712,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					op.weapons.push(JSON.parse(JSON.stringify(eq.weapon)));
 				}
 
-				if (eq.opid == op.opid || eq.opid == '' || ("," + eq.opid + ",").includes(op.opid)) {
+				if (eq.opid == op.opid || eq.opid == '' || ("," + eq.opid + ",").includes("," + op.opid + ",")) {
 					if (eq.eqtype.toLowerCase().includes("wepmod")) {
 						let wepstomod = [];
 						if (eq.eqvar1.startsWith("weptype:")) {
@@ -821,53 +821,61 @@ var app = angular.module("kt", ['ngSanitize'])
 					
 					if (eq.eqtype.toLowerCase().includes("opmod")) {
 						// Pick the characteristic to mod
-						switch (eq.eqvar1) {
-							case "M":
-								if (eq.eqvar2.startsWith("+")) {
-									if (!isNaN(op.M.replace('"', ''))) {
-										// M is in inches (kt24), we can do math
-										op.M = (parseInt(op.M.replace('"', '')) + parseInt(eq.eqvar2)) + '"';
-									} else {
-										// M is in symbols (Kt21), we can't do math
-										op.M += eq.eqvar2;
+						let eqvar1s = eq.eqvar1.split(",");
+						let eqvar2s = eq.eqvar2.split(",");
+						let eqvar3s = eq.eqvar3.split(",");
+						let eqvar4s = eq.eqvar4.split(",");
+
+						for (let eqvaridx = 0; eqvaridx < eqvar1s.length; eqvaridx++) {
+							console.log("Applying opmod #" + eqvaridx + ": " + eqvar1s[eqvaridx] + " - " + eqvar2s[eqvaridx]);
+							switch (eqvar1s[eqvaridx]) {
+								case "M":
+									if (eqvar2s[eqvaridx].startsWith("+") || eqvar2s[eqvaridx].startsWith("-")) {
+										if (!isNaN(op.M.replace('"', ''))) {
+											// M is in inches (kt24), we can do math
+											op.M = (parseInt(op.M.replace('"', '')) + parseInt(eqvar2s[eqvaridx])) + '"';
+										} else {
+											// M is in symbols (Kt21), we can't do math
+											op.M += eqvar2s[eqvaridx];
+										}
+										//eq.autoapplied = true;
 									}
-									//eq.autoapplied = true;
-								}
-								else if (eq.eqvar2 == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
-									op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
-									op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
-									op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
-									op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
-								}
-								break;
-							case "W":
-								if (eq.eqvar2.startsWith("+")) {
-									if (op.curW == parseInt(op.W)) {
-										// Also increase current Wounds
-										op.curW += parseInt(eq.eqvar2)
+									else if (eqvar2s[eqvaridx] == "-" + $scope.PlaceHolders["[CIRCLE]"]) {
+										op.M = op.M.replace("2" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"] + "*"); // Can't go below 2 [CIRCLE]
+										op.M = op.M.replace("3" + $scope.PlaceHolders["[CIRCLE]"], "2" + $scope.PlaceHolders["[CIRCLE]"]);
+										op.M = op.M.replace("4" + $scope.PlaceHolders["[CIRCLE]"], "3" + $scope.PlaceHolders["[CIRCLE]"]);
+										op.M = op.M.replace("5" + $scope.PlaceHolders["[CIRCLE]"], "4" + $scope.PlaceHolders["[CIRCLE]"]);
 									}
-									op.W = parseInt(op.W) + parseInt(eq.eqvar2);
-									//eq.autoapplied = true;
-								}
-								break;
-							case "APL":
-								break;
-							case "SV":
-								//console.log("            SV");
-								if (eq.eqvar2 != "") {
-									if (eq.eqvar2.startsWith("+") || eq.eqvar2.startsWith("-")) {
-										let SV = parseInt(op.SV.replace("+", ""));
-										op.SV = SV + parseInt(eq.eqvar2) + "+";
+									break;
+								case "W":
+									if (eqvar2s[eqvaridx].startsWith("+")) {
+										if (op.curW == parseInt(op.W)) {
+											// Also increase current Wounds
+											op.curW += parseInt(eqvar2s[eqvaridx])
+										}
+										op.W = parseInt(op.W) + parseInt(eqvar2s[eqvaridx]);
+										//eq.autoapplied = true;
 									}
-									else {
-										op.SV = eq.eqvar2;
+									break;
+								case "APL":
+									break;
+								case "SV":
+									//console.log("            SV");
+									if (eqvar2s[eqvaridx] != "") {
+										if (eqvar2s[eqvaridx].startsWith("+") || eqvar2s[eqvaridx].startsWith("-")) {
+											let SV = parseInt(op.SV.replace("+", ""));
+											op.SV = SV + parseInt(eqvar2s[eqvaridx]) + "+";
+										}
+										else {
+											op.SV = eqvar2s[eqvaridx];
+										}
 									}
-								}
-								break;
-							case "DF":
-								break;
-							case "GA":
-								break;
+									break;
+								case "DF":
+									break;
+								case "GA":
+									break;
+							}
 						}
 					}
 				}
