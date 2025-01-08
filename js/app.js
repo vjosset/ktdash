@@ -827,7 +827,6 @@ var app = angular.module("kt", ['ngSanitize'])
 						let eqvar4s = eq.eqvar4.split(",");
 
 						for (let eqvaridx = 0; eqvaridx < eqvar1s.length; eqvaridx++) {
-							console.log("Applying opmod #" + eqvaridx + ": " + eqvar1s[eqvaridx] + " - " + eqvar2s[eqvaridx]);
 							switch (eqvar1s[eqvaridx]) {
 								case "M":
 									if (eqvar2s[eqvaridx].startsWith("+") || eqvar2s[eqvaridx].startsWith("-")) {
