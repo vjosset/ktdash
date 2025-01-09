@@ -80,7 +80,8 @@ function GETRoster()
 		echo json_encode($rosters);
 	} else if ($randomspotlight == "1") {
 		// Select a random spotlighted roster
-		$sql = "SELECT rosterid FROM Roster WHERE spotlight = 1 ORDER BY RAND() LIMIT 1";
+		$sql = "SELECT rosterid FROM Roster R INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid AND edition = 'kt24' WHERE spotlight = 1 ORDER BY RAND() LIMIT 1";
+		//$sql = "SELECT rosterid FROM Roster R WHERE spotlight = 1 ORDER BY RAND() LIMIT 1";
 		$cmd = $dbcon->prepare($sql);
 		// Load the stats
 		$cmd->execute();
