@@ -1098,7 +1098,26 @@ function GetName()
 			return "Marksman Warrior"; 
 		case "SPEC|NPO|NPO|MM-HVY": 
 			return "Marksman Heavy";
+		case "SPEC|NPO|NPO|SNP": 
+			return "Sniper";
 		
+		// Titus Mission Pack
+		case "SPEC|TITUS|SM|TIT":
+			return "Lieutenant Titus";
+		case "SPEC|TITUS|SM|GAD":
+			return "Gadriel";
+		case "SPEC|TITUS|SM|CHA":
+			return "Chairon";
+		case "SPEC|TITUS|TYR|HOR":
+			return "Hormagaunt";
+		case "SPEC|TITUS|TYR|TER":
+			return "Termagant";
+		case "SPEC|TITUS|TYR|WAR":
+			return "Tyranid Warrior";
+		case "SPEC|TITUS|TYR|LIC":
+			return "Lictor";
+		
+		// Homebrew - Malev's NPOs
 		case "HBR|MALNPO|DEMO|HVY": 
 			return "Demolition Heavy";
 		case "HBR|MALNPO|DEMO|TGH": 
