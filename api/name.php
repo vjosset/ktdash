@@ -432,6 +432,10 @@ function GetName()
 		case "HBR|SHV|SHV|GNR":
 		case "HBR|SHV|SHV|SGT":
 		case "HBR|SHV|SHV|WAR":
+		case "HBR|SHV24|SHV24|FTR":
+		case "HBR|SHV24|SHV24|GNR":
+		case "HBR|SHV24|SHV24|SGT":
+		case "HBR|SHV24|SHV24|WAR":
 			return GetSpaceMarineName();
 
 		// Ecclesiarchy
