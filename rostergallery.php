@@ -65,9 +65,9 @@
 		?>
 		<style>
 		<?php
-			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start CSS\r\n";
+			//$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start CSS\r\n";
 			include "css/styles.css";
-			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End CSS\r\n";
+			//$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End CSS\r\n";
 		?>
 		</style>
 	</head>
@@ -86,13 +86,13 @@
 		
 		<script type="text/javascript">
 			// Pre-load roster data straight on this page instead of XHR round-trip to the API
-			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set roster preload\r\n"; ?>
+			<?php //$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set roster preload\r\n"; ?>
 			document.body.setAttribute("myRoster", JSON.stringify(<?php echo json_encode($myRoster) ?>));
 			
 			// Pre-load current user
-			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set user preload\r\n"; ?>
+			<?php //$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Set user preload\r\n"; ?>
 			document.body.setAttribute("currentuser", JSON.stringify(<?php echo json_encode($me) ?>));
-			<?php $perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End data preloads\r\n"; ?>
+			<?php //$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End data preloads\r\n"; ?>
 		</script>
 		
 		<div class="orange container-fluid">
@@ -138,7 +138,7 @@
 			?>
 			<p style="max-height: 200px; overflow:auto;">
 				<?php
-					$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Roster notes\r\n";
+					//$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Roster notes\r\n";
 					echo preg_replace("/\r\n|\r|\n/", '<br/>', htmlentities($myRoster->notes));
 				?>
 			</p>
@@ -191,10 +191,10 @@
 			</div>
 		</div>
 		<?php
-			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Footer\r\n";
+			//$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - Start Footer\r\n";
 			include "footer.shtml";
-			$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End Page\r\n";
-			echo "<!-- $perflog -->";
+			//$perflog .= date("H:i:s.") . substr(microtime(FALSE), 2, 3) . " - End Page\r\n";
+			//echo "<!-- $perflog -->";
 		?>
 	</body>
 </html>

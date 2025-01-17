@@ -724,6 +724,12 @@ function GetName()
 		case "IMP|SM|DW|HGNR": //DeathWatch Heavy Gunner
 		case "IMP|SM|DW|SGT": //DeathWatch Sergeant
 		case "IMP|SM|DW|WAR": //DeathWatch Warrior
+		case "HBR|DW24|DW24|FTR": //DeathWatch Fighter
+		case "HBR|DW24|DW24|GNR": //DeathWatch Gunner
+		case "HBR|DW24|DW24|HGNR": //DeathWatch Heavy Gunner
+		case "HBR|DW24|DW24|SGT": //DeathWatch Sergeant
+		case "HBR|DW24|DW24|WAR": //DeathWatch Warrior
+		case "HBR|DW24|DW24|WM": //DeathWatch Watchmaster
 		case "IMP|SM|HINT|HGNR": //Heavy Intercessor Heavy Gunner
 		case "IMP|SM|HINT|SGT": //Heavy Intercessor Sergeant
 		case "IMP|SM|HINT|WAR": //Heavy Intercessor Warrior
@@ -1041,6 +1047,14 @@ function GetName()
 			return GetTyranidName();
 		case "TYR|BBRO|BBRO|TAC": //Tactical Assets
 			return "Tactical Assets";
+		case "HBR|HF24|HF24|LDR": //Tyranid Warrior Prime
+		case "HBR|HF24|HF24|FTR": //Tyranid Warrior Fighter
+		case "HBR|HF24|HF24|HGNR": //Tyranid Warrior Heavy Gunner
+		case "HBR|HF24|HF24|HRM": //Hormagaunt
+		case "HBR|HF24|HF24|TRM": //Termagant
+		case "HBR|HF24|HF24|TRMG": //Termagant Gunner
+		case "HBR|HF24|HF24|RIP": //Ripper Swarm
+			return GetTyranidName();
 
 		// Hearthkyn Salvagers
 		case "VOT|HKS|HKS|TH": //Hearthkyn Theyn
