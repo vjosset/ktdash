@@ -773,6 +773,16 @@ function GetName()
 		case "IMP|TOE|SOS|WSK": //Sister Of Silence Witchseeker
 			return GetSistersOfBattleName();
 
+		// Talons of the Emperor
+		case "HBR|TOE24|TOE24|LDR": //Custodian Guard Leader
+		case "HBR|TOE24|TOE24|WAR": //Custodian Guard Warrior
+			return GetSpaceMarineName();
+		case "HBR|TOE24|TOE24|PRO": //Sister Of Silence Prosecutor
+		case "HBR|TOE24|TOE24|SUP": //Sister Of Silence Superior
+		case "HBR|TOE24|TOE24|VIG": //Sister Of Silence Vigilator
+		case "HBR|TOE24|TOE24|WSK": //Sister Of Silence Witchseeker
+			return GetSistersOfBattleName();
+
 		// Veteran Guardsmen
 		case "IMP|VG|VG|BRS": //Bruiser Veteran
 		case "IMP|VG|VG|CNF": //Confidant Veteran
