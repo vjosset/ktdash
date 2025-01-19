@@ -517,7 +517,7 @@
 					<i class="fas fa-chevron-down fa-fw"></i>&nbsp;Notes
 				</h6>
 				<div id="opnotes_{{ operative.rosteropid }}" class="collapse">
-					<textarea style="border: 1px solid #CCC; width: 100%; color: #EEE;" rows="3" class="darkcard d-block" ng-change="commitRosterOp(operative);">{{ operative.notes }}</textarea>
+					<textarea style="border: 1px solid #CCC; width: 100%; color: #EEE;" rows="3" class="darkcard d-block" ng-change="commitRosterOp(operative);" ng-model="operative.notes"></textarea>
 				</div>
 			</div>
 			<!-- Not my roster -->
