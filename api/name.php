@@ -504,6 +504,14 @@ function GetName()
 		case "IMP|GK|GK|JST": //Grey Knight Justicar
 		case "IMP|GK|GK|WAR": //Grey Knight Warrior
 			return GetSpaceMarineName();
+		// Grey Knights24
+		case "HBR|GK24|GK24|INT": //Grey Knight Interceptor
+		case "HBR|GK24|GK24|JST": //Grey Knight Justicar
+		case "HBR|GK24|GK24|LIB": //Brotherhood Librarian
+		case "HBR|GK24|GK24|PUR": //Grey Knight Purifier
+		case "HBR|GK24|GK24|PURG": //Grey Knight Purgator
+		case "HBR|GK24|GK24|WAR": //Grey Knight Warrior
+			return GetSpaceMarineName();
 
 		// Hunter Clade
 		case "IMP|HC|HC|SIIP": //Sicarian Infiltrator Princeps
