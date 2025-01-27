@@ -46,8 +46,13 @@ https://ktdash.app/fa/CHAOS/kt/TS
 https://ktdash.app/fa/CHAOS/kt/WC
 https://ktdash.app/fa/CHAOS/kt/WC24
 https://ktdash.app/fa/HBR/kt/AEF
+https://ktdash.app/fa/HBR/kt/DW24
+https://ktdash.app/fa/HBR/kt/GK24
+https://ktdash.app/fa/HBR/kt/HF24
 https://ktdash.app/fa/HBR/kt/MALNPO
 https://ktdash.app/fa/HBR/kt/SHV
+https://ktdash.app/fa/HBR/kt/SHV24
+https://ktdash.app/fa/HBR/kt/TOE24
 https://ktdash.app/fa/HBR/kt/WDR
 https://ktdash.app/fa/IMP/kt/AES
 https://ktdash.app/fa/IMP/kt/AES24
@@ -89,6 +94,7 @@ https://ktdash.app/fa/ORK/kt/KOM24
 https://ktdash.app/fa/ORK/kt/WK24
 https://ktdash.app/fa/SPEC/kt/ATP
 https://ktdash.app/fa/SPEC/kt/NPO
+https://ktdash.app/fa/SPEC/kt/TITUS
 https://ktdash.app/fa/TAU/kt/CM
 https://ktdash.app/fa/TAU/kt/FSKB
 https://ktdash.app/fa/TAU/kt/FSKB24
@@ -200,6 +206,7 @@ https://ktdash.app/u/MFishman
 https://ktdash.app/u/Warcaster
 https://ktdash.app/u/Goober
 https://ktdash.app/u/Krummp
+https://ktdash.app/u/IsaUruz
 https://ktdash.app/u/Johnhiggins
 https://ktdash.app/u/greatwolf
 https://ktdash.app/u/Ozzydok
@@ -236,6 +243,7 @@ https://ktdash.app/u/DW
 https://ktdash.app/u/Killdozer
 https://ktdash.app/u/Steenmarine
 https://ktdash.app/u/Chrono
+https://ktdash.app/u/peytonh
 https://ktdash.app/u/eXcapiZm
 https://ktdash.app/u/BigE
 https://ktdash.app/u/theblocklea
@@ -354,6 +362,7 @@ https://ktdash.app/u/Juicy
 https://ktdash.app/u/Goblin
 https://ktdash.app/u/MasterPoobah
 https://ktdash.app/u/Kardhalis
+https://ktdash.app/u/alextheys
 https://ktdash.app/u/ilovepigs072
 https://ktdash.app/u/SNIPA73
 https://ktdash.app/u/rustedglen
@@ -377,6 +386,7 @@ https://ktdash.app/u/hjanuzzi
 https://ktdash.app/u/SteveRO
 https://ktdash.app/u/Listerman
 https://ktdash.app/u/Lukeman28
+https://ktdash.app/u/Pundemic
 https://ktdash.app/u/Waldy
 https://ktdash.app/u/techpriest001
 https://ktdash.app/u/Jonas
@@ -402,6 +412,7 @@ https://ktdash.app/u/DirkCarcle
 https://ktdash.app/u/Tame2007
 https://ktdash.app/u/lordoffire31
 https://ktdash.app/u/Vale97
+https://ktdash.app/u/willwatto
 https://ktdash.app/u/BEX13
 https://ktdash.app/u/Shox642
 https://ktdash.app/u/DaOldGreyGrot
@@ -421,6 +432,7 @@ https://ktdash.app/u/Linkit0
 https://ktdash.app/u/Nikomir
 https://ktdash.app/u/Tommygee
 https://ktdash.app/u/OldSpecific7387
+https://ktdash.app/u/BrandonRuth
 https://ktdash.app/u/SaharaLlama
 https://ktdash.app/u/Zackdaniels
 https://ktdash.app/u/VonStrasnitz
@@ -452,6 +464,7 @@ https://ktdash.app/u/NoRatReign
 https://ktdash.app/u/exxzile
 https://ktdash.app/u/Hoxtonite
 https://ktdash.app/u/TheVioletCrime
+https://ktdash.app/u/gtsankov93
 https://ktdash.app/u/Saber
 https://ktdash.app/u/Russi
 https://ktdash.app/u/nkpTiger
@@ -514,6 +527,7 @@ https://ktdash.app/u/Jord93
 https://ktdash.app/u/pityken
 https://ktdash.app/u/johnthebeard
 https://ktdash.app/u/Colossal_Monaro
+https://ktdash.app/u/Doomshroom
 https://ktdash.app/u/Stjernerlever
 https://ktdash.app/u/Kroyman
 https://ktdash.app/u/warlockofwifi
@@ -544,6 +558,7 @@ https://ktdash.app/u/Andylusive
 https://ktdash.app/u/Aoaui
 https://ktdash.app/u/BatQueen19
 https://ktdash.app/u/SarahMichelleGellerpox
+https://ktdash.app/u/TheGreatBee
 https://ktdash.app/u/Jowal_Nab
 https://ktdash.app/u/CassiusDrake
 https://ktdash.app/u/Bouergh
@@ -552,6 +567,7 @@ https://ktdash.app/u/tenofswords
 https://ktdash.app/u/alexgardi
 https://ktdash.app/u/ghandibob
 https://ktdash.app/u/conall_mcmenamin
+https://ktdash.app/u/Stefan81
 https://ktdash.app/u/MrDupinmyer
 https://ktdash.app/u/Stepneg
 https://ktdash.app/u/Scottacus
@@ -563,7 +579,6 @@ https://ktdash.app/u/itsssrawr
 https://ktdash.app/u/Hench_4_life
 https://ktdash.app/u/Cooked_Rqt
 https://ktdash.app/u/PlagueVVizard
-https://ktdash.app/u/Veloshark
 https://ktdash.app/u/Netherphoenix
 https://ktdash.app/u/Rayvwen
 https://ktdash.app/u/KubaAndrzejek
@@ -629,6 +644,7 @@ https://ktdash.app/u/Pilsner
 https://ktdash.app/u/MooseMaster
 https://ktdash.app/u/Freshmint
 https://ktdash.app/u/smilesLiesGunfire
+https://ktdash.app/u/Pataclysm
 https://ktdash.app/u/pizzashipgirl
 https://ktdash.app/u/Mikekoop21
 https://ktdash.app/u/Sptzle
@@ -655,6 +671,7 @@ https://ktdash.app/u/Freki
 https://ktdash.app/u/pete_wood
 https://ktdash.app/u/GrillMaster
 https://ktdash.app/u/Cragspyder
+https://ktdash.app/u/Ruckel
 https://ktdash.app/u/Millenuk
 https://ktdash.app/u/PhestivePhalanx
 https://ktdash.app/u/ultraXIII
@@ -709,6 +726,7 @@ https://ktdash.app/u/nspwarhammer
 https://ktdash.app/u/GraVity76
 https://ktdash.app/u/MogaMomoga
 https://ktdash.app/u/Charanz
+https://ktdash.app/u/Offthechainsword
 https://ktdash.app/u/Deadolis
 https://ktdash.app/u/dangerdoug
 https://ktdash.app/u/MartinPas
@@ -729,6 +747,7 @@ https://ktdash.app/u/Anthalt
 https://ktdash.app/u/Silentwren
 https://ktdash.app/u/TANGENT
 https://ktdash.app/u/Scrimple_scrample
+https://ktdash.app/u/WhoDunnit
 https://ktdash.app/u/Strix
 https://ktdash.app/u/Jefegigante
 https://ktdash.app/u/saianC4
@@ -918,9 +937,11 @@ https://ktdash.app/u/TobusAndrews
 https://ktdash.app/u/Grave_walker
 https://ktdash.app/u/WillyssoN
 https://ktdash.app/u/jinxey06
+https://ktdash.app/u/Grundlingus
 https://ktdash.app/u/Mrhonder
 https://ktdash.app/u/Akxor
 https://ktdash.app/u/Fgump
+https://ktdash.app/u/Calmweather
 https://ktdash.app/u/HexAirwaves
 https://ktdash.app/u/Clanduncan554
 https://ktdash.app/u/FlamingWarBunnies
@@ -954,6 +975,7 @@ https://ktdash.app/u/Lantern85
 https://ktdash.app/u/Attri
 https://ktdash.app/u/Rabit
 https://ktdash.app/u/Caeriz
+https://ktdash.app/u/LittleTrickster
 https://ktdash.app/u/kwalish
 https://ktdash.app/u/geixor
 https://ktdash.app/u/Tak231
@@ -967,6 +989,7 @@ https://ktdash.app/u/ErikB
 https://ktdash.app/u/thatonecorgi
 https://ktdash.app/u/Wildboar
 https://ktdash.app/u/Grampa_Bacon
+https://ktdash.app/u/Seppuko
 https://ktdash.app/u/Grega
 https://ktdash.app/u/rainfield
 https://ktdash.app/u/Seratek157
@@ -992,6 +1015,7 @@ https://ktdash.app/u/greendingbat
 https://ktdash.app/u/TheScarletOne
 https://ktdash.app/u/CAPTAINLAZORFACE
 https://ktdash.app/u/Revillok
+https://ktdash.app/u/NotLenny
 https://ktdash.app/u/OmnissiahsArcanist
 https://ktdash.app/u/HrSndr
 https://ktdash.app/u/TurtleRecall
@@ -1024,6 +1048,7 @@ https://ktdash.app/u/Prof_StMo
 https://ktdash.app/u/teipdrol
 https://ktdash.app/u/strogor
 https://ktdash.app/u/SeantendoDS
+https://ktdash.app/u/vilvakt
 https://ktdash.app/u/Streetlamp
 https://ktdash.app/u/Jibblejobble
 https://ktdash.app/u/MightyStegzy
@@ -1054,6 +1079,7 @@ https://ktdash.app/u/tiredgnome
 https://ktdash.app/u/Andyland
 https://ktdash.app/u/Warlong
 https://ktdash.app/u/Quaza
+https://ktdash.app/u/ConnorZeitz
 https://ktdash.app/u/Murckx
 https://ktdash.app/u/akusa1
 https://ktdash.app/u/ReverbSkyriff
@@ -1081,10 +1107,10 @@ https://ktdash.app/u/TheMonarchsDirection
 https://ktdash.app/u/dbeedy
 https://ktdash.app/u/Donkydog
 https://ktdash.app/u/Nettermonky
+https://ktdash.app/u/PhilGC
 https://ktdash.app/u/Micco
 https://ktdash.app/u/xxx4xxx
 https://ktdash.app/u/CanonessMara
-https://ktdash.app/u/Trashman
 https://ktdash.app/u/Ravenmane
 https://ktdash.app/u/JimmySlamnuts
 https://ktdash.app/u/Macmeier
@@ -1123,7 +1149,6 @@ https://ktdash.app/u/Gidonamor
 https://ktdash.app/u/KesstheCatMage
 https://ktdash.app/u/ObscsureEdge
 https://ktdash.app/u/RegentMuffin
-https://ktdash.app/u/Buntsid
 https://ktdash.app/u/Jaxkhrone
 https://ktdash.app/u/TankSquisher
 https://ktdash.app/u/Braxty
@@ -1179,6 +1204,7 @@ https://ktdash.app/u/KiwiTyrant
 https://ktdash.app/u/Skrdla
 https://ktdash.app/u/Cestodito
 https://ktdash.app/u/Plates
+https://ktdash.app/u/Fjellvross
 https://ktdash.app/u/Mordini
 https://ktdash.app/u/Adeptusterra
 https://ktdash.app/u/Cyancupcake
@@ -1190,7 +1216,6 @@ https://ktdash.app/u/roundup4086
 https://ktdash.app/u/elgranJM
 https://ktdash.app/u/Katmandew
 https://ktdash.app/u/mowabb
-https://ktdash.app/u/monorko
 https://ktdash.app/u/TheClockBlocks
 https://ktdash.app/u/Chief
 https://ktdash.app/u/Cryhavoc196
@@ -1203,6 +1228,7 @@ https://ktdash.app/u/clnbean
 https://ktdash.app/u/Tilgrim
 https://ktdash.app/u/slaindra
 https://ktdash.app/u/Landelk
+https://ktdash.app/u/StrangerDelta
 https://ktdash.app/u/Gorgir
 https://ktdash.app/u/Cervinecomedy
 https://ktdash.app/u/Dackzore
@@ -1217,6 +1243,7 @@ https://ktdash.app/u/raqcza
 https://ktdash.app/u/MoiTripa00
 https://ktdash.app/u/Sawneeks
 https://ktdash.app/u/Captain_OSO
+https://ktdash.app/u/BiggsTNK
 https://ktdash.app/u/Longtheme
 https://ktdash.app/u/Korps_Deadman
 https://ktdash.app/u/Coleface_40k
@@ -1278,6 +1305,7 @@ https://ktdash.app/u/BlackBox
 https://ktdash.app/u/yoshimimac
 https://ktdash.app/u/inSketch
 https://ktdash.app/u/Armybeast18
+https://ktdash.app/u/thomaskoechig
 https://ktdash.app/u/lodbro
 https://ktdash.app/u/My_shed
 https://ktdash.app/u/RAZER_ICE
@@ -1294,6 +1322,7 @@ https://ktdash.app/u/Dirtymink
 https://ktdash.app/u/Snagon
 https://ktdash.app/u/cgwilsonh
 https://ktdash.app/u/Albertorius
+https://ktdash.app/u/Shadestorm
 https://ktdash.app/u/QuinnML
 https://ktdash.app/u/Crooqie
 https://ktdash.app/u/EndeDerNahrungskette
@@ -1385,6 +1414,7 @@ https://ktdash.app/u/geh4b3z
 https://ktdash.app/u/bleeploads
 https://ktdash.app/u/probablytheguy
 https://ktdash.app/u/Frescowitz
+https://ktdash.app/u/Kakarot
 https://ktdash.app/u/Thali0r
 https://ktdash.app/u/Blackwaxx
 https://ktdash.app/u/Atratyys
@@ -1470,7 +1500,6 @@ https://ktdash.app/u/Doogie_Howitzer
 https://ktdash.app/u/laheymode
 https://ktdash.app/u/tilioch
 https://ktdash.app/u/charliebudd
-https://ktdash.app/u/Jsweet
 https://ktdash.app/u/TRDFerguson
 https://ktdash.app/u/Helbr3cht
 https://ktdash.app/u/Caladarr
@@ -1511,6 +1540,7 @@ https://ktdash.app/u/danvers_rfw
 https://ktdash.app/u/MissionEternal
 https://ktdash.app/u/Miniature_Therapist
 https://ktdash.app/u/Ihmisapina
+https://ktdash.app/u/Heggster
 https://ktdash.app/u/mypvr
 https://ktdash.app/u/Skellettor
 https://ktdash.app/u/Ultimuss
@@ -1526,6 +1556,7 @@ https://ktdash.app/u/Yellowpants92
 https://ktdash.app/u/Sergeant_Grey
 https://ktdash.app/u/Optimaximal
 https://ktdash.app/u/Grayamaha
+https://ktdash.app/u/CMDNEYO
 https://ktdash.app/u/Lizzyjane4913
 https://ktdash.app/u/Zallocc
 https://ktdash.app/u/Chili_Wango
@@ -1540,6 +1571,7 @@ https://ktdash.app/u/Normeh
 https://ktdash.app/u/SinisterSchnauz
 https://ktdash.app/u/Crackles
 https://ktdash.app/u/burlapsack
+https://ktdash.app/u/CoopsterFTW
 https://ktdash.app/u/Tostig
 https://ktdash.app/u/Andrew
 https://ktdash.app/u/nathanwill
@@ -1564,6 +1596,7 @@ https://ktdash.app/u/implicit_return
 https://ktdash.app/u/crlowe84
 https://ktdash.app/u/Nme4u
 https://ktdash.app/u/Zalafor
+https://ktdash.app/u/Ziegore86
 https://ktdash.app/u/Kasia
 https://ktdash.app/u/Picklesdadrummer
 https://ktdash.app/u/CptObius
@@ -1588,6 +1621,7 @@ https://ktdash.app/u/Gruzzle
 https://ktdash.app/u/Funkaoshi
 https://ktdash.app/u/M18A1
 https://ktdash.app/u/DaTxvs
+https://ktdash.app/u/ic_ar_us
 https://ktdash.app/u/vicnedel
 https://ktdash.app/u/felipegarzonc
 https://ktdash.app/u/Kovacs119
@@ -1595,6 +1629,7 @@ https://ktdash.app/u/Locht
 https://ktdash.app/u/Gunhammer
 https://ktdash.app/u/MercerKane
 https://ktdash.app/u/C4nc3el
+https://ktdash.app/u/Giordano_Ischiboni
 https://ktdash.app/u/DW_Dagon
 https://ktdash.app/u/Mattedmans
 https://ktdash.app/u/Necronstuff
@@ -1629,14 +1664,17 @@ https://ktdash.app/u/Jagger141
 https://ktdash.app/u/Jezquigly
 https://ktdash.app/u/rootnode
 https://ktdash.app/u/Phamas
+https://ktdash.app/u/Qidan073
 https://ktdash.app/u/zMac1214
 https://ktdash.app/u/OmnissiahBePraised
+https://ktdash.app/u/fuzzy
 https://ktdash.app/u/RetroJack
 https://ktdash.app/u/Azardouz
 https://ktdash.app/u/morte_pinile
 https://ktdash.app/u/Nav1997
 https://ktdash.app/u/Peebiua
 https://ktdash.app/u/Mesophar
+https://ktdash.app/u/Positronisomer
 https://ktdash.app/u/Robbaphett
 https://ktdash.app/u/Knockout_013
 https://ktdash.app/u/DumpsterOracle
@@ -1702,6 +1740,7 @@ https://ktdash.app/u/Weekendzik1
 https://ktdash.app/u/zuny77
 https://ktdash.app/u/GeorgeGambles
 https://ktdash.app/u/Cvolt
+https://ktdash.app/u/Siegemaster
 https://ktdash.app/u/Ogdenthebrave
 https://ktdash.app/u/Dessyisme
 https://ktdash.app/u/TOASTI21
@@ -1733,6 +1772,7 @@ https://ktdash.app/u/Lyzael
 https://ktdash.app/u/Pastss
 https://ktdash.app/u/Niemerszein
 https://ktdash.app/u/SunnyLovesYuri
+https://ktdash.app/u/DaBigNurgling
 https://ktdash.app/u/Cenvult
 https://ktdash.app/u/masakari86
 https://ktdash.app/u/Shazoosticka
@@ -1743,6 +1783,7 @@ https://ktdash.app/u/HepZusi
 https://ktdash.app/u/Dead_Void42
 https://ktdash.app/u/MrBrumak
 https://ktdash.app/u/WIllG
+https://ktdash.app/u/Rikigea
 https://ktdash.app/u/DanAndHisMinis
 https://ktdash.app/u/Stress
 https://ktdash.app/u/Mantra_MX
@@ -1750,6 +1791,7 @@ https://ktdash.app/u/IncRaz
 https://ktdash.app/u/breechandbrush
 https://ktdash.app/u/stubby
 https://ktdash.app/u/crispycx
+https://ktdash.app/u/hanso1ocup
 https://ktdash.app/u/Im_Limes
 https://ktdash.app/u/Pmurda69
 https://ktdash.app/u/Giffylube
@@ -1774,6 +1816,7 @@ https://ktdash.app/u/Niallander
 https://ktdash.app/u/AT_Teddy
 https://ktdash.app/u/Mathius55
 https://ktdash.app/u/captainzero
+https://ktdash.app/u/mikow
 https://ktdash.app/u/MacLight7th
 https://ktdash.app/u/germy11
 https://ktdash.app/u/vulpz0r
@@ -1803,6 +1846,7 @@ https://ktdash.app/r/EcHybRbf
 https://ktdash.app/r/Ew5n3iLw
 https://ktdash.app/r/kcD5WtVT
 https://ktdash.app/r/LwN3RTcT
+https://ktdash.app/r/tuKLn70X
 https://ktdash.app/r/y8F0Qght
 https://ktdash.app/r/csuI4
 https://ktdash.app/r/AJmeV4lU
@@ -1832,6 +1876,7 @@ https://ktdash.app/r/hx1w6
 https://ktdash.app/r/MayqlTE3
 https://ktdash.app/r/Pj2w2UEn
 https://ktdash.app/r/Q4mkv
+https://ktdash.app/r/ANYkXPqT
 https://ktdash.app/r/Aotjse0v
 https://ktdash.app/r/oaLc3VZr
 https://ktdash.app/r/Zzp1n
@@ -1862,6 +1907,7 @@ https://ktdash.app/r/HyTy2
 https://ktdash.app/r/joEGYMUR
 https://ktdash.app/r/lpNgm
 https://ktdash.app/r/UN9ga
+https://ktdash.app/r/5MPWcDSF
 https://ktdash.app/r/5w7k1vyn
 https://ktdash.app/r/8M23f
 https://ktdash.app/r/G5fM1
@@ -1887,6 +1933,7 @@ https://ktdash.app/r/4Nbig
 https://ktdash.app/r/4vkmjruo
 https://ktdash.app/r/5HqVrKX6
 https://ktdash.app/r/6C5QS4BK
+https://ktdash.app/r/6NfnLNGQ
 https://ktdash.app/r/6s1AR
 https://ktdash.app/r/8ofHJXX8
 https://ktdash.app/r/AsJISayz
@@ -1924,6 +1971,7 @@ https://ktdash.app/r/WxRtd
 https://ktdash.app/r/xbwBAbsc
 https://ktdash.app/r/yLCwZpNS
 https://ktdash.app/r/GDhTzbLK
+https://ktdash.app/r/q8QLZeGH
 https://ktdash.app/r/DrEKZ
 https://ktdash.app/r/ZKIKY
 https://ktdash.app/r/1Sgpt
@@ -1943,6 +1991,7 @@ https://ktdash.app/r/ikTnv
 https://ktdash.app/r/nvyTnLkn
 https://ktdash.app/r/JMsxr
 https://ktdash.app/r/Fznq2pHM
+https://ktdash.app/r/Uf08nKye
 https://ktdash.app/r/az4jX
 https://ktdash.app/r/O79Z1
 https://ktdash.app/r/IlIk2wDc
@@ -2054,11 +2103,13 @@ https://ktdash.app/r/9VWPRaIB
 https://ktdash.app/r/9xwEIjEa
 https://ktdash.app/r/a4Scsxz1
 https://ktdash.app/r/Abe7V3Xh
+https://ktdash.app/r/b4huUGod
 https://ktdash.app/r/BCSjdpGM
 https://ktdash.app/r/BFMZNSfw
 https://ktdash.app/r/bhacCjDr
 https://ktdash.app/r/bMbUm0nF
 https://ktdash.app/r/BVOG730z
+https://ktdash.app/r/bWW6d6MM
 https://ktdash.app/r/cRm0c2gY
 https://ktdash.app/r/E0A43LUZ
 https://ktdash.app/r/eX2KYhRE
@@ -2283,6 +2334,7 @@ https://ktdash.app/r/JveGwkGh
 https://ktdash.app/r/NKZjD0H2
 https://ktdash.app/r/OxBPXdQb
 https://ktdash.app/r/qEGLiVG9
+https://ktdash.app/r/Lhu1iKPp
 https://ktdash.app/r/5IYP01od
 https://ktdash.app/r/QG60aBNG
 https://ktdash.app/r/3ktYu
@@ -2327,6 +2379,7 @@ https://ktdash.app/r/Xsio5T9a
 https://ktdash.app/r/bNsbUNY2
 https://ktdash.app/r/ke3suRAX
 https://ktdash.app/r/hI91DVkj
+https://ktdash.app/r/6W5Eumsh
 https://ktdash.app/r/6wbNfrum
 https://ktdash.app/r/bWZIjiZ2
 https://ktdash.app/r/dAkIR7C7
@@ -2353,6 +2406,7 @@ https://ktdash.app/r/SWVYq
 https://ktdash.app/r/W6vDc
 https://ktdash.app/r/yCpO9757
 https://ktdash.app/r/WRSkt
+https://ktdash.app/r/64sNEH3J
 https://ktdash.app/r/kg2Yslfx
 https://ktdash.app/r/iOdSbaWC
 https://ktdash.app/r/XfdDn0Vu
@@ -2374,6 +2428,7 @@ https://ktdash.app/r/HV5CAjPX
 https://ktdash.app/r/wYRC7u1h
 https://ktdash.app/r/tF8yRMwh
 https://ktdash.app/r/4ZUEmCNl
+https://ktdash.app/r/6D7YLxyp
 https://ktdash.app/r/8Mn4wyTa
 https://ktdash.app/r/vNFJhRnm
 https://ktdash.app/r/6exVSJUV
@@ -2403,6 +2458,8 @@ https://ktdash.app/r/notkbWBo
 https://ktdash.app/r/srjJwmmQ
 https://ktdash.app/r/WR4U1woZ
 https://ktdash.app/r/PWyz3Kio
+https://ktdash.app/r/5G3Jposm
+https://ktdash.app/r/XrffYUOr
 https://ktdash.app/r/2LqynFWO
 https://ktdash.app/r/NEuiRAnP
 https://ktdash.app/r/pYwtyVt1
@@ -2444,6 +2501,12 @@ https://ktdash.app/r/WaACn
 https://ktdash.app/r/zqMdt
 https://ktdash.app/r/u9lgFr54
 https://ktdash.app/r/w3uacNkG
+https://ktdash.app/r/2hVELJNk
+https://ktdash.app/r/KpQt57Kr
+https://ktdash.app/r/oy5BzsKY
+https://ktdash.app/r/Re84aCMB
+https://ktdash.app/r/VdROqoGQ
+https://ktdash.app/r/Y0WEIpMs
 https://ktdash.app/r/y7Pec
 https://ktdash.app/r/aFfxYm78
 https://ktdash.app/r/QN1sv9Vs
@@ -2514,6 +2577,7 @@ https://ktdash.app/r/A9CBkXdP
 https://ktdash.app/r/8Ls71
 https://ktdash.app/r/BcdRh
 https://ktdash.app/r/Fqail
+https://ktdash.app/r/1YjgwE79
 https://ktdash.app/r/JXaat3oy
 https://ktdash.app/r/mDXY5yj4
 https://ktdash.app/r/plm9b6MU
@@ -2535,8 +2599,11 @@ https://ktdash.app/r/HAKbujum
 https://ktdash.app/r/LHpaEIn6
 https://ktdash.app/r/QolWmeuR
 https://ktdash.app/r/SnycODvd
+https://ktdash.app/r/XtbrhRhk
+https://ktdash.app/r/EI1hnW9e
 https://ktdash.app/r/SraBl
 https://ktdash.app/r/aHNtHqrH
+https://ktdash.app/r/E2YqoK6N
 https://ktdash.app/r/LYfZj
 https://ktdash.app/r/k1nQN
 https://ktdash.app/r/NckAv
@@ -2566,6 +2633,7 @@ https://ktdash.app/r/0Vab20iY
 https://ktdash.app/r/8diJIDHi
 https://ktdash.app/r/CTo9kokR
 https://ktdash.app/r/fULXJ7DS
+https://ktdash.app/r/h5J7txdd
 https://ktdash.app/r/HBwJl8DA
 https://ktdash.app/r/nUyKc1fU
 https://ktdash.app/r/XiW2rMI4
@@ -2629,9 +2697,9 @@ https://ktdash.app/r/LWHpl5Od
 https://ktdash.app/r/Pxjhf2bB
 https://ktdash.app/r/yHSII
 https://ktdash.app/r/bv4U3
+https://ktdash.app/r/cvtnJfnk
 https://ktdash.app/r/IRuWG
 https://ktdash.app/r/sRypG
-https://ktdash.app/r/yqoD3
 https://ktdash.app/r/9GgEHKbA
 https://ktdash.app/r/mzDA829w
 https://ktdash.app/r/NIJpCeKu
@@ -2651,6 +2719,7 @@ https://ktdash.app/r/z0vxYFBs
 https://ktdash.app/r/TmjUV
 https://ktdash.app/r/JV9rR
 https://ktdash.app/r/lbMjl
+https://ktdash.app/r/hdsXRbwh
 https://ktdash.app/r/RrJqR
 https://ktdash.app/r/FLUL5m0D
 https://ktdash.app/r/HMNpU51B
@@ -2683,6 +2752,7 @@ https://ktdash.app/r/2DqTHAEO
 https://ktdash.app/r/ZxckIzY7
 https://ktdash.app/r/NBGlT
 https://ktdash.app/r/TjaFROvR
+https://ktdash.app/r/vQZCZY80
 https://ktdash.app/r/CAxkKKFR
 https://ktdash.app/r/Ys7yn
 https://ktdash.app/r/8pCjd
@@ -2746,6 +2816,7 @@ https://ktdash.app/r/wIJ94
 https://ktdash.app/r/NG52RSdJ
 https://ktdash.app/r/573J8dXU
 https://ktdash.app/r/Ug0kKcym
+https://ktdash.app/r/Q0wnXU3m
 https://ktdash.app/r/ln2yPjc4
 https://ktdash.app/r/LWA4K5um
 https://ktdash.app/r/v5icZBSi
@@ -2765,6 +2836,7 @@ https://ktdash.app/r/RnxlfeMh
 https://ktdash.app/r/XZjb2alJ
 https://ktdash.app/r/ziz4Y8NQ
 https://ktdash.app/r/Uy5IoQie
+https://ktdash.app/r/h7q6I2CV
 https://ktdash.app/r/PE2dRz1p
 https://ktdash.app/r/FANLF5V3
 https://ktdash.app/r/wyahGKAe
@@ -2791,7 +2863,6 @@ https://ktdash.app/r/64EtCh6q
 https://ktdash.app/r/kBw4vU4T
 https://ktdash.app/r/XW9Ks999
 https://ktdash.app/r/xOeNI
-https://ktdash.app/r/ZZYRl98C
 https://ktdash.app/r/JryqkSPW
 https://ktdash.app/r/X4VI2qLQ
 https://ktdash.app/r/AKZuhFbM
@@ -2849,12 +2920,10 @@ https://ktdash.app/r/Wk0carei
 https://ktdash.app/r/Z5VShADq
 https://ktdash.app/r/oBePdR3m
 https://ktdash.app/r/8GXTOlIz
-https://ktdash.app/r/BuYpD
-https://ktdash.app/r/cSyHX
+https://ktdash.app/r/cWyzcNQV
 https://ktdash.app/r/DB6uYjUe
-https://ktdash.app/r/dBrLsQe2
-https://ktdash.app/r/evJamfSC
 https://ktdash.app/r/NkqB6N74
+https://ktdash.app/r/s3UR6imK
 https://ktdash.app/r/Y3jxzplj
 https://ktdash.app/r/77Q6zdgS
 https://ktdash.app/r/NGOeBXNP
@@ -2935,6 +3004,7 @@ https://ktdash.app/r/NLh5Czuk
 https://ktdash.app/r/tCCXUfl4
 https://ktdash.app/r/TbN59tww
 https://ktdash.app/r/rGpVmE8B
+https://ktdash.app/r/VLUyVNEI
 https://ktdash.app/r/mrvDrRYm
 https://ktdash.app/r/JfFHz1U9
 https://ktdash.app/r/pDNurfr0
@@ -2946,7 +3016,6 @@ https://ktdash.app/r/yAEEM
 https://ktdash.app/r/L9h4N
 https://ktdash.app/r/tiZya7F4
 https://ktdash.app/r/XkZJF
-https://ktdash.app/r/9gemwi38
 https://ktdash.app/r/zPUfKioI
 https://ktdash.app/r/st4qF
 https://ktdash.app/r/rSkdHx1g
@@ -2979,6 +3048,7 @@ https://ktdash.app/r/YLpXE
 https://ktdash.app/r/eHy68L03
 https://ktdash.app/r/L7KL7Qj5
 https://ktdash.app/r/y8iKTp74
+https://ktdash.app/r/quhOavMn
 https://ktdash.app/r/6bJn3UUJ
 https://ktdash.app/r/mjA23
 https://ktdash.app/r/bBYq748r
@@ -3005,10 +3075,10 @@ https://ktdash.app/r/rzOCOymC
 https://ktdash.app/r/twkN8J2g
 https://ktdash.app/r/wNQ6QhSX
 https://ktdash.app/r/5t2Hcuff
-https://ktdash.app/r/fBN8pSos
-https://ktdash.app/r/IW4VfAxg
-https://ktdash.app/r/Mn1RAfYo
+https://ktdash.app/r/8pdCvS24
+https://ktdash.app/r/fIoRFRHo
 https://ktdash.app/r/mU8LoJ99
+https://ktdash.app/r/xlHkuqfR
 https://ktdash.app/r/dtuYFFPc
 https://ktdash.app/r/0vHWbC3I
 https://ktdash.app/r/7Lqz86UE
@@ -3107,6 +3177,7 @@ https://ktdash.app/r/HFkGK
 https://ktdash.app/r/ZfRWX
 https://ktdash.app/r/qwTcgxDX
 https://ktdash.app/r/rykIwJ1v
+https://ktdash.app/r/049PURbV
 https://ktdash.app/r/sKTNdWGK
 https://ktdash.app/r/0duxhyJT
 https://ktdash.app/r/btD6fGcb
@@ -3161,6 +3232,7 @@ https://ktdash.app/r/Gc7FLi9A
 https://ktdash.app/r/H1Sa0ZZG
 https://ktdash.app/r/OuV4iK2u
 https://ktdash.app/r/pZHw5xgc
+https://ktdash.app/r/00t1DyWc
 https://ktdash.app/r/4TrremIE
 https://ktdash.app/r/6ObhzpqH
 https://ktdash.app/r/7vo7ESTb
@@ -3238,6 +3310,8 @@ https://ktdash.app/r/3Sgq9GG9
 https://ktdash.app/r/AcKhRCG2
 https://ktdash.app/r/cQzcaJ3V
 https://ktdash.app/r/SzVhMwXt
+https://ktdash.app/r/tHsff0Ir
+https://ktdash.app/r/y0hFlwna
 https://ktdash.app/r/Dz3MM
 https://ktdash.app/r/4thq555E
 https://ktdash.app/r/5qj7mwps
@@ -3272,6 +3346,7 @@ https://ktdash.app/r/IE1xJ
 https://ktdash.app/r/iYYu9
 https://ktdash.app/r/67xuHRIQ
 https://ktdash.app/r/RqQch
+https://ktdash.app/r/Hteo1T3T
 https://ktdash.app/r/HY37736o
 https://ktdash.app/r/MVptMbJp
 https://ktdash.app/r/xtH2RMaU
@@ -3391,9 +3466,9 @@ https://ktdash.app/r/KNHRoyGC
 https://ktdash.app/r/kq8LL
 https://ktdash.app/r/StOvc6wB
 https://ktdash.app/r/3eKhkDb5
+https://ktdash.app/r/aW7NXyQh
 https://ktdash.app/r/HtIclHKV
 https://ktdash.app/r/LfGM5cFu
-https://ktdash.app/r/N8g2skRr
 https://ktdash.app/r/oLmjqtF3
 https://ktdash.app/r/pIjh5qmy
 https://ktdash.app/r/QoapeL2Q
@@ -3504,6 +3579,7 @@ https://ktdash.app/r/yMh4m3Ol
 https://ktdash.app/r/D9Wxl
 https://ktdash.app/r/2IMNd
 https://ktdash.app/r/JFiD4xLx
+https://ktdash.app/r/afxUezXT
 https://ktdash.app/r/CklYaOIR
 https://ktdash.app/r/H8nA6SR1
 https://ktdash.app/r/VNZRk1Pz
@@ -3580,6 +3656,7 @@ https://ktdash.app/r/OkIT3
 https://ktdash.app/r/hBjx0bUA
 https://ktdash.app/r/ZNBBjKUP
 https://ktdash.app/r/xad43byp
+https://ktdash.app/r/LY9Kh0e3
 https://ktdash.app/r/wDXxvIZJ
 https://ktdash.app/r/yNXSMQd1
 https://ktdash.app/r/0wQRXVsj
@@ -3588,6 +3665,7 @@ https://ktdash.app/r/AIY1MZjA
 https://ktdash.app/r/JrIf7Nth
 https://ktdash.app/r/QT0e1
 https://ktdash.app/r/savXGoKm
+https://ktdash.app/r/WikdIB30
 https://ktdash.app/r/BdIfTPEu
 https://ktdash.app/r/TuXWeCqO
 https://ktdash.app/r/O07nwESf
@@ -3655,6 +3733,7 @@ https://ktdash.app/r/cyC7cOmf
 https://ktdash.app/r/OEXHAiyE
 https://ktdash.app/r/Zr2E8x6f
 https://ktdash.app/r/l6oojLVS
+https://ktdash.app/r/BXJJG299
 https://ktdash.app/r/ngfxJpdt
 https://ktdash.app/r/olLo5LlO
 https://ktdash.app/r/YjLPg2hh
@@ -3678,6 +3757,8 @@ https://ktdash.app/r/YTrRQuGq
 https://ktdash.app/r/3nDCPzro
 https://ktdash.app/r/xCYkGR6L
 https://ktdash.app/r/XwV0xdiC
+https://ktdash.app/r/02TjI2WP
+https://ktdash.app/r/PbJUtfpN
 https://ktdash.app/r/X1vShcoY
 https://ktdash.app/r/29HjhUMK
 https://ktdash.app/r/8CUhTeZX
@@ -3687,6 +3768,7 @@ https://ktdash.app/r/2RY0D
 https://ktdash.app/r/GO4zU
 https://ktdash.app/r/15isnr3F
 https://ktdash.app/r/iBUtBHkP
+https://ktdash.app/r/LL8GQo7K
 https://ktdash.app/r/Oopf4SJD
 https://ktdash.app/r/qYsRSIrp
 https://ktdash.app/r/WScH1NPp
@@ -3697,6 +3779,7 @@ https://ktdash.app/r/LFlABW4p
 https://ktdash.app/r/kE8utBwz
 https://ktdash.app/r/l4wqAUYF
 https://ktdash.app/r/5Q0eS9X6
+https://ktdash.app/r/VKKrCEsz
 https://ktdash.app/r/HCT044YS
 https://ktdash.app/r/ioptEnGc
 https://ktdash.app/r/zVQUC5Pm
@@ -3737,12 +3820,14 @@ https://ktdash.app/r/wLpIKu8x
 https://ktdash.app/r/IiNjImHl
 https://ktdash.app/r/qnMgtf9o
 https://ktdash.app/r/Zaf0rnxd
+https://ktdash.app/r/yHu7GOC0
 https://ktdash.app/r/Slal5O4m
 https://ktdash.app/r/oYfltJup
 https://ktdash.app/r/5kCQuE90
 https://ktdash.app/r/KM3tDbAo
 https://ktdash.app/r/VJQAiQ5W
 https://ktdash.app/r/72BDE
+https://ktdash.app/r/FrBSuuQp
 https://ktdash.app/r/gljQSnos
 https://ktdash.app/r/siCCAMv3
 https://ktdash.app/r/G6qxGkPz
@@ -3752,6 +3837,7 @@ https://ktdash.app/r/gXtVxJAi
 https://ktdash.app/r/GPpybCgX
 https://ktdash.app/r/WvaI07MD
 https://ktdash.app/r/OdAtj
+https://ktdash.app/r/Sx7HQ8H9
 https://ktdash.app/r/1dwiIgug
 https://ktdash.app/r/8JFFHgja
 https://ktdash.app/r/CCaxHeKf
@@ -3765,6 +3851,8 @@ https://ktdash.app/r/q7xvlDOG
 https://ktdash.app/r/TpTz8lxa
 https://ktdash.app/r/ya2W7NgY
 https://ktdash.app/r/e6gzSkN2
+https://ktdash.app/r/LYhsyyuX
+https://ktdash.app/r/SYozBb9A
 https://ktdash.app/r/5uGIsXSq
 https://ktdash.app/r/NhoT16SU
 https://ktdash.app/r/RBV8NDXM
@@ -3807,6 +3895,7 @@ https://ktdash.app/r/sTyhZ5dw
 https://ktdash.app/r/ey1qZhTu
 https://ktdash.app/r/L0o0scRZ
 https://ktdash.app/r/nnYJQvHx
+https://ktdash.app/r/T6DqIaUE
 https://ktdash.app/r/69NLO
 https://ktdash.app/r/hU0aY
 https://ktdash.app/r/vcqUX
@@ -3854,6 +3943,8 @@ https://ktdash.app/r/xtMSZWmx
 https://ktdash.app/r/QsTmPYA1
 https://ktdash.app/r/hnxbM
 https://ktdash.app/r/03Fnxu2u
+https://ktdash.app/r/7BZksPYb
+https://ktdash.app/r/qNI9iFgM
 https://ktdash.app/r/KgTrp
 https://ktdash.app/r/IK5sl6Ji
 https://ktdash.app/r/t0yb9
@@ -3861,6 +3952,7 @@ https://ktdash.app/r/MwokK
 https://ktdash.app/r/bG5Ak
 https://ktdash.app/r/nVa3di7l
 https://ktdash.app/r/X7qXO
+https://ktdash.app/r/8cVyVKXG
 https://ktdash.app/r/c8Z77sqq
 https://ktdash.app/r/graRhQqX
 https://ktdash.app/r/xE2Dkla6
@@ -3883,6 +3975,7 @@ https://ktdash.app/r/RhEu3bPn
 https://ktdash.app/r/TuLHlve6
 https://ktdash.app/r/8GRNfRx0
 https://ktdash.app/r/RdsVmtc1
+https://ktdash.app/r/V1ddPv2p
 https://ktdash.app/r/xKvzv9K0
 https://ktdash.app/r/yRnAa
 https://ktdash.app/r/Vo7Q4Lyk
@@ -3910,6 +4003,7 @@ https://ktdash.app/r/GP0Ad
 https://ktdash.app/r/XLLnc
 https://ktdash.app/r/8sdKCVAz
 https://ktdash.app/r/AHRWcDMr
+https://ktdash.app/r/L0Jz9PC2
 https://ktdash.app/r/UNCbPoVB
 https://ktdash.app/r/9q8FPWH6
 https://ktdash.app/r/nhtnXyfl
@@ -3917,12 +4011,6 @@ https://ktdash.app/r/piuYkr8K
 https://ktdash.app/r/Q1swOiUa
 https://ktdash.app/r/u8ehA6Yp
 https://ktdash.app/r/zog4gs2w
-https://ktdash.app/r/39RxABXv
-https://ktdash.app/r/mavmZ045
-https://ktdash.app/r/p6Kl9
-https://ktdash.app/r/PhIZxTIH
-https://ktdash.app/r/SFrmGmhr
-https://ktdash.app/r/Uddl2XtD
 https://ktdash.app/r/qXoSPmv0
 https://ktdash.app/r/juPdq6KL
 https://ktdash.app/r/dn8I9tW3
@@ -3999,6 +4087,7 @@ https://ktdash.app/r/8TNX6iV8
 https://ktdash.app/r/DpdgADlM
 https://ktdash.app/r/Dr9kWBUe
 https://ktdash.app/r/rq86aZTQ
+https://ktdash.app/r/mTwzym5z
 https://ktdash.app/r/WtOoMLIe
 https://ktdash.app/r/y8ZmNXjF
 https://ktdash.app/r/9JEP9LHE
@@ -4015,7 +4104,6 @@ https://ktdash.app/r/h6xmW
 https://ktdash.app/r/q59u3kH2
 https://ktdash.app/r/VXRIvM9a
 https://ktdash.app/r/HG0K5
-https://ktdash.app/r/mAg7D
 https://ktdash.app/r/PQjOZRfF
 https://ktdash.app/r/Q2dP9j6j
 https://ktdash.app/r/PfBSVAum
@@ -4023,6 +4111,7 @@ https://ktdash.app/r/Bnp12Mle
 https://ktdash.app/r/XqG3En7U
 https://ktdash.app/r/7uNb45E6
 https://ktdash.app/r/suGShtbn
+https://ktdash.app/r/4uvGesdW
 https://ktdash.app/r/dF672ftI
 https://ktdash.app/r/T3gnITkF
 https://ktdash.app/r/OOBHY
@@ -4036,6 +4125,7 @@ https://ktdash.app/r/vGOxXDP3
 https://ktdash.app/r/euVuV
 https://ktdash.app/r/djU1X9GW
 https://ktdash.app/r/6gdEoR9u
+https://ktdash.app/r/ioW6PgX0
 https://ktdash.app/r/Rn1oyDda
 https://ktdash.app/r/6Igqu3gA
 https://ktdash.app/r/h4r0b
@@ -4134,6 +4224,8 @@ https://ktdash.app/r/lxNDePFo
 https://ktdash.app/r/uDbETH3h
 https://ktdash.app/r/fFoS3Y1w
 https://ktdash.app/r/3JIRZyw3
+https://ktdash.app/r/Ia8r97mX
+https://ktdash.app/r/t4SziqIz
 https://ktdash.app/r/zof0a9PG
 https://ktdash.app/r/jAPeMIH0
 https://ktdash.app/r/SbRY3Wui
@@ -4162,6 +4254,9 @@ https://ktdash.app/r/yIMsvcrr
 https://ktdash.app/r/z8MzusHF
 https://ktdash.app/r/Za10cxrN
 https://ktdash.app/r/ckOQoy8y
+https://ktdash.app/r/c0MAZthM
+https://ktdash.app/r/PfcDi5hR
+https://ktdash.app/r/5vUYFYrX
 https://ktdash.app/r/Sk5TPFoo
 https://ktdash.app/r/1OH1rrTX
 https://ktdash.app/r/s4ETAFNU
@@ -4176,8 +4271,6 @@ https://ktdash.app/r/hpOfIFGs
 https://ktdash.app/r/g0Qivr2p
 https://ktdash.app/r/ETHsu
 https://ktdash.app/r/p9ITj8Xn
-https://ktdash.app/r/JQDONLLd
-https://ktdash.app/r/rShWILCq
 https://ktdash.app/r/ZFYoIbgV
 https://ktdash.app/r/EnLPkWaP
 https://ktdash.app/r/99TArJau
@@ -4204,9 +4297,11 @@ https://ktdash.app/r/AfMSx91k
 https://ktdash.app/r/esqNp4KS
 https://ktdash.app/r/i96oKuI3
 https://ktdash.app/r/IzNo4xLc
+https://ktdash.app/r/LpfMcYya
 https://ktdash.app/r/mmYTShnG
 https://ktdash.app/r/Qya5cQt6
 https://ktdash.app/r/Zdoqmg8I
+https://ktdash.app/r/pXxTZ4T5
 https://ktdash.app/r/61MK8GVI
 https://ktdash.app/r/fQVyu
 https://ktdash.app/r/01e9b
@@ -4228,12 +4323,15 @@ https://ktdash.app/r/5w40EErL
 https://ktdash.app/r/EvcihPmp
 https://ktdash.app/r/IbaRAmOs
 https://ktdash.app/r/Mpmrbxpt
+https://ktdash.app/r/3Apm7gju
 https://ktdash.app/r/H34PWB92
 https://ktdash.app/r/lJhpa2KN
 https://ktdash.app/r/6hfaU
 https://ktdash.app/r/IImXkX7l
 https://ktdash.app/r/9siMtlnA
 https://ktdash.app/r/ieDFz6eD
+https://ktdash.app/r/4xpGelng
+https://ktdash.app/r/9lnuS1Rz
 https://ktdash.app/r/GibdZ
 https://ktdash.app/r/DsqGp
 https://ktdash.app/r/k4hVLYCD
@@ -4364,9 +4462,12 @@ https://ktdash.app/r/v9TIQ
 https://ktdash.app/r/sDJikMeC
 https://ktdash.app/r/Mn2A6d6Q
 https://ktdash.app/r/ez3NfBMU
+https://ktdash.app/r/V67dI3FU
 https://ktdash.app/r/5Cdb5TOW
 https://ktdash.app/r/DTCHKED5
 https://ktdash.app/r/x7dBVmFJ
+https://ktdash.app/r/fEfQMRgI
+https://ktdash.app/r/r6j9WMia
 https://ktdash.app/r/BdH01pCs
 https://ktdash.app/r/CiapvHGL
 https://ktdash.app/r/ilciq
@@ -4409,6 +4510,7 @@ https://ktdash.app/r/F5TLW3ik
 https://ktdash.app/r/rNgAl5YW
 https://ktdash.app/r/MumRJ
 https://ktdash.app/r/Lktem
+https://ktdash.app/r/B38lMEQb
 https://ktdash.app/r/Dbil1CHD
 https://ktdash.app/r/Ryr9I
 https://ktdash.app/r/tKC4lcM5
@@ -4581,6 +4683,7 @@ https://ktdash.app/r/OPJxV
 https://ktdash.app/r/6min54SL
 https://ktdash.app/r/ZTRpTTbz
 https://ktdash.app/r/I1254n8e
+https://ktdash.app/r/y4MSuHqm
 https://ktdash.app/r/cPZcJbiN
 https://ktdash.app/r/mBy0QTvC
 https://ktdash.app/r/BkA36AYv
@@ -4611,6 +4714,7 @@ https://ktdash.app/r/G1TCUljJ
 https://ktdash.app/r/hmuWSCAR
 https://ktdash.app/r/k1kFNXMF
 https://ktdash.app/r/l1jnbdoi
+https://ktdash.app/r/l3z4pAM0
 https://ktdash.app/r/oOTFvmwI
 https://ktdash.app/r/riXK4tUI
 https://ktdash.app/r/ym8kUwbB
@@ -4697,6 +4801,7 @@ https://ktdash.app/r/jfMsWrzk
 https://ktdash.app/r/jHUduQam
 https://ktdash.app/r/pjWHZa2v
 https://ktdash.app/r/rfHESzRs
+https://ktdash.app/r/Yr7J9NDh
 https://ktdash.app/r/ITtwyGou
 https://ktdash.app/r/rirAD
 https://ktdash.app/r/tS0cX
@@ -4750,6 +4855,8 @@ https://ktdash.app/r/da3NE
 https://ktdash.app/r/df2C0
 https://ktdash.app/r/Dwyar
 https://ktdash.app/r/H0ZsUrDX
+https://ktdash.app/r/oK2wpWNf
+https://ktdash.app/r/q5NwqxDx
 https://ktdash.app/r/wXESi
 https://ktdash.app/r/yQDLWsjc
 https://ktdash.app/r/qe09ckjG
@@ -4775,12 +4882,12 @@ https://ktdash.app/r/ZYdd7
 https://ktdash.app/r/8wirO
 https://ktdash.app/r/OUDT9
 https://ktdash.app/r/lBICj7nN
-https://ktdash.app/r/d26ykuZt
 https://ktdash.app/r/yDn46
 https://ktdash.app/r/oMeHFSrx
 https://ktdash.app/r/hgVLrOuZ
 https://ktdash.app/r/X7lyiF8I
 https://ktdash.app/r/1ulcu
+https://ktdash.app/r/BR1DsATD
 https://ktdash.app/r/hiiTFAuc
 https://ktdash.app/r/MHSGkOYi
 https://ktdash.app/r/1grbokk9
@@ -4851,7 +4958,9 @@ https://ktdash.app/r/nDyuyh8L
 https://ktdash.app/r/uJoYw
 https://ktdash.app/r/8s1cot8d
 https://ktdash.app/r/JqA8bUQl
+https://ktdash.app/r/JWNZKzlX
 https://ktdash.app/r/mYF85uFI
+https://ktdash.app/r/UDdbZgrz
 https://ktdash.app/r/j4AJLfCt
 https://ktdash.app/r/tjYuKATN
 https://ktdash.app/r/7uBM2XYa
@@ -4864,6 +4973,7 @@ https://ktdash.app/r/xmkvt
 https://ktdash.app/r/JwDDB
 https://ktdash.app/r/LB1lM
 https://ktdash.app/r/oycLH
+https://ktdash.app/r/Sg8aTQMZ
 https://ktdash.app/r/yd4xTD2d
 https://ktdash.app/r/Tzw0K
 https://ktdash.app/r/eAMu0JSD
@@ -4886,6 +4996,7 @@ https://ktdash.app/r/wwSpj
 https://ktdash.app/r/ivVr0gwJ
 https://ktdash.app/r/M8XcY
 https://ktdash.app/r/PurgFNPn
+https://ktdash.app/r/yScHfb9m
 https://ktdash.app/r/aSSi1ICX
 https://ktdash.app/r/DgRVjc8b
 https://ktdash.app/r/rqbs2
@@ -4929,6 +5040,7 @@ https://ktdash.app/r/suZDG2IQ
 https://ktdash.app/r/ulJqd
 https://ktdash.app/r/vaVPp0Ao
 https://ktdash.app/r/ZwfR2
+https://ktdash.app/r/Ehopzdji
 https://ktdash.app/r/qkHPHnUm
 https://ktdash.app/r/WtHoX96n
 https://ktdash.app/r/FRwT06cR
@@ -4968,6 +5080,7 @@ https://ktdash.app/r/gCS5grI0
 https://ktdash.app/r/DwahI
 https://ktdash.app/r/425gvxXY
 https://ktdash.app/r/aLrRyoOc
+https://ktdash.app/r/HQIj9KTD
 https://ktdash.app/r/xs7lNR5v
 https://ktdash.app/r/aIBk4rp1
 https://ktdash.app/r/yN6WJWdB
@@ -5005,7 +5118,9 @@ https://ktdash.app/r/ciWtfhZd
 https://ktdash.app/r/dYWpY0JR
 https://ktdash.app/r/E97DXggx
 https://ktdash.app/r/fUcPn8LC
+https://ktdash.app/r/jYNGrohV
 https://ktdash.app/r/KirAJlWL
+https://ktdash.app/r/LxHDRRPH
 https://ktdash.app/r/M8eWeRQA
 https://ktdash.app/r/m8johVbn
 https://ktdash.app/r/MIaCsAbX
@@ -5016,10 +5131,10 @@ https://ktdash.app/r/1NAWshEe
 https://ktdash.app/r/kwT6y
 https://ktdash.app/r/1PU3c
 https://ktdash.app/r/WuEP8Mv5
-https://ktdash.app/r/kTO6FAyg
+https://ktdash.app/r/d6xbbQJk
 https://ktdash.app/r/mH7DAosp
 https://ktdash.app/r/RKKf7CMo
-https://ktdash.app/r/WEivIH87
+https://ktdash.app/r/vFVpWXGo
 https://ktdash.app/r/WM3nKKrW
 https://ktdash.app/r/kXgWkWr0
 https://ktdash.app/r/zKBUC
@@ -5030,6 +5145,7 @@ https://ktdash.app/r/0UOxMwoM
 https://ktdash.app/r/LPshKYPS
 https://ktdash.app/r/tDQSzaSh
 https://ktdash.app/r/USNGVS6s
+https://ktdash.app/r/4HjBzgnE
 https://ktdash.app/r/glMIR
 https://ktdash.app/r/IAYNy
 https://ktdash.app/r/S67LA
@@ -5119,8 +5235,10 @@ https://ktdash.app/r/dWb3G3aL
 https://ktdash.app/r/K8flTmOS
 https://ktdash.app/r/Ze3Hv
 https://ktdash.app/r/0Sni9GjQ
+https://ktdash.app/r/2CiOgFmu
 https://ktdash.app/r/4CI1vnJU
 https://ktdash.app/r/DWR3I
+https://ktdash.app/r/4aD2cTut
 https://ktdash.app/r/D5TNyZKo
 https://ktdash.app/r/nbpbl
 https://ktdash.app/r/TqpwfQsE
@@ -5131,6 +5249,7 @@ https://ktdash.app/r/4kczwkny
 https://ktdash.app/r/MQNAZHIe
 https://ktdash.app/r/UfjyLdpF
 https://ktdash.app/r/No4QD
+https://ktdash.app/r/pqlLpUlq
 https://ktdash.app/r/bec7TcSW
 https://ktdash.app/r/cIrJV6DN
 https://ktdash.app/r/T9buswpC
@@ -5184,7 +5303,6 @@ https://ktdash.app/r/AifQ5qvQ
 https://ktdash.app/r/tb3yiJmm
 https://ktdash.app/r/9tzvboof
 https://ktdash.app/r/Y7kEJ
-https://ktdash.app/r/p2WLRr6b
 https://ktdash.app/r/X1HMl3eU
 https://ktdash.app/r/cJtHt
 https://ktdash.app/r/kFEXG
@@ -5252,6 +5370,7 @@ https://ktdash.app/r/z7w36LoM
 https://ktdash.app/r/ZY9aGV63
 https://ktdash.app/r/Dcnqii9u
 https://ktdash.app/r/EU8NSCiC
+https://ktdash.app/r/ZMmhzL01
 https://ktdash.app/r/uGgJtakb
 https://ktdash.app/r/auYyT
 https://ktdash.app/r/0vsAzDZl
@@ -5307,10 +5426,12 @@ https://ktdash.app/r/G2Zt1qf8
 https://ktdash.app/r/HeVuXkZJ
 https://ktdash.app/r/ki9dWxp1
 https://ktdash.app/r/oNzS7HNW
+https://ktdash.app/r/yH7a3usV
 https://ktdash.app/r/QbqtzvbE
 https://ktdash.app/r/heAOF
 https://ktdash.app/r/fKycq
 https://ktdash.app/r/vBGZgRIT
+https://ktdash.app/r/2Qv2j7Wv
 https://ktdash.app/r/BbBqZ
 https://ktdash.app/r/B3c9D
 https://ktdash.app/r/n4x39
@@ -5336,6 +5457,7 @@ https://ktdash.app/r/R4xsg
 https://ktdash.app/r/SkybjP9A
 https://ktdash.app/r/ZSxD4
 https://ktdash.app/r/Dlju12iK
+https://ktdash.app/r/maLZ614h
 https://ktdash.app/r/1i4FQ
 https://ktdash.app/r/lheew2Wx
 https://ktdash.app/r/8lcsX
@@ -5343,13 +5465,14 @@ https://ktdash.app/r/1Krv5
 https://ktdash.app/r/k1sSCKIv
 https://ktdash.app/r/kQQ1v
 https://ktdash.app/r/0qtkxH72
+https://ktdash.app/r/oIGFP0Zg
 https://ktdash.app/r/7Fq8RZnG
 https://ktdash.app/r/5lSNi6Vs
 https://ktdash.app/r/IJygEeQY
 https://ktdash.app/r/0CLVa
 https://ktdash.app/r/cZXbwPws
 https://ktdash.app/r/oRDTr1Ti
-https://ktdash.app/r/eQLzPGkc
+https://ktdash.app/r/7c8ttKZX
 https://ktdash.app/r/PuQA17NQ
 https://ktdash.app/r/xLaMyMjW
 https://ktdash.app/r/38sLx
@@ -5387,10 +5510,12 @@ https://ktdash.app/r/NkLY664h
 https://ktdash.app/r/rwrEfFPX
 https://ktdash.app/r/z0NIq
 https://ktdash.app/r/ZmjGdvfX
+https://ktdash.app/r/v0MHlhDR
 https://ktdash.app/r/56eKM5wb
 https://ktdash.app/r/KNYI3
 https://ktdash.app/r/uBUM6
 https://ktdash.app/r/IywgBa2F
+https://ktdash.app/r/j866cQNv
 https://ktdash.app/r/Yr4lvMPm
 https://ktdash.app/r/yspEJkeB
 https://ktdash.app/r/XcCCBhKh
@@ -5446,6 +5571,7 @@ https://ktdash.app/r/EcHybRbf/g
 https://ktdash.app/r/Ew5n3iLw/g
 https://ktdash.app/r/kcD5WtVT/g
 https://ktdash.app/r/LwN3RTcT/g
+https://ktdash.app/r/tuKLn70X/g
 https://ktdash.app/r/y8F0Qght/g
 https://ktdash.app/r/csuI4/g
 https://ktdash.app/r/AJmeV4lU/g
@@ -5475,6 +5601,7 @@ https://ktdash.app/r/hx1w6/g
 https://ktdash.app/r/MayqlTE3/g
 https://ktdash.app/r/Pj2w2UEn/g
 https://ktdash.app/r/Q4mkv/g
+https://ktdash.app/r/ANYkXPqT/g
 https://ktdash.app/r/Aotjse0v/g
 https://ktdash.app/r/oaLc3VZr/g
 https://ktdash.app/r/Zzp1n/g
@@ -5505,6 +5632,7 @@ https://ktdash.app/r/HyTy2/g
 https://ktdash.app/r/joEGYMUR/g
 https://ktdash.app/r/lpNgm/g
 https://ktdash.app/r/UN9ga/g
+https://ktdash.app/r/5MPWcDSF/g
 https://ktdash.app/r/5w7k1vyn/g
 https://ktdash.app/r/8M23f/g
 https://ktdash.app/r/G5fM1/g
@@ -5530,6 +5658,7 @@ https://ktdash.app/r/4Nbig/g
 https://ktdash.app/r/4vkmjruo/g
 https://ktdash.app/r/5HqVrKX6/g
 https://ktdash.app/r/6C5QS4BK/g
+https://ktdash.app/r/6NfnLNGQ/g
 https://ktdash.app/r/6s1AR/g
 https://ktdash.app/r/8ofHJXX8/g
 https://ktdash.app/r/AsJISayz/g
@@ -5567,6 +5696,7 @@ https://ktdash.app/r/WxRtd/g
 https://ktdash.app/r/xbwBAbsc/g
 https://ktdash.app/r/yLCwZpNS/g
 https://ktdash.app/r/GDhTzbLK/g
+https://ktdash.app/r/q8QLZeGH/g
 https://ktdash.app/r/DrEKZ/g
 https://ktdash.app/r/ZKIKY/g
 https://ktdash.app/r/1Sgpt/g
@@ -5586,6 +5716,7 @@ https://ktdash.app/r/ikTnv/g
 https://ktdash.app/r/nvyTnLkn/g
 https://ktdash.app/r/JMsxr/g
 https://ktdash.app/r/Fznq2pHM/g
+https://ktdash.app/r/Uf08nKye/g
 https://ktdash.app/r/az4jX/g
 https://ktdash.app/r/O79Z1/g
 https://ktdash.app/r/IlIk2wDc/g
@@ -5697,11 +5828,13 @@ https://ktdash.app/r/9VWPRaIB/g
 https://ktdash.app/r/9xwEIjEa/g
 https://ktdash.app/r/a4Scsxz1/g
 https://ktdash.app/r/Abe7V3Xh/g
+https://ktdash.app/r/b4huUGod/g
 https://ktdash.app/r/BCSjdpGM/g
 https://ktdash.app/r/BFMZNSfw/g
 https://ktdash.app/r/bhacCjDr/g
 https://ktdash.app/r/bMbUm0nF/g
 https://ktdash.app/r/BVOG730z/g
+https://ktdash.app/r/bWW6d6MM/g
 https://ktdash.app/r/cRm0c2gY/g
 https://ktdash.app/r/E0A43LUZ/g
 https://ktdash.app/r/eX2KYhRE/g
@@ -5926,6 +6059,7 @@ https://ktdash.app/r/JveGwkGh/g
 https://ktdash.app/r/NKZjD0H2/g
 https://ktdash.app/r/OxBPXdQb/g
 https://ktdash.app/r/qEGLiVG9/g
+https://ktdash.app/r/Lhu1iKPp/g
 https://ktdash.app/r/5IYP01od/g
 https://ktdash.app/r/QG60aBNG/g
 https://ktdash.app/r/3ktYu/g
@@ -5970,6 +6104,7 @@ https://ktdash.app/r/Xsio5T9a/g
 https://ktdash.app/r/bNsbUNY2/g
 https://ktdash.app/r/ke3suRAX/g
 https://ktdash.app/r/hI91DVkj/g
+https://ktdash.app/r/6W5Eumsh/g
 https://ktdash.app/r/6wbNfrum/g
 https://ktdash.app/r/bWZIjiZ2/g
 https://ktdash.app/r/dAkIR7C7/g
@@ -5996,6 +6131,7 @@ https://ktdash.app/r/SWVYq/g
 https://ktdash.app/r/W6vDc/g
 https://ktdash.app/r/yCpO9757/g
 https://ktdash.app/r/WRSkt/g
+https://ktdash.app/r/64sNEH3J/g
 https://ktdash.app/r/kg2Yslfx/g
 https://ktdash.app/r/iOdSbaWC/g
 https://ktdash.app/r/XfdDn0Vu/g
@@ -6017,6 +6153,7 @@ https://ktdash.app/r/HV5CAjPX/g
 https://ktdash.app/r/wYRC7u1h/g
 https://ktdash.app/r/tF8yRMwh/g
 https://ktdash.app/r/4ZUEmCNl/g
+https://ktdash.app/r/6D7YLxyp/g
 https://ktdash.app/r/8Mn4wyTa/g
 https://ktdash.app/r/vNFJhRnm/g
 https://ktdash.app/r/6exVSJUV/g
@@ -6046,6 +6183,8 @@ https://ktdash.app/r/notkbWBo/g
 https://ktdash.app/r/srjJwmmQ/g
 https://ktdash.app/r/WR4U1woZ/g
 https://ktdash.app/r/PWyz3Kio/g
+https://ktdash.app/r/5G3Jposm/g
+https://ktdash.app/r/XrffYUOr/g
 https://ktdash.app/r/2LqynFWO/g
 https://ktdash.app/r/NEuiRAnP/g
 https://ktdash.app/r/pYwtyVt1/g
@@ -6087,6 +6226,12 @@ https://ktdash.app/r/WaACn/g
 https://ktdash.app/r/zqMdt/g
 https://ktdash.app/r/u9lgFr54/g
 https://ktdash.app/r/w3uacNkG/g
+https://ktdash.app/r/2hVELJNk/g
+https://ktdash.app/r/KpQt57Kr/g
+https://ktdash.app/r/oy5BzsKY/g
+https://ktdash.app/r/Re84aCMB/g
+https://ktdash.app/r/VdROqoGQ/g
+https://ktdash.app/r/Y0WEIpMs/g
 https://ktdash.app/r/y7Pec/g
 https://ktdash.app/r/aFfxYm78/g
 https://ktdash.app/r/QN1sv9Vs/g
@@ -6157,6 +6302,7 @@ https://ktdash.app/r/A9CBkXdP/g
 https://ktdash.app/r/8Ls71/g
 https://ktdash.app/r/BcdRh/g
 https://ktdash.app/r/Fqail/g
+https://ktdash.app/r/1YjgwE79/g
 https://ktdash.app/r/JXaat3oy/g
 https://ktdash.app/r/mDXY5yj4/g
 https://ktdash.app/r/plm9b6MU/g
@@ -6178,8 +6324,11 @@ https://ktdash.app/r/HAKbujum/g
 https://ktdash.app/r/LHpaEIn6/g
 https://ktdash.app/r/QolWmeuR/g
 https://ktdash.app/r/SnycODvd/g
+https://ktdash.app/r/XtbrhRhk/g
+https://ktdash.app/r/EI1hnW9e/g
 https://ktdash.app/r/SraBl/g
 https://ktdash.app/r/aHNtHqrH/g
+https://ktdash.app/r/E2YqoK6N/g
 https://ktdash.app/r/LYfZj/g
 https://ktdash.app/r/k1nQN/g
 https://ktdash.app/r/NckAv/g
@@ -6209,6 +6358,7 @@ https://ktdash.app/r/0Vab20iY/g
 https://ktdash.app/r/8diJIDHi/g
 https://ktdash.app/r/CTo9kokR/g
 https://ktdash.app/r/fULXJ7DS/g
+https://ktdash.app/r/h5J7txdd/g
 https://ktdash.app/r/HBwJl8DA/g
 https://ktdash.app/r/nUyKc1fU/g
 https://ktdash.app/r/XiW2rMI4/g
@@ -6272,9 +6422,9 @@ https://ktdash.app/r/LWHpl5Od/g
 https://ktdash.app/r/Pxjhf2bB/g
 https://ktdash.app/r/yHSII/g
 https://ktdash.app/r/bv4U3/g
+https://ktdash.app/r/cvtnJfnk/g
 https://ktdash.app/r/IRuWG/g
 https://ktdash.app/r/sRypG/g
-https://ktdash.app/r/yqoD3/g
 https://ktdash.app/r/9GgEHKbA/g
 https://ktdash.app/r/mzDA829w/g
 https://ktdash.app/r/NIJpCeKu/g
@@ -6294,6 +6444,7 @@ https://ktdash.app/r/z0vxYFBs/g
 https://ktdash.app/r/TmjUV/g
 https://ktdash.app/r/JV9rR/g
 https://ktdash.app/r/lbMjl/g
+https://ktdash.app/r/hdsXRbwh/g
 https://ktdash.app/r/RrJqR/g
 https://ktdash.app/r/FLUL5m0D/g
 https://ktdash.app/r/HMNpU51B/g
@@ -6326,6 +6477,7 @@ https://ktdash.app/r/2DqTHAEO/g
 https://ktdash.app/r/ZxckIzY7/g
 https://ktdash.app/r/NBGlT/g
 https://ktdash.app/r/TjaFROvR/g
+https://ktdash.app/r/vQZCZY80/g
 https://ktdash.app/r/CAxkKKFR/g
 https://ktdash.app/r/Ys7yn/g
 https://ktdash.app/r/8pCjd/g
@@ -6389,6 +6541,7 @@ https://ktdash.app/r/wIJ94/g
 https://ktdash.app/r/NG52RSdJ/g
 https://ktdash.app/r/573J8dXU/g
 https://ktdash.app/r/Ug0kKcym/g
+https://ktdash.app/r/Q0wnXU3m/g
 https://ktdash.app/r/ln2yPjc4/g
 https://ktdash.app/r/LWA4K5um/g
 https://ktdash.app/r/v5icZBSi/g
@@ -6408,6 +6561,7 @@ https://ktdash.app/r/RnxlfeMh/g
 https://ktdash.app/r/XZjb2alJ/g
 https://ktdash.app/r/ziz4Y8NQ/g
 https://ktdash.app/r/Uy5IoQie/g
+https://ktdash.app/r/h7q6I2CV/g
 https://ktdash.app/r/PE2dRz1p/g
 https://ktdash.app/r/FANLF5V3/g
 https://ktdash.app/r/wyahGKAe/g
@@ -6434,7 +6588,6 @@ https://ktdash.app/r/64EtCh6q/g
 https://ktdash.app/r/kBw4vU4T/g
 https://ktdash.app/r/XW9Ks999/g
 https://ktdash.app/r/xOeNI/g
-https://ktdash.app/r/ZZYRl98C/g
 https://ktdash.app/r/JryqkSPW/g
 https://ktdash.app/r/X4VI2qLQ/g
 https://ktdash.app/r/AKZuhFbM/g
@@ -6492,12 +6645,10 @@ https://ktdash.app/r/Wk0carei/g
 https://ktdash.app/r/Z5VShADq/g
 https://ktdash.app/r/oBePdR3m/g
 https://ktdash.app/r/8GXTOlIz/g
-https://ktdash.app/r/BuYpD/g
-https://ktdash.app/r/cSyHX/g
+https://ktdash.app/r/cWyzcNQV/g
 https://ktdash.app/r/DB6uYjUe/g
-https://ktdash.app/r/dBrLsQe2/g
-https://ktdash.app/r/evJamfSC/g
 https://ktdash.app/r/NkqB6N74/g
+https://ktdash.app/r/s3UR6imK/g
 https://ktdash.app/r/Y3jxzplj/g
 https://ktdash.app/r/77Q6zdgS/g
 https://ktdash.app/r/NGOeBXNP/g
@@ -6578,6 +6729,7 @@ https://ktdash.app/r/NLh5Czuk/g
 https://ktdash.app/r/tCCXUfl4/g
 https://ktdash.app/r/TbN59tww/g
 https://ktdash.app/r/rGpVmE8B/g
+https://ktdash.app/r/VLUyVNEI/g
 https://ktdash.app/r/mrvDrRYm/g
 https://ktdash.app/r/JfFHz1U9/g
 https://ktdash.app/r/pDNurfr0/g
@@ -6589,7 +6741,6 @@ https://ktdash.app/r/yAEEM/g
 https://ktdash.app/r/L9h4N/g
 https://ktdash.app/r/tiZya7F4/g
 https://ktdash.app/r/XkZJF/g
-https://ktdash.app/r/9gemwi38/g
 https://ktdash.app/r/zPUfKioI/g
 https://ktdash.app/r/st4qF/g
 https://ktdash.app/r/rSkdHx1g/g
@@ -6622,6 +6773,7 @@ https://ktdash.app/r/YLpXE/g
 https://ktdash.app/r/eHy68L03/g
 https://ktdash.app/r/L7KL7Qj5/g
 https://ktdash.app/r/y8iKTp74/g
+https://ktdash.app/r/quhOavMn/g
 https://ktdash.app/r/6bJn3UUJ/g
 https://ktdash.app/r/mjA23/g
 https://ktdash.app/r/bBYq748r/g
@@ -6648,10 +6800,10 @@ https://ktdash.app/r/rzOCOymC/g
 https://ktdash.app/r/twkN8J2g/g
 https://ktdash.app/r/wNQ6QhSX/g
 https://ktdash.app/r/5t2Hcuff/g
-https://ktdash.app/r/fBN8pSos/g
-https://ktdash.app/r/IW4VfAxg/g
-https://ktdash.app/r/Mn1RAfYo/g
+https://ktdash.app/r/8pdCvS24/g
+https://ktdash.app/r/fIoRFRHo/g
 https://ktdash.app/r/mU8LoJ99/g
+https://ktdash.app/r/xlHkuqfR/g
 https://ktdash.app/r/dtuYFFPc/g
 https://ktdash.app/r/0vHWbC3I/g
 https://ktdash.app/r/7Lqz86UE/g
@@ -6750,6 +6902,7 @@ https://ktdash.app/r/HFkGK/g
 https://ktdash.app/r/ZfRWX/g
 https://ktdash.app/r/qwTcgxDX/g
 https://ktdash.app/r/rykIwJ1v/g
+https://ktdash.app/r/049PURbV/g
 https://ktdash.app/r/sKTNdWGK/g
 https://ktdash.app/r/0duxhyJT/g
 https://ktdash.app/r/btD6fGcb/g
@@ -6804,6 +6957,7 @@ https://ktdash.app/r/Gc7FLi9A/g
 https://ktdash.app/r/H1Sa0ZZG/g
 https://ktdash.app/r/OuV4iK2u/g
 https://ktdash.app/r/pZHw5xgc/g
+https://ktdash.app/r/00t1DyWc/g
 https://ktdash.app/r/4TrremIE/g
 https://ktdash.app/r/6ObhzpqH/g
 https://ktdash.app/r/7vo7ESTb/g
@@ -6881,6 +7035,8 @@ https://ktdash.app/r/3Sgq9GG9/g
 https://ktdash.app/r/AcKhRCG2/g
 https://ktdash.app/r/cQzcaJ3V/g
 https://ktdash.app/r/SzVhMwXt/g
+https://ktdash.app/r/tHsff0Ir/g
+https://ktdash.app/r/y0hFlwna/g
 https://ktdash.app/r/Dz3MM/g
 https://ktdash.app/r/4thq555E/g
 https://ktdash.app/r/5qj7mwps/g
@@ -6915,6 +7071,7 @@ https://ktdash.app/r/IE1xJ/g
 https://ktdash.app/r/iYYu9/g
 https://ktdash.app/r/67xuHRIQ/g
 https://ktdash.app/r/RqQch/g
+https://ktdash.app/r/Hteo1T3T/g
 https://ktdash.app/r/HY37736o/g
 https://ktdash.app/r/MVptMbJp/g
 https://ktdash.app/r/xtH2RMaU/g
@@ -7034,9 +7191,9 @@ https://ktdash.app/r/KNHRoyGC/g
 https://ktdash.app/r/kq8LL/g
 https://ktdash.app/r/StOvc6wB/g
 https://ktdash.app/r/3eKhkDb5/g
+https://ktdash.app/r/aW7NXyQh/g
 https://ktdash.app/r/HtIclHKV/g
 https://ktdash.app/r/LfGM5cFu/g
-https://ktdash.app/r/N8g2skRr/g
 https://ktdash.app/r/oLmjqtF3/g
 https://ktdash.app/r/pIjh5qmy/g
 https://ktdash.app/r/QoapeL2Q/g
@@ -7147,6 +7304,7 @@ https://ktdash.app/r/yMh4m3Ol/g
 https://ktdash.app/r/D9Wxl/g
 https://ktdash.app/r/2IMNd/g
 https://ktdash.app/r/JFiD4xLx/g
+https://ktdash.app/r/afxUezXT/g
 https://ktdash.app/r/CklYaOIR/g
 https://ktdash.app/r/H8nA6SR1/g
 https://ktdash.app/r/VNZRk1Pz/g
@@ -7223,6 +7381,7 @@ https://ktdash.app/r/OkIT3/g
 https://ktdash.app/r/hBjx0bUA/g
 https://ktdash.app/r/ZNBBjKUP/g
 https://ktdash.app/r/xad43byp/g
+https://ktdash.app/r/LY9Kh0e3/g
 https://ktdash.app/r/wDXxvIZJ/g
 https://ktdash.app/r/yNXSMQd1/g
 https://ktdash.app/r/0wQRXVsj/g
@@ -7231,6 +7390,7 @@ https://ktdash.app/r/AIY1MZjA/g
 https://ktdash.app/r/JrIf7Nth/g
 https://ktdash.app/r/QT0e1/g
 https://ktdash.app/r/savXGoKm/g
+https://ktdash.app/r/WikdIB30/g
 https://ktdash.app/r/BdIfTPEu/g
 https://ktdash.app/r/TuXWeCqO/g
 https://ktdash.app/r/O07nwESf/g
@@ -7298,6 +7458,7 @@ https://ktdash.app/r/cyC7cOmf/g
 https://ktdash.app/r/OEXHAiyE/g
 https://ktdash.app/r/Zr2E8x6f/g
 https://ktdash.app/r/l6oojLVS/g
+https://ktdash.app/r/BXJJG299/g
 https://ktdash.app/r/ngfxJpdt/g
 https://ktdash.app/r/olLo5LlO/g
 https://ktdash.app/r/YjLPg2hh/g
@@ -7321,6 +7482,8 @@ https://ktdash.app/r/YTrRQuGq/g
 https://ktdash.app/r/3nDCPzro/g
 https://ktdash.app/r/xCYkGR6L/g
 https://ktdash.app/r/XwV0xdiC/g
+https://ktdash.app/r/02TjI2WP/g
+https://ktdash.app/r/PbJUtfpN/g
 https://ktdash.app/r/X1vShcoY/g
 https://ktdash.app/r/29HjhUMK/g
 https://ktdash.app/r/8CUhTeZX/g
@@ -7330,6 +7493,7 @@ https://ktdash.app/r/2RY0D/g
 https://ktdash.app/r/GO4zU/g
 https://ktdash.app/r/15isnr3F/g
 https://ktdash.app/r/iBUtBHkP/g
+https://ktdash.app/r/LL8GQo7K/g
 https://ktdash.app/r/Oopf4SJD/g
 https://ktdash.app/r/qYsRSIrp/g
 https://ktdash.app/r/WScH1NPp/g
@@ -7340,6 +7504,7 @@ https://ktdash.app/r/LFlABW4p/g
 https://ktdash.app/r/kE8utBwz/g
 https://ktdash.app/r/l4wqAUYF/g
 https://ktdash.app/r/5Q0eS9X6/g
+https://ktdash.app/r/VKKrCEsz/g
 https://ktdash.app/r/HCT044YS/g
 https://ktdash.app/r/ioptEnGc/g
 https://ktdash.app/r/zVQUC5Pm/g
@@ -7380,12 +7545,14 @@ https://ktdash.app/r/wLpIKu8x/g
 https://ktdash.app/r/IiNjImHl/g
 https://ktdash.app/r/qnMgtf9o/g
 https://ktdash.app/r/Zaf0rnxd/g
+https://ktdash.app/r/yHu7GOC0/g
 https://ktdash.app/r/Slal5O4m/g
 https://ktdash.app/r/oYfltJup/g
 https://ktdash.app/r/5kCQuE90/g
 https://ktdash.app/r/KM3tDbAo/g
 https://ktdash.app/r/VJQAiQ5W/g
 https://ktdash.app/r/72BDE/g
+https://ktdash.app/r/FrBSuuQp/g
 https://ktdash.app/r/gljQSnos/g
 https://ktdash.app/r/siCCAMv3/g
 https://ktdash.app/r/G6qxGkPz/g
@@ -7395,6 +7562,7 @@ https://ktdash.app/r/gXtVxJAi/g
 https://ktdash.app/r/GPpybCgX/g
 https://ktdash.app/r/WvaI07MD/g
 https://ktdash.app/r/OdAtj/g
+https://ktdash.app/r/Sx7HQ8H9/g
 https://ktdash.app/r/1dwiIgug/g
 https://ktdash.app/r/8JFFHgja/g
 https://ktdash.app/r/CCaxHeKf/g
@@ -7408,6 +7576,8 @@ https://ktdash.app/r/q7xvlDOG/g
 https://ktdash.app/r/TpTz8lxa/g
 https://ktdash.app/r/ya2W7NgY/g
 https://ktdash.app/r/e6gzSkN2/g
+https://ktdash.app/r/LYhsyyuX/g
+https://ktdash.app/r/SYozBb9A/g
 https://ktdash.app/r/5uGIsXSq/g
 https://ktdash.app/r/NhoT16SU/g
 https://ktdash.app/r/RBV8NDXM/g
@@ -7450,6 +7620,7 @@ https://ktdash.app/r/sTyhZ5dw/g
 https://ktdash.app/r/ey1qZhTu/g
 https://ktdash.app/r/L0o0scRZ/g
 https://ktdash.app/r/nnYJQvHx/g
+https://ktdash.app/r/T6DqIaUE/g
 https://ktdash.app/r/69NLO/g
 https://ktdash.app/r/hU0aY/g
 https://ktdash.app/r/vcqUX/g
@@ -7497,6 +7668,8 @@ https://ktdash.app/r/xtMSZWmx/g
 https://ktdash.app/r/QsTmPYA1/g
 https://ktdash.app/r/hnxbM/g
 https://ktdash.app/r/03Fnxu2u/g
+https://ktdash.app/r/7BZksPYb/g
+https://ktdash.app/r/qNI9iFgM/g
 https://ktdash.app/r/KgTrp/g
 https://ktdash.app/r/IK5sl6Ji/g
 https://ktdash.app/r/t0yb9/g
@@ -7504,6 +7677,7 @@ https://ktdash.app/r/MwokK/g
 https://ktdash.app/r/bG5Ak/g
 https://ktdash.app/r/nVa3di7l/g
 https://ktdash.app/r/X7qXO/g
+https://ktdash.app/r/8cVyVKXG/g
 https://ktdash.app/r/c8Z77sqq/g
 https://ktdash.app/r/graRhQqX/g
 https://ktdash.app/r/xE2Dkla6/g
@@ -7526,6 +7700,7 @@ https://ktdash.app/r/RhEu3bPn/g
 https://ktdash.app/r/TuLHlve6/g
 https://ktdash.app/r/8GRNfRx0/g
 https://ktdash.app/r/RdsVmtc1/g
+https://ktdash.app/r/V1ddPv2p/g
 https://ktdash.app/r/xKvzv9K0/g
 https://ktdash.app/r/yRnAa/g
 https://ktdash.app/r/Vo7Q4Lyk/g
@@ -7553,6 +7728,7 @@ https://ktdash.app/r/GP0Ad/g
 https://ktdash.app/r/XLLnc/g
 https://ktdash.app/r/8sdKCVAz/g
 https://ktdash.app/r/AHRWcDMr/g
+https://ktdash.app/r/L0Jz9PC2/g
 https://ktdash.app/r/UNCbPoVB/g
 https://ktdash.app/r/9q8FPWH6/g
 https://ktdash.app/r/nhtnXyfl/g
@@ -7560,12 +7736,6 @@ https://ktdash.app/r/piuYkr8K/g
 https://ktdash.app/r/Q1swOiUa/g
 https://ktdash.app/r/u8ehA6Yp/g
 https://ktdash.app/r/zog4gs2w/g
-https://ktdash.app/r/39RxABXv/g
-https://ktdash.app/r/mavmZ045/g
-https://ktdash.app/r/p6Kl9/g
-https://ktdash.app/r/PhIZxTIH/g
-https://ktdash.app/r/SFrmGmhr/g
-https://ktdash.app/r/Uddl2XtD/g
 https://ktdash.app/r/qXoSPmv0/g
 https://ktdash.app/r/juPdq6KL/g
 https://ktdash.app/r/dn8I9tW3/g
@@ -7642,6 +7812,7 @@ https://ktdash.app/r/8TNX6iV8/g
 https://ktdash.app/r/DpdgADlM/g
 https://ktdash.app/r/Dr9kWBUe/g
 https://ktdash.app/r/rq86aZTQ/g
+https://ktdash.app/r/mTwzym5z/g
 https://ktdash.app/r/WtOoMLIe/g
 https://ktdash.app/r/y8ZmNXjF/g
 https://ktdash.app/r/9JEP9LHE/g
@@ -7658,7 +7829,6 @@ https://ktdash.app/r/h6xmW/g
 https://ktdash.app/r/q59u3kH2/g
 https://ktdash.app/r/VXRIvM9a/g
 https://ktdash.app/r/HG0K5/g
-https://ktdash.app/r/mAg7D/g
 https://ktdash.app/r/PQjOZRfF/g
 https://ktdash.app/r/Q2dP9j6j/g
 https://ktdash.app/r/PfBSVAum/g
@@ -7666,6 +7836,7 @@ https://ktdash.app/r/Bnp12Mle/g
 https://ktdash.app/r/XqG3En7U/g
 https://ktdash.app/r/7uNb45E6/g
 https://ktdash.app/r/suGShtbn/g
+https://ktdash.app/r/4uvGesdW/g
 https://ktdash.app/r/dF672ftI/g
 https://ktdash.app/r/T3gnITkF/g
 https://ktdash.app/r/OOBHY/g
@@ -7679,6 +7850,7 @@ https://ktdash.app/r/vGOxXDP3/g
 https://ktdash.app/r/euVuV/g
 https://ktdash.app/r/djU1X9GW/g
 https://ktdash.app/r/6gdEoR9u/g
+https://ktdash.app/r/ioW6PgX0/g
 https://ktdash.app/r/Rn1oyDda/g
 https://ktdash.app/r/6Igqu3gA/g
 https://ktdash.app/r/h4r0b/g
@@ -7777,6 +7949,8 @@ https://ktdash.app/r/lxNDePFo/g
 https://ktdash.app/r/uDbETH3h/g
 https://ktdash.app/r/fFoS3Y1w/g
 https://ktdash.app/r/3JIRZyw3/g
+https://ktdash.app/r/Ia8r97mX/g
+https://ktdash.app/r/t4SziqIz/g
 https://ktdash.app/r/zof0a9PG/g
 https://ktdash.app/r/jAPeMIH0/g
 https://ktdash.app/r/SbRY3Wui/g
@@ -7805,6 +7979,9 @@ https://ktdash.app/r/yIMsvcrr/g
 https://ktdash.app/r/z8MzusHF/g
 https://ktdash.app/r/Za10cxrN/g
 https://ktdash.app/r/ckOQoy8y/g
+https://ktdash.app/r/c0MAZthM/g
+https://ktdash.app/r/PfcDi5hR/g
+https://ktdash.app/r/5vUYFYrX/g
 https://ktdash.app/r/Sk5TPFoo/g
 https://ktdash.app/r/1OH1rrTX/g
 https://ktdash.app/r/s4ETAFNU/g
@@ -7819,8 +7996,6 @@ https://ktdash.app/r/hpOfIFGs/g
 https://ktdash.app/r/g0Qivr2p/g
 https://ktdash.app/r/ETHsu/g
 https://ktdash.app/r/p9ITj8Xn/g
-https://ktdash.app/r/JQDONLLd/g
-https://ktdash.app/r/rShWILCq/g
 https://ktdash.app/r/ZFYoIbgV/g
 https://ktdash.app/r/EnLPkWaP/g
 https://ktdash.app/r/99TArJau/g
@@ -7847,9 +8022,11 @@ https://ktdash.app/r/AfMSx91k/g
 https://ktdash.app/r/esqNp4KS/g
 https://ktdash.app/r/i96oKuI3/g
 https://ktdash.app/r/IzNo4xLc/g
+https://ktdash.app/r/LpfMcYya/g
 https://ktdash.app/r/mmYTShnG/g
 https://ktdash.app/r/Qya5cQt6/g
 https://ktdash.app/r/Zdoqmg8I/g
+https://ktdash.app/r/pXxTZ4T5/g
 https://ktdash.app/r/61MK8GVI/g
 https://ktdash.app/r/fQVyu/g
 https://ktdash.app/r/01e9b/g
@@ -7871,12 +8048,15 @@ https://ktdash.app/r/5w40EErL/g
 https://ktdash.app/r/EvcihPmp/g
 https://ktdash.app/r/IbaRAmOs/g
 https://ktdash.app/r/Mpmrbxpt/g
+https://ktdash.app/r/3Apm7gju/g
 https://ktdash.app/r/H34PWB92/g
 https://ktdash.app/r/lJhpa2KN/g
 https://ktdash.app/r/6hfaU/g
 https://ktdash.app/r/IImXkX7l/g
 https://ktdash.app/r/9siMtlnA/g
 https://ktdash.app/r/ieDFz6eD/g
+https://ktdash.app/r/4xpGelng/g
+https://ktdash.app/r/9lnuS1Rz/g
 https://ktdash.app/r/GibdZ/g
 https://ktdash.app/r/DsqGp/g
 https://ktdash.app/r/k4hVLYCD/g
@@ -8007,9 +8187,12 @@ https://ktdash.app/r/v9TIQ/g
 https://ktdash.app/r/sDJikMeC/g
 https://ktdash.app/r/Mn2A6d6Q/g
 https://ktdash.app/r/ez3NfBMU/g
+https://ktdash.app/r/V67dI3FU/g
 https://ktdash.app/r/5Cdb5TOW/g
 https://ktdash.app/r/DTCHKED5/g
 https://ktdash.app/r/x7dBVmFJ/g
+https://ktdash.app/r/fEfQMRgI/g
+https://ktdash.app/r/r6j9WMia/g
 https://ktdash.app/r/BdH01pCs/g
 https://ktdash.app/r/CiapvHGL/g
 https://ktdash.app/r/ilciq/g
@@ -8052,6 +8235,7 @@ https://ktdash.app/r/F5TLW3ik/g
 https://ktdash.app/r/rNgAl5YW/g
 https://ktdash.app/r/MumRJ/g
 https://ktdash.app/r/Lktem/g
+https://ktdash.app/r/B38lMEQb/g
 https://ktdash.app/r/Dbil1CHD/g
 https://ktdash.app/r/Ryr9I/g
 https://ktdash.app/r/tKC4lcM5/g
@@ -8224,6 +8408,7 @@ https://ktdash.app/r/OPJxV/g
 https://ktdash.app/r/6min54SL/g
 https://ktdash.app/r/ZTRpTTbz/g
 https://ktdash.app/r/I1254n8e/g
+https://ktdash.app/r/y4MSuHqm/g
 https://ktdash.app/r/cPZcJbiN/g
 https://ktdash.app/r/mBy0QTvC/g
 https://ktdash.app/r/BkA36AYv/g
@@ -8254,6 +8439,7 @@ https://ktdash.app/r/G1TCUljJ/g
 https://ktdash.app/r/hmuWSCAR/g
 https://ktdash.app/r/k1kFNXMF/g
 https://ktdash.app/r/l1jnbdoi/g
+https://ktdash.app/r/l3z4pAM0/g
 https://ktdash.app/r/oOTFvmwI/g
 https://ktdash.app/r/riXK4tUI/g
 https://ktdash.app/r/ym8kUwbB/g
@@ -8340,6 +8526,7 @@ https://ktdash.app/r/jfMsWrzk/g
 https://ktdash.app/r/jHUduQam/g
 https://ktdash.app/r/pjWHZa2v/g
 https://ktdash.app/r/rfHESzRs/g
+https://ktdash.app/r/Yr7J9NDh/g
 https://ktdash.app/r/ITtwyGou/g
 https://ktdash.app/r/rirAD/g
 https://ktdash.app/r/tS0cX/g
@@ -8393,6 +8580,8 @@ https://ktdash.app/r/da3NE/g
 https://ktdash.app/r/df2C0/g
 https://ktdash.app/r/Dwyar/g
 https://ktdash.app/r/H0ZsUrDX/g
+https://ktdash.app/r/oK2wpWNf/g
+https://ktdash.app/r/q5NwqxDx/g
 https://ktdash.app/r/wXESi/g
 https://ktdash.app/r/yQDLWsjc/g
 https://ktdash.app/r/qe09ckjG/g
@@ -8418,12 +8607,12 @@ https://ktdash.app/r/ZYdd7/g
 https://ktdash.app/r/8wirO/g
 https://ktdash.app/r/OUDT9/g
 https://ktdash.app/r/lBICj7nN/g
-https://ktdash.app/r/d26ykuZt/g
 https://ktdash.app/r/yDn46/g
 https://ktdash.app/r/oMeHFSrx/g
 https://ktdash.app/r/hgVLrOuZ/g
 https://ktdash.app/r/X7lyiF8I/g
 https://ktdash.app/r/1ulcu/g
+https://ktdash.app/r/BR1DsATD/g
 https://ktdash.app/r/hiiTFAuc/g
 https://ktdash.app/r/MHSGkOYi/g
 https://ktdash.app/r/1grbokk9/g
@@ -8494,7 +8683,9 @@ https://ktdash.app/r/nDyuyh8L/g
 https://ktdash.app/r/uJoYw/g
 https://ktdash.app/r/8s1cot8d/g
 https://ktdash.app/r/JqA8bUQl/g
+https://ktdash.app/r/JWNZKzlX/g
 https://ktdash.app/r/mYF85uFI/g
+https://ktdash.app/r/UDdbZgrz/g
 https://ktdash.app/r/j4AJLfCt/g
 https://ktdash.app/r/tjYuKATN/g
 https://ktdash.app/r/7uBM2XYa/g
@@ -8507,6 +8698,7 @@ https://ktdash.app/r/xmkvt/g
 https://ktdash.app/r/JwDDB/g
 https://ktdash.app/r/LB1lM/g
 https://ktdash.app/r/oycLH/g
+https://ktdash.app/r/Sg8aTQMZ/g
 https://ktdash.app/r/yd4xTD2d/g
 https://ktdash.app/r/Tzw0K/g
 https://ktdash.app/r/eAMu0JSD/g
@@ -8529,6 +8721,7 @@ https://ktdash.app/r/wwSpj/g
 https://ktdash.app/r/ivVr0gwJ/g
 https://ktdash.app/r/M8XcY/g
 https://ktdash.app/r/PurgFNPn/g
+https://ktdash.app/r/yScHfb9m/g
 https://ktdash.app/r/aSSi1ICX/g
 https://ktdash.app/r/DgRVjc8b/g
 https://ktdash.app/r/rqbs2/g
@@ -8572,6 +8765,7 @@ https://ktdash.app/r/suZDG2IQ/g
 https://ktdash.app/r/ulJqd/g
 https://ktdash.app/r/vaVPp0Ao/g
 https://ktdash.app/r/ZwfR2/g
+https://ktdash.app/r/Ehopzdji/g
 https://ktdash.app/r/qkHPHnUm/g
 https://ktdash.app/r/WtHoX96n/g
 https://ktdash.app/r/FRwT06cR/g
@@ -8611,6 +8805,7 @@ https://ktdash.app/r/gCS5grI0/g
 https://ktdash.app/r/DwahI/g
 https://ktdash.app/r/425gvxXY/g
 https://ktdash.app/r/aLrRyoOc/g
+https://ktdash.app/r/HQIj9KTD/g
 https://ktdash.app/r/xs7lNR5v/g
 https://ktdash.app/r/aIBk4rp1/g
 https://ktdash.app/r/yN6WJWdB/g
@@ -8648,7 +8843,9 @@ https://ktdash.app/r/ciWtfhZd/g
 https://ktdash.app/r/dYWpY0JR/g
 https://ktdash.app/r/E97DXggx/g
 https://ktdash.app/r/fUcPn8LC/g
+https://ktdash.app/r/jYNGrohV/g
 https://ktdash.app/r/KirAJlWL/g
+https://ktdash.app/r/LxHDRRPH/g
 https://ktdash.app/r/M8eWeRQA/g
 https://ktdash.app/r/m8johVbn/g
 https://ktdash.app/r/MIaCsAbX/g
@@ -8659,10 +8856,10 @@ https://ktdash.app/r/1NAWshEe/g
 https://ktdash.app/r/kwT6y/g
 https://ktdash.app/r/1PU3c/g
 https://ktdash.app/r/WuEP8Mv5/g
-https://ktdash.app/r/kTO6FAyg/g
+https://ktdash.app/r/d6xbbQJk/g
 https://ktdash.app/r/mH7DAosp/g
 https://ktdash.app/r/RKKf7CMo/g
-https://ktdash.app/r/WEivIH87/g
+https://ktdash.app/r/vFVpWXGo/g
 https://ktdash.app/r/WM3nKKrW/g
 https://ktdash.app/r/kXgWkWr0/g
 https://ktdash.app/r/zKBUC/g
@@ -8673,6 +8870,7 @@ https://ktdash.app/r/0UOxMwoM/g
 https://ktdash.app/r/LPshKYPS/g
 https://ktdash.app/r/tDQSzaSh/g
 https://ktdash.app/r/USNGVS6s/g
+https://ktdash.app/r/4HjBzgnE/g
 https://ktdash.app/r/glMIR/g
 https://ktdash.app/r/IAYNy/g
 https://ktdash.app/r/S67LA/g
@@ -8762,8 +8960,10 @@ https://ktdash.app/r/dWb3G3aL/g
 https://ktdash.app/r/K8flTmOS/g
 https://ktdash.app/r/Ze3Hv/g
 https://ktdash.app/r/0Sni9GjQ/g
+https://ktdash.app/r/2CiOgFmu/g
 https://ktdash.app/r/4CI1vnJU/g
 https://ktdash.app/r/DWR3I/g
+https://ktdash.app/r/4aD2cTut/g
 https://ktdash.app/r/D5TNyZKo/g
 https://ktdash.app/r/nbpbl/g
 https://ktdash.app/r/TqpwfQsE/g
@@ -8774,6 +8974,7 @@ https://ktdash.app/r/4kczwkny/g
 https://ktdash.app/r/MQNAZHIe/g
 https://ktdash.app/r/UfjyLdpF/g
 https://ktdash.app/r/No4QD/g
+https://ktdash.app/r/pqlLpUlq/g
 https://ktdash.app/r/bec7TcSW/g
 https://ktdash.app/r/cIrJV6DN/g
 https://ktdash.app/r/T9buswpC/g
@@ -8827,7 +9028,6 @@ https://ktdash.app/r/AifQ5qvQ/g
 https://ktdash.app/r/tb3yiJmm/g
 https://ktdash.app/r/9tzvboof/g
 https://ktdash.app/r/Y7kEJ/g
-https://ktdash.app/r/p2WLRr6b/g
 https://ktdash.app/r/X1HMl3eU/g
 https://ktdash.app/r/cJtHt/g
 https://ktdash.app/r/kFEXG/g
@@ -8895,6 +9095,7 @@ https://ktdash.app/r/z7w36LoM/g
 https://ktdash.app/r/ZY9aGV63/g
 https://ktdash.app/r/Dcnqii9u/g
 https://ktdash.app/r/EU8NSCiC/g
+https://ktdash.app/r/ZMmhzL01/g
 https://ktdash.app/r/uGgJtakb/g
 https://ktdash.app/r/auYyT/g
 https://ktdash.app/r/0vsAzDZl/g
@@ -8950,10 +9151,12 @@ https://ktdash.app/r/G2Zt1qf8/g
 https://ktdash.app/r/HeVuXkZJ/g
 https://ktdash.app/r/ki9dWxp1/g
 https://ktdash.app/r/oNzS7HNW/g
+https://ktdash.app/r/yH7a3usV/g
 https://ktdash.app/r/QbqtzvbE/g
 https://ktdash.app/r/heAOF/g
 https://ktdash.app/r/fKycq/g
 https://ktdash.app/r/vBGZgRIT/g
+https://ktdash.app/r/2Qv2j7Wv/g
 https://ktdash.app/r/BbBqZ/g
 https://ktdash.app/r/B3c9D/g
 https://ktdash.app/r/n4x39/g
@@ -8979,6 +9182,7 @@ https://ktdash.app/r/R4xsg/g
 https://ktdash.app/r/SkybjP9A/g
 https://ktdash.app/r/ZSxD4/g
 https://ktdash.app/r/Dlju12iK/g
+https://ktdash.app/r/maLZ614h/g
 https://ktdash.app/r/1i4FQ/g
 https://ktdash.app/r/lheew2Wx/g
 https://ktdash.app/r/8lcsX/g
@@ -8986,13 +9190,14 @@ https://ktdash.app/r/1Krv5/g
 https://ktdash.app/r/k1sSCKIv/g
 https://ktdash.app/r/kQQ1v/g
 https://ktdash.app/r/0qtkxH72/g
+https://ktdash.app/r/oIGFP0Zg/g
 https://ktdash.app/r/7Fq8RZnG/g
 https://ktdash.app/r/5lSNi6Vs/g
 https://ktdash.app/r/IJygEeQY/g
 https://ktdash.app/r/0CLVa/g
 https://ktdash.app/r/cZXbwPws/g
 https://ktdash.app/r/oRDTr1Ti/g
-https://ktdash.app/r/eQLzPGkc/g
+https://ktdash.app/r/7c8ttKZX/g
 https://ktdash.app/r/PuQA17NQ/g
 https://ktdash.app/r/xLaMyMjW/g
 https://ktdash.app/r/38sLx/g
@@ -9030,10 +9235,12 @@ https://ktdash.app/r/NkLY664h/g
 https://ktdash.app/r/rwrEfFPX/g
 https://ktdash.app/r/z0NIq/g
 https://ktdash.app/r/ZmjGdvfX/g
+https://ktdash.app/r/v0MHlhDR/g
 https://ktdash.app/r/56eKM5wb/g
 https://ktdash.app/r/KNYI3/g
 https://ktdash.app/r/uBUM6/g
 https://ktdash.app/r/IywgBa2F/g
+https://ktdash.app/r/j866cQNv/g
 https://ktdash.app/r/Yr4lvMPm/g
 https://ktdash.app/r/yspEJkeB/g
 https://ktdash.app/r/XcCCBhKh/g
