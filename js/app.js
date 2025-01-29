@@ -4192,10 +4192,11 @@ var app = angular.module("kt", ['ngSanitize'])
 							rule.ruletext = "Remove " + num + " Defence dice from target before roll. Multiple APs do not stack.";
 						} else if (rulename.startsWith("BLAST")) {
 							let range = rulename.replace("BLAST", "").toLowerCase();
-							rule.ruletext = "Each time this weapon is fired, after making the attack against the target, make a shooting attack against each other operative Visible To and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover.";
-							if (edition != 'kt24') {
-								rule.ruletext += "<br/>An operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
-							} 
+							if (edition == 'kt21') {
+								"Each time this weapon is fired, after making the attack against the target, make a shooting attack against each other operative Visible To and within " + range + " of the original target. Each of them is a valid target and cannot be in Cover.<br/>An operative cannot make a shooting attack with this weapon by performing an Overwatch action.";
+							} else {
+								rule.ruletext = "The target you select is the primary target. After shooting the primary target, shoot with this weapon against each secondary target in an order of your choice (roll each sequence separately). Secondary targets are other operatives visible to and within " + range + " of the primary target (they are all valid targets, regardless of a Conceal order). Secondary targets are in cover and obscured if the primary target was.";
+							}
 						} else if (rulename.startsWith("INFERNO")) {
 							let num = rulename.replace("INFERNO", "");
 							rule.ruletext = "Each time a friendly operative fights in combat or makes a shooting attack with this weapon, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, the target gains " + num + " Inferno tokens. At the end of each Turning Point, roll one D6 for each Inferno token an enemy operative has: on a 4+, that enemy operative suffers 1 mortal wound. After rolling, remove all Inferno tokens that operative has.";
