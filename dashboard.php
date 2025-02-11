@@ -79,76 +79,78 @@
 			</ul>
 			<div class="tab-content p-0 m-0">
 				<div class="tab-pane show active p-0 m-0" id="mydash" role="tabpanel">
-					<div class="orange row p-0 m-0">
-						<h1 class="col-11 p-0 m-0">
-							<div class="dropdown">
-								<div ng-if="dashboardroster == null || dashboardroster.rostername == ''">Select a Team</div>
-								<button class="btn dropdown-toggle orange form-control text-start" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-target="#rosterselect">
-									<h3 class="d-inline">{{ dashboardroster.rostername }}</h3>
-								</button>
-								<div class="dropdown-menu dropdown-menu-dark" id="rosterselect">
-									<a class="dropdown-item" type="button" ng-repeat="roster in currentuser.rosters track by $index" ng-click="selectDashboardRoster(roster);">
-										{{ roster.rostername }}
-									</a>
+					<div class="m-0 p-0" id="tracker">
+						<div class="orange row p-0 m-0">
+							<h1 class="col-11 p-0 m-0">
+								<div class="dropdown">
+									<div ng-if="dashboardroster == null || dashboardroster.rostername == ''">Select a Team</div>
+									<button class="btn dropdown-toggle orange form-control text-start" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-target="#rosterselect">
+										<h3 class="d-inline">{{ dashboardroster.rostername }}</h3>
+									</button>
+									<div class="dropdown-menu dropdown-menu-dark" id="rosterselect">
+										<a class="dropdown-item" type="button" ng-repeat="roster in currentuser.rosters track by $index" ng-click="selectDashboardRoster(roster);">
+											{{ roster.rostername }}
+										</a>
+									</div>
+								</div>
+							</h1>
+							<div class="col-1 text-end">
+								<a role="button" class="text-end" id="dashactions" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fas fa-ellipsis-h fa-fw"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions" style="z-index: 1000;">
+									<li><a class="pointer dropdown-item p-1" onclick="$('#dashboardopponentmodal').modal('show');"><i class="fas fa-people-arrows fa-fw"></i> Select Opponent</a></li>
+									<li><a class="pointer dropdown-item p-1" onclick="document.getElementById('tracker').classList.toggle('sticky-top');"><i class="fas fa-thumbtack fa-fw"></i> Sticky Tracker</a></li>
+									<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').removeClass('show');"><i class="fas fa-compress-arrows-alt fa-fw"></i> Collapse All</a></li>
+									<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').addClass('show');"><i class="fas fa-expand-arrows-alt fa-fw"></i> Expand All</a></li>
+									<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
+									<li ng-if="dashboardroster.edition == 'kt21' && settings['shownarrative'] == 'y'"><a class="pointer dropdown-item p-1" ng-click="initEditRosterNarr(dashboardroster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Narrative Info"></i> Narrative Info</a></li>
+									<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
+									<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}/g" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
+									<li><a class="pointer dropdown-item p-1" ng-click="resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="orange">
+							<!-- Trackers -->
+							<div class="container center">
+								<div class="row">
+									<h3 class="col-4">
+										CP
+									</h3>
+									<h3 class="col-4">
+										Turn
+									</h3>
+									<h3 class="col-4">
+										VP
+									</h3>
+								</div>
+								<div class="row">
+									<h3 class="col-4" touch-action="manipulation">
+										<span class="pointer small" ng-click="updateCP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+										
+										<span ng-bind="dashboardroster.CP"></span>
+										
+										<span class="pointer small" ng-click="updateCP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+									</h3>
+									<h3 class="col-4" touch-action="manipulation">
+										<span class="pointer small" ng-click="updateTP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+										
+										<span ng-bind="dashboardroster.TP"></span>
+										
+										<span class="pointer small" ng-click="updateTP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+									</h3>
+									<h3 class="col-4" touch-action="manipulation">
+										<span class="pointer small" ng-click="updateVP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
+										
+										<span ng-bind="dashboardroster.VP"></span>
+										
+										<span class="pointer small" ng-click="updateVP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
+									</h3>
 								</div>
 							</div>
-						</h1>
-						<div class="col-1 text-end">
-							<a role="button" class="text-end" id="dashactions" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fas fa-ellipsis-h fa-fw"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashactions">
-								<li><a class="pointer dropdown-item p-1" onclick="$('#dashboardopponentmodal').modal('show');"><i class="fas fa-people-arrows fa-fw"></i> Select Opponent</a></li>
-								<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').removeClass('show');"><i class="fas fa-compress-arrows-alt fa-fw"></i> Collapse All</a></li>
-								<li><a class="pointer dropdown-item p-1" onclick="$('.opinfo').addClass('show');"><i class="fas fa-expand-arrows-alt fa-fw"></i> Expand All</a></li>
-								<li><a class="pointer dropdown-item p-1" ng-click="initSelectRosterOps(dashboardroster);"><i class="fas fa-edit fa-fw"></i> Select Operatives</a></li>
-								<li ng-if="dashboardroster.edition == 'kt21' && settings['shownarrative'] == 'y'"><a class="pointer dropdown-item p-1" ng-click="initEditRosterNarr(dashboardroster);"><i class="fas fa-edit fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Narrative Info"></i> Narrative Info</a></li>
-								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}"><i class="fas fa-users fa-fw"></i> Go To Roster</a></li>
-								<li><a class="pointer dropdown-item p-1 navloader" href="/r/{{ dashboardroster.rosterid }}/g" data-bs-toggle="tooltip" data-bs-placement="top" title="Gallery"><i class="fas fa-images fa-fw"></i> Roster Gallery</a></li>
-								<li><a class="pointer dropdown-item p-1" ng-click="resetDash(dashboardroster);"><i class="fas fa-undo-alt fa-fw"></i> Reset Dashboard</a></li>
-							</ul>
 						</div>
 					</div>
-					<div class="orange">
-						<!-- Trackers -->
-						<center class="container">
-							<div class="row">
-								<h3 class="col-4">
-									CP
-								</h3>
-								<h3 class="col-4">
-									Turn
-								</h3>
-								<h3 class="col-4">
-									VP
-								</h3>
-							</div>
-							<div class="row">
-								<h3 class="col-4" touch-action="manipulation">
-									<span class="pointer small" ng-click="updateCP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
-									
-									<span ng-bind="dashboardroster.CP"></span>
-									
-									<span class="pointer small" ng-click="updateCP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
-								</h3>
-								<h3 class="col-4" touch-action="manipulation">
-									<span class="pointer small" ng-click="updateTP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
-									
-									<span ng-bind="dashboardroster.TP"></span>
-									
-									<span class="pointer small" ng-click="updateTP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
-								</h3>
-								<h3 class="col-4" touch-action="manipulation">
-									<span class="pointer small" ng-click="updateVP(-1, dashboardroster);"><i class="far fa-minus-square fa-fw"></i></span>
-									
-									<span ng-bind="dashboardroster.VP"></span>
-									
-									<span class="pointer small" ng-click="updateVP(1, dashboardroster);"><i class="far fa-plus-square fa-fw"></i></span>
-								</h3>
-							</div>
-						</center>
-					</div>
-					
 					<!-- Resource Point tracker -->
 					<div class="container-fluid" ng-if="RPLabels[dashboardroster.factionid][dashboardroster.killteamid]">
 						<div class="h5 cinzel">
