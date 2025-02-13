@@ -107,7 +107,22 @@
 				<h2>Stats</h2>
 				<?php
 					//$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
-					$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE (eventtype = 'page' OR eventtype = 'session') AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -8 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
+					$sql = "
+SELECT SU.Date, SU.SignupCount, EV.PageViews
+FROM 
+(
+SELECT CAST(createddate AS date) AS Date, COUNT(*) as SignupCount FROM User WHERE createddate > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 day) GROUP BY CAST(createddate AS Date) ORDER BY 1 DESC
+) AS SU
+INNER JOIN
+(
+SELECT CAST(datestamp AS Date) AS Date, COUNT(*) AS PageViews
+FROM Event WHERE eventtype = 'page' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -10 day)
+GROUP BY CAST(datestamp AS Date)
+ORDER BY 1 DESC
+) AS EV
+ON EV.Date = SU.Date
+ORDER BY 1 DESC
+LIMIT 8;";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
