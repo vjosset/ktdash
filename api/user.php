@@ -116,6 +116,18 @@ function POSTUser()
 	// Sign this user in
 	$u = Session::Login($_REQUEST['username'], $_REQUEST['password']);
 
+	Utils::TrackEvent(
+		'session',
+		'signup',
+		'',
+		'',
+		'',
+		'',
+		$_SERVER['HTTP_REFERER'],
+		'',
+		$_SERVER['HTTP_REFERER']
+	);
+
 	// Done
 	echo $u->toJson();
 }

@@ -470,7 +470,7 @@ var app = angular.module("kt", ['ngSanitize'])
 						
 						// Set their session
 						$scope.currentuser = data;
-						te("session", "signup");
+						//te("session", "signup"); // This happens on the API now
 						
 						// Load a default roster for this user to get them started
 						$.ajax({
