@@ -450,6 +450,18 @@ function GetName()
 		case "IMP|ECC|REP|SUP": //Repentia Superior
 			return GetSistersOfBattleName();
 
+		// Ecclesiarchy 24
+		case "IMP|ECC24|ECC24|RSUP": //Repentia Superior
+		case "IMP|ECC24|ECC24|SUP": //Battle Sister Superior
+		case "IMP|ECC24|ECC24|IB": //Battle Sister Icon Bearer
+		case "IMP|ECC24|ECC24|GNR": //Battle Sister Gunner
+		case "IMP|ECC24|ECC24|HGNR": //Battle Sister Heavy Gunner
+		case "IMP|ECC24|ECC24|WAR": //Battle Sister Warrior
+		case "IMP|ECC24|ECC24|REP": //Sister Repentia
+			return GetSistersOfBattleName();
+		case "IMP|ECC24|ECC24|AF": //Arco-Flagellant
+			return "Servitor";
+
 		// Elucidian Starstriders
 		case "IMP|ESS|ESS|CAN": // Canid
 			return "Aximillion";
