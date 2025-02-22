@@ -12,98 +12,149 @@
     "
   {
         \"factionid\": \"HBR\",
-        \"killteamid\": \"ECC24\",
+        \"killteamid\": \"DAEM24\",
         \"edition\": \"kt24\",
-        \"killteamname\": \"Ecclesiarchy\",
-        \"description\": \"The Adepta Sororitas, colloquially called the \\\"Sisterhood,\\\" whose military arm is also known as the Sisters of Battle and formerly as the Daughters of the Emperor, are an all-female division of the Imperium of Man''s state church known as the Ecclesiarchy or, more formally, as the Adeptus Ministorum.\\n<br/><br/>\\n   The Sisterhood''s Orders Militant serve as the Ecclesiarchy''s armed forces, mercilessly rooting out spiritual corruption and heresy within Humanity and every organisation of the Adeptus Terra.\",
+        \"killteamname\": \"Chaos Daemons\",
+        \"description\": \"A Chaos Daemon, or simply Daemon, also known as a \\\"Neverborn\\\" amongst the forces of Chaos, is an intelligent and usually malevolent entity of the Warp comprised of purely psychic energy. Daemons are sentient embodiments of Chaos and collectively the greatest servants of the Chaos Gods and of Chaos itself as a universal force. \\n <br/><br/>\\n Daemons are created at the whim of one of the four major Chaos Gods from a fraction of the god''s own power within the Immaterium and act as an extension of its will. A Daemon''s appearance and intrinsic character reflect the god''s own nature. These Daemons may be reabsorbed into the god''s psychic signature in the Warp at their whim.\",
         \"customkeyword\": \"\",
         \"ploys\": {
           \"strat\": [
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"DS\",
-              \"ployname\": \"Divine Shield\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"QS\",
+              \"ployname\": \"Prey on the Weak\",
               \"ploytype\": \"S\",
               \"CP\": \"1\",
-              \"description\": \"Until the end of the Turning Point, each time a shooting attack is made against a friendly ECCLESIARCHY operative, in the Roll Defence Dice step of that shooting attack, if you retain any critical saves, you can re-roll one of your failed saves.\"
+              \"description\": \"Until the end of the turning point, when a friendly CHAOS DAEMON operative performs the Fight or Shoot action against a wounded target, that attack gains the Ceaseless weapon rule.\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"EG\",
-              \"ployname\": \"Emperor''s Guidance\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"QS\",
+              \"ployname\": \"Daemonsight\",
               \"ploytype\": \"S\",
               \"CP\": \"1\",
-              \"description\": \"Until the end of the Turning Point, each time a friendly ECCLESIARCHY operative fights in combat or makes a shooting attack, in the Roll Attack Dice step of that combat or shooting attack, if you retain any critical hits, you can re-roll one of your attack dice.\"
+              \"description\": \"Whenever you are selecting a valid target for a friendly CHAOS DAEMON operative, enemy operatives within 6\\\" cannot use Light terrain for cover. While this can allow such operatives to be targeted (assuming they are visible), it does not remove their cover save (if any).\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"ETW\",
-              \"ployname\": \"Extremis Trigger Word\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"QS\",
+              \"ployname\": \"Reality Shift\",
               \"ploytype\": \"S\",
               \"CP\": \"1\",
-              \"description\": \"Until the end of the Turning Point: <ul><li>Each time a friendly ECCLESIARCHY operative performs a Dash or Charge action, it can move an additional 1\\\" for that action.</li><li>Melee weapons that friendly ECCLESIARCHY operatives are equipped with gain the Lethal 5+ special rule.</li></ul>You can only use this Strategic Ploy once per game.\"
+              \"description\": \"You can immediately change the order of up to three friendly CHAOS DAEMON operatives that are not within control range of enemy operatives.\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"EG\",
-              \"ployname\": \"Vengeance of the Martyred\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"DN\",
+              \"ployname\": \"Symbol of Terror\",
               \"ploytype\": \"S\",
               \"CP\": \"1\",
-              \"description\": \"Until the end of the Turning Point, each time a friendly ECCLESIARCHY operative is granted a Martyr Point, one enemy operative within 6\\\" suffers 1 damage.\"
+              \"description\": \"Until the end of the Turning Point, when determining control of an objective marker that any friendly LEADER operatives are within range of, treat enemy operatives'' total APL as being 1 less. Note that this is not a modifier.\"
             }
           ],
           \"tac\": [
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"DI\",
-              \"ployname\": \"Divine Intervention\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"BR\",
+              \"ployname\": \"Warp Walk\",
               \"ploytype\": \"T\",
               \"CP\": \"1\",
-              \"description\": \"Use this Firefight Ploy in the Resolve Successful Hits step of a combat or shooting attack, when an attack die would inflict damage on a friendly ECCLESIARCHY operative. Ignore the damage inflicted from that attack die.\"
+              \"description\": \"Use this firefight ploy during a friendly CHAOS DAEMON operative''s activation, when it performs an action in which it moves. Until the end of that activation, that operative can move through parts of terrain features as if they were not there, but must and those moves in a location it can be placed.\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"PTD\",
-              \"ployname\": \"Rightous Fury\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"ER\",
+              \"ployname\": \"Ephemeral Regeneration\",
               \"ploytype\": \"T\",
               \"CP\": \"1\",
-              \"description\": \" Use this Firefight Ploy when a friendly ECCLESIARCHY operative is activated. Until the end of that operative’s activation, it can perform two Shoot actions during that activation if a boltgun, bolt pistol, or storm bolter weapon is selected for each of those shooting attacks. If it does not perform any Shoot actions, it can instead perform two Fight actions.\"
+              \"description\": \"Use this Firefight Ploy when a friendly CHAOS DAEMON operative is activated. That friendly operative regains 2D3 lost wounds.\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"PTD\",
-              \"ployname\": \"Penance Through Death\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"ER\",
+              \"ployname\": \"Daemonic Mockery\",
               \"ploytype\": \"T\",
               \"CP\": \"1\",
-              \"description\": \"Use this Firefight Ploy when a friendly ECCLESIARCHY operative is incapacitated in combat by an enemy operative. Before that friendly operative is removed from the killzone, you can strike with one of your remaining attack dice before it’s removed from the killzone.\"
+              \"description\": \"Use this firefight ploy when a friendly CHAOS DAEMON operative is retaliating or an enemy operative is shooting it, after your opponent rolls their attack dice, but before re-rolls. Until the end of the sequence, your opponent cannot re-roll their attack dice (if your opponent declared the use of any firefight ploys during that sequence that would allow them to re-roll, that ploy is cancelled and the CP spent on it is refunded).\"
             },
             {
               \"factionid\": \"HBR\",
-              \"killteamid\": \"ECC24\",
-              \"ployid\": \"SOR\",
-              \"ployname\": \"Storm Of Retribution\",
+              \"killteamid\": \"DAEM24\",
+              \"ployid\": \"WS\",
+              \"ployname\": \"Time Surge\",
               \"ploytype\": \"T\",
               \"CP\": \"1\",
-              \"description\": \"Use this Firefight Ploy when a friendly ECCLESIARCHY operative is activated. Until the end of that operative''s activation, ranged weapons it is equipped with lose the Heavy special rule and gain the Saturate special rule.\"
+              \"description\": \"Use this Firefight Ploy when a friendly CHAOS DAEMON operative is selected as the target of a ranged attack. Until the end of the Turning Point, each time a shooting attack is made against that friendly operative, in the Roll Defence Dice step of that shooting attack, you can re-roll any or all of your defence dice.\"
             }
           ]
         },
         \"equipments\": [
           {
             \"factionid\": \"HBR\",
-            \"killteamid\": \"ECC24\",
-            \"eqid\": \"POR\",
-            \"eqname\": \"Phial Of Restoration\",
-            \"eqdescription\": \"Once per battle, whenever a friendly ECCLESIARCHY operative, it can use this ability. If it does so, it regains 2D3 lost wounds.\",
-            \"eqpts\": \"2\",
+            \"killteamid\": \"DAEM24\",
+            \"eqid\": \"BH\",
+            \"eqname\": \"Daemonic Icon\",
+            \"eqdescription\": \"Use this equipment when a friendly CHAOS DAEMON operative is activated. Select one objective marker within 3\\\" and visible to that operative. Until the end of the battle or until you use this equipment again (whichever comes first), when determining control of that objective marker, treat friendly operatives’ APL stat as 1 higher. Note this isn’t a change to the APL stat, so any changes are cumulative with this.\",
+            \"eqpts\": \"1\",
             \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Equipment\",
+            \"fireteamid\": \"DAEM24\",
+            \"opid\": \"\",
+            \"eqseq\": 0
+          },
+          {
+            \"factionid\": \"HBR\",
+            \"killteamid\": \"DAEM24\",
+            \"eqid\": \"BH\",
+            \"eqname\": \"Instrument of Chaos\",
+            \"eqdescription\": \"Once per Turning point a friendly CHAOS DAEMON operative can use this equipment. If it does, until the end of the Turning Point, each time a friendly CHAOS DAEMON operative within 3\\\" and visible to this operative fights in combat, in the Roll Attack Dice step of that combat, if it performed a Charge action during that activation, you can re-roll one of your attack dice.\",
+            \"eqpts\": \"1\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Equipment\",
+            \"fireteamid\": \"DAEM24\",
+            \"opid\": \"\",
+            \"eqseq\": 0
+          },
+          {
+            \"factionid\": \"HBR\",
+            \"killteamid\": \"DAEM24\",
+            \"eqid\": \"GT\",
+            \"eqname\": \"Grisly Trophy\",
+            \"eqdescription\": \"Once per Battle, when a friendly CHAOS DAEMON operative incapacitates an enemy operative within 2\\\" of it, you can use this rule. If you do, that friendly operative gains one of your Grisly Trophy tokens (if it does not already have one). Whenever a friendly CHAOS DAEMON operative that has one of your Grisly Trophy tokens is visible to and within 2\\\" of an enemy operative, subtract 1 from the ATK stat of that enemy operative''s weapons.\",
+            \"eqpts\": \"1\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Equipment\",
+            \"fireteamid\": \"DAEM24\",
+            \"opid\": \"\",
+            \"eqseq\": 0
+          },
+          {
+            \"factionid\": \"HBR\",
+            \"killteamid\": \"DAEM24\",
+            \"eqid\": \"RD\",
+            \"eqname\": \"Ritual Daggers\",
+            \"eqdescription\": \"Operatives are equipped with the following melee weapon for the battle:\\n<table width=\\\"100%\\\" class=\\\"eqtable\\\">\\n<tr>\\n<th>Name</th>\\n        <th>A</th>\\n        <th>BS</th>\\n        <th>D</th>\\n</tr>\\n    <tr>\\n<td>Ritual Dagger</td>\\n        <td>3</td>\\n        <td>4+</td>\\n        <td>3/4</td>\\n</tr>\\n    <tr><th colspan=\\\"4\\\">Special Rules</th></tr>\\n    <tr><td colspan=\\\"4\\\">Balanced</td></tr>\\n</table>\",
+            \"eqpts\": \"2\",
+            \"eqtype\": \"Weapon\",
             \"eqvar1\": \"\",
             \"eqvar2\": \"\",
             \"eqvar3\": \"\",
@@ -111,1016 +162,1109 @@
             \"eqcategory\": \"Equipment\",
             \"fireteamid\": \"\",
             \"opid\": \"\",
-            \"eqseq\": 0
+            \"eqseq\": 0,
+            \"weapon\": {
+              \"factionid\": \"HBR\",
+              \"killteamid\": \"DAEM24\",
+              \"fireteamid\": \"EQ\",
+              \"opid\": \"EQ\",
+              \"wepid\": \"RD\",
+              \"wepseq\": 0,
+              \"wepname\": \"Ritual Dagger\",
+              \"weptype\": \"M\",
+              \"isdefault\": 0,
+              \"profiles\": [
+                {
+                  \"factionid\": \"HBR\",
+                  \"killteamid\": \"DAEM24\",
+                  \"fireteamid\": \"EQ\",
+                  \"opid\": \"EQ\",
+                  \"wepid\": \"RD\",
+                  \"profileid\": \"0\",
+                  \"name\": \"\",
+                  \"A\": \"3\",
+                  \"BS\": \"4+\",
+                  \"D\": \"3/4\",
+                  \"SR\": \"Balanced\"
+                }
+              ]
+            }
           },
           {
-            \"factionid\": \"HBR\",
-            \"killteamid\": \"ECC24\",
-            \"eqid\": \"PS\",
-            \"eqname\": \"Purity Seals\",
-            \"eqdescription\": \"Once per turning point, when a friendly ECCLESIARCHY operative is shooting, fighting or retaliating, if you roll two or more fails, you can discard one of them to retain another as a normal success instead.\",
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-AC\",
+            \"eqname\": \"Ammo Cache\",
+            \"eqdescription\": \"Before the battle, you can set up one of your Ammo Cache markers wholly within your territory. Friendly operatives can perform the following mission action during the battle:\\r <strong>AMMO RESUPPLY (0 AP):</strong> One of your Ammo Cache markers the active operative controls is used during this turning point.<br/>\\r Until the start of the next turning point, whenever this operative is shooting with a weapon from its datacard, you can re-roll one of your attack dice.</br>\\r An operative cannot perform this action while within control range of an enemy operative, if that marker is not yours, or if that marker has been used this turning point.\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Action\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 601
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-RW\",
+            \"eqname\": \"Razor Wire\",
+            \"eqdescription\": \"Razor wire is Exposed and Obstructing terrain. Before the battle, you can set it up wholly within your territory, on the killzone floor and more than 2\\\" from other equipment terrain features.<br/>\\nObstructing: Whenever an operative would cross this terrain feature within 1\\\" of it, treat the distance as an additional 2\\\".\",
             \"eqpts\": \"0\",
             \"eqtype\": \"Ability\",
             \"eqvar1\": \"\",
             \"eqvar2\": \"\",
             \"eqvar3\": \"\",
             \"eqvar4\": \"\",
-            \"eqcategory\": \"Equipment\",
+            \"eqcategory\": \"Universal Equipment\",
             \"fireteamid\": \"\",
             \"opid\": \"\",
-            \"eqseq\": 1
+            \"eqseq\": 602
           },
           {
-            \"factionid\": \"HBR\",
-            \"killteamid\": \"ECC24\",
-            \"eqid\": \"RS\",
-            \"eqname\": \"Sanctified Bolts\",
-            \"eqdescription\": \"Once per turning point, whenever a friendly ECCLESIARCHY operative is performing the shoot action and you select a boltgun or bolt pistol, you can use this rule. Until the end of that action, add 1 to both its damage stats.\",
-            \"eqpts\": \"2\",
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-CD\",
+            \"eqname\": \"Comms Device\",
+            \"eqdescription\": \"Before the battle, you can set up one of your Comms Device markers wholly within your territory.\\nWhile a friendly operative controls this marker, add 3\\\" to the distance requirements of its SUPPORT rules that refer to friendly operatives\\n(e.g. ‘select one friendly operative within 6\\\"’ would be 9\\\" instead).\\nNote that you cannot benefit from your opponent''s Comms Device markers.\",
+            \"eqpts\": \"0\",
             \"eqtype\": \"Ability\",
             \"eqvar1\": \"\",
             \"eqvar2\": \"\",
             \"eqvar3\": \"\",
             \"eqvar4\": \"\",
-            \"eqcategory\": \"Equipment\",
+            \"eqcategory\": \"Universal Equipment\",
             \"fireteamid\": \"\",
             \"opid\": \"\",
-            \"eqseq\": 0
+            \"eqseq\": 603
           },
           {
-            \"factionid\": \"HBR\",
-            \"killteamid\": \"ECC24\",
-            \"eqid\": \"SB\",
-            \"eqname\": \"Servo-Cherub\",
-            \"eqdescription\": \"Once per turning point, whenever a friendly ECCLESIARCHY operative is performing the Pick Up or Put Down Marker or Open Hatch action, you can perform the action for 1 less AP (to a minimum of 0 AP).\",
-            \"eqpts\": \"2\",
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-MN\",
+            \"eqname\": \"Mines\",
+            \"eqdescription\": \"Before the battle, you can set up one of your Mines markers wholly within your territory and more than 2\\\" from other markers and access points.\\nThe first time that marker is within an operative''s control range, remove that marker and inflict D3+3 damage on that operative.\",
+            \"eqpts\": \"0\",
             \"eqtype\": \"Ability\",
             \"eqvar1\": \"\",
             \"eqvar2\": \"\",
             \"eqvar3\": \"\",
             \"eqvar4\": \"\",
-            \"eqcategory\": \"Equipment\",
-            \"fireteamid\": \"ECC24\",
-            \"opid\": \"REP\",
-            \"eqseq\": 0
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 604
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-LB\",
+            \"eqname\": \"Light Barricades\",
+            \"eqdescription\": \"Light barricades are Light terrain. Before the battle, you can set up any of them wholly within your territory, on the killzone floor and more than 2\\\" from other equipment terrain features.\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 605
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-HB\",
+            \"eqname\": \"Heavy Barricade\",
+            \"eqdescription\": \"A heavy barricade is Heavy terrain. Before the battle, you can set it up wholly within 2\\\" of your drop zone, on the killzone floor and more than 2\\\" from other equipment terrain features.\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 606
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-LAD\",
+            \"eqname\": \"Ladders\",
+            \"eqdescription\": \"Ladders are Exposed terrain. Before the battle, you can set up any of them as follows:\\r <ul>\\r <li>Wholly within your territory.</li>\\r <li>Upright against terrain that is at least 2\\\" tall.</li>\\r <li>More than 2\\\" from other equipment terrain features.</li>\\r <li>More than 1\\\" from doors and access points.</li>\\r </ul>\\r In addition, an operative can either move through ladders as if they aren’t there (but cannot finish on them), or climb them.\\r Once per action, whenever an operative is climbing this terrain feature, treat the vertical distance as 1\\\".\\r Note that if an operative then continues climbing another terrain feature during that action (including another ladder), that distance is determined as normal.\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 607
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-PB\",
+            \"eqname\": \"Portable Barricade\",
+            \"eqdescription\": \"A portable barricade is Light, Protective and Portable terrain.\\nBefore the battle, you can set it up wholly within your territory, on the killzone floor and more than 2\\\" from other equipment terrain features.\\n<br/>\\n<strong>Protective:</strong> While an operative is in cover from this terrain feature, improve its Save stat by 1 (to a maximum of 2+).<br/>\\n<strong>Portable:</strong> This terrain feature only provides cover while an operative is connected to it and if the shield is intervening (ignore its feet).\\nOperatives connected to the inside of it can perform the following action during the battle:<br/>\\n<strong>Move With Barricade (1 AP):</strong>\\nThe same as the Reposition action, except the active operative can move no more than its Move stat minus 2\\\" and cannot climb, drop or jump.<br/>\\nBefore this operative moves, remove the portable barricade it is connected to. After it moves, set up the portable barricade so it is connected again.<br/>\\nThis action is treated as a Reposition action. An operative cannot perform this action while within control range of an enemy operative, or in the same activation in which it performed the Fall Back or Charge action.\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Ability\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 608
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-UG-SMK\",
+            \"eqname\": \"Utility Grenade - Smoke\",
+            \"eqdescription\": \"When you select this equipment, select two utility grenades (2 smoke, 2 stun, or 1 smoke and 1 stun).\\nEach selection is a unique action your operatives can perform, but your kill team can only perform that action a total number of times during the battle equal to your selection.\\n<br/>\\n<strong>SMOKE GRENADE (1 AP):</strong><br/>\\n<ul>\\n<li>Place one of your Smoke Grenade markers within 6\\\" of this operative. It must be visible to this operative,\\nor on Vantage terrain of a terrain feature that is visible to this operative. The marker creates an area of smoke 1\\\" horizontally and unlimited height vertically from (but not below) it.</li>\\n<li>While an operative is wholly within an area of smoke, it is obscured to operatives more than 2\\\" from it, and vice versa.\\nIn addition, whenever an operative is shooting an enemy operative wholly within an area of smoke, ignore the Piercing weapon rule unless they are within 2\\\" of each other.</li>\\n<li>In the Ready step of the next Strategy phase, roll one D3. Remove that Smoke Grenade marker after a number of activations equal to that D3 have been completed\\nor at the end of the turning point (whichever comes first).</li>\\n<li>An operative cannot perform this action while within control range of an enemy operative, or if you have reached the total number of times your kill team can perform it.</li>\\n</ul>\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Action\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 609
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-UG-STN\",
+            \"eqname\": \"Utility Grenade - Stun\",
+            \"eqdescription\": \"When you select this equipment, select two utility grenades (2 smoke, 2 stun, or 1 smoke and 1 stun).\\nEach selection is a unique action your operatives can perform, but your kill team can only perform that action a total number of times during the battle equal to your selection.\\n<br/>\\n<strong>STUN GRENADE (1 AP):</strong><br/>\\n<ul>\\n<li>Select one enemy operative visible to and within 6\\\" of this operative. That operative and each other operative within 1\\\" of it takes a stun test. For an operative to take a stun test, roll one D6: on a 3+, subtract 1 from its APL stat until the end of its next activation.</li>\\n<li>An operative cannot perform this action while within control range of an enemy operative, or if you have reached the total number of times your kill team can perform it.</li>\\n</ul>\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Action\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 609
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-XG-FRAG\",
+            \"eqname\": \"Explosive Grenade - Frag\",
+            \"eqdescription\": \"When you select this equipment, select two explosive grenades (2 frag, 2 krak, or 1 frag and 1 krak).\\n<table class=\\\"eqtable\\\">\\n<tr>\\n<th>Name</th><th>A</th><th>BS</th><th>D</th><th>\\n</tr>\\n<tr>\\n<td>Frag Grenade</td><td>4</td><td>4+</td><td>2/4</td>\\n</tr>\\n<tr>\\n<th colspan=\\\"4\\\">Special Rules</th>\\n</tr>\\n<tr>\\n<td>Rng 6\\\", Blast 2\\\", Saturate</td>\\n</tr>\\n</table>\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Weapon\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 610,
+            \"weapon\": {
+              \"factionid\": \"kt24\",
+              \"killteamid\": \"ALL\",
+              \"fireteamid\": \"EQ\",
+              \"opid\": \"EQ\",
+              \"wepid\": \"UE-XG-FRAG\",
+              \"wepseq\": 0,
+              \"wepname\": \"Frag Grenade\",
+              \"weptype\": \"R\",
+              \"isdefault\": 0,
+              \"profiles\": [
+                {
+                  \"factionid\": \"kt24\",
+                  \"killteamid\": \"ALL\",
+                  \"fireteamid\": \"EQ\",
+                  \"opid\": \"EQ\",
+                  \"wepid\": \"UE-XG-FRAG\",
+                  \"profileid\": \"0\",
+                  \"name\": \"\",
+                  \"A\": \"4\",
+                  \"BS\": \"4+\",
+                  \"D\": \"2/4\",
+                  \"SR\": \"Rng 6\\\", Blast 2\\\", Saturate\"
+                }
+              ]
+            }
+          },
+          {
+            \"factionid\": \"kt24\",
+            \"killteamid\": \"ALL\",
+            \"eqid\": \"UE-XG-KRAK\",
+            \"eqname\": \"Explosive Grenade - Krak\",
+            \"eqdescription\": \"When you select this equipment, select two explosive grenades (2 frag, 2 krak, or 1 frag and 1 krak).\\n<table class=\\\"eqtable\\\">\\n<tr>\\n<th>Name</th><th>A</th><th>BS</th><th>D</th><th>\\n</tr>\\n<tr>\\n<td>Krak Grenade</td><td>4</td><td>4+</td><td>4/5</td>\\n</tr>\\n<tr>\\n<th colspan=\\\"4\\\">Special Rules</th>\\n</tr>\\n<tr>\\n<td>Rng 6\\\", Piercing 1, Saturate</td>\\n</tr>\\n</table>\",
+            \"eqpts\": \"0\",
+            \"eqtype\": \"Weapon\",
+            \"eqvar1\": \"\",
+            \"eqvar2\": \"\",
+            \"eqvar3\": \"\",
+            \"eqvar4\": \"\",
+            \"eqcategory\": \"Universal Equipment\",
+            \"fireteamid\": \"\",
+            \"opid\": \"\",
+            \"eqseq\": 610,
+            \"weapon\": {
+              \"factionid\": \"kt24\",
+              \"killteamid\": \"ALL\",
+              \"fireteamid\": \"EQ\",
+              \"opid\": \"EQ\",
+              \"wepid\": \"UE-XG-KRAK\",
+              \"wepseq\": 0,
+              \"wepname\": \"Krak Grenade\",
+              \"weptype\": \"R\",
+              \"isdefault\": 0,
+              \"profiles\": [
+                {
+                  \"factionid\": \"kt24\",
+                  \"killteamid\": \"ALL\",
+                  \"fireteamid\": \"EQ\",
+                  \"opid\": \"EQ\",
+                  \"wepid\": \"UE-XG-KRAK\",
+                  \"profileid\": \"0\",
+                  \"name\": \"\",
+                  \"A\": \"4\",
+                  \"BS\": \"4+\",
+                  \"D\": \"4/5\",
+                  \"SR\": \"Rng 6\\\", Prc1, Saturate\"
+                }
+              ]
+            }
           }
         ],
-        \"killteamcomp\": \"An ECCLESIARCHY kill team consists of 10 operatives selected from the following list:\\n  <ul>\\n <li>BATTLE SISTER SUPERIOR operative equipped with one option from each of the following:\\n  <ul>\\n  <li>Chainsword, Gun Butt, Power Maul, or Power Weapon</li>\\n  <li>Bolt Pistol, Boltgun, Combi-Melta, Combi-Plasma, Condemnor Boltgun, Inferno Pistol, Ministorum Combi-Flamer, Ministorum Hand Flamer, or Plasma Pistol</li>\\n  </ul></li><li>REPENTIA SUPERIOR</li> \\n  \\n  <li>\\n  BATTLE SISTER GUNNER each separately equipped with Gun Butt and one of the following options:\\n  <ul>\\n  <li>Meltagun, Ministorum Flamer, or Storm Bolter</li>\\n  </ul>\\n  </li>\\n  <li>\\n  BATTLE SISTER HEAVY GUNNER each separately equipped with Gun Butt and one of the following options:\\n  <ul>\\n  <li>Heavy Bolter or Ministorum Heavy Flamer</li>\\n  </ul>\\n  </li><li>BATTLE SISTER ICON BEARER</li><li>BATTLE SISTER WARRIOR</li> <li>SISTER REPENTIA</li> </ul>Your kill team can include up to two BATTLE SISTER GUNNER operatives. Your kill team can only include up to one BATTLE SISTER HEAVY GUNNER operative. Your kill team can only include up to one BATTLE SISTER ICON BEARER. Your kill team must include one or both of a REPENTIA SUPERIOR or BATTLE SISTER SUPERIOR.<br/>\",
+        \"killteamcomp\": \"A CHAOS DAEMON KillTeam is composed of:\\r <ul>\\r \\t<li>\\r 1 CHAOS DAEMON operative selected from the following list:\\r <ul><li>KHORNE BLOODREAPER</li><li>TZEENTCH IRIDESCENT</li><li>SLAANESH ALLURESS</li><li>NURGLE PLAGUERIDDEN</li></ul>\\r \\t</li>\\r \\t<li>\\r 9 CHAOS DAEMON operatives selected from the following list:\\r <ul><li>KHORNE BLOODLETTER</li><li>TZEENTCH PINK HORROR</li><li>SLAANESH DAEMONETTE</li><li>NURGLE PLAGUEBEARER</li></ul>\\r \\t</li>\\r </ul>Other than FIGHTER operatives, your kill team can only include each operative on this list once.\",
         \"fireteams\": [
           {
             \"factionid\": \"HBR\",
-            \"killteamid\": \"ECC24\",
-            \"fireteamid\": \"ECC24\",
+            \"killteamid\": \"DAEM24\",
+            \"fireteamid\": \"DAEM24\",
             \"seq\": 0,
-            \"fireteamname\": \"Battle Sisters\",
-            \"archetype\": \"Security\",
-            \"description\": null,
+            \"fireteamname\": \"Chaos Daemons\",
+            \"archetype\": \"Seek And Destroy\",
+            \"description\": \"\",
             \"killteammax\": 0,
             \"operatives\": [
               {
                 \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"SUP\",
-                \"opseq\": 1,
-                \"opname\": \"Battle Sister Superior\",
-                \"description\": \"The Sisters Superior form the crux of each squad of Battle Sisters. They speak with an authority derived from years of combat and supreme faith in the God-Emperor.\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"BR\",
+                \"opseq\": 0,
+                \"opname\": \"Bloodreaper\",
+                \"description\": \"Bloodreapers marshal Khorne''s frenzied hordes in battle. They are among the deadliest warriors of their kind, each having offered up countless skulls to their lord. They are not blinded by rage, and despatch their lessers with martial precision to ensure no foe escapes.\",
                 \"M\": \"6\\\"\",
                 \"APL\": \"2\",
                 \"GA\": \"1\",
                 \"DF\": \"3\",
-                \"SV\": \"3+\",
-                \"W\": \"9\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, BATTLE SISTER, LEADER\",
+                \"SV\": \"5+\",
+                \"W\": \"10\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, KHORNE, LEADER, BLOODLETTER, BLOODREAPER\",
+                \"basesize\": 32,
                 \"weapons\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"BP\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"wepid\": \"HB\",
                     \"wepseq\": 0,
-                    \"wepname\": \"Bolt Pistol\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"BP\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Bolt Pistol\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"Rng 6\\\"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"BG\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Boltgun\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"BG\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Boltgun\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"CM\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Combi-Melta\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"CM\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Melta\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"6/3\",
-                        \"SR\": \"Combi-Boltgun, Rng 6\\\", Prc2, Lim, Dev4\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"CP\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Combi-Plasma\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"CP\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Plasma Standard\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"5/6\",
-                        \"SR\": \"Combi-Boltgun, Prc1, Lim\"
-                      },
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"CP\",
-                        \"profileid\": \"1\",
-                        \"name\": \"Plasma Overcharge\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"5/6\",
-                        \"SR\": \"Combi-Boltgun, Prc1, Lethal 5+, Hot, Lim\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"CB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Condemnor Boltgun\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"CB\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Condemnor\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"3/3\",
-                        \"SR\": \"Combi-Boltgun, Sil, Lim, Dev1, PrcCrit1\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"IP\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Inferno Pistol\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"IP\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Inferno Pistol\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"5/3\",
-                        \"SR\": \"Rng 3\\\", Prc2, Dev3\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"MCF\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Ministorum Combi-Flamer\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"MCF\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Ministorum Flamer\",
-                        \"A\": \"5\",
-                        \"BS\": \"2+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Combi-Boltgun, Rng 6\\\", Tor 2\\\", Lim\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"MHF\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Ministorum Hand Flamer\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"MHF\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Ministorum Hand Flamer\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Rng 6\\\", Tor 1\\\", Sat\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"PP\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Plasma Pistol\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"PP\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Standard\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"5/6\",
-                        \"SR\": \"Rng 6\\\", Prc1\"
-                      },
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"PP\",
-                        \"profileid\": \"1\",
-                        \"name\": \"Supercharge\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"5/6\",
-                        \"SR\": \"Rng 6\\\", Prc1, Lethal 5+, Hot\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"CS\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Chainsword\",
+                    \"wepname\": \"Hellblade\",
                     \"weptype\": \"M\",
-                    \"isdefault\": 0,
+                    \"isdefault\": 1,
                     \"profiles\": [
                       {
                         \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"CS\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"DAEM24\",
+                        \"opid\": \"BR\",
+                        \"wepid\": \"HB\",
                         \"profileid\": \"0\",
-                        \"name\": \"Chainsword\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"GB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Gun Butt\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"GB\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Gun Butt\",
-                        \"A\": \"3\",
-                        \"BS\": \"3+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"PM\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Power Maul\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"PM\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Power Maul\",
-                        \"A\": \"4\",
-                        \"BS\": \"2+\",
-                        \"D\": \"4/5\",
-                        \"SR\": \"Shock\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"PW\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Power Weapon\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"PW\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Power Weapon\",
+                        \"name\": \"\",
                         \"A\": \"4\",
                         \"BS\": \"2+\",
                         \"D\": \"4/6\",
                         \"SR\": \"Lethal 5+\"
                       }
                     ],
-                    \"isselected\": false
+                    \"isselected\": true
                   }
                 ],
                 \"uniqueactions\": [],
                 \"abilities\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
                   },
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"DP\",
-                    \"title\": \"Divine Prayer\",
-                    \"description\": \"At the start of each Turning Point, gain one Martyr point.\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Champion of Khorne\",
+                    \"description\": \"During this operative''s activation, it may perform a free Fight action and it is allowed to perform two Fight actions.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. KHORNE), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Khorne</h2><strong>Flaming Strike</strong><br/>\\nUse this POWER OF CHAOS when a friendly KHORNE DAEMON operative is fighting, the first time you strike with a critical success during that sequence. Until the end of that sequence, that operative’s melee weapon has the Shock weapon rule.<br/><br/><strong>Berzerker Rage</strong><br/>\\nUse this POWER OF CHAOS during a friendly KHORNE DAEMON operative’s activation, after it’s performed the Charge action and incapacitated an enemy operative during the Fight action, and is no longer within control range of\\nenemy operatives. That friendly operative can immediately perform a free Charge action using any remaining move distance it had from that first Charge action. That operative can perform two Charge actions during its activation to do so. The operative cannot have performed any other actions\\nduring this activation (but can do so after resolving this POWER OF CHAOS).\\n<br/><br/><strong>Killing Blow</strong><br/>\\nUse this POWER OF CHAOS when a friendly KHORNE DAEMON operative is fighting or retaliating and you strike with a normal or critical success. Inflict d3 additional damage with that strike.<br/><br/><strong>Call to Slaughter</strong><br/>Use this POWER OF CHAOS during a friendly KHORNE DAEMON operative’s activation, when it incapacitates an enemy operative within its control range. Select one other ready friendly CHAOS DAEMON operative that’s visible to and within 3\\\" of the incapacitated enemy operative. When that first friendly operative is expended, you can activate that other friendly operative before your opponent activates. When that other operative is expended, your opponent then activates as normal.<br/><br/><strong>Whirling Death</strong><br/>Use this POWER OF CHAOS when a friendly KHORNE DAEMON operative is incapacitated, roll 1D3. Inflict damage equal to the result on one enemy operative visible to and within 2\\\" of that friendly operative.\"
                   }
                 ],
-                \"edition\": \"hidden\",
+                \"edition\": \"kt24\",
                 \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Marksman,Combat\"
+                \"specialisms\": \"Combat\"
               },
               {
                 \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"RSUP\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"IR\",
                 \"opseq\": 0,
-                \"opname\": \"Repentia Superior\",
-                \"description\": \"The solemn task of guiding wayward Sisters in their atonement falls to Repentia Superior. These veterans are stern taskmasters who drive their charges forward with bellowed prayers and lashes from their neural whips, watching vigilantly for any remnant signs of sinfulness.\",
+                \"opname\": \"Pink Horror Iridescent\",
+                \"description\": \"Iridescent Horrors are imbued with a sliver of Tzeentch''s immortal knowledge. They revel in leading their capering daemons in enacting Tzeentch''s schemes.\",
                 \"M\": \"6\\\"\",
                 \"APL\": \"2\",
                 \"GA\": \"1\",
                 \"DF\": \"3\",
-                \"SV\": \"3+\",
+                \"SV\": \"5+\",
                 \"W\": \"9\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, REPENTIA, SUPERIOR, LEADER\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, TZEENTCH, LEADER, PINK HORROR, IRIDESCENT\",
+                \"basesize\": 32,
                 \"weapons\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"NWR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"IR\",
+                    \"wepid\": \"CF\",
                     \"wepseq\": 0,
-                    \"wepname\": \"Neural Whips\",
+                    \"wepname\": \"Coruscating Flames\",
                     \"weptype\": \"R\",
                     \"isdefault\": 1,
                     \"profiles\": [
                       {
                         \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"NWR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PH\",
+                        \"opid\": \"IR\",
+                        \"wepid\": \"CF\",
                         \"profileid\": \"0\",
-                        \"name\": \"Neural Whips\",
-                        \"A\": \"5\",
-                        \"BS\": \"3+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Lethal 5+, Rng 3\\\", Stun\"
-                      }
-                    ],
-                    \"isselected\": true
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"wepid\": \"NWM\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Neural Whips\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"SUP\",
-                        \"wepid\": \"NWM\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Neural Whips\",
-                        \"A\": \"5\",
-                        \"BS\": \"3+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Lethal 5+, Stun\"
-                      }
-                    ],
-                    \"isselected\": true
-                  }
-                ],
-                \"uniqueactions\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"SUP\",
-                    \"uniqueactionid\": \"WIF\",
-                    \"title\": \"Whip Into Fury\",
-                    \"description\": \"Select one friendly SISTER REPENTIA operative within 3\\\" of and Visible to this operative. Add 1 to that friendly operative''s APL and, until the end of that operative''s next activation, add 2\\\" to that friendly operative''s Movement characteristic.\",
-                    \"AP\": 1
-                  }
-                ],
-                \"abilities\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
-                  }
-                ],
-                \"edition\": \"hidden\",
-                \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Combat\"
-              },
-              {
-                \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"IB\",
-                \"opseq\": 2,
-                \"opname\": \"Battle Sister Icon Bearer\",
-                \"description\": \"These Sisters are thrice blessed to bear the holy icons known as Simulacrum Imperialis. Each artefact is an object of fervent devotion - representations of martyred warriors, recreations of objects and deeds associated with them or repositories of their mortal remains.\",
-                \"M\": \"6\\\"\",
-                \"APL\": \"2\",
-                \"GA\": \"1\",
-                \"DF\": \"3\",
-                \"SV\": \"3+\",
-                \"W\": \"8\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, BATTLE SISTER, ICON BEARER\",
-                \"weapons\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"IB\",
-                    \"wepid\": \"BG\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Boltgun\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"IB\",
-                        \"wepid\": \"BG\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Boltgun\",
+                        \"name\": \"\",
                         \"A\": \"4\",
-                        \"BS\": \"3+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": true
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"IB\",
-                    \"wepid\": \"GB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Gun Butt\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"IB\",
-                        \"wepid\": \"GB\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Gun Butt\",
-                        \"A\": \"3\",
-                        \"BS\": \"4+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": true
-                  }
-                ],
-                \"uniqueactions\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"IB\",
-                    \"uniqueactionid\": \"IOP\",
-                    \"title\": \"Icon Of Purity\",
-                    \"description\": \"Until the end of the Turning Point, while this operative is Visible to and within 3\\\" of a friendly ADEPTA SORORITAS operative, that friendly operative is inspired by purity. While an operative is inspired by purity, each time it fights in combat or makes a shooting attack, in the Roll Attack Dice step of that combat or shooting attack, you can retain one of your attack dice results of 5+ that is a successful hit as a critical hit.\",
-                    \"AP\": 1
-                  }
-                ],
-                \"abilities\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"IB\",
-                    \"abilityid\": \"IB\",
-                    \"title\": \"Icon Bearer\",
-                    \"description\": \"When determining control of an objective marker, treat this operative''s APL as being 1 higher. Note that this is not a modifier. In narrative play, this is cumulative with the Focused Battloe Honour (see Core Rule Book).\"
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
-                  }
-                ],
-                \"edition\": \"hidden\",
-                \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Marksman\"
-              },
-              {
-                \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"GNR\",
-                \"opseq\": 3,
-                \"opname\": \"Battle Sister Gunner\",
-                \"description\": \"Some Sisters are blessed to receive training in the use of special-issue, close-assault weapons. These sisters ritually maintain their Storm Bolters, Flamers, and Meltaguns, which they use in battle to unleash a blistering repudiation of heresy.\",
-                \"M\": \"6\\\"\",
-                \"APL\": \"2\",
-                \"GA\": \"1\",
-                \"DF\": \"3\",
-                \"SV\": \"3+\",
-                \"W\": \"8\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, BATTLE SISTER, GUNNER\",
-                \"weapons\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"GNR\",
-                    \"wepid\": \"MG\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Meltagun\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"GNR\",
-                        \"wepid\": \"MG\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Meltagun\",
-                        \"A\": \"4\",
-                        \"BS\": \"3+\",
-                        \"D\": \"6/3\",
-                        \"SR\": \"Rng 6\\\", Prc2, Dev4\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"GNR\",
-                    \"wepid\": \"MF\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Ministorum Flamer\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"GNR\",
-                        \"wepid\": \"MF\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Ministorum Flamer\",
-                        \"A\": \"5\",
                         \"BS\": \"2+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Rng 6\\\", Tor 2\\\"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"GNR\",
-                    \"wepid\": \"SB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Storm Bolter\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"GNR\",
-                        \"wepid\": \"SB\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Storm Bolter\",
-                        \"A\": \"4\",
-                        \"BS\": \"3+\",
                         \"D\": \"3/4\",
-                        \"SR\": \"Relentless\"
+                        \"SR\": \"\"
                       }
                     ],
-                    \"isselected\": false
+                    \"isselected\": true
                   },
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"GNR\",
-                    \"wepid\": \"GB\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"IR\",
+                    \"wepid\": \"F\",
                     \"wepseq\": 0,
-                    \"wepname\": \"Gun Butt\",
+                    \"wepname\": \"Fists\",
                     \"weptype\": \"M\",
-                    \"isdefault\": 0,
+                    \"isdefault\": 1,
                     \"profiles\": [
                       {
                         \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"GNR\",
-                        \"wepid\": \"GB\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PH\",
+                        \"opid\": \"IR\",
+                        \"wepid\": \"F\",
                         \"profileid\": \"0\",
-                        \"name\": \"Gun Butt\",
+                        \"name\": \"\",
                         \"A\": \"3\",
                         \"BS\": \"4+\",
                         \"D\": \"2/3\",
                         \"SR\": \"\"
                       }
                     ],
-                    \"isselected\": false
+                    \"isselected\": true
                   }
                 ],
                 \"uniqueactions\": [],
                 \"abilities\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"IR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Champion of Tzeench\",
+                    \"description\": \"During this operative''s activation, it may perform a free Shoot action and it is allowed to perform two Shoot actions.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. TZEENTCH), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Tzeentch</h2><strong>Creeping Flame</strong><br/>\\nUse this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames.\\nUntil the end of that action, that weapon has the Torrent 2\\\" weapon rule, but you cannot select more than one secondary target.\\n<br/><br/><strong>Essence of Change</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is activated. Until the end of that operative’s activation, add 1 to its APL stat.<br/><br/><strong>Glistening Barrage</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames. Until the end of that action, that weapon has the Lethal 5+ weapon rule.<br/><br/><strong>Flickering Fates</strong><br/>Use this POWER OF CHAOS when an operative is shooting a friendly TZEENTCH DAEMON operative, in the Roll Defence Dice step, if you retain any critical successes, you can retain one of your fails as a normal success instead of discarding it.<br/><br/><strong>Daemonic Split</strong><br/>Use this POWER OF CHAOS when a friendly PINK HORROR or BLUE HORROR operative is incapacitated.\\n<ul>\\n<li>Before that PINK HORROR operative is removed from the killzone, set up two BLUE HORROR operatives as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n<li>Before that BLUE HORROR operative is removed from the killzone, set up one BRIMSTONE HORROR operative as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n</ul>\\nIn either case, set up those operatives with the same order as the previous operative (including if it was ready or activated).\"
                   }
                 ],
-                \"edition\": \"hidden\",
+                \"edition\": \"kt21\",
                 \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Marksman\"
+                \"specialisms\": \"Marksman\"
               },
               {
                 \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"HGNR\",
-                \"opseq\": 4,
-                \"opname\": \"Battle Sister Heavy Gunner\",
-                \"description\": \"Among the highly trained Adepta Sororitas, those Sisters granted the honour to bear the most potent armaments enable their team to engage heavily armoured opposition. Their expert eye for target prioritisation and enemy weak points makes them powerful assets.\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"AL\",
+                \"opseq\": 1,
+                \"opname\": \"Alluress\",
+                \"description\": \"Most beauteous and yet more repulsive than most Daemonettes, Alluresses orchestrate their kin''s slaughter with trilling songs of praise to Slaanesh. Their hypnotic glamour causes foes to falter in their presence, helpless as barbed claws and needle-like teeth close in.\",
+                \"M\": \"7\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"1\",
+                \"DF\": \"3\",
+                \"SV\": \"5+\",
+                \"W\": \"9\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, SLAANESH, LEADER, DAEMONETTE, ALLURESS\",
+                \"basesize\": 32,
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DETTE\",
+                    \"opid\": \"AL\",
+                    \"wepid\": \"CLS\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Claws\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"DETTE\",
+                        \"opid\": \"AL\",
+                        \"wepid\": \"CLS\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"2+\",
+                        \"D\": \"4/5\",
+                        \"SR\": \"Balanced\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DETTE\",
+                    \"opid\": \"AL\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Champion of Slaanesh\",
+                    \"description\": \"During this operative''s activation, it may perform a free Charge action.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. SLAANESH), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Slaanesh</h2><strong>Swift Retreat</strong><br/>\\nUse this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is fighting, after you strike with a critical success. End that sequence (any remaining attack dice are discarded) and immediately perform a free Dash or Fall\\nBack action up to 3\\\" with that operative (then the Fight action ends). That operative can do so even if it’s performed an action that prevents it from performing the Dash or Fall Back action.<br/><br/><strong>Unnatural Agility</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is fighting or retaliating, worsen the Hit stat of the enemy operative''s melee weapons by 1.<br/><br/><strong>Flurry of Blows</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is performing the Fight action and you select a Claws weapon. Until the end of that action, that weapon has the Relentless weapon rule.<br/><br/><strong>Weaving Dance</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative performs an action in which it moves. Until the end of the action, that operative:\\n<ul>\\n<li>Can ignore all vertical distances whenever it drops and climbs.</li>\\n<li>Can move through enemy operatives, move within control range of them, and during the Charge action can leave their control range (it must still end the move following all requirements for that move).</li>\\n<li>Cannot move more than its Move stat if it’s the Charge action.</li></ul><strong>Tormenting Strike</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is performing the Fight action and you select a Claws weapon. Until the end of that action, that weapon has the Piercing Crits 1 weapon rule.\"
+                  }
+                ],
+                \"edition\": \"kt21\",
+                \"fireteammax\": 0,
+                \"specialisms\": \"Combat,Scout\"
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"PR\",
+                \"opseq\": 0,
+                \"opname\": \"Plagueridden\",
+                \"description\": \"Despite their death''s head rictus grin, Plageridden are devoted to the serious business of spreading Nurgle''s bounteous plagues across reality. They often bear signs fo Nurgle''s favour - such as more elaborate horns - and direct other Plaguebearers in his grand plans.\",
+                \"M\": \"5\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"1\",
+                \"DF\": \"3\",
+                \"SV\": \"5+\",
+                \"W\": \"9\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, NURGLE, LEADER, PLAGUEBEARER, PLAGUERIDDEN\",
+                \"basesize\": 32,
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"PR\",
+                    \"wepid\": \"PS\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Plaguesword\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PB\",
+                        \"opid\": \"PR\",
+                        \"wepid\": \"PS\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"2+\",
+                        \"D\": \"4/6\",
+                        \"SR\": \"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"PR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"BR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Champion of Nurgle\",
+                    \"description\": \"During this operative''s activation, it may perform a Pick-up or Mission action.\"
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"PR\",
+                    \"abilityid\": \"DR\",
+                    \"title\": \"Disgustingly Resilient\",
+                    \"description\": \"Whenever an attack dice inflicts damage of 3 or more on a friendly NURGLE DAEMON operative, roll one D6: on a 4+, subtract 1 from that inflicted damage.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. NURGLE), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Nurgle</h2><strong>Noxious Cloud</strong><br/>Use this POWER OF CHAOS during a friendly NURGLE DAEMON operative’s activation. Until the end of the turn, whenever an operative is shooting a friendly CHAOS DAEMON operative that is more than 3\\\" from it, if that friendly operative is wholly within 3\\\" of this operative, that friendly operative is obscured.<br/><br/><strong>Curse of Rot</strong><br/>Use this POWER OF CHAOS during a friendly NURGLE DAEMON operative’s activation. Select one enemy operative within 8\\\" and visible to this operative. Subtract 2\\\" from the Move stat of that enemy operative and worsen the Hit stat of its weapons by 1 (this is not cumulative with being injured) until the end of the turning point.<br/><br/><strong>Rancid Vomit</strong><br/>Use this POWER OF CHAOS when a friendly NURGLE DAEMON operative is performing the Shoot action. Until the end of that action, that operative can use the following ranged weapon:\\n<table width=\\\"100%\\\" class=\\\"eqtable\\\">\\n<tr>\\n<th>Name</th>\\n        <th>A</th>\\n        <th>BS</th>\\n        <th>D</th>\\n</tr>\\n    <tr>\\n<td>Rancid Vomit</td>\\n        <td>5</td>\\n        <td>2+</td>\\n        <td>2/3</td>\\n</tr>\\n    <tr><th colspan=\\\"4\\\">Special Rules</th></tr>\\n    <tr><td colspan=\\\"4\\\">Rng 6\\\", Tor 1\\\", Saturate</td></tr>\\n</table><br/><br/><strong>Shambling Wretch</strong><br/>Use this POWER OF CHAOS at the start of a friendly NURGLE DAEMON operative''s activation. You can ignore any changes to the stats of that operative from being injured (including their weapons'' stats) until the end of that activation.<br/><br/><strong>Revolting Resiliency</strong><br/>Use this POWER OF CHAOS when an attack dice inflicts damage on a friendly NURGLE DAEMON operative. Until the end of the activation/counteraction, for the purposes of the Disgustingly Resilient rule for that operative, always subtract 1 from the damage inflicted (to a minimum of 2) – you do not need to roll.\"
+                  }
+                ],
+                \"edition\": \"kt21\",
+                \"fireteammax\": 0,
+                \"specialisms\": \"Staunch\"
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"BFTR\",
+                \"opseq\": 0,
+                \"opname\": \"Bloodletter Fighter\",
+                \"description\": \"Bloodletters are Khorne''s most numerous warriors, the foot soldiers of the Blood Legions. Their skin is the colour of spilt gore, and their muscles bulge in response to their rage. They carry jagged Hellblades in their taloned hands that glow with the energies of the Warp.\",
                 \"M\": \"6\\\"\",
                 \"APL\": \"2\",
                 \"GA\": \"1\",
                 \"DF\": \"3\",
-                \"SV\": \"3+\",
-                \"W\": \"8\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, BATTLE SISTER, GUNNER\",
+                \"SV\": \"5+\",
+                \"W\": \"9\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, KHORNE, BLOODLETTER, FIGHTER\",
                 \"weapons\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"HGNR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"FTR\",
                     \"wepid\": \"HB\",
                     \"wepseq\": 0,
-                    \"wepname\": \"Heavy Bolter\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
+                    \"wepname\": \"Hellblade\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
                     \"profiles\": [
                       {
                         \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"HGNR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"DAEM24\",
+                        \"opid\": \"FTR\",
                         \"wepid\": \"HB\",
                         \"profileid\": \"0\",
-                        \"name\": \"Heavy Bolter\",
-                        \"A\": \"5\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"3+\",
+                        \"D\": \"4/6\",
+                        \"SR\": \"Lethal 5+\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DAEM24\",
+                    \"opid\": \"FTR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. KHORNE), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Khorne</h2><strong>Flaming Strike</strong><br/>\\nUse this POWER OF CHAOS when a friendly KHORNE DAEMON operative is fighting, the first time you strike with a critical success during that sequence. Until the end of that sequence, that operative’s melee weapon has the Shock weapon rule.<br/><br/><strong>Berzerker Rage</strong><br/>\\nUse this POWER OF CHAOS during a friendly KHORNE DAEMON operative’s activation, after it’s performed the Charge action and incapacitated an enemy operative during the Fight action, and is no longer within control range of\\nenemy operatives. That friendly operative can immediately perform a free Charge action using any remaining move distance it had from that first Charge action. That operative can perform two Charge actions during its activation to do so. The operative cannot have performed any other actions\\nduring this activation (but can do so after resolving this POWER OF CHAOS).\\n<br/><br/><strong>Killing Blow</strong><br/>\\nUse this POWER OF CHAOS when a friendly KHORNE DAEMON operative is fighting or retaliating and you strike with a normal or critical success. Inflict d3 additional damage with that strike.<br/><br/><strong>Call to Slaughter</strong><br/>Use this POWER OF CHAOS during a friendly KHORNE DAEMON operative’s activation, when it incapacitates an enemy operative within its control range. Select one other ready friendly CHAOS DAEMON operative that’s visible to and within 3\\\" of the incapacitated enemy operative. When that first friendly operative is expended, you can activate that other friendly operative before your opponent activates. When that other operative is expended, your opponent then activates as normal.<br/><br/><strong>Whirling Death</strong><br/>Use this POWER OF CHAOS when a friendly KHORNE DAEMON operative is incapacitated, roll 1D3. Inflict damage equal to the result on one enemy operative visible to and within 2\\\" of that friendly operative.\"
+                  }
+                ],
+                \"edition\": \"hidden\",
+                \"fireteammax\": 0,
+                \"specialisms\": \"Combat\"
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"ZFTR\",
+                \"opseq\": 0,
+                \"opname\": \"Pink Horror Fighter\",
+                \"description\": \"Pink Horrors are magic made manifest. They caper and whirl, cackling as bolts of raw sorcery leap from their clawed fingertips. These coruscating streams of multicoloured flame do not merely burn, they turn their victims into hedeous or nonsensical forms.\",
+                \"M\": \"6\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"1\",
+                \"DF\": \"3\",
+                \"SV\": \"5+\",
+                \"W\": \"8\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, TZEENTCH, PINK HORROR, FIGHTER\",
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"FTR\",
+                    \"wepid\": \"CF\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Coruscating Flames\",
+                    \"weptype\": \"R\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PH\",
+                        \"opid\": \"FTR\",
+                        \"wepid\": \"CF\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"3+\",
+                        \"D\": \"3/4\",
+                        \"SR\": \"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"FTR\",
+                    \"wepid\": \"F\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Fists\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PH\",
+                        \"opid\": \"FTR\",
+                        \"wepid\": \"F\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"3\",
+                        \"BS\": \"4+\",
+                        \"D\": \"2/3\",
+                        \"SR\": \"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PH\",
+                    \"opid\": \"FTR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. TZEENTCH), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Tzeentch</h2><strong>Creeping Flame</strong><br/>\\nUse this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames.\\nUntil the end of that action, that weapon has the Torrent 2\\\" weapon rule, but you cannot select more than one secondary target.\\n<br/><br/><strong>Essence of Change</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is activated. Until the end of that operative’s activation, add 1 to its APL stat.<br/><br/><strong>Glistening Barrage</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames. Until the end of that action, that weapon has the Lethal 5+ weapon rule.<br/><br/><strong>Flickering Fates</strong><br/>Use this POWER OF CHAOS when an operative is shooting a friendly TZEENTCH DAEMON operative, in the Roll Defence Dice step, if you retain any critical successes, you can retain one of your fails as a normal success instead of discarding it.<br/><br/><strong>Daemonic Split</strong><br/>Use this POWER OF CHAOS when a friendly PINK HORROR or BLUE HORROR operative is incapacitated.\\n<ul>\\n<li>Before that PINK HORROR operative is removed from the killzone, set up two BLUE HORROR operatives as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n<li>Before that BLUE HORROR operative is removed from the killzone, set up one BRIMSTONE HORROR operative as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n</ul>\\nIn either case, set up those operatives with the same order as the previous operative (including if it was ready or activated).\"
+                  }
+                ],
+                \"edition\": \"hidden\",
+                \"fireteammax\": 0
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"BLUE\",
+                \"opseq\": 0,
+                \"opname\": \"Blue Horror\",
+                \"description\": \"Should a Pink Horror be cut down, it may split, with the two halves reforming as smaller daemons. These Blue Horrors are morose and spiteful creatures, aggressively calling on their Warp-spawned powers to destroy those who dared to lay their original form low.\",
+                \"M\": \"6\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"2\",
+                \"DF\": \"3\",
+                \"SV\": \"6+\",
+                \"W\": \"6\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, TZEENTCH,  BLUE HORROR\",
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"BH\",
+                    \"opid\": \"BLUE\",
+                    \"wepid\": \"FF\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Fizzing Flames\",
+                    \"weptype\": \"R\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"BH\",
+                        \"opid\": \"BLUE\",
+                        \"wepid\": \"FF\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"4+\",
+                        \"D\": \"2/3\",
+                        \"SR\": \"Rng 6\\\"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  },
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"BH\",
+                    \"opid\": \"BLUE\",
+                    \"wepid\": \"F\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Fists\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"BH\",
+                        \"opid\": \"BLUE\",
+                        \"wepid\": \"F\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"3\",
+                        \"BS\": \"5+\",
+                        \"D\": \"2/3\",
+                        \"SR\": \"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"BH\",
+                    \"opid\": \"BLUE\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"TYR\",
+                    \"killteamid\": \"BBRO24\",
+                    \"fireteamid\": \"BBRO24\",
+                    \"opid\": \"FAM\",
+                    \"abilityid\": \"GA\",
+                    \"title\": \"Group Activation\",
+                    \"description\": \"Whenever this operative is expended, you must then activate any other ready friendly CHAOS DAEMON BLUE HORROR operative (if able) before your opponent activates.\\nWhen that other operative is expended, your opponent then activates as normal.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. TZEENTCH), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Tzeentch</h2><strong>Creeping Flame</strong><br/>\\nUse this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames.\\nUntil the end of that action, that weapon has the Torrent 2\\\" weapon rule, but you cannot select more than one secondary target.\\n<br/><br/><strong>Essence of Change</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is activated. Until the end of that operative’s activation, add 1 to its APL stat.<br/><br/><strong>Glistening Barrage</strong><br/>Use this POWER OF CHAOS when a friendly TZEENTCH DAEMON operative is performing the Shoot action and you select a Coruscating Flames or Fizzing Flames. Until the end of that action, that weapon has the Lethal 5+ weapon rule.<br/><br/><strong>Flickering Fates</strong><br/>Use this POWER OF CHAOS when an operative is shooting a friendly TZEENTCH DAEMON operative, in the Roll Defence Dice step, if you retain any critical successes, you can retain one of your fails as a normal success instead of discarding it.<br/><br/><strong>Daemonic Split</strong><br/>Use this POWER OF CHAOS when a friendly PINK HORROR or BLUE HORROR operative is incapacitated.\\n<ul>\\n<li>Before that PINK HORROR operative is removed from the killzone, set up two BLUE HORROR operatives as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n<li>Before that BLUE HORROR operative is removed from the killzone, set up one BRIMSTONE HORROR operative as close as possible to that operative and not within Engagement Range of enemy operatives.</li>\\n</ul>\\nIn either case, set up those operatives with the same order as the previous operative (including if it was ready or activated).\"
+                  }
+                ],
+                \"edition\": \"hidden\",
+                \"fireteammax\": 0,
+                \"specialisms\": \"Scout,Marksman\"
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"BRIM\",
+                \"opseq\": 0,
+                \"opname\": \"Brimstone Horror\",
+                \"description\": \"Blue Horrors that are destroyed may vanish in a cloud of smoke, from which emrge two stunted Brimstone Horrors. These diminutive daemons are manifestations of pure bitterness, seeking to incinerate their enemies with burning talons and fangs.\",
+                \"M\": \"5\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"1\",
+                \"DF\": \"2\",
+                \"SV\": \"6+\",
+                \"W\": \"5\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, TZEENTCH,  BRIMSTONE HORROR\",
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"BH\",
+                    \"opid\": \"BRIM\",
+                    \"wepid\": \"F\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Fists\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"BH\",
+                        \"opid\": \"BRIM\",
+                        \"wepid\": \"F\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"2\",
+                        \"BS\": \"5+\",
+                        \"D\": \"2/3\",
+                        \"SR\": \"\"
+                      }
+                    ],
+                    \"isselected\": true
+                  }
+                ],
+                \"uniqueactions\": [],
+                \"abilities\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"BH\",
+                    \"opid\": \"BRIM\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"TYR\",
+                    \"killteamid\": \"BBRO24\",
+                    \"fireteamid\": \"BBRO24\",
+                    \"opid\": \"FAM\",
+                    \"abilityid\": \"GA\",
+                    \"title\": \"Group Activation\",
+                    \"description\": \"Whenever this operative is expended, you must then activate any other ready friendly CHAOS DAEMON BRIMSTONE HORROR operative (if able) before your opponent activates.\\nWhen that other operative is expended, your opponent then activates as normal.\"
+                  },
+                  {
+                    \"factionid\": \"TYR\",
+                    \"killteamid\": \"BBRO24\",
+                    \"fireteamid\": \"BBRO24\",
+                    \"opid\": \"FAM\",
+                    \"abilityid\": \"smol\",
+                    \"title\": \"Small\",
+                    \"description\": \"This operative cannot use any weapons that are not on its datacard, cannot use POWERS OF CHAOS, or perform unique actions.\"
+                  }
+                ],
+                \"edition\": \"hidden\",
+                \"fireteammax\": 0,
+                \"specialisms\": \"N/A\"
+              },
+              {
+                \"factionid\": \"HBR\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"DFTR\",
+                \"opseq\": 4,
+                \"opname\": \"Daemonette Fighter\",
+                \"description\": \"Daemonettes are seductive harbingers of torment. They advance in a swift surge, dancing with impossible agility to pounce upon their victims with keening screams of horrific desire. They indulge in inflicting wounds with their razor-sharp claws.\",
+                \"M\": \"7\\\"\",
+                \"APL\": \"2\",
+                \"GA\": \"1\",
+                \"DF\": \"3\",
+                \"SV\": \"5+\",
+                \"W\": \"8\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, SLAANESH, DAEMONETTE, FIGHTER\",
+                \"weapons\": [
+                  {
+                    \"factionid\": \"HBR\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DETTE\",
+                    \"opid\": \"FTR\",
+                    \"wepid\": \"CLS\",
+                    \"wepseq\": 0,
+                    \"wepname\": \"Claws\",
+                    \"weptype\": \"M\",
+                    \"isdefault\": 1,
+                    \"profiles\": [
+                      {
+                        \"factionid\": \"HBR\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"DETTE\",
+                        \"opid\": \"FTR\",
+                        \"wepid\": \"CLS\",
+                        \"profileid\": \"0\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
                         \"BS\": \"3+\",
                         \"D\": \"4/5\",
-                        \"SR\": \"Hvy, PrcCrit1\"
+                        \"SR\": \"Balanced\"
                       }
                     ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"HGNR\",
-                    \"wepid\": \"MHF\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Ministorum Heavy Flamer\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"HGNR\",
-                        \"wepid\": \"MHF\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Ministorum Heavy Flamer\",
-                        \"A\": \"6\",
-                        \"BS\": \"2+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"Hvy, Rng 6\\\", Tor 2\\\"\"
-                      }
-                    ],
-                    \"isselected\": false
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"HGNR\",
-                    \"wepid\": \"GB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Gun Butt\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 0,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"HGNR\",
-                        \"wepid\": \"GB\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Gun Butt\",
-                        \"A\": \"3\",
-                        \"BS\": \"4+\",
-                        \"D\": \"2/3\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": false
+                    \"isselected\": true
                   }
                 ],
                 \"uniqueactions\": [],
                 \"abilities\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"DETTE\",
+                    \"opid\": \"FTR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
+                  },
+                  {
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. SLAANESH), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Slaanesh</h2><strong>Swift Retreat</strong><br/>\\nUse this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is fighting, after you strike with a critical success. End that sequence (any remaining attack dice are discarded) and immediately perform a free Dash or Fall\\nBack action up to 3\\\" with that operative (then the Fight action ends). That operative can do so even if it’s performed an action that prevents it from performing the Dash or Fall Back action.<br/><br/><strong>Unnatural Agility</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is fighting or retaliating, worsen the Hit stat of the enemy operative''s melee weapons by 1.<br/><br/><strong>Flurry of Blows</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is performing the Fight action and you select a Claws weapon. Until the end of that action, that weapon has the Relentless weapon rule.<br/><br/><strong>Weaving Dance</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative performs an action in which it moves. Until the end of the action, that operative:\\n<ul>\\n<li>Can ignore all vertical distances whenever it drops and climbs.</li>\\n<li>Can move through enemy operatives, move within control range of them, and during the Charge action can leave their control range (it must still end the move following all requirements for that move).</li>\\n<li>Cannot move more than its Move stat if it’s the Charge action.</li></ul><strong>Tormenting Strike</strong><br/>Use this POWER OF CHAOS when a friendly SLAANESH DAEMON operative is performing the Fight action and you select a Claws weapon. Until the end of that action, that weapon has the Piercing Crits 1 weapon rule.\"
                   }
                 ],
                 \"edition\": \"hidden\",
                 \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Marksman\"
+                \"specialisms\": \"Combat,Scout\"
               },
               {
                 \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"WAR\",
-                \"opseq\": 5,
-                \"opname\": \"Battle Sister Warrior\",
-                \"description\": \"Battle Sisters are the foot soldiers of the God-Emperor. Before their thundering boltguns, countless aliens, traitors, heretics, and mutants have met their doom. With voices raised high in prayer, their faith forms a shield around their souls.\",
-                \"M\": \"6\\\"\",
+                \"killteamid\": \"DAEM24\",
+                \"fireteamid\": \"DAEM24\",
+                \"opid\": \"PFTR\",
+                \"opseq\": 0,
+                \"opname\": \"Plaguebearer Fighter\",
+                \"description\": \"A Plaguebearer''s body is swollen and bursting with contagion. They shamble purposefully forward with dour inevitability, bringing the promise of corruption with them. Despite their appearance, they swing their disease-laden plagueswords with great strength.\",
+                \"M\": \"5\\\"\",
                 \"APL\": \"2\",
                 \"GA\": \"1\",
                 \"DF\": \"3\",
-                \"SV\": \"3+\",
+                \"SV\": \"5+\",
                 \"W\": \"8\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, BATTLE SISTER, WARRIOR\",
+                \"keywords\": \"CHAOS DAEMON, CHAOS, DAEMON, NURGLE, PLAGUEBEARER, FIGHTER\",
                 \"weapons\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"WAR\",
-                    \"wepid\": \"BG\",
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"FTR\",
+                    \"wepid\": \"PS\",
                     \"wepseq\": 0,
-                    \"wepname\": \"Boltgun\",
-                    \"weptype\": \"R\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"WAR\",
-                        \"wepid\": \"BG\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Boltgun\",
-                        \"A\": \"4\",
-                        \"BS\": \"3+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"\"
-                      }
-                    ],
-                    \"isselected\": true
-                  },
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"WAR\",
-                    \"wepid\": \"GB\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Gun Butt\",
+                    \"wepname\": \"Plaguesword\",
                     \"weptype\": \"M\",
                     \"isdefault\": 1,
                     \"profiles\": [
                       {
                         \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"WAR\",
-                        \"wepid\": \"GB\",
+                        \"killteamid\": \"DAEM24\",
+                        \"fireteamid\": \"PB\",
+                        \"opid\": \"FTR\",
+                        \"wepid\": \"PS\",
                         \"profileid\": \"0\",
-                        \"name\": \"Gun Butt\",
-                        \"A\": \"3\",
-                        \"BS\": \"4+\",
-                        \"D\": \"2/3\",
+                        \"name\": \"\",
+                        \"A\": \"4\",
+                        \"BS\": \"3+\",
+                        \"D\": \"4/6\",
                         \"SR\": \"\"
                       }
                     ],
@@ -1131,161 +1275,65 @@
                 \"abilities\": [
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
-                  }
-                ],
-                \"edition\": \"hidden\",
-                \"fireteammax\": 0,
-                \"specialisms\": \"Staunch,Marksman\"
-              },
-              {
-                \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"REP\",
-                \"opseq\": 7,
-                \"opname\": \"Sister Repentia\",
-                \"description\": \"It is rare but not unknown for a Sister to fail in her duty, suffering disgrace as a result. Those who do are offered a change of redemption. Stripped of armour, they are sent to wreak penintent slaughter upon the enemy with cleaving blows from brutal eviscerators.\",
-                \"M\": \"6\\\"\",
-                \"APL\": \"2\",
-                \"GA\": \"1\",
-                \"DF\": \"3\",
-                \"SV\": \"6+\",
-                \"W\": \"7\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, REPENTIA, SISTER\",
-                \"weapons\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"REP\",
-                    \"wepid\": \"PE\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Penintent Eviscerator\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"ECC24\",
-                        \"opid\": \"REP\",
-                        \"wepid\": \"PE\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Penintent Eviscerator\",
-                        \"A\": \"4\",
-                        \"BS\": \"4+\",
-                        \"D\": \"5/6\",
-                        \"SR\": \"Brutal, Lethal 5+\"
-                      }
-                    ],
-                    \"isselected\": true
-                  }
-                ],
-                \"uniqueactions\": [],
-                \"abilities\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"REP\",
-                    \"abilityid\": \"SIA\",
-                    \"title\": \"Solace In Anguish\",
-                    \"description\": \"Whenever an attack dice inflicts damage of 3 or more on this operative, roll one D6: on a 5+, subtract 1 from that inflicted damage.\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"FTR\",
+                    \"abilityid\": \"DAEM24\",
+                    \"title\": \"Daemon\",
+                    \"description\": \"This operative ignores the Piercing weapon rule.\"
                   },
                   {
                     \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
-                  }
-                ],
-                \"edition\": \"hidden\",
-                \"fireteammax\": 0,
-                \"specialisms\": \"Scout,Combat\"
-              },
-              {
-                \"factionid\": \"HBR\",
-                \"killteamid\": \"ECC24\",
-                \"fireteamid\": \"ECC24\",
-                \"opid\": \"AF\",
-                \"opseq\": 8,
-                \"opname\": \"Arco-Flagellant\",
-                \"description\": \"The Ecclesiarchy punishes those guilty of heresy in a number of ways. Those subjected to arco-flagellation are painfully remade - fitted with cybernetic weapons and sensory suppressors - then driven into a frenzy and unleashed as near-mindless killing machines.\",
-                \"M\": \"6\\\"\",
-                \"APL\": \"2\",
-                \"GA\": \"1\",
-                \"DF\": \"3\",
-                \"SV\": \"6+\",
-                \"W\": \"10\",
-                \"keywords\": \"ECCLESIARCHY, IMPERIUM, ADEPTUS MINISTORUM, ARCO-FLAGELLANT\",
-                \"weapons\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"AF\",
-                    \"opid\": \"AF\",
-                    \"wepid\": \"AF\",
-                    \"wepseq\": 0,
-                    \"wepname\": \"Arco-Flails\",
-                    \"weptype\": \"M\",
-                    \"isdefault\": 1,
-                    \"profiles\": [
-                      {
-                        \"factionid\": \"HBR\",
-                        \"killteamid\": \"ECC24\",
-                        \"fireteamid\": \"AF\",
-                        \"opid\": \"AF\",
-                        \"wepid\": \"AF\",
-                        \"profileid\": \"0\",
-                        \"name\": \"Arco-Flails\",
-                        \"A\": \"5\",
-                        \"BS\": \"3+\",
-                        \"D\": \"3/4\",
-                        \"SR\": \"Ceaseless\"
-                      }
-                    ],
-                    \"isselected\": true
-                  }
-                ],
-                \"uniqueactions\": [],
-                \"abilities\": [
-                  {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"AF\",
-                    \"opid\": \"AF\",
-                    \"abilityid\": \"BKM\",
-                    \"title\": \"Berserk Killing Machine\",
-                    \"description\": \"Whenever an attack dice inflicts damage of 3 or more on this operative, roll one D6: on a 5+, subtract 1 from that inflicted damage. This operative cannot perform mission actions or Pick Up actions. Unless otherwise specified, this operative cannot be equipped with equipment.\"
+                    \"killteamid\": \"DAEM24\",
+                    \"fireteamid\": \"PB\",
+                    \"opid\": \"FTR\",
+                    \"abilityid\": \"DR\",
+                    \"title\": \"Disgustingly Resilient\",
+                    \"description\": \"Whenever an attack dice inflicts damage of 3 or more on a friendly NURGLE DAEMON operative, roll one D6: on a 4+, subtract 1 from that inflicted damage.\"
                   },
                   {
-                    \"factionid\": \"HBR\",
-                    \"killteamid\": \"ECC24\",
-                    \"fireteamid\": \"ECC24\",
-                    \"opid\": \"EXA\",
-                    \"abilityid\": \"HM\",
-                    \"title\": \"Holy Martyrs\",
-                    \"description\": \"The first time each Turning Point a friendly ECCLESIARCHY operative becomes wounded or is incapacitated (whichever comes first), you gain a Martyr point. At the start of a friendly ECCLESIARCHY activation, you can spend a Martyrdom point to use one ACT OF REDEMPTION.<br/>\\nYou cannot use more than one ACT OF REDEMPTION per activation, and their effects are as follows:<br/>\\n<ul>\\n<li><strong>Emperor''s Light</strong><br/>Until the end of this operative''s activation, add 1 to its APL stat.</li>\\n<li><strong>Blessed Rejuvenation</strong><br/> This operative regains 1d3+1 lost wounds.</li>\\n<li><strong>Righteous Smite</strong><br/>This operative''s weapons have the Accurate 1 rule. This is not cumulative with Vantage.</li>\\n</ul>\"
+                    \"factionid\": \"AEL\",
+                    \"killteamid\": \"BOK24\",
+                    \"fireteamid\": \"BOK24\",
+                    \"opid\": \"DAX\",
+                    \"abilityid\": \"GOC\",
+                    \"title\": \"Powers of Chaos\",
+                    \"description\": \"<ul>\\n<li>You cannot use more than one POWER OF CHAOS per activation or counteraction.</li>\\n<li>You cannot use each POWER OF CHAOS more than once per turning point.</li>\\n<li>If every friendly CHAOS DAEMONS operative selected for deployment has the same Chaos God keyword (e.g. NURGLE), you cannot use each POWER OF CHAOS more than twice per turning point (instead of once).</li>\\n</ul>\\n<h2>Powers of Nurgle</h2><strong>Noxious Cloud</strong><br/>Use this POWER OF CHAOS during a friendly NURGLE DAEMON operative’s activation. Until the end of the turn, whenever an operative is shooting a friendly CHAOS DAEMON operative that is more than 3\\\" from it, if that friendly operative is wholly within 3\\\" of this operative, that friendly operative is obscured.<br/><br/><strong>Curse of Rot</strong><br/>Use this POWER OF CHAOS during a friendly NURGLE DAEMON operative’s activation. Select one enemy operative within 8\\\" and visible to this operative. Subtract 2\\\" from the Move stat of that enemy operative and worsen the Hit stat of its weapons by 1 (this is not cumulative with being injured) until the end of the turning point.<br/><br/><strong>Rancid Vomit</strong><br/>Use this POWER OF CHAOS when a friendly NURGLE DAEMON operative is performing the Shoot action. Until the end of that action, that operative can use the following ranged weapon:\\n<table width=\\\"100%\\\" class=\\\"eqtable\\\">\\n<tr>\\n<th>Name</th>\\n        <th>A</th>\\n        <th>BS</th>\\n        <th>D</th>\\n</tr>\\n    <tr>\\n<td>Rancid Vomit</td>\\n        <td>5</td>\\n        <td>2+</td>\\n        <td>2/3</td>\\n</tr>\\n    <tr><th colspan=\\\"4\\\">Special Rules</th></tr>\\n    <tr><td colspan=\\\"4\\\">Rng 6\\\", Tor 1\\\", Saturate</td></tr>\\n</table><br/><br/><strong>Shambling Wretch</strong><br/>Use this POWER OF CHAOS at the start of a friendly NURGLE DAEMON operative''s activation. You can ignore any changes to the stats of that operative from being injured (including their weapons'' stats) until the end of that activation.<br/><br/><strong>Revolting Resiliency</strong><br/>Use this POWER OF CHAOS when an attack dice inflicts damage on a friendly NURGLE DAEMON operative. Until the end of the activation/counteraction, for the purposes of the Disgustingly Resilient rule for that operative, always subtract 1 from the damage inflicted (to a minimum of 2) – you do not need to roll.\"
                   }
                 ],
                 \"edition\": \"hidden\",
                 \"fireteammax\": 0,
-                \"specialisms\": \"Scout,Combat\"
+                \"specialisms\": \"Staunch\"
               }
             ],
-            \"fireteamcomp\": \"A BATTLE SISTER fire team includes five BATTLE SISTER operatives selected from the following list:\\n  <ul>\\n  <li>BATTLE SISTER WARRIOR</li>\\n  <li>BATTLE SISTER ICON BEARER</li>\\n  <li>\\n  BATTLE SISTER GUNNER each separately equipped with Gun Butt and one of the following options:\\n  <ul>\\n  <li>Meltagun, Ministorum Flamer, or Storm Bolter</li>\\n  </ul>\\n  </li>\\n  <li>\\n  BATTLE SISTER HEAVY GUNNER each separately equipped with Gun Butt and one of the following options:\\n  <ul>\\n  <li>Heavy Bolter or Ministorum Heavy Flamer</li>\\n  </ul>\\n  </li>\\n  </ul>\\n  \\n  Each BATTLE SISTER fire team can only include up to one BATTLE SISTER GUNNER operative.<br/>\\n  Your kill team can only include up to one BATTLE SISTER HEAVY GUNNER operative, and it can only do so if your kill team includes two BATTLE SISTER fire teams.</br>\\n  Your kill team can only include up to one BATTLE SISTER ICON BEARER.\\n  <br/>\\n  If your kill team does not include any other LEADER operatives, instead of selecting one BATTLE SISTER WARRIOR operative for one BATTLE SISTER fire team, you can select one BATTLE SISTER SUPERIOR operative equipped with one option from each of the following:\\n  <ul>\\n  <li>Chainsword, Gun Butt, Power Maul, or Power Weapon</li>\\n  <li>Bolt Pistol, Boltgun, Combi-Melta, Combi-Plasma, Condemnor Boltgun, Inferno Pistol, Ministorum Combi-Flamer, Ministorum Hand Flamer, or Plasma Pistol</li>\\n  </ul>\"
+            \"fireteamcomp\": \"A BLOOTLETTER fire team includes six BLOODLETTER operatives selected from the following list:\\n<ul>\\n<li>BLOODLETTER FIGHTER</li>\\n<li>BLOODLETTER ICON BEARER</li>\\n<li>BLOODLETTER HORN BEARER</li>\\n</ul>\\nOther than BLOODLETTER FIGHTER operatives, your kill team can only include each operative above once.\\n<br/>\\nIf your kill team does not include any other LEADER operatives, instead of selecting one BLOODLETTER FIGHTER operative for one BLOODLETTER fire team, you can select one BLOODREAPER operative.\"
           }
         ],
         \"tacops\": [
+          {
+            \"tacopid\": \"ZZZ-INF-01\",
+            \"archetype\": \"Infiltration\",
+            \"tacopseq\": 1,
+            \"title\": \"Implant\",
+            \"description\": \"<em>TACOP</em><br/>\\r <strong>Reveal: </strong> When you first score VP from this op.<br/><br/>\\r <strong>Additional Rules:</strong><br/>\\r Whenever a friendly operative is fighting, when you would resolve an attack dice, you can implant the enemy operative instead of striking or blocking (then discard that dice).<br/>\\r Whenever a friendly operative is shooting an enemy operative within 6\\\" of it, when you would resolve an attack dice, you can instead implant the enemy operative instead of inflicting damage with that dice.<br/>\\r Each operative can only be implanted once, and cannot be implanted during the first turning point.<br/><br/>\\r <strong>Victory Points:</strong><br/>\\r Once per turning point after the first, if you implant an enemy operative, you score 1VP.<br/>\\r At the end of each turning point after the first, if any implanted enemy operatives are in the killzone, you score 1 VP.\",
+            \"edition\": \"kt24\"
+          },
+          {
+            \"tacopid\": \"ZZZ-INF-02\",
+            \"archetype\": \"Infiltration\",
+            \"tacopseq\": 2,
+            \"title\": \"Surveillance\",
+            \"description\": \"<em>TACOP</em><br/>\\r <strong>Reveal: </strong> The first time a friendly operative performs the Surveillance Action.<br/><br/>\\r <strong>Mission Action: Surveillance (1 AP)</strong><br/>\\r The active operative has gathered surveillance.\\r <ul>\\r <li>An operative cannot perform this action while it has an Engage order. It must be wholly within your opponent''s territory to perform this action, and there must be an enemy operative that is a valid target for it.</li>\\r <li>An operative cannot perform this action during the first turning point, or while within control range of an enemy operative.</li>\\r </ul><br/>\\r <strong>Victory Points:</strong><br/>\\r Once per turning point after the first, if a friendly operative performs the Surveillance action, you score 1 VP.<br/>\\r At the end of each turning point after the first, if a friendly operative has performed the Surveillance action during that turning point is in the killzone and has a conceal order, you score 1 VP\",
+            \"edition\": \"kt24\"
+          },
+          {
+            \"tacopid\": \"ZZZ-INF-03\",
+            \"archetype\": \"Infiltration\",
+            \"tacopseq\": 3,
+            \"title\": \"Wiretap\",
+            \"description\": \"<em>TACOP</em><br/>\\n<strong>Reveal: </strong> The first time a friendly operative performs the Wiretap Action.<br/><br/>\\n<strong>Mission Action: Wiretap (1 AP)</strong><br/>\\nPlace one of your Wiretap mission markers within the active operative''s control range.\\nIn the ready step of the next Strategy phase, remove that marker.<br/>\\nAn operative cannot perform this action during the first turning point, while within control range of an enemy operative, during an activation in which it was set up, or if a friendly operative has already performed this\\naction during the turning point.<br/><br/>\\n<strong>Victory Points:</strong><br/>\\nOnce per tuning point after the first, whenever an enemy operative starts or ends an action within 2\\\" of your Wiretap mission marker, you score 1 VP.<br/>\\nAt the end of each turning point after the first, if any enemy operatives with an Engage order are within 2\\\" of your Wiretap mission marker, you score 1 VP.\",
+            \"edition\": \"kt24\"
+          },
           {
             \"tacopid\": \"ZZZ-SAD-01\",
             \"archetype\": \"Seek And Destroy\",
@@ -1309,30 +1357,6 @@
             \"title\": \"Storm Objectives\",
             \"description\": \"<em>TACOP</em><br/>\\n<strong>Reveal:</strong> When you first score VP from this op.<br/><br/>\\n<strong>Additional Rules:</strong><br/>\\nAt the end of each friendly operative''s activation, if it controls an objective marker that enemy operatives controlled at the start of that activation or that is wholly within your opponent''s territory,\\nand that objective marker is not contested by enemy operatives, that objective marker is stormed by friendly operatives this turning point.<br/><br/>\\n<strong>Victory Points:</strong><br/>\\nOnce per turning point after the first, if an objective marker is stormed by Friendly operatives this turning point, you score 1VP.<br/>\\nAt the end of each turning point after the first, if friendly operatives control an objective marker that was stormed by friendly operatives this turning point, you score 1VP.\",
             \"edition\": \"kt24\"
-          },
-          {
-            \"tacopid\": \"ZZZ-SEC-01\",
-            \"archetype\": \"Security\",
-            \"tacopseq\": 1,
-            \"title\": \"Contain\",
-            \"description\": \"<em>TACOP</em><br/>\\n<strong>Reveal:</strong> When you first score VP from this op.<br/><br/>\\n<strong>Victory Points:</strong><br/>\\nAt the end of each turning point after the first:<br/>\\n- If there are no enemy operatives wholly within your territory, you score 1 VP.<br/>\\n- If there are no enemy operatives wholly within 6\\\" of your drop zone, you score 1 VP.\",
-            \"edition\": \"kt24\"
-          },
-          {
-            \"tacopid\": \"ZZZ-SEC-02\",
-            \"archetype\": \"Security\",
-            \"tacopseq\": 2,
-            \"title\": \"Secure Centre\",
-            \"description\": \"<em>TACOP</em><br/>\\n<strong>Reveal:</strong> When you first score VP from this op.<br/><br/>\\n<strong>Victory Points:</strong><br/>\\nAt the end of each turning point after the first:<br/>\\n- If the total APL of friendly operatives within 3\\\" of the centre of the killzone is greater than that of enemy operatives, you score 1VP.<br/>\\n- If the total APL of friendly operatives on the centreline but more than 3\\\" from the centre of the killzone is greater than that of enemy operatives, you score 1VP.\",
-            \"edition\": \"kt24\"
-          },
-          {
-            \"tacopid\": \"ZZZ-SEC-03\",
-            \"archetype\": \"Security\",
-            \"tacopseq\": 3,
-            \"title\": \"Take Ground\",
-            \"description\": \"<em>TACOP</em><br/>\\n<strong>Reveal:</strong> When you first score VP from this op.<br/><br/>\\n<strong>Victory Points:</strong><br/>\\nAt the end of each turning point after the first:\\n<ul>\\n<li>In Killzone Volkus: if friendly operatives control any stronghold terrain features within your opponent''s territory, you score 2VP; for each ruin (Large or small) terrain feature within your opponent''s territory that friendly operatives control, you score 1 VP.</li>\\n<li>In Killzone Gallowdark, for each access point you control that is on the centreline or within your opponent''s territory that friendly operatives control, you score 1 VP.</li>\\n<li>In any other kill zone, for each terrain feature with Heavy terrain within your opponent''s territory that Friendly operatives control, you score 1 VP.</li>\\nYou can score a maximum of 2VP form this op per turning point.<br/>\\nAn operative contests a stronghold terrain feature it is wholly within.\\nAn operative contests all other terrain features within their control range, or while underneath a terrain feature''s Vantage terrain.\\nFriendly operative control each such terrain feature if the total APL stat of those contesting it is greater than that of enemy operatives.\",
-            \"edition\": \"kt24\"
           }
         ]
       }");
@@ -1347,41 +1371,41 @@
 	<body>
 			<?php
       $killteam = $importjson;
-        echo "Importing team " . $killteam->killteamname . "<br/><br/>";
-        echo "INSERT INTO Killteam VALUES ('HBR', '$killteam->killteamid', 'kt24', '$killteam->killteamname', '$killteam->description', '$killteam->killteamcomp', '$killteam->customkeyword');";
+        echo "#Importing team " . $killteam->killteamname . "\r\n\r\n";
+        echo "INSERT INTO Killteam VALUES ('HBR', '$killteam->killteamid', 'kt24', '$killteam->killteamname', '$killteam->description', '$killteam->killteamcomp', '$killteam->customkeyword');\r\n\r\n";
 
         // Import the fireteams
         for ($ftidx = 0; $ftidx < count($killteam->fireteams); $ftidx++) {
           $fireteam = $killteam->fireteams[$ftidx];
-          echo "INSERT INTO Fireteam VALUES ('$fireteam->factionid', '$fireteam->killteamid', '$fireteam->fireteamid', 0, '$fireteam->description', 0, '$fireteam->fireteamname', '$fireteam->archetype', '$fireteam->fireteamcomp');";
+          echo "INSERT INTO Fireteam VALUES ('$fireteam->factionid', '$fireteam->killteamid', '$fireteam->fireteamid', 0, '$fireteam->description', 0, '$fireteam->fireteamname', '$fireteam->archetype', '$fireteam->fireteamcomp');\r\n\r\n";
 
           // Import the operatives
           for ($opidx = 0; $opidx < count($fireteam->operatives); $opidx++) {
             $op =  $fireteam->operatives[$opidx];
-            echo "INSERT INTO Operative VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opseq', '$op->opid', '$op->opname', '$op->description', 'kt24', '$op->M', '$op->APL', '$op->GA', '$op->DF', '$op->SV', '$op->W', '$op->keywords', 0, '$op->fireteammax', '$op->specialisms');<br/>";
+            echo "INSERT INTO Operative VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opseq', '$op->opid', '$op->opname', '$op->description', 'kt24', '$op->M', '$op->APL', '$op->GA', '$op->DF', '$op->SV', '$op->W', '$op->keywords', 0, '$op->fireteammax', '$op->specialisms');\r\n\r\n";
 
             // Import the weapons
             for ($wepidx = 0; $wepidx < count($op->weapons); $wepidx++) {
               $wep = $op->weapons[$wepidx];
 
-              echo "INSERT INTO Weapon VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$wep->wepid', '$wep->wepseq', '$wep->wepname', '$wep->weptype', $wep->isdefault);<br/>";
+              echo "INSERT INTO Weapon VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$wep->wepid', '$wep->wepseq', '$wep->wepname', '$wep->weptype', $wep->isdefault);\r\n\r\n";
 
               for ($wpidx = 0; $wpidx < count($wep->profiles); $wpidx++) {
                 $wp = $wep->profiles[$wpidx];
-                echo "INSERT INTO WeaponProfile VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$wp->wepid', '$wp->profileid', '$wp->name', '$wp->A', '$wp->BS', '$wp->D', '$wp->SR');<br/>";
+                echo "INSERT INTO WeaponProfile VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$wp->wepid', '$wp->profileid', '$wp->name', '$wp->A', '$wp->BS', '$wp->D', '$wp->SR');\r\n\r\n";
               }
             }
 
             // Import the abilities
             for ($abidx = 0; $abidx < count($op->abilities); $abidx++) {
               $ab = $op->abilities[$abidx];
-              echo "INSERT INTO Ability VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$ab->abilityid', '$ab->title', '$ab->description');<br/>";
+              echo "INSERT INTO Ability VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$ab->abilityid', '$ab->title', '$ab->description');\r\n\r\n";
             }
 
             // Import the UniqueActions
             for ($uaidx = 0; $uaidx < count($op->uniqueactions); $uaidx++) {
               $ua = $op->uniqueactions[$uaidx];
-              echo "INSERT INTO UniqueAction VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$ua->uniqueactionid', '$ua->title', '$ua->AP', '$ua->description');<br/>";
+              echo "INSERT INTO UniqueAction VALUES ('HBR', '$killteam->killteamid', '$fireteam->fireteamid', '$op->opid', '$ua->uniqueactionid', '$ua->title', '$ua->AP', '$ua->description');\r\n\r\n";
             }
           }
         }
@@ -1392,19 +1416,19 @@
 
         for ($pidx = 0; $pidx < count($sploys); $pidx++) {
           $ploy = $sploys[$pidx];
-          echo "INSERT INTO Ploy VALUES ('HBR', '$killteam->killteamid', '$ploy->ploytype', '$ploy->ployid', '$ploy->ployname', '$ploy->CP', '$ploy->description');<br/>";
+          echo "INSERT INTO Ploy VALUES ('HBR', '$killteam->killteamid', '$ploy->ploytype', '$ploy->ployid', '$ploy->ployname', '$ploy->CP', '$ploy->description');\r\n\r\n";
         }
         
         for ($pidx = 0; $pidx < count($tploys); $pidx++) {
           $ploy = $tploys[$pidx];
-          echo "INSERT INTO Ploy VALUES ('HBR', '$killteam->killteamid', '$ploy->ploytype', '$ploy->ployid', '$ploy->ployname', '$ploy->CP', '$ploy->description');<br/>";
+          echo "INSERT INTO Ploy VALUES ('HBR', '$killteam->killteamid', '$ploy->ploytype', '$ploy->ployid', '$ploy->ployname', '$ploy->CP', '$ploy->description');\r\n\r\n";
         }
 
         // Import the Equipments
         for ($eqidx = 0; $eqidx < count($killteam->equipments); $eqidx++) {
           $eq = $killteam->equipments[$eqidx];
           if ($eq->killteamid != 'ALL') {
-            echo "INSERT INTO Equipment VALUES ('HBR', '$killteam->killteamid', '$eq->fireteamid', '$eq->opdi', '$eq->eqid', '$eq->eqseq', '$eq->eqpts', '$eq->eqname', '$eq->eqdescription', '$eq->eqtype', '$eq->eqvar1', '$eq->eqvar2', '$eq->eqvar3', '$eq->eqvar4', '$eq->eqcategory');<br/>";
+            echo "INSERT INTO Equipment VALUES ('HBR', '$killteam->killteamid', '$eq->fireteamid', '$eq->opdi', '$eq->eqid', '$eq->eqseq', '$eq->eqpts', '$eq->eqname', '$eq->eqdescription', '$eq->eqtype', '$eq->eqvar1', '$eq->eqvar2', '$eq->eqvar3', '$eq->eqvar4', '$eq->eqcategory');\r\n\r\n";
           }
         }
 

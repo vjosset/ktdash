@@ -254,6 +254,19 @@ function GetName()
 		case "CHAOS|DAEM|BL|HB": //Bloodletter Horn Bearer
 		case "CHAOS|DAEM|BL|IB": //Bloodletter Icon Bearer
 			return GetDaemonName();
+		
+		case "HBR|DAEM24|DAEM24|BFTR": //Bloodletter Fighter
+		case "HBR|DAEM24|DAEM24|BLUE": //Blue Horror
+		case "HBR|DAEM24|DAEM24|BRIM": //Brimstone Horror
+		case "HBR|DAEM24|DAEM24|BR": //Bloodreaper
+		case "HBR|DAEM24|DAEM24|IR": //Pink Horror Iridescent
+		case "HBR|DAEM24|DAEM24|PFTR": //Plaguebearer Fighter
+		case "HBR|DAEM24|DAEM24|PR": //Plagueridden
+		case "HBR|DAEM24|DAEM24|ZFTR": //Pink Horror Fighter
+			return GetDaemonName();
+		case "HBR|DAEM24|DAEM24|AL": //Alluress
+		case "HBR|DAEM24|DAEM24|DFTR": //Daemonette Fighter
+			return GetDaemonetteName();
 
 		// Gellerpox Infected
 		case "CHAOS|GPI|GPI|BS": // Bloatspawn
@@ -961,6 +974,20 @@ function GetName()
 		case "TAU|HC|DRN|MV36": //MV36 Guardian Drone
 		case "TAU|HC|DRN|MV4": //MV4 Shield Drone
 		case "TAU|HC|DRN|MV7": //MV7 Marker Drone
+			
+		// Tau - Hunter Cadre 24 (Homebrew)
+		case "HBR|HC24|FW|FB": //Cadre Fireblade
+		case "HBR|HC24|FW|SBSV": //Stealth Battlesuit Shas'Vre
+		case "HBR|HC24|FW|SU": //Fire Warrior Shas'Ui
+		case "HBR|HC24|FW|SBSU": //Stealth Battlesuit Shas'Ui
+		case "HBR|HC24|FW|SL": //Fire Warrior Shas'La
+			return GetTauFireName();
+		case "HBR|HC24|FW|DS8": //DS8 Tactical Support Turret
+		case "HBR|HC24|FW|MV1": //MV1 Gun Drone
+		case "HBR|HC24|FW|MV36": //MV36 Guardian Drone
+		case "HBR|HC24|FW|MV4": //MV4 Shield Drone
+		case "HBR|HC24|FW|MV7": //MV7 Marker Drone
+			return $opid;
 
 		// Tau - Pathfinders
 		case "TAU|PF|PF|MB3": //MB3 Recon Drone
