@@ -78,7 +78,7 @@
 								}
 								$preved = $killteam->edition;
 							?>
-								<a ng-if="settings['edition'] == '' || settings['edition'] == '<?php echo $killteam->edition ?>'" class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?></a><br/>
+								<a ng-if="settings['edition'] == '' || settings['edition'] == '<?php echo $killteam->edition ?>'" class="navloader" href="/fa/<?php echo $faction->factionid ?>/kt/<?php echo $killteam->killteamid ?>"><?php echo $killteam->killteamname ?><br/></a>
 							<?php
 							}
 							?>
