@@ -9,7 +9,12 @@ header("Access-Control-Allow-Methods: OPTIONS, GET");
 switch ($_SERVER['REQUEST_METHOD']) {
 	case "GET":
 		//Get the requested thing
-		echo GetName();
+		$validname = false;
+		$name = '';
+		while ($name == '' || !Utils::ValidName($name)) {
+			$name = GetName();
+		}
+		echo $name;
 		break;
 	case "OPTIONS":
 		echo "";

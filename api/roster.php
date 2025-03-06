@@ -221,6 +221,12 @@ function POSTRoster()
 			// Put this cloned roster at the end of the list
 			$roster->seq = 10000;
 
+			// Validate the name
+			if (!Utils::ValidName($roster->rostername)) {
+				header("HTTP/1.0 401 Invalid roster name");
+				die();
+			}
+			
 			// Commit this roster
 			$roster->DBInsert();
 
@@ -369,6 +375,12 @@ function POSTRoster()
 			if ($kt == null) {
 				// Faction or killteam don't exist
 				header('HTTP/1.0 404 Faction or Killteam not found');
+				die();
+			}
+
+			// Validate the name
+			if (!Utils::ValidName($r->rostername)) {
+				header("HTTP/1.0 401 Invalid roster name");
 				die();
 			}
 

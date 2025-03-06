@@ -228,6 +228,12 @@ function POSTRosterOperative()
 				$newop->userid = $u->userid;
 				$newop->rosterid = $r->rosterid;
 
+				// Validate the name
+				if (!Utils::ValidName($newop->opname)) {
+					header("HTTP/1.0 401 Invalid operative name");
+					die();
+				}
+
 				// Validate the faction and killteam
 				if ($newop->factionid != $r->factionid || $newop->killteamid != $r->killteamid) {
 					header("HTTP/1.0 401 Invalid operative for this roster's killteam");

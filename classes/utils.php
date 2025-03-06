@@ -39,6 +39,11 @@ class Utils
 			header('Content-Type: application/json');
 		}
 	}
+	
+	static function ValidName($name) {
+		$temp = strtolower($name);
+		return !(stripos($temp, 'nigg') || stripos($temp, 'fagg'));
+	}
 
 	static function TrackEvent($eventtype, $action, $label, $var1, $var2, $var3, $url, $sessiontype, $referrer)
 	{
