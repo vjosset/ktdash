@@ -186,12 +186,12 @@ function POSTRosterOperative()
 				if ($ro == null) {
 					header('HTTP/1.0 404 Operative not found');
 					die();
-				} else {
-					if ($ro->userid != $u->userid) {
-						// This operative belongs to someone else - Fail
-						header('HTTP/1.0 404 Operative not found');
-						die();
-					}
+				}
+
+				if ($ro->userid != $u->userid) {
+					// This operative belongs to someone else - Fail
+					header('HTTP/1.0 404 Operative not found');
+					die();
 				}
 			}
 
@@ -203,60 +203,60 @@ function POSTRosterOperative()
 				// Roster not found or belongs to someone else
 				header('HTTP/1.0 404 Roster not found B');
 				die();
-			} else {
-				// All good
-				if ($newop->rosteropid == null || $newop->rosterid == "") {
-					// No roster operative ID, generate a new one
-					$newop->rosteropid = RosterOperative::GetNewRosterOpId();
+			}
 
-					// This means this is a new operative that was added to the team; set its set to be last in the roster
-					$newop->seq = 10000;
+			// All good
+			if ($newop->rosteropid == null || $newop->rosterid == "") {
+				// No roster operative ID, generate a new one
+				$newop->rosteropid = RosterOperative::GetNewRosterOpId();
 
-					// Set its curW based on the the base operative's W
-					header("Step4: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-					$baseop = Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid);
-					if ($baseop) {
-						if (is_numeric($baseop->W)) {
-							$newop->curW = $baseop->W;
-						} else {
-							$newop->curW = 0;
-						}
+				// This means this is a new operative that was added to the team; set its set to be last in the roster
+				$newop->seq = 10000;
+
+				// Set its curW based on the the base operative's W
+				header("Step4: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+				$baseop = Operative::GetOperative($newop->factionid, $newop->killteamid, $newop->fireteamid, $newop->opid);
+				if ($baseop) {
+					if (is_numeric($baseop->W)) {
+						$newop->curW = $baseop->W;
+					} else {
+						$newop->curW = 0;
 					}
 				}
-
-				// Make sure the fields are assigned correctly
-				$newop->userid = $u->userid;
-				$newop->rosterid = $r->rosterid;
-
-				// Validate the name
-				if (!Utils::ValidName($newop->opname)) {
-					header("HTTP/1.0 401 Invalid operative name");
-					die();
-				}
-
-				// Validate the faction and killteam
-				if ($newop->factionid != $r->factionid || $newop->killteamid != $r->killteamid) {
-					header("HTTP/1.0 401 Invalid operative for this roster's killteam");
-					die();
-				} else {
-					// Save this operative to DB
-					header("Step5: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-					$newop->DBSave();
-
-					// Reorder operatives so their seqs are always sequential
-					header("Step6: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-					$r->reorderOperatives();
-
-					// Get a fresh copy of this operative
-					header("Step7: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-					$newop = RosterOperative::GetRosterOperative($newop->rosteropid);
-
-					// Done
-					header("Step8: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
-					header('Content-Type: application/json');
-					echo json_encode($newop);
-				}
 			}
+
+			// Make sure the fields are assigned correctly
+			$newop->userid = $u->userid;
+			$newop->rosterid = $r->rosterid;
+
+			// Validate the name
+			if (!Utils::ValidName($newop->opname)) {
+				header("HTTP/1.0 401 Invalid operative name");
+				die();
+			}
+
+			// Validate the faction and killteam
+			if ($newop->factionid != $r->factionid || $newop->killteamid != $r->killteamid) {
+				header("HTTP/1.0 401 Invalid operative for this roster's killteam");
+				die();
+			}
+
+			// Save this operative to DB
+			header("Step5: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+			$newop->DBSave();
+
+			// Reorder operatives so their seqs are always sequential
+			header("Step6: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+			$r->reorderOperatives();
+
+			// Get a fresh copy of this operative
+			header("Step7: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+			$newop = RosterOperative::GetRosterOperative($newop->rosteropid);
+
+			// Done
+			header("Step8: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
+			header('Content-Type: application/json');
+			echo json_encode($newop);
 		}
 	}
 }
