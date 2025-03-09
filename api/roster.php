@@ -365,6 +365,13 @@ function POSTRoster()
 			header("080ParsePayload: " . date("H:i:s.") . substr(microtime(FALSE), 2, 3));
 			$r = Roster::FromJSON(file_get_contents('php://input'));
 
+			// Validate the owner of the roster
+			if ($r->userid != $u->userid) {
+				// Not your roster!
+				header('HTTP/1.0 401 Unauthorized - This is not your roster');
+				die();
+			}
+
 			// Force the user id on the roster to be the current user
 			$r->userid = $u->userid;
 
