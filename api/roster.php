@@ -368,7 +368,7 @@ function POSTRoster()
 			// Validate the owner of the roster
 			if ($r->userid != $u->userid) {
 				// Not your roster!
-				header('HTTP/1.0 401 Unauthorized - This is not your roster');
+				header('HTTP/1.0 404 Roster not found');
 				die();
 			}
 
