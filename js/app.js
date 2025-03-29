@@ -269,7 +269,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.initSession = function() {
 				// Get the current session for this user (session ID stored in cookie)
 				// Start at each page load
-				//console.log("initSession()");
+				console.log("initSession()");
 				
 				let preload = document.body.getAttribute("currentuser");
 				if (preload) {
@@ -279,6 +279,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				}
 				else 
 				{
+					console.log("Getting Session");
 					// Get the current user's session and set $scope.currentuser
 					$http.get(APIURL + "session.php")
 					.then(function(response)
@@ -288,6 +289,7 @@ var app = angular.module("kt", ['ngSanitize'])
 								//console.log("Setting currentuser to null");
 								$scope.currentuser = null;
 							} else {
+								console.log("Got Session");
 								// No error
 								//console.log("Got response: " + JSON.stringify(response));
 								//console.log("Got data: " + JSON.stringify(response.data));
@@ -305,7 +307,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			}
 			
 			// initLogin()
-			// Initializes the login form, redirecting the user to "My Rosterss" if they're already logged in.
+			// Initializes the login form, redirecting the user to "My Rosters" if they're already logged in.
 			// Redirects the user to the page in QueryString "ru" if logged in successfully.
 			$scope.initLogin = function() {
 				// Check if user is already logged in
@@ -498,6 +500,68 @@ var app = angular.module("kt", ['ngSanitize'])
 						$scope.$apply();
 					}
 				});
+			};
+		}
+		
+		// PASSWORD RESET
+		{
+			// The "Reset Password" form object
+			$scope.passwordResetForm = {};
+			
+			// initPasswordReset()
+			// Initializes the "Password Reset" form
+			$scope.initPasswordReset = function() {
+				// Get the user's session
+				$http.get(APIURL + "session.php")
+				.then(function(response)
+				{
+					if (response.status != "200" || !response.data) {
+						// There was an error or not logged in
+						window.location.href = "/login.htm";
+					} else {
+						// User is logged in, continue
+						data = JSON.parse($scope.replacePlaceholders(JSON.stringify(response.data)));
+						$scope.currentuser = data;
+					}
+				}).catch(function(data) {
+					// There was an error or not logged in
+					window.location.href = "/login.htm";
+				});
+			};
+			
+			// resetPassword()
+			// Updates the user's password and sends them to "My Rosters"
+			$scope.resetPassword = function() {
+				$scope.passwordResetForm.error = null;
+
+				if ($scope.passwordResetForm.password != $scope.passwordResetForm.confirmPassword) {
+					$scope.passwordResetForm.error = "Password mismatch";
+				} else {
+					$.ajax({
+						type: "POST",
+						url: APIURL + "userpassword.php",
+						data: {
+							password: $scope.passwordResetForm.password
+						},
+						timeout: APITimeout,
+						async: true,
+						dataType: 'json',
+						success: function(data) { // Success
+							// User is now logged in
+							$scope.loading = false;
+	
+							toast("Password reset successfully - Redirecting...");
+	
+							// Send the user to "My Rosters"
+							window.location.href = "/u";
+						},
+						error: function(data, status, error) { // Error
+							$scope.passwordResetForm.error = error;
+							$scope.loading = false;
+							$scope.$apply();
+						}
+					});
+				}
 			};
 		}
 		
