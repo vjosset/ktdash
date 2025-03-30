@@ -287,7 +287,7 @@
 					Click the button to change your password
 					<br/>
 					<a href="/passwordreset.htm" class="btn h3" style="width: 120px;" ng-click="setSetting('defaultoporder', 'engage');" ng-class="settings['defaultoporder'] == 'engage' ? 'btn-primary': 'btn-secondary'">
-						&nbsp;&nbsp;&nbsp;<i class="fas fa-lock fa-fw"></i><br/>
+						<i class="fas fa-lock fa-fw"></i><br/>
 						Reset
 					</a>
 					<br/><br/>
