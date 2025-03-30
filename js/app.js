@@ -536,32 +536,33 @@ var app = angular.module("kt", ['ngSanitize'])
 
 				if ($scope.passwordResetForm.password != $scope.passwordResetForm.confirmPassword) {
 					$scope.passwordResetForm.error = "Password mismatch";
-				} else {
-					$.ajax({
-						type: "POST",
-						url: APIURL + "userpassword.php",
-						data: {
-							password: $scope.passwordResetForm.password
-						},
-						timeout: APITimeout,
-						async: true,
-						dataType: 'json',
-						success: function(data) { // Success
-							// User is now logged in
-							$scope.loading = false;
-	
-							toast("Password reset successfully - Redirecting...");
-	
-							// Send the user to "My Rosters"
-							window.location.href = "/u";
-						},
-						error: function(data, status, error) { // Error
-							$scope.passwordResetForm.error = error;
-							$scope.loading = false;
-							$scope.$apply();
-						}
-					});
+					return;
 				}
+				
+				$.ajax({
+					type: "POST",
+					url: APIURL + "userpassword.php",
+					data: {
+						password: $scope.passwordResetForm.password
+					},
+					timeout: APITimeout,
+					async: true,
+					dataType: 'json',
+					success: function(data) { // Success
+						// Password was updated
+						$scope.loading = false;
+
+						toast("Password reset successfully - Redirecting...");
+
+						// Send the user to "My Rosters"
+						setTimeout(() => {window.location.href = "/u";}, 1000);
+					},
+					error: function(data, status, error) { // Error
+						$scope.passwordResetForm.error = error;
+						$scope.loading = false;
+						$scope.$apply();
+					}
+				});
 			};
 		}
 		

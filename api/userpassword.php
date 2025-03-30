@@ -55,6 +55,21 @@ function POSTUserPassword()
 		die();
 	}
 
+	Utils::TrackEvent(
+		'session',
+		'resetpassword',
+		'',
+		'',
+		'',
+		'',
+		$_SERVER['HTTP_REFERER'],
+		'',
+		$_SERVER['HTTP_REFERER']
+	);
+
+	// Remove the password from the object before we return it
+	unset($u->passhash);
+
 	// Done
 	echo $u->toJson();
 }
