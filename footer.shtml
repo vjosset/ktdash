@@ -9,7 +9,6 @@
 				<a href="/publicstats.php" class="navloader"><i class="fas fa-chart-line fa-fw"></i> Stats</a> &nbsp;&nbsp;&nbsp;
 				<a href="https://discord.gg/zyuVDgYNeY" target="_blank"><i class="fas fa-comments fa-fw"></i> Discord</a> &nbsp;&nbsp;&nbsp;
 				<a href="https://trello.com/b/YWHG6mhJ/backlog" target="_blank"><i class="fas fa-clipboard-list fa-fw"></i> Backlog</a> &nbsp;&nbsp;&nbsp;
-				<a ng-if="currentuser != null" href="/passwordreset.htm">Reset Password</a>
 			</div>
 			
 			<!-- Toast Container -->
