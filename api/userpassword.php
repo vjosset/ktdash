@@ -32,7 +32,7 @@ function POSTUserPassword()
 	$u = Session::CurrentUser();
 	$password = getIfSet($_REQUEST['password'], '');
 
-	if (strlen($password) > 50 || $password == '') {
+	if (strlen($password) > 50 || strlen($password) < 4) {
 		header('HTTP/1.0 400 Invalid Password');
 		die();
 	}
