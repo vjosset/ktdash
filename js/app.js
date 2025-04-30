@@ -4103,7 +4103,7 @@ var app = angular.module("kt", ['ngSanitize'])
 									case 'kt21':
 										rule.ruletext = "Cannot Shoot in the same activation as Move, Charge, or Fall Back";
 										break;
-									case 'kt24':rule.ruletext = "An operative cannot use this weapon in an activation in which it moved, and it cannot move in an activation in which it used this weapon.";
+									case 'kt24':rule.ruletext = "An operative cannot use this weapon in an activation or counteraction in which it moved, and it cannot move in an activation or counteraction in which it used this weapon.";
 										break;
 								}
 								break;
