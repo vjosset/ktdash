@@ -18,7 +18,8 @@ class Utils
 			'https://192.168.1.103:3000',
 			'https://beta.ktdash.app',
 			'https://indocpdf.com',
-			'https://localhost:57088'
+			'https://localhost:57088',
+			'https://localhost:61104'
 		];
 		$origin = "";
 		if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
