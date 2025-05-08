@@ -239,3 +239,36 @@ ORDER BY
 	GROUP BY R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username)
 	ORDER BY SUM(importcount) DESC
 	LIMIT 100;
+
+#INACTIVE USERS
+	#USERS
+	SELECT
+		U.*, LA.LastActive,
+		CONCAT('DELETE FROM Roster WHERE userid = ''', U.userid, '''; DELETE FROM User WHERE userid = ''', U.userid, '''; DELETE FROM Event WHERE userid = ''', U.userid, ''';')
+	FROM
+		User U
+			LEFT JOIN (SELECT userid, COUNT(*) AS EventCount, MAX(DateStamp) AS LastActive FROM Event GROUP BY userid) LA
+			ON  LA.userid = U.userid
+	WHERE
+		U.userid NOT IN ('vince', 'tim', 'prebuilt') AND
+		(LA.LastActive < '2024-05-01' OR LA.LastActive IS NULL);
+	
+	#COUNTS
+	SELECT COUNT(*) FROM 
+	(
+		SELECT
+			U.*, LA.LastActive
+		FROM
+			User U
+				LEFT JOIN (SELECT userid, COUNT(*) AS EventCount, MAX(DateStamp) AS LastActive FROM Event GROUP BY userid) LA
+				ON  LA.userid = U.userid
+		WHERE
+			U.userid NOT IN ('vince', 'tim', 'prebuilt') AND
+			(LA.LastActive < '2024-01-01' OR LA.LastActive IS NULL)
+	) INU;
+
+#BACKUP DB
+	mysqldump -h localhost -u root killteam > killteam_DBBKP_202505080641.bak
+
+#RESTORE DB
+	mysql -u root killteam_restore < killteam_DBBKP_202505080641.bak

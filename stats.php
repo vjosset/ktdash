@@ -122,7 +122,8 @@ FROM
 		GROUP BY CAST(datestamp AS Date)
 		ORDER BY 1 DESC
 	) AS PV
-		ON  PV.Date = DATE_ADD(CURDATE(), INTERVAL -N.N day)";
+		ON  PV.Date = DATE_ADD(CURDATE(), INTERVAL -N.N day)
+	LIMIT 8;";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
