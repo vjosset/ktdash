@@ -108,21 +108,21 @@
 				<?php
 					//$sql = "SELECT CAST(datestamp AS Date) AS Date, SUM(CASE WHEN action = 'signup' THEN 1 ELSE 0 END) AS SignupCount, COUNT(DISTINCT userip) AS UserCount, COUNT(DISTINCT userip) AS UserCount, SUM(CASE WHEN eventtype = 'page' THEN 1 ELSE 0 END) AS PageViews FROM Event WHERE userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -7 day) GROUP BY CAST(datestamp AS Date) ORDER BY 1 DESC;";
 					$sql = "
-SELECT SU.Date, SU.SignupCount, EV.PageViews
-FROM 
-(
-SELECT CAST(createddate AS date) AS Date, COUNT(*) as SignupCount FROM User WHERE createddate > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 day) GROUP BY CAST(createddate AS Date) ORDER BY 1 DESC
-) AS SU
-INNER JOIN
-(
-SELECT CAST(datestamp AS Date) AS Date, COUNT(*) AS PageViews
-FROM Event WHERE eventtype = 'page' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -10 day)
-GROUP BY CAST(datestamp AS Date)
-ORDER BY 1 DESC
-) AS EV
-ON EV.Date = SU.Date
-ORDER BY 1 DESC
-LIMIT 8;";
+SELECT
+	DATE_ADD(CURDATE(), INTERVAL -N.N day) AS Date, IFNULL(SU.SignupCount, 0) AS SignupCount, IFNULL(PV.PageViews, 0) AS PageViews
+FROM
+	(SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10) N
+		LEFT JOIN 
+		(SELECT CAST(createddate AS date) AS Date, COUNT(*) as SignupCount FROM User WHERE createddate > DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -10 day) GROUP BY CAST(createddate AS Date) ORDER BY 1 DESC) SU
+		ON  SU.Date = DATE_ADD(CURDATE(), INTERVAL -N.N day)
+	LEFT JOIN 
+		(
+		SELECT CAST(datestamp AS Date) AS Date, COUNT(*) AS PageViews
+		FROM Event WHERE eventtype = 'page' AND userip != '68.80.166.102' AND datestamp > DATE_ADD(CURDATE(), INTERVAL -10 day)
+		GROUP BY CAST(datestamp AS Date)
+		ORDER BY 1 DESC
+	) AS PV
+		ON  PV.Date = DATE_ADD(CURDATE(), INTERVAL -N.N day)";
 					$cmd = $dbcon->prepare($sql);
 					
 					// Load the stats
@@ -133,11 +133,14 @@ LIMIT 8;";
 					echo "<table style=\"width: 100%;\">";
 					echo "<tr class=\"line-bottom-light\"><th>Date</th><th style=\"text-align: right;\">Signups</th><th style=\"text-align: right;\">Pageviews</th></tr>";
 
+					$rownum = 0;
+
 					if ($result = $cmd->get_result()) {
 						while ($row = $result->fetch_object()) {
 							// Got a result
+							$rownum++;
 							?>
-							<tr>
+							<tr <?php if ($rownum % 7 == 0) {echo 'class="line-bottom-light"';} ?>>
 								<th><?php echo $row->Date ?></th>
 								<td style="text-align: right;"><?php echo number_format($row->SignupCount) ?></td>
 								<td style="text-align: right;"><?php echo number_format($row->PageViews) ?></td>
