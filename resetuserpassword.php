@@ -30,7 +30,7 @@
       $newpasshash = password_hash($newpassword, PASSWORD_DEFAULT);
 
       $user->passhash = $newpasshash;
-      //$user->DBSave();
+      $user->DBSave();
     }
   }
 ?>
