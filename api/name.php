@@ -1109,6 +1109,13 @@ function GetName()
 			return GetTyranidName();
 		case "TYR|BBRO|BBRO|TAC": //Tactical Assets
 			return "Tactical Assets";
+		case "TYR|RAV24|RAV24|PRM": 
+		case "TYR|RAV24|RAV24|FTL": 
+		case "TYR|RAV24|RAV24|VSP":
+		case "TYR|RAV24|RAV24|WRK": 
+		case "TYR|RAV24|RAV24|WAR": 
+		case "TYR|RAV24|RAV24|TRS":
+			return GetTyranidName();
 		case "HBR|HF24|HF24|LDR": //Tyranid Warrior Prime
 		case "HBR|HF24|HF24|FTR": //Tyranid Warrior Fighter
 		case "HBR|HF24|HF24|HGNR": //Tyranid Warrior Heavy Gunner
