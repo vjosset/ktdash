@@ -530,7 +530,7 @@ function GetName()
 			return GetAdMechName();
 		
 		// Battleclade
-		case "IMP|BC24|BS24|TA":
+		case "IMP|BC24|BC24|TA":
 		case "IMP|BC24|BC24|APS":
 		case "IMP|BC24|BC24|BBS":
 		case "IMP|BC24|BC24|BCS":
