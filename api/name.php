@@ -528,6 +528,16 @@ function GetName()
 		case "IMP|FW|SKV|GNR": //Skitarii Vanguard Gunner
 		case "IMP|FW|SKV|TRP": //Skitarii Vanguard Trooper
 			return GetAdMechName();
+		
+		// Battleclade
+		case "IMP|BC24|BS24|TA":
+		case "IMP|BC24|BC24|APS":
+		case "IMP|BC24|BC24|BBS":
+		case "IMP|BC24|BC24|BCS":
+		case "IMP|BC24|BC24|BGS":
+		case "IMP|BC24|BC24|BSU":
+		case "IMP|BC24|BC24|BTS":
+			return GetAdMechName();
 
 		// Grey Knights
 		case "IMP|GK|GK|GNR": //Grey Knight Gunner
