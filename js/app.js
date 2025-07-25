@@ -2377,32 +2377,33 @@ var app = angular.module("kt", ['ngSanitize'])
 			// Returns a short version of the specified operative type name, removing redundant information (e.g. "Voidscarred")
 			$scope.getShortOpTypeName = function(optypename) {
 				return optypename
-					.replace("Voidscarred ", "")
+					.replace("Aquilon ", "")
+					.replace("Arbites ", "")
+					.replace("Battleclade ", "")
+					.replace("Battleclade ", "")
+					.replace("Brood Brother ", "")
+					.replace("Death Korps ", "")
+					.replace("Fellgor ", "")
+					.replace("Hearthkyn ", "")
+					.replace("Kabalite ", "")
+					.replace("Kasrkin ", "")
+					.replace("Kommando ", "")
+					.replace("Kroot ", "")
+					.replace("Legionary ", "")
 					.replace("Legionary ", "")
 					.replace("Mandrake ", "")
-					.replace("Kabalite ", "")
-					.replace("Traitor ", "")
-					.replace("Fellgor ", "")
-					.replace("Legionary ", "")
-					.replace("Night Lord ", "")
-					.replace("Space Hulk Veteran ", "")
-					.replace("Warpdiver ", "")
-					.replace("Arbites ", "")
-					.replace("Death Korps ", "")
 					.replace("Navis ", "")
-					.replace("Kasrkin ", "")
+					.replace("Night Lord ", "")
 					.replace("Novitiate ", "")
-					.replace("Yaegir ", "")
-					.replace("Hearthkyn ", "")
-					.replace("Brood Brother ", "")
-					.replace("Ravener ", "")
-					.replace("Battleclade ", "")
-					.replace("Vespid ", "")
-					.replace("Kroot ", "")
-					.replace("Kommando ", "")
-					.replace("Plasmacyte ", "")
-					.replace("Aquilon ", "")
 					.replace("Plague Marine ", "")
+					.replace("Plasmacyte ", "")
+					.replace("Ravener ", "")
+					.replace("Space Hulk Veteran ", "")
+					.replace("Traitor ", "")
+					.replace("Vespid ", "")
+					.replace("Voidscarred ", "")
+					.replace("Warpdiver ", "")
+					.replace("Yaegir ", "")
 					;
 			}
 			
@@ -4172,7 +4173,7 @@ var app = angular.module("kt", ['ngSanitize'])
 							case "SEV":
 							case "SEVERE":
 								rule.rulename = "Severe";
-								rule.ruletext = "If you do not retain any critical successes, you can change one of your normal successes to a critical success. Any rules that take effect as a result of retaining a critical success (e.g. Devastating, Piercing Crits, etc.) still do."
+								rule.ruletext = "If you do not retain any critical successes, you can change one of your normal successes to a critical success. The Devastating and Piercing Crits weapon rules still take effect, but Punishing and Rending don't."
 								break;
 							case "SHOCK":
 								rule.rulename = "Shock";
