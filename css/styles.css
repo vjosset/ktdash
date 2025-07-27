@@ -160,6 +160,10 @@ th, td {
 	page-break-inside: avoid;
 }
 
+.section {
+	page-break-inside: avoid;
+}
+
 .span {
 	column-span: all;
 }
