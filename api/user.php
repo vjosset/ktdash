@@ -91,6 +91,10 @@ function GETUser()
 
 function POSTUser()
 {
+	// DISABLE SIGNUPS - V4 is live
+	header('HTTP/1.0 400 Signups are disabled on this app. Go to v4 at https://ktdash.app instead.');
+	die();
+
 	$username = getIfSet($_REQUEST['username'], '');
 	$password = getIfSet($_REQUEST['password'], '');
 	$confirmpassword = getIfSet($_REQUEST['confirmpassword'], '');
