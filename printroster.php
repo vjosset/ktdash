@@ -101,8 +101,8 @@
 			$pagetitle = $myRoster->rostername . " - Print Roster";
 			$pagedesc  = $myRoster->rostername . " - Print Roster";
 			$pagekeywords = "";
-			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
-			$pageurl   = "https://ktdash.app/printroster.php?rid={$myRoster->rosterid}";
+			$pageimg   = "https://old.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
+			$pageurl   = "https://old.ktdash.app/printroster.php?rid={$myRoster->rosterid}";
 			include "og.php";
 		?>
 		<link rel="stylesheet" href="/css/bootstrap-print.min.css">
@@ -124,7 +124,7 @@
 				(<?php echo $myRoster->killteam->killteamname ?>)
 			</h2>
 		</div>
-		<a href="https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>">https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?></a>
+		<a href="https://old.ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>">https://old.ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?></a>
 		<br/><br/>
 		
 		<div class="row" style="page-break-after: always;">
@@ -186,7 +186,7 @@
 			</div>
 			<div class="col-4">
 				<!-- Roster QR Code -->
-				<img src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
+				<img src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://old.ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>" />
 			</div>
 		</div>
 		

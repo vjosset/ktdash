@@ -159,21 +159,21 @@ ON  RO.edition = R.edition
 
 SITEMAP GENERATOR - Last updated 2023-06-28
 	/* All Factions */
-    SELECT CONCAT('https://ktdash.app/fa/', factionid) FROM Faction UNION
+    SELECT CONCAT('https://old.ktdash.app/fa/', factionid) FROM Faction UNION
     /* All Killteams */
-	SELECT CONCAT('https://ktdash.app/fa/', factionid, '/kt/', killteamid) FROM Killteam UNION
+	SELECT CONCAT('https://old.ktdash.app/fa/', factionid, '/kt/', killteamid) FROM Killteam UNION
     /* Top users */
-	SELECT CONCAT('https://ktdash.app/u/', username) FROM User WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://old.ktdash.app/u/', username) FROM User WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Top user rosters */
-	SELECT CONCAT('https://ktdash.app/r/', rosterid) FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://old.ktdash.app/r/', rosterid) FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Top user roster galleries */
-	SELECT CONCAT('https://ktdash.app/r/', rosterid, '/g') FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
+	SELECT CONCAT('https://old.ktdash.app/r/', rosterid, '/g') FROM Roster WHERE userid IN ('vince', 'tim', 'prebuilt') UNION
     /* Users with spotlighted rosters */
-	SELECT DISTINCT CONCAT('https://ktdash.app/u/', username) FROM Roster R INNER JOIN User U ON U.userid = R.userid WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+	SELECT DISTINCT CONCAT('https://old.ktdash.app/u/', username) FROM Roster R INNER JOIN User U ON U.userid = R.userid WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
     /* Spotlighted rosters */
-	SELECT DISTINCT CONCAT('https://ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
+	SELECT DISTINCT CONCAT('https://old.ktdash.app/r/', R.rosterid) FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1 UNION
     /* Spotlighted roster galleries */
-	SELECT DISTINCT CONCAT('https://ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;
+	SELECT DISTINCT CONCAT('https://old.ktdash.app/r/', R.rosterid, '/g') FROM Roster R WHERE R.userid NOT IN ('vince', 'tim', 'prebuilt') AND R.spotlight = 1;
 
 # Missing Narrative Info (Battle Honours, Rare Equipment, TacOps)
 SELECT
@@ -207,7 +207,7 @@ ORDER BY
 	
 #USER STATS
 	#MOST VIEWED ROSTERS
-	SELECT R.userid, U.username, rosterid, CONCAT('https://ktdash.app/r/', rosterid) AS Link, viewcount, importcount
+	SELECT R.userid, U.username, rosterid, CONCAT('https://old.ktdash.app/r/', rosterid) AS Link, viewcount, importcount
 	FROM Roster R
 	INNER JOIN User U ON U.userid = R.userid
 	WHERE R.userid NOT IN ('prebuilt')
@@ -215,16 +215,16 @@ ORDER BY
 	LIMIT 100;
 
 	#MOST VIEWED USERS
-	SELECT R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username) AS Link, SUM(viewcount) AS totalviews
+	SELECT R.userid, U.username, CONCAT('https://old.ktdash.app/u/', U.username) AS Link, SUM(viewcount) AS totalviews
 	FROM Roster R
 	INNER JOIN User U ON U.userid = R.userid
 	WHERE R.userid NOT IN ('prebuilt')
-	GROUP BY R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username)
+	GROUP BY R.userid, U.username, CONCAT('https://old.ktdash.app/u/', U.username)
 	ORDER BY SUM(viewcount) DESC
 	LIMIT 100;
 
 	#MOST IMPORTED ROSTERS
-	SELECT R.userid, U.username, rosterid, CONCAT('https://ktdash.app/r/', rosterid) AS Link, viewcount, importcount
+	SELECT R.userid, U.username, rosterid, CONCAT('https://old.ktdash.app/r/', rosterid) AS Link, viewcount, importcount
 	FROM Roster R
 	INNER JOIN User U ON U.userid = R.userid
 	WHERE R.userid NOT IN ('prebuilt')
@@ -232,11 +232,11 @@ ORDER BY
 	LIMIT 100;
 
 	#MOST IMPORTED USERS
-	SELECT R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username) AS Link, SUM(importcount) AS totalimports
+	SELECT R.userid, U.username, CONCAT('https://old.ktdash.app/u/', U.username) AS Link, SUM(importcount) AS totalimports
 	FROM Roster R
 	INNER JOIN User U ON U.userid = R.userid
 	WHERE R.userid NOT IN ('prebuilt')
-	GROUP BY R.userid, U.username, CONCAT('https://ktdash.app/u/', U.username)
+	GROUP BY R.userid, U.username, CONCAT('https://old.ktdash.app/u/', U.username)
 	ORDER BY SUM(importcount) DESC
 	LIMIT 100;
 

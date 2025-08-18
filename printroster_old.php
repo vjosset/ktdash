@@ -35,8 +35,8 @@
 			include "header.shtml";
 			$pagetitle = $myRoster->rostername . " - Print Roster";
 			$pagedesc  = $myRoster->rostername . " - Print Roster";
-			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
-			$pageurl   = "https://ktdash.app/printroster.php?rid={$myRoster->rosterid}";
+			$pageimg   = "https://old.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
+			$pageurl   = "https://old.ktdash.app/printroster.php?rid={$myRoster->rosterid}";
 			include "og.php";
 		?>
 	</head>
@@ -52,7 +52,7 @@
 				<span class="ng-cloak" ng-hide="loading">({{ myRoster.killteamname }})</span>
 			</h2>
 		</div>
-		<a href="https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>">https://ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?></a>
+		<a href="https://old.ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?>">https://old.ktdash.app/roster.php?rid=<?php echo $myRoster->rosterid ?></a>
 		<br/><br/>
 		
 		<!-- loadWaiter -->
@@ -90,7 +90,7 @@
 			</div>
 			<div class="col-4 text-end">
 				<!-- Roster QR Code -->
-				<img ng-src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://ktdash.app/roster.php?rid={{ myRoster.rosterid }}" />
+				<img ng-src="https://image-charts.com/chart?cht=qr&chs=150x150&chl=https://old.ktdash.app/roster.php?rid={{ myRoster.rosterid }}" />
 			</div>
 		</div>
 		

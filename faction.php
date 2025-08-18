@@ -45,8 +45,8 @@
 		$pagetitle = $faction->factionname;
 		$pagedesc  = $faction->description;
 		$pagekeywords = $faction->factionname;
-		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $factionid . ".jpg";
-		$pageurl   = "https://ktdash.app/fa/" . $factionid;
+		$pageimg   = "https://old.ktdash.app/img/portraits/". $factionid . "/" . $factionid . ".jpg";
+		$pageurl   = "https://old.ktdash.app/fa/" . $factionid;
 		
 		include "og.php"
 		?>

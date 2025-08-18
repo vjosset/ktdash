@@ -1153,7 +1153,7 @@ var app = angular.module("kt", ['ngSanitize'])
 					case 'TH':
 					case 'TV':
 						//window.open("/api/pdfrender.php?scope=rostercards&cardsize=" + format + "&printploys=" + printploys + "&rid=" + roster.rosterid);
-						window.open("https://ktdash.app/printrostercards.php?cardsize=" + format + "&printploys=" + printploys + "&printeqs=" + printeqs + "&rid=" + roster.rosterid)
+						window.open("https://old.ktdash.app/printrostercards.php?cardsize=" + format + "&printploys=" + printploys + "&printeqs=" + printeqs + "&rid=" + roster.rosterid)
 						break;
 					case 'plainbig':
 						//window.open("/api/pdfrender.php?scope=roster&cols=1&printploys=" + printploys + "&rid=" + roster.rosterid);
@@ -1890,7 +1890,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRoster = function(roster) {
 				//te("roster", "share", "", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid;
+				$scope.shareroster.url = "https://old.ktdash.app/r/" + roster.rosterid;
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");
@@ -1903,7 +1903,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRosterGallery = function(roster) {
 				//te("roster", "share", "gallery", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid + "/g";
+				$scope.shareroster.url = "https://old.ktdash.app/r/" + roster.rosterid + "/g";
 				
 				// Show the modal
 				$('#sharerostergallerymodal').modal("show");
@@ -1914,7 +1914,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				let shareData = {
 					title: roster.rostername + " by " + roster.username,
 					text: "Check out this roster on KTDash!",
-					url: "https://ktdash.app/r/" + roster.rosterid,
+					url: "https://old.ktdash.app/r/" + roster.rosterid,
 				};
 
 				// Trigger the native share dialog
@@ -1926,7 +1926,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				let shareData = {
 					title: roster.rostername + " by " + roster.username,
 					text: "Check out this roster on KTDash!",
-					url: "https://ktdash.app/r/" + roster.rosterid + "/g",
+					url: "https://old.ktdash.app/r/" + roster.rosterid + "/g",
 				};
 
 				// Trigger the native share dialog
@@ -2803,8 +2803,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterTextDescription = function(roster) {
 				//te("roster", "gettext", "", roster.rosterid);
 				let out = "";
-				out = "<h4 class=\"d-inline\"><a href=\"https://ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h4> ";
-				out += "(<a href=\"https://ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a>)<br/>";
+				out = "<h4 class=\"d-inline\"><a href=\"https://old.ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h4> ";
+				out += "(<a href=\"https://old.ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a>)<br/>";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {
@@ -2846,7 +2846,7 @@ var app = angular.module("kt", ['ngSanitize'])
 				let out = "";
 				out = roster.rostername + "\r\n";
 				out += roster.killteamname + " by " + roster.username + "\r\n";
-				out += "https://ktdash.app/r/" + roster.rosterid + "\r\n\r\n";
+				out += "https://old.ktdash.app/r/" + roster.rosterid + "\r\n\r\n";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {

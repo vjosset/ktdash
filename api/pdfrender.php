@@ -47,7 +47,7 @@ function GETRender()
 		}
 
 		// Input is validated, let's build the render URL
-		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=false&filename=" . urlencode($op->opname) . ".pdf&url=" . urlencode("https://ktdash.app/printop.php?cardsize=$cardsize&roid=$op->rosteropid");
+		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=false&filename=" . urlencode($op->opname) . ".pdf&url=" . urlencode("https://old.ktdash.app/printop.php?cardsize=$cardsize&roid=$op->rosteropid");
 
 		// Get the file content
 		$data = file_get_contents($url);
@@ -78,7 +78,7 @@ function GETRender()
 		}
 
 		// Input is validated, let's build the render URL
-		$url = "https://indocpdf.com/api/pdfrender.php?apikey=" . $indocAPIKey . "&showbackground=false&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printroster.php?cols=" . getIfSet($_REQUEST["cols"], 2) . "&printploys=" . $printploys . "&rid=" . $r->rosterid);
+		$url = "https://indocpdf.com/api/pdfrender.php?apikey=" . $indocAPIKey . "&showbackground=false&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://old.ktdash.app/printroster.php?cols=" . getIfSet($_REQUEST["cols"], 2) . "&printploys=" . $printploys . "&rid=" . $r->rosterid);
 
 		// Get the file content
 		$data = file_get_contents($url);
@@ -109,7 +109,7 @@ function GETRender()
 		}
 
 		// Input is validated, let's build the render URL
-		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=true&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printrostercards.php?cardsize=$cardsize&printploys=$printploys&rid=$r->rosterid");
+		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=true&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://old.ktdash.app/printrostercards.php?cardsize=$cardsize&printploys=$printploys&rid=$r->rosterid");
 
 		// Get the file content
 		$data = file_get_contents($url);
@@ -140,7 +140,7 @@ function GETRender()
 		}
 
 		// Input is validated, let's build the render URL
-		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=true&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://ktdash.app/printrostercards2.php?cardsize=$cardsize&printploys=$printploys&rid=$r->rosterid");
+		$url = "https://indocpdf.com/api/pdfrender.php?apikey=$indocAPIKey&showbackground=true&filename=" . urlencode($r->rostername) . ".pdf&url=" . urlencode("https://old.ktdash.app/printrostercards2.php?cardsize=$cardsize&printploys=$printploys&rid=$r->rosterid");
 
 		// Get the file content
 		$data = file_get_contents($url);

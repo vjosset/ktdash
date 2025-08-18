@@ -49,8 +49,8 @@
 			$pagetitle = $myRoster->rostername . " " . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . " - Gallery";
 			$pagedesc  = $myRoster->killteamname . " KillTeam" . ($myRoster->userid == 'prebuilt' ? "" : (" by " . $myRoster->username)) . ":\r\n" . $myRoster->notes;
 			$pagekeywords = "Gallery,Photos,Miniatures,Prebuilt,sample,rosters,teams,import," . $myRoster->rostername . "," . $myRoster->killteamname . "," . $myRoster->username;
-			$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
-			$pageurl   = "https://ktdash.app/r/{$myRoster->rosterid}/g";
+			$pageimg   = "https://old.ktdash.app/api/rosterportrait.php?rid={$myRoster->rosterid}";
+			$pageurl   = "https://old.ktdash.app/r/{$myRoster->rosterid}/g";
 			include "og.php";
 		?>
 		<?php

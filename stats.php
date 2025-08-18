@@ -11,7 +11,7 @@
 	if ($me == null || $me->userid != 'vince') {
 		// They shouldn't be here
 		header('HTTP/1.0 403 Not Authorized');
-		header("Location: https://ktdash.app/rosters.php");
+		header("Location: https://old.ktdash.app/rosters.php");
 		die();
 	}
 ?>
@@ -24,7 +24,7 @@
 			$pagedesc  = "Stats";
 			$pagekeywords = "";
 			$pageimg   = "";
-			$pageurl   = "https://ktdash.app/stats.php";
+			$pageurl   = "https://old.ktdash.app/stats.php";
 			include "og.php";
 		?>
 		<style>

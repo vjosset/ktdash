@@ -52,8 +52,8 @@
 		$pagetitle = $killteam->killteamname . " Kill Team (" . $killteam->edition . ")";
 		$pagedesc  = str_replace("\n", " ", str_replace("\r", " ", $killteam->description));
 		$pagekeywords = $faction->factionname . "," . $killteam->killteamname . "," . $killteam->edition;
-		$pageimg   = "https://ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg";
-		$pageurl   = "https://ktdash.app/fa/" . $factionid . "/kt/" . $killteamid;
+		$pageimg   = "https://old.ktdash.app/img/portraits/". $factionid . "/" . $killteamid . "/" . $killteamid . ".jpg";
+		$pageurl   = "https://old.ktdash.app/fa/" . $factionid . "/kt/" . $killteamid;
 		
 		include "og.php"
 		?>

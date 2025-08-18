@@ -16,8 +16,8 @@
 		$pagetitle = "User Guide";
 		$pagedesc  = "Tutorial for first-time users";
 		$pagekeywords = "user guide, guide, tutorial, getting started, FAQ, Help, Support";
-		$pageimg   = "https://ktdash.app/img/og/home.png";
-		$pageurl   = "https://ktdash.app/userguide.php";
+		$pageimg   = "https://old.ktdash.app/img/og/home.png";
+		$pageurl   = "https://old.ktdash.app/userguide.php";
 		
 		include "og.php"
 		?>
@@ -31,7 +31,7 @@
 		<h1 class="orange"><i class="fas fa-info-circle fa-fw"></i> User Guide</h1>
 
 		<div class="container">
-			<em>See also the <a href="https://ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a> and the <a href="/faq.php">FAQ</a>.</em>
+			<em>See also the <a href="https://old.ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a> and the <a href="/faq.php">FAQ</a>.</em>
 			<br/><br/>
 			<h4 id="how-it-works"><i class="fas fa-info-circle fa-fw"></i> How It Works</h4>
 			<div class="ms-2">
@@ -47,13 +47,13 @@
 			<h4 id="quick-tips"><i class="fas fa-info-circle fa-fw"></i> Quick Tips</h4>
 			<div class="ms-2">
 				<ul>
-					<li>Consult the <a href="https://ktdash.app/faq.php">FAQ</a> for the most common questions and solutions.</li>
+					<li>Consult the <a href="https://old.ktdash.app/faq.php">FAQ</a> for the most common questions and solutions.</li>
 					<li>Almost all options and actions can be taken from the &quot;three dots&quot; button throughout the app</li>
-					<li>Use <a href="https://ktdash.app/u">My Rosters</a> menu to manage your rosters.</li>
-					<li>Use the <a href="https://ktdash.app/dashboard">Dashboard</a> to track your game turns, tacops, ploys, operative orders and activations and wounds, etc. Everything you need to play your games without trackers and tokens and wound markers!</li>
-					<li>If your opponent also has their roster in KTDash, use the &quot;Select Opponent&quot; option on the <a href="https://ktdash.app/dashboard">Dashboard</a> to keep track of their roster&#39;s TacOps, ploys, and operative wounds.</li>
-					<li>Use the <a href="https://ktdash.app/settings.php">Settings</a> to customize the site and application to your liking.</li>
-					<li>If you have different loadouts for your team, use "Select Operatives" on the <a href="https://ktdash.app/dashboard">Dashboard</a> to choose who is and isn't deployed. For example, rather than building two rosters as "Shooty" and "Fighty" variations, build it as a single roster and select which operatives are actually in the battle.</li>
+					<li>Use <a href="https://old.ktdash.app/u">My Rosters</a> menu to manage your rosters.</li>
+					<li>Use the <a href="https://old.ktdash.app/dashboard">Dashboard</a> to track your game turns, tacops, ploys, operative orders and activations and wounds, etc. Everything you need to play your games without trackers and tokens and wound markers!</li>
+					<li>If your opponent also has their roster in KTDash, use the &quot;Select Opponent&quot; option on the <a href="https://old.ktdash.app/dashboard">Dashboard</a> to keep track of their roster&#39;s TacOps, ploys, and operative wounds.</li>
+					<li>Use the <a href="https://old.ktdash.app/settings.php">Settings</a> to customize the site and application to your liking.</li>
+					<li>If you have different loadouts for your team, use "Select Operatives" on the <a href="https://old.ktdash.app/dashboard">Dashboard</a> to choose who is and isn't deployed. For example, rather than building two rosters as "Shooty" and "Fighty" variations, build it as a single roster and select which operatives are actually in the battle.</li>
 				</ul>
 			</div>
 

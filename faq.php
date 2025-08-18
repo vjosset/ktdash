@@ -16,8 +16,8 @@
 		$pagetitle = "FAQ";
 		$pagedesc  = "Frequently Asked Questions";
 		$pagekeywords = "FAQ, Help, Support";
-		$pageimg   = "https://ktdash.app/img/og/home.png";
-		$pageurl   = "https://ktdash.app/faq.php";
+		$pageimg   = "https://old.ktdash.app/img/og/home.png";
+		$pageurl   = "https://old.ktdash.app/faq.php";
 		
 		include "og.php"
 		?>
@@ -34,7 +34,7 @@
 			<div class="section">
 				<h5>Is there a User Guide for new users?</h5>
 				<p>
-					You can look at the official <a href="/userguide.php">User Guide</a> or the <a href="https://ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a>.
+					You can look at the official <a href="/userguide.php">User Guide</a> or the <a href="https://old.ktdash.app/img/UserGuide_v0.1.pdf" target="_blank">user-created guide</a> by <a href="/u/skrdla">Skrdla</a>.
 				</p>
 			</div>
 

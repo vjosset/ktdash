@@ -1,4 +1,4 @@
-Sitemap: https://ktdash.app/sitemap.txt
+Sitemap: https://old.ktdash.app/sitemap.txt
 #Block dotbot
 User-agent: dotbot 
 Disallow: /

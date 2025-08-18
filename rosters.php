@@ -66,11 +66,11 @@
 			}
 			
 			if (count($myRosters) > 0) {
-				$pageimg   = "https://ktdash.app/api/rosterportrait.php?rid={$myRosters[0]->rosterid}";
+				$pageimg   = "https://old.ktdash.app/api/rosterportrait.php?rid={$myRosters[0]->rosterid}";
 			} else {
-				$pageimg   = "https://ktdash.app/img/og/Home.png";
+				$pageimg   = "https://old.ktdash.app/img/og/Home.png";
 			}
-			$pageurl   = "https://ktdash.app/u/{$myUser->username}";
+			$pageurl   = "https://old.ktdash.app/u/{$myUser->username}";
 			include "og.php";
 		?>
 		

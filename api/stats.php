@@ -42,7 +42,7 @@ function GETStats()
   // Most viewed rosters
   $output->mostviewedrosters = [];
   $sql =
-  "SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://ktdash.app/r/', rosterid, '/g') AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, viewcount
+  "SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://old.ktdash.app/r/', rosterid, '/g') AS rosterlink, CONCAT('https://old.ktdash.app/u/', U.username) AS userlink, viewcount
   FROM Roster R
   INNER JOIN User U ON U.userid = R.userid
   INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
@@ -62,7 +62,7 @@ function GETStats()
   // Most imported rosters
   $output->mostimportedrosters = [];
   $sql =
-  "SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://ktdash.app/r/', rosterid) AS rosterlink, CONCAT('https://ktdash.app/u/', U.username) AS userlink, importcount
+  "SELECT U.username, R.rostername, KT.killteamname, KT.edition, CONCAT('https://old.ktdash.app/r/', rosterid) AS rosterlink, CONCAT('https://old.ktdash.app/u/', U.username) AS userlink, importcount
     FROM Roster R
     INNER JOIN User U ON U.userid = R.userid
     INNER JOIN Killteam KT ON KT.factionid = R.factionid AND KT.killteamid = R.killteamid
@@ -82,11 +82,11 @@ function GETStats()
   // Most viewed users
   $output->mostviewedusers = [];
   $sql =
-  "SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(viewcount) AS viewcount
+  "SELECT U.username, CONCAT('https://old.ktdash.app/u/', U.username) AS userlink, SUM(viewcount) AS viewcount
     FROM Roster R
     INNER JOIN User U ON U.userid = R.userid
     WHERE R.userid NOT IN ('prebuilt')
-    GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
+    GROUP BY U.username, CONCAT('https://old.ktdash.app/u/', U.username)
     ORDER BY SUM(viewcount) DESC
     LIMIT 10;";
   $cmd = $dbcon->prepare($sql);
@@ -102,11 +102,11 @@ function GETStats()
   // Most imported users
   $output->mostimportedusers = [];
   $sql =
-  "SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, SUM(importcount) AS importcount
+  "SELECT U.username, CONCAT('https://old.ktdash.app/u/', U.username) AS userlink, SUM(importcount) AS importcount
     FROM Roster R
     INNER JOIN User U ON U.userid = R.userid
     WHERE R.userid NOT IN ('prebuilt')
-    GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
+    GROUP BY U.username, CONCAT('https://old.ktdash.app/u/', U.username)
     ORDER BY SUM(importcount) DESC
     LIMIT 10;";
   $cmd = $dbcon->prepare($sql);
@@ -122,11 +122,11 @@ function GETStats()
   // Most spotlighted users
   $output->mostspotlightedusers = [];
   $sql =
-  "SELECT U.username, CONCAT('https://ktdash.app/u/', U.username) AS userlink, COUNT(DISTINCT R.rosterid) AS spotlightcount
+  "SELECT U.username, CONCAT('https://old.ktdash.app/u/', U.username) AS userlink, COUNT(DISTINCT R.rosterid) AS spotlightcount
     FROM Roster R
     INNER JOIN User U ON U.userid = R.userid
     WHERE R.userid NOT IN ('prebuilt') AND R.spotlight = 1
-    GROUP BY U.username, CONCAT('https://ktdash.app/u/', U.username)
+    GROUP BY U.username, CONCAT('https://old.ktdash.app/u/', U.username)
     ORDER BY COUNT(DISTINCT R.rosterid) DESC
     LIMIT 10;";
   $cmd = $dbcon->prepare($sql);
@@ -142,7 +142,7 @@ function GETStats()
   // Killteamstats
   $output->killteamstats = [];
   $sql =
-  "SELECT KT.killteamname, KT.edition, CONCAT('https://ktdash.app/fa/', KT.factionid, '/kt/', KT.killteamid) AS killteamlink, SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) AS rostercount, SUM(R.spotlight) AS spotlightcount
+  "SELECT KT.killteamname, KT.edition, CONCAT('https://old.ktdash.app/fa/', KT.factionid, '/kt/', KT.killteamid) AS killteamlink, SUM(CASE WHEN R.rosterid IS NULL THEN 0 ELSE 1 END) AS rostercount, SUM(R.spotlight) AS spotlightcount
 							FROM Killteam KT
 							LEFT JOIN Roster R
 							ON  R.factionid = KT.factionid AND R.killteamid = KT.killteamid AND R.rostername != 'Sample Team: Intercessors'

@@ -18,7 +18,7 @@ function toast(msg) {
 
 
 
-let apiurl = "https://ktdash.app/api/";
+let apiurl = "https://old.ktdash.app/api/";
 
 function GetQS(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');

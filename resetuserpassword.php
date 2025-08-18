@@ -7,7 +7,7 @@
 	if ($me == null || $me->userid != 'vince') {
 		// They shouldn't be here
 		header('HTTP/1.0 403 Not Authorized');
-		header("Location: https://ktdash.app/rosters.php");
+		header("Location: https://old.ktdash.app/rosters.php");
 		die();
 	}
 
@@ -43,7 +43,7 @@
 			$pagedesc  = "Reset user password";
 			$pagekeywords = "";
 			$pageimg   = "";
-			$pageurl   = "https://ktdash.app/resetuserpassword.php";
+			$pageurl   = "https://old.ktdash.app/resetuserpassword.php";
 		?>
   </head>
   <body ng-app="kt" ng-controller="ktCtrl">

@@ -14,7 +14,7 @@ class Utils
 			'https://localhost:3000',
 			'http://localhost:3001',
 			'https://localhost:3002',
-			'https://ktdash.app',
+			'https://old.ktdash.app',
 			'https://192.168.1.103:3000',
 			'https://beta.ktdash.app',
 			'https://indocpdf.com',

@@ -29,8 +29,8 @@
 			$pagetitle = "Dashboard";
 			$pagedesc  = "KillTeam Game Dashboard";
 			$pagekeywords = "Dashboard, track, VP, CP, TP";
-			$pageimg   = "https://ktdash.app/img/dashboard.png";
-			$pageurl   = "https://ktdash.app/dashboard";
+			$pageimg   = "https://old.ktdash.app/img/dashboard.png";
+			$pageurl   = "https://old.ktdash.app/dashboard";
 			include "og.php";
 		?>
 		<style>

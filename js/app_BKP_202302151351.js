@@ -1275,7 +1275,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRoster = function(roster) {
 				te("roster", "share", "", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid;
+				$scope.shareroster.url = "https://old.ktdash.app/r/" + roster.rosterid;
 				
 				// Show the modal
 				$('#sharerostermodal').modal("show");
@@ -1286,7 +1286,7 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.showShareRosterGallery = function(roster) {
 				te("roster", "share", "gallery", roster.rosterid);
 				$scope.shareroster = roster;
-				$scope.shareroster.url = "https://ktdash.app/r/" + roster.rosterid + "/g";
+				$scope.shareroster.url = "https://old.ktdash.app/r/" + roster.rosterid + "/g";
 				
 				// Show the modal
 				$('#sharerostergallerymodal').modal("show");
@@ -1971,8 +1971,8 @@ var app = angular.module("kt", ['ngSanitize'])
 			$scope.getRosterTextDescription = function(roster) {
 				te("roster", "gettext", "", roster.rosterid);
 				let out = "";
-				out = "<h6><a href=\"https://ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
-				out += "<a href=\"https://ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
+				out = "<h6><a href=\"https://old.ktdash.app/r/" + roster.rosterid + "\">" + roster.rostername + "</a></h6>";
+				out += "<a href=\"https://old.ktdash.app/fa/" + roster.factionid + "/kt/" + roster.killteamid + "\">" + roster.killteam.killteamname + "</a><br/>";
 				
 				let totalEq = $scope.totalEqPts(roster);
 				if (totalEq > 0) {

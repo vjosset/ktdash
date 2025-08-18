@@ -20,8 +20,8 @@
 		$pagetitle = "Factions";
 		$pagedesc  = "All KillTeam factions";
 		$pagekeywords = "All Factions";
-		$pageimg   = "https://ktdash.app/img/og/Compendium.png";
-		$pageurl   = "https://ktdash.app/allfactions";
+		$pageimg   = "https://old.ktdash.app/img/og/Compendium.png";
+		$pageurl   = "https://old.ktdash.app/allfactions";
 		
 		include "og.php"
 		?>
