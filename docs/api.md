@@ -2,6 +2,8 @@
 
 The KTDash API allows developers to build custom front-ends leveraging the KTDash back-end and database.
 
+> THIS API IS DEPRECATED. See https://github.com/vjosset/ktdash-v4-public for the current version.
+
 # Faction
 
 A Faction represents a game faction, and each faction contains its associated killteams.
